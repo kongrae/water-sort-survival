@@ -28,7 +28,10 @@ $siteUrl = "https://$owner.github.io/$repoName/"
 
 function Run-Git {
     param([string[]]$GitArgs)
-    & git @GitArgs
+    # git prints progress on stderr; show it as plain text and judge success by the exit code only.
+    $eap = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try { & git @GitArgs 2>&1 | ForEach-Object { "$_" } } finally { $ErrorActionPreference = $eap }
     if ($LASTEXITCODE -ne 0) { throw "git failed: $($GitArgs -join ' ')" }
 }
 function Get-Status {
@@ -61,9 +64,9 @@ try {
     }
     if ($repo.description -ne $repoDescription) { $repo = Send-Json $apiUrl 'Patch' @{ description = $repoDescription } }
 
-    $origin = git remote get-url origin 2>$null
-    if ($LASTEXITCODE -ne 0) { Run-Git -GitArgs @('remote', 'add', 'origin', $repoUrl) }
-    elseif ($origin -ne $repoUrl) { throw 'origin does not point to the deploy repository.' }
+    # 'git remote get-url' writes to stderr when origin is missing, which Windows PowerShell turns into an error.
+    if (@(git remote) -notcontains 'origin') { Run-Git -GitArgs @('remote', 'add', 'origin', $repoUrl) }
+    elseif ((git remote get-url origin) -ne $repoUrl) { throw 'origin does not point to the deploy repository.' }
 
     & node build-pages.js dist
     if ($LASTEXITCODE -ne 0) { throw 'Pages build failed.' }
