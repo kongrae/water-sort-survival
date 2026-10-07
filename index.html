@@ -1,0 +1,1686 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>물정렬 생존</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: one phone-width column. Score strip, incoming tray (cup, flip, queue, spare cup) with zone info, zone bar, bottle rack, action row. Sheets for rules, settings and results. */
+:root {
+  --bg: #edf1f3;
+  --panel: #ffffff;
+  --ink: #16242c;
+  --muted: #5b6b75;
+  --line: #ccd6dc;
+  --glass: #f7fafb;
+  --glass-edge: #8fa3ae;
+  --accent: #0d7480;
+  --accent-soft: rgba(13, 116, 128, .16);
+  --accent-ink: #ffffff;
+  --danger: #b2401c;
+  --gold: #c98f00;
+  --gold-soft: rgba(201, 143, 0, .22);
+  --scrim: rgba(8, 16, 20, .55);
+  --shadow: 0 1px 2px rgba(22, 36, 44, .08), 0 8px 24px rgba(22, 36, 44, .08);
+  --liq0: #e5484d; --liq1: #3e63dd; --liq2: #f0b400; --liq3: #2e9d5d; --liq4: #8e4ec6;
+  --liq5: #f2701c; --liq6: #0ba1bd; --liq7: #d6409f; --liq8: #7d5a3c;
+  --font-display: 'Jua', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --lh: 30px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171c; --panel: #17222a; --ink: #e4edf1; --muted: #93a4ae; --line: #2b3a43;
+    --glass: #1b2830; --glass-edge: #557080; --accent: #3fc2d1; --accent-soft: rgba(63, 194, 209, .2);
+    --accent-ink: #06252a; --danger: #ff8a5e; --gold: #f2c94c; --gold-soft: rgba(242, 201, 76, .24); --scrim: rgba(0, 0, 0, .6);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171c; --panel: #17222a; --ink: #e4edf1; --muted: #93a4ae; --line: #2b3a43;
+  --glass: #1b2830; --glass-edge: #557080; --accent: #3fc2d1; --accent-soft: rgba(63, 194, 209, .2);
+  --accent-ink: #06252a; --danger: #ff8a5e; --gold: #f2c94c; --gold-soft: rgba(242, 201, 76, .24); --scrim: rgba(0, 0, 0, .6);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  padding-inline: 16px; padding-block: 12px 28px; -webkit-tap-highlight-color: transparent;
+}
+.app { max-width: 460px; margin-inline: auto; display: flex; flex-direction: column; gap: 12px; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
+.brand h1 { font-family: var(--font-display); font-weight: 400; font-size: 25px; line-height: 1.1; margin: 0; }
+.chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.chip.daily { border-color: var(--accent); color: var(--accent); }
+.top-btns { display: flex; gap: 6px; flex: none; }
+.sbtn { height: 34px; padding-inline: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 13px var(--font-body); cursor: pointer; }
+
+.scorebar { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.score { position: relative; min-width: 0; }
+.score small { display: block; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+#score { font-family: var(--font-display); font-size: 42px; line-height: 1; font-variant-numeric: tabular-nums; display: inline-block; }
+#score.shine { animation: shine .9s ease-out; }
+.pace { display: block; min-height: 18px; margin-top: 2px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pace.up { color: var(--accent); }
+.pace.hl { animation: hl .4s ease-out; }
+.meta { display: grid; grid-template-columns: repeat(3, auto); gap: 16px; text-align: right; font-size: 12px; color: var(--muted); }
+.meta b { display: block; color: var(--ink); font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+#combo.fuse::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50% 50% 50% 0; background: var(--liq5); transform: rotate(-45deg); vertical-align: 2px; animation: flick .45s ease-in-out infinite alternate; }
+#combo.shine { animation: badge .8s ease-out; }
+#combo.shake { animation: shake .3s ease-in-out; }
+
+.incoming { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+.tray { display: flex; align-items: flex-end; gap: 12px; min-height: 92px; }
+.slot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); }
+.queue { display: flex; gap: 10px; align-items: flex-end; }
+.flipbtn { position: relative; align-self: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 700 18px/1 var(--font-body); cursor: pointer; }
+.flipbtn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.flipbtn:disabled { opacity: .35; cursor: default; }
+.flipbtn .fb-n { position: absolute; top: -7px; right: -7px; min-width: 17px; height: 17px; padding-inline: 4px; box-sizing: border-box; border-radius: 9px; background: var(--accent); color: var(--accent-ink); font: 700 11px/17px var(--font-body); }
+.spare-slot { margin-left: auto; display: flex; flex-direction: column; align-items: center; gap: 3px; max-width: 96px; font-size: 10px; color: var(--muted); text-align: center; }
+.offer { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 9px; border-radius: 10px; border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: 700 12px/1.3 var(--font-body); cursor: pointer; }
+.offer small { font-weight: 400; font-size: 10px; color: var(--muted); }
+.offer.blink { animation: blink .5s ease-in-out 6; }
+.info { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 12px; color: var(--muted); }
+.info strong { color: var(--ink); font-weight: 500; }
+.zchip { padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; white-space: nowrap; }
+.count-down { color: var(--accent); font-weight: 700; }
+.dots { display: flex; flex-wrap: wrap; gap: 4px; margin-left: auto; }
+.sw { width: 11px; height: 11px; border-radius: 50%; }
+.sw.next { background: transparent !important; border: 2px dashed; box-sizing: border-box; }
+.sw.next.pulse { animation: pulse .7s ease-in-out infinite alternate; }
+.tag-new { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); padding: 0 4px; border-radius: 4px; background: var(--accent); color: var(--accent-ink); font: 700 9px/1.5 var(--font-body); pointer-events: none; white-space: nowrap; }
+
+.zbar { display: flex; align-items: center; gap: 8px; min-height: 16px; }
+.zbar .track { position: relative; flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
+.zbar .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--accent); transition: width .3s ease; }
+.zbar .flag { position: absolute; top: -5px; width: 2px; height: 16px; margin-left: -1px; background: var(--ink); }
+.zbar .flag::after { content: ""; position: absolute; top: 0; left: 2px; border: 4px solid transparent; border-left: 6px solid var(--ink); border-right: 0; }
+.zbar .znote { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+.rack { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 58px)); justify-content: center; gap: 10px; padding-top: 18px; }
+.rack.punch { animation: punch .15s ease-out; }
+.rack.dead { filter: saturate(.3); transition: filter .6s ease; }
+.tube { --cap: 4; appearance: none; border: 0; background: none; padding: 0; margin: 0; color: inherit; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: stretch; position: relative; transition: transform .16s ease; }
+.tube:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
+.rim { height: 6px; margin-inline: -4px; border-radius: 4px; background: var(--glass-edge); }
+.glass { position: relative; height: calc(var(--cap) * var(--lh) + 8px); border: 2px solid var(--glass-edge); border-top: 0; border-radius: 0 0 20px 20px; background: var(--glass); display: flex; flex-direction: column-reverse; gap: 2px; padding: 3px; overflow: hidden; }
+.glass::after { content: ""; position: absolute; right: 0; top: 0; bottom: 3px; width: 5px; background: repeating-linear-gradient(to top, transparent 0 calc(var(--lh) - 1px), var(--glass-edge) calc(var(--lh) - 1px) var(--lh)); opacity: .55; pointer-events: none; }
+.layer { flex: none; height: calc(var(--lh) - 2px); border-radius: 5px; display: grid; place-items: center; color: #fff; font-size: 13px; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .4); transform-origin: bottom; }
+.layer:first-child { border-radius: 5px 5px 15px 15px; }
+.layer.ghostL { opacity: .4; }
+.layer.leaving { opacity: .5; }
+.free { margin-top: 5px; text-align: center; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tube.sel { transform: translateY(-12px); }
+.tube.sel .glass { border-color: var(--accent); }
+.tube.sel .rim { background: var(--accent); }
+.tube.can .glass { box-shadow: 0 0 0 3px var(--accent-soft); }
+.tube.hover .glass { box-shadow: 0 0 0 3px var(--accent); }
+.tube.gold .glass { box-shadow: 0 0 0 3px var(--gold); background: var(--gold-soft); }
+.tube.reject .glass { box-shadow: 0 0 0 3px var(--danger); }
+.cork { position: absolute; top: -10px; left: 50%; width: 46%; height: 9px; transform: translateX(-50%); border-radius: 3px 3px 1px 1px; background: var(--liq8); pointer-events: none; }
+.tube.flash .glass { animation: flash .6s ease-out; }
+.tube.shake { animation: shake .3s ease-in-out; }
+.tube.mini { --lh: 22px; width: 44px; touch-action: none; }
+.tube.mini .glass { border-radius: 0 0 14px 14px; }
+.tube.mini .layer:first-child { border-radius: 4px 4px 10px 10px; }
+.tube.mini.swap .layer { animation: swap .12s ease-in-out; }
+.tube.micro { --lh: 15px; width: 28px; cursor: default; opacity: .8; }
+.tube.micro .rim { height: 4px; margin-inline: -3px; }
+.tube.micro .glass { border-radius: 0 0 9px 9px; padding: 2px; gap: 1px; border-width: 1.5px; }
+.tube.micro .layer { height: calc(var(--lh) - 1px); border-radius: 3px; font-size: 9px; }
+.tube.micro .layer:first-child { border-radius: 3px 3px 7px 7px; }
+.tube.micro .glass::after, .tube.mini .glass::after { display: none; }
+.tube.spare { --lh: 22px; width: 34px; }
+.tube.spare .glass { border-radius: 0 0 10px 10px; border-style: dashed; }
+.tube.spare.enter { animation: slideIn .3s ease-out; }
+.tube:disabled { cursor: default; }
+.ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; transform: translate(-50%, -70%) rotate(-8deg); opacity: .92; }
+.layer.pop { animation: pop .22s ease-out; }
+.burst { position: absolute; inset: 3px; display: flex; flex-direction: column-reverse; gap: 2px; pointer-events: none; animation: burst .55s ease-out forwards; }
+.burst i { height: calc(var(--lh) - 2px); border-radius: 5px; }
+.float { position: absolute; left: 50%; top: -10px; z-index: 5; white-space: nowrap; pointer-events: none; font-family: var(--font-display); font-size: 17px; color: var(--accent); animation: floatUp .95s ease-out forwards; }
+.float.big { font-size: 21px; }
+.score .float { left: 0; top: 0; transform: none; font-size: 15px; animation: floatUpL 1.1s ease-out forwards; }
+
+.status { min-height: 44px; margin: 0; font-size: 14px; color: var(--muted); text-align: center; text-wrap: balance; }
+.status.warn { color: var(--danger); font-weight: 500; }
+.actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.btn { min-height: 44px; padding-inline: 10px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 14px var(--font-body); cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn:focus-visible, .sbtn:focus-visible, .flipbtn:focus-visible, .offer:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.center-row { display: flex; justify-content: center; }
+.foot { margin: 0; font-size: 12px; color: var(--muted); text-align: center; }
+
+.banner-layer { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; pointer-events: none; }
+.banner { max-width: calc(100% - 48px); padding: 10px 18px; border-radius: 14px; background: var(--panel); color: var(--accent); box-shadow: var(--shadow); font-family: var(--font-display); font-size: 22px; text-align: center; animation: bannerIn .25s ease-out; }
+.banner.big { font-size: 30px; color: var(--gold); }
+.fx-layer { position: fixed; inset: 0; z-index: 35; pointer-events: none; overflow: hidden; }
+.confetti { position: absolute; top: -12px; width: 8px; height: 12px; border-radius: 2px; animation: fall 1.4s linear forwards; }
+.spark { position: absolute; width: 7px; height: 7px; border-radius: 50%; animation: rise 1s ease-out forwards; }
+.deathghost { position: fixed; z-index: 36; }
+
+.overlay { position: fixed; inset: 0; z-index: 40; background: var(--scrim); display: grid; place-items: center; padding: 16px; }
+.sheet { width: min(420px, 100%); max-height: calc(100% - 16px); overflow: auto; box-sizing: border-box; background: var(--panel); color: var(--ink); border-radius: 18px; padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; }
+.sheet h2 { font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1.15; margin: 0; text-wrap: balance; }
+.sheet h3 { margin: 4px 0 0; font-size: 13px; color: var(--muted); font-weight: 700; letter-spacing: .04em; }
+.note { margin: 0; font-size: 13px; color: var(--muted); }
+.rules { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.rules b { color: var(--accent); font-weight: 700; margin-right: 4px; }
+.facts { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.fields { display: flex; flex-direction: column; gap: 10px; }
+.field { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+.field select { min-width: 110px; height: 36px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 14px var(--font-body); padding-inline: 8px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+.check small { display: block; color: var(--muted); font-size: 12px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; }
+.stats div { padding: 10px 12px; border-radius: 12px; background: var(--bg); }
+.stats dt { font-size: 12px; color: var(--muted); }
+.stats dd { margin: 0; font-family: var(--font-display); font-size: 24px; font-variant-numeric: tabular-nums; }
+.badge { align-self: flex-start; margin: 0; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 700; }
+.zres { display: flex; flex-direction: column; gap: 6px; }
+.zstars { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; }
+.zstars span b { color: var(--gold); font-weight: 400; letter-spacing: 1px; }
+.share { display: flex; flex-direction: column; gap: 8px; }
+.share label { font-size: 12px; color: var(--muted); }
+.share textarea { width: 100%; box-sizing: border-box; resize: none; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 13px/1.5 var(--font-body); padding: 8px 10px; }
+.count { font-family: var(--font-display); font-size: 64px; line-height: 1; text-align: center; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+@keyframes pop { from { transform: scaleY(.35); opacity: .3; } to { transform: none; opacity: 1; } }
+@keyframes burst { to { opacity: 0; transform: translateY(-18px) scale(1.05); } }
+@keyframes floatUp { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, -36px); } }
+@keyframes floatUpL { from { opacity: 1; translate: 0 0; } to { opacity: 0; translate: 0 -30px; } }
+@keyframes flash { from { background: var(--accent-soft); } to { background: var(--glass); } }
+@keyframes shake { 0%, 100% { translate: 0; } 25% { translate: -5px; } 75% { translate: 5px; } }
+@keyframes swap { 0% { transform: scaleY(1); } 50% { transform: scaleY(.2); } 100% { transform: scaleY(1); } }
+@keyframes punch { 0%, 100% { scale: 1; } 50% { scale: 1.04; } }
+@keyframes shine { 0% { color: var(--gold); text-shadow: 0 0 14px var(--gold-soft); } 100% { color: inherit; text-shadow: none; } }
+@keyframes badge { 0% { color: var(--gold); text-shadow: 0 0 10px var(--gold); } 100% { color: inherit; text-shadow: none; } }
+@keyframes hl { from { color: var(--ink); } to { color: inherit; } }
+@keyframes flick { from { opacity: .55; scale: .85; } to { opacity: 1; scale: 1.1; } }
+@keyframes pulse { from { scale: 1; } to { scale: 1.45; } }
+@keyframes blink { 50% { background: var(--accent); color: var(--accent-ink); } }
+@keyframes slideIn { from { opacity: 0; translate: 24px 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes bannerIn { from { opacity: 0; scale: .8; } to { opacity: 1; scale: 1; } }
+@keyframes fall { to { translate: var(--dx, 0) 105vh; rotate: 540deg; } }
+@keyframes rise { from { opacity: .9; } to { opacity: 0; translate: var(--dx, 0) -80px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition: none !important; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand"><h1>물정렬 생존</h1><span class="chip" id="modeChip">무한 모드</span></div>
+    <div class="top-btns">
+      <button class="sbtn" id="btnHelp" type="button">규칙</button>
+      <button class="sbtn" id="btnSettings" type="button">설정</button>
+    </div>
+  </header>
+
+  <section class="scorebar" aria-label="점수">
+    <div class="score"><small>점수</small><span id="score">0</span><span class="pace" id="pace"></span></div>
+    <div class="meta">
+      <div>최고<b id="best">0</b></div>
+      <div>턴<b id="turn">0</b></div>
+      <div>콤보<b id="combo">-</b></div>
+    </div>
+  </section>
+
+  <section class="incoming" aria-label="들어오는 조각">
+    <div class="tray">
+      <div class="slot"><button class="tube mini" id="cup" type="button" aria-label="지금 조각"></button><span>지금</span></div>
+      <button class="flipbtn" id="btnFlip" type="button" hidden aria-pressed="false" aria-label="조각 위아래 바꾸기">⇅<span class="fb-n" id="flipN"></span></button>
+      <div class="queue" id="queue"></div>
+      <div class="spare-slot" id="spareSlot" hidden></div>
+    </div>
+    <div class="info">
+      <span class="zchip" id="zoneChip" hidden></span>
+      <span id="colorInfo"></span>
+      <span id="pourInfo"></span>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <div class="zbar" id="zoneBar" hidden><div class="track"><i class="fill" id="zoneFill"></i><i class="flag" id="zoneFlag" hidden></i></div><span class="znote" id="zoneNote"></span></div>
+
+  <section class="rack" id="rack" aria-label="병"></section>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+  <div class="center-row" id="extraRow" hidden><button class="btn" id="btnExtra" type="button">포기하고 결과 보기</button></div>
+
+  <nav class="actions" aria-label="게임 조작">
+    <button class="btn" id="btnUndo" type="button">되돌리기</button>
+    <button class="btn" id="btnNew" type="button">새 게임</button>
+    <button class="btn primary" id="btnMode" type="button">오늘의 도전</button>
+  </nav>
+  <p class="foot">프로토타입입니다. 광고는 나오지 않고 광고가 들어갈 자리만 보여줘요.</p>
+</div>
+
+<div class="banner-layer"><div class="banner" id="banner" hidden></div></div>
+<div class="fx-layer" id="fxLayer"></div>
+
+<div class="overlay" id="ovHelp" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <h2 id="helpTitle">이렇게 플레이해요</h2>
+    <ul class="rules">
+      <li><b>조각 넣기</b>위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요. 빈칸이 충분하면 어느 병에든 들어가요.</li>
+      <li><b>붓기</b>병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요. 받는 병이 비었거나 맨 위 색이 같아야 해요.</li>
+      <li><b>완성</b>한 색으로 가득 찬 병은 저절로 비워지고 점수를 얻어요. 여러 턴 연속으로 완성하면 콤보 배수가 올라가요.</li>
+      <li><b>게임 오버</b>턴이 지날수록 색이 늘어나요. 조각을 넣을 자리를 만들 수 없으면 끝나요.</li>
+    </ul>
+    <h3>새 규칙</h3>
+    <ul class="rules" id="helpV2"></ul>
+    <p class="note">오늘의 도전은 모두가 같은 조각 순서로 플레이해요. 끝나면 결과를 복사해 공유할 수 있어요.</p>
+    <button class="btn primary" type="button" data-close>시작하기</button>
+  </div>
+</div>
+
+<div class="overlay" id="ovV2" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="v2Title">
+    <h2 id="v2Title">새 규칙 3가지</h2>
+    <ul class="rules" id="v2Lines"></ul>
+    <p class="note">이전 규칙으로 하려면 설정에서 '클래식(v1) 규칙'을 고르세요.</p>
+    <button class="btn primary" type="button" data-close>확인</button>
+  </div>
+</div>
+
+<div class="overlay" id="ovSettings" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <h2 id="setTitle">설정</h2>
+    <h3>규칙 (적용하고 새 게임)</h3>
+    <p class="note">바꾼 값은 무한 모드 새 게임부터 적용돼요. 오늘의 도전은 기본 규칙으로 고정이에요.</p>
+    <form class="fields" id="setForm"></form>
+    <label class="check"><input type="checkbox" id="optCombo"><span>넣기로 완성해도 콤보 유지<small>완성 없는 턴 다음이라도, 조각을 넣어 완성하면 콤보가 이어져요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optZones"><span>색 구역<small>20턴마다 새 색이 들어와요. 빈 병을 남기고 돌파하면 보너스를 받아요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optAuto"><span>자동 합치기<small>맨 위 색이 같은 병끼리 알아서 합쳐져요.</small></span></label>
+    <div class="row2"><button class="btn" id="btnDefaults" type="button">기본값</button><button class="btn" id="btnClassic" type="button">클래식(v1) 규칙</button></div>
+    <button class="btn primary" id="btnApply" type="button">적용하고 새 게임</button>
+    <h3>광고 자리 (다음 새 게임부터)</h3>
+    <label class="check"><input type="checkbox" id="optOfferSpare"><span>임시 잔 제안 (무한 모드)<small>위기 때 광고를 보면 임시 칸 1개를 20턴 동안 받을 수 있어요.</small></span></label>
+    <h3>화면 (바로 적용)</h3>
+    <label class="check"><input type="checkbox" id="optSound"><span>소리</span></label>
+    <label class="check"><input type="checkbox" id="optVibrate"><span>진동</span></label>
+    <label class="check"><input type="checkbox" id="optReduce"><span>효과 줄이기<small>멈춤, 흔들림, 입자, 꽃가루 효과를 끄고 사망 연출을 건너뛰어요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optGhost"><span>착지 미리보기<small>넣거나 부으면 어떻게 될지 미리 보여주고, 완성되는 병에 금색 테두리를 둘러요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optPace"><span>최고 기록 페이스<small>점수 아래에 최고 기록(또는 지난 판)과의 차이를 보여줘요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optStaged"><span>단계별 안내<small>끄면 새 기능이 처음부터 모두 보여요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optSymbols"><span>색 기호 표시<small>색마다 모양 기호를 함께 보여줘요.</small></span></label>
+    <button class="btn" type="button" data-close>닫기</button>
+  </div>
+</div>
+
+<div class="overlay" id="ovOver" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="overTitle">
+    <h2 id="overTitle">자리가 없어요</h2>
+    <p class="note" id="overReason"></p>
+    <ul class="facts" id="overFacts" hidden></ul>
+    <p class="note" id="overGap"></p>
+    <p class="badge" id="overBest" hidden>새 최고 기록</p>
+    <dl class="stats">
+      <div><dt>점수</dt><dd id="oScore">0</dd></div>
+      <div><dt>버틴 턴</dt><dd id="oTurn">0</dd></div>
+      <div><dt>완성한 병</dt><dd id="oClears">0</dd></div>
+      <div><dt>최대 콤보</dt><dd id="oCombo">-</dd></div>
+    </dl>
+    <div class="zres" id="zoneRes" hidden>
+      <p class="note" id="zoneReach"></p>
+      <div class="zstars" id="zoneStarsRow"></div>
+      <p class="note" id="starTotal"></p>
+    </div>
+    <p class="note" id="spareUsedNote" hidden>🥃 임시 잔 사용</p>
+    <div class="share" id="shareBox" hidden>
+      <label for="shareText">공유 텍스트</label>
+      <textarea id="shareText" rows="4" readonly></textarea>
+      <button class="btn" id="btnCopy" type="button">결과 복사</button>
+      <p class="note" id="copyMsg"></p>
+    </div>
+    <button class="btn primary" id="btnRevive" type="button">광고 보고 이어하기 (1회)</button>
+    <div class="row2"><button class="btn" id="btnPeek" type="button">판 보기</button><button class="btn" id="btnAgain" type="button">다시 하기</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ovAd" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="adTitle">
+    <h2 id="adTitle">보상형 광고 자리</h2>
+    <p class="note" id="adNote">실제 게임에서는 여기서 광고가 재생돼요.</p>
+    <div class="count" id="adCount">3</div>
+  </div>
+</div>
+
+<script id="engine">
+// Engine: pure game rules. No DOM access, so it can run headless for balance tests.
+// DEFAULT_RULES are the v2 rules. V1_RULES switches every v2 rule off and reproduces the v1 prototype exactly.
+// New rule flags are only ever tested for truthiness, so a saved v1 game (fields missing) keeps playing as v1.
+const DEFAULT_RULES = {
+  bottles: 6, cap: 4, startColors: 4, maxColors: 8, colorEvery: 20, pieceMin: 1, pieceMax: 2, preview: 2, pourLimit: 0, autoMerge: false,
+  // A placement that completes a bottle keeps the combo alive even if the turn before it had no completion.
+  comboPlace: true,
+  // The current 2-layer piece may be reversed; a charge is spent only when a reversed piece is placed (0 = unlimited).
+  flip: true, flipLimit: 2,
+  // Every colorEvery turns is a zone: bonus = empty bottles x zoneBonus x min(zone, zoneMulMax); the turn that adds a colour deals a twin of it.
+  zones: true, zoneBonus: 20, zoneMulMax: 5, zoneTwin: true, zoneTwinSize: 1,
+  // Rewarded spare cup (endless only, off in the rules): capacity spareCap, pours only, breaks when empty spareTurns after it was granted.
+  spare: false, spareCap: 1, spareTurns: 20, spareFrom: 15, spareMaxEmpty: 0, spareMaxFree: 7, spareSticky: true,
+};
+const V1_RULES = Object.assign({}, DEFAULT_RULES, { comboPlace: false, flip: false, zones: false, spare: false });
+
+function hashStr(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function sanitizeRules(r) {
+  r = r || {};
+  const num = (v, lo, hi, d) => { v = Math.round(Number(v)); return Number.isFinite(v) ? Math.min(hi, Math.max(lo, v)) : d; };
+  const D = DEFAULT_RULES;
+  const bool = k => r[k] === undefined ? D[k] : !!r[k];
+  const o = {
+    bottles: num(r.bottles, 3, 8, D.bottles),
+    cap: num(r.cap, 3, 6, D.cap),
+    startColors: num(r.startColors, 2, 9, D.startColors),
+    maxColors: num(r.maxColors, 2, 9, D.maxColors),
+    colorEvery: num(r.colorEvery, 0, 500, D.colorEvery),
+    pieceMin: num(r.pieceMin, 1, 6, D.pieceMin),
+    pieceMax: num(r.pieceMax, 1, 6, D.pieceMax),
+    preview: num(r.preview, 0, 3, D.preview),
+    pourLimit: num(r.pourLimit, 0, 9, D.pourLimit),
+    autoMerge: bool('autoMerge'),
+    comboPlace: bool('comboPlace'),
+    flip: bool('flip'),
+    flipLimit: num(r.flipLimit, 0, 99, D.flipLimit),
+    zones: bool('zones'),
+    zoneBonus: num(r.zoneBonus, 0, 5000, D.zoneBonus),
+    zoneMulMax: num(r.zoneMulMax, 0, 99, D.zoneMulMax),
+    zoneTwin: bool('zoneTwin'),
+    zoneTwinSize: num(r.zoneTwinSize, 1, 6, D.zoneTwinSize),
+    spare: bool('spare'),
+    spareCap: num(r.spareCap, 1, 3, D.spareCap),
+    spareTurns: num(r.spareTurns, 0, 500, D.spareTurns),
+    spareFrom: num(r.spareFrom, 0, 500, D.spareFrom),
+    spareMaxEmpty: num(r.spareMaxEmpty, 0, 8, D.spareMaxEmpty),
+    spareMaxFree: num(r.spareMaxFree, 0, 48, D.spareMaxFree),
+    spareSticky: bool('spareSticky'),
+  };
+  if (o.maxColors < o.startColors) o.maxColors = o.startColors;
+  if (o.pieceMax > o.cap) o.pieceMax = o.cap;
+  if (o.pieceMin > o.pieceMax) o.pieceMin = o.pieceMax;
+  return o;
+}
+// Records are only compared between runs with the same signature. v1 rules keep their original signature.
+// spare* is a rescue (like revive), so it is not part of the signature.
+function rulesSig(r) {
+  const base = [r.bottles, r.cap, r.startColors, r.maxColors, r.colorEvery, r.pieceMin, r.pieceMax, r.pourLimit, r.autoMerge ? 1 : 0].join('-');
+  if (!r.comboPlace && !r.flip && !r.zones) return base;
+  return base + '-c' + (r.comboPlace ? 1 : 0) +
+    '-f' + (r.flip ? (r.flipLimit || 0) : 'x') +
+    '-z' + (r.zones ? r.zoneBonus + 'x' + r.zoneMulMax + 't' + (r.zoneTwin ? r.zoneTwinSize : 0) : 'x');
+}
+function colorsAt(rules, i) {
+  if (!rules.colorEvery) return rules.startColors;
+  return Math.min(rules.maxColors, rules.startColors + Math.floor(i / rules.colorEvery));
+}
+// Zone z covers turns (z-1)*colorEvery .. z*colorEvery-1; zones past maxColors keep counting ("deep" zones).
+function zoneAt(rules, i) { return rules.colorEvery ? Math.floor(i / rules.colorEvery) + 1 : 1; }
+function isZoneStart(rules, i) { return !!rules.zones && rules.colorEvery > 0 && i > 0 && i % rules.colorEvery === 0; }
+// Index of the colour introduced at turn i, or -1 if turn i adds no colour.
+function newColorAt(rules, i) { return i > 0 && colorsAt(rules, i) > colorsAt(rules, i - 1) ? colorsAt(rules, i) - 1 : -1; }
+function zoneBonusAt(rules, i, bs) {
+  if (!isZoneStart(rules, i)) return 0;
+  const z = zoneAt(rules, i), mul = rules.zoneMulMax ? Math.min(z, rules.zoneMulMax) : z;
+  let empties = 0; for (const b of bs) if (!b.length) empties++;
+  return empties * rules.zoneBonus * mul;
+}
+function isTwinTurn(rules, i) { return !!(rules.zones && rules.zoneTwin) && newColorAt(rules, i) >= 0; }
+// Piece i depends only on the seed and its index, so every player of a daily seed sees the same sequence.
+// A twin overwrites the piece of a colour-adding turn without drawing from the generator.
+function pieceAt(seed, rules, i) {
+  if (isTwinTurn(rules, i)) return Array(Math.max(rules.pieceMin, Math.min(rules.zoneTwinSize, rules.pieceMax))).fill(newColorAt(rules, i));
+  const rnd = mulberry32(hashStr(seed + '#' + i));
+  const size = rules.pieceMin + Math.floor(rnd() * (rules.pieceMax - rules.pieceMin + 1));
+  const k = colorsAt(rules, i);
+  const p = [];
+  for (let j = 0; j < size; j++) p.push(Math.floor(rnd() * k));
+  return p;
+}
+function topSeg(b) {
+  const c = b[b.length - 1];
+  let n = 0;
+  for (let k = b.length - 1; k >= 0 && b[k] === c; k--) n++;
+  return { c, n };
+}
+function isPure(b) { return b.length > 0 && b.every(c => c === b[0]); }
+// cap is a number (all bottles) or a per-slot array (bottles plus the spare cup).
+function capAt(cap, i) { return typeof cap === 'number' ? cap : cap[i]; }
+function canPour(bs, s, t, cap) {
+  if (s === t) return false;
+  const a = bs[s], b = bs[t];
+  if (!a || !b || !a.length || b.length >= capAt(cap, t)) return false;
+  return !b.length || b[b.length - 1] === a[a.length - 1];
+}
+function doPour(bs, s, t, cap) {
+  const a = bs[s], b = bs[t];
+  const { c, n } = topSeg(a);
+  const m = Math.min(n, capAt(cap, t) - b.length);
+  for (let k = 0; k < m; k++) { a.pop(); b.push(c); }
+  return m;
+}
+function isDone(b, cap) { return b.length === cap && isPure(b); }
+function clearBoard(bs, cap, onClear) {
+  for (let i = 0; i < bs.length; i++) {
+    if (!isDone(bs[i], cap)) continue;
+    const c = bs[i][0];
+    bs[i].length = 0;
+    if (onClear) onClear(i, c);
+  }
+}
+// Auto-merge picks one pour at a time: mixed run onto a pure bottle first, then shorter run onto longer run.
+// Pure liquid never moves onto a mixed bottle.
+function findAutoMove(bs, cap) {
+  let best = null, bestKey = -1;
+  for (let s = 0; s < bs.length; s++) {
+    const a = bs[s];
+    if (!a.length) continue;
+    const sa = topSeg(a), sPure = isPure(a);
+    for (let t = 0; t < bs.length; t++) {
+      const b = bs[t];
+      if (t === s || !b.length || b.length >= cap || b[b.length - 1] !== sa.c) continue;
+      const sb = topSeg(b), tPure = isPure(b);
+      let key;
+      if (tPure && !sPure) key = 2000 + sb.n;
+      else if (sPure && !tPure) continue;
+      else if (sa.n < sb.n || (sa.n === sb.n && s > t)) key = (tPure ? 1000 : 0) + sb.n * 16 + (16 - sa.n);
+      else continue;
+      if (key > bestKey) { bestKey = key; best = [s, t]; }
+    }
+  }
+  return best;
+}
+function resolveBoard(bs, rules, onClear, onMove) {
+  clearBoard(bs, rules.cap, onClear);
+  if (!rules.autoMerge) return;
+  for (let g = 0; g < 200; g++) {
+    const mv = findAutoMove(bs, rules.cap);
+    if (!mv) break;
+    const m = doPour(bs, mv[0], mv[1], rules.cap);
+    if (onMove) onMove(mv[1], m);
+    clearBoard(bs, rules.cap, onClear);
+  }
+}
+function roomFor(bs, need, cap) { return bs.some(b => cap - b.length >= need); }
+function boardKey(bs) { return bs.map(b => b.join('')).sort().join('|'); }
+// Can some sequence of pours (within the budget) open a slot big enough for the piece?
+// Returns true, false, or 'unknown' when the search hits its node limit. A granted spare cup takes part in the search.
+function canMakeRoom(bs, need, rules, budget, limit, spare) {
+  const cap = rules.cap, max = limit || 6000, nb0 = bs.length;
+  const caps = spare ? bs.map(() => cap).concat([rules.spareCap]) : cap;
+  const keyOf = spare ? b => boardKey(b.slice(0, nb0)) + '#' + b[nb0].join('') : boardKey;
+  let frontier = [(spare ? bs.concat([spare]) : bs).map(b => b.slice())];
+  const seen = new Set([keyOf(frontier[0])]);
+  let depth = 0, nodes = 0;
+  while (frontier.length) {
+    if (depth >= budget) return false;
+    const next = [];
+    for (const cur of frontier) {
+      for (let s = 0; s < cur.length; s++) {
+        for (let t = 0; t < cur.length; t++) {
+          if (!canPour(cur, s, t, caps)) continue;
+          const nb = cur.map(b => b.slice());
+          doPour(nb, s, t, caps);
+          const main = spare ? nb.slice(0, nb0) : nb;
+          resolveBoard(main, rules);
+          if (roomFor(main, need, cap)) return true;
+          const k = keyOf(nb);
+          if (seen.has(k)) continue;
+          seen.add(k);
+          if (++nodes > max) return 'unknown';
+          next.push(nb);
+        }
+      }
+    }
+    frontier = next;
+    depth++;
+  }
+  return false;
+}
+function newState(mode, seed, rules) {
+  return {
+    v: 1, mode, seed, rules,
+    bottles: Array.from({ length: rules.bottles }, () => []),
+    turn: 0, piece: pieceAt(seed, rules, 0),
+    score: 0, streak: 0, maxStreak: 0, turnClears: 0, clears: 0,
+    turnLog: [], undoLeft: 3, reviveUsed: false, pours: 0,
+    over: false, overReason: '', stuck: null,
+    comboPts: 0, undoUsed: 0, flipsPlaced: 0, flipped: false,
+    zoneBonusTotal: 0, zoneLog: [],
+    spare: null, spareUsed: false, spareOffer: false, spareArmTurn: -1, spareTurn: -1, spareIn: 0,
+  };
+}
+// Streak counts consecutive turns with at least one completed bottle; each completion scores 100 x streak.
+function settle(S, hooks) {
+  hooks = hooks || {};
+  resolveBoard(S.bottles, S.rules, (i, c) => {
+    if (S.turnClears === 0) S.streak++;
+    S.turnClears++;
+    const gain = 100 * S.streak;
+    S.score += gain;
+    S.clears++;
+    S.comboPts = (S.comboPts || 0) + gain;
+    if (S.streak > S.maxStreak) S.maxStreak = S.streak;
+    if (hooks.clear) hooks.clear(i, c, gain, S.streak);
+  }, (t, m) => { if (hooks.move) hooks.move(t, m); });
+}
+function breakCombo(S, hooks) {
+  if (S.streak >= 1 && hooks && hooks.comboBreak) hooks.comboBreak(S.streak, S.comboPts || 0);
+  S.comboPts = 0;
+  S.streak = 0;
+}
+function checkStuck(S) {
+  S.stuck = null;
+  if (S.spare && S.rules.spareTurns && !S.spare.length && S.turn - S.spareTurn >= S.rules.spareTurns) S.spare = null;
+  if (!S.over && !roomFor(S.bottles, S.piece.length, S.rules.cap)) {
+    const budget = S.rules.pourLimit ? Math.max(0, S.rules.pourLimit - S.pours) : Infinity;
+    const r = canMakeRoom(S.bottles, S.piece.length, S.rules, budget, undefined, S.spare);
+    if (r === false) { S.over = true; S.overReason = 'noroom'; }
+    else S.stuck = r === true ? 'room' : 'unknown';
+  }
+  if (S.rules.spare) updateSpareOffer(S);
+}
+// Called after the placement that makes S.turn a zone start: scores the board as it stands.
+function zoneBreak(S, hooks) {
+  const bonus = zoneBonusAt(S.rules, S.turn, S.bottles);
+  let empties = 0; for (const b of S.bottles) if (!b.length) empties++;
+  const z = zoneAt(S.rules, S.turn);
+  S.score += bonus;
+  S.zoneBonusTotal = (S.zoneBonusTotal || 0) + bonus;
+  (S.zoneLog || (S.zoneLog = [])).push({ zone: z, turn: S.turn, empties, bonus, undoUsed: S.undoUsed || 0, revive: !!S.reviveUsed });
+  if (hooks && hooks.zone) hooks.zone(z, empties, bonus, newColorAt(S.rules, S.turn));
+}
+// Per zone reached: reached (always), empty2 = left it with >= 2 empty bottles, clean = no undo or revive used while in it.
+// The zone the run is in (or ended in) has only its "reached" star.
+function zoneStars(S) {
+  const log = S.zoneLog || [], out = [];
+  const last = zoneAt(S.rules, S.turn);
+  for (let z = 1; z <= last; z++) {
+    const exit = log.find(e => e.zone === z + 1);
+    const entry = z === 1 ? { undoUsed: 0, revive: false } : log.find(e => e.zone === z);
+    const empty2 = !!exit && exit.empties >= 2;
+    const clean = !!exit && !!entry && exit.undoUsed === entry.undoUsed && exit.revive === entry.revive;
+    out.push({ zone: z, empty2, clean, stars: 1 + (empty2 ? 1 : 0) + (clean ? 1 : 0) });
+  }
+  return out;
+}
+function applyPlace(S, t, hooks) {
+  hooks = hooks || {};
+  const b = S.bottles[t];
+  if (S.over || !b || S.rules.cap - b.length < S.piece.length) return false;
+  const prev = S.turnClears, closing = S.turn > 0;
+  if (closing) S.turnLog.push(prev);
+  if (!S.rules.comboPlace && closing && prev === 0) breakCombo(S, hooks);
+  S.turnClears = 0;
+  S.pours = 0;
+  if (S.flipped) { S.flipped = false; S.flipsPlaced = (S.flipsPlaced || 0) + 1; }
+  for (const c of S.piece) b.push(c);
+  if (hooks.move) hooks.move(t, S.piece.length);
+  S.turn++;
+  settle(S, hooks);
+  if (S.rules.comboPlace && closing && prev === 0 && S.turnClears === 0) breakCombo(S, hooks);
+  if (isZoneStart(S.rules, S.turn)) zoneBreak(S, hooks);
+  S.piece = pieceAt(S.seed, S.rules, S.turn);
+  checkStuck(S);
+  return true;
+}
+function applyPour(S, s, t, hooks) {
+  hooks = hooks || {};
+  if (S.over) return false;
+  if (S.rules.pourLimit && S.pours >= S.rules.pourLimit) return false;
+  const slots = slotsOf(S), caps = capsOf(S);
+  if (!canPour(slots, s, t, caps)) return false;
+  const m = doPour(slots, s, t, caps);
+  if (hooks.move) hooks.move(t, m);
+  if (S.spare && t === S.bottles.length) S.spareIn = (S.spareIn || 0) + 1;
+  S.pours++;
+  settle(S, hooks);
+  checkStuck(S);
+  return true;
+}
+// ---- Piece flip ----
+function canFlip(S) {
+  if (!S || !S.rules.flip || S.over) return false;
+  const p = S.piece, n = p.length;
+  if (n < 2) return false;
+  let differs = false;
+  for (let i = 0; i < n; i++) if (p[i] !== p[n - 1 - i]) { differs = true; break; }
+  if (!differs) return false;
+  return !S.rules.flipLimit || (S.flipsPlaced || 0) < S.rules.flipLimit || !!S.flipped;
+}
+function flipsLeft(S) { return S.rules.flipLimit ? Math.max(0, S.rules.flipLimit - (S.flipsPlaced || 0)) : Infinity; }
+function applyFlip(S) {
+  if (!canFlip(S)) return false;
+  S.piece = S.piece.slice().reverse();
+  S.flipped = !S.flipped;
+  return true;
+}
+// ---- Spare cup ----
+// Slot index rules.bottles is the cup once granted. Pours only: never takes a piece, never clears, ignored by auto-merge.
+function slotsOf(S) { return S.spare ? S.bottles.concat([S.spare]) : S.bottles; }
+function capsOf(S) { return S.spare ? S.bottles.map(() => S.rules.cap).concat([S.rules.spareCap]) : S.rules.cap; }
+// The offer depends only on board and turn (no randomness).
+function spareCrisis(S) {
+  const r = S.rules;
+  let empty = 0, free = 0;
+  for (const b of S.bottles) { if (!b.length) empty++; free += r.cap - b.length; }
+  return S.turn >= r.spareFrom && empty <= r.spareMaxEmpty && free <= r.spareMaxFree;
+}
+function updateSpareOffer(S) {
+  const open = !S.over && !S.spareUsed;
+  const crisis = open && spareCrisis(S);
+  if (crisis && !(S.spareArmTurn >= 0)) S.spareArmTurn = S.turn;
+  S.spareOffer = open && (crisis || (!!S.rules.spareSticky && S.spareArmTurn >= 0));
+}
+// Called after the rewarded ad completes. Once per run.
+function applySpare(S) {
+  if (!S.rules.spare || S.over || S.spareUsed || !S.spareOffer) return false;
+  S.spare = []; S.spareUsed = true; S.spareTurn = S.turn; S.spareOffer = false; S.spareIn = 0;
+  checkStuck(S);
+  return true;
+}
+function applyRevive(S) {
+  if (!S.over || S.reviveUsed) return [];
+  const idx = S.bottles.map((b, i) => [b.length, i]).sort((x, y) => y[0] - x[0] || x[1] - y[1]).slice(0, 2).map(x => x[1]);
+  for (const i of idx) S.bottles[i].length = 0;
+  S.reviveUsed = true; S.over = false; S.overReason = '';
+  checkStuck(S);
+  return idx;
+}
+function giveUp(S) { if (!S.over) { S.over = true; S.overReason = 'gaveup'; S.stuck = null; } }
+// ---- Read-only previews and analysis (never modify S) ----
+function previewPlace(S, t) {
+  const b = S.bottles[t];
+  if (S.over || !b || S.rules.cap - b.length < S.piece.length) return { ok: false, add: 0, clears: 0, completes: [] };
+  const bs = S.bottles.map(x => x.slice());
+  for (const c of S.piece) bs[t].push(c);
+  const completes = [];
+  resolveBoard(bs, S.rules, i => completes.push(i));
+  return { ok: true, add: S.piece.length, clears: completes.length, completes };
+}
+function previewPour(S, s, t) {
+  const slots = slotsOf(S), caps = capsOf(S);
+  if (S.over || (S.rules.pourLimit && S.pours >= S.rules.pourLimit) || !canPour(slots, s, t, caps)) return { ok: false, moved: 0, color: -1, clears: 0, completes: [] };
+  const copy = slots.map(x => x.slice());
+  const color = copy[s][copy[s].length - 1];
+  const moved = doPour(copy, s, t, caps);
+  const completes = [];
+  resolveBoard(copy.slice(0, S.bottles.length), S.rules, i => completes.push(i));
+  return { ok: true, moved, color, clears: completes.length, completes };
+}
+// Facts for the game-over sheet.
+function nearMiss(S) {
+  const cap = S.rules.cap, need = S.piece.length;
+  let maxFree = 0;
+  const almost = [], tops = {};
+  for (const b of S.bottles) {
+    if (cap - b.length > maxFree) maxFree = cap - b.length;
+    if (b.length === cap - 1 && isPure(b)) almost.push(b[0]);
+    if (b.length) { const { c, n } = topSeg(b); tops[c] = (tops[c] || 0) + n; }
+  }
+  const scattered = Object.keys(tops).filter(c => tops[c] >= cap).map(Number);
+  const ce = S.rules.colorEvery;
+  return { need, maxFree, short: need - maxFree, almost, scattered, zoneLeft: ce ? ce - (S.turn % ce) : null };
+}
+// One square per 10 turns: green for 4+ completions, yellow for 1-3, white for none.
+function turnRhythm(S) {
+  const log = S.turnLog.concat(S.turn > 0 ? [S.turnClears] : []);
+  const out = [];
+  for (let i = 0; i < log.length; i += 10) {
+    const n = log.slice(i, i + 10).reduce((a, b) => a + b, 0);
+    out.push(n >= 4 ? '🟩' : n >= 1 ? '🟨' : '⬜');
+  }
+  return out.join('');
+}
+</script>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SYMBOLS = ['●', '■', '▲', '◆', '★', '✚', '♥', '♣', '✿'];
+  const NAMES = ['빨강', '파랑', '노랑', '초록', '보라', '주황', '청록', '분홍', '갈색'];
+  const RESCUE_AD_CAP = 3;           // rewarded rescues per run (revive + spare cup); RC key rescue_ad_cap in the real game
+  const BASE_SIG = rulesSig(DEFAULT_RULES);
+  const LS = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
+    del(k) { try { localStorage.removeItem(k); } catch (e) { /* storage unavailable */ } },
+  };
+  const rack = $('rack'), cup = $('cup'), spareSlot = $('spareSlot');
+  const reducedMotion = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+
+  let S = null;
+  let history = [];
+  let sel = null;            // null | 'cup' | slot index (bottles, then the spare cup)
+  let fxq = [];
+  let flash = '';
+  let drag = null;
+  let overClosed = false;
+  let deathPlaying = false;
+  let paceDisp = null;       // pace label shown for the current run
+  let lastWarnTurn = -1;
+  let hadSpare = false;
+  let prefs = Object.assign({ symbols: false, sound: true, vibrate: true, reduceFx: reducedMotion, ghost: true, pace: true, staged: true, offerSpare: true }, LS.get('wsurv.prefs', {}));
+  let unlock = Object.assign({ runs: 0, sawOver: false, flip: false }, LS.get('wsurv.unlock', {}));
+  const savePrefs = () => LS.set('wsurv.prefs', prefs);
+  const saveUnlock = () => LS.set('wsurv.unlock', unlock);
+
+  const hooks = {
+    move: (t, m) => { if (m > 0) fxq.push({ k: 'pop', i: t, m }); },
+    clear: (i, c, gain, streak) => fxq.push({ k: 'clear', i, c, gain, streak }),
+    comboBreak: (streak, pts) => fxq.push({ k: 'break', streak, pts }),
+    zone: (z, empties, bonus, newColor) => fxq.push({ k: 'zone', z, empties, bonus, newColor }),
+  };
+  const fmt = n => n.toLocaleString('ko-KR');
+  const iga = w => { const c = w.charCodeAt(w.length - 1) - 0xAC00; return c >= 0 && c < 11172 && c % 28 ? '이' : '가'; };
+  function todayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function bestKeyFor(st) { return st.mode === 'daily' ? 'wsurv.daily.' + st.seed + '.v2' : 'wsurv.best.' + rulesSig(st.rules); }
+  function bestKey() { return bestKeyFor(S); }
+  function zonesOn() { return !!S.rules.zones && S.rules.colorEvery > 0; }
+  function zoneLabel(z) {
+    const r = S.rules, top = r.maxColors - r.startColors + 1;
+    return z <= top ? `${z}구역` : `심해 ${z - top}`;
+  }
+  function fuseOn() { return !!S.rules.comboPlace && S.turn > 0 && S.streak >= 2 && S.turnClears === 0 && unlocked('fuse'); }
+
+  // ---------- staged unlock (F8) ----------
+  function unlocked(f) {
+    if (!prefs.staged) return true;
+    if (f === 'flip') return !!unlock.flip || !!unlock.sawOver || (!!S && S.turn >= 20);
+    if (f === 'fuse' || f === 'spare') return unlock.runs >= 1;
+    if (f === 'pace') return unlock.runs >= 2;
+    return true;
+  }
+  function endRunOnce() {
+    if (S.runCounted) return;
+    S.runCounted = true;
+    unlock.runs++;
+    if (S.overReason === 'noroom') unlock.sawOver = true;
+    saveUnlock();
+  }
+
+  // ---------- sound and haptics ----------
+  let AC = null;
+  function ac() {
+    if (!prefs.sound) return null;
+    try {
+      if (!AC) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; AC = new C(); }
+      if (AC.state === 'suspended') AC.resume();
+      return AC;
+    } catch (e) { return null; }
+  }
+  document.addEventListener('pointerdown', () => { if (prefs.sound) ac(); }, { capture: true, passive: true });
+  function tone(freq, at, dur, type, vol) {
+    const a = ac(); if (!a) return;
+    const t0 = a.currentTime + (at || 0);
+    const o = a.createOscillator(), g = a.createGain();
+    o.type = type || 'sine'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(vol || 0.16, t0 + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(a.destination);
+    o.start(t0); o.stop(t0 + dur + 0.03);
+  }
+  function noise(at, dur, vol, hp) {
+    const a = ac(); if (!a) return;
+    const n = Math.floor(a.sampleRate * dur), buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 2);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = buf; f.type = 'highpass'; f.frequency.value = hp || 2500; g.gain.value = vol || 0.2;
+    s.connect(f); f.connect(g); g.connect(a.destination);
+    s.start(a.currentTime + (at || 0));
+  }
+  const STEPS = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19];
+  const chimeHz = s => 523.25 * Math.pow(2, STEPS[Math.min(STEPS.length - 1, Math.max(0, s - 1))] / 12);
+  function chime(s, at) { const f = chimeHz(s); tone(f, at, .35, 'sine', .16); tone(f * 2, at, .22, 'triangle', .04); }
+  const SND = {
+    chord(s) { const f = chimeHz(s); [1, 1.26, 1.5].forEach(m => tone(f * m, 0.02, .5, 'sine', .07)); },
+    glass() { noise(0, .25, .22, 3000); tone(2637, 0, .18, 'triangle', .05); },
+    swap() { tone(196, 0, .1, 'triangle', .14); },
+    warn() { tone(660, 0, .12, 'square', .05); tone(440, .15, .16, 'square', .05); },
+    rise() { [523.25, 659.25, 783.99].forEach((f, i) => tone(f, i * .08, .22, 'triangle', .1)); },
+    doMiSol() { [523.25, 659.25, 783.99].forEach((f, i) => tone(f, i * .1, .25, 'sine', .1)); },
+    clink() { tone(1568, 0, .15, 'triangle', .1); tone(2093, .03, .12, 'triangle', .06); },
+    ching() { tone(1175, 0, .25, 'triangle', .12); tone(1760, .02, .2, 'sine', .05); },
+    crack() { noise(0, .18, .18, 1500); },
+    thud() { tone(98, 0, .3, 'sine', .3); },
+    fanfare() { [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, i * .09, .3, 'triangle', .1)); },
+  };
+  function buzz(p) { if (!prefs.vibrate) return; try { navigator.vibrate && navigator.vibrate(p); } catch (e) { /* not allowed here */ } }
+
+  // ---------- banner queue: one centre banner at a time, highest priority first ----------
+  const PRI = { best: 5, zone: 4, combo: 3, pace: 2, info: 1 };
+  let bq = [], bqBusy = false, bseq = 0, pend = [], pendScheduled = false;
+  function banner(text, kind, ms, big) {
+    pend.push({ text, p: PRI[kind] || 1, ms: ms || 900, big: !!big, seq: bseq++ });
+    if (!pendScheduled) { pendScheduled = true; Promise.resolve().then(flushBanners); }
+  }
+  function flushBanners() {
+    pendScheduled = false;
+    bq = bq.concat(pend); pend = [];
+    bq.sort((a, b) => b.p - a.p || a.seq - b.seq);
+    while (bq.length > 3) bq.pop();
+    if (!bqBusy) nextBanner();
+  }
+  function nextBanner() {
+    const el = $('banner'), it = bq.shift();
+    if (!it) { bqBusy = false; el.hidden = true; return; }
+    bqBusy = true;
+    el.textContent = it.text;
+    el.className = 'banner' + (it.big ? ' big' : '');
+    el.hidden = false;
+    el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+    setTimeout(nextBanner, it.ms);
+  }
+
+  // ---------- small visual helpers (all non-interactive) ----------
+  function confetti() {
+    const L = $('fxLayer');
+    for (let i = 0; i < 30; i++) {
+      const c = document.createElement('i'); c.className = 'confetti';
+      c.style.left = (Math.random() * 100) + '%';
+      c.style.background = `var(--liq${i % 8})`;
+      c.style.setProperty('--dx', ((Math.random() - .5) * 120) + 'px');
+      c.style.animationDelay = (Math.random() * .3) + 's';
+      L.append(c); setTimeout(() => c.remove(), 1900);
+    }
+  }
+  function sparks() {
+    const L = $('fxLayer'), r = rack.getBoundingClientRect();
+    for (let i = 0; i < 14; i++) {
+      const s = document.createElement('i'); s.className = 'spark';
+      s.style.left = (r.left + Math.random() * r.width) + 'px';
+      s.style.top = (r.top + r.height * (.3 + Math.random() * .7)) + 'px';
+      s.style.background = `var(--liq${i % 8})`;
+      s.style.setProperty('--dx', ((Math.random() - .5) * 60) + 'px');
+      L.append(s); setTimeout(() => s.remove(), 1100);
+    }
+  }
+  function restartAnim(el, cls) { if (!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+  function scoreFloat(text) {
+    const f = document.createElement('span'); f.className = 'float'; f.textContent = text;
+    document.querySelector('.score').append(f); setTimeout(() => f.remove(), 1200);
+  }
+
+  // ---------- game lifecycle ----------
+  function startGame(mode, fresh) {
+    let saved = fresh ? null : LS.get('wsurv.game.' + mode, null);
+    let note = '';
+    if (saved && mode === 'daily' && saved.rules && saved.rules.zones === undefined) { saved = null; note = '규칙이 바뀌어 오늘의 도전을 새로 시작해요.'; }
+    if (saved && saved.v === 1 && !saved.over && (mode !== 'daily' || saved.seed === 'daily:' + todayKey())) {
+      S = saved;
+      if (S.bestAtStart === undefined) S.bestAtStart = LS.get(bestKeyFor(S), 0);
+    } else {
+      const rules = mode === 'daily' ? Object.assign({}, DEFAULT_RULES) : sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES));
+      rules.spare = mode === 'endless' && prefs.offerSpare !== false && unlocked('spare');
+      const seed = mode === 'daily' ? 'daily:' + todayKey() : 'run:' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+      S = newState(mode, seed, rules);
+      S.cum = []; S.rescueAds = 0;
+      S.bestAtStart = LS.get(bestKeyFor(S), 0);
+    }
+    LS.set('wsurv.mode', mode);
+    history = []; sel = null; fxq = []; flash = note; overClosed = false; paceDisp = null; hadSpare = !!S.spare;
+    rack.classList.remove('dead');
+    closeAll();
+    commit();
+  }
+  function snapshot() { history.push(JSON.stringify(S)); if (history.length > 40) history.shift(); }
+  function commit() {
+    if (hadSpare && !S.spare && S.spareUsed) { SND.crack(); if (!flash) flash = '임시 잔이 비어서 사라졌어요.'; }
+    render();
+    hadSpare = !!S.spare;
+    LS.set('wsurv.game.' + S.mode, S);
+    checkMoments();
+    if (S.over && !overClosed && !deathPlaying) {
+      if (!S.overShown && S.overReason === 'noroom') playDeath(showOver); else showOver();
+    }
+  }
+  function afterPlace() {
+    if (Array.isArray(S.cum) && S.cum.length === S.turn - 1 && S.cum.length < 400) S.cum.push(S.score);
+  }
+
+  // ---------- pace (F5) ----------
+  function paceValid() { return Array.isArray(S.cum) && S.cum.length === Math.min(S.turn, 400); }
+  function paceRef() {
+    if (S.mode === 'daily') { const d = LS.get('wsurv.pace.daily.' + S.seed, null); return d && d.cum ? Object.assign({ kind: 'best' }, d) : null; }
+    const sig = rulesSig(S.rules), runs = LS.get('wsurv.runs.' + sig, 0);
+    const d = runs < 10 ? LS.get('wsurv.last.' + sig, null) : LS.get('wsurv.pace.' + sig, null);
+    return d && d.cum ? Object.assign({ kind: runs < 10 ? 'last' : 'best' }, d) : null;
+  }
+  function bestRun() { return S.mode === 'daily' ? LS.get('wsurv.pace.daily.' + S.seed, null) : LS.get('wsurv.pace.' + rulesSig(S.rules), null); }
+  function paceDiff() {
+    const ref = paceRef();
+    if (!ref || !ref.cum.length || !paceValid() || S.turn < 1) return null;
+    return { diff: S.score - ref.cum[Math.min(S.turn, ref.cum.length) - 1], kind: ref.kind };
+  }
+  function savePace() {
+    if (!paceValid()) return;
+    const rec = { score: S.score, turn: S.turn, cum: S.cum.slice() };
+    if (S.mode === 'daily') {
+      const k = 'wsurv.pace.daily.' + S.seed, cur = LS.get(k, null);
+      if (!cur || S.score > cur.score) LS.set(k, rec);
+      return;
+    }
+    const sig = rulesSig(S.rules);
+    LS.set('wsurv.last.' + sig, rec);
+    if (!S.paceRunCounted) { S.paceRunCounted = true; LS.set('wsurv.runs.' + sig, LS.get('wsurv.runs.' + sig, 0) + 1); }
+    const cur = LS.get('wsurv.pace.' + sig, null);
+    if (!cur || S.score > cur.score) LS.set('wsurv.pace.' + sig, rec);
+    let idx = LS.get('wsurv.pace.idx', []);
+    idx = [sig].concat(idx.filter(x => x !== sig));
+    for (const old of idx.slice(10)) { LS.del('wsurv.pace.' + old); LS.del('wsurv.last.' + old); LS.del('wsurv.runs.' + old); }
+    LS.set('wsurv.pace.idx', idx.slice(0, 10));
+  }
+  function checkMoments() {
+    if (S.over && S.overReason === 'gaveup') return;
+    const best = S.bestAtStart || 0;
+    if (best > 0 && S.score > best && !S.newBestShown) {
+      S.newBestShown = true;
+      banner('최고 기록 경신', 'best', 1200, true);
+      restartAnim($('score'), 'shine');
+      buzz([40, 60, 40]); SND.fanfare();
+      if (!prefs.reduceFx) confetti();
+    }
+    if (prefs.pace && unlocked('pace') && S.turn >= 10 && !S.paceAhead) {
+      const d = paceDiff();
+      if (d && d.diff > 0) { S.paceAhead = true; banner(d.kind === 'best' ? '신기록 페이스예요' : '지난 판보다 앞서고 있어요', 'pace', 900); SND.doMiSol(); }
+    }
+  }
+
+  // ---------- input ----------
+  function slotCount() { return S.bottles.length + (S.spare ? 1 : 0); }
+  function onTube(i) {
+    if (!S || S.over) return;
+    const n = S.bottles.length, slots = slotsOf(S), caps = capsOf(S);
+    if (sel === 'cup') { tryPlace(i); return; }
+    if (sel === null) {
+      if (slots[i] && slots[i].length) sel = i; else flash = '빈 병이에요. 부을 병을 먼저 고르세요.';
+      render(); return;
+    }
+    if (sel === i) { sel = null; render(); return; }
+    const from = sel;
+    if (S.rules.pourLimit && S.pours >= S.rules.pourLimit) {
+      sel = null; flash = '이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.';
+      fxq.push({ k: 'shake', i }); render(); return;
+    }
+    if (canPour(slots, from, i, caps)) {
+      snapshot(); sel = null;
+      applyPour(S, from, i, hooks);
+      commit();
+    } else {
+      const full = slots[i].length >= (i === n ? S.rules.spareCap : S.rules.cap);
+      flash = full ? (i === n ? '임시 잔이 차 있어요.' : '그 병은 가득 찼어요.') : '받는 병이 비었거나 맨 위 색이 같아야 부을 수 있어요.';
+      sel = slots[i].length ? i : null;
+      fxq.push({ k: 'shake', i });
+      render();
+    }
+  }
+  function tryPlace(i) {
+    sel = null;
+    if (i === S.bottles.length) {
+      flash = '임시 잔에는 조각을 넣을 수 없어요.';
+      fxq.push({ k: 'shake', i }); render(); return;
+    }
+    const need = S.piece.length, free = S.rules.cap - S.bottles[i].length;
+    if (free < need) {
+      flash = `조각은 ${need}칸이 필요한데 이 병은 ${free}칸 남았어요.`;
+      fxq.push({ k: 'shake', i }); render(); return;
+    }
+    snapshot();
+    applyPlace(S, i, hooks);
+    afterPlace();
+    commit();
+  }
+  function onCupTap() {
+    if (!S || S.over) return;
+    sel = sel === 'cup' ? null : 'cup';
+    render();
+  }
+  function tubeAt(x, y) {
+    const el = document.elementFromPoint(x, y);
+    const t = el && el.closest('#rack .tube, #spareSlot .tube');
+    return t ? Number(t.dataset.i) : null;
+  }
+  function tubeEl(i) { return i === S.bottles.length ? spareSlot.querySelector('.tube') : rack.children[i]; }
+  rack.addEventListener('click', e => { const t = e.target.closest('.tube'); if (t) onTube(Number(t.dataset.i)); });
+  spareSlot.addEventListener('click', e => {
+    if (e.target.closest('.tube')) onTube(S.bottles.length);
+    else if (e.target.closest('.offer')) acceptSpare();
+  });
+  $('btnFlip').addEventListener('click', () => {
+    if (!S || S.over || !canFlip(S)) return;
+    applyFlip(S);
+    SND.swap();
+    fxq.push({ k: 'swap' });
+    commit();
+  });
+  cup.addEventListener('pointerdown', e => {
+    if (!S || S.over || e.button > 0) return;
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false, ghost: null, over: null };
+    try { cup.setPointerCapture(e.pointerId); } catch (_) { /* capture is optional */ }
+  });
+  cup.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (!drag.moved && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 8) {
+      drag.moved = true; sel = 'cup'; render();
+      const g = document.createElement('div');
+      g.className = 'tube mini ghost';
+      paintTube(g, S.piece, S.rules.pieceMax);
+      document.body.append(g);
+      drag.ghost = g;
+    }
+    if (!drag.moved) return;
+    drag.ghost.style.left = e.clientX + 'px';
+    drag.ghost.style.top = e.clientY + 'px';
+    const t = tubeAt(e.clientX, e.clientY);
+    if (t !== drag.over) { clearDragHover(); if (t != null) showDragHover(t); drag.over = t; }
+  });
+  function clearDragHover() {
+    document.querySelectorAll('.tube.hover, .tube.reject, .tube.dgold').forEach(x => {
+      x.classList.remove('hover', 'reject', 'dgold');
+      if (!x.dataset.gold) x.classList.remove('gold');
+    });
+    document.querySelectorAll('.ghostL.drag, .cork.drag').forEach(x => x.remove());
+    renderStatus();
+  }
+  function showDragHover(t) {
+    const el = tubeEl(t); if (!el) return;
+    if (t === S.bottles.length) { el.classList.add('reject'); setStatus('임시 잔에는 조각을 넣을 수 없어요.', true); return; }
+    el.classList.add('hover');
+    const p = previewPlace(S, t);
+    if (!p.ok) return;
+    if (prefs.ghost) {
+      const glass = el.querySelector('.glass');
+      for (const c of S.piece) glass.append(layerEl(c, 'ghostL drag'));
+      if (p.clears) { el.classList.add('gold', 'dgold'); const k = document.createElement('span'); k.className = 'cork drag'; el.append(k); }
+    }
+    if (fuseOn()) setStatus(p.clears ? `이 넣기로 완성 · 콤보 ×${S.streak + 1}` : `넣으면 콤보 ×${S.streak} 끝나요`, !p.clears);
+  }
+  function endDrag(e, cancel) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const d = drag; drag = null;
+    if (d.ghost) d.ghost.remove();
+    if (!d.moved) { if (!cancel) onCupTap(); return; }
+    const t = cancel ? null : tubeAt(e.clientX, e.clientY);
+    if (t != null) tryPlace(t); else { sel = null; render(); }
+  }
+  cup.addEventListener('pointerup', e => endDrag(e, false));
+  cup.addEventListener('pointercancel', e => endDrag(e, true));
+  cup.addEventListener('click', e => { if (e.detail === 0) onCupTap(); });
+
+  // ---------- rendering ----------
+  function layerEl(c, cls) {
+    const L = document.createElement('span');
+    L.className = 'layer' + (cls ? ' ' + cls : '');
+    L.style.background = `var(--liq${c})`;
+    if (prefs.symbols) L.textContent = SYMBOLS[c];
+    return L;
+  }
+  function paintTube(el, layers, capN) {
+    el.textContent = '';
+    el.style.setProperty('--cap', capN);
+    const rim = document.createElement('span'); rim.className = 'rim';
+    const glass = document.createElement('span'); glass.className = 'glass';
+    for (const c of layers) glass.append(layerEl(c));
+    el.append(rim, glass);
+    return glass;
+  }
+  function tagNew(el) { const t = document.createElement('span'); t.className = 'tag-new'; t.textContent = 'NEW'; el.append(t); }
+  function setStatus(msg, warn) { const st = $('status'); st.textContent = msg; st.classList.toggle('warn', !!warn); }
+  function statusText() {
+    if (flash) return [flash, true];
+    if (S.over) return ['게임이 끝났어요.', true];
+    if (S.stuck) return [`${S.piece.length}칸짜리 자리가 없어요. 병끼리 부어서 자리를 만드세요.` + (S.stuck === 'room' ? ' 방법이 있어요.' : ''), true];
+    if (sel === 'cup') {
+      if (fuseOn()) {
+        let k = 0; for (let i = 0; i < S.bottles.length; i++) if (previewPlace(S, i).clears) k++;
+        return [k ? `완성되는 병 ${k}곳 · 다른 병에 넣으면 콤보 ×${S.streak} 끝나요` : `넣으면 콤보 ×${S.streak} 끝나요 · 먼저 부어서 완성하면 이어져요`, false];
+      }
+      return ['조각을 넣을 병을 고르세요.', false];
+    }
+    if (typeof sel === 'number') return ['부을 병을 고르세요.', false];
+    if (S.turn === 0) return ['조각을 병으로 끌어다 놓으며 시작하세요.', false];
+    if (S.streak >= 1 && S.turnClears === 0) return [`이번 턴에 병을 완성하면 콤보 ×${S.streak + 1}`, false];
+    return ['조각을 넣고, 병끼리 부어서 한 색으로 채우세요.', false];
+  }
+  function renderStatus() { const [m, w] = statusText(); setStatus(m, w); }
+  function render() {
+    const r = S.rules, cap = r.cap, n = S.bottles.length;
+    const daily = S.mode === 'daily';
+    $('modeChip').textContent = daily ? '오늘의 도전 ' + S.seed.slice(11) : '무한 모드';
+    $('modeChip').classList.toggle('daily', daily);
+    $('score').textContent = fmt(S.score);
+    $('best').textContent = fmt(Math.max(LS.get(bestKey(), 0), S.score));
+    $('turn').textContent = S.turn;
+    const cb = $('combo');
+    cb.textContent = S.streak >= 1 ? '×' + S.streak : '-';
+    cb.classList.toggle('fuse', fuseOn());
+
+    // pace label (F5): refreshed on turns with a completion
+    const pl = $('pace');
+    const hadClear = fxq.some(f => f.k === 'clear');
+    if (prefs.pace && unlocked('pace') && paceValid() && S.turn >= 5) {
+      const d = paceDiff();
+      if (d && (!paceDisp || paceDisp.seed !== S.seed || hadClear)) {
+        const word = d.kind === 'best' ? '최고 페이스' : '지난 판';
+        const text = `${word} ${d.diff > 0 ? '▲' : d.diff < 0 ? '▼' : '±'}${fmt(Math.abs(d.diff))}`;
+        const changed = !paceDisp || paceDisp.text !== text;
+        paceDisp = { seed: S.seed, text, up: d.diff > 0 };
+        pl.textContent = text; pl.classList.toggle('up', d.diff > 0);
+        if (changed && hadClear) restartAnim(pl, 'hl');
+      } else if (!d) { pl.textContent = ''; }
+    } else { pl.textContent = ''; }
+
+    // cup, flip, queue
+    paintTube(cup, S.piece, r.pieceMax);
+    if (isTwinTurn(r, S.turn)) tagNew(cup);
+    cup.classList.toggle('sel', sel === 'cup');
+    cup.disabled = S.over;
+    cup.setAttribute('aria-label', '지금 조각: 아래부터 ' + S.piece.map(c => NAMES[c]).join(', '));
+    const fb = $('btnFlip');
+    const flipVisible = !!r.flip && unlocked('flip');
+    if (flipVisible && prefs.staged && !unlock.flip) {
+      unlock.flip = true; saveUnlock();
+      if (!prefs.seenFlipHint) { prefs.seenFlipHint = true; savePrefs(); banner(`⇅로 조각 위아래를 바꿀 수 있어요` + (r.flipLimit ? ` (판당 ${r.flipLimit}회)` : ''), 'info', 1800); }
+    }
+    fb.hidden = !flipVisible;
+    if (flipVisible) {
+      const left = flipsLeft(S);
+      $('flipN').textContent = left === Infinity ? '∞' : left;
+      fb.disabled = !canFlip(S);
+      fb.setAttribute('aria-pressed', S.flipped ? 'true' : 'false');
+      fb.setAttribute('aria-label', '조각 위아래 바꾸기, 남은 ' + (left === Infinity ? '무제한' : left + '회'));
+    }
+    const q = $('queue'); q.textContent = '';
+    for (let j = 1; j <= r.preview; j++) {
+      const slot = document.createElement('div'); slot.className = 'slot';
+      const t = document.createElement('div'); t.className = 'tube micro';
+      paintTube(t, pieceAt(S.seed, r, S.turn + j), r.pieceMax);
+      if (isTwinTurn(r, S.turn + j)) tagNew(slot);
+      const lab = document.createElement('span'); lab.textContent = j === 1 ? '다음' : '';
+      slot.append(t, lab); q.append(slot);
+    }
+
+    // spare cup slot (F4)
+    spareSlot.textContent = '';
+    const offerVisible = !!r.spare && !S.spare && !!S.spareOffer && !S.over && (S.rescueAds || 0) < RESCUE_AD_CAP && unlocked('spare');
+    if (S.spare) {
+      const t = document.createElement('button');
+      t.type = 'button'; t.className = 'tube spare'; t.dataset.i = n; t.disabled = S.over;
+      paintTube(t, S.spare, r.spareCap);
+      const remain = r.spareTurns ? Math.max(0, r.spareTurns - (S.turn - S.spareTurn)) : null;
+      const lab = document.createElement('span');
+      lab.textContent = remain === null ? '임시 잔' : remain > 0 ? `임시 · ${remain}턴` : (S.spare.length ? '비우면 사라져요' : '');
+      t.setAttribute('aria-label', '임시 잔: ' + (S.spare.length ? NAMES[S.spare[0]] : '비어 있음') + (remain ? `, ${remain}턴 남음` : ''));
+      spareSlot.append(t, lab);
+      spareSlot.hidden = false;
+    } else if (offerVisible) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'offer';
+      b.innerHTML = '▶ 임시 칸 +1<small>광고 · ' + (r.spareTurns || '∞') + '턴</small>';
+      b.setAttribute('aria-label', `광고를 보고 임시 칸 1개를 ${r.spareTurns}턴 동안 받기`);
+      spareSlot.append(b);
+      spareSlot.hidden = false;
+      if (!S.spareOfferSeen) { S.spareOfferSeen = true; b.classList.add('blink'); SND.clink(); buzz(30); }
+    } else spareSlot.hidden = true;
+
+    // colours, zone chip and countdown (F3)
+    const k = colorsAt(r, S.turn);
+    const hasNext = r.colorEvery && k < r.maxColors;
+    const zOn = zonesOn();
+    const left = r.colorEvery ? r.colorEvery - (S.turn % r.colorEvery) : 0;
+    const zc = $('zoneChip');
+    zc.hidden = !zOn;
+    if (zOn) zc.textContent = `${zoneLabel(zoneAt(r, S.turn))} · ${k}색`;
+    const ci = $('colorInfo');
+    if (zOn) {
+      const what = hasNext ? '새 색' : '다음 구역';
+      ci.innerHTML = left <= 3 ? `<span class="count-down">${what}까지 ${left}</span>` : `${left}턴 뒤 ${what}`;
+      if (left === 1 && lastWarnTurn !== S.turn && S.turn > 0) { lastWarnTurn = S.turn; SND.warn(); }
+    } else {
+      ci.innerHTML = `<strong>색 ${k}종</strong>` + (hasNext ? ` · ${left}턴 뒤 1종 추가` : '');
+    }
+    const dots = $('dots'); dots.textContent = '';
+    for (let c = 0; c < k + (hasNext ? 1 : 0); c++) {
+      const s = document.createElement('span');
+      s.className = 'sw' + (c === k ? ' next' + (zOn && left <= 3 ? ' pulse' : '') : '');
+      if (c === k) s.style.borderColor = `var(--liq${c})`; else s.style.background = `var(--liq${c})`;
+      s.title = NAMES[c];
+      dots.append(s);
+    }
+    $('pourInfo').textContent = r.pourLimit ? `이번 턴 붓기 ${Math.max(0, r.pourLimit - S.pours)}/${r.pourLimit}` : '';
+
+    // zone bar with the best run's flag
+    const zb = $('zoneBar');
+    zb.hidden = !zOn;
+    if (zOn) {
+      const ce = r.colorEvery, zStart = S.turn - (S.turn % ce);
+      $('zoneFill').style.width = (100 * (S.turn % ce) / ce) + '%';
+      const flag = $('zoneFlag'), note = $('zoneNote');
+      flag.hidden = true; note.textContent = '';
+      const br = prefs.pace && unlocked('pace') ? bestRun() : null;
+      if (br && br.turn) {
+        if (br.turn < S.turn) note.textContent = '최고 판 ✓';
+        else if (br.turn < zStart + ce) { flag.hidden = false; flag.style.left = (100 * (br.turn - zStart) / ce) + '%'; }
+        else note.textContent = '최고 판: ' + zoneLabel(zoneAt(r, br.turn));
+      }
+    }
+
+    // rack, selection, landing ghosts (F6)
+    rack.style.setProperty('--n', n);
+    rack.textContent = '';
+    const slots = slotsOf(S), caps = capsOf(S);
+    const pourBlocked = !!(r.pourLimit && S.pours >= r.pourLimit);
+    S.bottles.forEach((b, i) => {
+      const t = document.createElement('button');
+      t.type = 'button'; t.className = 'tube'; t.dataset.i = i; t.disabled = S.over;
+      paintTube(t, b, cap);
+      const free = document.createElement('span'); free.className = 'free'; free.textContent = `빈 ${cap - b.length}`;
+      t.append(free);
+      t.setAttribute('aria-label', `병 ${i + 1}: ` + (b.length ? '아래부터 ' + b.map(c => NAMES[c]).join(', ') : '비어 있음') + `, 빈칸 ${cap - b.length}`);
+      rack.append(t);
+    });
+    const allTubes = i => tubeEl(i);
+    if (sel === 'cup') {
+      for (let i = 0; i < n; i++) {
+        const t = allTubes(i);
+        if (cap - S.bottles[i].length < S.piece.length) continue;
+        t.classList.add('can');
+        if (prefs.ghost && previewPlace(S, i).clears) markGold(t);
+      }
+    } else if (typeof sel === 'number' && sel < slots.length) {
+      const src = allTubes(sel);
+      if (src) {
+        src.classList.add('sel');
+        if (prefs.ghost) {
+          const ls = src.querySelectorAll('.glass > .layer'), run = topSeg(slots[sel]).n;
+          for (let j = Math.max(0, ls.length - run); j < ls.length; j++) ls[j].classList.add('leaving');
+        }
+      }
+      if (!pourBlocked) for (let i = 0; i < slots.length; i++) {
+        if (i === sel) continue;
+        const p = previewPour(S, sel, i);
+        if (!p.ok) continue;
+        const t = allTubes(i); if (!t) continue;
+        t.classList.add('can');
+        if (prefs.ghost) {
+          const glass = t.querySelector('.glass');
+          for (let j = 0; j < p.moved; j++) glass.append(layerEl(p.color, 'ghostL'));
+          if (p.clears) markGold(t);
+        }
+      }
+    }
+    renderStatus();
+
+    $('btnUndo').textContent = `되돌리기 ${S.undoLeft}`;
+    $('btnUndo').disabled = !history.length || S.undoLeft <= 0 || S.over;
+    $('btnNew').textContent = daily ? '다시 도전' : '새 게임';
+    $('btnMode').textContent = daily ? '무한 모드' : '오늘의 도전';
+    const showExtra = S.over ? overClosed : !!S.stuck;
+    $('extraRow').hidden = !showExtra;
+    $('btnExtra').textContent = S.over ? '결과 보기' : '포기하고 결과 보기';
+
+    applyFx();
+    flash = '';
+  }
+  function markGold(t) { t.classList.add('gold'); t.dataset.gold = '1'; const k = document.createElement('span'); k.className = 'cork'; t.append(k); }
+
+  function applyFx() {
+    const clears = fxq.filter(f => f.k === 'clear');
+    let maxStreak = 0;
+    for (const f of fxq) {
+      if (f.k === 'swap') { restartAnim(cup, 'swap'); continue; }
+      if (f.k === 'spareIn') { restartAnim(spareSlot.querySelector('.tube'), 'enter'); continue; }
+      if (f.k === 'break') {
+        if (f.streak >= 3) {
+          SND.glass(); restartAnim($('combo'), 'shake');
+          banner(`콤보 ×${f.streak} · +${fmt(f.pts)}점`, 'combo', 1000);
+        }
+        continue;
+      }
+      if (f.k === 'zone') {
+        const txt = f.newColor >= 0 ? `${zoneLabel(f.z)} · 새 색 ${NAMES[f.newColor]} (${colorsAt(S.rules, S.turn)}종)` : zoneLabel(f.z);
+        banner(txt, 'zone', 800);
+        SND.rise();
+        if (f.bonus > 0) scoreFloat(`+${fmt(f.bonus)} 돌파 보너스`);
+        continue;
+      }
+      const t = tubeEl(f.i);
+      if (!t) continue;
+      if (f.k === 'pop') {
+        const ls = t.querySelectorAll('.glass > .layer:not(.ghostL)');
+        for (let j = Math.max(0, ls.length - f.m); j < ls.length; j++) ls[j].classList.add('pop');
+      } else if (f.k === 'clear') {
+        maxStreak = Math.max(maxStreak, f.streak);
+        const glass = t.querySelector('.glass');
+        const burst = document.createElement('span'); burst.className = 'burst';
+        for (let j = 0; j < S.rules.cap; j++) { const x = document.createElement('i'); x.style.background = `var(--liq${f.c})`; burst.append(x); }
+        glass.append(burst);
+        const fl = document.createElement('span'); fl.className = 'float' + (f.streak >= 2 ? ' big' : '');
+        fl.textContent = '+' + f.gain + (f.streak >= 2 ? ` ×${f.streak}` : '') + (f.streak === 2 ? ' 좋아요' : '');
+        t.append(fl);
+        t.classList.add('flash');
+      } else if (f.k === 'shake') {
+        restartAnim(t, 'shake');
+      } else if (f.k === 'flash') {
+        t.classList.add('flash');
+      }
+    }
+    fxq = [];
+    if (!clears.length) return;
+    // sound: one chime per completion; two or more in one move rise as an arpeggio
+    if (clears.length >= 2) {
+      clears.forEach((f, j) => chime(f.streak + j, j * 0.07));
+      banner(clears.length === 2 ? '더블!' : '트리플!', 'combo', 800);
+    } else chime(clears[0].streak, 0);
+    if (maxStreak >= 3) restartAnim($('combo'), 'shine');
+    if (maxStreak >= 4) {
+      if (!prefs.reduceFx) setTimeout(() => restartAnim(rack, 'punch'), 60);
+      if (S.lastBigTurn !== S.turn) { S.lastBigTurn = S.turn; banner(maxStreak >= 5 ? `×${maxStreak}!!` : `×${maxStreak}!`, 'combo', 800); }
+      if (maxStreak >= 5) { SND.chord(maxStreak); if (!prefs.reduceFx) sparks(); }
+      buzz([30, 40, 30]);
+    } else buzz(25);
+  }
+
+  // ---------- sheets ----------
+  function closeAll() { document.querySelectorAll('.overlay').forEach(o => { if (o.id !== 'ovAd') o.hidden = true; }); }
+  document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => { b.closest('.overlay').hidden = true; }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') ['ovHelp', 'ovSettings', 'ovV2'].forEach(id => { $(id).hidden = true; }); });
+
+  // Game over (F7): the piece bounces off the roomiest bottle, the rack drains of colour, then the sheet opens. Tap skips.
+  function playDeath(done) {
+    if (prefs.reduceFx) { done(); return; }
+    deathPlaying = true;
+    const short = !!S.reviveUsed, T = short ? 150 : 250;
+    let ti = 0; S.bottles.forEach((b, i) => { if (b.length < S.bottles[ti].length) ti = i; });
+    const from = cup.getBoundingClientRect(), to = rack.children[ti].getBoundingClientRect();
+    const g = document.createElement('div');
+    g.className = 'tube mini deathghost';
+    paintTube(g, S.piece, S.rules.pieceMax);
+    g.style.left = from.left + 'px'; g.style.top = from.top + 'px';
+    $('fxLayer').append(g);
+    const dx = to.left + to.width / 2 - (from.left + from.width / 2), dy = to.top - from.top - 16;
+    try { g.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0,0)' }], { duration: T * 2, easing: 'ease-in-out' }); } catch (e) { /* no WAAPI */ }
+    const timers = [setTimeout(() => SND.thud(), T), setTimeout(() => rack.classList.add('dead'), T * 2)];
+    let finished = false;
+    const finish = () => {
+      if (finished) return; finished = true;
+      timers.forEach(clearTimeout); clearTimeout(end);
+      document.removeEventListener('pointerdown', finish, true);
+      g.remove(); deathPlaying = false; rack.classList.add('dead');
+      done();
+    };
+    const end = setTimeout(finish, short ? 300 : T * 2 + 600);
+    document.addEventListener('pointerdown', finish, true);
+  }
+  function runStars() { return zoneStars(S).reduce((a, s) => a + s.stars, 0); }
+  function addStars() {
+    if (!zonesOn()) return;
+    if (S.starsEligible === undefined) {
+      if (S.mode === 'daily') {
+        const k = 'wsurv.stars.daily.' + S.seed;
+        S.starsEligible = !LS.get(k, false);
+        if (S.starsEligible) LS.set(k, true);
+      } else S.starsEligible = rulesSig(S.rules) === BASE_SIG;
+    }
+    if (!S.starsEligible) return;
+    const total = runStars(), add = total - (S.starsAdded || 0);
+    if (add > 0) { LS.set('wsurv.stars.total', LS.get('wsurv.stars.total', 0) + add); S.starsAdded = total; }
+  }
+  function showOver() {
+    if (!S.overShown) {
+      S.overShown = true;
+      S.newBest = S.score > 0 && S.score > (S.bestAtStart || 0);
+      if (S.score > LS.get(bestKey(), 0)) LS.set(bestKey(), S.score);
+      endRunOnce(); savePace(); addStars();
+      LS.set('wsurv.game.' + S.mode, S);
+    }
+    const r = S.rules, gave = S.overReason === 'gaveup';
+    const nm = nearMiss(S);
+    $('overTitle').textContent = gave ? '여기까지 했어요' : '자리가 없어요';
+    // near-miss facts: what the engine knows, at most two lines
+    const facts = [];
+    if (!gave) {
+      if (nm.short === 1) facts.push(`${nm.need}칸 조각, 가장 넓은 빈칸 ${nm.maxFree}칸: 딱 1칸 모자랐어요`);
+      if (nm.almost.length) facts.push(`${NAMES[nm.almost[0]]} ${r.cap - 1}/${r.cap}: 1칸만 더 있으면 완성`);
+      if (facts.length < 2 && nm.scattered.length) {
+        const c = nm.scattered[0];
+        let sum = 0; for (const b of S.bottles) if (b.length && b[b.length - 1] === c) sum += topSeg(b).n;
+        facts.push(`맨 위에 ${NAMES[c]}${iga(NAMES[c])} ${sum}칸 흩어져 있었어요`);
+      }
+    }
+    $('overReason').textContent = gave ? '포기를 선택했어요.' : facts.length ? '' : `${S.piece.length}칸짜리 조각을 넣을 병을 만들 수 없어요.`;
+    $('overReason').hidden = !gave && !!facts.length;
+    const ul = $('overFacts'); ul.textContent = '';
+    facts.slice(0, 2).forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.append(li); });
+    ul.hidden = !facts.length;
+    // distance to the record
+    const best = S.bestAtStart || 0, gap = best - S.score;
+    $('overGap').textContent = S.newBest ? (best > 0 ? `최고 기록보다 +${fmt(S.score - best)}점` : '첫 기록이에요') : (best > 0 ? `최고 기록까지 ${fmt(gap)}점 (콤보 ×2로 약 ${Math.ceil(gap / 200)}병)` : '');
+    $('overBest').hidden = !S.newBest;
+    $('oScore').textContent = fmt(S.score);
+    $('oTurn').textContent = S.turn;
+    $('oClears').textContent = S.clears;
+    $('oCombo').textContent = S.maxStreak ? '×' + S.maxStreak : '-';
+    // zones and stars (F3)
+    const zr = $('zoneRes');
+    zr.hidden = !zonesOn();
+    if (zonesOn()) {
+      const stars = zoneStars(S);
+      $('zoneReach').textContent = '도달: ' + zoneLabel(zoneAt(r, S.turn));
+      const row = $('zoneStarsRow'); row.textContent = '';
+      stars.forEach(s => { const sp = document.createElement('span'); sp.innerHTML = `${zoneLabel(s.zone)} <b>${'★'.repeat(s.stars)}${'☆'.repeat(3 - s.stars)}</b>`; row.append(sp); });
+      const total = LS.get('wsurv.stars.total', 0), nextStep = [15, 45, 90].find(x => x > total);
+      $('starTotal').textContent = `누적 별 ${total}` + (nextStep ? ` · 다음 단계 ${nextStep} (테마 해금 예정)` : ' · 모든 단계 달성 (테마 해금 예정)') + (S.starsEligible ? '' : ' · 이 판은 누적에 넣지 않아요');
+    }
+    $('spareUsedNote').hidden = !S.spareUsed;
+    // revive offer with context (F5, F7)
+    const canRevive = !S.reviveUsed && !gave && (S.rescueAds || 0) < RESCUE_AD_CAP;
+    const rb = $('btnRevive');
+    rb.hidden = !canRevive;
+    let rt = '광고 보고 이어하기 (1회)';
+    if (zonesOn() && nm.zoneLeft != null && nm.zoneLeft <= 3) rt = `${nm.zoneLeft}턴만 버티면 ${zoneLabel(zoneAt(r, S.turn) + 1)} · 광고 보고 이어하기`;
+    else if (best > 0 && gap > 0 && gap <= (S.score / Math.max(1, S.turn)) * 12) rt = `신기록까지 ${fmt(gap)}점 · 광고 보고 이어하기`;
+    rb.textContent = rt;
+    // daily share
+    const daily = S.mode === 'daily';
+    $('shareBox').hidden = !daily;
+    if (daily) {
+      const lines = [
+        `물정렬 생존 · 오늘의 도전 ${S.seed.slice(6)} · v2`,
+        `점수 ${fmt(S.score)} · ${S.turn}턴 · 완성 ${S.clears}병 · 최대 콤보 ×${S.maxStreak}`,
+      ];
+      if (zonesOn()) lines.push(`도달 ${zoneLabel(zoneAt(r, S.turn))} · 별 ${runStars()}개` + (S.reviveUsed ? ' 🩹' : ''));
+      else if (S.reviveUsed) lines[1] += ' 🩹';
+      lines.push(turnRhythm(S));
+      $('shareText').value = lines.join('\n');
+      $('copyMsg').textContent = '';
+    }
+    $('ovOver').hidden = false;
+  }
+  function showAd(done, rewardText) {
+    let n = 3;
+    $('adNote').textContent = '실제 게임에서는 여기서 광고가 재생돼요. ' + (rewardText || '');
+    $('adCount').textContent = n;
+    $('ovAd').hidden = false;
+    const tick = setInterval(() => {
+      n--;
+      if (n > 0) { $('adCount').textContent = n; return; }
+      clearInterval(tick);
+      $('ovAd').hidden = true;
+      done();
+    }, 700);
+  }
+  function acceptSpare() {
+    if (!S || S.over || !S.spareOffer || (S.rescueAds || 0) >= RESCUE_AD_CAP) return;
+    showAd(() => {
+      if (applySpare(S)) {
+        S.rescueAds = (S.rescueAds || 0) + 1;
+        history = [];
+        fxq.push({ k: 'spareIn' });
+        SND.ching();
+        flash = `임시 칸을 받았어요. ${S.rules.spareTurns}턴 동안 쓸 수 있어요.`;
+      }
+      commit();
+    }, `끝나면 임시 칸 1개를 ${S.rules.spareTurns}턴 동안 받아요`);
+  }
+  $('btnRevive').addEventListener('click', () => {
+    $('ovOver').hidden = true;
+    showAd(() => {
+      S.preReviveScore = S.score;
+      const idx = applyRevive(S);
+      S.rescueAds = (S.rescueAds || 0) + 1;
+      history = [];
+      S.overShown = false;
+      rack.classList.remove('dead');
+      idx.forEach(i => fxq.push({ k: 'flash', i }));
+      flash = '가장 많이 찬 병 2개를 비웠어요. 이어서 하세요.';
+      overClosed = false;
+      commit();
+    }, '끝나면 가장 많이 찬 병 2개를 비워줘요');
+  });
+  $('btnPeek').addEventListener('click', () => { overClosed = true; $('ovOver').hidden = true; render(); });
+  $('btnAgain').addEventListener('click', () => startGame(S.mode, true));
+  $('btnExtra').addEventListener('click', () => {
+    if (S.over) { overClosed = false; showOver(); render(); return; }
+    giveUp(S); overClosed = false; commit();
+  });
+  $('btnCopy').addEventListener('click', () => {
+    const ta = $('shareText');
+    const done = () => { $('copyMsg').textContent = '복사했어요. 친구에게 붙여넣어 보세요.'; };
+    const fallback = () => { ta.focus(); ta.select(); $('copyMsg').textContent = '텍스트를 선택했어요. 길게 눌러 복사하세요.'; };
+    try { navigator.clipboard.writeText(ta.value).then(done, fallback); } catch (e) { fallback(); }
+  });
+  $('btnUndo').addEventListener('click', () => {
+    if (!history.length || S.over || S.undoLeft <= 0) return;
+    const keep = { undoLeft: S.undoLeft - 1, undoUsed: (S.undoUsed || 0) + 1, newBestShown: S.newBestShown, paceAhead: S.paceAhead, spareOfferSeen: S.spareOfferSeen, lastBigTurn: S.lastBigTurn };
+    S = JSON.parse(history.pop());
+    Object.assign(S, keep);
+    sel = null; fxq = []; flash = '한 수 되돌렸어요.'; paceDisp = null; hadSpare = !!S.spare;
+    commit();
+  });
+  $('btnNew').addEventListener('click', () => startGame(S.mode, true));
+  $('btnMode').addEventListener('click', () => startGame(S.mode === 'daily' ? 'endless' : 'daily', false));
+  $('btnHelp').addEventListener('click', () => { $('ovHelp').hidden = false; });
+
+  // ---------- settings (section 6) ----------
+  const FIELDS = [
+    ['bottles', '병 개수', [[4, '4개'], [5, '5개'], [6, '6개'], [7, '7개']]],
+    ['cap', '병 용량', [[4, '4칸'], [5, '5칸']]],
+    ['startColors', '시작 색 수', [[3, '3종'], [4, '4종'], [5, '5종'], [6, '6종'], [7, '7종']]],
+    ['maxColors', '최대 색 수', [[5, '5종'], [6, '6종'], [7, '7종'], [8, '8종'], [9, '9종']]],
+    ['colorEvery', '색 추가 주기', [[10, '10턴마다'], [15, '15턴마다'], [20, '20턴마다'], [30, '30턴마다'], [0, '추가 안 함']]],
+    ['piece', '조각 크기', [['1-2', '1~2칸'], ['1-3', '1~3칸'], ['2-3', '2~3칸']]],
+    ['preview', '미리보기', [[0, '없음'], [1, '1개'], [2, '2개']]],
+    ['pourLimit', '턴당 붓기', [[0, '무제한'], [3, '3번'], [2, '2번'], [1, '1번']]],
+    ['flipMode', '조각 뒤집기', [['off', '끔'], ['2', '2회 (기본)'], ['3', '3회'], ['5', '5회'], ['0', '무제한']]],
+  ];
+  function buildForm(r) {
+    const form = $('setForm'); form.textContent = '';
+    for (const [key, label, opts] of FIELDS) {
+      const row = document.createElement('div'); row.className = 'field';
+      const lab = document.createElement('label'); lab.htmlFor = 'set-' + key; lab.textContent = label;
+      const s = document.createElement('select'); s.id = 'set-' + key;
+      const cur = key === 'piece' ? r.pieceMin + '-' + r.pieceMax : key === 'flipMode' ? (r.flip ? String(r.flipLimit) : 'off') : String(r[key]);
+      for (const [v, t] of opts) { const o = document.createElement('option'); o.value = v; o.textContent = t; if (String(v) === cur) o.selected = true; s.append(o); }
+      if (![...s.options].some(o => o.selected)) { const o = document.createElement('option'); o.value = cur; o.textContent = cur; o.selected = true; s.append(o); }
+      row.append(lab, s); form.append(row);
+    }
+    $('optAuto').checked = !!r.autoMerge;
+    $('optCombo').checked = !!r.comboPlace;
+    $('optZones').checked = !!r.zones;
+  }
+  function fillPrefs() {
+    $('optOfferSpare').checked = prefs.offerSpare !== false;
+    $('optSound').checked = !!prefs.sound;
+    $('optVibrate').checked = !!prefs.vibrate;
+    $('optReduce').checked = !!prefs.reduceFx;
+    $('optGhost').checked = !!prefs.ghost;
+    $('optPace').checked = !!prefs.pace;
+    $('optStaged').checked = !!prefs.staged;
+    $('optSymbols').checked = !!prefs.symbols;
+  }
+  function readForm() {
+    const v = k => $('set-' + k).value;
+    const [pmin, pmax] = v('piece').split('-').map(Number);
+    const fm = v('flipMode');
+    const base = sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES));
+    return sanitizeRules(Object.assign({}, base, {
+      bottles: v('bottles'), cap: v('cap'), startColors: v('startColors'), maxColors: v('maxColors'),
+      colorEvery: v('colorEvery'), pieceMin: pmin, pieceMax: pmax, preview: v('preview'), pourLimit: v('pourLimit'),
+      autoMerge: $('optAuto').checked, comboPlace: $('optCombo').checked, zones: $('optZones').checked,
+      flip: fm !== 'off', flipLimit: fm === 'off' ? base.flipLimit : Number(fm),
+      spare: false,
+    }));
+  }
+  $('btnSettings').addEventListener('click', () => { buildForm(sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES))); fillPrefs(); $('ovSettings').hidden = false; });
+  $('btnDefaults').addEventListener('click', () => buildForm(DEFAULT_RULES));
+  $('btnClassic').addEventListener('click', () => buildForm(V1_RULES));
+  $('btnApply').addEventListener('click', () => {
+    LS.set('wsurv.rules', readForm());
+    startGame('endless', true);
+  });
+  const PREF_IDS = { optOfferSpare: 'offerSpare', optSound: 'sound', optVibrate: 'vibrate', optReduce: 'reduceFx', optGhost: 'ghost', optPace: 'pace', optStaged: 'staged', optSymbols: 'symbols' };
+  for (const [id, key] of Object.entries(PREF_IDS)) {
+    $(id).addEventListener('change', e => { prefs[key] = e.target.checked; savePrefs(); if (S) { paceDisp = null; render(); } });
+  }
+
+  function v2Lines() {
+    const n = DEFAULT_RULES.flipLimit;
+    return ['넣기로 완성해도 콤보가 이어져요', `⇅로 조각을 뒤집을 수 있어요 (판당 ${n}회)`, '20턴마다 색 구역, 빈 병을 남기면 돌파 보너스'];
+  }
+  function fillList(id, items) { const ul = $(id); ul.textContent = ''; items.forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.append(li); }); }
+  fillList('helpV2', v2Lines().concat(['금색 테두리 병 = 이 넣기로 완성']));
+  fillList('v2Lines', v2Lines());
+
+  function boot(data) {
+    const newUser = !LS.get('wsurv.seenHelp', false);
+    const showV2 = !newUser && !prefs.seenV2;
+    if (showV2) {
+      // existing v1 player: open every stage now; the sheet with the three new rules opens once the game is up
+      prefs.seenV2 = true; savePrefs();
+      unlock.runs = Math.max(unlock.runs, 2); unlock.sawOver = true; unlock.flip = true; saveUnlock();
+    }
+    if (data && data.S && data.S.v === 1) {
+      S = data.S; history = []; sel = null; overClosed = false; hadSpare = !!S.spare;
+      if (S.bestAtStart === undefined) S.bestAtStart = LS.get(bestKey(), 0);
+      commit();
+    } else {
+      startGame(LS.get('wsurv.mode', 'endless') === 'daily' ? 'daily' : 'endless', false);
+    }
+    if (showV2) $('ovV2').hidden = false;
+    if (newUser) { $('ovHelp').hidden = false; LS.set('wsurv.seenHelp', true); prefs.seenV2 = true; savePrefs(); }
+  }
+  try { window.claude?.hot?.snapshot?.(() => ({ S })); } catch (e) { /* hot reload is optional */ }
+  window.claude?.hot?.ready ? window.claude.hot.ready(boot) : boot(window.claude?.hot?.data ?? {});
+})();
+</script>
+
+</body>
+</html>
