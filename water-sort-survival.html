@@ -99,19 +99,45 @@ body {
 .zbar .flag::after { content: ""; position: absolute; top: 0; left: 2px; border: 4px solid transparent; border-left: 6px solid var(--ink); border-right: 0; }
 .zbar .znote { font-size: 11px; color: var(--muted); white-space: nowrap; }
 
-.rack { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 58px)); justify-content: center; gap: 10px; padding-top: 18px; }
+/* Themes: only bottles, liquid finish and the rack backdrop change. Liquid colours stay the same so they remain easy to tell apart.
+   Each theme sets variables on the element carrying data-skin (the root, or a theme preview card), so previews can show any theme. */
+:root, [data-skin] { --tube-k: 1; --rim-h: 6px; --rim-r: 4px; --sheen: none; --glow: 0px; --shelf: none; --free-ink: var(--muted); --bubbles: none; --bubble-anim: none; }
+[data-skin="lab"] { --glass: #f7fafb; --glass-edge: #8fa3ae; }
+[data-skin="cafe"] { --glass: #fffaf2; --glass-edge: #a8825f; --tube-k: .45; --rim-h: 8px; --rim-r: 2px;
+  --sheen: linear-gradient(to bottom, rgba(255, 255, 255, .55) 0 3px, rgba(255, 255, 255, 0) 3px); --shelf: linear-gradient(to bottom, #f7ecdd, #eed9bd); }
+[data-skin="gem"] { --glass: #f6f4fb; --glass-edge: #8a7fae; --tube-k: .2; --rim-h: 4px; --rim-r: 1px;
+  --sheen: linear-gradient(135deg, rgba(255, 255, 255, .55) 0 18%, rgba(255, 255, 255, 0) 19% 58%, rgba(0, 0, 0, .16) 100%);
+  --shelf: radial-gradient(120% 90% at 50% 0%, #f1ecfa, #e2d9f2); }
+[data-skin="deep"] { --glass: #0e2230; --glass-edge: #3e7d97; --glow: 9px; --free-ink: #9ec3d4;
+  --sheen: linear-gradient(to bottom, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0) 60%); --shelf: linear-gradient(to bottom, #0d2a3c, #061520);
+  --bubbles: radial-gradient(circle at 30% 80%, rgba(255, 255, 255, .5) 0 1.5px, transparent 2px), radial-gradient(circle at 70% 55%, rgba(255, 255, 255, .35) 0 1px, transparent 1.5px), radial-gradient(circle at 45% 25%, rgba(255, 255, 255, .4) 0 1.2px, transparent 1.8px);
+  --bubble-anim: bubbleRise; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])[data-skin="lab"], :root:not([data-theme="light"]) [data-skin="lab"] { --glass: #1b2830; --glass-edge: #557080; }
+  :root:not([data-theme="light"])[data-skin="cafe"], :root:not([data-theme="light"]) [data-skin="cafe"] { --glass: #2a2119; --glass-edge: #8c6c52; --sheen: linear-gradient(to bottom, rgba(255, 255, 255, .35) 0 3px, rgba(255, 255, 255, 0) 3px); --shelf: linear-gradient(to bottom, #2e241c, #241c15); }
+  :root:not([data-theme="light"])[data-skin="gem"], :root:not([data-theme="light"]) [data-skin="gem"] { --glass: #1d1a28; --glass-edge: #6c6488; --shelf: radial-gradient(120% 90% at 50% 0%, #2a2440, #1d1830); }
+  :root:not([data-theme="light"])[data-skin="deep"], :root:not([data-theme="light"]) [data-skin="deep"] { --glass: #0e2230; --glass-edge: #3e7d97; }
+}
+:root[data-theme="dark"][data-skin="deep"], :root[data-theme="dark"] [data-skin="deep"] { --glass: #0e2230; --glass-edge: #3e7d97; }
+:root[data-theme="dark"][data-skin="lab"], :root[data-theme="dark"] [data-skin="lab"] { --glass: #1b2830; --glass-edge: #557080; }
+:root[data-theme="dark"][data-skin="cafe"], :root[data-theme="dark"] [data-skin="cafe"] { --glass: #2a2119; --glass-edge: #8c6c52; --sheen: linear-gradient(to bottom, rgba(255, 255, 255, .35) 0 3px, rgba(255, 255, 255, 0) 3px); --shelf: linear-gradient(to bottom, #2e241c, #241c15); }
+:root[data-theme="dark"][data-skin="gem"], :root[data-theme="dark"] [data-skin="gem"] { --glass: #1d1a28; --glass-edge: #6c6488; --shelf: radial-gradient(120% 90% at 50% 0%, #2a2440, #1d1830); }
+
+.rack { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 58px)); justify-content: center; gap: 10px; padding-top: 18px; }
+.rack::before { content: ""; position: absolute; z-index: -1; inset: 4px -10px -6px; border-radius: 14px; background: var(--shelf); pointer-events: none; }
 .rack.punch { animation: punch .15s ease-out; }
 .rack.dead { filter: saturate(.3); transition: filter .6s ease; }
 .tube { --cap: 4; appearance: none; border: 0; background: none; padding: 0; margin: 0; color: inherit; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: stretch; position: relative; transition: transform .16s ease; }
 .tube:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
-.rim { height: 6px; margin-inline: -4px; border-radius: 4px; background: var(--glass-edge); }
-.glass { position: relative; height: calc(var(--cap) * var(--lh) + 8px); border: 2px solid var(--glass-edge); border-top: 0; border-radius: 0 0 20px 20px; background: var(--glass); display: flex; flex-direction: column-reverse; gap: 2px; padding: 3px; overflow: hidden; }
+.rim { height: var(--rim-h); margin-inline: -4px; border-radius: var(--rim-r); background: var(--glass-edge); }
+.glass { position: relative; height: calc(var(--cap) * var(--lh) + 8px); border: 2px solid var(--glass-edge); border-top: 0; border-radius: 0 0 calc(20px * var(--tube-k)) calc(20px * var(--tube-k)); background: var(--glass); display: flex; flex-direction: column-reverse; gap: 2px; padding: 3px; overflow: hidden; }
 .glass::after { content: ""; position: absolute; right: 0; top: 0; bottom: 3px; width: 5px; background: repeating-linear-gradient(to top, transparent 0 calc(var(--lh) - 1px), var(--glass-edge) calc(var(--lh) - 1px) var(--lh)); opacity: .55; pointer-events: none; }
-.layer { flex: none; height: calc(var(--lh) - 2px); border-radius: 5px; display: grid; place-items: center; color: #fff; font-size: 13px; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .4); transform-origin: bottom; }
-.layer:first-child { border-radius: 5px 5px 15px 15px; }
+.glass::before { content: ""; position: absolute; inset: 0; z-index: 1; background-image: var(--bubbles); background-size: 100% 48px; background-repeat: repeat-y; animation: var(--bubble-anim) 2.6s linear infinite; pointer-events: none; }
+.layer { flex: none; height: calc(var(--lh) - 2px); border-radius: 5px; display: grid; place-items: center; color: #fff; font-size: 13px; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .4); transform-origin: bottom; background-color: var(--lc); background-image: var(--sheen); box-shadow: 0 0 var(--glow) var(--lc); }
+.layer:first-child { border-radius: 5px 5px calc(15px * var(--tube-k)) calc(15px * var(--tube-k)); }
 .layer.ghostL { opacity: .4; }
 .layer.leaving { opacity: .5; }
-.free { margin-top: 5px; text-align: center; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.free { margin-top: 5px; text-align: center; font-size: 11px; color: var(--free-ink); font-variant-numeric: tabular-nums; }
 .tube.sel { transform: translateY(-12px); }
 .tube.sel .glass { border-color: var(--accent); }
 .tube.sel .rim { background: var(--accent); }
@@ -123,17 +149,17 @@ body {
 .tube.flash .glass { animation: flash .6s ease-out; }
 .tube.shake { animation: shake .3s ease-in-out; }
 .tube.mini { --lh: 22px; width: 44px; touch-action: none; }
-.tube.mini .glass { border-radius: 0 0 14px 14px; }
-.tube.mini .layer:first-child { border-radius: 4px 4px 10px 10px; }
+.tube.mini .glass { border-radius: 0 0 calc(14px * var(--tube-k)) calc(14px * var(--tube-k)); }
+.tube.mini .layer:first-child { border-radius: 4px 4px calc(10px * var(--tube-k)) calc(10px * var(--tube-k)); }
 .tube.mini.swap .layer { animation: swap .12s ease-in-out; }
 .tube.micro { --lh: 15px; width: 28px; cursor: default; opacity: .8; }
 .tube.micro .rim { height: 4px; margin-inline: -3px; }
-.tube.micro .glass { border-radius: 0 0 9px 9px; padding: 2px; gap: 1px; border-width: 1.5px; }
+.tube.micro .glass { border-radius: 0 0 calc(9px * var(--tube-k)) calc(9px * var(--tube-k)); padding: 2px; gap: 1px; border-width: 1.5px; }
 .tube.micro .layer { height: calc(var(--lh) - 1px); border-radius: 3px; font-size: 9px; }
-.tube.micro .layer:first-child { border-radius: 3px 3px 7px 7px; }
+.tube.micro .layer:first-child { border-radius: 3px 3px calc(7px * var(--tube-k)) calc(7px * var(--tube-k)); }
 .tube.micro .glass::after, .tube.mini .glass::after { display: none; }
 .tube.spare { --lh: 22px; width: 34px; }
-.tube.spare .glass { border-radius: 0 0 10px 10px; border-style: dashed; }
+.tube.spare .glass { border-radius: 0 0 calc(10px * var(--tube-k)) calc(10px * var(--tube-k)); border-style: dashed; }
 .tube.spare.enter { animation: slideIn .3s ease-out; }
 .tube:disabled { cursor: default; }
 .ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; transform: translate(-50%, -70%) rotate(-8deg); opacity: .92; }
@@ -191,6 +217,20 @@ body {
 .count { font-family: var(--font-display); font-size: 64px; line-height: 1; text-align: center; color: var(--accent); font-variant-numeric: tabular-nums; }
 
 @keyframes pop { from { transform: scaleY(.35); opacity: .3; } to { transform: none; opacity: 1; } }
+@keyframes bubbleRise { from { background-position: 0 0; } to { background-position: 0 -48px; } }
+
+.themes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.theme-card { display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--bg); min-width: 0; }
+.theme-card.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.tprev { position: relative; isolation: isolate; display: flex; justify-content: center; align-items: flex-end; gap: 6px; padding: 12px 6px 6px; border-radius: 10px; }
+.tprev::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 10px; background: var(--shelf); }
+.tprev .tube.micro { opacity: 1; width: 26px; }
+.theme-card.locked .tprev { opacity: .55; }
+.theme-card b { font-family: var(--font-display); font-weight: 400; font-size: 18px; line-height: 1.2; }
+.theme-card p { margin: 0; font-size: 12px; color: var(--muted); min-height: 3em; }
+.theme-card .btn { min-height: 36px; font-size: 13px; }
+.unlock-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--gold-soft); font-size: 14px; }
+.unlock-row b { color: var(--gold); }
 @keyframes burst { to { opacity: 0; transform: translateY(-18px) scale(1.05); } }
 @keyframes floatUp { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, -36px); } }
 @keyframes floatUpL { from { opacity: 1; translate: 0 0; } to { opacity: 0; translate: 0 -30px; } }
@@ -289,6 +329,9 @@ body {
 <div class="overlay" id="ovSettings" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setTitle">
     <h2 id="setTitle">설정</h2>
+    <h3>테마</h3>
+    <button class="btn" id="btnThemes" type="button">테마 고르기</button>
+    <label class="check"><input type="checkbox" id="optTryLocked"><span>잠긴 테마도 써보기<small>프로토타입 확인용이에요. 별이 모자라도 모든 테마를 고를 수 있어요.</small></span></label>
     <h3>규칙 (적용하고 새 게임)</h3>
     <p class="note">바꾼 값은 무한 모드 새 게임부터 적용돼요. 오늘의 도전은 기본 규칙으로 고정이에요.</p>
     <form class="fields" id="setForm"></form>
@@ -328,6 +371,8 @@ body {
       <p class="note" id="zoneReach"></p>
       <div class="zstars" id="zoneStarsRow"></div>
       <p class="note" id="starTotal"></p>
+      <div class="unlock-row" id="unlockRow" hidden><span>새 테마 해금: <b id="unlockName"></b></span><button class="btn primary" id="btnUnlockApply" type="button">적용하기</button></div>
+      <button class="btn" id="btnThemesOver" type="button">테마 보기</button>
     </div>
     <p class="note" id="spareUsedNote" hidden>🥃 임시 잔 사용</p>
     <div class="share" id="shareBox" hidden>
@@ -338,6 +383,16 @@ body {
     </div>
     <button class="btn primary" id="btnRevive" type="button">광고 보고 이어하기 (1회)</button>
     <div class="row2"><button class="btn" id="btnPeek" type="button">판 보기</button><button class="btn" id="btnAgain" type="button">다시 하기</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ovThemes" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="themesTitle">
+    <h2 id="themesTitle">테마</h2>
+    <p class="note" id="themesStars"></p>
+    <div class="themes" id="themeList"></div>
+    <p class="note">테마는 병 모양과 선반, 액체의 질감만 바꿔요. 액체 색은 그대로라 구분하기 쉬워요. 별은 기본 규칙의 무한 모드와 오늘의 도전 첫 판에서 쌓여요.</p>
+    <button class="btn" type="button" data-close>닫기</button>
   </div>
 </div>
 
@@ -1130,7 +1185,7 @@ function turnRhythm(S) {
   function layerEl(c, cls) {
     const L = document.createElement('span');
     L.className = 'layer' + (cls ? ' ' + cls : '');
-    L.style.background = `var(--liq${c})`;
+    L.style.setProperty('--lc', `var(--liq${c})`);
     if (prefs.symbols) L.textContent = SYMBOLS[c];
     return L;
   }
@@ -1403,7 +1458,7 @@ function turnRhythm(S) {
   // ---------- sheets ----------
   function closeAll() { document.querySelectorAll('.overlay').forEach(o => { if (o.id !== 'ovAd') o.hidden = true; }); }
   document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => { b.closest('.overlay').hidden = true; }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') ['ovHelp', 'ovSettings', 'ovV2'].forEach(id => { $(id).hidden = true; }); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') ['ovThemes', 'ovHelp', 'ovSettings', 'ovV2'].forEach(id => { $(id).hidden = true; }); });
 
   // Game over (F7): the piece bounces off the roomiest bottle, the rack drains of colour, then the sheet opens. Tap skips.
   function playDeath(done) {
@@ -1443,7 +1498,13 @@ function turnRhythm(S) {
     }
     if (!S.starsEligible) return;
     const total = runStars(), add = total - (S.starsAdded || 0);
-    if (add > 0) { LS.set('wsurv.stars.total', LS.get('wsurv.stars.total', 0) + add); S.starsAdded = total; }
+    if (add > 0) {
+      const before = starsTotal();
+      LS.set('wsurv.stars.total', before + add); S.starsAdded = total;
+      // themes whose threshold this run crossed
+      const opened = THEMES.filter(t => t.need > before && t.need <= before + add).map(t => t.id);
+      if (opened.length) S.newThemes = (S.newThemes || []).concat(opened);
+    }
   }
   function showOver() {
     if (!S.overShown) {
@@ -1488,8 +1549,16 @@ function turnRhythm(S) {
       $('zoneReach').textContent = '도달: ' + zoneLabel(zoneAt(r, S.turn));
       const row = $('zoneStarsRow'); row.textContent = '';
       stars.forEach(s => { const sp = document.createElement('span'); sp.innerHTML = `${zoneLabel(s.zone)} <b>${'★'.repeat(s.stars)}${'☆'.repeat(3 - s.stars)}</b>`; row.append(sp); });
-      const total = LS.get('wsurv.stars.total', 0), nextStep = [15, 45, 90].find(x => x > total);
-      $('starTotal').textContent = `누적 별 ${total}` + (nextStep ? ` · 다음 단계 ${nextStep} (테마 해금 예정)` : ' · 모든 단계 달성 (테마 해금 예정)') + (S.starsEligible ? '' : ' · 이 판은 누적에 넣지 않아요');
+      const total = starsTotal(), next = THEMES.find(t => t.need > total);
+      $('starTotal').textContent = `누적 별 ${total}` + (next ? ` · 다음 테마 '${next.name}'까지 ${next.need - total}개` : ' · 모든 테마 해금') + (S.starsEligible ? '' : ' · 이 판은 누적에 넣지 않아요');
+      const fresh = (S.newThemes || []).map(id => THEMES.find(t => t.id === id)).filter(Boolean);
+      $('unlockRow').hidden = !fresh.length;
+      if (fresh.length) {
+        const last = fresh[fresh.length - 1];
+        $('unlockName').textContent = fresh.map(t => t.name).join(', ');
+        $('btnUnlockApply').dataset.skin = last.id;
+        $('btnUnlockApply').hidden = currentSkin() === last.id;
+      }
     }
     $('spareUsedNote').hidden = !S.spareUsed;
     // revive offer with context (F5, F7)
@@ -1617,6 +1686,7 @@ function turnRhythm(S) {
     $('optPace').checked = !!prefs.pace;
     $('optStaged').checked = !!prefs.staged;
     $('optSymbols').checked = !!prefs.symbols;
+    $('optTryLocked').checked = !!prefs.tryLocked;
   }
   function readForm() {
     const v = k => $('set-' + k).value;
@@ -1638,10 +1708,50 @@ function turnRhythm(S) {
     LS.set('wsurv.rules', readForm());
     startGame('endless', true);
   });
-  const PREF_IDS = { optOfferSpare: 'offerSpare', optSound: 'sound', optVibrate: 'vibrate', optReduce: 'reduceFx', optGhost: 'ghost', optPace: 'pace', optStaged: 'staged', optSymbols: 'symbols' };
+  const PREF_IDS = { optOfferSpare: 'offerSpare', optSound: 'sound', optVibrate: 'vibrate', optReduce: 'reduceFx', optGhost: 'ghost', optPace: 'pace', optStaged: 'staged', optSymbols: 'symbols', optTryLocked: 'tryLocked' };
   for (const [id, key] of Object.entries(PREF_IDS)) {
-    $(id).addEventListener('change', e => { prefs[key] = e.target.checked; savePrefs(); if (S) { paceDisp = null; render(); } });
+    $(id).addEventListener('change', e => { prefs[key] = e.target.checked; savePrefs(); applySkin(); if (S) { paceDisp = null; render(); } });
   }
+
+  // ---------- themes: cumulative zone stars unlock them (visual only) ----------
+  const THEMES = [
+    { id: 'lab', name: '실험실', need: 0, desc: '투명한 시험관. 기본 테마예요.' },
+    { id: 'cafe', name: '카페', need: 15, desc: '넓은 유리잔과 원목빛 선반, 거품처럼 밝은 윗면.' },
+    { id: 'gem', name: '보석', need: 45, desc: '각진 병과 빛이 비치는 보석 같은 층.' },
+    { id: 'deep', name: '심해', need: 90, desc: '어두운 유리 속에서 빛나는 물과 올라오는 기포.' },
+  ];
+  const SAMPLE = [[0, 0, 1], [2, 3, 3], [4, 4, 4, 4]];
+  function starsTotal() { return LS.get('wsurv.stars.total', 0); }
+  function themeOpen(t) { return !!prefs.tryLocked || starsTotal() >= t.need; }
+  function currentSkin() { const t = THEMES.find(x => x.id === prefs.skin); return t && themeOpen(t) ? t.id : 'lab'; }
+  function applySkin() { document.documentElement.dataset.skin = currentSkin(); }
+  function useSkin(id) { prefs.skin = id; savePrefs(); applySkin(); if (!$('ovThemes').hidden) buildThemes(); }
+  function buildThemes() {
+    const total = starsTotal(), cur = currentSkin(), next = THEMES.find(t => t.need > total);
+    $('themesStars').textContent = `누적 별 ${total}` + (next ? ` · 다음 테마 '${next.name}'까지 ${next.need - total}개` : ' · 모든 테마를 열었어요');
+    const list = $('themeList'); list.textContent = '';
+    for (const t of THEMES) {
+      const open = themeOpen(t), earned = total >= t.need;
+      const card = document.createElement('div');
+      card.className = 'theme-card' + (t.id === cur ? ' on' : '') + (open ? '' : ' locked');
+      const prev = document.createElement('div');
+      prev.className = 'tprev'; prev.dataset.skin = t.id; prev.setAttribute('aria-hidden', 'true');
+      for (const s of SAMPLE) { const tb = document.createElement('div'); tb.className = 'tube micro'; paintTube(tb, s, 4); prev.append(tb); }
+      const name = document.createElement('b'); name.textContent = t.name;
+      const desc = document.createElement('p'); desc.textContent = t.desc;
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'btn' + (t.id !== cur && open ? ' primary' : '');
+      if (t.id === cur) { btn.textContent = '사용 중'; btn.disabled = true; }
+      else if (open) { btn.textContent = earned ? '적용' : '써보기'; btn.addEventListener('click', () => { useSkin(t.id); render(); }); }
+      else { btn.textContent = `별 ${t.need - total}개 더 필요`; btn.disabled = true; }
+      card.append(prev, name, desc, btn);
+      list.append(card);
+    }
+  }
+  function openThemes() { buildThemes(); $('ovThemes').hidden = false; }
+  $('btnThemes').addEventListener('click', openThemes);
+  $('btnThemesOver').addEventListener('click', openThemes);
+  $('btnUnlockApply').addEventListener('click', e => { const b = e.currentTarget; useSkin(b.dataset.skin); b.hidden = true; render(); });
 
   function v2Lines() {
     const n = DEFAULT_RULES.flipLimit;
@@ -1652,6 +1762,7 @@ function turnRhythm(S) {
   fillList('v2Lines', v2Lines());
 
   function boot(data) {
+    applySkin();
     const newUser = !LS.get('wsurv.seenHelp', false);
     const showV2 = !newUser && !prefs.seenV2;
     if (showV2) {

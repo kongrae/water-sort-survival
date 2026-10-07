@@ -14,6 +14,15 @@
   const firstFit = () => { const S = G(); return S.bottles.findIndex(b => S.rules.cap - b.length >= S.piece.length); };
   try {
     await sleep(50);
+    if (P.get('shots') === 'skin') {
+      const S = G();
+      S.bottles = [[0, 0, 1], [1, 2], [2, 2, 2], [3], [1, 3, 0], []];
+      S.turn = 37; S.score = 2140; S.piece = [2, 3];
+      document.querySelectorAll('#rack .tube')[1].click();
+      await sleep(400);
+      send({ sc: SC, done: true });
+      return;
+    }
     if (P.get('shots') === 'over') {
       ['ovV2', 'ovHelp'].forEach(id => { $(id).hidden = true; });
       const S = G();
@@ -89,14 +98,20 @@
       check('undo increments undoUsed', G().undoUsed === before + 1, G().undoUsed);
       // game over by no room
       S = G();
-      S.bottles = [[0, 1, 0, 1], [1, 0, 1, 0], [2, 3, 2, 3], [3, 2, 3, 2], [0, 2, 1, 3], [1, 3, 2]];
+      // full board after the move; yellow tops add up to 4 so a near-miss fact exists whatever the next piece is
+      S.bottles = [[0, 1, 2, 2], [1, 0, 3, 2], [3, 1, 0, 2], [3, 2, 3, 1], [0, 2, 1, 3], [1, 3, 2]];
       S.piece = [0]; S.turn = 25; S.bestAtStart = 0; S.score = 300;
       placeAt(5);
       await sleep(30);
-      check('death animation running (sheet not yet open)', G().over && $('ovOver').hidden);
-      await sleep(1500);
-      check('result sheet opens after animation', !$('ovOver').hidden && document.querySelector('#rack').classList.contains('dead'));
-      check('near-miss facts listed', !$('overFacts').hidden && $('overFacts').children.length >= 1, $('overFacts').textContent);
+      const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (rm) {
+        check('reduced motion: sheet opens without the death animation', G().over && !$('ovOver').hidden);
+      } else {
+        check('death animation running (sheet not yet open)', G().over && $('ovOver').hidden);
+        await sleep(1500);
+        check('result sheet opens after animation', !$('ovOver').hidden && document.querySelector('#rack').classList.contains('dead'));
+      }
+      check('near-miss facts listed', !$('overFacts').hidden && $('overFacts').children.length >= 1, $('overFacts').textContent + ' | ' + $('overReason').textContent + ' | ' + JSON.stringify(nearMiss ? 1 : 0));
       check('zone result + stars shown', !$('zoneRes').hidden && $('zoneReach').textContent.startsWith('도달:'), $('zoneReach').textContent + ' | ' + $('zoneStarsRow').textContent);
       check('revive offered', !$('btnRevive').hidden, $('btnRevive').textContent);
       check('unlock: runs 1, sawOver', JSON.parse(localStorage.getItem('wsurv.unlock')).runs === 1, localStorage.getItem('wsurv.unlock'));
@@ -194,6 +209,45 @@
       const S = G();
       check('v1 daily save is restarted as v2', S.rules.zones === true && S.turn === 0);
       check('restart toast shown', $('status').textContent.includes('규칙이 바뀌어 오늘의 도전을 새로 시작해요'), $('status').textContent);
+    }
+    if (SC === 'themes') {
+      const skin = () => document.documentElement.dataset.skin;
+      check('default skin is lab', skin() === 'lab', skin());
+      $('btnSettings').click(); $('btnThemes').click();
+      const cards = () => [...document.querySelectorAll('#themeList .theme-card')];
+      check('4 theme cards, lab in use', cards().length === 4 && cards()[0].classList.contains('on'));
+      check('cafe locked: 1 star short', cards()[1].querySelector('.btn').textContent === '별 1개 더 필요' && cards()[1].querySelector('.btn').disabled, cards()[1].querySelector('.btn').textContent);
+      check('theme previews carry their own skin', cards().map(c => c.querySelector('.tprev').dataset.skin).join(',') === 'lab,cafe,gem,deep');
+      check('preview glass differs by skin', getComputedStyle(cards()[3].querySelector('.glass')).backgroundColor !== getComputedStyle(cards()[0].querySelector('.glass')).backgroundColor);
+      $('ovThemes').querySelector('[data-close]').click(); $('ovSettings').querySelector('[data-close]').click();
+      // a run that earns 2 stars crosses 15
+      let S = G();
+      S.bottles = [[0, 1, 0, 1], [1, 0, 1, 0], [2, 3, 2, 3], [3, 2, 3, 2], [0, 2, 1, 3], [1, 3, 2]];
+      S.turn = 25; S.cum = Array(25).fill(0); S.piece = [0];
+      S.zoneLog = [{ zone: 2, turn: 20, empties: 3, bonus: 120, undoUsed: 0, revive: false }];
+      $('cup').click(); document.querySelectorAll('#rack .tube')[5].click();
+      await sleep(1600);
+      check('stars added and cafe unlocked', JSON.parse(localStorage.getItem('wsurv.stars.total')) >= 15 && !$('unlockRow').hidden && $('unlockName').textContent === '카페', localStorage.getItem('wsurv.stars.total') + ' ' + $('unlockName').textContent);
+      check('star line names the next theme', $('starTotal').textContent.includes("다음 테마 '보석'"), $('starTotal').textContent);
+      $('btnUnlockApply').click();
+      check('apply switches the board to cafe', skin() === 'cafe' && $('btnUnlockApply').hidden);
+      const gr = getComputedStyle(document.querySelector('#rack .glass')).borderBottomLeftRadius;
+      check('cafe glass is flatter', parseFloat(gr) < 12, gr);
+      check('rack backdrop drawn', getComputedStyle(document.querySelector('#rack'), '::before').backgroundImage !== 'none');
+      $('btnThemesOver').click();
+      check('theme sheet opens from results, cafe in use', !$('ovThemes').hidden && cards()[1].classList.contains('on'));
+      $('ovThemes').querySelector('[data-close]').click();
+      // prototype switch: try a locked theme
+      $('btnAgain').click();
+      $('btnSettings').click(); $('optTryLocked').click(); $('btnThemes').click();
+      check('locked themes become try-able', cards()[3].querySelector('.btn').textContent === '써보기', cards()[3].querySelector('.btn').textContent);
+      cards()[3].querySelector('.btn').click();
+      check('deep applied with glow', skin() === 'deep' && getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() === '9px');
+      $('optTryLocked').click();
+      check('turning the switch off falls back to an earned theme', skin() === 'lab', skin());
+      check('choice persisted', JSON.parse(localStorage.getItem('wsurv.prefs')).skin === 'deep');
+      $('ovThemes').querySelector('[data-close]').click(); $('ovSettings').querySelector('[data-close]').click();
+      check('no horizontal scroll', noOverflow());
     }
     check('no script errors', window.__errors.length === 0, window.__errors.join(' | '));
   } catch (e) {

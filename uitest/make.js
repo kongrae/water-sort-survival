@@ -22,6 +22,8 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     set('wsurv.mode', p.get('mode') || 'endless');
   }
   if (p.get('reduce') === '1') set('wsurv.prefs', { reduceFx: true });
+  if (sc === 'themes') { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); set('wsurv.stars.total', 14); }
+  if (p.get('skin')) { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: p.get('skin'), tryLocked: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); }
   window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; } } };
   window.__errors = [];
   window.addEventListener('error', function (e) { window.__errors.push(String(e.message)); });
@@ -29,7 +31,8 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
 </script></head><body>`;
 const driver = fs.readFileSync(path.join(__dirname, 'driver.js'), 'utf8');
 fs.writeFileSync(path.join(__dirname, 'uitest.html'), head + page + '\n<script>' + driver + '</script></body></html>');
-for (const sc of ['fresh', 'existing', 'v1saves', 'v1daily', 'shots']) {
+fs.writeFileSync(path.join(__dirname, 'frame-skins.html'), '<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;display:flex;gap:12px;background:#888">' + ['lab', 'cafe', 'gem', 'deep'].map(s => '<iframe src="uitest.html?scenario=skin&shots=skin&skin=' + s + '&theme=' + (process.env.THEME || 'light') + '" style="flex:none;width:360px;height:640px;border:0"></iframe>').join('') + '<pre id="out"></pre></body></html>');
+for (const sc of ['fresh', 'existing', 'v1saves', 'v1daily', 'shots', 'themes']) {
   const w = sc === 'shots' ? 0 : 360;
   const frames = sc === 'shots'
     ? ['light', 'dark'].map(t => `<iframe src="uitest.html?scenario=existing&shots=1&theme=${t}" style="width:390px;height:900px;border:0;background:#fff"></iframe>`).join('')
