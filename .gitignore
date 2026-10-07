@@ -5,3 +5,7 @@ uitest/out-*.html
 uitest/prof-*/
 chrome-prof/
 node_modules/
+
+# Pages build output and the local gh-pages checkout (deploy-pages.ps1)
+/dist/
+/outputs/

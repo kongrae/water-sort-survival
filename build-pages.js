@@ -1,8 +1,9 @@
-// Builds index.html for GitHub Pages from water-sort-survival.html (the artifact source).
+// Builds the GitHub Pages site from water-sort-survival.html (the artifact source).
 // The artifact host wraps the page in a document skeleton; Pages serves files as-is, so the skeleton is added here.
-// usage: node build-pages.js
+// usage: node build-pages.js [outDir]   (default: dist)
 const fs = require('fs');
 const path = require('path');
+const outDir = path.resolve(__dirname, process.argv[2] || 'dist');
 const page = fs.readFileSync(path.join(__dirname, 'water-sort-survival.html'), 'utf8');
 const skeleton = `<!doctype html>
 <html lang="ko">
@@ -13,5 +14,6 @@ const skeleton = `<!doctype html>
 </head>
 <body>
 `;
-fs.writeFileSync(path.join(__dirname, 'index.html'), skeleton + page + '\n</body>\n</html>\n');
-console.log('index.html written');
+fs.mkdirSync(outDir, { recursive: true });
+fs.writeFileSync(path.join(outDir, 'index.html'), skeleton + page + '\n</body>\n</html>\n');
+console.log('built ' + path.relative(__dirname, path.join(outDir, 'index.html')));
