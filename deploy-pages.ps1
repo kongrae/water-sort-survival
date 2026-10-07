@@ -4,6 +4,23 @@
 # usage: powershell -ExecutionPolicy Bypass -File deploy-pages.ps1
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+# Windows PowerShell prefixes piped input with a BOM, which git credential rejects, so stdin is written directly.
+function Get-GitCredentialLines {
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = 'git'
+    $psi.Arguments = 'credential fill'
+    $psi.UseShellExecute = $false
+    $psi.RedirectStandardInput = $true
+    $psi.RedirectStandardOutput = $true
+    $p = [System.Diagnostics.Process]::Start($psi)
+    $w = New-Object System.IO.StreamWriter($p.StandardInput.BaseStream, (New-Object System.Text.UTF8Encoding $false))
+    $w.Write("protocol=https`nhost=github.com`n`n")
+    $w.Close()
+    $out = $p.StandardOutput.ReadToEnd()
+    $p.WaitForExit()
+    if ($p.ExitCode -ne 0) { throw 'GitHub sign-in is required (Git Credential Manager).' }
+    return $out -split "`r?`n"
+}
 $projectDir = $PSScriptRoot
 $owner = 'kongrae'
 $repoName = 'water-sort-survival'
@@ -31,8 +48,7 @@ function Send-Json {
 Push-Location $projectDir
 try {
     $credential = @{}
-    $credentialLines = "protocol=https`nhost=github.com`n`n" | git credential fill
-    if ($LASTEXITCODE -ne 0) { throw 'GitHub sign-in is required (Git Credential Manager).' }
+    $credentialLines = Get-GitCredentialLines
     foreach ($line in $credentialLines) {
         $parts = $line -split '=', 2
         if ($parts.Length -eq 2) { $credential[$parts[0]] = $parts[1] }
