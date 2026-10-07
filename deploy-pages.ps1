@@ -4,22 +4,18 @@
 # usage: powershell -ExecutionPolicy Bypass -File deploy-pages.ps1
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-# Windows PowerShell prefixes piped input with a BOM, which git credential rejects, so stdin is written directly.
+# Windows PowerShell 5.1 prefixes stdin of native commands with a BOM, which git credential rejects.
+# The request (no secrets in it) goes through a temp file and cmd redirection instead; the answer stays in memory.
 function Get-GitCredentialLines {
-    $psi = New-Object System.Diagnostics.ProcessStartInfo
-    $psi.FileName = 'git'
-    $psi.Arguments = 'credential fill'
-    $psi.UseShellExecute = $false
-    $psi.RedirectStandardInput = $true
-    $psi.RedirectStandardOutput = $true
-    $p = [System.Diagnostics.Process]::Start($psi)
-    $w = New-Object System.IO.StreamWriter($p.StandardInput.BaseStream, (New-Object System.Text.UTF8Encoding $false))
-    $w.Write("protocol=https`nhost=github.com`n`n")
-    $w.Close()
-    $out = $p.StandardOutput.ReadToEnd()
-    $p.WaitForExit()
-    if ($p.ExitCode -ne 0) { throw 'GitHub sign-in is required (Git Credential Manager).' }
-    return $out -split "`r?`n"
+    $req = [IO.Path]::GetTempFileName()
+    try {
+        [IO.File]::WriteAllText($req, "protocol=https`nhost=github.com`n`n", (New-Object System.Text.UTF8Encoding $false))
+        $out = & cmd.exe /d /c "git credential fill < `"$req`""
+        if ($LASTEXITCODE -ne 0) { throw 'GitHub sign-in is required (Git Credential Manager).' }
+        return $out
+    } finally {
+        Remove-Item -LiteralPath $req -Force -ErrorAction SilentlyContinue
+    }
 }
 $projectDir = $PSScriptRoot
 $owner = 'kongrae'
