@@ -172,7 +172,8 @@ async function main() {
       if (v.fx === 'juicy') {
         // the touch checks above turn reduced effects on (the run-ending tap); the juicy effects need them off
         await js(`(() => { const r = document.getElementById('optReduce'); r.checked = false; r.dispatchEvent(new Event('change', { bubbles: true })); return true; })()`);
-        const fxn = () => js(`({ fx: document.querySelectorAll('#fxLayer .fx').length, blobs: document.querySelectorAll('#fxLayer .fx-blob').length, drops: document.querySelectorAll('#fxLayer .fx-drop').length, press: [...document.querySelectorAll('.tube.press')].length })`);
+        const fxn = () => js(`({ fx: document.querySelectorAll('#fxLayer .fx').length, blobs: document.querySelectorAll('#fxLayer .fx-blob').length, drops: document.querySelectorAll('#fxLayer .fx-drop').length, press: [...document.querySelectorAll('.tube.press')].length,
+          cb: (document.querySelector('#stage .cb') || {}).textContent || '', stageOp: getComputedStyle(document.getElementById('stage')).opacity })`);
         // a press shows at once
         await setup(); p = await pos();
         await down(...p.tubes[1]); await sleep(30);
@@ -192,6 +193,10 @@ async function main() {
         let seen = 0;
         for (let k = 0; k < 20 && !seen; k++) { f = await fxn(); seen = f.drops; if (!seen) await sleep(40); }
         ck('[feel] the completion bursts', seen > 0, JSON.stringify(f));
+        // the combo bursts with it, on a stage at full strength (no other animation fading the stage)
+        for (let k = 0; k < 10 && !f.cb; k++) { await sleep(20); f = await fxn(); }
+        await sleep(150); f = await fxn();
+        ck('[feel] the combo bursts on the stage at full strength', f.cb.startsWith('×4×4') && f.stageOp === '1', JSON.stringify(f));
         await sleep(1200);
         f = await fxn();
         ck('[feel] then every effect node is gone', f.fx === 0, JSON.stringify(f));

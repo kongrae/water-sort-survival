@@ -108,7 +108,7 @@ window.__feelTests = async function (T, H) {
     await setup(MID, [2, 2], { streak: 2, turn: 10, turnClears: 0 });
     const st = box($('stage')), sb = box(document.querySelector('.scorebar')), info = box(document.querySelector('.info'));
     ck('[U1] the stage fills the free space under the score', getComputedStyle($('stage')).display !== 'none' && st.t >= sb.b && st.b <= info.t && st.h >= 56, JSON.stringify({ st, sb: sb.b, info: info.t }));
-    ck('[F4] the stage shows the combo with its fuse', $('stCombo').textContent === '×2' && $('stCombo').classList.contains('fuse'), $('stCombo').className + ' ' + $('stCombo').textContent);
+    ck('[F4] the stage shows the combo badge with its fuse', $('stCombo').textContent === '×2' && $('stHud').classList.contains('on') && $('stHud').classList.contains('fuse'), $('stHud').className + ' ' + $('stCombo').textContent);
     ck('[U1] banners show in the stage', $('bannerLayer').classList.contains('staged') && Math.abs(box($('bannerLayer')).t - st.t) <= 1);
     ck('[U2] the status line leaves the combo to the stage', !status().includes('이번 턴에 병을 완성하면') && status() === '조각을 넣고, 병끼리 부어서 한 색으로 채우세요.', status());
 
@@ -161,7 +161,7 @@ window.__feelTests = async function (T, H) {
     ck('[F2] a refused bottle shakes and flashes a red edge', tube(0).classList.contains('shake') && q('#fxLayer .fx-edge') === 1);
     await sleep(300);
 
-    // [F3] flash, hold (hit-stop), burst; [F4] callout; [F5] the points fly into the score
+    // [F3] flash, hold (hit-stop), burst; [F4] the combo burst; [F5] the points fly into the score
     await setup(MID, [2, 2], { streak: 3, turn: 10, turnClears: 0, lastBigTurn: -1 });
     const s1 = G().score;
     await tap(tube(3)); await tap(tube(2));
@@ -169,33 +169,39 @@ window.__feelTests = async function (T, H) {
       `${JSON.stringify(G().bottles)} +${G().score - s1} col ${q('#fxLayer .fx-col i')}`);
     ck('[F5] the score waits for the points', scoreText() === fmt(s1), scoreText());
     await sleep(230);   // 260ms after the move: landed at 190, flash 60 + hold 70 until 320
-    ck('[F3] on landing the full bottle flashes and holds; nothing has burst yet', q('#fxLayer .fx-col i') === 4 && q('#fxLayer .fx-drop') === 0, `${q('#fxLayer .fx-col i')} ${q('#fxLayer .fx-drop')}`);
-    ck('[F4] the callout and the combo on the stage', $('stCall').textContent === '대단해요!' && $('stCombo').textContent === '×4', `${$('stCall').textContent} ${$('stCombo').textContent}`);
-    ck('[F4] the banner keeps its text', !$('banner').hidden && $('banner').textContent === '×4!', $('banner').textContent);
+    ck('[F3] on landing the full bottle flashes and holds; nothing has burst yet', q('#fxLayer .fx-col i') === 4 && q('#fxLayer .fx-drop') === 0 && !document.querySelector('#stage .cb'),
+      `${q('#fxLayer .fx-col i')} ${q('#fxLayer .fx-drop')} ${q('#stage .cb')}`);
     await sleep(100);   // 360ms
     ck('[F3] then it bursts: drops, a ring, the points take off', q('#fxLayer .fx-drop') >= 36 && q('#fxLayer .fx-ring') === 1 && q('#fxLayer .fx-score') === 1, `drops ${q('#fxLayer .fx-drop')} ring ${q('#fxLayer .fx-ring')} score ${q('#fxLayer .fx-score')}`);
+    // the combo bursts with the bottle: the multiplier and its word over the stage, the badge steps aside; no banner
+    const cb = document.querySelector('#stage .cb'), line = sel => (cb && cb.querySelector(sel + ' .f') || {}).textContent;
+    ck('[F4] the combo bursts on the stage with its word while the badge steps aside', !!cb && line('.cb-num') === '×4' && line('.cb-word') === '대단해요!' && q('#stage .cb-rays') === 1 &&
+      $('stage').classList.contains('cb-on') && $('stCombo').textContent === '×4', `${cb ? cb.textContent : 'no burst'} ${$('stage').className}`);
+    ck('[F4] the burst takes the place of the combo banners', $('banner').hidden, $('banner').textContent);
     ck('[F3] a x4 completion shakes the rack and the stage', shaking($('rack')) && shaking($('stage')));
     const drops = [...document.querySelectorAll('#fxLayer .fx-drop')].map(e => e.getAnimations()[0]).filter(Boolean);
     ck('[F3] drops fly for 0.45-0.6s', drops.length > 0 && drops.every(a => a.effect.getTiming().duration >= 450 && a.effect.getTiming().duration <= 600));
     await sleep(940);   // 1.3s
     ck('[F5] the points have arrived: the score shows the run\'s score', scoreText() === fmt(G().score), `${scoreText()} vs ${G().score}`);
     ck('[F3] every effect node is gone once played', liveFx() === 0, liveFx());
+    ck('[F4] the burst is gone once played and the badge is back', !document.querySelector('#stage .cb') && !$('stage').classList.contains('cb-on') && $('stHud').classList.contains('on'),
+      `${q('#stage .cb')} ${$('stage').className} ${$('stHud').className}`);
     // an undo in the middle takes the effects away and shows the score at once
     await setup(MID, [2, 2], { streak: 3, turn: 10, turnClears: 0, undoLeft: 3 });
     await tap(tube(3)); await tap(tube(2));
     $('btnUndo').click(); await sleep(20);
     ck('[F5] an undo mid-flight: no effect left, the score at once', liveFx() === 0 && waiting() === 0 && scoreText() === fmt(G().score), `${liveFx()} ${scoreText()} ${G().score}`);
     await sleep(400);
-    ck('[F5] nothing arrives after the undo', scoreText() === fmt(G().score) && liveFx() === 0);
+    ck('[F5] nothing arrives after the undo', scoreText() === fmt(G().score) && liveFx() === 0 && !document.querySelector('#stage .cb') && !$('stage').classList.contains('cb-on'));
 
     // [F6] heat: quick moves warm it; rest cools it; an undo takes 3
     resetFx();
     await setup([[1], [], [2], [3], [4], [5, 5]], [0], { undoLeft: 3 });
     for (let k = 0; k < 10; k++) { const a = k % 2 ? 1 : 0, b = 1 - a; await qtap(tube(a)); await qtap(tube(b)); await sleep(120); }
     const w = () => parseFloat($('stHeatFill').style.width) || 0;
-    ck('[F6] ten quick moves warm the heat to 9 and the stage burns', !$('stHeat').hidden && w() === 90 && $('stage').classList.contains('hot'), `${w()} ${$('stage').className}`);
+    ck('[F6] ten quick moves warm the heat to 9 and the badge burns', $('stHud').classList.contains('on') && w() === 90 && $('stHud').classList.contains('hot'), `${w()} ${$('stHud').className}`);
     $('btnUndo').click(); await sleep(20);
-    ck('[F6] an undo takes 3 off', w() === 60 && !$('stage').classList.contains('hot'), w());
+    ck('[F6] an undo takes 3 off', w() === 60 && !$('stHud').classList.contains('hot'), w());
     await sleep(4300);
     ck('[F6] after a rest it cools: 1 at 2.5s, 1 more every 1.5s', w() === 40, w());
 
@@ -243,7 +249,7 @@ window.__feelTests = async function (T, H) {
     await tap(tube(3)); await tap(tube(2));
     ck('[5.2] juicy with reduced effects: no flight, no drops, no shake', q('#fxLayer .fx-blob, #fxLayer .fx-drop, #fxLayer .fx-ring, #fxLayer .fx-score') === 0 && !shaking($('rack')));
     ck('[5.2] the score shows at once', scoreText() === fmt(G().score), scoreText());
-    ck('[5.2] the stage still shows the combo', getComputedStyle($('stage')).display !== 'none' && $('stCombo').textContent === '×4');
+    ck('[5.2] the stage still shows the combo badge, and nothing bursts', getComputedStyle($('stage')).display !== 'none' && $('stHud').classList.contains('on') && $('stCombo').textContent === '×4' && !document.querySelector('#stage .cb'));
   }
 
   // ---------- base only: settings (U4), status (U2), tempo record (8), no coach for existing players ----------
@@ -328,25 +334,39 @@ window.__feelTests = async function (T, H) {
     s.piece = [0, 1]; s.flipped = false; s.streak = 4; s.turnClears = 0; s.turn = Math.max(s.turn, 10);
     window.__boot({ S: s }); await sleep(120);
     const rk0 = box($('rack'));
-    // show the biggest things the stage holds: the combo with a callout and the heat bar, then a banner too
+    // show the biggest things the stage holds: the combo badge with the heat full, then a banner too
     const bn = $('banner');
-    const vis = el => el.offsetParent ? box(el) : null;
-    $('stCall').textContent = '최고예요!!';
-    $('stHeat').hidden = false; $('stHeatFill').style.width = '100%';
+    const vis = el => el.offsetParent && getComputedStyle(el).visibility !== 'hidden' ? box(el) : null;
+    $('stHeatFill').style.width = '100%';
     await sleep(30);
-    const alone = { combo: vis($('stCombo')), call: vis($('stCall')) };
+    const alone = { combo: vis($('stHud')) };
     bn.textContent = '최고 기록 경신'; bn.className = 'banner big'; bn.hidden = false;
     await sleep(30);
     const parts = { rack: box($('rack')), status: box($('status')), actions: box(document.querySelector('.actions')), extra: $('extraRow').hidden ? null : box($('extraRow')) };
-    const shown = { banner: box(bn), combo: vis($('stCombo')), call: vis($('stCall')), stage: box($('stage')) };
+    const shown = { banner: box(bn), combo: vis($('stHud')), stage: box($('stage')) };
+    bn.hidden = true;
+    // and the biggest burst: a pour that completes a bottle at combo 4 (x5, its word, the rays), measured at rest
+    const sb = G(), cap = sb.rules.cap;
+    sb.bottles = sb.bottles.map((b, i) => i === 0 ? Array(cap - 1).fill(0) : i === 1 ? [1, 0] : []);
+    sb.streak = 4; sb.turnClears = 0; sb.stuck = null;
+    window.__boot({ S: sb }); await sleep(80);
+    await tap(tube(1)); await tap(tube(0));
+    let cb = null;
+    for (let t = 0; t < 60 && !(cb = document.querySelector('#stage .cb')); t++) await sleep(10);
+    if (cb) cb.getAnimations({ subtree: true }).forEach(a => a.cancel());
+    const word = cb && cb.querySelector('.cb-word');
+    const burst = cb ? { num: box(cb.querySelector('.cb-num')), word: word ? box(word) : null, text: cb.textContent } : null;
+    bn.hidden = false; await Promise.resolve();   // the stage learns of the banner in a microtask
+    const burstWithBanner = cb ? vis(cb) : null;
+    bn.hidden = true;
     const d = { size, tray: TRAY, rules, vw: innerWidth, vh: innerHeight, scrollW: document.documentElement.scrollWidth, scrollH: document.documentElement.scrollHeight,
-      stage: shown.stage, banner: shown.banner, combo: alone.combo, call: alone.call, comboWithBanner: shown.combo, callWithBanner: shown.call, rack: parts.rack, rackShift: parts.rack.t - rk0.t };
+      stage: shown.stage, banner: shown.banner, combo: alone.combo, comboWithBanner: shown.combo, burst, burstWithBanner, rack: parts.rack, rackShift: parts.rack.t - rk0.t };
     // stuck: the give-up row appears (tray under the bottles: in the free space); does anything overlap or move?
     const st = G(); st.stuck = 'room'; window.__boot({ S: st }); await sleep(80);
     bn.hidden = false;
     d.stuck = { stage: box($('stage')), banner: box(bn), extra: box($('extraRow')), rackShift: box($('rack')).t - rk0.t, small: $('stage').classList.contains('small'), scrollH: document.documentElement.scrollHeight };
     const st2 = G(); st2.stuck = null; window.__boot({ S: st2 }); await sleep(80);
-    bn.hidden = true; $('stCall').textContent = ''; $('stHeat').hidden = true;
+    bn.hidden = true; $('stHeatFill').style.width = '0%';
     send({ sc: SC, data: d });
     const tag = `[geo ${size} ${TRAY} ${rules}] `;
     const g = (name, cond, detail) => check(tag + name, cond, detail);
@@ -355,14 +375,20 @@ window.__feelTests = async function (T, H) {
     // max settings: the give-up row already moved the bottles before (24px at 360x740, controls AUDIT 9); only the
     // stage's own effect is checked there
     g('the stage content and the banner do not move the bottles', Math.abs(d.rackShift) <= 1 && (rules !== 'default' || Math.abs(d.stuck.rackShift) <= 1), `${d.rackShift} ${d.stuck.rackShift}`);
-    for (const [k, b] of Object.entries({ banner: d.banner, combo: d.combo, call: d.call })) {
+    const B = d.burst || {};
+    for (const [k, b] of Object.entries({ banner: d.banner, combo: d.combo, burst: B.num, 'burst word': B.word })) {
       if (!b) continue;
       g(`the ${k} clears the bottles, the status line and the buttons`, !hit(b, parts.rack) && !hit(b, parts.status) && !hit(b, parts.actions), JSON.stringify({ [k]: b, rack: parts.rack.t, status: parts.status.t }));
     }
-    // a short stage, or the stage over the score bar, hides the combo row while a banner shows (checkpoint D);
-    // elsewhere they sit apart
-    g('a banner and the stage combo do not overlap', !hit(d.banner, d.comboWithBanner) && !hit(d.banner, d.callWithBanner), JSON.stringify({ banner: d.banner, combo: d.comboWithBanner, call: d.callWithBanner }));
+    // a short stage, or the stage over the score bar, hides the badge and the burst while a banner shows; elsewhere
+    // they sit apart
+    g('a banner and the stage combo do not overlap', !hit(d.banner, d.comboWithBanner) && !hit(d.banner, d.burstWithBanner), JSON.stringify({ banner: d.banner, combo: d.comboWithBanner, burst: d.burstWithBanner }));
     g('stuck: the banner clears the give-up row, the bottles and the status line', !hit(d.stuck.banner, d.stuck.extra) && !hit(d.stuck.banner, parts.rack) && !hit(d.stuck.banner, parts.status), JSON.stringify(d.stuck));
     if (TRAY === 'bottom' && rules === 'default') g('the combo fits the stage', !!d.combo && d.combo.t >= d.stage.t - 1 && d.combo.b <= d.stage.b + 1, JSON.stringify({ combo: d.combo, stage: d.stage }));
+    // every layout has a burst, the multiplier and its word: in the stage, or over the score bar when the stage is too
+    // small (where the banners go too)
+    const R = d.stage.h < 56 && TRAY === 'bottom' ? box(document.querySelector('.scorebar')) : d.stage;
+    const inside = b => !!b && b.t >= R.t - 2 && b.b <= R.b + 2 && b.l >= R.l - 2 && b.r <= R.r + 2;
+    g('a x5 burst fits its place', !!d.burst && d.burst.text.startsWith('×5×5') && inside(B.num) && inside(B.word), JSON.stringify({ burst: d.burst, place: R }));
   }
 };
