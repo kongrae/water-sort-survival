@@ -48,15 +48,17 @@ async function main() {
       { controls: 'tapPlace', tray: 'top', input: 'touch' }, { controls: 'tapPlace', tray: 'top', input: 'mouse' },
       { controls: 'classic', tray: 'bottom', input: 'touch' }, { controls: 'classic', tray: 'bottom', input: 'mouse' },
       { controls: 'tapPlace', tray: 'bottom', input: 'touch' },
+      // docs/PROMPT_feel.md: the juicy effects (reduced effects off) with real input
+      { controls: 'classic', tray: 'bottom', input: 'touch', fx: 'juicy' }, { controls: 'classic', tray: 'bottom', input: 'mouse', fx: 'juicy' },
     ]) {
       const touchIn = v.input === 'touch';
       await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: touchIn });
       await send('Emulation.setTouchEmulationEnabled', { enabled: touchIn, maxTouchPoints: 5 });
       const loaded = once('Page.loadEventFired');
-      await send('Page.navigate', { url: 'file:///' + path.join(DIR, 'uitest.html').replace(/\\/g, '/') + `?scenario=manual&controls=${v.controls}&tray=${v.tray}` });
+      await send('Page.navigate', { url: 'file:///' + path.join(DIR, 'uitest.html').replace(/\\/g, '/') + `?scenario=manual&controls=${v.controls}&tray=${v.tray}${v.fx ? `&fx=${v.fx}&rfx=0` : ''}` });
       await loaded; await sleep(600);
       await js(`window.addEventListener('contextmenu', e => { window.__cm = (window.__cm || 0) + 1; window.__cmPrevented = e.defaultPrevented; }); true`);
-      const tag = `[${v.controls}/${v.tray}/${v.input}]`;
+      const tag = `[${v.controls}/${v.tray}/${v.input}${v.fx ? '/' + v.fx : ''}]`;
       const ck = (name, cond, detail) => { total++; if (!cond) fails++; console.log(`${cond ? 'ok  ' : 'FAIL'} ${tag} ${name}${!cond && detail !== undefined ? ' :: ' + detail : ''}`); };
       const B = '[[0,1],[1,1,2],[2],[3,3,3],[0,0,1,2],[]]';
       const setup = async (bottles, piece) => {
@@ -166,6 +168,44 @@ async function main() {
           ck(`the tap that ends the run (at ${yf * 100}% of the bottle) does not press the result sheet`, o.over && !o.ad && !o.themes && o.clicks === 0, JSON.stringify(o));
           await js(`document.querySelectorAll('.overlay').forEach(x => { x.hidden = true; }); true`);
         }
+      }
+      if (v.fx === 'juicy') {
+        // the touch checks above turn reduced effects on (the run-ending tap); the juicy effects need them off
+        await js(`(() => { const r = document.getElementById('optReduce'); r.checked = false; r.dispatchEvent(new Event('change', { bubbles: true })); return true; })()`);
+        const fxn = () => js(`({ fx: document.querySelectorAll('#fxLayer .fx').length, blobs: document.querySelectorAll('#fxLayer .fx-blob').length, drops: document.querySelectorAll('#fxLayer .fx-drop').length, press: [...document.querySelectorAll('.tube.press')].length })`);
+        // a press shows at once
+        await setup(); p = await pos();
+        await down(...p.tubes[1]); await sleep(30);
+        let f = await fxn(); s = await state();
+        ck('[feel] a press marks the bottle at once and changes nothing', f.press === 1 && s.sel === -1, JSON.stringify({ f, s }));
+        await up(...p.tubes[1]);
+        // a completion, then a quick next move (taps without the usual pause after them): the burst still goes off
+        const qtap = async ([x, y]) => { await down(x, y); await sleep(40); if (touchIn) await touch('touchEnd', []); else await mouse('mouseReleased', x, y, 0); await sleep(30); };
+        await setup('[[0,1,1],[2,2],[3,3,3],[0,0,3],[1,5],[]]', '[2,2]');
+        await js(`(() => { const s = window.__snapFn().S; s.streak = 3; window.__boot({ S: s }); return true; })()`); await sleep(150); p = await pos();
+        await qtap(p.tubes[3]); await qtap(p.tubes[2]);
+        await qtap(p.tubes[0]); await qtap(p.tubes[5]);
+        f = await fxn(); s = await state();
+        ck('[feel] a quick move right after a completion is taken at once, with both effects alive', s.bottles === '[[0],[2,2],[],[0,0],[1,5],[1,1]]' && f.fx > 0, JSON.stringify({ f, s }));
+        // the burst itself (its timing against the next move depends on how fast this protocol delivers the taps;
+        // the feel scenario checks it on the page's own clock)
+        let seen = 0;
+        for (let k = 0; k < 20 && !seen; k++) { f = await fxn(); seen = f.drops; if (!seen) await sleep(40); }
+        ck('[feel] the completion bursts', seen > 0, JSON.stringify(f));
+        await sleep(1200);
+        f = await fxn();
+        ck('[feel] then every effect node is gone', f.fx === 0, JSON.stringify(f));
+        // the next piece is still sliding in when the finger takes it: it goes where it is dragged
+        await setup(); p = await pos(); s0 = await state();
+        await tap(p.cup);
+        await down(...p.tubes[5]); await sleep(40);
+        if (touchIn) await touch('touchEnd', []); else await mouse('mouseReleased', ...p.tubes[5], 0);
+        await sleep(20);   // the next piece is still sliding into the cup (0.12s); the thumb goes to the cup's place
+        await down(...p.cup); await sleep(30); await moveTo(...p.cup, ...p.tubes[2]);
+        const gr = await js(`(() => { const g = document.querySelector('.ghost'); if (!g) return null; const r = g.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+        if (gr) { const fx2 = p.tubes[2][0] - (gr[0] - p.tubes[2][0]), fy2 = p.tubes[2][1] - (gr[1] - p.tubes[2][1]); await moveTo(...p.tubes[2], fx2, fy2); await up(fx2, fy2); } else await up(...p.tubes[2]);
+        s = await state();
+        ck('[feel] a piece taken mid-slide is placed where it is dragged', s.turn === s0.turn + 2 && s.ghosts === 0, JSON.stringify(s));
       }
       const errs = await js('window.__errors');
       ck('no script errors', !errs.length, errs.join(' | '));

@@ -5,13 +5,14 @@
 // so "reduce" is the flagless run and "full" adds that flag.
 // A scenario is one frame page (frame-<sc>.html) or several variants (frame-<sc>~<variant>.html), each run in its
 // own browser profile because the game keeps its prefs and rules in localStorage.
-// Rows a page sends as { data } (geom measurements) are saved to research/controls/out/<sc>-<motion>.json.
+// Rows a page sends as { data } (geom measurements) are saved to research/controls/out/<sc>-<motion>.json, the feel
+// scenario's to research/feel/out/.
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const DIR = __dirname;
 const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const ALL = ['fresh', 'existing', 'v1saves', 'v1daily', 'themes', 'legacy', 'cloud', 'firebase', 'controls', 'geom'];
+const ALL = ['fresh', 'existing', 'v1saves', 'v1daily', 'themes', 'legacy', 'cloud', 'firebase', 'controls', 'geom', 'feel'];
 const args = process.argv.slice(2);
 const opt = (k, d) => { const a = args.find(x => x.startsWith(`--${k}=`)); return a ? a.split('=')[1] : d; };
 const motionArg = opt('motion', 'both'), only = opt('only', '');
@@ -53,7 +54,7 @@ for (const motion of motions) {
       if (!rows.some(r => r.done)) missingDone.push(variant);
     }
     if (data.length) {
-      const outDir = path.join(DIR, '..', 'research', 'controls', 'out');
+      const outDir = path.join(DIR, '..', 'research', sc === 'feel' ? 'feel' : 'controls', 'out');
       fs.mkdirSync(outDir, { recursive: true });
       fs.writeFileSync(path.join(outDir, `${sc}-${motion}.json`), JSON.stringify(data, null, 1));
     }

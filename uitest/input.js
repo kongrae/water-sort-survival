@@ -165,6 +165,8 @@ window.__inputTests = async function (T) {
   const row = k => { const r = record(); return (r && r.by[k]) || null; };
   const KEY = `${MODE}/${TRAY}`;
 
+  // the feel scenario (docs/PROMPT_feel.md) lives in feel.js and drives the page with these helpers
+  if (SC === 'feel') return window.__feelTests(T, { down, move, up, hold, tap, tapAt, press, moveTo, release, key, esc, center, setup, cup, tube, isSel, anySel, status, vib, cloudPush, closeSheets, newRun, record, B, PT, MODE, TRAY });
   if (SC === 'geom') return geomTests();
   if (CASE) {
     try { await caseTests(); } catch (e) { ck('input test exception', false, e && e.stack || e); }

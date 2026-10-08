@@ -27,10 +27,13 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   if (p.get('skin')) { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: p.get('skin'), tryLocked: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); }
   // hot.ready hands boot() to the tests (window.__boot({ S })) so a test can re-render after editing the live state
   window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; }, ready: function (cb) { window.__boot = cb; cb({}); } } };
-  if (sc === 'controls' || sc === 'geom' || sc === 'manual') {
+  if (sc === 'controls' || sc === 'geom' || sc === 'manual' || sc === 'feel') {
     var pr = { seenV2: true };
     if (p.get('controls')) pr.controls = p.get('controls');
     if (p.get('tray')) pr.tray = p.get('tray');
+    // feel: the effects setting, and reduced effects set either way (rfx=1/0) instead of following the system
+    if (p.get('fx')) pr.fx = p.get('fx');
+    if (p.get('rfx')) pr.reduceFx = p.get('rfx') === '1';
     // case=newuser: a first visit (no help seen yet)
     if (p.get('case') !== 'newuser') set('wsurv.seenHelp', true);
     set('wsurv.prefs', pr); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true });
@@ -47,7 +50,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 1, sawOver: false, flip: false });
     set('wsurv.stars.total', 10); set('wsurv.themes.owned', ['lab']);
   }
-  if (sc === 'cloud' || sc === 'controls') {
+  if (sc === 'cloud' || sc === 'controls' || sc === 'feel') {
     // in-memory stand-in for the viewer's private db subtree, already holding another device's save
     // (controls uses it to push a merge, and so a render, in the middle of a drag)
     var store = { 'dev-other': { v: 1, device: 'dev-other', starsMine: 120, owned: ['lab', 'cafe', 'gem'], best: [['6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1', 5000]], daily: [], starsDaily: [], unlock: { runs: 5, sawOver: true, flip: true } } };
@@ -67,7 +70,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   }
   // the scenarios written before tapPlace + low became the default play with the controls of that time, so their
   // checks stay as they were (docs/PROMPT_controls2.md 8)
-  if (sc !== 'controls' && sc !== 'geom' && sc !== 'manual') {
+  if (sc !== 'controls' && sc !== 'geom' && sc !== 'manual' && sc !== 'feel') {
     var pv = JSON.parse(localStorage.getItem('wsurv.prefs') || '{}');
     pv.controls = 'classic'; pv.tray = 'top';
     set('wsurv.prefs', pv);
@@ -76,7 +79,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   window.addEventListener('error', function (e) { window.__errors.push(String(e.message)); });
 })();
 </script></head><body>`;
-const driver = fs.readFileSync(path.join(__dirname, 'driver.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'input.js'), 'utf8');
+const driver = ['driver.js', 'input.js', 'feel.js'].map(n => fs.readFileSync(path.join(__dirname, n), 'utf8')).join('\n');
 // The scenarios below run without Firebase (never the real project); the firebase scenario gets a dummy config
 // with the SDK served from mockfb/ (in-memory auth and Firestore).
 const CONFIG_RE = /const FIREBASE_CONFIG = (null|\{[\s\S]*?\n  \});/;
@@ -97,7 +100,7 @@ for (const sc of ['fresh', 'existing', 'v1saves', 'v1daily', 'shots', 'themes', 
 }
 // One frame page per variant (frame-<sc>~<variant>.html): iframes of one page share localStorage, and the game reads
 // its prefs and rules from there, so variants must not share a page. frame-<sc>~<variant>.size is the window size.
-for (const f of fs.readdirSync(__dirname)) if (/^frame-(controls|geom)~/.test(f)) fs.rmSync(path.join(__dirname, f));
+for (const f of fs.readdirSync(__dirname)) if (/^frame-(controls|geom|feel)~/.test(f)) fs.rmSync(path.join(__dirname, f));
 function framePage(sc, variant, it) {
   fs.writeFileSync(path.join(__dirname, `frame-${sc}~${variant}.html`), `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;background:#888"><iframe src="${it.src}" style="display:block;width:${it.w}px;height:${it.h}px;border:0"></iframe><pre id="out"></pre>
 <script>window.addEventListener('message', function (e) { document.getElementById('out').textContent += JSON.stringify(e.data) + '\\n'; });</script></body></html>`);
@@ -114,5 +117,16 @@ const sizes = [[360, 740], [390, 844], [412, 915], [768, 1024]];
 for (const tray of ['top', 'bottom']) {
   for (const [w, h] of sizes) framePage('geom', `${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
   for (const [w, h] of sizes.slice(0, 2)) framePage('geom', `${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
+}
+// feel (docs/PROMPT_feel.md): both effect settings at 390x844, reduced effects, a first visit, and the juicy
+// layout's geometry (the stage and the banner) at the geom sizes
+for (const fx of ['base', 'juicy']) {
+  for (const pt of ['touch', 'mouse']) framePage('feel', `${fx}-${pt}`, { src: `uitest.html?scenario=feel${fx === 'juicy' ? '&fx=juicy&rfx=0' : ''}&pt=${pt}`, w: 390, h: 844 });
+}
+framePage('feel', 'juicy-rfx-touch', { src: 'uitest.html?scenario=feel&fx=juicy&rfx=1&pt=touch', w: 390, h: 844 });
+framePage('feel', 'case-newuser', { src: 'uitest.html?scenario=feel&case=newuser&pt=touch', w: 390, h: 844 });
+for (const tray of ['bottom', 'top']) {
+  for (const [w, h] of sizes) framePage('feel', `geo-${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=feel&case=geo&fx=juicy&rfx=0&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
+  for (const [w, h] of sizes.slice(0, 2)) framePage('feel', `geo-${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=feel&case=geo&fx=juicy&rfx=0&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
 }
 console.log('built');
