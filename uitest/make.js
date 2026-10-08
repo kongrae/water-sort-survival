@@ -103,17 +103,16 @@ function framePage(sc, variant, it) {
 <script>window.addEventListener('message', function (e) { document.getElementById('out').textContent += JSON.stringify(e.data) + '\\n'; });</script></body></html>`);
   fs.writeFileSync(path.join(__dirname, `frame-${sc}~${variant}.size`), `${Math.max(600, it.w + 40)},${it.h + 60}`);
 }
-// the new defaults: no stored scheme or layout (an existing player, and a first visit), and a stored 'bottom' layout
-// from before it was removed
+// the defaults: no stored scheme or layout (an existing player, and a first visit), and a stored 'low' layout from
+// before it was removed
 for (const k of ['defaults', 'newuser']) framePage('controls', `case-${k}`, { src: `uitest.html?scenario=controls&case=${k}&pt=touch`, w: 360, h: 900 });
-framePage('controls', 'case-bottom', { src: 'uitest.html?scenario=controls&case=bottom&tray=bottom&controls=tapPlace&pt=touch', w: 360, h: 900 });
-for (const [c, t] of [['classic', 'top'], ['classic', 'low'], ['tapPlace', 'top'], ['tapPlace', 'low']]) {
+framePage('controls', 'case-low', { src: 'uitest.html?scenario=controls&case=low&tray=low&pt=touch', w: 360, h: 900 });
+for (const [c, t] of [['classic', 'top'], ['classic', 'bottom'], ['tapPlace', 'top'], ['tapPlace', 'bottom']]) {
   for (const pt of ['touch', 'mouse']) framePage('controls', `${c}-${t}-${pt}`, { src: `uitest.html?scenario=controls&controls=${c}&tray=${t}&pt=${pt}`, w: 360, h: 900 });
 }
 const sizes = [[360, 740], [390, 844], [412, 915], [768, 1024]];
-for (const tray of ['top', 'low']) {
-  // the scheme is picked (the default) so the one-time notice for players who never picked one stays shut
-  for (const [w, h] of sizes) framePage('geom', `${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=geom&controls=tapPlace&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
-  for (const [w, h] of sizes.slice(0, 2)) framePage('geom', `${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=geom&controls=tapPlace&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
+for (const tray of ['top', 'bottom']) {
+  for (const [w, h] of sizes) framePage('geom', `${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
+  for (const [w, h] of sizes.slice(0, 2)) framePage('geom', `${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
 }
 console.log('built');

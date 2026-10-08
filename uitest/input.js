@@ -14,8 +14,8 @@
 window.__inputTests = async function (T) {
   const { check, G, $, sleep, send, SC, P } = T;
   const PT = P.get('pt') || 'touch';
-  // the defaults are tapPlace and low; a stored 'bottom' layout (removed) reads as low
-  const MODE = P.get('controls') === 'classic' ? 'classic' : 'tapPlace', TRAY = P.get('tray') === 'top' ? 'top' : 'low';
+  // the defaults are classic and the tray under the bottles; a stored 'low' layout (removed) reads as bottom
+  const MODE = P.get('controls') === 'tapPlace' ? 'tapPlace' : 'classic', TRAY = P.get('tray') === 'top' ? 'top' : 'bottom';
   const CASE = P.get('case') || '';
   const SLOP = 10, LONG = 500;
   const ck = (name, cond, detail) => check(`[${MODE}/${TRAY}/${PT}] ${name}`, cond, detail);
@@ -92,9 +92,14 @@ window.__inputTests = async function (T) {
   async function tapAt(x, y, ms) { const p = down(x, y); await hold(p, ms || 40); up(p); await sleep(30); return p; }
   const tap = (el, ms) => tapAt(...center(el), ms);
   async function press(el) { const [x, y] = center(el); const p = down(x, y); await sleep(20); return p; }
-  async function moveTo(p, x, y) {
+  // judge = true: put the point where the game judges a piece drop (the ghost centre with the tray under the bottles)
+  async function moveTo(p, x, y, judge) {
     const n = 6, x0 = p.x, y0 = p.y;
     for (let i = 1; i <= n; i++) { move(p, x0 + (x - x0) * i / n, y0 + (y - y0) * i / n); await sleep(16); }
+    if (judge && TRAY === 'bottom') {
+      const g = document.querySelector('.ghost:not(.pour)');
+      if (g) { const r = g.getBoundingClientRect(); move(p, x - (r.left + r.width / 2 - p.x), y - (r.top + r.height / 2 - p.y)); await sleep(16); }
+    }
   }
   async function release(p) { up(p); await sleep(40); }
   async function jitterTap(el, px) { const [x, y] = center(el); const p = down(x, y); await sleep(20); move(p, x + px, y); await sleep(20); up(p); await sleep(30); }
@@ -225,7 +230,7 @@ window.__inputTests = async function (T) {
     ck('empty bottle tap only explains (D17 kept in classic)', status().startsWith('빈 병이에요') && notPlaced(t), status());
 
     await setup(B, [2]); t = G().turn;
-    let p = await press(cup()); await moveTo(p, ...center(tube(2)));
+    let p = await press(cup()); await moveTo(p, ...center(tube(2)), true);
     ck('dragging shows a ghost', !!document.querySelector('.ghost'));
     ck('a fitting bottle under the drag shows the landing ghost', tube(2).classList.contains('hover') && !!tube(2).querySelector('.ghostL'));
     await release(p);
@@ -233,23 +238,23 @@ window.__inputTests = async function (T) {
     ck('no ghost left after the drop', !document.querySelector('.ghost'));
 
     await setup(B, [2, 3]); t = G().turn;
-    p = await press(cup()); await moveTo(p, ...center(tube(4)));
+    p = await press(cup()); await moveTo(p, ...center(tube(4)), true);
     ck('[D7] dragging over a full bottle shows a reject', tube(4).classList.contains('reject') && !tube(4).classList.contains('hover'), tube(4).className);
-    await moveTo(p, ...center(tube(1)));
+    await moveTo(p, ...center(tube(1)), true);
     ck('[D7] dragging a 2-layer piece over 1 free cell rejects with the reason', tube(1).classList.contains('reject') && !tube(1).querySelector('.ghostL') && status().includes('2칸이 필요한데'), tube(1).className + ' / ' + status());
-    await moveTo(p, ...center(tube(5)));
+    await moveTo(p, ...center(tube(5)), true);
     ck('moving on to a fitting bottle shows the landing ghost again', tube(5).classList.contains('hover') && !!tube(5).querySelector('.ghostL') && !tube(1).classList.contains('reject'));
     await release(p);
     ck('the drop lands in the last bottle hovered', G().turn === t + 1 && G().bottles[5].length === 2);
 
     await setup(B, [2]); t = G().turn;
-    p = await press(cup()); await moveTo(p, ...gapPoint(1, 2)); await release(p);
+    p = await press(cup()); await moveTo(p, ...gapPoint(1, 2), true); await release(p);
     ck('[D6] a drop in the gap between bottles lands in a neighbour', G().turn === t + 1 && (G().bottles[1].length === 4 || G().bottles[2].length === 2), JSON.stringify(G().bottles));
     await setup(B, [2]); t = G().turn;
-    p = await press(cup()); await moveTo(p, center(tube(2))[0], rackTop() + 9); await release(p);
+    p = await press(cup()); await moveTo(p, center(tube(2))[0], rackTop() + 9, true); await release(p);
     ck('[D6] a drop just above a bottle lands in it', G().turn === t + 1 && G().bottles[2].length === 2, JSON.stringify(G().bottles));
     await setup(B, [2]); t = G().turn;
-    p = await press(cup()); await moveTo(p, ...center($('status'))); await release(p);
+    p = await press(cup()); await moveTo(p, ...center($('status')), true); await release(p);
     ck('[D6] a drop outside the rack does not place and says so', notPlaced(t) && status().includes('병 위에 놓아야'), status());
     ck('a drop outside the rack leaves nothing selected', !anySel());
     await setup(B, [2]); await tap(cup()); t = G().turn;
@@ -385,7 +390,7 @@ window.__inputTests = async function (T) {
     await setup(B, [2]); t = G().turn;
     await tap(cup());
     ck('tapping the piece explains instead of selecting', !isSel(cup()) && status() === '병을 누르면 바로 들어가요', status());
-    p = await press(cup()); await moveTo(p, ...center(tube(2))); await release(p);
+    p = await press(cup()); await moveTo(p, ...center(tube(2)), true); await release(p);
     ck('dragging the piece still places', G().turn === t + 1 && G().bottles[2].length === 2);
 
     await setup(B, [2]);
@@ -443,21 +448,21 @@ window.__inputTests = async function (T) {
       await setup(B, [2]); t = G().turn;
       const [x, y] = center(cup());
       const p1 = down(x, y); await sleep(20);
-      await moveTo(p1, ...center(tube(2)));
+      await moveTo(p1, ...center(tube(2)), true);
       const p2 = down(x, y); await sleep(30); up(p2); await sleep(30);
       await release(p1); await sleep(40);
       ck('[D3] a second finger on the piece leaves no ghost behind', !document.querySelector('.ghost'), document.querySelectorAll('.ghost').length);
       ck('[D3] a second finger on the piece does not change the drop', G().turn === t + 1 && G().bottles[2].length === 2, JSON.stringify(G().bottles));
       await setup(B, [2]); t = G().turn;
       const q1 = down(x, y); await sleep(20);
-      await moveTo(q1, ...center(tube(2)));
+      await moveTo(q1, ...center(tube(2)), true);
       await tap(tube(5));
       await release(q1); await sleep(40);
       ck('[D4] a tap with another finger during a drag does not place twice', G().turn - t <= 1, G().turn - t);
     }
 
     await setup(B, [2]); t = G().turn;
-    let p = await press(cup()); await moveTo(p, ...center(tube(2)));
+    let p = await press(cup()); await moveTo(p, ...center(tube(2)), true);
     window.__cloud.push('dev-x', { v: 1, device: 'dev-x', starsMine: 1, owned: ['lab'], best: [], daily: [], starsDaily: [], unlock: { runs: 3, sawOver: true, flip: true } });
     await sleep(30);
     ck('[D11] a cloud merge during a drag keeps the hover and landing ghost', tube(2).classList.contains('hover') && !!tube(2).querySelector('.ghostL'), tube(2).className);
@@ -465,7 +470,7 @@ window.__inputTests = async function (T) {
     ck('[D11] the drop after a cloud merge still places', G().turn === t + 1);
 
     await setup(B, [2]); t = G().turn;
-    p = await press(cup()); await moveTo(p, ...center(tube(2)));
+    p = await press(cup()); await moveTo(p, ...center(tube(2)), true);
     await esc();
     ck('[D12] Escape during a drag removes the ghost and the selection', !document.querySelector('.ghost') && !anySel());
     await release(p);
@@ -506,19 +511,34 @@ window.__inputTests = async function (T) {
       if (!was) { red.checked = false; red.dispatchEvent(new Event('change', { bubbles: true })); }
     }
 
-    if (TRAY === 'low') {
+    if (TRAY === 'bottom') {
       await setup(B, [2]);
       const inc = document.querySelector('.incoming').getBoundingClientRect(), rk = $('rack').getBoundingClientRect();
-      ck('[6.1] low: the piece tray stays on top and the bottles sit in the bottom third', inc.bottom <= rk.top && rk.bottom >= innerHeight * 2 / 3, `tray ${inc.bottom}, rack ${rk.top}-${rk.bottom} of ${innerHeight}`);
-      ck('[6.1] low: the prototype note is hidden', getComputedStyle(document.querySelector('.foot')).display === 'none');
+      const inf = document.querySelector('.info').getBoundingClientRect(), stb = $('status').getBoundingClientRect();
+      ck('[bottom] the piece tray sits right under the bottles', inc.top >= rk.bottom - 1 && inc.top - rk.bottom <= 24, `${inc.top} vs ${rk.bottom}`);
+      ck('[bottom] zone info and the status line sit above the bottles', inf.bottom <= rk.top && stb.bottom <= rk.top, `info ${inf.bottom}, status ${stb.bottom}, rack ${rk.top}`);
+      ck('[bottom] the prototype note is hidden', getComputedStyle(document.querySelector('.foot')).display === 'none');
+      t = G().turn;
+      let p = await press(cup()); await moveTo(p, ...center(tube(2)), true);
+      const fingerBelow = p.y - center(tube(2))[1];
+      await release(p);
+      ck('[bottom] the drop is judged where the ghost is, drawn above the finger', G().turn === t + 1 && G().bottles[2].length === 2 && fingerBelow >= 20, `finger ${Math.round(fingerBelow)}px below, ${JSON.stringify(G().bottles)}`);
+      await setup(B, [2]); t = G().turn;
+      p = await press(cup()); await moveTo(p, p.x, p.y - 20);
+      ck('[bottom] a short push on the piece shows no landing hint', !document.querySelector('#rack .tube.hover'));
+      await release(p);
+      ck('[bottom] letting go of that short push is a tap, not a drop', notPlaced(t) && (MODE === 'classic' ? isSel(cup()) : status() === '병을 누르면 바로 들어가요'), status());
+      await esc();
+      await setup(B, [2]);
+      const rk0 = $('rack').getBoundingClientRect();
       const s2 = G(); s2.stuck = 'room'; window.__boot({ S: s2 }); await sleep(60);
       const rk1 = $('rack').getBoundingClientRect(), row = $('extraRow').getBoundingClientRect();
-      ck('[6.1] low: the bottles stay put when the give-up row appears', Math.abs(rk1.top - rk.top) <= 1 && !$('extraRow').hidden && row.height > 0, `${rk.top} -> ${rk1.top}`);
-      ck('[6.1] low: the give-up row sits above the bottles, away from the thumb', row.bottom <= rk1.top && row.top >= inc.bottom, `row ${row.top}-${row.bottom}, tray ${inc.bottom}, rack ${rk1.top}`);
+      ck('[bottom] the bottles stay put when the give-up row appears', Math.abs(rk1.top - rk0.top) <= 1 && !$('extraRow').hidden && row.height > 0, `${rk0.top} -> ${rk1.top}`);
+      ck('[bottom] the give-up row sits up under the score, away from the thumb', row.bottom <= rk1.top && row.top >= document.querySelector('.scorebar').getBoundingClientRect().bottom, `row ${row.top}-${row.bottom}, rack ${rk1.top}`);
       t = G().turn;
       if (MODE === 'classic') await tap(cup());
       await tap(tube(2));
-      ck('[6.1] low: a bottle tap still places while the give-up row shows', G().turn === t + 1, status());
+      ck('[bottom] a bottle tap still places while the give-up row shows', G().turn === t + 1, status());
     }
 
     // keyboard only, ten turns, with one pour on the way
@@ -621,7 +641,7 @@ window.__inputTests = async function (T) {
     let p = await press(tube(1));
     await moveTo(p, center(tube(1))[0] + 12, center(tube(1))[1]);
     ck('[drag] a small move inside the bottle is not a drag yet', !ghost() && !isSel(tube(1)));
-    await moveTo(p, ...center(tube(5)));
+    await moveTo(p, ...center(tube(5)), true);
     let gh = ghost(), gr = gh && gh.getBoundingClientRect();
     ck('[drag] out of its bottle, the liquid it carries follows the finger', !!gh && gh.querySelectorAll('.layer').length === 1
       && gh.querySelector('.layer').style.getPropertyValue('--lc') === 'var(--liq2)' && Math.abs(gr.left + gr.width / 2 - p.x) < 12 && gr.top < p.y,
@@ -688,37 +708,36 @@ window.__inputTests = async function (T) {
     closeSheets();
   }
 
-  // ---------- the new defaults (checkpoint C, decisions 1 and 2) ----------
+  // ---------- the defaults: classic, piece tray under the bottles ----------
   async function caseTests() {
     const stored = () => JSON.parse(localStorage.getItem('wsurv.prefs') || '{}');
     const app = document.querySelector('.app');
     if (CASE === 'defaults') {
-      ck('[C1] nothing picked: the scheme is tapPlace', document.documentElement.dataset.controls === 'tapPlace');
-      ck('[C1] nothing picked: the layout is low', app.classList.contains('tray-low'));
-      ck('[C1] a player from before the change sees the tapPlace notice', !$('ovCtl').hidden && stored().seenTapHint === true, JSON.stringify(stored()));
-      ck('[C1] the defaults are not written into the stored settings', !('controls' in stored()) && !('tray' in stored()), JSON.stringify(stored()));
-      closeSheets();
+      ck('[default] nothing picked: the scheme is classic', document.documentElement.dataset.controls === 'classic');
+      ck('[default] nothing picked: the piece tray is under the bottles', app.classList.contains('tray-bottom')
+        && document.querySelector('.incoming').getBoundingClientRect().top >= $('rack').getBoundingClientRect().bottom - 1);
+      ck('[default] no notice pops up for a player who never picked', $('ovCtl').hidden && document.querySelectorAll('.overlay:not([hidden])').length === 0);
+      ck('[default] the defaults are not written into the stored settings', !('controls' in stored()) && !('tray' in stored()), JSON.stringify(stored()));
       $('btnSettings').click();
-      ck('[C1] the settings show the defaults, and no bottom layout', $('optControls').value === 'tapPlace' && $('optTray').value === 'low' && [...$('optTray').options].map(o => o.value).join() === 'top,low');
+      ck('[default] the settings show the defaults, and two layouts', $('optControls').value === 'classic' && $('optTray').value === 'bottom' && [...$('optTray').options].map(o => o.value).join() === 'top,bottom');
       closeSheets();
       await setup(B, [2]); const t = G().turn;
-      await tap(tube(5));
-      ck('[C1] a bottle tap places', G().turn === t + 1);
-      window.__boot({ S: G() }); await sleep(60);
-      ck('[C1] the notice shows only once', $('ovCtl').hidden);
+      const p = await press(cup()); await moveTo(p, ...center(tube(5)), true); await release(p);
+      ck('[default] dragging the piece up onto a bottle places it', G().turn === t + 1 && G().bottles[5].join() === '2', JSON.stringify(G().bottles));
+      await tap(tube(2)); await tap(tube(5));
+      ck('[default] tapping two bottles pours', G().bottles[5].join() === '2,2' && G().bottles[2].length === 0, JSON.stringify(G().bottles));
     }
     if (CASE === 'newuser') {
-      ck('[C1] a first visit opens the help, written for tapPlace', !$('ovHelp').hidden && $('helpPlace').textContent === '조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.' && $('ovCtl').hidden, $('helpPlace').textContent);
-      ck('[C1] a first visit plays the low layout', app.classList.contains('tray-low'));
+      ck('[default] a first visit opens the help, for dragging the piece up', !$('ovHelp').hidden && $('helpPlace').textContent === '아래에 나온 조각을 병으로 끌어 올리거나, 조각을 누른 뒤 병을 누르세요.', $('helpPlace').textContent);
+      ck('[default] a first visit plays the tray-under-the-bottles layout', app.classList.contains('tray-bottom'));
       closeSheets();
-      ck('[C1] the first turn explains tapPlace', status() === '병을 누르면 조각이 들어가요. 병에서 병으로 끌면 부어요.', status());
+      ck('[default] the first turn says to drag the piece in', status() === '조각을 병으로 끌어다 놓으며 시작하세요.', status());
     }
-    if (CASE === 'bottom') {
-      ck('[C2] a stored bottom layout (removed) reads as low', app.classList.contains('tray-low') && !app.classList.contains('tray-bottom'));
+    if (CASE === 'low') {
+      ck('[default] a stored low layout (removed) reads as the tray under the bottles', app.classList.contains('tray-bottom') && !app.classList.contains('tray-low'));
       $('btnSettings').click();
-      ck('[C2] the settings show low for it', $('optTray').value === 'low');
+      ck('[default] the settings show it as the tray under the bottles', $('optTray').value === 'bottom');
       closeSheets();
-      ck('[C2] the piece tray stays above the bottles', document.querySelector('.incoming').getBoundingClientRect().bottom <= $('rack').getBoundingClientRect().top);
     }
   }
 
@@ -763,7 +782,7 @@ window.__inputTests = async function (T) {
     ck('[6.2] a long press that picks a source turns it off', isSel(tube(0)) && !lit());
     await esc();
     await setup(B, [2], fresh); t = G().turn;
-    p = await press(cup()); await moveTo(p, ...center(tube(5))); await release(p);
+    p = await press(cup()); await moveTo(p, ...center(tube(5)), true); await release(p);
     ck('[6.2] a placement by dragging the piece gives no outline', G().turn === t + 1 && !lit());
     await setup(B, [2], fresh); await tap(tube(5));
     $('btnSettings').click(); await sleep(20);
@@ -824,7 +843,8 @@ window.__inputTests = async function (T) {
   async function textTests() {
     const help = () => { $('btnHelp').click(); const r = [$('helpPlace').textContent, $('helpPour').textContent]; closeSheets(); return r; };
     const TAP = ['조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.', '병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.'];
-    const CLASSIC = ['위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.', '병에서 병으로 끌거나, 병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.'];
+    const CLASSIC = [TRAY === 'bottom' ? '아래에 나온 조각을 병으로 끌어 올리거나, 조각을 누른 뒤 병을 누르세요.' : '위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.',
+      '병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요. 병에서 병으로 끌어도 돼요.'];
     const mine = MODE === 'tapPlace' ? TAP : CLASSIC, other = MODE === 'tapPlace' ? CLASSIC : TAP;
     let h = help();
     ck('[6.5] help lines for placing and pouring follow the scheme', h[0] === mine[0] && h[1] === mine[1], h.join(' / '));
@@ -861,12 +881,12 @@ window.__inputTests = async function (T) {
     await setup(B, [2, 3]);
     if (MODE === 'classic') { await tap(cup()); await tap(tube(4)); await tap(tube(3)); await tap(cup()); } else { await tap(tube(4)); await tap(tube(3)); }
     // drops outside the rack, then Escape on a selection and on a drag
-    await setup(B, [2]); p = await press(cup()); await moveTo(p, ...center($('status'))); await release(p);
+    await setup(B, [2]); p = await press(cup()); await moveTo(p, ...center($('status')), true); await release(p);
     if (MODE === 'tapPlace') { await setup(B, [2]); p = await press(tube(0)); await moveTo(p, ...center($('status'))); await release(p); }
     await setup(B, [2]);
     if (MODE === 'classic') await tap(cup()); else { p = down(...center(tube(0))); await hold(p, 650); await release(p); }
     await esc();
-    await setup(B, [2]); p = await press(cup()); await moveTo(p, ...center(tube(2))); await esc(); await release(p);
+    await setup(B, [2]); p = await press(cup()); await moveTo(p, ...center(tube(2)), true); await esc(); await release(p);
     // 2 undos: one right after a placement by tap (quick), one after a pour
     await setup(B, [2], fresh); if (MODE === 'classic') await tap(cup()); await tap(tube(5)); await tap($('btnUndo'));
     await setup(B, [2], fresh);
@@ -981,12 +1001,12 @@ window.__inputTests = async function (T) {
     d.stuckScrollH = document.documentElement.scrollHeight;
     d.stuckGapBelowBottles = gapBelowBottles();
     const st2 = G(); st2.stuck = null; window.__boot({ S: st2 }); await sleep(80);
-    // the same page in the top layout (same size, rules and motion mode), for the low layout's overflow check
-    if (TRAY === 'low') {
+    // the same page in the top layout (same size, rules and motion mode), for the bottom layout's overflow check
+    if (TRAY === 'bottom') {
       const sel = $('optTray');
       sel.value = 'top'; sel.dispatchEvent(new Event('change', { bubbles: true })); await sleep(80);
       d.topScrollH = document.documentElement.scrollHeight;
-      sel.value = 'low'; sel.dispatchEvent(new Event('change', { bubbles: true })); await sleep(80);
+      sel.value = 'bottom'; sel.dispatchEvent(new Event('change', { bubbles: true })); await sleep(80);
     }
     send({ sc: SC, data: d });
     const tag = `[geom ${size} ${TRAY} ${rules}] `;
@@ -1004,16 +1024,14 @@ window.__inputTests = async function (T) {
         g('header buttons at least 24 high', d.help.hitH >= 24 && d.settings.hitH >= 24, `${d.help.hitH}, ${d.settings.hitH}`);
       }
     }
-    if (TRAY === 'low') {
-      g('[6.1] piece tray above the rack', d.incoming.y + d.incoming.h <= d.rack.top, `${d.incoming.y + d.incoming.h} vs ${d.rack.top}`);
+    if (TRAY === 'bottom') {
+      g('[bottom] piece tray right under the rack', d.incoming.y >= d.rack.bottom - 1 && d.incoming.y - d.rack.bottom <= 24, `${d.incoming.y} vs ${d.rack.bottom}`);
+      g('[bottom] 8px or more between the piece tray and the buttons', d.undo.y - (d.incoming.y + d.incoming.h) >= 8, d.undo.y - (d.incoming.y + d.incoming.h));
       if (rules === 'default') {
-        if (size.startsWith('360')) g('[6.1] half the rack or more in the bottom third', d.rackInThumbFrac >= 0.5, d.rackInThumbFrac.toFixed(3));
-        else g('[6.1] all six bottle centres in the bottom third', d.bottlesCentredInThumb === 6, d.bottlesCentredInThumb);
-        g('[6.1] the bottles stay put when the give-up row appears', d.stuckRowShown && Math.abs(d.stuckRackShift) <= 1, `shown ${d.stuckRowShown}, moved ${d.stuckRackShift}`);
+        g('[bottom] the bottles stay put when the give-up row appears', d.stuckRowShown && Math.abs(d.stuckRackShift) <= 1, `shown ${d.stuckRowShown}, moved ${d.stuckRackShift}`);
       } else {
-        g('[6.1] max settings: no taller than the top layout', d.scrollH <= d.topScrollH, `${d.scrollH} > ${d.topScrollH}`);
+        g('[bottom] max settings: no taller than the top layout', d.scrollH <= d.topScrollH, `${d.scrollH} > ${d.topScrollH}`);
       }
-      g('[6.1] 24px or more from the bottles down to the next control', d.gapBelowBottles !== null && d.gapBelowBottles >= 24 && d.stuckGapBelowBottles >= 24, `${d.gapBelowBottles}, stuck ${d.stuckGapBelowBottles}`);
     }
   }
 };

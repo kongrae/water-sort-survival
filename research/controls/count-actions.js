@@ -100,9 +100,9 @@ function showPath(f) {
   const r = path.relative(ROOT, f);
   return (r && !r.startsWith('..') && !path.isAbsolute(r) ? r : f).split(path.sep).join('/');
 }
-// layouts (prefs.tray): piece tray on top with the bottles below it, or with the bottles low (the tray-below-the-
-// bottles layout measured before checkpoint C is gone)
-const TRAY_ORDER = { top: 0, low: 1 };
+// layouts (prefs.tray): piece tray on top of the bottles, or under them (the 'low' layout, tray on top and bottles
+// at the foot, is gone)
+const TRAY_ORDER = { top: 0, bottom: 1 };
 const okPt = p => !!p && Number.isFinite(p.cx) && Number.isFinite(p.cy);
 const pt = p => ({ cx: +p.cx, cy: +p.cy });
 // Top-tray constants measured at 390x844: 6 bottles 51.3 wide, gap 10, row centred in the 390 page (16 px side padding).

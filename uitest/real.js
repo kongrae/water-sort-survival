@@ -46,8 +46,8 @@ async function main() {
     for (const v of [
       { controls: 'classic', tray: 'top', input: 'touch' }, { controls: 'classic', tray: 'top', input: 'mouse' },
       { controls: 'tapPlace', tray: 'top', input: 'touch' }, { controls: 'tapPlace', tray: 'top', input: 'mouse' },
-      { controls: 'tapPlace', tray: 'low', input: 'touch' }, { controls: 'tapPlace', tray: 'low', input: 'mouse' },
-      { controls: 'classic', tray: 'low', input: 'touch' },
+      { controls: 'classic', tray: 'bottom', input: 'touch' }, { controls: 'classic', tray: 'bottom', input: 'mouse' },
+      { controls: 'tapPlace', tray: 'bottom', input: 'touch' },
     ]) {
       const touchIn = v.input === 'touch';
       await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: touchIn });
@@ -82,7 +82,13 @@ async function main() {
         await tap(p.tubes[2]); s = await state();
         ck('then a bottle tap places once', s.turn === s0.turn + 1 && s.bottles === '[[0,1],[1,1,2],[2,2],[3,3,3],[0,0,1,2],[]]', JSON.stringify(s));
         await setup(); p = await pos(); s0 = await state();
-        await drag(p.cup, p.tubes[2]);
+        if (v.tray === 'bottom') {
+          // dragged up from the tray under the bottles: the drop is judged at the ghost drawn above the finger
+          await down(...p.cup); await sleep(40); await moveTo(...p.cup, ...p.tubes[2]);
+          const gr = await js(`(() => { const r = document.querySelector('.ghost').getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+          const fx = p.tubes[2][0] - (gr[0] - p.tubes[2][0]), fy = p.tubes[2][1] - (gr[1] - p.tubes[2][1]);
+          await moveTo(...p.tubes[2], fx, fy); await up(fx, fy);
+        } else await drag(p.cup, p.tubes[2]);
         s = await state();
         ck('dragging the piece onto a bottle places once', s.turn === s0.turn + 1 && s.bottles.startsWith('[[0,1],[1,1,2],[2,2]'), JSON.stringify(s));
         ck('no ghost left after the drop', s.ghosts === 0, s.ghosts);
