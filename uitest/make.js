@@ -31,7 +31,9 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     var pr = { seenV2: true };
     if (p.get('controls')) pr.controls = p.get('controls');
     if (p.get('tray')) pr.tray = p.get('tray');
-    set('wsurv.seenHelp', true); set('wsurv.prefs', pr); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true });
+    // case=newuser: a first visit (no help seen yet)
+    if (p.get('case') !== 'newuser') set('wsurv.seenHelp', true);
+    set('wsurv.prefs', pr); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true });
     if (p.get('rules') === 'max') set('wsurv.rules', { bottles: 7, cap: 5, startColors: 4, maxColors: 8, colorEvery: 20, pieceMin: 1, pieceMax: 3, preview: 2, pourLimit: 0 });
   }
   if (sc === 'firebase') {
@@ -62,6 +64,13 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
       if (name === 'user') return Promise.resolve({ id: function () { return Promise.resolve('u_test'); } });
       return Promise.resolve(null);
     };
+  }
+  // the scenarios written before tapPlace + low became the default play with the controls of that time, so their
+  // checks stay as they were (docs/PROMPT_controls2.md 8)
+  if (sc !== 'controls' && sc !== 'geom' && sc !== 'manual') {
+    var pv = JSON.parse(localStorage.getItem('wsurv.prefs') || '{}');
+    pv.controls = 'classic'; pv.tray = 'top';
+    set('wsurv.prefs', pv);
   }
   window.__errors = [];
   window.addEventListener('error', function (e) { window.__errors.push(String(e.message)); });
@@ -94,12 +103,17 @@ function framePage(sc, variant, it) {
 <script>window.addEventListener('message', function (e) { document.getElementById('out').textContent += JSON.stringify(e.data) + '\\n'; });</script></body></html>`);
   fs.writeFileSync(path.join(__dirname, `frame-${sc}~${variant}.size`), `${Math.max(600, it.w + 40)},${it.h + 60}`);
 }
-for (const [c, t] of [['classic', 'top'], ['classic', 'bottom'], ['classic', 'low'], ['tapPlace', 'top'], ['tapPlace', 'bottom'], ['tapPlace', 'low']]) {
+// the new defaults: no stored scheme or layout (an existing player, and a first visit), and a stored 'bottom' layout
+// from before it was removed
+for (const k of ['defaults', 'newuser']) framePage('controls', `case-${k}`, { src: `uitest.html?scenario=controls&case=${k}&pt=touch`, w: 360, h: 900 });
+framePage('controls', 'case-bottom', { src: 'uitest.html?scenario=controls&case=bottom&tray=bottom&controls=tapPlace&pt=touch', w: 360, h: 900 });
+for (const [c, t] of [['classic', 'top'], ['classic', 'low'], ['tapPlace', 'top'], ['tapPlace', 'low']]) {
   for (const pt of ['touch', 'mouse']) framePage('controls', `${c}-${t}-${pt}`, { src: `uitest.html?scenario=controls&controls=${c}&tray=${t}&pt=${pt}`, w: 360, h: 900 });
 }
 const sizes = [[360, 740], [390, 844], [412, 915], [768, 1024]];
-for (const tray of ['top', 'bottom', 'low']) {
-  for (const [w, h] of sizes) framePage('geom', `${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
-  for (const [w, h] of sizes.slice(0, 2)) framePage('geom', `${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
+for (const tray of ['top', 'low']) {
+  // the scheme is picked (the default) so the one-time notice for players who never picked one stays shut
+  for (const [w, h] of sizes) framePage('geom', `${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=geom&controls=tapPlace&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
+  for (const [w, h] of sizes.slice(0, 2)) framePage('geom', `${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=geom&controls=tapPlace&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
 }
 console.log('built');

@@ -344,5 +344,5 @@
   }
   send({ sc: SC, done: true });
 
-  function giveUpViaButton() { $('btnExtra').click(); }
+  function giveUpViaButton() { $('btnExtra').click(); $('btnExtra').click(); }   // giving up asks for a second press (C decision 6)
 })();

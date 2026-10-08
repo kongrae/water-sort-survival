@@ -46,7 +46,6 @@ async function main() {
     for (const v of [
       { controls: 'classic', tray: 'top', input: 'touch' }, { controls: 'classic', tray: 'top', input: 'mouse' },
       { controls: 'tapPlace', tray: 'top', input: 'touch' }, { controls: 'tapPlace', tray: 'top', input: 'mouse' },
-      { controls: 'classic', tray: 'bottom', input: 'touch' }, { controls: 'tapPlace', tray: 'bottom', input: 'touch' },
       { controls: 'tapPlace', tray: 'low', input: 'touch' }, { controls: 'tapPlace', tray: 'low', input: 'mouse' },
       { controls: 'classic', tray: 'low', input: 'touch' },
     ]) {
@@ -83,12 +82,7 @@ async function main() {
         await tap(p.tubes[2]); s = await state();
         ck('then a bottle tap places once', s.turn === s0.turn + 1 && s.bottles === '[[0,1],[1,1,2],[2,2],[3,3,3],[0,0,1,2],[]]', JSON.stringify(s));
         await setup(); p = await pos(); s0 = await state();
-        if (v.tray === 'bottom') {
-          await down(...p.cup); await sleep(40); await moveTo(...p.cup, ...p.tubes[2]);
-          const gr = await js(`(() => { const r = document.querySelector('.ghost').getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
-          const fx = p.tubes[2][0] - (gr[0] - p.tubes[2][0]), fy = p.tubes[2][1] - (gr[1] - p.tubes[2][1]);
-          await moveTo(...p.tubes[2], fx, fy); await up(fx, fy);
-        } else await drag(p.cup, p.tubes[2]);
+        await drag(p.cup, p.tubes[2]);
         s = await state();
         ck('dragging the piece onto a bottle places once', s.turn === s0.turn + 1 && s.bottles.startsWith('[[0,1],[1,1,2],[2,2]'), JSON.stringify(s));
         ck('no ghost left after the drop', s.ghosts === 0, s.ghosts);
@@ -100,6 +94,9 @@ async function main() {
         ck('bottle tap selects a pour source', s.sel === 0, JSON.stringify(s));
         await tap(p.tubes[5]); s = await state();
         ck('second bottle tap pours', s.bottles === '[[0],[1,1,2],[2],[3,3,3],[0,0,1,2],[1]]', JSON.stringify(s));
+        await setup(); p = await pos(); s0 = await state();
+        await drag(p.tubes[0], p.tubes[5]); s = await state();
+        ck('a drag from bottle to bottle pours (classic too) and places nothing', s.turn === s0.turn && s.bottles === '[[0],[1,1,2],[2],[3,3,3],[0,0,1,2],[1]]' && s.ghosts === 0, JSON.stringify(s));
       } else {
         await setup(); p = await pos(); s0 = await state();
         await tap(p.tubes[2]); s = await state();
@@ -122,6 +119,13 @@ async function main() {
         await tap(p.gap23); s = await state();
         ck('a tap in the gap places in a neighbour', s.turn === s0.turn + 1, JSON.stringify(s));
       }
+      // both schemes: out of its bottle, the liquid a pour drag carries follows the finger
+      await setup(); p = await pos();
+      await down(...p.tubes[1]); await sleep(40); await moveTo(...p.tubes[1], ...p.tubes[5]);
+      const gh = await js(`(() => { const g = document.querySelector('.ghost.pour'); if (!g) return null; const r = g.getBoundingClientRect(); return [r.left + r.width / 2, r.top, g.querySelectorAll('.layer').length]; })()`);
+      await up(...p.tubes[5]); s = await state();
+      ck('the liquid a pour drag carries follows the finger, then pours', !!gh && Math.abs(gh[0] - p.tubes[5][0]) < 12 && gh[1] < p.tubes[5][1] && gh[2] === 1
+        && s.bottles === '[[0,1],[1,1],[2],[3,3,3],[0,0,1,2],[2]]' && s.ghosts === 0, JSON.stringify({ gh, s }));
       if (touchIn) {
         // a second finger lands on another bottle in the middle of a piece drag
         await setup(); p = await pos(); s0 = await state();
