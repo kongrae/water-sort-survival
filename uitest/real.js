@@ -132,6 +132,19 @@ async function main() {
         ck('a second finger during a drag does not place twice or leave a ghost', s.turn - s0.turn <= 1 && s.ghosts === 0, JSON.stringify(s));
         const sc = await js('[document.scrollingElement.scrollTop, document.documentElement.scrollHeight, innerHeight]');
         ck('the page did not scroll', sc[0] === 0, JSON.stringify(sc));
+        // the tap that ends the run opens the result sheet at once (reduced effects); Chrome then sends that tap's
+        // click to whatever is under the finger, so it must not press a sheet button
+        await js(`(() => { const r = document.getElementById('optReduce'); if (!r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); } return true; })()`);
+        for (const yf of [0.5, 0.8]) {
+          await setup('[[1,2,3],[2,3,1,0],[3,1,2,0],[1,3,2,1],[2,1,3,2],[3,2,1,3]]', '[0]'); p = await pos();
+          await js(`window.__ovClicks = 0; document.getElementById('ovOver').addEventListener('click', () => window.__ovClicks++); true`);
+          const r0 = await js(`(() => { const r = document.querySelectorAll('#rack .tube')[0].getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height * ${yf}]; })()`);
+          if (v.controls === 'classic') await tap(p.cup);
+          await tap(r0);
+          const o = await js(`({ over: !document.getElementById('ovOver').hidden, ad: !document.getElementById('ovAd').hidden, themes: !document.getElementById('ovThemes').hidden, clicks: window.__ovClicks })`);
+          ck(`the tap that ends the run (at ${yf * 100}% of the bottle) does not press the result sheet`, o.over && !o.ad && !o.themes && o.clicks === 0, JSON.stringify(o));
+          await js(`document.querySelectorAll('.overlay').forEach(x => { x.hidden = true; }); true`);
+        }
       }
       const errs = await js('window.__errors');
       ck('no script errors', !errs.length, errs.join(' | '));

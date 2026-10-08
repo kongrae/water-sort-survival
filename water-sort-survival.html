@@ -174,7 +174,7 @@ body {
 .flipbtn::before { content: ""; position: absolute; inset: -3px; }
 .tube.spare::after { content: ""; position: absolute; top: 0; bottom: 0; left: -5px; right: -5px; }
 /* tapPlace: bottles take drags and long presses themselves */
-[data-controls="tapPlace"] #rack .tube, [data-controls="tapPlace"] #spareSlot .tube { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+[data-controls="tapPlace"] #rack, [data-controls="tapPlace"] #rack .tube, [data-controls="tapPlace"] #spareSlot .tube { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 /* tray below the bottles: the rack and tray sit low, nearer the thumb */
 .app.tray-bottom { min-height: 100%; }
 .app.tray-bottom > .zbar, .app.tray-bottom > .zbar[hidden] + .rack { margin-top: auto; }
@@ -265,6 +265,8 @@ body {
 @keyframes fall { to { translate: var(--dx, 0) 105vh; rotate: 540deg; } }
 @keyframes rise { from { opacity: .9; } to { opacity: 0; translate: var(--dx, 0) -80px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition: none !important; } }
+/* the long-press ring is a progress indicator, not motion: keep its timing, or it looks complete at once */
+@media (prefers-reduced-motion: reduce) { .tube.charging .glass { animation-duration: .45s !important; } }
 </style>
 
 <div class="app">
@@ -1115,6 +1117,16 @@ function turnRhythm(S) {
   let quietUntil = 0;           // clicks before this time come from a pointer gesture that has been handled
   const now = () => performance.now();
   const pointerClick = e => e.detail !== 0 && (!!gest || now() < quietUntil);
+  // A touch gesture handled on pointerup is followed by the browser's own click, hit-tested against the page as it
+  // is by then: a placement that ends the run has opened the result sheet under the finger. That click (pointer
+  // made, at the same spot, right after) is dropped here before any button sees it.
+  let swallow = null;   // { until, x, y }
+  window.addEventListener('click', e => {
+    const s = swallow;
+    if (!s || e.detail === 0 || now() >= s.until || Math.hypot(e.clientX - s.x, e.clientY - s.y) > 30) return;
+    swallow = null;
+    e.preventDefault(); e.stopImmediatePropagation();
+  }, true);
 
   function onTube(i) {
     if (!S || S.over) return;
@@ -1225,7 +1237,7 @@ function turnRhythm(S) {
     if (pointerClick(e)) return;
     if (e.target.closest('.tube')) onTube(S.bottles.length);
   });
-  cup.addEventListener('click', e => { if (e.detail === 0) onCupTap(); });
+  cup.addEventListener('click', e => { if (!pointerClick(e)) onCupTap(); });
   $('btnFlip').addEventListener('click', () => {
     if (!S || S.over || !canFlip(S)) return;
     applyFlip(S);
@@ -1252,6 +1264,9 @@ function turnRhythm(S) {
   const noMenu = e => { if (ctl() === 'tapPlace') e.preventDefault(); };
   rack.addEventListener('contextmenu', noMenu);
   spareSlot.addEventListener('contextmenu', noMenu);
+  // a touch that starts on a sheet is not a game input, even if the sheet closes before the finger lifts
+  // (an ad countdown ending): its click must not reach the bottles underneath
+  document.addEventListener('pointerdown', e => { if (e.target.closest && e.target.closest('.overlay')) ignored.add(e.pointerId); }, { capture: true, passive: true });
 
   cup.addEventListener('pointerdown', e => {
     if (!S || S.over || e.button > 0) return;
@@ -1270,11 +1285,8 @@ function turnRhythm(S) {
     // capture on the container, which render() keeps: the pressed bottle button is rebuilt during the gesture
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) { /* the window listeners follow the pointer anyway */ }
     const s = slotsOf(S)[i];
-    if (ctl() === 'tapPlace' && typeof sel !== 'number') {
-      // a press held this long is not a tap: on a bottle with liquid it picks the pour source
-      gest.timer = setTimeout(longPress, LONG_MS);
-      if (s && s.length) markCharge();
-    }
+    // tapPlace: holding a bottle with liquid picks it as the pour source; on an empty one a slow press is still a tap
+    if (ctl() === 'tapPlace' && typeof sel !== 'number' && s && s.length) { gest.timer = setTimeout(longPress, LONG_MS); markCharge(); }
   }
   rack.addEventListener('pointerdown', onSlotDown);
   spareSlot.addEventListener('pointerdown', e => { if (e.target.closest('.tube')) onSlotDown(e); });
@@ -1292,11 +1304,11 @@ function turnRhythm(S) {
     if (!g || g.kind !== 'press' || g.moved) return;
     g.held = true; g.timer = 0;
     clearCharge();
-    const s = slotsOf(S)[g.slot];
-    if (s && s.length) pickSource(g.slot);
+    pickSource(g.slot);
   }
   function gestMove(e) {
     const g = gest, x = e.clientX, y = e.clientY, dist = Math.hypot(x - g.x, y - g.y);
+    g.far = Math.max(g.far || 0, dist);
     if (g.kind === 'cup') {
       if (x < g.box.l || x > g.box.r || y < g.box.t || y > g.box.b) g.left = true;
       if (!g.moved && dist > SLOP) {
@@ -1310,7 +1322,8 @@ function turnRhythm(S) {
       if (!g.moved) return;
       g.ghost.style.left = x + 'px';
       g.ghost.style.top = y + 'px';
-      const t = dropSlot(g, x, y);
+      // no landing hint while the finger is still on the piece: letting go there is a tap
+      const t = g.left ? dropSlot(g, x, y) : null;
       if (t !== g.over) { clearDragHover(); g.over = t; if (t !== null) showDragHover(t); }
       return;
     }
@@ -1318,8 +1331,8 @@ function turnRhythm(S) {
       g.moved = true;
       clearTimeout(g.timer); g.timer = 0; clearCharge();
       const s = slotsOf(S)[g.slot];
-      // tapPlace: a drag from a bottle with liquid pours; classic bottles are tapped only
-      if (ctl() === 'tapPlace' && s && s.length) { g.kind = 'pour'; sel = g.slot; render(); } else g.kind = 'none';
+      // tapPlace: a drag from a bottle with liquid pours. Otherwise the press stays a tap if it ends on the same bottle.
+      if (ctl() === 'tapPlace' && s && s.length) { g.kind = 'pour'; sel = g.slot; render(); }
     }
     if (g.kind !== 'pour') return;
     const t = slotAt(x, y);
@@ -1329,6 +1342,8 @@ function turnRhythm(S) {
     const g = gest;
     gest = null;
     quietUntil = now() + 400;
+    // touch and pen taps are followed by a click at the finger (a mouse click goes to the captured container instead)
+    if (!cancel && e.pointerType !== 'mouse' && !g.held && (g.far || 0) <= 24) swallow = { until: now() + 400, x: e.clientX, y: e.clientY };
     clearTimeout(g.timer); clearCharge();
     if (g.kind === 'cup') { cupEnd(g, e, cancel); return; }
     if (g.kind === 'pour') {
@@ -1337,7 +1352,7 @@ function turnRhythm(S) {
       if (t === null || t === g.slot) { sel = null; render(); } else pourTo(g.slot, t, false);
       return;
     }
-    if (g.kind === 'press' && !cancel && !g.moved && !g.held) onTube(g.slot);
+    if (g.kind === 'press' && !cancel && !g.held && (!g.moved || slotAt(e.clientX, e.clientY) === g.slot)) onTube(g.slot);
   }
   function cupEnd(g, e, cancel) {
     if (!g.moved) { if (!cancel) onCupTap(g.selBefore); return; }
@@ -1636,7 +1651,10 @@ function turnRhythm(S) {
     $('btnNew').textContent = daily ? '다시 도전' : '새 게임';
     $('btnMode').textContent = daily ? '무한 모드' : '오늘의 도전';
     const showExtra = S.over ? overClosed : !!S.stuck;
-    $('extraRow').hidden = !showExtra;
+    // tray below the bottles: keep the row's space so the bottles and tray do not jump when it appears
+    const ex = $('extraRow');
+    ex.hidden = !showExtra && tray() !== 'bottom';
+    ex.style.visibility = showExtra ? '' : 'hidden';
     $('btnExtra').textContent = S.over ? '결과 보기' : '포기하고 결과 보기';
 
     applyFx();
@@ -1709,7 +1727,7 @@ function turnRhythm(S) {
     if (e.key !== 'Escape') return;
     const open = ['ovThemes', 'ovHelp', 'ovSettings', 'ovV2', 'ovCtl'].filter(id => !$(id).hidden);
     if (open.length) { open.forEach(id => { $(id).hidden = true; }); return; }
-    if (!S) return;
+    if (!S || document.querySelector('.overlay:not([hidden])')) return;   // the result sheet or an ad stays as it is
     if (gest) { cancelGesture(); sel = null; render(); return; }
     if (sel !== null) { sel = null; render(); }
   });

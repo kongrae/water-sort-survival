@@ -74,7 +74,29 @@
 
 봇은 실수, 탐색성 붓기, 되돌리기를 하지 않는다. 사람의 오조작(특히 `tapPlace`에서 탭-탭 붓기 습관)은 이 수치에 반영되지 않는다.
 
-## 4. 한계
+## 4. 구현 검토에서 찾아 고친 것
+
+시제품 구현을 네 관점(실제 포인터·터치 의미, 게임 상태, 레이아웃, 접근성)으로 적대적 검토했고, 확인된 것을 고쳤다.
+
+| # | 내용 | 처리 | 근거 검사 |
+|---|---|---|---|
+| R1 | (높음, 회귀) 탭을 pointerup에서 처리하면서, 판을 끝낸 탭의 브라우저 click이 바로 열린 결과 시트 버튼(부활 광고, 테마)에 떨어짐(효과 줄이기 켬) | 터치·펜 탭 직후 같은 자리의 포인터 click을 capture 단계에서 버림 | real.js '…does not press the result sheet' 8개(수정 전 코드에서 8개 모두 실패 확인), input.js 같은 이름 |
+| R2 | 컵 click이 detail 0만 받아 Firefox 스크린리더 실행(detail 1, 포인터 이벤트 없음)이 무시됨(기존 결함) | 병과 같은 규칙(포인터 제스처 직후만 무시) | 'a click with no pointer events behind it…' |
+| R3 | (회귀) 마우스·펜으로 같은 병 안에서 8px 넘게 흔들린 클릭이 사라짐, tapPlace 빈 병도 같음 | 같은 칸에서 떼면 탭 | 'a wobbly click or tap on a bottle…', 'a 9px wobbly tap on an empty bottle places' |
+| R4 | tapPlace에서 빈 병을 0.45초 넘게 누르면 넣기가 사라짐 | 길게 누르기는 내용 있는 병에만. 빈 병은 느린 탭 = 넣기 | 'a slow press on an empty bottle is still a tap…' |
+| R5 | tapPlace에서 병 사이 틈·병 위 띠에서 시작한 드래그를 브라우저 스크롤이 가져감 | tapPlace에서 `#rack`에도 touch-action none | '…touch-action none on #rack' |
+| R6 | 아래 칸: 컵을 조금 밀면 병에 착지 표시가 뜨는데 떼면 탭 | 컵 영역을 벗어나기 전에는 착지 표시 없음 | 'bottom tray: a short push…' 2개 |
+| R7 | tapPlace: 광고가 닫히는 순간의 탭이 아래 병에 넣기로 떨어짐 | 시트에서 시작한 포인터는 게임 입력에서 제외 | 'a tap that began on a sheet…' |
+| R8 | 아래 칸: '포기하고 결과 보기' 줄이 나타나면 병 줄이 33~56px 튐, 광고·결과 시트가 열린 채 Escape가 선택을 해제 | 아래 칸에서는 그 줄의 자리를 늘 확보, 시트가 보이면 Escape는 선택을 건드리지 않음 | 'bottom tray: the bottles stay put…', '[D12] Escape with an ad on screen…' |
+| R9 | 감속 모드에서 길게 누르기 링이 누르자마자 완료 상태로 보임 | 링은 진행 표시라 0.45초 유지 | 'with reduced motion the long-press ring…' |
+
+또 병에서 시작한 제스처는 다시 그려지지 않는 `#rack`/`#spareSlot`에 포인터를 캡처한다(렌더가 눌린 병 버튼을 새로 만들어도 이벤트가 이어지게).
+
+## 5. 실입력 검사
+
+`uitest/real.js`는 DevTools 프로토콜로 Chrome에 신뢰된 터치·마우스 입력을 보낸다. 클릭 생성, touch-action, 포인터 캡처, 길게 누르기를 브라우저가 직접 처리한다. 6개 조합(classic·tapPlace × 위·아래 칸, 터치·마우스)에서 66/66 통과.
+
+## 6. 한계
 
 - 모든 입력 검사는 합성 이벤트다. 포인터 캡처, 클릭 생성, 터치 스크롤 인계, 길게 누르기 메뉴는 `uitest/input.js`가 브라우저 규칙을 흉내 낸 것이다. 실제 기기 확인은 `docs/PROMPT_controls.md` 10장 목록으로 한다.
 - 헤드리스 화면에는 주소창과 safe-area가 없다. 실제 Chrome Android에서는 보이는 높이가 더 작다.

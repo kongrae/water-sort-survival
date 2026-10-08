@@ -244,6 +244,14 @@ window.__inputTests = async function (T) {
     p = await press(cup()); const [cx0, cy0] = [p.x, p.y];
     await moveTo(p, cx0 - 40, cy0); await moveTo(p, cx0, cy0); await release(p);
     ck('[D10] dragging off the piece and back neither places nor selects', notPlaced(t) && !isSel(cup()));
+    await setup(B, [2]);
+    await jitterTap(tube(0), PT === 'mouse' ? 12 : 9);
+    ck('a wobbly click or tap on a bottle still selects it', isSel(tube(0)));
+    await esc();
+    await sleep(500);
+    cup().dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, detail: 1 }));
+    ck('a click with no pointer events behind it (screen reader in Firefox) selects the piece', isSel(cup()));
+    await esc();
 
     await setup(B, [2]); t = G().turn;
     await key(cup(), 'Enter'); await key(tube(2), 'Enter');
@@ -321,7 +329,18 @@ window.__inputTests = async function (T) {
     await esc();
     await setup(B, [2]); t = G().turn;
     p = down(...center(tube(5))); await hold(p, 650); await release(p);
-    ck('a long press on an empty bottle selects nothing and places nothing', !anySel() && notPlaced(t));
+    ck('a slow press on an empty bottle is still a tap and places', G().turn === t + 1 && G().bottles[5].join() === '2' && !anySel(), JSON.stringify(G().bottles));
+    await setup(B, [2]); t = G().turn;
+    await jitterTap(tube(5), 9);
+    ck('a 9px wobbly tap on an empty bottle places', G().turn === t + 1 && G().bottles[5].join() === '2', JSON.stringify(G().bottles));
+    ck('the gaps and the space above the bottles take the touch too (touch-action none on #rack)', getComputedStyle($('rack')).touchAction === 'none', getComputedStyle($('rack')).touchAction);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      await setup(B, [2]);
+      p = down(...center(tube(0))); await hold(p, 100);
+      const gl = tube(0).querySelector('.glass');
+      ck('with reduced motion the long-press ring still takes 0.45s', tube(0).classList.contains('charging') && getComputedStyle(gl).animationDuration === '0.45s', getComputedStyle(gl).animationDuration);
+      await release(p); await esc();
+    }
     await setup(B, [2]); t = G().turn;
     p = down(...center(tube(0))); await hold(p, 650); await moveTo(p, ...center(tube(5))); await release(p);
     ck('a long press that then moves becomes a pour drag', G().bottles[5].join() === '1' && notPlaced(t), JSON.stringify(G().bottles));
@@ -436,6 +455,49 @@ window.__inputTests = async function (T) {
     $('btnHelp').click(); await esc();
     ck('[D12] with a sheet open, Escape closes only the sheet', $('ovHelp').hidden && isSel(tube(0)));
     await esc();
+    await setup(B, [2]);
+    if (MODE === 'classic') await tap(cup()); else { p = down(...center(tube(0))); await hold(p, 650); await release(p); }
+    $('ovAd').hidden = false; await esc();
+    ck('[D12] Escape with an ad on screen leaves the selection alone', MODE === 'classic' ? isSel(cup()) : isSel(tube(0)));
+    $('ovAd').hidden = true; await esc();
+
+    // a tap that began on a sheet which closes before the finger lifts (an ad countdown ending)
+    await setup(B, [2]); t = G().turn;
+    $('ovAd').hidden = false;
+    const q = down(...center(tube(2)));
+    $('ovAd').hidden = true;
+    await sleep(30); up(q); await sleep(40);
+    ck('a tap that began on a sheet does not reach the bottles under it', notPlaced(t) && !anySel(), JSON.stringify(G().bottles));
+
+    if (PT === 'touch') {
+      // reduced effects open the result sheet inside the placing tap; the tap's own click must not land on it
+      const red = $('optReduce'), was = red.checked;
+      if (!was) { red.checked = true; red.dispatchEvent(new Event('change', { bubbles: true })); }
+      await setup([[1, 2, 3], [2, 3, 1, 0], [3, 1, 2, 0], [1, 3, 2, 1], [2, 1, 3, 2], [3, 2, 1, 3]], [0]);
+      let ovClicks = 0; const count = () => { ovClicks++; };
+      $('ovOver').addEventListener('click', count);
+      if (MODE === 'classic') await tap(cup());
+      await tap(tube(0));
+      $('ovOver').removeEventListener('click', count);
+      ck('the placement that ends the run opens the result sheet', !$('ovOver').hidden && G().over);
+      ck('the tap that ended the run does not click the result sheet', ovClicks === 0 && $('ovAd').hidden && $('ovThemes').hidden, `${ovClicks} clicks, ad ${!$('ovAd').hidden}, themes ${!$('ovThemes').hidden}`);
+      document.querySelectorAll('.overlay').forEach(o => { o.hidden = true; });
+      if (!was) { red.checked = false; red.dispatchEvent(new Event('change', { bubbles: true })); }
+    }
+
+    if (TRAY === 'bottom') {
+      await setup(B, [2]); t = G().turn;
+      const pp = await press(cup()); await moveTo(pp, pp.x, pp.y - 20);
+      ck('bottom tray: a short push on the piece shows no landing hint', !document.querySelector('#rack .tube.hover'));
+      await release(pp);
+      ck('bottom tray: letting go of that short push is a tap, not a drop', notPlaced(t) && (MODE === 'classic' ? isSel(cup()) : status() === '병을 누르면 바로 들어가요'), status());
+      await esc();
+      await setup(B, [2]);
+      const top0 = $('rack').getBoundingClientRect().top;
+      const s2 = G(); s2.stuck = 'room'; window.__boot({ S: s2 }); await sleep(60);
+      const top1 = $('rack').getBoundingClientRect().top;
+      ck('bottom tray: the bottles stay put when the give-up row appears', Math.abs(top1 - top0) < 1 && getComputedStyle($('extraRow')).visibility !== 'hidden', `${top0} -> ${top1}`);
+    }
 
     // keyboard only, ten turns, with one pour on the way
     const s = G();
