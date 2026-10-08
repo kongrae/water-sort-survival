@@ -25,7 +25,15 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   if (sc === 'themes') { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); set('wsurv.stars.total', 29); set('wsurv.themes.owned', ['lab']); }
   if (sc === 'legacy') { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: 'cafe' }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); set('wsurv.stars.total', 20); }
   if (p.get('skin')) { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: p.get('skin'), tryLocked: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); }
-  window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; } } };
+  // hot.ready hands boot() to the tests (window.__boot({ S })) so a test can re-render after editing the live state
+  window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; }, ready: function (cb) { window.__boot = cb; cb({}); } } };
+  if (sc === 'controls' || sc === 'geom') {
+    var pr = { seenV2: true };
+    if (p.get('controls')) pr.controls = p.get('controls');
+    if (p.get('tray')) pr.tray = p.get('tray');
+    set('wsurv.seenHelp', true); set('wsurv.prefs', pr); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true });
+    if (p.get('rules') === 'max') set('wsurv.rules', { bottles: 7, cap: 5, startColors: 4, maxColors: 8, colorEvery: 20, pieceMin: 1, pieceMax: 3, preview: 2, pourLimit: 0 });
+  }
   if (sc === 'firebase') {
     set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.stars.total', 10); set('wsurv.themes.owned', ['lab']);
     set('wsurv.best.6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1', 300);
@@ -36,7 +44,10 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   if (sc === 'cloud') {
     set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 1, sawOver: false, flip: false });
     set('wsurv.stars.total', 10); set('wsurv.themes.owned', ['lab']);
+  }
+  if (sc === 'cloud' || sc === 'controls') {
     // in-memory stand-in for the viewer's private db subtree, already holding another device's save
+    // (controls uses it to push a merge, and so a render, in the middle of a drag)
     var store = { 'dev-other': { v: 1, device: 'dev-other', starsMine: 120, owned: ['lab', 'cafe', 'gem'], best: [['6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1', 5000]], daily: [], starsDaily: [], unlock: { runs: 5, sawOver: true, flip: true } } };
     var listeners = [];
     var snap = function () { return { docs: Object.keys(store).map(function (id) { var d = store[id]; return { id: id, exists: true, data: function () { return JSON.parse(JSON.stringify(d)); } }; }) }; };
@@ -56,7 +67,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   window.addEventListener('error', function (e) { window.__errors.push(String(e.message)); });
 })();
 </script></head><body>`;
-const driver = fs.readFileSync(path.join(__dirname, 'driver.js'), 'utf8');
+const driver = fs.readFileSync(path.join(__dirname, 'driver.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'input.js'), 'utf8');
 // The scenarios below run without Firebase (never the real project); the firebase scenario gets a dummy config
 // with the SDK served from mockfb/ (in-memory auth and Firestore).
 const CONFIG_RE = /const FIREBASE_CONFIG = (null|\{[\s\S]*?\n  \});/;
@@ -74,5 +85,21 @@ for (const sc of ['fresh', 'existing', 'v1saves', 'v1daily', 'shots', 'themes', 
     : `<iframe src="${sc === 'firebase' ? 'uitest-fb' : 'uitest'}.html?scenario=${sc === 'v1daily' ? 'v1saves&mode=daily' : sc}" style="width:${w}px;height:900px;border:0"></iframe>`;
   fs.writeFileSync(path.join(__dirname, `frame-${sc}.html`), `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;display:flex;gap:20px;background:#888">${frames}<pre id="out"></pre>
 <script>window.addEventListener('message', function (e) { document.getElementById('out').textContent += JSON.stringify(e.data) + '\\n'; });</script></body></html>`);
+}
+// One frame page per variant (frame-<sc>~<variant>.html): iframes of one page share localStorage, and the game reads
+// its prefs and rules from there, so variants must not share a page. frame-<sc>~<variant>.size is the window size.
+for (const f of fs.readdirSync(__dirname)) if (/^frame-(controls|geom)~/.test(f)) fs.rmSync(path.join(__dirname, f));
+function framePage(sc, variant, it) {
+  fs.writeFileSync(path.join(__dirname, `frame-${sc}~${variant}.html`), `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;background:#888"><iframe src="${it.src}" style="display:block;width:${it.w}px;height:${it.h}px;border:0"></iframe><pre id="out"></pre>
+<script>window.addEventListener('message', function (e) { document.getElementById('out').textContent += JSON.stringify(e.data) + '\\n'; });</script></body></html>`);
+  fs.writeFileSync(path.join(__dirname, `frame-${sc}~${variant}.size`), `${Math.max(600, it.w + 40)},${it.h + 60}`);
+}
+for (const [c, t] of [['classic', 'top'], ['classic', 'bottom'], ['tapPlace', 'top'], ['tapPlace', 'bottom']]) {
+  for (const pt of ['touch', 'mouse']) framePage('controls', `${c}-${t}-${pt}`, { src: `uitest.html?scenario=controls&controls=${c}&tray=${t}&pt=${pt}`, w: 360, h: 900 });
+}
+const sizes = [[360, 740], [390, 844], [412, 915], [768, 1024]];
+for (const tray of ['top', 'bottom']) {
+  for (const [w, h] of sizes) framePage('geom', `${tray}-default-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=default&size=${w}x${h}`, w, h });
+  for (const [w, h] of sizes.slice(0, 2)) framePage('geom', `${tray}-max-${w}x${h}`, { src: `uitest.html?scenario=geom&tray=${tray}&rules=max&size=${w}x${h}`, w, h });
 }
 console.log('built');

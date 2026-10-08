@@ -2,6 +2,7 @@
 uitest/uitest.html
 uitest/uitest-fb.html
 uitest/frame-*.html
+uitest/frame-*.size
 uitest/out-*.html
 uitest/prof-*/
 chrome-prof/

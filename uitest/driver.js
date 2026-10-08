@@ -337,6 +337,7 @@
       check('nothing written for the other account', !Object.keys(window.__fbStore).some(p => p.startsWith('users/g2/')) && num('wsurv.fb.auto') === false && num('wsurv.fb.uid') === 'g1');
       $('ovSettings').querySelector('[data-close]').click();
     }
+    if (SC === 'controls' || SC === 'geom') await window.__inputTests({ check, G, $, sleep, send, SC, P, tube });
     check('no script errors', window.__errors.length === 0, window.__errors.join(' | '));
   } catch (e) {
     check('driver exception', false, e && e.stack || e);
