@@ -22,7 +22,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     set('wsurv.mode', p.get('mode') || 'endless');
   }
   if (p.get('reduce') === '1') set('wsurv.prefs', { reduceFx: true });
-  if (sc === 'themes') { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); set('wsurv.stars.total', 14); }
+  if (sc === 'themes') { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); set('wsurv.stars.total', 29); }
   if (p.get('skin')) { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: p.get('skin'), tryLocked: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); }
   window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; } } };
   window.__errors = [];

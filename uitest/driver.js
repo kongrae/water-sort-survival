@@ -227,7 +227,7 @@
       S.zoneLog = [{ zone: 2, turn: 20, empties: 3, bonus: 120, undoUsed: 0, revive: false }];
       $('cup').click(); document.querySelectorAll('#rack .tube')[5].click();
       await sleep(1600);
-      check('stars added and cafe unlocked', JSON.parse(localStorage.getItem('wsurv.stars.total')) >= 15 && !$('unlockRow').hidden && $('unlockName').textContent === '카페', localStorage.getItem('wsurv.stars.total') + ' ' + $('unlockName').textContent);
+      check('stars added and cafe unlocked', JSON.parse(localStorage.getItem('wsurv.stars.total')) >= 30 && !$('unlockRow').hidden && $('unlockName').textContent === '카페', localStorage.getItem('wsurv.stars.total') + ' ' + $('unlockName').textContent);
       check('star line names the next theme', $('starTotal').textContent.includes("다음 테마 '보석'"), $('starTotal').textContent);
       $('btnUnlockApply').click();
       check('apply switches the board to cafe', skin() === 'cafe' && $('btnUnlockApply').hidden);
