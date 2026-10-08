@@ -26,6 +26,25 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   if (sc === 'legacy') { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: 'cafe' }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); set('wsurv.stars.total', 20); }
   if (p.get('skin')) { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: p.get('skin'), tryLocked: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); }
   window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; } } };
+  if (sc === 'cloud') {
+    set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 1, sawOver: false, flip: false });
+    set('wsurv.stars.total', 10); set('wsurv.themes.owned', ['lab']);
+    // in-memory stand-in for the viewer's private db subtree, already holding another device's save
+    var store = { 'dev-other': { v: 1, device: 'dev-other', starsMine: 120, owned: ['lab', 'cafe', 'gem'], best: [['6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1', 5000]], daily: [], starsDaily: [], unlock: { runs: 5, sawOver: true, flip: true } } };
+    var listeners = [];
+    var snap = function () { return { docs: Object.keys(store).map(function (id) { var d = store[id]; return { id: id, exists: true, data: function () { return JSON.parse(JSON.stringify(d)); } }; }) }; };
+    var col = {
+      get: function () { return Promise.resolve(snap()); },
+      onSnapshot: function (n) { listeners.push(n); setTimeout(function () { n(snap()); }, 0); return function () {}; },
+      doc: function (id) { return { set: function (b) { store[id] = JSON.parse(JSON.stringify(b)); setTimeout(function () { listeners.forEach(function (f) { f(snap()); }); }, 0); return Promise.resolve(); } }; },
+    };
+    window.__cloud = { store: store, push: function (id, body) { store[id] = body; listeners.forEach(function (f) { f(snap()); }); } };
+    window.claude.use = function (name) {
+      if (name === 'db') return Promise.resolve({ collection: function (p) { window.__colPath = p; return col; } });
+      if (name === 'user') return Promise.resolve({ id: function () { return Promise.resolve('u_test'); } });
+      return Promise.resolve(null);
+    };
+  }
   window.__errors = [];
   window.addEventListener('error', function (e) { window.__errors.push(String(e.message)); });
 })();
@@ -33,7 +52,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
 const driver = fs.readFileSync(path.join(__dirname, 'driver.js'), 'utf8');
 fs.writeFileSync(path.join(__dirname, 'uitest.html'), head + page + '\n<script>' + driver + '</script></body></html>');
 fs.writeFileSync(path.join(__dirname, 'frame-skins.html'), '<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;display:flex;gap:12px;background:#888">' + ['lab', 'cafe', 'gem', 'deep'].map(s => '<iframe src="uitest.html?scenario=skin&shots=skin&skin=' + s + '&theme=' + (process.env.THEME || 'light') + '" style="flex:none;width:360px;height:640px;border:0"></iframe>').join('') + '<pre id="out"></pre></body></html>');
-for (const sc of ['fresh', 'existing', 'v1saves', 'v1daily', 'shots', 'themes', 'legacy']) {
+for (const sc of ['fresh', 'existing', 'v1saves', 'v1daily', 'shots', 'themes', 'legacy', 'cloud']) {
   const w = sc === 'shots' ? 0 : 360;
   const frames = sc === 'shots'
     ? ['light', 'dark'].map(t => `<iframe src="uitest.html?scenario=existing&shots=1&theme=${t}" style="width:390px;height:900px;border:0;background:#fff"></iframe>`).join('')

@@ -276,6 +276,35 @@
       check('owned theme not announced again', JSON.parse(localStorage.getItem('wsurv.stars.total')) >= 30 && $('unlockRow').hidden, localStorage.getItem('wsurv.stars.total'));
       check('board keeps the chosen theme after the run', skin() === 'gem');
     }
+    if (SC === 'cloud') {
+      await sleep(200);
+      const num = k => JSON.parse(localStorage.getItem(k));
+      check('cloud path is the viewer private subtree', window.__colPath === 'data/users/u_test', window.__colPath);
+      check('stars earned here counted as this device', num('wsurv.stars.mine') === 10, num('wsurv.stars.mine'));
+      check('stars summed across devices (10 + 120)', num('wsurv.stars.total') === 130, num('wsurv.stars.total'));
+      check('owned themes united', num('wsurv.themes.owned').includes('gem'), localStorage.getItem('wsurv.themes.owned'));
+      check('records take the maximum', $('best').textContent === '5,000', $('best').textContent);
+      check('unlock progress merged', num('wsurv.unlock').runs === 5);
+      const mine = Object.keys(window.__cloud.store).find(k => k !== 'dev-other');
+      check('this device wrote its own document', !!mine && window.__cloud.store[mine].starsMine === 10 && window.__cloud.store[mine].device === mine, JSON.stringify(window.__cloud.store[mine] || null).slice(0, 200));
+      check('other device document untouched', window.__cloud.store['dev-other'].starsMine === 120);
+      $('btnSettings').click();
+      check('status shows the account save and 2 devices', $('cloudStatus').textContent.includes('기기 2대'), $('cloudStatus').textContent);
+      $('ovSettings').querySelector('[data-close]').click();
+      const S = G();
+      S.bottles = [[0, 1, 2, 2], [1, 0, 3, 2], [3, 1, 0, 2], [3, 2, 3, 1], [0, 2, 1, 3], [1, 3, 2]];
+      S.turn = 25; S.cum = Array(25).fill(0); S.piece = [0];
+      S.zoneLog = [{ zone: 2, turn: 20, empties: 3, bonus: 120, undoUsed: 0, revive: false }];
+      $('cup').click(); document.querySelectorAll('#rack .tube')[5].click();
+      await sleep(2600);
+      const doc = window.__cloud.store[mine];
+      check('run end saves this device to the cloud', doc.starsMine > 10, doc.starsMine);
+      check('total = this device + other device', num('wsurv.stars.total') === doc.starsMine + 120, num('wsurv.stars.total') + ' vs ' + doc.starsMine);
+      const other = JSON.parse(JSON.stringify(window.__cloud.store['dev-other'])); other.starsMine = 600;
+      window.__cloud.push('dev-other', other);
+      await sleep(50);
+      check('another device update arrives live and opens deep', num('wsurv.themes.owned').includes('deep'), localStorage.getItem('wsurv.themes.owned'));
+    }
     check('no script errors', window.__errors.length === 0, window.__errors.join(' | '));
   } catch (e) {
     check('driver exception', false, e && e.stack || e);
