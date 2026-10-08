@@ -216,32 +216,56 @@ body {
 .fx-ring { border: 3px solid var(--lc); border-radius: 50%; box-sizing: border-box; will-change: transform, opacity; }
 .fx-cork { width: 22px; height: 9px; margin-left: -11px; border-radius: 3px 3px 1px 1px; background: var(--liq8); }
 .fx-edge { border-radius: 4px; box-shadow: 0 0 0 3px var(--danger); }
-.fx-score { left: 0; top: 0; white-space: nowrap; font-family: var(--font-display); font-size: 22px; line-height: 1; color: var(--gold); text-shadow: 0 1px 0 var(--panel), 0 0 6px var(--panel); will-change: transform, opacity; }
+.fx-score { left: 0; top: 0; white-space: nowrap; font-family: var(--font-display); font-size: 24px; line-height: 1; color: #ffd25a; will-change: transform, opacity;
+  text-shadow: 0 2px 0 #8a4b00, 2px 0 0 #8a4b00, -2px 0 0 #8a4b00, 0 -2px 0 #8a4b00, 1.5px 1.5px 0 #8a4b00, -1.5px 1.5px 0 #8a4b00, 1.5px -1.5px 0 #8a4b00, -1.5px -1.5px 0 #8a4b00, 0 4px 8px rgba(0, 0, 0, .25); }
 .coach-dot { width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: rgba(255, 255, 255, .55); box-shadow: 0 0 0 3px var(--accent), 0 2px 8px rgba(0, 0, 0, .25); }
 .coach-piece { opacity: .75; }
 .fx-wave { overflow: hidden; border-radius: 12px; }
 .fx-wave i { position: absolute; top: 0; bottom: 0; left: 0; width: 45%; background: linear-gradient(90deg, transparent, var(--lc), transparent); opacity: .55; }
 /* the stage: the free space under the score (tray under the bottles), or over the score bar (tray on top). It
    shows rewards only; it is placed by layoutStage() and never takes part in the page flow, so it moves nothing. */
-.stage { position: fixed; z-index: 30; display: none; pointer-events: none; border-radius: 14px; }
+.stage { position: fixed; z-index: 30; display: none; pointer-events: none; }
 :root[data-fx="juicy"] .stage { display: block; }
-.st-row { position: absolute; left: 0; right: 0; bottom: 12px; display: flex; align-items: baseline; justify-content: center; gap: 10px; }
-.st-combo { font-family: var(--font-display); font-size: 40px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
-.st-combo:empty { display: none; }
-.st-combo.k3 { color: var(--gold); }
-.st-combo.k5 { color: var(--liq5); text-shadow: 0 0 12px var(--gold-soft); }
-.st-combo.fuse::before { content: ""; display: inline-block; width: 11px; height: 11px; margin-right: 6px; border-radius: 50% 50% 50% 0; background: var(--liq5); transform: rotate(-45deg); vertical-align: 6px; animation: flick .45s ease-in-out infinite alternate; }
-.st-call { font-family: var(--font-display); font-size: 21px; line-height: 1; color: var(--gold); }
-.st-heat { position: absolute; left: 25%; right: 25%; bottom: 2px; height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
-.st-heat i { display: block; height: 100%; width: 0; border-radius: 3px; background: linear-gradient(90deg, var(--liq2), var(--liq5), var(--liq0)); transition: width .2s ease; }
-.stage.hot { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--liq5) 70%, transparent), 0 0 14px color-mix(in srgb, var(--liq5) 35%, transparent); animation: hot .5s ease-in-out infinite alternate; }
-@keyframes hot { to { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--liq0) 70%, transparent), 0 0 20px color-mix(in srgb, var(--liq0) 30%, transparent); } }
-.stage.small .st-row, .stage.small .st-heat { display: none; }
-/* a short stage (360x740), or the stage over the score bar (tray on top), cannot hold a banner and the combo row at
-   once: the banner wins while it shows */
-.stage.tight.bn .st-row, .stage.over.bn .st-row { display: none; }
-.stage.over .st-combo { display: none; }
-.stage.over .st-row { bottom: auto; top: 50%; transform: translateY(-50%); }
+/* the combo badge, just above the board: flame, label, multiplier, and the heat as a gauge along its bottom edge.
+   It shows only while a combo (or heat) runs; the tray-on-top layout keeps the score bar's combo instead. */
+.st-hud { position: absolute; left: 50%; bottom: 10px; display: flex; align-items: center; gap: 7px; padding: 7px 18px 9px 13px; border-radius: 999px;
+  background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden;
+  translate: -50% 0; opacity: 0; scale: .8; transition: opacity .18s ease, scale .28s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease; }
+.st-hud.on { opacity: 1; scale: 1; }
+.st-flame { width: 16px; height: 21px; flex: none; transform-origin: 50% 100%; }
+.st-lab { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+.st-num { font-family: var(--font-display); font-size: 30px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.st-hud.k3 .st-num { background: linear-gradient(#ffe48a, #f0a91c 60%, #d97a12); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.st-hud.k5 .st-num { background: linear-gradient(#ffd9a8, #ff8a3c 55%, #e5484d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* heat with no combo: the flame alone, in a pill wide enough for the gauge to read */
+.st-hud.nok { padding: 8px 24px 10px; }
+.st-hud.nok .st-lab, .st-hud.nok .st-num { display: none; }
+.st-heat { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--liq2), var(--liq5), var(--liq0)); transition: width .25s ease; }
+.st-hud.fuse .st-flame, .st-hud.hot .st-flame { animation: flick .32s ease-in-out infinite alternate; }
+.st-hud.hot { box-shadow: 0 0 0 2px color-mix(in srgb, var(--liq5) 75%, transparent), 0 0 18px color-mix(in srgb, var(--liq5) 45%, transparent); }
+.stage.small .st-hud, .stage.over .st-hud { display: none; }
+/* a short stage (under 112px: 360x740) cannot hold a banner and the badge at once: the banner wins while it shows */
+.stage.tight.bn .st-hud { display: none; }
+/* while a burst plays the badge steps aside, and springs back with the new number */
+.stage.cb-on .st-hud { opacity: 0; scale: .6; }
+/* the combo burst (x2 and up, or two bottles at once): big outlined letters over the stage, gone in under a second.
+   Each line is two copies on one grid cell: a thick outline behind, the fill in front. */
+.cb { width: max-content; display: grid; justify-items: center; translate: -50% -50%; rotate: -5deg; will-change: transform, opacity; }
+.stage.tight.bn .cb, .stage.over.bn .cb { visibility: hidden; }
+.cb-num, .cb-word { display: grid; position: relative; }
+.cb-num > span, .cb-word > span { grid-area: 1 / 1; font-family: var(--font-display); line-height: 1; white-space: nowrap; }
+.cb-num > span { font-size: var(--cbs, 64px); }
+.cb-num .o { color: #7a3500; -webkit-text-stroke: calc(var(--cbs, 64px) * .14) #7a3500; }
+.cb-num .f { background: linear-gradient(#fff3b0, #ffc93c 45%, #f28c1c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cb.k5 .cb-num .f { background: linear-gradient(#fff0d0, #ff9a3c 45%, #e5484d); -webkit-background-clip: text; background-clip: text; }
+.cb-word > span { font-size: calc(var(--cbs, 64px) * .4); margin-top: 3px; }
+.cb-word .o { color: var(--accent); -webkit-text-stroke: calc(var(--cbs, 64px) * .09) var(--accent); }
+.cb-word .f { color: #fff; }
+.cb-num { filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .18)); }
+/* the rays: an ellipse as wide and as tall as the burst's room, level (it undoes the burst's tilt), fading out at its edge */
+.cb-rays { position: absolute; left: 50%; top: 50%; width: var(--rw, 240px); height: var(--rh, 120px); translate: -50% -50%; rotate: 5deg; border-radius: 50%;
+  background: repeating-conic-gradient(color-mix(in srgb, var(--gold) 45%, transparent) 0 9deg, transparent 9deg 22deg);
+  -webkit-mask: radial-gradient(closest-side, #000 35%, transparent); mask: radial-gradient(closest-side, #000 35%, transparent); }
 .banner-layer.staged { place-items: start center; }
 .banner-layer.staged .banner { font-size: 20px; padding: 6px 14px; }
 .banner-layer.staged .banner.big { font-size: 24px; }
@@ -403,7 +427,7 @@ body {
 
 <div class="banner-layer" id="bannerLayer"><div class="banner" id="banner" hidden></div></div>
 <div class="fx-layer" id="fxLayer"></div>
-<div class="stage" id="stage" aria-hidden="true"><div class="st-row"><span class="st-combo" id="stCombo"></span><span class="st-call" id="stCall"></span></div><div class="st-heat" id="stHeat" hidden><i id="stHeatFill"></i></div></div>
+<div class="stage" id="stage" aria-hidden="true"><div class="st-hud" id="stHud"><svg class="st-flame" viewBox="0 0 24 32"><defs><linearGradient id="stFlameG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e5484d"/><stop offset=".55" stop-color="#f2701c"/><stop offset="1" stop-color="#ffd23f"/></linearGradient></defs><path d="M12 1c1 5 8 8.5 8 17a8 8 0 0 1-16 0c0-4.6 2.6-7.4 4.8-9.8.1 3 1.1 4.9 2.7 6 0-4.2.6-8.6.5-13.2z" fill="url(#stFlameG)"/></svg><span class="st-lab">콤보</span><span class="st-num" id="stCombo"></span><i class="st-heat" id="stHeatFill"></i></div></div>
 <div class="danger" id="danger" aria-hidden="true"></div>
 
 <div class="overlay" id="ovHelp" hidden>
@@ -1143,7 +1167,7 @@ function turnRhythm(S) {
   // so an effect is a box on #fxLayer (fixed, no input) over the bottle it belongs to, removed once played.
   const fxLayer = $('fxLayer');
   const fxLive = new Set();
-  function fxAdd(el, ms) { fxLayer.append(el); fxLive.add(el); el.fxTimer = setTimeout(() => fxDrop(el), ms); return el; }
+  function fxAdd(el, ms, into) { (into || fxLayer).append(el); fxLive.add(el); el.fxTimer = setTimeout(() => fxDrop(el), ms); return el; }
   function fxDrop(el) { clearTimeout(el.fxTimer); fxLive.delete(el); el.remove(); }
   // an undo, a new run or a sheet takes every effect away: the effects of a move that is gone would mislead
   function clearFx() {
@@ -1154,7 +1178,7 @@ function turnRhythm(S) {
     fxTimers.clear(); flights.length = 0; drops.length = 0;
     scorePend = 0;
     if (S) paintScore();
-    clearCall();
+    clearBurst();
   }
   // juicy state (6): every later step of an effect runs on one of these timers, so clearFx() can stop them all
   const fxTimers = new Set();
@@ -1169,7 +1193,7 @@ function turnRhythm(S) {
     } catch (e) { return null; }
   }
   function settleAnims() {
-    const els = [cup, ...cup.children, rack, stage, stCombo, stCall, $('score'), ...$('queue').querySelectorAll('.tube.micro')];
+    const els = [cup, ...cup.children, rack, stage, $('score'), ...$('queue').querySelectorAll('.tube.micro')];
     for (const el of els) {
       if (!el) continue;
       for (const a of el.getAnimations()) if (!(a instanceof CSSAnimation) && !(a instanceof CSSTransition)) { try { a.finish(); } catch (e) { /* an endless one */ } }
@@ -1345,10 +1369,11 @@ function turnRhythm(S) {
   }
 
   // F3: flash, hold (hit-stop: the effect's clock only), then burst; the move and the next input are not held up
+  const holdMs = k => FT.flash + 30 + 10 * Math.min(5, Math.max(1, k));
   function impact(c, prefill, order, multi) {
     if (prefill) fxDrop(prefill);
     const t = tubeEl(c.i); if (!t) return;
-    const p = Math.min(5, Math.max(1, c.streak)), hs = 30 + 10 * p;
+    const p = Math.min(5, Math.max(1, c.streak)), hs = holdMs(c.streak) - FT.flash;
     const tr = t.getBoundingClientRect(), box = fxBox(tr), clip = glassClip(t), col = document.createElement('div'), wh = document.createElement('i');
     col.className = 'fx-col'; wh.className = 'fx-white';
     for (let j = 0; j < S.rules.cap; j++) col.append(liq(document.createElement('i'), c.c));
@@ -1450,9 +1475,11 @@ function turnRhythm(S) {
     fxAnim($('score'), [{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'ease-out' });
   }
 
-  // F4, U1: the stage under the score (or over the score bar): the combo, callouts, heat; the banners show there too
-  const stage = $('stage'), stCombo = $('stCombo'), stCall = $('stCall'), stHeat = $('stHeat');
+  // F4, U1: the stage under the score (or over the score bar): the combo badge with the heat, the combo bursts; the
+  // banners show there too
+  const stage = $('stage'), stHud = $('stHud'), stCombo = $('stCombo');
   let stageAt = '';   // the boxes last written: unchanged boxes are not written again (no extra layout per move)
+  let burstAt = null;   // where a burst goes in the stage, as last laid out: it is placed without measuring
   function layoutStage() {
     const bl = $('bannerLayer');
     if (fxMode() !== 'juicy') { if (stageAt) { bl.removeAttribute('style'); bl.classList.remove('staged'); stageAt = ''; } return; }
@@ -1463,6 +1490,11 @@ function turnRhythm(S) {
       const bottom = document.querySelector('.info').getBoundingClientRect().top - 4;
       box = { left: sb.left, width: sb.width, top, height: Math.max(0, bottom - top) };
     } else { box = { left: sb.left, width: sb.width, top: sb.top, height: sb.height }; over = true; }
+    const small = !over && box.height < 56, tight = !over && box.height < 112;
+    // bursts: under the banners' row on a tall stage, over all of a short one, over the score bar when the stage is
+    // too small (as the banners are); top and room are relative to the stage
+    burstAt = small ? { top: sb.top - box.top, room: sb.height, w: box.width, rays: false }
+      : over || tight ? { top: 0, room: box.height, w: box.width, rays: false } : { top: 48, room: box.height - 48, w: box.width, rays: true };
     // banners: in the stage when it has room for one, else over the score bar
     const bb = !over && box.height >= 48 ? box : { left: sb.left, width: sb.width, top: sb.top, height: sb.height };
     const at = [box.left, box.top, box.width, box.height, bb.left, bb.top, bb.width, bb.height].map(Math.round).join() + over;
@@ -1470,8 +1502,8 @@ function turnRhythm(S) {
     stageAt = at;
     Object.assign(stage.style, { left: box.left + 'px', top: box.top + 'px', width: box.width + 'px', height: box.height + 'px' });
     stage.classList.toggle('over', over);
-    stage.classList.toggle('small', !over && box.height < 56);
-    stage.classList.toggle('tight', !over && box.height < 96);
+    stage.classList.toggle('small', small);
+    stage.classList.toggle('tight', tight);
     Object.assign(bl.style, { inset: 'auto', left: bb.left + 'px', top: bb.top + 'px', width: bb.width + 'px', height: bb.height + 'px' });
     bl.classList.add('staged');
   }
@@ -1481,8 +1513,13 @@ function turnRhythm(S) {
   function paintStage() {
     if (fxMode() !== 'juicy' || !S) return;
     const k = S.streak || 0;
-    stCombo.textContent = k >= 1 ? '×' + k : '';
-    stCombo.className = 'st-combo' + (k >= 5 ? ' k5' : k >= 3 ? ' k3' : '') + (fuseOn() ? ' fuse' : '');
+    // after a break the badge fades out still showing the number it had
+    if (k >= 1) {
+      stCombo.textContent = '×' + k;
+      stHud.classList.toggle('k3', k >= 3 && k < 5);
+      stHud.classList.toggle('k5', k >= 5);
+    }
+    stHud.classList.toggle('fuse', fuseOn());
     paintHeat();
     const ex = !$('extraRow').hidden;
     if (stageDirty || ex !== stageExtra) { stageDirty = false; stageExtra = ex; layoutStage(); }
@@ -1490,21 +1527,52 @@ function turnRhythm(S) {
   try { document.fonts.ready.then(() => { stageDirty = true; if (S) paintStage(); }); } catch (e) { /* no font loading API */ }
   // the stage knows when a banner shows (.bn), however it was shown
   new MutationObserver(() => stage.classList.toggle('bn', !$('banner').hidden)).observe($('banner'), { attributes: true, attributeFilter: ['hidden'] });
-  function callout(k) {
-    const text = CALLS[Math.min(5, k)] || '';
-    if (!text) return;
-    stCall.textContent = text;
-    fxAnim(stCall, [{ transform: 'scale(.6)', opacity: 0 }, { transform: 'scale(1.15)', opacity: 1, offset: .25 }, { transform: 'scale(1)', opacity: 1, offset: .4 }, { transform: 'scale(1)', opacity: 1, offset: .8 }, { transform: 'scale(1)', opacity: 0 }], { duration: FT.call });
-    fxAnim(stCombo, [{ transform: 'scale(1.3)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'ease-out' });
-    fxLater(() => { if (stCall.textContent === text) stCall.textContent = ''; }, FT.call);
+  // A completion at x2 or more, or two bottles at once: the multiplier and its word burst out over the stage while
+  // the badge steps aside (layoutStage() picks the place). A burst that would come out under 20px is not shown.
+  let burstEl = null;
+  function comboBurst(k, multi) {
+    const word = multi >= 3 ? '트리플!' : multi === 2 ? '더블!' : CALLS[Math.min(5, k)];
+    const head = k >= 2 ? '×' + k : multi >= 2 ? word : '', sub = k >= 2 ? word : '';
+    if (!head || !burstAt) return;
+    const { top, room } = burstAt, two = !!sub;
+    // the tilted lines' box is about 1.56 (two lines) or 1.3 (one) times the number's size, plus the gap
+    const s = Math.round(Math.min(k >= 2 ? 64 + 6 * Math.min(3, k - 2) : 56, (room - 11) / (two ? 1.56 : 1.3)));
+    if (s < 20) return;
+    if (burstEl) fxDrop(burstEl);
+    const e = burstEl = document.createElement('div');
+    e.className = 'fx cb' + (k >= 5 ? ' k5' : '');
+    e.style.left = '50%'; e.style.top = (top + room / 2) + 'px'; e.style.setProperty('--cbs', s + 'px');
+    const line = (cls, text) => {
+      const d = document.createElement('div'); d.className = cls;
+      for (const c of ['o', 'f']) { const t = document.createElement('span'); t.className = c; t.textContent = text; d.append(t); }
+      return d;
+    };
+    const rays = k >= 3 && burstAt.rays ? document.createElement('i') : null;
+    if (rays) {
+      rays.className = 'cb-rays'; e.append(rays);
+      rays.style.setProperty('--rw', Math.min(burstAt.w - 16, room * 2.4) + 'px'); rays.style.setProperty('--rh', room + 'px');
+    }
+    e.append(line('cb-num', head));
+    if (two) e.append(line('cb-word', sub));
+    fxAdd(e, FT.call + 30, stage);
+    stage.classList.add('cb-on');
+    fxLater(() => { if (burstEl === e) stage.classList.remove('cb-on'); }, FT.call * .8);
+    try {
+      e.animate([{ transform: 'scale(.3)', opacity: 0, easing: 'ease-out' }, { transform: 'scale(1.18)', opacity: 1, offset: .14, easing: 'ease-in-out' },
+        { transform: 'scale(.95)', opacity: 1, offset: .24, easing: 'ease-out' }, { transform: 'scale(1)', opacity: 1, offset: .32 },
+        { transform: 'translateY(-4px) scale(1)', opacity: 1, offset: .62, easing: 'ease-out' }, { transform: 'translateY(-24px) scale(1.04)', opacity: 0 }],
+      { duration: FT.call, fill: 'both' });
+      if (rays) rays.animate([{ transform: 'scale(.5)', opacity: 0 }, { transform: 'scale(.95)', opacity: 1, offset: .2 }, { transform: 'scale(1)', opacity: 0 }],
+        { duration: FT.call, easing: 'ease-out', fill: 'both' });
+    } catch (err) { /* no WAAPI */ }
   }
-  function clearCall() { stCall.textContent = ''; try { stCall.getAnimations().forEach(a => a.cancel()); } catch (e) { /* no WAAPI */ } }
-  // ×3 or more broken: the stage's combo cracks and falls
+  function clearBurst() { burstEl = null; stage.classList.remove('cb-on'); }
+  // x3 or more broken: the badge's number cracks and falls (from the score bar's combo where there is no badge)
   function comboFall(k) {
-    const r = stCombo.getBoundingClientRect();
-    if (!r.width && fxMode() !== 'juicy') return;
-    const sr = stage.getBoundingClientRect(), e = fxEl('fx-score', { left: (r.width ? r.left + r.width / 2 : sr.left + sr.width / 2), top: (r.height ? r.top + r.height / 2 : sr.bottom - 32) });
-    e.textContent = '×' + k; e.style.fontSize = '40px'; e.style.color = 'var(--muted)';
+    const src = [stCombo, stHud, $('combo')].find(el => el.getBoundingClientRect().width);
+    if (!src) return;
+    const r = src.getBoundingClientRect(), e = fxEl('fx-score', { left: r.left + r.width / 2, top: r.top + r.height / 2 });
+    e.textContent = '×' + k; e.style.fontSize = '30px'; e.style.color = 'var(--muted)'; e.style.textShadow = 'none';
     fxAdd(e, 480);
     try { e.animate([{ transform: 'translate(-50%, -50%) rotate(0)', opacity: 1 }, { transform: 'translate(-50%, -50%) translate(10px, 46px) rotate(18deg)', opacity: 0 }], { duration: 450, easing: 'ease-in', fill: 'forwards' }); } catch (err) { /* no WAAPI */ }
   }
@@ -1534,10 +1602,13 @@ function turnRhythm(S) {
   }
   // a fresh start (0: a new run, the setting switched) also forgets the last move, so the next one is not 'quick'
   function setHeat(v) { heat = Math.max(0, Math.min(10, v)); heatSteps = 0; if (!v) heatAt = 0; paintHeat(); }
+  // the badge shows while a combo runs or the heat is up (the flame alone then); hot (7+) sets it alight
   function paintHeat() {
-    stHeat.hidden = !heat || fxMode() !== 'juicy';
+    const k = S ? S.streak || 0 : 0, on = fxMode() === 'juicy' && (k >= 1 || heat > 0);
+    stHud.classList.toggle('on', on);
+    if (on) stHud.classList.toggle('nok', k < 1);
+    stHud.classList.toggle('hot', heat >= 7 && juicy());
     $('stHeatFill').style.width = (heat * 10) + '%';
-    stage.classList.toggle('hot', heat >= 7 && juicy());
   }
 
   // F7 danger: no room for the piece lights the screen edges and beats a heart once; the way out clears them
@@ -1598,14 +1669,14 @@ function turnRhythm(S) {
     const group = () => {
       if (!clears.length) return;
       const maxK = Math.max(...clears.map(c => c.streak));
-      if (clears.length >= 2) banner(clears.length === 2 ? '더블!' : '트리플!', 'combo', 800);
       if (maxK >= 3) restartAnim($('combo'), 'shine');
-      if (maxK >= 4) {
-        restartAnim(rack, 'punch');
-        if (S.lastBigTurn !== S.turn) { S.lastBigTurn = S.turn; banner(maxK >= 5 ? `×${maxK}!!` : `×${maxK}!`, 'combo', 800); }
-      }
-      if (maxK >= 5) { SND.chord(maxK); const sr = stage.getBoundingClientRect(); if (sr.height >= 8) burstDrops(sr, 5, 5, 24); }
-      callout(maxK);
+      if (maxK >= 4) restartAnim(rack, 'punch');
+      if (maxK >= 5) SND.chord(maxK);
+      // the combo bursts with the first bottle, once its hold is over (the burst takes the place of the combo banners)
+      fxLater(() => {
+        comboBurst(maxK, clears.length);
+        if (maxK >= 5) { const sr = stage.getBoundingClientRect(); if (sr.height >= 8) burstDrops(sr, 5, 5, 24); }
+      }, holdMs(maxK));
       clears.forEach((c, j) => fxLater(() => impact(c, c.prefill, j, clears.length), j * 70));
     };
     if (flies.length) {
