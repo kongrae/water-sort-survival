@@ -140,11 +140,39 @@ window.__inputTests = async function (T) {
   const rackTop = () => $('rack').getBoundingClientRect().top;
   const notPlaced = (t0) => G().turn === t0;
 
+  // ---------- helpers for docs/PROMPT_controls2.md (6.2-6.5, 5) ----------
+  const cloudPush = id => window.__cloud.push(id, { v: 1, device: id, starsMine: 1, owned: ['lab'], best: [], daily: [], starsDaily: [], unlock: { runs: 3, sawOver: true, flip: true } });
+  const closeSheets = () => document.querySelectorAll('.overlay').forEach(o => { o.hidden = true; });
+  // a new run through the new-game button (a run in progress asks for a second press)
+  async function newRun() {
+    const seed = G().seed;
+    if (G().turn >= 1 && !G().over) $('btnNew').click();
+    $('btnNew').click();
+    await sleep(40);
+    return G().seed !== seed;
+  }
+  // the selects show the stored setting only once the sheet has opened, so always send the change
+  async function setScheme(c, t) {
+    const sc = $('optControls'), tr = $('optTray');
+    if (c) { sc.value = c; sc.dispatchEvent(new Event('change', { bubbles: true })); }
+    if (t) { tr.value = t; tr.dispatchEvent(new Event('change', { bubbles: true })); }
+    await sleep(30);
+    closeSheets();
+  }
+  const record = () => JSON.parse(localStorage.getItem('wsurv.playtest') || 'null');
+  const row = k => { const r = record(); return (r && r.by[k]) || null; };
+  const KEY = `${MODE}/${TRAY}`;
+
   if (SC === 'geom') return geomTests();
 
   try {
+    await hintTests();   // first: the first pour made in tapPlace ends the pour hints on the device
     if (MODE === 'tapPlace') await tapPlaceTests(); else await classicTests();
     await commonTests();
+    await nudgeTests();
+    await newGameTests();
+    await textTests();
+    await playtestTests();
   } catch (e) { ck('input test exception', false, e && e.stack || e); }
 
   // ---------- classic: cup tap / drag places, bottle taps pour ----------
@@ -498,6 +526,20 @@ window.__inputTests = async function (T) {
       const top1 = $('rack').getBoundingClientRect().top;
       ck('bottom tray: the bottles stay put when the give-up row appears', Math.abs(top1 - top0) < 1 && getComputedStyle($('extraRow')).visibility !== 'hidden', `${top0} -> ${top1}`);
     }
+    if (TRAY === 'low') {
+      await setup(B, [2]);
+      const inc = document.querySelector('.incoming').getBoundingClientRect(), rk = $('rack').getBoundingClientRect();
+      ck('[6.1] low: the piece tray stays on top and the bottles sit in the bottom third', inc.bottom <= rk.top && rk.bottom >= innerHeight * 2 / 3, `tray ${inc.bottom}, rack ${rk.top}-${rk.bottom} of ${innerHeight}`);
+      ck('[6.1] low: the prototype note is hidden', getComputedStyle(document.querySelector('.foot')).display === 'none');
+      const s2 = G(); s2.stuck = 'room'; window.__boot({ S: s2 }); await sleep(60);
+      const rk1 = $('rack').getBoundingClientRect(), row = $('extraRow').getBoundingClientRect();
+      ck('[6.1] low: the bottles stay put when the give-up row appears', Math.abs(rk1.top - rk.top) <= 1 && !$('extraRow').hidden && row.height > 0, `${rk.top} -> ${rk1.top}`);
+      ck('[6.1] low: the give-up row sits above the bottles, away from the thumb', row.bottom <= rk1.top && row.top >= inc.bottom, `row ${row.top}-${row.bottom}, tray ${inc.bottom}, rack ${rk1.top}`);
+      t = G().turn;
+      if (MODE === 'classic') await tap(cup());
+      await tap(tube(2));
+      ck('[6.1] low: a bottle tap still places while the give-up row shows', G().turn === t + 1, status());
+    }
 
     // keyboard only, ten turns, with one pour on the way
     const s = G();
@@ -521,9 +563,278 @@ window.__inputTests = async function (T) {
     ck('no ghost element left over', !document.querySelector('.ghost'));
   }
 
+  // ---------- 6.3 pour hint ----------
+  async function hintTests() {
+    const arc = () => document.querySelector('#fxLayer .pour-hint .arc');
+    const ends = () => { const a = arc(), L = a.getTotalLength(); return [a.getPointAtLength(0), a.getPointAtLength(L)]; };
+    const inBox = (p, el) => { const r = el.getBoundingClientRect(); return p.x >= r.left && p.x <= r.right && p.y >= r.top && p.y <= r.bottom; };
+    // after [0] goes into the empty bottle 3, pouring 0 -> 1 or 1 -> 0 completes a bottle: the hint takes 0 -> 1
+    const DONE = [[1, 1, 1], [1], [0], [], [2], [3]];
+    const done = async () => { await setup(DONE, [0]); if (MODE === 'classic') await tap(cup()); await tap(tube(3)); };
+    if (MODE === 'classic') {
+      let t = G().turn;
+      await done();
+      ck('[6.3] classic: no pour hint', G().turn === t + 1 && !arc());
+      return;
+    }
+    // the only completing pour goes out of the spare cup: no hint
+    const sp = G(); sp.rules.spare = true;
+    await setup([[1, 1, 1], [0], [2], [], [3], [0, 2]], [0], { spare: [1], spareTurn: sp.turn });
+    let t = G().turn;
+    await tap(tube(3));
+    ck('[6.3] no hint when only a pour from the spare cup would complete a bottle', G().turn === t + 1 && !arc());
+    G().rules.spare = false;
+    t = G().turn;
+    await done();
+    ck('[6.3] a placement that leaves a completing pour draws the hint', G().turn === t + 1 && !!arc());
+    if (!arc()) return;
+    const [p0, p1] = ends();
+    ck('[6.3] the arrow starts in the source bottle and ends in the target (completing, lowest source first)', inBox(p0, tube(0)) && inBox(p1, tube(1)), `${Math.round(p0.x)},${Math.round(p0.y)} -> ${Math.round(p1.x)},${Math.round(p1.y)}`);
+    ck('[6.3] the arrow is labelled', (document.querySelector('#fxLayer .pour-hint-label') || {}).textContent === '끌어서 부어요');
+    ck('[6.3] the hint takes no input and leaves the status line alone', getComputedStyle($('fxLayer')).pointerEvents === 'none' && !status().includes('끌어서'), status());
+    // prefs.reduceFx is still its default here: on when the system asks for reduced motion
+    ck('[6.3] the arrow moves only without reduced effects', document.querySelector('.pour-hint').classList.contains('moving') === !matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (PT === 'touch') {
+      t = G().turn;
+      await tapAt(p1.x, p1.y);   // bottle 1 has room for any piece
+      ck('[6.3] a tap on the bottle under the arrow places as usual and the arrow goes', G().turn === t + 1 && !arc(), G().turn - t);
+      ck('[6.3] once per run', (await done(), !arc()));
+      await newRun(); await done();
+      ck('[6.3] the next run shows it again', !!arc());
+      await tapAt(...center($('status')));
+      ck('[6.3] any input clears it', !arc());
+      await newRun();
+      await stuckCase();
+      await newRun(); await done();
+      ck('[6.3] after three hints on this device the fourth run shows none', !arc() && JSON.parse(localStorage.getItem('wsurv.prefs')).pourHints === 3, localStorage.getItem('wsurv.prefs'));
+    } else {
+      await esc();
+      await newRun();
+      await stuckCase();
+      await setup(B, [2]);
+      const p = await press(tube(0)); await moveTo(p, ...center(tube(5))); await release(p);
+      ck('[6.3] a pour in tapPlace uses up the hints, stored on the device (a reload keeps it)', G().bottles[5].length === 1 && JSON.parse(localStorage.getItem('wsurv.prefs')).pourHints === 3, localStorage.getItem('wsurv.prefs'));
+      await newRun(); await done();
+      ck('[6.3] after that pour no run shows the hint', !arc());
+    }
+    await esc();
+
+    // no room for the 2-cell piece after the placement; one pour (0 -> 5, or 5 -> 0) makes room
+    async function stuckCase() {
+      const s0 = G();
+      let turn = -1;
+      for (let k = 1; k < 18 && turn < 0; k++) if (pieceAt(s0.seed, s0.rules, k + 1).length === 2 && !isTwinTurn(s0.rules, k + 1)) turn = k;
+      if (turn < 0) { ck('[6.3] stuck case: a 2-cell piece within the first zone', false); return; }
+      await setup([[0, 1, 2], [1, 2, 3], [2, 3, 0], [3, 0, 1], [0, 1, 2, 3], [2, 3]], [2], { turn, cum: Array(turn).fill(0) });
+      await tap(tube(5));
+      const s = G();
+      const ok = !!arc() && inBox(ends()[0], tube(0)) && inBox(ends()[1], tube(5));
+      ck('[6.3] no room for the piece: the hint shows the one pour that makes room, lowest source first', s.stuck === 'room' && ok, `stuck ${s.stuck}, piece ${s.piece.length}, arc ${!!arc()}`);
+    }
+  }
+
+  // ---------- 6.2 undo nudge ----------
+  async function nudgeTests() {
+    const lit = () => $('btnUndo').classList.contains('nudge');
+    const fresh = { undoLeft: 3, undoUsed: 0 };
+    if (MODE === 'classic') {
+      await setup(B, [2], fresh); await tap(cup()); await tap(tube(5));
+      ck('[6.2] classic: a placement does not outline undo', G().bottles[5].length === 1 && !lit());
+      return;
+    }
+    await setup(B, [2], fresh);
+    const before = JSON.stringify(G().bottles), quick0 = (row(KEY) || {}).quickUndos || 0;
+    await tap(tube(5));
+    const ub = $('btnUndo').getBoundingClientRect();
+    ck('[6.2] a placement by bottle tap outlines the undo button, label and size unchanged', lit() && $('btnUndo').textContent === '되돌리기 3' && Math.round(ub.height) === 44, `${$('btnUndo').className} ${$('btnUndo').textContent} ${ub.height}`);
+    cloudPush('dev-nudge'); await sleep(30);
+    ck('[6.2] the outline stays through a render from a cloud merge', lit());
+    await tap(tube(4));
+    ck('[6.2] a refused tap leaves it on', lit() && tube(4).classList.contains('shake'));
+    await tap($('btnUndo'));
+    const s = G();
+    ck('[6.2] pressing it goes back to before the placement', JSON.stringify(s.bottles) === before && s.undoLeft === 2 && s.undoUsed === 1 && !lit(), `${JSON.stringify(s.bottles)} left ${s.undoLeft} used ${s.undoUsed}`);
+    ck('[6.2] and counts as a quick undo', (row(KEY) || {}).quickUndos === quick0 + 1, JSON.stringify(row(KEY)));
+    await setup(B, [2], fresh); await tap(tube(5));
+    await sleep(5100);
+    ck('[6.2] the outline goes after 5 seconds', !lit());
+    await setup(B, [2], fresh); await tap(tube(5)); let t = G().turn;
+    await tap(tube(2));
+    ck('[6.2] another placement by bottle tap turns it off', G().turn === t + 1 && !lit());
+    await setup(B, [2], fresh); await tap(tube(5));
+    let p = await press(tube(1)); await moveTo(p, ...center(tube(5))); await release(p);
+    ck('[6.2] a pour turns it off', G().bottles[5].join() === '2,2' && !lit(), JSON.stringify(G().bottles));
+    await setup(B, [2], fresh); await tap(tube(5));
+    p = down(...center(tube(0))); await hold(p, 650); await release(p);
+    ck('[6.2] a long press that picks a source turns it off', isSel(tube(0)) && !lit());
+    await esc();
+    await setup(B, [2], fresh); t = G().turn;
+    p = await press(cup()); await moveTo(p, ...center(tube(5)), true); await release(p);
+    ck('[6.2] a placement by dragging the piece gives no outline', G().turn === t + 1 && !lit());
+    await setup(B, [2], fresh); await tap(tube(5));
+    $('btnSettings').click(); await sleep(20);
+    ck('[6.2] opening a sheet turns it off', !lit());
+    closeSheets();
+    const red = $('optReduce'), was = red.checked;
+    if (!was) { red.checked = true; red.dispatchEvent(new Event('change', { bubbles: true })); }
+    await setup(B, [2], fresh); await tap(tube(5));
+    ck('[6.2] with reduced effects the outline does not blink', lit() && $('btnUndo').classList.contains('still') && getComputedStyle($('btnUndo')).animationName === 'none', getComputedStyle($('btnUndo')).animationName);
+    if (!was) { red.checked = false; red.dispatchEvent(new Event('change', { bubbles: true })); }
+    await setup(B, [2], { undoLeft: 0 }); await tap(tube(5));
+    ck('[6.2] no outline when no undo is left', !lit());
+  }
+
+  // ---------- 6.4 new game confirmation ----------
+  async function newGameTests() {
+    const nb = $('btnNew');
+    await setup(B, [2], { turn: 5 });
+    let seed = G().seed;
+    await tap(nb);
+    ck('[6.4] one press on a run in progress keeps the run', G().seed === seed && G().turn === 5);
+    ck('[6.4] the button asks for one more press, the status line says why', nb.textContent === '한 번 더' && status() === '3초 안에 한 번 더 누르면 새 판을 시작해요' && Math.round(nb.getBoundingClientRect().height) === 44, `${nb.textContent} / ${status()} / ${nb.getBoundingClientRect().height}`);
+    cloudPush('dev-ng'); await sleep(30);
+    ck('[6.4] a render from a cloud merge keeps the question', nb.textContent === '한 번 더');
+    await tap(nb);
+    ck('[6.4] a second press within 3 seconds starts a new run', G().seed !== seed && G().turn === 0 && nb.textContent === '새 게임', nb.textContent);
+    await setup(B, [2], { turn: 5 }); seed = G().seed;
+    await tap(nb); await sleep(3100);
+    ck('[6.4] after 3 seconds the question lapses', nb.textContent === '새 게임' && G().seed === seed);
+    await tap(nb);
+    ck('[6.4] a press after the lapse asks again instead of starting', G().seed === seed && nb.textContent === '한 번 더');
+    if (MODE === 'classic') await tap(cup());
+    await tap(tube(5));
+    ck('[6.4] a placement calls the question off', nb.textContent === '새 게임' && G().turn === 6);
+    await tap(nb);
+    ck('[6.4] so the next press within 3 seconds asks again', G().seed === seed && nb.textContent === '한 번 더');
+    await sleep(3100);
+    await setup(B, [2], { turn: 5 }); seed = G().seed;
+    await key(nb, 'Enter');
+    for (let k = 0; k < 3; k++) {
+      const d = new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', repeat: true, bubbles: true, cancelable: true, composed: true });
+      nb.dispatchEvent(d);
+      if (!d.defaultPrevented) nb.click();
+      await sleep(20);
+    }
+    ck('[6.4] a held Enter (repeated keydown) does not start a new run', G().seed === seed && nb.textContent === '한 번 더');
+    await sleep(3100);
+    await setup(B, [2], { turn: 0 }); seed = G().seed;
+    await tap(nb);
+    ck('[6.4] at turn 0 one press starts a new run', G().seed !== seed);
+    await setup(B, [2], { turn: 5, over: true, overReason: 'gaveup' }); seed = G().seed;
+    nb.click(); await sleep(30);
+    ck('[6.4] after game over one press starts a new run', G().seed !== seed && !G().over);
+    closeSheets();
+  }
+
+  // ---------- 6.5 texts ----------
+  async function textTests() {
+    const help = () => { $('btnHelp').click(); const r = [$('helpPlace').textContent, $('helpPour').textContent]; closeSheets(); return r; };
+    const TAP = ['조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.', '병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.'];
+    const CLASSIC = [(TRAY === 'bottom' ? '아래에' : '위에') + ' 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.', '병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.'];
+    const mine = MODE === 'tapPlace' ? TAP : CLASSIC, other = MODE === 'tapPlace' ? CLASSIC : TAP;
+    let h = help();
+    ck('[6.5] help lines for placing and pouring follow the scheme', h[0] === mine[0] && h[1] === mine[1], h.join(' / '));
+    await setScheme(MODE === 'tapPlace' ? 'classic' : 'tapPlace');
+    h = help();
+    ck('[6.5] the help picks its lines again when opened after a scheme switch', h[0] === other[0] && h[1] === other[1], h.join(' / '));
+    await setScheme(MODE);
+    await setup(B, [2], { turn: 3 });
+    ck('[6.5] the everyday status line follows the scheme', status() === (MODE === 'tapPlace' ? '병을 눌러 조각을 넣고, 병끼리 끌어 부어서 한 색으로 채우세요.' : '조각을 넣고, 병끼리 부어서 한 색으로 채우세요.'), status());
+  }
+
+  // ---------- 5 play-test record ----------
+  async function playtestTests() {
+    $('btnSettings').click();
+    const since0 = (record() || {}).since;
+    await sleep(15);
+    $('btnPtReset').click();
+    let r = record();
+    ck('[5] reset empties the record and restarts its clock', !!r && r.v === 1 && Object.keys(r.by).length === 0 && r.since !== since0 && $('ptText').value.includes('아직 기록이 없어요'), JSON.stringify(r));
+    closeSheets();
+    const fresh = { undoLeft: 3, undoUsed: 0 };
+    // 3 placements by tap
+    for (let k = 0; k < 3; k++) { await setup(B, [2]); if (MODE === 'classic') await tap(cup()); await tap(tube(5)); }
+    let p;
+    if (MODE === 'tapPlace') {
+      for (let k = 0; k < 2; k++) { await setup(B, [2]); p = await press(tube(0)); await moveTo(p, ...center(tube(5))); await release(p); }
+      await setup(B, [2]); p = down(...center(tube(0))); await hold(p, 650); await release(p); await tap(tube(5));
+      await setup(B, [2]); await key(tube(0), 'Enter', true); await key(tube(5), 'Enter');
+    } else {
+      for (let k = 0; k < 2; k++) { await setup(B, [2]); await tap(tube(0)); await tap(tube(5)); }
+      await setup(B, [2]); await key(tube(0), ' '); await key(tube(5), ' ');
+    }
+    // 2 refusals
+    await setup(B, [2, 3]);
+    if (MODE === 'classic') { await tap(cup()); await tap(tube(4)); await tap(tube(3)); await tap(cup()); } else { await tap(tube(4)); await tap(tube(3)); }
+    // drops outside the rack, then Escape on a selection and on a drag
+    await setup(B, [2]); p = await press(cup()); await moveTo(p, ...center($('status')), true); await release(p);
+    if (MODE === 'tapPlace') { await setup(B, [2]); p = await press(tube(0)); await moveTo(p, ...center($('status'))); await release(p); }
+    await setup(B, [2]);
+    if (MODE === 'classic') await tap(cup()); else { p = down(...center(tube(0))); await hold(p, 650); await release(p); }
+    await esc();
+    await setup(B, [2]); p = await press(cup()); await moveTo(p, ...center(tube(2)), true); await esc(); await release(p);
+    // 2 undos: one right after a placement by tap (quick), one after a pour
+    await setup(B, [2], fresh); if (MODE === 'classic') await tap(cup()); await tap(tube(5)); await tap($('btnUndo'));
+    await setup(B, [2], fresh);
+    if (MODE === 'tapPlace') { p = await press(tube(0)); await moveTo(p, ...center(tube(5))); await release(p); } else { await tap(tube(0)); await tap(tube(5)); }
+    await tap($('btnUndo'));
+    // a new-game question left to lapse
+    await setup(B, [2], { turn: 5 }); await tap($('btnNew')); await sleep(3100);
+    r = row(KEY);
+    const want = MODE === 'tapPlace'
+      ? { runs: 0, turns: 4, pours: { tap: 0, drag: 3, hold: 1, key: 1 }, pourLikeTaps: 0, quickUndos: 1, undos: 2, rejects: 2, cancels: 4, newGameAborts: 1 }
+      : { runs: 0, turns: 4, pours: { tap: 3, drag: 0, hold: 0, key: 1 }, pourLikeTaps: 0, quickUndos: 1, undos: 2, rejects: 2, cancels: 3, newGameAborts: 1 };
+    ck('[5] every counted input lands exactly once under its scheme/layout key', JSON.stringify(r) === JSON.stringify(want), `got ${JSON.stringify(r)}`);
+    ck('[5] nothing is counted under any other key', Object.keys(record().by).join() === KEY, Object.keys(record().by).join());
+
+    // pour-like taps: tapPlace only, a bottle that could have taken the pour, within 1s, nothing in between
+    const plt = () => (row(KEY) || {}).pourLikeTaps || 0;
+    let n0 = plt();
+    if (MODE === 'tapPlace') {
+      await setup(B, [2]); await tap(tube(2)); await tap(tube(5));
+      ck('[5] a quick tap on a bottle the placed-into one could pour into counts once', plt() === n0 + 1, plt() - n0);
+      n0 = plt();
+      await setup(B, [2]); await tap(tube(2)); await tap(tube(3));
+      ck('[5] a quick tap on a bottle it could not pour into does not count', plt() === n0);
+      await setup(B, [2]); await tap(tube(2)); await sleep(1100); await tap(tube(5));
+      ck('[5] a tap after more than a second does not count', plt() === n0);
+      await setup(B, [2]); await tap(tube(2)); await tapAt(...center($('status'))); await tap(tube(5));
+      ck('[5] an input in between breaks the pair', plt() === n0);
+    } else {
+      await setup(B, [2]); await tap(cup()); await tap(tube(2)); await tap(tube(1));
+      ck('[5] classic counts no pour-like taps', plt() === n0);
+      await esc();
+    }
+
+    // runs: counted when a run starts, under the key of that moment; a scheme switch mid-run moves later counts
+    $('btnSettings').click(); $('btnPtReset').click(); closeSheets();
+    await newRun();
+    const other = MODE === 'classic' ? 'tapPlace' : 'classic';
+    await setScheme(other);
+    await setup(B, [2]); if (other === 'classic') await tap(cup()); await tap(tube(5));
+    const a = row(KEY), b = row(`${other}/${TRAY}`);
+    ck('[5] a scheme switch mid-run: later moves count under the new key, the run only under the first', !!a && a.runs === 1 && a.turns === 0 && !!b && b.runs === 0 && b.turns === 1, JSON.stringify(record().by));
+    await setScheme(MODE);
+    $('btnSettings').click();
+    ck('[5] the settings sheet shows one line per key', $('ptText').value.split('\n').length === 3 && $('ptText').value.includes(`${KEY} · 1판 0턴`), $('ptText').value);
+    closeSheets();
+
+    // the record stays on the device: the cloud document holds only what it held before
+    await setup([[1, 2, 3], [2, 3, 1, 0], [3, 1, 2, 0], [1, 3, 2, 1], [2, 1, 3, 2], [3, 2, 1, 3]], [0]);
+    if (MODE === 'classic') await tap(cup());
+    await tap(tube(0));
+    await sleep(2600);
+    const doc = window.__cloud.store[JSON.parse(localStorage.getItem('wsurv.device'))] || {};
+    const keys = Object.keys(doc).sort().join();
+    ck('[5] the cloud save (made after the run ended) carries no play-test record', G().over && doc.savedAt >= record().since && keys === 'best,daily,device,owned,savedAt,starsDaily,starsMine,unlock,v', `${keys} saved ${doc.savedAt} since ${record().since}`);
+    closeSheets();
+  }
+
   // ---------- geometry ----------
   async function geomTests() {
     const size = P.get('size'), rules = P.get('rules') || 'default';
+    // measure the settled page: while the web fonts load, a fallback font can wrap the header for a moment (+25px)
+    try { await Promise.race([document.fonts.ready, sleep(5000)]); } catch (e) { /* no font loading API */ }
     const s = G();
     s.piece = [0, 1]; s.flipped = false;
     s.spare = []; s.rules.spare = true; s.spareTurn = s.turn;
@@ -544,6 +855,21 @@ window.__inputTests = async function (T) {
     const bottles = [...document.querySelectorAll('#rack .tube')].map(item);
     const rk = $('rack').getBoundingClientRect();
     const rackThird = Math.max(0, rk.bottom - Math.max(rk.top, third)) / rk.height;
+    // from the lower end of the bottles' hit area (5.2 lines through each centre) to the nearest control below it
+    function gapBelowBottles() {
+      const tubes = [...document.querySelectorAll('#rack .tube')];
+      let hitBottom = 0;
+      for (const el of tubes) {
+        const [cx, cy] = center(el);
+        let n = 0;
+        while (n < 600) { const h = document.elementFromPoint(cx, cy + n + 1); if (!h || !(h === el || el.contains(h))) break; n++; }
+        hitBottom = Math.max(hitBottom, cy + n);
+      }
+      const below = [...document.querySelectorAll('button, select, input, a[href]')]
+        .filter(el => !el.closest('#rack, #spareSlot')).map(el => el.getBoundingClientRect())
+        .filter(r => r.width > 0 && r.height > 0 && r.top >= hitBottom);
+      return below.length ? Math.min(...below.map(r => r.top)) - hitBottom : null;
+    }
     const d = {
       size, tray: TRAY, rules, vw: innerWidth, vh,
       scrollW: document.documentElement.scrollWidth, scrollH: document.documentElement.scrollHeight,
@@ -551,7 +877,23 @@ window.__inputTests = async function (T) {
       newGame: item($('btnNew')), help: item($('btnHelp')), settings: item($('btnSettings')),
       bottles, rack: { top: rk.top, bottom: rk.bottom }, incoming: box(document.querySelector('.incoming')),
       cupVh: box(cup()).cy / vh, rackInThumbFrac: rackThird, bottlesCentredInThumb: bottles.filter(b => b.cy >= third).length,
+      bottleCentreVh: bottles.map(b => +(b.cy / vh).toFixed(3)), gapBelowBottles: gapBelowBottles(),
     };
+    // stuck: the give-up row appears; does the rack move?
+    const st = G(); st.stuck = 'room'; window.__boot({ S: st }); await sleep(80);
+    const ex = $('extraRow');
+    d.stuckRowShown = !ex.hidden && getComputedStyle(ex).visibility !== 'hidden';
+    d.stuckRackShift = $('rack').getBoundingClientRect().top - rk.top;
+    d.stuckScrollH = document.documentElement.scrollHeight;
+    d.stuckGapBelowBottles = gapBelowBottles();
+    const st2 = G(); st2.stuck = null; window.__boot({ S: st2 }); await sleep(80);
+    // the same page in the top layout (same size, rules and motion mode), for the low layout's overflow check
+    if (TRAY === 'low') {
+      const sel = $('optTray');
+      sel.value = 'top'; sel.dispatchEvent(new Event('change', { bubbles: true })); await sleep(80);
+      d.topScrollH = document.documentElement.scrollHeight;
+      sel.value = 'low'; sel.dispatchEvent(new Event('change', { bubbles: true })); await sleep(80);
+    }
     send({ sc: SC, data: d });
     const tag = `[geom ${size} ${TRAY} ${rules}] `;
     const g = (name, cond, detail) => check(tag + name, cond, detail);
@@ -571,6 +913,17 @@ window.__inputTests = async function (T) {
     if (TRAY === 'bottom') {
       g('piece tray below the rack', d.incoming.y >= d.rack.bottom - 1, `${d.incoming.y} vs ${d.rack.bottom}`);
       g('8px or more between the piece tray and the buttons', d.undo.y - (d.incoming.y + d.incoming.h) >= 8, d.undo.y - (d.incoming.y + d.incoming.h));
+    }
+    if (TRAY === 'low') {
+      g('[6.1] piece tray above the rack', d.incoming.y + d.incoming.h <= d.rack.top, `${d.incoming.y + d.incoming.h} vs ${d.rack.top}`);
+      if (rules === 'default') {
+        if (size.startsWith('360')) g('[6.1] half the rack or more in the bottom third', d.rackInThumbFrac >= 0.5, d.rackInThumbFrac.toFixed(3));
+        else g('[6.1] all six bottle centres in the bottom third', d.bottlesCentredInThumb === 6, d.bottlesCentredInThumb);
+        g('[6.1] the bottles stay put when the give-up row appears', d.stuckRowShown && Math.abs(d.stuckRackShift) <= 1, `shown ${d.stuckRowShown}, moved ${d.stuckRackShift}`);
+      } else {
+        g('[6.1] max settings: no taller than the top layout', d.scrollH <= d.topScrollH, `${d.scrollH} > ${d.topScrollH}`);
+      }
+      g('[6.1] 24px or more from the bottles down to the next control', d.gapBelowBottles !== null && d.gapBelowBottles >= 24 && d.stuckGapBelowBottles >= 24, `${d.gapBelowBottles}, stuck ${d.stuckGapBelowBottles}`);
     }
   }
 };

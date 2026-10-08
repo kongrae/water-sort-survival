@@ -47,6 +47,8 @@ async function main() {
       { controls: 'classic', tray: 'top', input: 'touch' }, { controls: 'classic', tray: 'top', input: 'mouse' },
       { controls: 'tapPlace', tray: 'top', input: 'touch' }, { controls: 'tapPlace', tray: 'top', input: 'mouse' },
       { controls: 'classic', tray: 'bottom', input: 'touch' }, { controls: 'tapPlace', tray: 'bottom', input: 'touch' },
+      { controls: 'tapPlace', tray: 'low', input: 'touch' }, { controls: 'tapPlace', tray: 'low', input: 'mouse' },
+      { controls: 'classic', tray: 'low', input: 'touch' },
     ]) {
       const touchIn = v.input === 'touch';
       await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: touchIn });
@@ -132,6 +134,15 @@ async function main() {
         ck('a second finger during a drag does not place twice or leave a ghost', s.turn - s0.turn <= 1 && s.ghosts === 0, JSON.stringify(s));
         const sc = await js('[document.scrollingElement.scrollTop, document.documentElement.scrollHeight, innerHeight]');
         ck('the page did not scroll', sc[0] === 0, JSON.stringify(sc));
+        // a run in progress: the new-game button asks for a second tap
+        await setup(); await js(`(() => { const s = window.__snapFn().S; s.turn = 5; window.__boot({ S: s }); return true; })()`); await sleep(200);
+        const nb = await js(`(() => { const r = document.getElementById('btnNew').getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+        const game = () => js(`({ seed: window.__snapFn().S.seed, turn: window.__snapFn().S.turn, text: document.getElementById('btnNew').textContent })`);
+        const g0 = await game();
+        await tap(nb); const g1 = await game();
+        ck('one tap on new game keeps the run and asks for another', g1.seed === g0.seed && g1.turn === 5 && g1.text === '한 번 더', JSON.stringify(g1));
+        await tap(nb); const g2 = await game();
+        ck('a second tap starts a new run', g2.seed !== g0.seed && g2.turn === 0 && g2.text === '새 게임', JSON.stringify(g2));
         // the tap that ends the run opens the result sheet at once (reduced effects); Chrome then sends that tap's
         // click to whatever is under the finger, so it must not press a sheet button
         await js(`(() => { const r = document.getElementById('optReduce'); if (!r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); } return true; })()`);

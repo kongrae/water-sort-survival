@@ -175,9 +175,12 @@ body {
 .tube.spare::after { content: ""; position: absolute; top: 0; bottom: 0; left: -5px; right: -5px; }
 /* tapPlace: bottles take drags and long presses themselves */
 [data-controls="tapPlace"] #rack, [data-controls="tapPlace"] #rack .tube, [data-controls="tapPlace"] #spareSlot .tube { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
-/* tray below the bottles: the rack and tray sit low, nearer the thumb */
-.app.tray-bottom { min-height: 100%; }
-.app.tray-bottom > .zbar, .app.tray-bottom > .zbar[hidden] + .rack { margin-top: auto; }
+/* tray below the bottles (bottom), or the tray on top and the bottles low (low): the rack sits low, nearer the thumb */
+.app.tray-bottom, .app.tray-low { min-height: 100%; }
+.app.tray-bottom > .zbar, .app.tray-bottom > .zbar[hidden] + .rack,
+.app.tray-low > .zbar, .app.tray-low > .zbar[hidden] + .rack { margin-top: auto; }
+/* low: only what sits below the bottles decides how low they go, so the prototype note goes */
+.app.tray-low > .foot { display: none; }
 .layer.pop { animation: pop .22s ease-out; }
 .burst { position: absolute; inset: 3px; display: flex; flex-direction: column-reverse; gap: 2px; pointer-events: none; animation: burst .55s ease-out forwards; }
 .burst i { height: calc(var(--lh) - 2px); border-radius: 5px; }
@@ -190,6 +193,17 @@ body {
 .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .btn { min-height: 44px; padding-inline: 10px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 14px var(--font-body); cursor: pointer; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.armed { border-color: var(--danger); color: var(--danger); }   /* new game waiting for the confirming press */
+.btn.nudge { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }   /* undo right after a placement by tap */
+.btn.nudge:not(.still) { animation: nudge .5s ease-in-out 3; }
+@keyframes nudge { 50% { box-shadow: 0 0 0 5px var(--accent-soft); } }
+/* pour hint: dashed arc from bottle to bottle over the board (the fx layer takes no input) */
+.pour-hint { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+.pour-hint .arc { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 7 6; }
+.pour-hint .head { fill: var(--accent); }
+.pour-hint.moving .arc { animation: march .7s linear infinite; }
+@keyframes march { to { stroke-dashoffset: -13; } }
+.pour-hint-label { position: absolute; transform: translate(-50%, -100%); padding: 2px 8px; border-radius: 8px; background: var(--panel); color: var(--accent); box-shadow: var(--shadow); font: 700 13px/1.5 var(--font-body); white-space: nowrap; }
 .btn:disabled { opacity: .45; cursor: default; }
 .btn:focus-visible, .sbtn:focus-visible, .flipbtn:focus-visible, .offer:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .center-row { display: flex; justify-content: center; }
@@ -323,8 +337,8 @@ body {
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
     <h2 id="helpTitle">이렇게 플레이해요</h2>
     <ul class="rules">
-      <li><b>조각 넣기</b>위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요. 빈칸이 충분하면 어느 병에든 들어가요.</li>
-      <li><b>붓기</b>병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요. 받는 병이 비었거나 맨 위 색이 같아야 해요.</li>
+      <li><b>조각 넣기</b><span id="helpPlace">위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.</span> 빈칸이 충분하면 어느 병에든 들어가요.</li>
+      <li><b>붓기</b><span id="helpPour">병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.</span> 받는 병이 비었거나 맨 위 색이 같아야 해요.</li>
       <li><b>완성</b>한 색으로 가득 찬 병은 저절로 비워지고 점수를 얻어요. 여러 턴 연속으로 완성하면 콤보 배수가 올라가요.</li>
       <li><b>게임 오버</b>턴이 지날수록 색이 늘어나요. 조각을 넣을 자리를 만들 수 없으면 끝나요.</li>
     </ul>
@@ -367,7 +381,7 @@ body {
     <h3>조작 (프로토타입, 바로 적용)</h3>
     <div class="fields">
       <div class="field"><label for="optControls">조작 방식</label><select id="optControls"><option value="classic">조각 누르고 병 누르기</option><option value="tapPlace">병 누르면 바로 넣기</option></select></div>
-      <div class="field"><label for="optTray">조각 칸 위치</label><select id="optTray"><option value="top">위</option><option value="bottom">아래 (엄지 쪽)</option></select></div>
+      <div class="field"><label for="optTray">배치</label><select id="optTray"><option value="top">조각 칸 위</option><option value="bottom">조각 칸 아래</option><option value="low">병 줄을 아래로</option></select></div>
     </div>
     <h3>화면 (바로 적용)</h3>
     <label class="check"><input type="checkbox" id="optSound"><span>소리</span></label>
@@ -377,6 +391,13 @@ body {
     <label class="check"><input type="checkbox" id="optPace"><span>최고 기록 페이스<small>점수 아래에 최고 기록(또는 지난 판)과의 차이를 보여줘요.</small></span></label>
     <label class="check"><input type="checkbox" id="optStaged"><span>단계별 안내<small>끄면 새 기능이 처음부터 모두 보여요.</small></span></label>
     <label class="check"><input type="checkbox" id="optSymbols"><span>색 기호 표시<small>색마다 모양 기호를 함께 보여줘요.</small></span></label>
+    <h3>플레이 테스트 기록</h3>
+    <div class="share">
+      <label for="ptText">조작 방식/배치별로 이 기기에서 센 횟수예요. 게임에는 영향이 없어요.</label>
+      <textarea id="ptText" rows="5" readonly></textarea>
+      <div class="row2"><button class="btn" id="btnPtCopy" type="button">복사</button><button class="btn" id="btnPtReset" type="button">초기화</button></div>
+      <p class="note" id="ptMsg"></p>
+    </div>
     <button class="btn" type="button" data-close>닫기</button>
   </div>
 </div>
@@ -869,6 +890,7 @@ function turnRhythm(S) {
   let paceDisp = null;       // pace label shown for the current run
   let lastWarnTurn = -1;
   let hadSpare = false;
+  let newArm = 0;            // timer of a new-game press waiting for its confirming second press (0 = none)
   let prefs = Object.assign({ symbols: false, sound: true, vibrate: true, reduceFx: reducedMotion, ghost: true, pace: true, staged: true, offerSpare: true }, LS.get('wsurv.prefs', {}));
   let unlock = Object.assign({ runs: 0, sawOver: false, flip: false }, LS.get('wsurv.unlock', {}));
   const savePrefs = () => LS.set('wsurv.prefs', prefs);
@@ -1031,15 +1053,19 @@ function turnRhythm(S) {
       S = newState(mode, seed, rules);
       S.cum = []; S.rescueAds = 0;
       S.bestAtStart = LS.get(bestKeyFor(S), 0);
+      ptAdd('runs');
+      hintedRuns.delete(S.seed);   // a daily retry keeps its seed but is a new run
     }
     LS.set('wsurv.mode', mode);
     history = []; sel = null; fxq = []; flash = note; overClosed = false; paceDisp = null; hadSpare = !!S.spare;
+    lastMove = null; lastTap = null; nudgeUndo(false);
     rack.classList.remove('dead');
     closeAll();
     commit();
   }
   function snapshot() { history.push(JSON.stringify(S)); if (history.length > 40) history.shift(); }
   function commit() {
+    disarmNew(true);
     if (hadSpare && !S.spare && S.spareUsed) { SND.crack(); if (!flash) flash = '임시 잔이 비어서 사라졌어요.'; }
     render();
     hadSpare = !!S.spare;
@@ -1111,11 +1137,18 @@ function turnRhythm(S) {
   // screen readers) still act through the click listeners.
   const SLOP = 8, LONG_MS = 450, LIFT = 12;
   const ctl = () => prefs.controls === 'tapPlace' ? 'tapPlace' : 'classic';
-  const tray = () => prefs.tray === 'bottom' ? 'bottom' : 'top';
+  const tray = () => prefs.tray === 'bottom' || prefs.tray === 'low' ? prefs.tray : 'top';
   let gest = null;              // { kind: 'cup' | 'press' | 'pour' | 'none', id, x, y, ... }
   const ignored = new Set();    // pointers that started during another gesture or were cancelled by Escape
   let quietUntil = 0;           // clicks before this time come from a pointer gesture that has been handled
   const now = () => performance.now();
+  // for the play-test record and the undo nudge (UI state only, never saved with the run)
+  let selVia = 'tap';           // how the pour source in sel was picked: 'tap' | 'hold' | 'key'
+  let lastMove = null;          // { kind: 'tapPlace' | 'dragPlace' | 'pour' | 'flip' | 'undo', at }: the last move made
+  let lastTap = null;           // tapPlace: { slot, at, seq, pourable } of the last placement by a bottle tap
+  let inputSeq = 0, inputAt = 0;   // count and time of the presses and key presses so far
+  document.addEventListener('pointerdown', () => { inputSeq++; inputAt = now(); }, { capture: true, passive: true });
+  document.addEventListener('keydown', e => { if (!e.repeat) { inputSeq++; inputAt = now(); } }, true);
   const pointerClick = e => e.detail !== 0 && (!!gest || now() < quietUntil);
   // A touch gesture handled on pointerup is followed by the browser's own click, hit-tested against the page as it
   // is by then: a placement that ends the run has opened the result sheet under the finger. That click (pointer
@@ -1128,20 +1161,24 @@ function turnRhythm(S) {
     e.preventDefault(); e.stopImmediatePropagation();
   }, true);
 
-  function onTube(i) {
+  // via: 'tap' (a pointer, or a click with no pointer behind it) or 'key' (a keyboard click); the play-test record
+  // tells pours apart by it and by how their source was picked (selVia)
+  function onTube(i, via) {
     if (!S || S.over) return;
     const n = S.bottles.length, slots = slotsOf(S);
     if (sel === 'cup') { tryPlace(i); return; }
     if (sel === null) {
-      if (ctl() === 'tapPlace' && i < n) { tryPlace(i); return; }
-      if (slots[i] && slots[i].length) sel = i; else flash = '빈 병이에요. 부을 병을 먼저 고르세요.';
+      if (ctl() === 'tapPlace' && i < n) { pourLikeTap(i); tryPlace(i); return; }
+      if (slots[i] && slots[i].length) { sel = i; selVia = via; } else flash = '빈 병이에요. 부을 병을 먼저 고르세요.';
       render(); return;
     }
     if (sel === i) { sel = null; render(); return; }
-    pourTo(sel, i, true);
+    pourTo(sel, i, true, via === 'key' || selVia === 'key' ? 'key' : selVia === 'hold' ? 'hold' : 'tap');
+    if (sel === i) selVia = via;   // a failed tap pour made the tapped bottle the new source
   }
   // keepTarget: after a failed tap pour the tapped bottle becomes the new source (classic); a failed drag selects nothing
-  function pourTo(from, i, keepTarget) {
+  // how: 'tap' | 'drag' | 'hold' | 'key', for the play-test record
+  function pourTo(from, i, keepTarget, how) {
     const slots = slotsOf(S), caps = capsOf(S);
     if (S.rules.pourLimit && S.pours >= S.rules.pourLimit) {
       sel = null; flash = '이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.';
@@ -1151,7 +1188,12 @@ function turnRhythm(S) {
       snapshot(); sel = null;
       applyPour(S, from, i, hooks);
       moved();
+      ptAdd('pours', how);
+      lastMove = { kind: 'pour', at: now() };
+      // a player who pours in tapPlace has found out how: no more pour hints on this device
+      if (ctl() === 'tapPlace' && (prefs.pourHints || 0) < 3) { prefs.pourHints = 3; savePrefs(); }
       commit();
+      nudgeUndo(false);
       return;
     }
     flash = pourFailText(i);
@@ -1170,7 +1212,7 @@ function turnRhythm(S) {
   }
   // feedback for a move that happened / was refused (sound and vibration follow the settings)
   function moved() { SND.tick(); if (!fxq.some(f => f.k === 'clear')) buzz(10); }
-  function refuse(i) { if (i != null) fxq.push({ k: 'shake', i }); SND.nope(); buzz([20, 40, 20]); }
+  function refuse(i) { if (i != null) fxq.push({ k: 'shake', i }); SND.nope(); buzz([20, 40, 20]); ptAdd('rejects'); }
   function tryPlace(i, viaDrag) {
     // a tap-tap placement that fails keeps the piece selected for the next tap, unless nothing fits (pour first)
     const keep = !viaDrag && sel === 'cup';
@@ -1180,11 +1222,29 @@ function turnRhythm(S) {
       if (keep && i !== S.bottles.length && !S.stuck) sel = 'cup';
       refuse(i); render(); return;
     }
+    // tapPlace: the pours bottle i could have made before the piece went in (a quick tap on one of them next looks
+    // like a pour that became a placement)
+    const tapIn = !viaDrag && ctl() === 'tapPlace', pourable = [];
+    if (tapIn) for (let t = 0; t < S.bottles.length; t++) if (t !== i && previewPour(S, i, t).ok) pourable.push(t);
+    const nudged = !!undoNudge;
     snapshot();
     applyPlace(S, i, hooks);
     afterPlace();
     moved();
+    ptAdd('turns');
+    lastMove = { kind: viaDrag ? 'dragPlace' : 'tapPlace', at: now() };
+    lastTap = tapIn ? { slot: i, at: now(), seq: inputSeq, pourable } : null;
     commit();
+    // a placement by bottle tap lights the undo button; one made while it is lit turns it off instead (6.2)
+    nudgeUndo(tapIn && !nudged && undoOk());
+    pourHint();
+  }
+  // tapPlace: a tap on bottle i right after a placement by tap, with nothing in between, on a bottle the placed-into
+  // bottle could have poured into: most likely the second tap of a tap-tap pour (play-test record)
+  function pourLikeTap(i) {
+    const p = lastTap;
+    lastTap = null;
+    if (p && i !== p.slot && inputSeq === p.seq + 1 && inputAt - p.at <= 1000 && p.pourable.includes(i)) ptAdd('pourLikeTaps');
   }
   // prevSel: the selection before a press that turned out to be a tap (a drag start selects the piece on the way)
   function onCupTap(prevSel) {
@@ -1193,11 +1253,11 @@ function turnRhythm(S) {
     sel = (prevSel === undefined ? sel : prevSel) === 'cup' ? null : 'cup';
     render();
   }
-  function pickSource(i) {
+  function pickSource(i, via) {
     if (!S || S.over) return;
     const s = slotsOf(S)[i];
     if (!s || !s.length) { flash = '빈 병이에요.'; render(); return; }
-    sel = i; render();
+    sel = i; selVia = via; render();
   }
   function tubeEl(i) { return i === S.bottles.length ? spareSlot.querySelector('.tube') : rack.children[i]; }
   // The slot at a point. Points in the rack area that miss every bottle (the gaps, the 18px above the bottles) go
@@ -1229,13 +1289,13 @@ function turnRhythm(S) {
     if (pointerClick(e)) return;
     const t = e.target.closest('.tube');
     const i = t ? Number(t.dataset.i) : e.detail !== 0 ? slotAt(e.clientX, e.clientY) : null;
-    if (i !== null) onTube(i);
+    if (i !== null) onTube(i, e.detail === 0 ? 'key' : 'tap');
     else if (ctl() === 'tapPlace' && typeof sel === 'number') { sel = null; render(); }
   });
   spareSlot.addEventListener('click', e => {
     if (e.target.closest('.offer')) { acceptSpare(); return; }
     if (pointerClick(e)) return;
-    if (e.target.closest('.tube')) onTube(S.bottles.length);
+    if (e.target.closest('.tube')) onTube(S.bottles.length, e.detail === 0 ? 'key' : 'tap');
   });
   cup.addEventListener('click', e => { if (!pointerClick(e)) onCupTap(); });
   $('btnFlip').addEventListener('click', () => {
@@ -1243,6 +1303,7 @@ function turnRhythm(S) {
     applyFlip(S);
     SND.swap();
     fxq.push({ k: 'swap' });
+    lastMove = { kind: 'flip', at: now() };
     commit();
   });
   // tapPlace: Shift+Enter on a bottle picks it as the pour source (Enter alone places)
@@ -1250,7 +1311,7 @@ function turnRhythm(S) {
     if (e.key !== 'Enter' || !e.shiftKey || ctl() !== 'tapPlace') return;
     const t = e.target.closest('.tube'); if (!t) return;
     e.preventDefault();
-    pickSource(Number(t.dataset.i));
+    pickSource(Number(t.dataset.i), 'key');
   };
   rack.addEventListener('keydown', onSourceKey);
   spareSlot.addEventListener('keydown', onSourceKey);
@@ -1304,7 +1365,10 @@ function turnRhythm(S) {
     if (!g || g.kind !== 'press' || g.moved) return;
     g.held = true; g.timer = 0;
     clearCharge();
-    pickSource(g.slot);
+    // the long press counts from here, not from the touch: every tap on a bottle with liquid starts the timer, and
+    // a refused tap must leave the undo nudge on
+    nudgeUndo(false);
+    pickSource(g.slot, 'hold');
   }
   function gestMove(e) {
     const g = gest, x = e.clientX, y = e.clientY, dist = Math.hypot(x - g.x, y - g.y);
@@ -1349,10 +1413,10 @@ function turnRhythm(S) {
     if (g.kind === 'pour') {
       const t = cancel ? null : slotAt(e.clientX, e.clientY);
       clearDragHover();
-      if (t === null || t === g.slot) { sel = null; render(); } else pourTo(g.slot, t, false);
+      if (t === null || t === g.slot) { sel = null; render(); if (!cancel && t === null) ptAdd('cancels'); } else pourTo(g.slot, t, false, 'drag');
       return;
     }
-    if (g.kind === 'press' && !cancel && !g.held && (!g.moved || slotAt(e.clientX, e.clientY) === g.slot)) onTube(g.slot);
+    if (g.kind === 'press' && !cancel && !g.held && (!g.moved || slotAt(e.clientX, e.clientY) === g.slot)) onTube(g.slot, 'tap');
   }
   function cupEnd(g, e, cancel) {
     if (!g.moved) { if (!cancel) onCupTap(g.selBefore); return; }
@@ -1361,7 +1425,7 @@ function turnRhythm(S) {
     if (!cancel && !g.left) { g.ghost.remove(); onCupTap(g.selBefore); return; }   // a wobble that never left the piece is a tap
     if (t !== null) { g.ghost.remove(); tryPlace(t, true); return; }
     sel = null;
-    if (!cancel) { flash = '병 위에 놓아야 넣어져요'; sendBack(g.ghost); } else g.ghost.remove();
+    if (!cancel) { flash = '병 위에 놓아야 넣어져요'; sendBack(g.ghost); ptAdd('cancels'); } else g.ghost.remove();
     render();
   }
   // a piece dropped outside the rack glides back to the tray
@@ -1424,14 +1488,133 @@ function turnRhythm(S) {
     else if (g.kind === 'pour' && g.over !== null && g.over !== g.slot) showPourHover(g.over);
     else if (g.kind === 'press' && g.timer) markCharge();
   }
-  // the scheme and the tray position, applied at boot and when changed in the settings
-  const incoming = document.querySelector('.incoming');
+  // the scheme and the layout, applied at boot and when changed in the settings
+  const incoming = document.querySelector('.incoming'), extraRow = $('extraRow');
   function applyControls() {
     document.documentElement.dataset.controls = ctl();
-    const bottom = tray() === 'bottom';
-    document.querySelector('.app').classList.toggle('tray-bottom', bottom);
-    if (bottom) rack.after(incoming); else document.querySelector('.scorebar').after(incoming);
+    const t = tray(), app = document.querySelector('.app');
+    app.classList.toggle('tray-bottom', t === 'bottom');
+    app.classList.toggle('tray-low', t === 'low');
+    if (t === 'bottom') rack.after(incoming); else document.querySelector('.scorebar').after(incoming);
+    // low: the give-up row sits above the zone bar, out of the thumb's way; the free space over the bottles takes it in
+    if (t === 'low') incoming.after(extraRow); else $('status').after(extraRow);
   }
+
+  // ---------- undo nudge (tapPlace) ----------
+  // A tap that meant to start a pour places the piece instead. After a placement by bottle tap the undo button is
+  // outlined for 5s, so the way back is in view; the button itself, its label and its size stay the same.
+  // Off again on: another placement or pour, a pour source picked, a long press taking hold, undo, 5s, game over, a
+  // sheet. A refused tap leaves it on: the second tap of a pour that went wrong is usually refused.
+  let undoNudge = 0;   // timer while the outline is on
+  function undoOk() { return !!S && history.length > 0 && S.undoLeft > 0 && !S.over; }
+  function nudgeUndo(on) {
+    clearTimeout(undoNudge); undoNudge = 0;
+    if (on) undoNudge = setTimeout(() => { undoNudge = 0; paintUndo(); }, 5000);
+    paintUndo();
+  }
+  function paintUndo() {
+    const b = $('btnUndo'), on = !!undoNudge;
+    b.classList.toggle('nudge', on);
+    b.classList.toggle('still', on && !!prefs.reduceFx);
+  }
+
+  // ---------- pour hint (tapPlace) ----------
+  // A tap-tap player may never find out that bottles are poured by dragging. Once per run and at most 3 times per
+  // device (prefs.pourHints), a placement or an undo that leaves a pour worth making between two bottles draws an
+  // arrow from one to the other. Any input clears it; the first pour made in tapPlace ends the hints for good.
+  const hintedRuns = new Set();   // seeds of the runs that showed the hint since the page loaded
+  let hintEl = null;
+  function pourHint() {
+    if (ctl() !== 'tapPlace' || (prefs.pourHints || 0) >= 3 || !S || S.over || hintedRuns.has(S.seed)) return;
+    const mv = usefulPour();
+    if (!mv) return;
+    hintedRuns.add(S.seed);
+    prefs.pourHints = (prefs.pourHints || 0) + 1; savePrefs();
+    drawPourHint(mv.s, mv.t);
+  }
+  // A pour between two bottles (never the spare cup) that completes one, or, while the piece has no room, opens
+  // room for it in one go. Completing pours first, then the lowest source, then the lowest target.
+  function usefulPour() {
+    const n = S.bottles.length;
+    let best = null;
+    for (let s = 0; s < n; s++) {
+      for (let t = 0; t < n; t++) {
+        if (s === t) continue;
+        const p = previewPour(S, s, t);
+        if (!p.ok || (!p.clears && !(S.stuck && pourMakesRoom(s, t)))) continue;
+        if (!best || (p.clears && !best.clears)) best = { s, t, clears: p.clears };
+      }
+    }
+    return best;
+  }
+  // one step of canMakeRoom: pour on a copy, settle the bottles, is there room for the piece?
+  function pourMakesRoom(s, t) {
+    const slots = slotsOf(S).map(b => b.slice()), caps = capsOf(S);
+    if (!canPour(slots, s, t, caps)) return false;
+    doPour(slots, s, t, caps);
+    const main = slots.slice(0, S.bottles.length);
+    resolveBoard(main, S.rules);
+    return roomFor(main, S.piece.length, S.rules.cap);
+  }
+  // a dashed arc from the top of the source bottle to the top of the target, with a label (non-interactive layer)
+  function drawPourHint(s, t) {
+    clearPourHint();
+    const a = tubeEl(s).getBoundingClientRect(), b = tubeEl(t).getBoundingClientRect();
+    const x1 = a.left + a.width / 2, y1 = a.top + Math.min(24, a.height * .2), x2 = b.left + b.width / 2, y2 = b.top + Math.min(24, b.height * .2);
+    const cx = (x1 + x2) / 2, cy = Math.min(y1, y2) - 44 - Math.abs(x2 - x1) * .2;
+    const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'pour-hint' + (prefs.reduceFx ? '' : ' moving'));
+    const arc = document.createElementNS(NS, 'path');
+    arc.setAttribute('class', 'arc');
+    arc.setAttribute('d', `M${x1} ${y1} Q${cx} ${cy} ${x2} ${y2}`);
+    const len = Math.hypot(x2 - cx, y2 - cy) || 1, ux = (x2 - cx) / len, uy = (y2 - cy) / len;
+    const head = document.createElementNS(NS, 'path');
+    head.setAttribute('class', 'head');
+    head.setAttribute('d', `M${x2} ${y2}L${x2 - 12 * ux - 6 * uy} ${y2 - 12 * uy + 6 * ux}L${x2 - 12 * ux + 6 * uy} ${y2 - 12 * uy - 6 * ux}Z`);
+    svg.append(arc, head);
+    const lab = document.createElement('span');
+    lab.className = 'pour-hint-label';
+    lab.textContent = '끌어서 부어요';
+    lab.style.left = Math.min(innerWidth - 60, Math.max(60, cx)) + 'px';
+    lab.style.top = ((y1 + 2 * cy + y2) / 4 - 6) + 'px';
+    hintEl = document.createElement('div');
+    hintEl.className = 'pour-hint-wrap';
+    hintEl.append(svg, lab);
+    $('fxLayer').append(hintEl);
+  }
+  function clearPourHint() { if (hintEl) { hintEl.remove(); hintEl = null; } }
+  document.addEventListener('pointerdown', clearPourHint, { capture: true, passive: true });
+  document.addEventListener('keydown', clearPourHint, true);
+  window.addEventListener('resize', clearPourHint);
+  // a sheet opening ends both hints over the board
+  const sheetWatch = new MutationObserver(() => { if (document.querySelector('.overlay:not([hidden])')) { if (undoNudge) nudgeUndo(false); clearPourHint(); } });
+  document.querySelectorAll('.overlay').forEach(o => sheetWatch.observe(o, { attributes: true, attributeFilter: ['hidden'] }));
+
+  // ---------- play-test record (wsurv.playtest) ----------
+  // What a tester does, counted per control scheme and layout in use at that moment ('tapPlace/low'), so phone
+  // trials can be compared in numbers. Kept on this device only: not in the cloud save, no effect on play.
+  const PT = 'wsurv.playtest';
+  const ptNew = () => ({ v: 1, since: new Date().toISOString(), by: {} });
+  let pt = (r => r && r.v === 1 && r.by && typeof r.by === 'object' ? r : ptNew())(LS.get(PT, null));
+  function ptAdd(field, sub) {
+    const k = ctl() + '/' + tray();
+    const r = pt.by[k] || (pt.by[k] = { runs: 0, turns: 0, pours: { tap: 0, drag: 0, hold: 0, key: 0 }, pourLikeTaps: 0, quickUndos: 0, undos: 0, rejects: 0, cancels: 0, newGameAborts: 0 });
+    if (sub) r[field][sub] = (r[field][sub] || 0) + 1; else r[field] = (r[field] || 0) + 1;
+    LS.set(PT, pt);
+  }
+  function ptText() {
+    const d = new Date(pt.since), two = x => String(x).padStart(2, '0');
+    const head = `플레이 테스트 기록 (${d.getFullYear()}-${two(d.getMonth() + 1)}-${two(d.getDate())} ${two(d.getHours())}:${two(d.getMinutes())}부터)`;
+    const rows = Object.keys(pt.by).sort().map(k => {
+      const r = pt.by[k], p = r.pours || {};
+      const per100 = r.turns ? (r.pourLikeTaps * 100 / r.turns).toFixed(1) : '-';
+      return `${k} · ${r.runs}판 ${r.turns}턴 · 붓기 끌기${p.drag || 0}/길게${p.hold || 0}/탭${p.tap || 0}/키${p.key || 0}`
+        + ` · 부으려던 탭 ${r.pourLikeTaps} (100턴당 ${per100}) · 빠른 되돌리기 ${r.quickUndos} · 되돌리기 ${r.undos}`
+        + ` · 거절 ${r.rejects} · 취소 ${r.cancels} · 새 게임 확인 중단 ${r.newGameAborts}`;
+    });
+    return [head].concat(rows.length ? rows : ['아직 기록이 없어요.']).join('\n');
+  }
+  function ptShow() { $('ptText').value = ptText(); $('ptMsg').textContent = ''; }
 
   // ---------- rendering ----------
   function layerEl(c, cls) {
@@ -1454,6 +1637,7 @@ function turnRhythm(S) {
   function setStatus(msg, warn) { const st = $('status'); st.textContent = msg; st.classList.toggle('warn', !!warn); }
   function statusText() {
     if (flash) return [flash, true];
+    if (newArm) return ['3초 안에 한 번 더 누르면 새 판을 시작해요', true];
     if (S.over) return ['게임이 끝났어요.', true];
     if (S.stuck) return [`${S.piece.length}칸짜리 자리가 없어요. 병끼리 부어서 자리를 만드세요.` + (S.stuck === 'room' ? ' 방법이 있어요.' : ''), true];
     if (sel === 'cup' || (sel === null && ctl() === 'tapPlace' && fuseOn())) {
@@ -1466,7 +1650,7 @@ function turnRhythm(S) {
     if (typeof sel === 'number') return ['부을 병을 고르세요.', false];
     if (S.turn === 0) return [ctl() === 'tapPlace' ? '병을 누르면 조각이 들어가요. 병에서 병으로 끌면 부어요.' : '조각을 병으로 끌어다 놓으며 시작하세요.', false];
     if (S.streak >= 1 && S.turnClears === 0) return [`이번 턴에 병을 완성하면 콤보 ×${S.streak + 1}`, false];
-    return ['조각을 넣고, 병끼리 부어서 한 색으로 채우세요.', false];
+    return [ctl() === 'tapPlace' ? '병을 눌러 조각을 넣고, 병끼리 끌어 부어서 한 색으로 채우세요.' : '조각을 넣고, 병끼리 부어서 한 색으로 채우세요.', false];
   }
   function renderStatus() { const [m, w] = statusText(); setStatus(m, w); }
   function render() {
@@ -1648,10 +1832,14 @@ function turnRhythm(S) {
 
     $('btnUndo').textContent = `되돌리기 ${S.undoLeft}`;
     $('btnUndo').disabled = !history.length || S.undoLeft <= 0 || S.over;
-    $('btnNew').textContent = daily ? '다시 도전' : '새 게임';
+    // the undo nudge stays through renders (a cloud merge too) until its undo is gone or a pour source is picked
+    if (undoNudge && (!undoOk() || typeof sel === 'number')) nudgeUndo(false); else paintUndo();
+    $('btnNew').textContent = newArm ? '한 번 더' : daily ? '다시 도전' : '새 게임';
+    $('btnNew').classList.toggle('armed', !!newArm);
     $('btnMode').textContent = daily ? '무한 모드' : '오늘의 도전';
     const showExtra = S.over ? overClosed : !!S.stuck;
     // tray below the bottles: keep the row's space so the bottles and tray do not jump when it appears
+    // (low needs no reserve: the row sits above the bottles, in the space that keeps them low)
     const ex = $('extraRow');
     ex.hidden = !showExtra && tray() !== 'bottom';
     ex.style.visibility = showExtra ? '' : 'hidden';
@@ -1728,8 +1916,8 @@ function turnRhythm(S) {
     const open = ['ovThemes', 'ovHelp', 'ovSettings', 'ovV2', 'ovCtl'].filter(id => !$(id).hidden);
     if (open.length) { open.forEach(id => { $(id).hidden = true; }); return; }
     if (!S || document.querySelector('.overlay:not([hidden])')) return;   // the result sheet or an ad stays as it is
-    if (gest) { cancelGesture(); sel = null; render(); return; }
-    if (sel !== null) { sel = null; render(); }
+    if (gest) { cancelGesture(); sel = null; render(); ptAdd('cancels'); return; }
+    if (sel !== null) { sel = null; render(); ptAdd('cancels'); }
   });
 
   // Game over (F7): the piece bounces off the roomiest bottle, the rack drains of colour, then the sheet opens. Tap skips.
@@ -1916,11 +2104,39 @@ function turnRhythm(S) {
     S = JSON.parse(history.pop());
     Object.assign(S, keep);
     sel = null; fxq = []; flash = '한 수 되돌렸어요.'; paceDisp = null; hadSpare = !!S.spare;
+    ptAdd('undos');
+    // an undo soon after a placement by bottle tap: maybe a pour that became a placement (a weak sign, see 5)
+    if (lastMove && lastMove.kind === 'tapPlace' && now() - lastMove.at <= 5000) ptAdd('quickUndos');
+    lastMove = { kind: 'undo', at: now() }; lastTap = null;
+    nudgeUndo(false);
     commit();
+    pourHint();
   });
-  $('btnNew').addEventListener('click', () => startGame(S.mode, true));
+  // A run in progress asks for a second press within 3s (the button sits next to undo). Any change to the board,
+  // which includes another button of the row doing its job, calls the confirmation off (commit).
+  $('btnNew').addEventListener('click', () => {
+    if (!newArm && S.turn >= 1 && !S.over) { newArm = setTimeout(() => { disarmNew(true); render(); }, 3000); render(); return; }
+    disarmNew(false);
+    startGame(S.mode, true);
+  });
+  // a held key repeats keydown: only the first press counts
+  $('btnNew').addEventListener('keydown', e => { if (e.repeat) e.preventDefault(); });
+  function disarmNew(abort) {
+    if (!newArm) return;
+    clearTimeout(newArm); newArm = 0;
+    if (abort) ptAdd('newGameAborts');
+  }
   $('btnMode').addEventListener('click', () => startGame(S.mode === 'daily' ? 'endless' : 'daily', false));
-  $('btnHelp').addEventListener('click', () => { $('ovHelp').hidden = false; });
+  // the place and pour lines follow the control scheme in use when the sheet opens
+  function openHelp() {
+    const tap = ctl() === 'tapPlace';
+    $('helpPlace').textContent = tap ? '조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.'
+      : (tray() === 'bottom' ? '아래에' : '위에') + ' 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.';
+    $('helpPour').textContent = tap ? '병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.'
+      : '병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.';
+    $('ovHelp').hidden = false;
+  }
+  $('btnHelp').addEventListener('click', openHelp);
 
   // ---------- settings (section 6) ----------
   const FIELDS = [
@@ -1975,7 +2191,15 @@ function turnRhythm(S) {
       spare: false,
     }));
   }
-  $('btnSettings').addEventListener('click', () => { buildForm(sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES))); fillPrefs(); $('ovSettings').hidden = false; });
+  $('btnSettings').addEventListener('click', () => { buildForm(sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES))); fillPrefs(); ptShow(); $('ovSettings').hidden = false; });
+  // play-test record: copy for pasting into a report; reset before a trial
+  $('btnPtCopy').addEventListener('click', () => {
+    const ta = $('ptText');
+    const done = () => { $('ptMsg').textContent = '복사했어요.'; };
+    const fallback = () => { ta.focus(); ta.select(); $('ptMsg').textContent = '텍스트를 선택했어요. 길게 눌러 복사하세요.'; };
+    try { navigator.clipboard.writeText(ta.value).then(done, fallback); } catch (e) { fallback(); }
+  });
+  $('btnPtReset').addEventListener('click', () => { pt = ptNew(); LS.set(PT, pt); ptShow(); $('ptMsg').textContent = '기록을 비웠어요.'; });
   $('btnDefaults').addEventListener('click', () => buildForm(DEFAULT_RULES));
   $('btnClassic').addEventListener('click', () => buildForm(V1_RULES));
   $('btnApply').addEventListener('click', () => {
@@ -1992,13 +2216,15 @@ function turnRhythm(S) {
     const hint = prefs.controls === 'tapPlace' && !prefs.seenTapHint;
     if (hint) prefs.seenTapHint = true;
     savePrefs();
-    cancelGesture(); sel = null;
+    cancelGesture(); sel = null; lastTap = null;
+    nudgeUndo(false); clearPourHint();
     applyControls();
     if (S) render();
     if (hint) $('ovCtl').hidden = false;
   });
   $('optTray').addEventListener('change', e => {
-    prefs.tray = e.target.value === 'bottom' ? 'bottom' : 'top';
+    const v = e.target.value;
+    prefs.tray = v === 'bottom' || v === 'low' ? v : 'top';
     savePrefs();
     cancelGesture();
     applyControls();
@@ -2320,7 +2546,7 @@ function turnRhythm(S) {
       startGame(LS.get('wsurv.mode', 'endless') === 'daily' ? 'daily' : 'endless', false);
     }
     if (showV2) $('ovV2').hidden = false;
-    if (newUser) { $('ovHelp').hidden = false; LS.set('wsurv.seenHelp', true); prefs.seenV2 = true; savePrefs(); }
+    if (newUser) { openHelp(); LS.set('wsurv.seenHelp', true); prefs.seenV2 = true; savePrefs(); }
     cloudInit();
   }
   try { window.claude?.hot?.snapshot?.(() => ({ S })); } catch (e) { /* hot reload is optional */ }

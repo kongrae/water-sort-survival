@@ -175,7 +175,7 @@
       const sig = '6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1';
       localStorage.setItem('wsurv.last.' + sig, JSON.stringify({ score: 500, turn: 12, cum: [0, 0, 0, 0, 0, 100, 100, 200, 200, 300, 400, 500] }));
       localStorage.setItem('wsurv.runs.' + sig, '3');
-      $('btnNew').click();
+      $('btnNew').click(); $('btnNew').click();   // a run in progress asks for a second press (6.4)
       S = G();
       S.bottles = [[1, 1, 1], [], [], [], [], []]; S.turn = 5; S.cum = [0, 0, 0, 0, 0]; S.piece = [1];
       placeAt(0);

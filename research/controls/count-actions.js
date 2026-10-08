@@ -100,6 +100,8 @@ function showPath(f) {
   const r = path.relative(ROOT, f);
   return (r && !r.startsWith('..') && !path.isAbsolute(r) ? r : f).split(path.sep).join('/');
 }
+// layouts (prefs.tray): piece tray on top, tray below the bottles, tray on top with the bottles low
+const TRAY_ORDER = { top: 0, bottom: 1, low: 2 };
 const okPt = p => !!p && Number.isFinite(p.cx) && Number.isFinite(p.cy);
 const pt = p => ({ cx: +p.cx, cy: +p.cy });
 // Top-tray constants measured at 390x844: 6 bottles 51.3 wide, gap 10, row centred in the 390 page (16 px side padding).
@@ -124,7 +126,7 @@ function loadGeometry(file, nBottles) {
     if (!e || e.size !== VIEW || e.rules !== GEOM_RULES) continue;
     const tag = `${e.size}/${e.tray}/${e.rules}`;
     let err = null;
-    if (e.tray !== 'top' && e.tray !== 'bottom') err = `unknown tray "${e.tray}"`;
+    if (!Object.prototype.hasOwnProperty.call(TRAY_ORDER, e.tray)) err = `unknown tray "${e.tray}"`;
     else if (geoms.some(g => g.tray === e.tray)) err = 'duplicate entry, first one kept';
     else if (!okPt(e.cup)) err = 'cup missing';
     else if (!Array.isArray(e.bottles) || e.bottles.length !== nBottles || !e.bottles.every(okPt)) err = `needs exactly ${nBottles} bottle centres`;
@@ -135,7 +137,7 @@ function loadGeometry(file, nBottles) {
   }
   if (list && !geoms.length) warnings.push(`no usable ${VIEW} / rules=${GEOM_RULES} entry in ${showPath(file)}`);
   if (!geoms.length) { geoms.push(fallbackGeom(nBottles)); warnings.push('FALLBACK geometry used (top tray constants for 390x844)'); }
-  geoms.sort((a, b) => (a.tray === 'top' ? 0 : 1) - (b.tray === 'top' ? 0 : 1));
+  geoms.sort((a, b) => TRAY_ORDER[a.tray] - TRAY_ORDER[b.tray]);
   return { geoms, warnings };
 }
 
