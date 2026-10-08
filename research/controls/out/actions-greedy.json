@@ -1,6 +1,6 @@
 {
  "bot": "greedy",
- "generatedAt": "2026-10-08T06:55:52.355Z",
+ "generatedAt": "2026-10-08T07:51:24.362Z",
  "script": "research/controls/count-actions.js",
  "rules": {
   "bottles": 6,
@@ -33,7 +33,7 @@
  "seeds": 200,
  "firstSubset": 50,
  "maxTurns": 300,
- "secs": 19.192,
+ "secs": 6.925,
  "geometry": [
   {
    "tray": "top",
@@ -79,45 +79,45 @@
    ]
   },
   {
-   "tray": "low",
+   "tray": "bottom",
    "source": "file",
    "file": "research/controls/out/geom-reduce.json",
    "cup": {
     "cx": 53,
-    "cy": 201.5
+    "cy": 693.5
    },
    "flip": {
     "cx": 107,
-    "cy": 209
+    "cy": 701
    },
    "spare": {
     "cx": 335.625,
-    "cy": 215
+    "cy": 707
    },
    "bottles": [
     {
      "cx": 41.6640625,
-     "cy": 622.25
+     "cy": 548.25
     },
     {
      "cx": 102.9921875,
-     "cy": 622.25
+     "cy": 548.25
     },
     {
      "cx": 164.3203125,
-     "cy": 622.25
+     "cy": 548.25
     },
     {
      "cx": 225.6484375,
-     "cy": 622.25
+     "cy": 548.25
     },
     {
      "cx": 286.984375,
-     "cy": 622.25
+     "cy": 548.25
     },
     {
      "cx": 348.328125,
-     "cy": 622.25
+     "cy": 548.25
     }
    ]
   }
@@ -247,41 +247,41 @@
       "travelPxPerTurn": 681.4699
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "tapsPerTurn": 3.4576,
       "holdsPerTurn": 0,
       "dragsPerTurn": 0,
       "actionsPerTurn": 3.4576,
-      "travelPxPerTurn": 1034.5192
+      "travelPxPerTurn": 536.6424
      },
      "classic-drag": {
       "tapsPerTurn": 1.4576,
       "holdsPerTurn": 0,
       "dragsPerTurn": 1,
       "actionsPerTurn": 2.4576,
-      "travelPxPerTurn": 1034.5192
+      "travelPxPerTurn": 536.6424
      },
      "tapPlace-drag": {
       "tapsPerTurn": 1.0395,
       "holdsPerTurn": 0,
       "dragsPerTurn": 0.7091,
       "actionsPerTurn": 1.7486,
-      "travelPxPerTurn": 292.2012
+      "travelPxPerTurn": 266.9666
      },
      "tapPlace-hold": {
       "tapsPerTurn": 2.4576,
       "holdsPerTurn": 0.7091,
       "dragsPerTurn": 0,
       "actionsPerTurn": 2.4576,
-      "travelPxPerTurn": 292.2012
+      "travelPxPerTurn": 266.9666
      },
      "armed": {
       "tapsPerTurn": 3.3993,
       "holdsPerTurn": 0,
       "dragsPerTurn": 0,
       "actionsPerTurn": 3.3993,
-      "travelPxPerTurn": 1015.8972
+      "travelPxPerTurn": 530.0074
      }
     }
    }
@@ -346,41 +346,41 @@
       "travelPxPerTurn": 679.9267
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "tapsPerTurn": 3.4392,
       "holdsPerTurn": 0,
       "dragsPerTurn": 0,
       "actionsPerTurn": 3.4392,
-      "travelPxPerTurn": 1033.1646
+      "travelPxPerTurn": 536.9887
      },
      "classic-drag": {
       "tapsPerTurn": 1.4392,
       "holdsPerTurn": 0,
       "dragsPerTurn": 1,
       "actionsPerTurn": 2.4392,
-      "travelPxPerTurn": 1033.1646
+      "travelPxPerTurn": 536.9887
      },
      "tapPlace-drag": {
       "tapsPerTurn": 1.0423,
       "holdsPerTurn": 0,
       "dragsPerTurn": 0.6985,
       "actionsPerTurn": 1.7408,
-      "travelPxPerTurn": 293.6482
+      "travelPxPerTurn": 266.6847
      },
      "tapPlace-hold": {
       "tapsPerTurn": 2.4392,
       "holdsPerTurn": 0.6985,
       "dragsPerTurn": 0,
       "actionsPerTurn": 2.4392,
-      "travelPxPerTurn": 293.6482
+      "travelPxPerTurn": 266.6847
      },
      "armed": {
       "tapsPerTurn": 3.3753,
       "holdsPerTurn": 0,
       "dragsPerTurn": 0,
       "actionsPerTurn": 3.3753,
-      "travelPxPerTurn": 1013.241
+      "travelPxPerTurn": 529.0996
      }
     }
    }
@@ -443,36 +443,36 @@
       "travel": 37394.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 182,
       "holds": 0,
       "drags": 0,
-      "travel": 54089.4
+      "travel": 28051.6
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 52,
-      "travel": 54089.4
+      "travel": 28051.6
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 38,
-      "travel": 16445.8
+      "travel": 15159.1
      },
      "tapPlace-hold": {
       "taps": 130,
       "holds": 38,
       "drags": 0,
-      "travel": 16445.8
+      "travel": 15159.1
      },
      "armed": {
       "taps": 182,
       "holds": 0,
       "drags": 0,
-      "travel": 55871.4
+      "travel": 29011.4
      }
     }
    }
@@ -533,36 +533,36 @@
       "travel": 23822.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 38614
+      "travel": 19508.5
      },
      "classic-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 38,
-      "travel": 38614
+      "travel": 19508.5
      },
      "tapPlace-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 24,
-      "travel": 10077.1
+      "travel": 8875.6
      },
      "tapPlace-hold": {
       "taps": 88,
       "holds": 24,
       "drags": 0,
-      "travel": 10077.1
+      "travel": 8875.6
      },
      "armed": {
       "taps": 124,
       "holds": 0,
       "drags": 0,
-      "travel": 36513.8
+      "travel": 18032.4
      }
     }
    }
@@ -623,36 +623,36 @@
       "travel": 43438.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 228,
       "holds": 0,
       "drags": 0,
-      "travel": 69496.5
+      "travel": 35885
      },
      "classic-drag": {
       "taps": 94,
       "holds": 0,
       "drags": 67,
-      "travel": 69496.5
+      "travel": 35885
      },
      "tapPlace-drag": {
       "taps": 69,
       "holds": 0,
       "drags": 46,
-      "travel": 19602.3
+      "travel": 18350.3
      },
      "tapPlace-hold": {
       "taps": 161,
       "holds": 46,
       "drags": 0,
-      "travel": 19602.3
+      "travel": 18350.3
      },
      "armed": {
       "taps": 221,
       "holds": 0,
       "drags": 0,
-      "travel": 64784.8
+      "travel": 33704.7
      }
     }
    }
@@ -713,36 +713,36 @@
       "travel": 26514.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 122,
       "holds": 0,
       "drags": 0,
-      "travel": 33968.9
+      "travel": 18058.9
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 32,
-      "travel": 33968.9
+      "travel": 18058.9
      },
      "tapPlace-drag": {
       "taps": 34,
       "holds": 0,
       "drags": 28,
-      "travel": 11471.2
+      "travel": 10245.7
      },
      "tapPlace-hold": {
       "taps": 90,
       "holds": 28,
       "drags": 0,
-      "travel": 11471.2
+      "travel": 10245.7
      },
      "armed": {
       "taps": 128,
       "holds": 0,
       "drags": 0,
-      "travel": 39668.9
+      "travel": 20611.1
      }
     }
    }
@@ -803,36 +803,36 @@
       "travel": 36544.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 55735.6
+      "travel": 29013.5
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 54,
-      "travel": 55735.6
+      "travel": 29013.5
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 37,
-      "travel": 15213
+      "travel": 13918.8
      },
      "tapPlace-hold": {
       "taps": 130,
       "holds": 37,
       "drags": 0,
-      "travel": 15213
+      "travel": 13918.8
      },
      "armed": {
       "taps": 180,
       "holds": 0,
       "drags": 0,
-      "travel": 54085
+      "travel": 28694.1
      }
     }
    }
@@ -893,36 +893,36 @@
       "travel": 20185
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 128,
       "holds": 0,
       "drags": 0,
-      "travel": 38159.6
+      "travel": 19738.4
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 37,
-      "travel": 38159.6
+      "travel": 19738.4
      },
      "tapPlace-drag": {
       "taps": 39,
       "holds": 0,
       "drags": 26,
-      "travel": 10968.8
+      "travel": 9736.1
      },
      "tapPlace-hold": {
       "taps": 91,
       "holds": 26,
       "drags": 0,
-      "travel": 10968.8
+      "travel": 9736.1
      },
      "armed": {
       "taps": 115,
       "holds": 0,
       "drags": 0,
-      "travel": 28963.8
+      "travel": 16232.6
      }
     }
    }
@@ -983,36 +983,36 @@
       "travel": 37501.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 192,
       "holds": 0,
       "drags": 0,
-      "travel": 59712.2
+      "travel": 31055.3
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 58,
-      "travel": 59712.2
+      "travel": 31055.3
      },
      "tapPlace-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 37,
-      "travel": 17182
+      "travel": 15895.3
      },
      "tapPlace-hold": {
       "taps": 134,
       "holds": 37,
       "drags": 0,
-      "travel": 17182
+      "travel": 15895.3
      },
      "armed": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 54752.9
+      "travel": 29751.6
      }
     }
    }
@@ -1073,36 +1073,36 @@
       "travel": 16575.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 97,
       "holds": 0,
       "drags": 0,
-      "travel": 30604.8
+      "travel": 14984.2
      },
      "classic-drag": {
       "taps": 35,
       "holds": 0,
       "drags": 31,
-      "travel": 30604.8
+      "travel": 14984.2
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 17,
-      "travel": 8259.7
+      "travel": 7493.9
      },
      "tapPlace-hold": {
       "taps": 66,
       "holds": 17,
       "drags": 0,
-      "travel": 8259.7
+      "travel": 7493.9
      },
      "armed": {
       "taps": 88,
       "holds": 0,
       "drags": 0,
-      "travel": 24409.4
+      "travel": 12973.5
      }
     }
    }
@@ -1163,36 +1163,36 @@
       "travel": 31502.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 152,
       "holds": 0,
       "drags": 0,
-      "travel": 47866.3
+      "travel": 24987.5
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 46,
-      "travel": 47866.3
+      "travel": 24987.5
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 29,
-      "travel": 14050.4
+      "travel": 12821.9
      },
      "tapPlace-hold": {
       "taps": 106,
       "holds": 29,
       "drags": 0,
-      "travel": 14050.4
+      "travel": 12821.9
      },
      "armed": {
       "taps": 150,
       "holds": 0,
       "drags": 0,
-      "travel": 47178.1
+      "travel": 24374
      }
     }
    }
@@ -1253,36 +1253,36 @@
       "travel": 27021.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 140,
       "holds": 0,
       "drags": 0,
-      "travel": 40939.6
+      "travel": 22099.9
      },
      "classic-drag": {
       "taps": 62,
       "holds": 0,
       "drags": 39,
-      "travel": 40939.6
+      "travel": 22099.9
      },
      "tapPlace-drag": {
       "taps": 41,
       "holds": 0,
       "drags": 30,
-      "travel": 11193.4
+      "travel": 9938.8
      },
      "tapPlace-hold": {
       "taps": 101,
       "holds": 30,
       "drags": 0,
-      "travel": 11193.4
+      "travel": 9938.8
      },
      "armed": {
       "taps": 137,
       "holds": 0,
       "drags": 0,
-      "travel": 39179.6
+      "travel": 21719.7
      }
     }
    }
@@ -1343,36 +1343,36 @@
       "travel": 45181.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 206,
       "holds": 0,
       "drags": 0,
-      "travel": 63161.2
+      "travel": 34306.9
      },
      "classic-drag": {
       "taps": 88,
       "holds": 0,
       "drags": 59,
-      "travel": 63161.2
+      "travel": 34306.9
      },
      "tapPlace-drag": {
       "taps": 61,
       "holds": 0,
       "drags": 43,
-      "travel": 19455.1
+      "travel": 18174.8
      },
      "tapPlace-hold": {
       "taps": 147,
       "holds": 43,
       "drags": 0,
-      "travel": 19455.1
+      "travel": 18174.8
      },
      "armed": {
       "taps": 209,
       "holds": 0,
       "drags": 0,
-      "travel": 66817.8
+      "travel": 35467.2
      }
     }
    }
@@ -1433,36 +1433,36 @@
       "travel": 34798.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 54709.8
+      "travel": 27397.9
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 54,
-      "travel": 54709.8
+      "travel": 27397.9
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 37,
-      "travel": 14366.2
+      "travel": 13166.7
      },
      "tapPlace-hold": {
       "taps": 130,
       "holds": 37,
       "drags": 0,
-      "travel": 14366.2
+      "travel": 13166.7
      },
      "armed": {
       "taps": 180,
       "holds": 0,
       "drags": 0,
-      "travel": 52348.7
+      "travel": 26777.2
      }
     }
    }
@@ -1523,36 +1523,36 @@
       "travel": 39937
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 186,
       "holds": 0,
       "drags": 0,
-      "travel": 51494.8
+      "travel": 26149.5
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 51,
-      "travel": 51494.8
+      "travel": 26149.5
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 41,
-      "travel": 13752.4
+      "travel": 12473.9
      },
      "tapPlace-hold": {
       "taps": 135,
       "holds": 41,
       "drags": 0,
-      "travel": 13752.4
+      "travel": 12473.9
      },
      "armed": {
       "taps": 195,
       "holds": 0,
       "drags": 0,
-      "travel": 61208.4
+      "travel": 30301.7
      }
     }
    }
@@ -1613,36 +1613,36 @@
       "travel": 12421.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 75,
       "holds": 0,
       "drags": 0,
-      "travel": 22483.9
+      "travel": 11372.9
      },
      "classic-drag": {
       "taps": 29,
       "holds": 0,
       "drags": 23,
-      "travel": 22483.9
+      "travel": 11372.9
      },
      "tapPlace-drag": {
       "taps": 24,
       "holds": 0,
       "drags": 14,
-      "travel": 4931.1
+      "travel": 4141.4
      },
      "tapPlace-hold": {
       "taps": 52,
       "holds": 14,
       "drags": 0,
-      "travel": 4931.1
+      "travel": 4141.4
      },
      "armed": {
       "taps": 70,
       "holds": 0,
       "drags": 0,
-      "travel": 19308.3
+      "travel": 9247.8
      }
     }
    }
@@ -1703,36 +1703,36 @@
       "travel": 23080.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 124,
       "holds": 0,
       "drags": 0,
-      "travel": 38977.8
+      "travel": 19867.6
      },
      "classic-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 38,
-      "travel": 38977.8
+      "travel": 19867.6
      },
      "tapPlace-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 23,
-      "travel": 11355.5
+      "travel": 10068.8
      },
      "tapPlace-hold": {
       "taps": 86,
       "holds": 23,
       "drags": 0,
-      "travel": 11355.5
+      "travel": 10068.8
      },
      "armed": {
       "taps": 114,
       "holds": 0,
       "drags": 0,
-      "travel": 33474.6
+      "travel": 18433.6
      }
     }
    }
@@ -1793,36 +1793,36 @@
       "travel": 15464.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 86,
       "holds": 0,
       "drags": 0,
-      "travel": 27165.6
+      "travel": 13334.2
      },
      "classic-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 28,
-      "travel": 27165.6
+      "travel": 13334.2
      },
      "tapPlace-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 14,
-      "travel": 7060.9
+      "travel": 5774.9
      },
      "tapPlace-hold": {
       "taps": 58,
       "holds": 14,
       "drags": 0,
-      "travel": 7060.9
+      "travel": 5774.9
      },
      "armed": {
       "taps": 80,
       "holds": 0,
       "drags": 0,
-      "travel": 23693.2
+      "travel": 11699.9
      }
     }
    }
@@ -1883,36 +1883,36 @@
       "travel": 16248.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 27765.4
+      "travel": 13983
      },
      "classic-drag": {
       "taps": 34,
       "holds": 0,
       "drags": 28,
-      "travel": 27765.4
+      "travel": 13983
      },
      "tapPlace-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 16,
-      "travel": 7546.5
+      "travel": 6252.3
      },
      "tapPlace-hold": {
       "taps": 62,
       "holds": 16,
       "drags": 0,
-      "travel": 7546.5
+      "travel": 6252.3
      },
      "armed": {
       "taps": 84,
       "holds": 0,
       "drags": 0,
-      "travel": 24748.7
+      "travel": 12420.4
      }
     }
    }
@@ -1973,36 +1973,36 @@
       "travel": 25598.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 40018.8
+      "travel": 20550.9
      },
      "classic-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 39,
-      "travel": 40018.8
+      "travel": 20550.9
      },
      "tapPlace-drag": {
       "taps": 41,
       "holds": 0,
       "drags": 27,
-      "travel": 12173.5
+      "travel": 10908.6
      },
      "tapPlace-hold": {
       "taps": 95,
       "holds": 27,
       "drags": 0,
-      "travel": 12173.5
+      "travel": 10908.6
      },
      "armed": {
       "taps": 129,
       "holds": 0,
       "drags": 0,
-      "travel": 38386.3
+      "travel": 19733.3
      }
     }
    }
@@ -2063,36 +2063,36 @@
       "travel": 31424.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 160,
       "holds": 0,
       "drags": 0,
-      "travel": 48053.1
+      "travel": 24599.4
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 47,
-      "travel": 48053.1
+      "travel": 24599.4
      },
      "tapPlace-drag": {
       "taps": 49,
       "holds": 0,
       "drags": 32,
-      "travel": 13490.4
+      "travel": 12187.9
      },
      "tapPlace-hold": {
       "taps": 113,
       "holds": 32,
       "drags": 0,
-      "travel": 13490.4
+      "travel": 12187.9
      },
      "armed": {
       "taps": 157,
       "holds": 0,
       "drags": 0,
-      "travel": 47680.6
+      "travel": 23953
      }
     }
    }
@@ -2153,36 +2153,36 @@
       "travel": 13671.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 87,
       "holds": 0,
       "drags": 0,
-      "travel": 28986.4
+      "travel": 15611.2
      },
      "classic-drag": {
       "taps": 31,
       "holds": 0,
       "drags": 28,
-      "travel": 28986.4
+      "travel": 15611.2
      },
      "tapPlace-drag": {
       "taps": 29,
       "holds": 0,
       "drags": 15,
-      "travel": 7936.4
+      "travel": 7146.7
      },
      "tapPlace-hold": {
       "taps": 59,
       "holds": 15,
       "drags": 0,
-      "travel": 7936.4
+      "travel": 7146.7
      },
      "armed": {
       "taps": 75,
       "holds": 0,
       "drags": 0,
-      "travel": 19725.3
+      "travel": 10925.5
      }
     }
    }
@@ -2243,36 +2243,36 @@
       "travel": 31398.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 44845.5
+      "travel": 21538.5
      },
      "classic-drag": {
       "taps": 62,
       "holds": 0,
       "drags": 46,
-      "travel": 44845.5
+      "travel": 21538.5
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 30,
-      "travel": 11094.5
+      "travel": 9785.6
      },
      "tapPlace-hold": {
       "taps": 108,
       "holds": 30,
       "drags": 0,
-      "travel": 11094.5
+      "travel": 9785.6
      },
      "armed": {
       "taps": 156,
       "holds": 0,
       "drags": 0,
-      "travel": 48707.8
+      "travel": 23454.4
      }
     }
    }
@@ -2333,36 +2333,36 @@
       "travel": 34268.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 164,
       "holds": 0,
       "drags": 0,
-      "travel": 46899.8
+      "travel": 25658
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 43,
-      "travel": 46899.8
+      "travel": 25658
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 38,
-      "travel": 15631
+      "travel": 14400.1
      },
      "tapPlace-hold": {
       "taps": 121,
       "holds": 38,
       "drags": 0,
-      "travel": 15631
+      "travel": 14400.1
      },
      "armed": {
       "taps": 167,
       "holds": 0,
       "drags": 0,
-      "travel": 50890.6
+      "travel": 26799.4
      }
     }
    }
@@ -2423,36 +2423,36 @@
       "travel": 25147.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 128,
       "holds": 0,
       "drags": 0,
-      "travel": 35408
+      "travel": 18481.3
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 34,
-      "travel": 35408
+      "travel": 18481.3
      },
      "tapPlace-drag": {
       "taps": 36,
       "holds": 0,
       "drags": 29,
-      "travel": 10566.1
+      "travel": 9292.2
      },
      "tapPlace-hold": {
       "taps": 94,
       "holds": 29,
       "drags": 0,
-      "travel": 10566.1
+      "travel": 9292.2
      },
      "armed": {
       "taps": 130,
       "holds": 0,
       "drags": 0,
-      "travel": 37847.4
+      "travel": 19366.9
      }
     }
    }
@@ -2513,36 +2513,36 @@
       "travel": 20831.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 118,
       "holds": 0,
       "drags": 0,
-      "travel": 35860
+      "travel": 18112.3
      },
      "classic-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 36,
-      "travel": 35860
+      "travel": 18112.3
      },
      "tapPlace-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 22,
-      "travel": 9458.1
+      "travel": 8177.8
      },
      "tapPlace-hold": {
       "taps": 82,
       "holds": 22,
       "drags": 0,
-      "travel": 9458.1
+      "travel": 8177.8
      },
      "armed": {
       "taps": 110,
       "holds": 0,
       "drags": 0,
-      "travel": 31314.8
+      "travel": 16129.8
      }
     }
    }
@@ -2603,36 +2603,36 @@
       "travel": 35238.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 176,
       "holds": 0,
       "drags": 0,
-      "travel": 52517.9
+      "travel": 27161.5
      },
      "classic-drag": {
       "taps": 74,
       "holds": 0,
       "drags": 51,
-      "travel": 52517.9
+      "travel": 27161.5
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 36,
-      "travel": 13985
+      "travel": 12689
      },
      "tapPlace-hold": {
       "taps": 125,
       "holds": 36,
       "drags": 0,
-      "travel": 13985
+      "travel": 12689
      },
      "armed": {
       "taps": 175,
       "holds": 0,
       "drags": 0,
-      "travel": 53125.9
+      "travel": 27086.5
      }
     }
    }
@@ -2693,36 +2693,36 @@
       "travel": 13104.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 74,
       "holds": 0,
       "drags": 0,
-      "travel": 23092.8
+      "travel": 11080.3
      },
      "classic-drag": {
       "taps": 26,
       "holds": 0,
       "drags": 24,
-      "travel": 23092.8
+      "travel": 11080.3
      },
      "tapPlace-drag": {
       "taps": 26,
       "holds": 0,
       "drags": 12,
-      "travel": 6742.9
+      "travel": 5438.7
      },
      "tapPlace-hold": {
       "taps": 50,
       "holds": 12,
       "drags": 0,
-      "travel": 6742.9
+      "travel": 5438.7
      },
      "armed": {
       "taps": 68,
       "holds": 0,
       "drags": 0,
-      "travel": 19929.2
+      "travel": 9983.6
      }
     }
    }
@@ -2783,36 +2783,36 @@
       "travel": 37323.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 180,
       "holds": 0,
       "drags": 0,
-      "travel": 54619.2
+      "travel": 28941.7
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 52,
-      "travel": 54619.2
+      "travel": 28941.7
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 37,
-      "travel": 16504.8
+      "travel": 15278.1
      },
      "tapPlace-hold": {
       "taps": 128,
       "holds": 37,
       "drags": 0,
-      "travel": 16504.8
+      "travel": 15278.1
      },
      "armed": {
       "taps": 178,
       "holds": 0,
       "drags": 0,
-      "travel": 54995.3
+      "travel": 29284.5
      }
     }
    }
@@ -2873,36 +2873,36 @@
       "travel": 24983.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 140,
       "holds": 0,
       "drags": 0,
-      "travel": 42102.9
+      "travel": 22172.5
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 41,
-      "travel": 42102.9
+      "travel": 22172.5
      },
      "tapPlace-drag": {
       "taps": 43,
       "holds": 0,
       "drags": 28,
-      "travel": 11822.3
+      "travel": 10581.4
      },
      "tapPlace-hold": {
       "taps": 99,
       "holds": 28,
       "drags": 0,
-      "travel": 11822.3
+      "travel": 10581.4
      },
      "armed": {
       "taps": 131,
       "holds": 0,
       "drags": 0,
-      "travel": 36366.8
+      "travel": 19938.5
      }
     }
    }
@@ -2963,36 +2963,36 @@
       "travel": 43383.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 218,
       "holds": 0,
       "drags": 0,
-      "travel": 64350.4
+      "travel": 33748.6
      },
      "classic-drag": {
       "taps": 96,
       "holds": 0,
       "drags": 61,
-      "travel": 64350.4
+      "travel": 33748.6
      },
      "tapPlace-drag": {
       "taps": 63,
       "holds": 0,
       "drags": 47,
-      "travel": 18519.5
+      "travel": 17217.1
      },
      "tapPlace-hold": {
       "taps": 157,
       "holds": 47,
       "drags": 0,
-      "travel": 18519.5
+      "travel": 17217.1
      },
      "armed": {
       "taps": 217,
       "holds": 0,
       "drags": 0,
-      "travel": 64722
+      "travel": 33635.9
      }
     }
    }
@@ -3053,36 +3053,36 @@
       "travel": 26350
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 144,
       "holds": 0,
       "drags": 0,
-      "travel": 44097.4
+      "travel": 22853
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 43,
-      "travel": 44097.4
+      "travel": 22853
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 28,
-      "travel": 12518.8
+      "travel": 11301.6
      },
      "tapPlace-hold": {
       "taps": 101,
       "holds": 28,
       "drags": 0,
-      "travel": 12518.8
+      "travel": 11301.6
      },
      "armed": {
       "taps": 135,
       "holds": 0,
       "drags": 0,
-      "travel": 38177.1
+      "travel": 21034.5
      }
     }
    }
@@ -3143,36 +3143,36 @@
       "travel": 17611.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 100,
       "holds": 0,
       "drags": 0,
-      "travel": 31704.5
+      "travel": 16399.2
      },
      "classic-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 31,
-      "travel": 31704.5
+      "travel": 16399.2
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 18,
-      "travel": 9079.7
+      "travel": 7785.5
      },
      "tapPlace-hold": {
       "taps": 69,
       "holds": 18,
       "drags": 0,
-      "travel": 9079.7
+      "travel": 7785.5
      },
      "armed": {
       "taps": 91,
       "holds": 0,
       "drags": 0,
-      "travel": 25790.2
+      "travel": 13902.4
      }
     }
    }
@@ -3233,36 +3233,36 @@
       "travel": 39878.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 188,
       "holds": 0,
       "drags": 0,
-      "travel": 57231
+      "travel": 32200.1
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 52,
-      "travel": 57231
+      "travel": 32200.1
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 41,
-      "travel": 18843.3
+      "travel": 17625.9
      },
      "tapPlace-hold": {
       "taps": 136,
       "holds": 41,
       "drags": 0,
-      "travel": 18843.3
+      "travel": 17625.9
      },
      "armed": {
       "taps": 186,
       "holds": 0,
       "drags": 0,
-      "travel": 57083.1
+      "travel": 32291.9
      }
     }
    }
@@ -3323,36 +3323,36 @@
       "travel": 25777.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 118,
       "holds": 0,
       "drags": 0,
-      "travel": 33351.2
+      "travel": 16773.7
      },
      "classic-drag": {
       "taps": 52,
       "holds": 0,
       "drags": 33,
-      "travel": 33351.2
+      "travel": 16773.7
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 26,
-      "travel": 8455.2
+      "travel": 8179.9
      },
      "tapPlace-hold": {
       "taps": 85,
       "holds": 26,
       "drags": 0,
-      "travel": 8455.2
+      "travel": 8179.9
      },
      "armed": {
       "taps": 123,
       "holds": 0,
       "drags": 0,
-      "travel": 39020.1
+      "travel": 19749
      }
     }
    }
@@ -3413,36 +3413,36 @@
       "travel": 39796.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 182,
       "holds": 0,
       "drags": 0,
-      "travel": 55394
+      "travel": 30645.7
      },
      "classic-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 51,
-      "travel": 55394
+      "travel": 30645.7
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 39,
-      "travel": 16657.2
+      "travel": 15402.3
      },
      "tapPlace-hold": {
       "taps": 131,
       "holds": 39,
       "drags": 0,
-      "travel": 16657.2
+      "travel": 15402.3
      },
      "armed": {
       "taps": 185,
       "holds": 0,
       "drags": 0,
-      "travel": 58635.5
+      "travel": 31333.2
      }
     }
    }
@@ -3503,36 +3503,36 @@
       "travel": 17021.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 102,
       "holds": 0,
       "drags": 0,
-      "travel": 31953.8
+      "travel": 17032.1
      },
      "classic-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 31,
-      "travel": 31953.8
+      "travel": 17032.1
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 19,
-      "travel": 8645.9
+      "travel": 7422.5
      },
      "tapPlace-hold": {
       "taps": 71,
       "holds": 19,
       "drags": 0,
-      "travel": 8645.9
+      "travel": 7422.5
      },
      "armed": {
       "taps": 91,
       "holds": 0,
       "drags": 0,
-      "travel": 24173
+      "travel": 13913.7
      }
     }
    }
@@ -3593,36 +3593,36 @@
       "travel": 9835.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 57,
       "holds": 0,
       "drags": 0,
-      "travel": 19083.6
+      "travel": 9528.6
      },
      "classic-drag": {
       "taps": 17,
       "holds": 0,
       "drags": 20,
-      "travel": 19083.6
+      "travel": 9528.6
      },
      "tapPlace-drag": {
       "taps": 21,
       "holds": 0,
       "drags": 8,
-      "travel": 4441.7
+      "travel": 3653.8
      },
      "tapPlace-hold": {
       "taps": 37,
       "holds": 8,
       "drags": 0,
-      "travel": 4441.7
+      "travel": 3653.8
      },
      "armed": {
       "taps": 51,
       "holds": 0,
       "drags": 0,
-      "travel": 15237.2
+      "travel": 7385.5
      }
     }
    }
@@ -3683,36 +3683,36 @@
       "travel": 37768.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 188,
       "holds": 0,
       "drags": 0,
-      "travel": 54625.4
+      "travel": 27081.1
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 55,
-      "travel": 54625.4
+      "travel": 27081.1
      },
      "tapPlace-drag": {
       "taps": 57,
       "holds": 0,
       "drags": 38,
-      "travel": 12896.6
+      "travel": 11622.7
      },
      "tapPlace-hold": {
       "taps": 133,
       "holds": 38,
       "drags": 0,
-      "travel": 12896.6
+      "travel": 11622.7
      },
      "armed": {
       "taps": 189,
       "holds": 0,
       "drags": 0,
-      "travel": 57518.1
+      "travel": 28838.1
      }
     }
    }
@@ -3773,36 +3773,36 @@
       "travel": 30811.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 146,
       "holds": 0,
       "drags": 0,
-      "travel": 44492.2
+      "travel": 23794.6
      },
      "classic-drag": {
       "taps": 64,
       "holds": 0,
       "drags": 41,
-      "travel": 44492.2
+      "travel": 23794.6
      },
      "tapPlace-drag": {
       "taps": 43,
       "holds": 0,
       "drags": 31,
-      "travel": 14962.8
+      "travel": 13739.4
      },
      "tapPlace-hold": {
       "taps": 105,
       "holds": 31,
       "drags": 0,
-      "travel": 14962.8
+      "travel": 13739.4
      },
      "armed": {
       "taps": 147,
       "holds": 0,
       "drags": 0,
-      "travel": 46401.7
+      "travel": 23599.5
      }
     }
    }
@@ -3863,36 +3863,36 @@
       "travel": 36788.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 178,
       "holds": 0,
       "drags": 0,
-      "travel": 53853.9
+      "travel": 27640.2
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 53,
-      "travel": 53853.9
+      "travel": 27640.2
      },
      "tapPlace-drag": {
       "taps": 55,
       "holds": 0,
       "drags": 35,
-      "travel": 14320
+      "travel": 13124.7
      },
      "tapPlace-hold": {
       "taps": 125,
       "holds": 35,
       "drags": 0,
-      "travel": 14320
+      "travel": 13124.7
      },
      "armed": {
       "taps": 177,
       "holds": 0,
       "drags": 0,
-      "travel": 55318.3
+      "travel": 28327.5
      }
     }
    }
@@ -3953,36 +3953,36 @@
       "travel": 22109.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 108,
       "holds": 0,
       "drags": 0,
-      "travel": 31855
+      "travel": 16472.4
      },
      "classic-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 31,
-      "travel": 31855
+      "travel": 16472.4
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 22,
-      "travel": 9512.4
+      "travel": 8293.3
      },
      "tapPlace-hold": {
       "taps": 77,
       "holds": 22,
       "drags": 0,
-      "travel": 9512.4
+      "travel": 8293.3
      },
      "armed": {
       "taps": 109,
       "holds": 0,
       "drags": 0,
-      "travel": 33801.2
+      "travel": 16771.5
      }
     }
    }
@@ -4043,36 +4043,36 @@
       "travel": 53777.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 268,
       "holds": 0,
       "drags": 0,
-      "travel": 82269.8
+      "travel": 43495.9
      },
      "classic-drag": {
       "taps": 112,
       "holds": 0,
       "drags": 78,
-      "travel": 82269.8
+      "travel": 43495.9
      },
      "tapPlace-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 55,
-      "travel": 23001.3
+      "travel": 21784.3
      },
      "tapPlace-hold": {
       "taps": 190,
       "holds": 55,
       "drags": 0,
-      "travel": 23001.3
+      "travel": 21784.3
      },
      "armed": {
       "taps": 262,
       "holds": 0,
       "drags": 0,
-      "travel": 78488.2
+      "travel": 42695.1
      }
     }
    }
@@ -4133,36 +4133,36 @@
       "travel": 32342.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 48342.4
+      "travel": 25951.6
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 45,
-      "travel": 48342.4
+      "travel": 25951.6
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 37,
-      "travel": 15612.1
+      "travel": 14414.7
      },
      "tapPlace-hold": {
       "taps": 121,
       "holds": 37,
       "drags": 0,
-      "travel": 15612.1
+      "travel": 14414.7
      },
      "armed": {
       "taps": 161,
       "holds": 0,
       "drags": 0,
-      "travel": 46901.5
+      "travel": 25801.8
      }
     }
    }
@@ -4223,36 +4223,36 @@
       "travel": 54913.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 246,
       "holds": 0,
       "drags": 0,
-      "travel": 71926.9
+      "travel": 38351.6
      },
      "classic-drag": {
       "taps": 110,
       "holds": 0,
       "drags": 68,
-      "travel": 71926.9
+      "travel": 38351.6
      },
      "tapPlace-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 54,
-      "travel": 21194.3
+      "travel": 19937.6
      },
      "tapPlace-hold": {
       "taps": 178,
       "holds": 54,
       "drags": 0,
-      "travel": 21194.3
+      "travel": 19937.6
      },
      "armed": {
       "taps": 256,
       "holds": 0,
       "drags": 0,
-      "travel": 82041.3
+      "travel": 42724.6
      }
     }
    }
@@ -4313,36 +4313,36 @@
       "travel": 24117.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 40411.6
+      "travel": 19439.4
      },
      "classic-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 42,
-      "travel": 40411.6
+      "travel": 19439.4
      },
      "tapPlace-drag": {
       "taps": 44,
       "holds": 0,
       "drags": 24,
-      "travel": 8818.2
+      "travel": 7579.1
      },
      "tapPlace-hold": {
       "taps": 92,
       "holds": 24,
       "drags": 0,
-      "travel": 8818.2
+      "travel": 7579.1
      },
      "armed": {
       "taps": 130,
       "holds": 0,
       "drags": 0,
-      "travel": 37687.4
+      "travel": 17799.1
      }
     }
    }
@@ -4403,36 +4403,36 @@
       "travel": 44338.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 220,
       "holds": 0,
       "drags": 0,
-      "travel": 63922.2
+      "travel": 32791.6
      },
      "classic-drag": {
       "taps": 96,
       "holds": 0,
       "drags": 62,
-      "travel": 63922.2
+      "travel": 32791.6
      },
      "tapPlace-drag": {
       "taps": 64,
       "holds": 0,
       "drags": 47,
-      "travel": 17215.3
+      "travel": 15968
      },
      "tapPlace-hold": {
       "taps": 158,
       "holds": 47,
       "drags": 0,
-      "travel": 17215.3
+      "travel": 15968
      },
      "armed": {
       "taps": 222,
       "holds": 0,
       "drags": 0,
-      "travel": 66979.5
+      "travel": 34058.2
      }
     }
    }
@@ -4493,36 +4493,36 @@
       "travel": 27632.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 132,
       "holds": 0,
       "drags": 0,
-      "travel": 41373.4
+      "travel": 22212.3
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 39,
-      "travel": 41373.4
+      "travel": 22212.3
      },
      "tapPlace-drag": {
       "taps": 41,
       "holds": 0,
       "drags": 26,
-      "travel": 12972
+      "travel": 11717.4
      },
      "tapPlace-hold": {
       "taps": 93,
       "holds": 26,
       "drags": 0,
-      "travel": 12972
+      "travel": 11717.4
      },
      "armed": {
       "taps": 129,
       "holds": 0,
       "drags": 0,
-      "travel": 40686.4
+      "travel": 21828.5
      }
     }
    }
@@ -4583,36 +4583,36 @@
       "travel": 38543.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 188,
       "holds": 0,
       "drags": 0,
-      "travel": 58386
+      "travel": 29520.7
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 58,
-      "travel": 58386
+      "travel": 29520.7
      },
      "tapPlace-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 35,
-      "travel": 15575.6
+      "travel": 14273.2
      },
      "tapPlace-hold": {
       "taps": 130,
       "holds": 35,
       "drags": 0,
-      "travel": 15575.6
+      "travel": 14273.2
      },
      "armed": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 57616.7
+      "travel": 29926.3
      }
     }
    }
@@ -4673,36 +4673,36 @@
       "travel": 38689.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 190,
       "holds": 0,
       "drags": 0,
-      "travel": 54634.1
+      "travel": 29060.5
      },
      "classic-drag": {
       "taps": 88,
       "holds": 0,
       "drags": 51,
-      "travel": 54634.1
+      "travel": 29060.5
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 43,
-      "travel": 17096.6
+      "travel": 15855.7
      },
      "tapPlace-hold": {
       "taps": 139,
       "holds": 43,
       "drags": 0,
-      "travel": 17096.6
+      "travel": 15855.7
      },
      "armed": {
       "taps": 193,
       "holds": 0,
       "drags": 0,
-      "travel": 57905
+      "travel": 29946.3
      }
     }
    }
@@ -4763,36 +4763,36 @@
       "travel": 33234.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 170,
       "holds": 0,
       "drags": 0,
-      "travel": 51584.7
+      "travel": 26541.7
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 50,
-      "travel": 51584.7
+      "travel": 26541.7
      },
      "tapPlace-drag": {
       "taps": 52,
       "holds": 0,
       "drags": 34,
-      "travel": 14096.5
+      "travel": 12863.8
      },
      "tapPlace-hold": {
       "taps": 120,
       "holds": 34,
       "drags": 0,
-      "travel": 14096.5
+      "travel": 12863.8
      },
      "armed": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 49136.5
+      "travel": 26076
      }
     }
    }
@@ -4853,36 +4853,36 @@
       "travel": 35454.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 182,
       "holds": 0,
       "drags": 0,
-      "travel": 53498.5
+      "travel": 27951.9
      },
      "classic-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 51,
-      "travel": 53498.5
+      "travel": 27951.9
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 39,
-      "travel": 15715
+      "travel": 14436.5
      },
      "tapPlace-hold": {
       "taps": 131,
       "holds": 39,
       "drags": 0,
-      "travel": 15715
+      "travel": 14436.5
      },
      "armed": {
       "taps": 179,
       "holds": 0,
       "drags": 0,
-      "travel": 52124.1
+      "travel": 27912.4
      }
     }
    }
@@ -4943,36 +4943,36 @@
       "travel": 25074.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 120,
       "holds": 0,
       "drags": 0,
-      "travel": 33974.3
+      "travel": 17618.5
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 33,
-      "travel": 33974.3
+      "travel": 17618.5
      },
      "tapPlace-drag": {
       "taps": 35,
       "holds": 0,
       "drags": 26,
-      "travel": 10375.3
+      "travel": 9090.3
      },
      "tapPlace-hold": {
       "taps": 87,
       "holds": 26,
       "drags": 0,
-      "travel": 10375.3
+      "travel": 9090.3
      },
      "armed": {
       "taps": 123,
       "holds": 0,
       "drags": 0,
-      "travel": 38455.3
+      "travel": 18998.5
      }
     }
    }
@@ -5033,36 +5033,36 @@
       "travel": 46478.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 240,
       "holds": 0,
       "drags": 0,
-      "travel": 71516.2
+      "travel": 38633.4
      },
      "classic-drag": {
       "taps": 106,
       "holds": 0,
       "drags": 67,
-      "travel": 71516.2
+      "travel": 38633.4
      },
      "tapPlace-drag": {
       "taps": 69,
       "holds": 0,
       "drags": 52,
-      "travel": 20248.5
+      "travel": 18961.8
      },
      "tapPlace-hold": {
       "taps": 173,
       "holds": 52,
       "drags": 0,
-      "travel": 20248.5
+      "travel": 18961.8
      },
      "armed": {
       "taps": 235,
       "holds": 0,
       "drags": 0,
-      "travel": 68634.3
+      "travel": 36454.7
      }
     }
    }
@@ -5123,36 +5123,36 @@
       "travel": 30649.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 172,
       "holds": 0,
       "drags": 0,
-      "travel": 53644.9
+      "travel": 27545.5
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 52,
-      "travel": 53644.9
+      "travel": 27545.5
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 33,
-      "travel": 14914.8
+      "travel": 13703.9
      },
      "tapPlace-hold": {
       "taps": 120,
       "holds": 33,
       "drags": 0,
-      "travel": 14914.8
+      "travel": 13703.9
      },
      "armed": {
       "taps": 158,
       "holds": 0,
       "drags": 0,
-      "travel": 44124.5
+      "travel": 24603.2
      }
     }
    }
@@ -5213,36 +5213,36 @@
       "travel": 30812.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 141,
       "holds": 0,
       "drags": 0,
-      "travel": 40518.9
+      "travel": 20856.8
      },
      "classic-drag": {
       "taps": 63,
       "holds": 0,
       "drags": 39,
-      "travel": 40518.9
+      "travel": 20856.8
      },
      "tapPlace-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 31,
-      "travel": 11482.3
+      "travel": 10755.9
      },
      "tapPlace-hold": {
       "taps": 102,
       "holds": 31,
       "drags": 0,
-      "travel": 11482.3
+      "travel": 10755.9
      },
      "armed": {
       "taps": 148,
       "holds": 0,
       "drags": 0,
-      "travel": 47014.7
+      "travel": 23362.5
      }
     }
    }
@@ -5303,36 +5303,36 @@
       "travel": 23164.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 124,
       "holds": 0,
       "drags": 0,
-      "travel": 38264.6
+      "travel": 20819.7
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 35,
-      "travel": 38264.6
+      "travel": 20819.7
      },
      "tapPlace-drag": {
       "taps": 37,
       "holds": 0,
       "drags": 26,
-      "travel": 13478.1
+      "travel": 12237.2
      },
      "tapPlace-hold": {
       "taps": 89,
       "holds": 26,
       "drags": 0,
-      "travel": 13478.1
+      "travel": 12237.2
      },
      "armed": {
       "taps": 117,
       "holds": 0,
       "drags": 0,
-      "travel": 32924.6
+      "travel": 18769.5
      }
     }
    }
@@ -5393,36 +5393,36 @@
       "travel": 33415
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 49115.6
+      "travel": 25519.8
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 47,
-      "travel": 49115.6
+      "travel": 25519.8
      },
      "tapPlace-drag": {
       "taps": 49,
       "holds": 0,
       "drags": 35,
-      "travel": 15101.7
+      "travel": 13823.2
      },
      "tapPlace-hold": {
       "taps": 119,
       "holds": 35,
       "drags": 0,
-      "travel": 15101.7
+      "travel": 13823.2
      },
      "armed": {
       "taps": 165,
       "holds": 0,
       "drags": 0,
-      "travel": 49708
+      "travel": 26060.1
      }
     }
    }
@@ -5483,36 +5483,36 @@
       "travel": 32615.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 172,
       "holds": 0,
       "drags": 0,
-      "travel": 53596.5
+      "travel": 28787.9
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 50,
-      "travel": 53596.5
+      "travel": 28787.9
      },
      "tapPlace-drag": {
       "taps": 52,
       "holds": 0,
       "drags": 35,
-      "travel": 16941.7
+      "travel": 15724.3
      },
      "tapPlace-hold": {
       "taps": 122,
       "holds": 35,
       "drags": 0,
-      "travel": 16941.7
+      "travel": 15724.3
      },
      "armed": {
       "taps": 162,
       "holds": 0,
       "drags": 0,
-      "travel": 46738.2
+      "travel": 26301.9
      }
     }
    }
@@ -5573,36 +5573,36 @@
       "travel": 24005.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 118,
       "holds": 0,
       "drags": 0,
-      "travel": 36524.3
+      "travel": 19276.6
      },
      "classic-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 35,
-      "travel": 36524.3
+      "travel": 19276.6
      },
      "tapPlace-drag": {
       "taps": 37,
       "holds": 0,
       "drags": 23,
-      "travel": 11451.4
+      "travel": 10214.3
      },
      "tapPlace-hold": {
       "taps": 83,
       "holds": 23,
       "drags": 0,
-      "travel": 11451.4
+      "travel": 10214.3
      },
      "armed": {
       "taps": 115,
       "holds": 0,
       "drags": 0,
-      "travel": 35096.5
+      "travel": 19014.6
      }
     }
    }
@@ -5663,36 +5663,36 @@
       "travel": 37529.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 190,
       "holds": 0,
       "drags": 0,
-      "travel": 54607.1
+      "travel": 28230.1
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 53,
-      "travel": 54607.1
+      "travel": 28230.1
      },
      "tapPlace-drag": {
       "taps": 55,
       "holds": 0,
       "drags": 41,
-      "travel": 15832.4
+      "travel": 14545.7
      },
      "tapPlace-hold": {
       "taps": 137,
       "holds": 41,
       "drags": 0,
-      "travel": 15832.4
+      "travel": 14545.7
      },
      "armed": {
       "taps": 189,
       "holds": 0,
       "drags": 0,
-      "travel": 56094.7
+      "travel": 29089.8
      }
     }
    }
@@ -5753,36 +5753,36 @@
       "travel": 41687.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 220,
       "holds": 0,
       "drags": 0,
-      "travel": 67260
+      "travel": 34100.8
      },
      "classic-drag": {
       "taps": 88,
       "holds": 0,
       "drags": 66,
-      "travel": 67260
+      "travel": 34100.8
      },
      "tapPlace-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 43,
-      "travel": 17269
+      "travel": 16012.3
      },
      "tapPlace-hold": {
       "taps": 154,
       "holds": 43,
       "drags": 0,
-      "travel": 17269
+      "travel": 16012.3
      },
      "armed": {
       "taps": 212,
       "holds": 0,
       "drags": 0,
-      "travel": 62205.5
+      "travel": 32403.4
      }
     }
    }
@@ -5843,36 +5843,36 @@
       "travel": 14147.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 80,
       "holds": 0,
       "drags": 0,
-      "travel": 25779.2
+      "travel": 12656.3
      },
      "classic-drag": {
       "taps": 28,
       "holds": 0,
       "drags": 26,
-      "travel": 25779.2
+      "travel": 12656.3
      },
      "tapPlace-drag": {
       "taps": 28,
       "holds": 0,
       "drags": 13,
-      "travel": 7277.3
+      "travel": 6090
      },
      "tapPlace-hold": {
       "taps": 54,
       "holds": 13,
       "drags": 0,
-      "travel": 7277.3
+      "travel": 6090
      },
      "armed": {
       "taps": 74,
       "holds": 0,
       "drags": 0,
-      "travel": 21280.9
+      "travel": 10893.7
      }
     }
    }
@@ -5933,36 +5933,36 @@
       "travel": 36077.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 54539.8
+      "travel": 29149.2
      },
      "classic-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 52,
-      "travel": 54539.8
+      "travel": 29149.2
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 39,
-      "travel": 15281.8
+      "travel": 13996.8
      },
      "tapPlace-hold": {
       "taps": 132,
       "holds": 39,
       "drags": 0,
-      "travel": 15281.8
+      "travel": 13996.8
      },
      "armed": {
       "taps": 180,
       "holds": 0,
       "drags": 0,
-      "travel": 53306.5
+      "travel": 28374.9
      }
     }
    }
@@ -6023,36 +6023,36 @@
       "travel": 47742
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 218,
       "holds": 0,
       "drags": 0,
-      "travel": 62405.9
+      "travel": 33220.7
      },
      "classic-drag": {
       "taps": 100,
       "holds": 0,
       "drags": 59,
-      "travel": 62405.9
+      "travel": 33220.7
      },
      "tapPlace-drag": {
       "taps": 61,
       "holds": 0,
       "drags": 49,
-      "travel": 18776.5
+      "travel": 17489.8
      },
      "tapPlace-hold": {
       "taps": 159,
       "holds": 49,
       "drags": 0,
-      "travel": 18776.5
+      "travel": 17489.8
      },
      "armed": {
       "taps": 227,
       "holds": 0,
       "drags": 0,
-      "travel": 71714.2
+      "travel": 36865.4
      }
     }
    }
@@ -6113,36 +6113,36 @@
       "travel": 38796.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 180,
       "holds": 0,
       "drags": 0,
-      "travel": 53604.3
+      "travel": 27969.6
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 52,
-      "travel": 53604.3
+      "travel": 27969.6
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 37,
-      "travel": 14671.4
+      "travel": 13391.1
      },
      "tapPlace-hold": {
       "taps": 128,
       "holds": 37,
       "drags": 0,
-      "travel": 14671.4
+      "travel": 13391.1
      },
      "armed": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 58534.2
+      "travel": 29881.5
      }
     }
    }
@@ -6203,36 +6203,36 @@
       "travel": 33729.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 190,
       "holds": 0,
       "drags": 0,
-      "travel": 57201.1
+      "travel": 29838.1
      },
      "classic-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 55,
-      "travel": 57201.1
+      "travel": 29838.1
      },
      "tapPlace-drag": {
       "taps": 57,
       "holds": 0,
       "drags": 39,
-      "travel": 15436.8
+      "travel": 14189.4
      },
      "tapPlace-hold": {
       "taps": 135,
       "holds": 39,
       "drags": 0,
-      "travel": 15436.8
+      "travel": 14189.4
      },
      "armed": {
       "taps": 177,
       "holds": 0,
       "drags": 0,
-      "travel": 48503.1
+      "travel": 27178.2
      }
     }
    }
@@ -6293,36 +6293,36 @@
       "travel": 56070.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 278,
       "holds": 0,
       "drags": 0,
-      "travel": 81440.2
+      "travel": 41744.1
      },
      "classic-drag": {
       "taps": 120,
       "holds": 0,
       "drags": 79,
-      "travel": 81440.2
+      "travel": 41744.1
      },
      "tapPlace-drag": {
       "taps": 81,
       "holds": 0,
       "drags": 59,
-      "travel": 21545.1
+      "travel": 20273
      },
      "tapPlace-hold": {
       "taps": 199,
       "holds": 59,
       "drags": 0,
-      "travel": 21545.1
+      "travel": 20273
      },
      "armed": {
       "taps": 279,
       "holds": 0,
       "drags": 0,
-      "travel": 84729.2
+      "travel": 43002.3
      }
     }
    }
@@ -6383,36 +6383,36 @@
       "travel": 20315.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 119,
       "holds": 0,
       "drags": 0,
-      "travel": 36425.8
+      "travel": 17222.2
      },
      "classic-drag": {
       "taps": 43,
       "holds": 0,
       "drags": 38,
-      "travel": 36425.8
+      "travel": 17222.2
      },
      "tapPlace-drag": {
       "taps": 39,
       "holds": 0,
       "drags": 21,
-      "travel": 7998.9
+      "travel": 7211
      },
      "tapPlace-hold": {
       "taps": 81,
       "holds": 21,
       "drags": 0,
-      "travel": 7998.9
+      "travel": 7211
      },
      "armed": {
       "taps": 111,
       "holds": 0,
       "drags": 0,
-      "travel": 30933.1
+      "travel": 15437.8
      }
     }
    }
@@ -6473,36 +6473,36 @@
       "travel": 26884.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 136,
       "holds": 0,
       "drags": 0,
-      "travel": 40925.2
+      "travel": 20788.7
      },
      "classic-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 40,
-      "travel": 40925.2
+      "travel": 20788.7
      },
      "tapPlace-drag": {
       "taps": 42,
       "holds": 0,
       "drags": 27,
-      "travel": 11103.7
+      "travel": 9809.5
      },
      "tapPlace-hold": {
       "taps": 96,
       "holds": 27,
       "drags": 0,
-      "travel": 11103.7
+      "travel": 9809.5
      },
      "armed": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 41054.3
+      "travel": 20363.2
      }
     }
    }
@@ -6563,36 +6563,36 @@
       "travel": 28075.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 146,
       "holds": 0,
       "drags": 0,
-      "travel": 43296.5
+      "travel": 21121.1
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 44,
-      "travel": 43296.5
+      "travel": 21121.1
      },
      "tapPlace-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 28,
-      "travel": 10306.2
+      "travel": 9012
      },
      "tapPlace-hold": {
       "taps": 102,
       "holds": 28,
       "drags": 0,
-      "travel": 10306.2
+      "travel": 9012
      },
      "armed": {
       "taps": 144,
       "holds": 0,
       "drags": 0,
-      "travel": 43247.5
+      "travel": 21165.3
      }
     }
    }
@@ -6653,36 +6653,36 @@
       "travel": 45663.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 238,
       "holds": 0,
       "drags": 0,
-      "travel": 68963.1
+      "travel": 35804.6
      },
      "classic-drag": {
       "taps": 106,
       "holds": 0,
       "drags": 66,
-      "travel": 68963.1
+      "travel": 35804.6
      },
      "tapPlace-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 52,
-      "travel": 19439.8
+      "travel": 18216.4
      },
      "tapPlace-hold": {
       "taps": 172,
       "holds": 52,
       "drags": 0,
-      "travel": 19439.8
+      "travel": 18216.4
      },
      "armed": {
       "taps": 234,
       "holds": 0,
       "drags": 0,
-      "travel": 67605.5
+      "travel": 35709.1
      }
     }
    }
@@ -6743,36 +6743,36 @@
       "travel": 36577.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 54910.6
+      "travel": 27868.7
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 53,
-      "travel": 54910.6
+      "travel": 27868.7
      },
      "tapPlace-drag": {
       "taps": 55,
       "holds": 0,
       "drags": 38,
-      "travel": 16329.3
+      "travel": 15052.6
      },
      "tapPlace-hold": {
       "taps": 131,
       "holds": 38,
       "drags": 0,
-      "travel": 16329.3
+      "travel": 15052.6
      },
      "armed": {
       "taps": 183,
       "holds": 0,
       "drags": 0,
-      "travel": 55417
+      "travel": 27850.3
      }
     }
    }
@@ -6833,36 +6833,36 @@
       "travel": 31148.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 186,
       "holds": 0,
       "drags": 0,
-      "travel": 55103.6
+      "travel": 26654.7
      },
      "classic-drag": {
       "taps": 74,
       "holds": 0,
       "drags": 56,
-      "travel": 55103.6
+      "travel": 26654.7
      },
      "tapPlace-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 36,
-      "travel": 12505
+      "travel": 11196.2
      },
      "tapPlace-hold": {
       "taps": 130,
       "holds": 36,
       "drags": 0,
-      "travel": 12505
+      "travel": 11196.2
      },
      "armed": {
       "taps": 176,
       "holds": 0,
       "drags": 0,
-      "travel": 47575.1
+      "travel": 23527.1
      }
     }
    }
@@ -6923,36 +6923,36 @@
       "travel": 46535.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 214,
       "holds": 0,
       "drags": 0,
-      "travel": 62407.6
+      "travel": 32797.4
      },
      "classic-drag": {
       "taps": 96,
       "holds": 0,
       "drags": 59,
-      "travel": 62407.6
+      "travel": 32797.4
      },
      "tapPlace-drag": {
       "taps": 61,
       "holds": 0,
       "drags": 47,
-      "travel": 18067.6
+      "travel": 16812.8
      },
      "tapPlace-hold": {
       "taps": 155,
       "holds": 47,
       "drags": 0,
-      "travel": 18067.6
+      "travel": 16812.8
      },
      "armed": {
       "taps": 223,
       "holds": 0,
       "drags": 0,
-      "travel": 70150
+      "travel": 35775
      }
     }
    }
@@ -7013,36 +7013,36 @@
       "travel": 50086.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 246,
       "holds": 0,
       "drags": 0,
-      "travel": 74240.8
+      "travel": 39810.1
      },
      "classic-drag": {
       "taps": 108,
       "holds": 0,
       "drags": 69,
-      "travel": 74240.8
+      "travel": 39810.1
      },
      "tapPlace-drag": {
       "taps": 71,
       "holds": 0,
       "drags": 53,
-      "travel": 22648.2
+      "travel": 21374.2
      },
      "tapPlace-hold": {
       "taps": 177,
       "holds": 53,
       "drags": 0,
-      "travel": 22648.2
+      "travel": 21374.2
      },
      "armed": {
       "taps": 245,
       "holds": 0,
       "drags": 0,
-      "travel": 73572.7
+      "travel": 39465.8
      }
     }
    }
@@ -7103,36 +7103,36 @@
       "travel": 18438.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 106,
       "holds": 0,
       "drags": 0,
-      "travel": 31301
+      "travel": 14862.2
      },
      "classic-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 33,
-      "travel": 31301
+      "travel": 14862.2
      },
      "tapPlace-drag": {
       "taps": 35,
       "holds": 0,
       "drags": 19,
-      "travel": 6405.5
+      "travel": 5144.5
      },
      "tapPlace-hold": {
       "taps": 73,
       "holds": 19,
       "drags": 0,
-      "travel": 6405.5
+      "travel": 5144.5
      },
      "armed": {
       "taps": 103,
       "holds": 0,
       "drags": 0,
-      "travel": 29154.4
+      "travel": 13515.1
      }
     }
    }
@@ -7193,36 +7193,36 @@
       "travel": 28348
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 160,
       "holds": 0,
       "drags": 0,
-      "travel": 49051.7
+      "travel": 26126.9
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 46,
-      "travel": 49051.7
+      "travel": 26126.9
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 33,
-      "travel": 14325.3
+      "travel": 13068.7
      },
      "tapPlace-hold": {
       "taps": 114,
       "holds": 33,
       "drags": 0,
-      "travel": 14325.3
+      "travel": 13068.7
      },
      "armed": {
       "taps": 150,
       "holds": 0,
       "drags": 0,
-      "travel": 41210
+      "travel": 22534.2
      }
     }
    }
@@ -7283,36 +7283,36 @@
       "travel": 37366.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 206,
       "holds": 0,
       "drags": 0,
-      "travel": 62389.8
+      "travel": 32033.2
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 61,
-      "travel": 62389.8
+      "travel": 32033.2
      },
      "tapPlace-drag": {
       "taps": 63,
       "holds": 0,
       "drags": 41,
-      "travel": 16323.3
+      "travel": 15036.5
      },
      "tapPlace-hold": {
       "taps": 145,
       "holds": 41,
       "drags": 0,
-      "travel": 16323.3
+      "travel": 15036.5
      },
      "armed": {
       "taps": 195,
       "holds": 0,
       "drags": 0,
-      "travel": 55033.4
+      "travel": 29430.1
      }
     }
    }
@@ -7373,36 +7373,36 @@
       "travel": 28377.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 40221.7
+      "travel": 21529.1
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 38,
-      "travel": 40221.7
+      "travel": 21529.1
      },
      "tapPlace-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 28,
-      "travel": 12726.7
+      "travel": 11463.7
      },
      "tapPlace-hold": {
       "taps": 96,
       "holds": 28,
       "drags": 0,
-      "travel": 12726.7
+      "travel": 11463.7
      },
      "armed": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 42008.3
+      "travel": 22184.6
      }
     }
    }
@@ -7463,36 +7463,36 @@
       "travel": 41806.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 55456.9
+      "travel": 29649.6
      },
      "classic-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 52,
-      "travel": 55456.9
+      "travel": 29649.6
      },
      "tapPlace-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 39,
-      "travel": 16814.7
+      "travel": 15602.1
      },
      "tapPlace-hold": {
       "taps": 132,
       "holds": 39,
       "drags": 0,
-      "travel": 16814.7
+      "travel": 15602.1
      },
      "armed": {
       "taps": 192,
       "holds": 0,
       "drags": 0,
-      "travel": 62576.6
+      "travel": 32369.1
      }
     }
    }
@@ -7553,36 +7553,36 @@
       "travel": 25526.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 142,
       "holds": 0,
       "drags": 0,
-      "travel": 45302.2
+      "travel": 22088.6
      },
      "classic-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 47,
-      "travel": 45302.2
+      "travel": 22088.6
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 24,
-      "travel": 8700.6
+      "travel": 8425.4
      },
      "tapPlace-hold": {
       "taps": 95,
       "holds": 24,
       "drags": 0,
-      "travel": 8700.6
+      "travel": 8425.4
      },
      "armed": {
       "taps": 133,
       "holds": 0,
       "drags": 0,
-      "travel": 38916.9
+      "travel": 19385.4
      }
     }
    }
@@ -7643,36 +7643,36 @@
       "travel": 25089.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 36023.6
+      "travel": 18154.3
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 36,
-      "travel": 36023.6
+      "travel": 18154.3
      },
      "tapPlace-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 26,
-      "travel": 9640.2
+      "travel": 8490.4
      },
      "tapPlace-hold": {
       "taps": 90,
       "holds": 26,
       "drags": 0,
-      "travel": 9640.2
+      "travel": 8490.4
      },
      "armed": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 37947.9
+      "travel": 19316
      }
     }
    }
@@ -7733,36 +7733,36 @@
       "travel": 55176.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 244,
       "holds": 0,
       "drags": 0,
-      "travel": 69902.9
+      "travel": 38164.9
      },
      "classic-drag": {
       "taps": 114,
       "holds": 0,
       "drags": 65,
-      "travel": 69902.9
+      "travel": 38164.9
      },
      "tapPlace-drag": {
       "taps": 67,
       "holds": 0,
       "drags": 56,
-      "travel": 21109.3
+      "travel": 19898.4
      },
      "tapPlace-hold": {
       "taps": 179,
       "holds": 56,
       "drags": 0,
-      "travel": 21109.3
+      "travel": 19898.4
      },
      "armed": {
       "taps": 255,
       "holds": 0,
       "drags": 0,
-      "travel": 81320.8
+      "travel": 43594.2
      }
     }
    }
@@ -7823,36 +7823,36 @@
       "travel": 63497.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 288,
       "holds": 0,
       "drags": 0,
-      "travel": 83887.7
+      "travel": 46445.3
      },
      "classic-drag": {
       "taps": 136,
       "holds": 0,
       "drags": 76,
-      "travel": 83887.7
+      "travel": 46445.3
      },
      "tapPlace-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 67,
-      "travel": 26877.5
+      "travel": 25599
      },
      "tapPlace-hold": {
       "taps": 212,
       "holds": 67,
       "drags": 0,
-      "travel": 26877.5
+      "travel": 25599
      },
      "armed": {
       "taps": 298,
       "holds": 0,
       "drags": 0,
-      "travel": 93138.3
+      "travel": 50248.2
      }
     }
    }
@@ -7913,36 +7913,36 @@
       "travel": 35926.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 56255.3
+      "travel": 30130.3
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 54,
-      "travel": 56255.3
+      "travel": 30130.3
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 37,
-      "travel": 15032.4
+      "travel": 13813.3
      },
      "tapPlace-hold": {
       "taps": 130,
       "holds": 37,
       "drags": 0,
-      "travel": 15032.4
+      "travel": 13813.3
      },
      "armed": {
       "taps": 178,
       "holds": 0,
       "drags": 0,
-      "travel": 52508.3
+      "travel": 28614
      }
     }
    }
@@ -8003,36 +8003,36 @@
       "travel": 18417.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 100,
       "holds": 0,
       "drags": 0,
-      "travel": 30040
+      "travel": 14765.3
      },
      "classic-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 31,
-      "travel": 30040
+      "travel": 14765.3
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 18,
-      "travel": 7491.6
+      "travel": 6204.8
      },
      "tapPlace-hold": {
       "taps": 69,
       "holds": 18,
       "drags": 0,
-      "travel": 7491.6
+      "travel": 6204.8
      },
      "armed": {
       "taps": 97,
       "holds": 0,
       "drags": 0,
-      "travel": 28757.5
+      "travel": 13684.4
      }
     }
    }
@@ -8093,36 +8093,36 @@
       "travel": 27326.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 133,
       "holds": 0,
       "drags": 0,
-      "travel": 41143.7
+      "travel": 21736.2
      },
      "classic-drag": {
       "taps": 55,
       "holds": 0,
       "drags": 39,
-      "travel": 41143.7
+      "travel": 21736.2
      },
      "tapPlace-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 27,
-      "travel": 11511.4
+      "travel": 10747.5
      },
      "tapPlace-hold": {
       "taps": 94,
       "holds": 27,
       "drags": 0,
-      "travel": 11511.4
+      "travel": 10747.5
      },
      "armed": {
       "taps": 132,
       "holds": 0,
       "drags": 0,
-      "travel": 40532.2
+      "travel": 21322.5
      }
     }
    }
@@ -8183,36 +8183,36 @@
       "travel": 24344.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 117,
       "holds": 0,
       "drags": 0,
-      "travel": 35155.3
+      "travel": 18302.8
      },
      "classic-drag": {
       "taps": 49,
       "holds": 0,
       "drags": 34,
-      "travel": 35155.3
+      "travel": 18302.8
      },
      "tapPlace-drag": {
       "taps": 35,
       "holds": 0,
       "drags": 24,
-      "travel": 10038.2
+      "travel": 9272.5
      },
      "tapPlace-hold": {
       "taps": 83,
       "holds": 24,
       "drags": 0,
-      "travel": 10038.2
+      "travel": 9272.5
      },
      "armed": {
       "taps": 117,
       "holds": 0,
       "drags": 0,
-      "travel": 36595.8
+      "travel": 18774.5
      }
     }
    }
@@ -8273,36 +8273,36 @@
       "travel": 28293.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 158,
       "holds": 0,
       "drags": 0,
-      "travel": 46552.9
+      "travel": 23453.2
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 46,
-      "travel": 46552.9
+      "travel": 23453.2
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 32,
-      "travel": 12459.3
+      "travel": 11172.6
      },
      "tapPlace-hold": {
       "taps": 112,
       "holds": 32,
       "drags": 0,
-      "travel": 12459.3
+      "travel": 11172.6
      },
      "armed": {
       "taps": 152,
       "holds": 0,
       "drags": 0,
-      "travel": 42321
+      "travel": 21911.9
      }
     }
    }
@@ -8363,36 +8363,36 @@
       "travel": 27793
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 46159.4
+      "travel": 22995.8
      },
      "classic-drag": {
       "taps": 62,
       "holds": 0,
       "drags": 46,
-      "travel": 46159.4
+      "travel": 22995.8
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 30,
-      "travel": 12178.5
+      "travel": 10921.9
      },
      "tapPlace-hold": {
       "taps": 108,
       "holds": 30,
       "drags": 0,
-      "travel": 12178.5
+      "travel": 10921.9
      },
      "armed": {
       "taps": 148,
       "holds": 0,
       "drags": 0,
-      "travel": 41769.3
+      "travel": 21478.8
      }
     }
    }
@@ -8453,36 +8453,36 @@
       "travel": 15717.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 29850.7
+      "travel": 14807.1
      },
      "classic-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 30,
-      "travel": 29850.7
+      "travel": 14807.1
      },
      "tapPlace-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 15,
-      "travel": 7351.3
+      "travel": 7076.1
      },
      "tapPlace-hold": {
       "taps": 60,
       "holds": 15,
       "drags": 0,
-      "travel": 7351.3
+      "travel": 7076.1
      },
      "armed": {
       "taps": 80,
       "holds": 0,
       "drags": 0,
-      "travel": 22927.2
+      "travel": 12351.5
      }
     }
    }
@@ -8543,36 +8543,36 @@
       "travel": 27868.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 155,
       "holds": 0,
       "drags": 0,
-      "travel": 50008.5
+      "travel": 25727.7
      },
      "classic-drag": {
       "taps": 57,
       "holds": 0,
       "drags": 49,
-      "travel": 50008.5
+      "travel": 25727.7
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 28,
-      "travel": 12356.3
+      "travel": 11634.1
      },
      "tapPlace-hold": {
       "taps": 106,
       "holds": 28,
       "drags": 0,
-      "travel": 12356.3
+      "travel": 11634.1
      },
      "armed": {
       "taps": 144,
       "holds": 0,
       "drags": 0,
-      "travel": 41015.3
+      "travel": 21940
      }
     }
    }
@@ -8633,36 +8633,36 @@
       "travel": 26980.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 146,
       "holds": 0,
       "drags": 0,
-      "travel": 45264.1
+      "travel": 23773.2
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 43,
-      "travel": 45264.1
+      "travel": 23773.2
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 29,
-      "travel": 13539.4
+      "travel": 12298.5
      },
      "tapPlace-hold": {
       "taps": 103,
       "holds": 29,
       "drags": 0,
-      "travel": 13539.4
+      "travel": 12298.5
      },
      "armed": {
       "taps": 137,
       "holds": 0,
       "drags": 0,
-      "travel": 39191.4
+      "travel": 21473.8
      }
     }
    }
@@ -8723,36 +8723,36 @@
       "travel": 22303.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 40199.3
+      "travel": 19481.3
      },
      "classic-drag": {
       "taps": 44,
       "holds": 0,
       "drags": 41,
-      "travel": 40199.3
+      "travel": 19481.3
      },
      "tapPlace-drag": {
       "taps": 41,
       "holds": 0,
       "drags": 22,
-      "travel": 9007
+      "travel": 8731.8
      },
      "tapPlace-hold": {
       "taps": 85,
       "holds": 22,
       "drags": 0,
-      "travel": 9007
+      "travel": 8731.8
      },
      "armed": {
       "taps": 117,
       "holds": 0,
       "drags": 0,
-      "travel": 33655.1
+      "travel": 17059.9
      }
     }
    }
@@ -8813,36 +8813,36 @@
       "travel": 16345.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 108,
       "holds": 0,
       "drags": 0,
-      "travel": 34944.2
+      "travel": 17132.6
      },
      "classic-drag": {
       "taps": 36,
       "holds": 0,
       "drags": 36,
-      "travel": 34944.2
+      "travel": 17132.6
      },
      "tapPlace-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 17,
-      "travel": 8159.1
+      "travel": 6942.1
      },
      "tapPlace-hold": {
       "taps": 72,
       "holds": 17,
       "drags": 0,
-      "travel": 8159.1
+      "travel": 6942.1
      },
      "armed": {
       "taps": 94,
       "holds": 0,
       "drags": 0,
-      "travel": 24064.7
+      "travel": 12885.5
      }
     }
    }
@@ -8903,36 +8903,36 @@
       "travel": 18384.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 98,
       "holds": 0,
       "drags": 0,
-      "travel": 30263.4
+      "travel": 15153.4
      },
      "classic-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 30,
-      "travel": 30263.4
+      "travel": 15153.4
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 18,
-      "travel": 8840.9
+      "travel": 7615.3
      },
      "tapPlace-hold": {
       "taps": 68,
       "holds": 18,
       "drags": 0,
-      "travel": 8840.9
+      "travel": 7615.3
      },
      "armed": {
       "taps": 92,
       "holds": 0,
       "drags": 0,
-      "travel": 27218
+      "travel": 14369
      }
     }
    }
@@ -8993,36 +8993,36 @@
       "travel": 34747.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 172,
       "holds": 0,
       "drags": 0,
-      "travel": 52555.7
+      "travel": 26830.1
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 51,
-      "travel": 52555.7
+      "travel": 26830.1
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 34,
-      "travel": 14697.1
+      "travel": 13446.9
      },
      "tapPlace-hold": {
       "taps": 121,
       "holds": 34,
       "drags": 0,
-      "travel": 14697.1
+      "travel": 13446.9
      },
      "armed": {
       "taps": 171,
       "holds": 0,
       "drags": 0,
-      "travel": 52232.4
+      "travel": 26780.6
      }
     }
    }
@@ -9083,36 +9083,36 @@
       "travel": 41877.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 198,
       "holds": 0,
       "drags": 0,
-      "travel": 56973.7
+      "travel": 30568.9
      },
      "classic-drag": {
       "taps": 92,
       "holds": 0,
       "drags": 53,
-      "travel": 56973.7
+      "travel": 30568.9
      },
      "tapPlace-drag": {
       "taps": 55,
       "holds": 0,
       "drags": 45,
-      "travel": 17497.6
+      "travel": 16225.5
      },
      "tapPlace-hold": {
       "taps": 145,
       "holds": 45,
       "drags": 0,
-      "travel": 17497.6
+      "travel": 16225.5
      },
      "armed": {
       "taps": 203,
       "holds": 0,
       "drags": 0,
-      "travel": 62335.9
+      "travel": 32607.1
      }
     }
    }
@@ -9173,36 +9173,36 @@
       "travel": 17762.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 28257
+      "travel": 14442.9
      },
      "classic-drag": {
       "taps": 34,
       "holds": 0,
       "drags": 28,
-      "travel": 28257
+      "travel": 14442.9
      },
      "tapPlace-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 16,
-      "travel": 8963.5
+      "travel": 7676.8
      },
      "tapPlace-hold": {
       "taps": 62,
       "holds": 16,
       "drags": 0,
-      "travel": 8963.5
+      "travel": 7676.8
      },
      "armed": {
       "taps": 86,
       "holds": 0,
       "drags": 0,
-      "travel": 26550.7
+      "travel": 13804.8
      }
     }
    }
@@ -9263,36 +9263,36 @@
       "travel": 47777.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 224,
       "holds": 0,
       "drags": 0,
-      "travel": 62490.2
+      "travel": 32180.1
      },
      "classic-drag": {
       "taps": 104,
       "holds": 0,
       "drags": 60,
-      "travel": 62490.2
+      "travel": 32180.1
      },
      "tapPlace-drag": {
       "taps": 62,
       "holds": 0,
       "drags": 51,
-      "travel": 18503.1
+      "travel": 17255.8
      },
      "tapPlace-hold": {
       "taps": 164,
       "holds": 51,
       "drags": 0,
-      "travel": 18503.1
+      "travel": 17255.8
      },
      "armed": {
       "taps": 234,
       "holds": 0,
       "drags": 0,
-      "travel": 72650
+      "travel": 36402.8
      }
     }
    }
@@ -9353,36 +9353,36 @@
       "travel": 19287.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 114,
       "holds": 0,
       "drags": 0,
-      "travel": 35300.7
+      "travel": 17385.5
      },
      "classic-drag": {
       "taps": 42,
       "holds": 0,
       "drags": 36,
-      "travel": 35300.7
+      "travel": 17385.5
      },
      "tapPlace-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 20,
-      "travel": 8722.1
+      "travel": 7441.8
      },
      "tapPlace-hold": {
       "taps": 78,
       "holds": 20,
       "drags": 0,
-      "travel": 8722.1
+      "travel": 7441.8
      },
      "armed": {
       "taps": 104,
       "holds": 0,
       "drags": 0,
-      "travel": 29193.3
+      "travel": 14814.7
      }
     }
    }
@@ -9443,36 +9443,36 @@
       "travel": 34800.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 48127.4
+      "travel": 25089.8
      },
      "classic-drag": {
       "taps": 74,
       "holds": 0,
       "drags": 46,
-      "travel": 48127.4
+      "travel": 25089.8
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 36,
-      "travel": 14169.4
+      "travel": 12952.4
      },
      "tapPlace-hold": {
       "taps": 120,
       "holds": 36,
       "drags": 0,
-      "travel": 14169.4
+      "travel": 12952.4
      },
      "armed": {
       "taps": 170,
       "holds": 0,
       "drags": 0,
-      "travel": 52444
+      "travel": 26861.4
      }
     }
    }
@@ -9533,36 +9533,36 @@
       "travel": 19216
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 92,
       "holds": 0,
       "drags": 0,
-      "travel": 28621.4
+      "travel": 14896.7
      },
      "classic-drag": {
       "taps": 36,
       "holds": 0,
       "drags": 28,
-      "travel": 28621.4
+      "travel": 14896.7
      },
      "tapPlace-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 17,
-      "travel": 8824.4
+      "travel": 7513.8
      },
      "tapPlace-hold": {
       "taps": 64,
       "holds": 17,
       "drags": 0,
-      "travel": 8824.4
+      "travel": 7513.8
      },
      "armed": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 28928
+      "travel": 14894.8
      }
     }
    }
@@ -9623,36 +9623,36 @@
       "travel": 27957.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 45298.1
+      "travel": 23708
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 44,
-      "travel": 45298.1
+      "travel": 23708
      },
      "tapPlace-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 32,
-      "travel": 11897.1
+      "travel": 10596.4
      },
      "tapPlace-hold": {
       "taps": 110,
       "holds": 32,
       "drags": 0,
-      "travel": 11897.1
+      "travel": 10596.4
      },
      "armed": {
       "taps": 148,
       "holds": 0,
       "drags": 0,
-      "travel": 41509.6
+      "travel": 21854.2
      }
     }
    }
@@ -9713,36 +9713,36 @@
       "travel": 32871.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 50891
+      "travel": 27268.1
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 48,
-      "travel": 50891
+      "travel": 27268.1
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 35,
-      "travel": 15635.8
+      "travel": 14331.6
      },
      "tapPlace-hold": {
       "taps": 120,
       "holds": 35,
       "drags": 0,
-      "travel": 15635.8
+      "travel": 14331.6
      },
      "armed": {
       "taps": 164,
       "holds": 0,
       "drags": 0,
-      "travel": 48109.7
+      "travel": 26014.4
      }
     }
    }
@@ -9803,36 +9803,36 @@
       "travel": 9600.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 63,
       "holds": 0,
       "drags": 0,
-      "travel": 19908.9
+      "travel": 9478
      },
      "classic-drag": {
       "taps": 21,
       "holds": 0,
       "drags": 21,
-      "travel": 19908.9
+      "travel": 9478
      },
      "tapPlace-drag": {
       "taps": 22,
       "holds": 0,
       "drags": 10,
-      "travel": 4763.8
+      "travel": 3998
      },
      "tapPlace-hold": {
       "taps": 42,
       "holds": 10,
       "drags": 0,
-      "travel": 4763.8
+      "travel": 3998
      },
      "armed": {
       "taps": 56,
       "holds": 0,
       "drags": 0,
-      "travel": 14659.1
+      "travel": 7289.7
      }
     }
    }
@@ -9893,36 +9893,36 @@
       "travel": 42610.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 210,
       "holds": 0,
       "drags": 0,
-      "travel": 61346.7
+      "travel": 32207.3
      },
      "classic-drag": {
       "taps": 94,
       "holds": 0,
       "drags": 58,
-      "travel": 61346.7
+      "travel": 32207.3
      },
      "tapPlace-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 46,
-      "travel": 18385.8
+      "travel": 17146.7
      },
      "tapPlace-hold": {
       "taps": 152,
       "holds": 46,
       "drags": 0,
-      "travel": 18385.8
+      "travel": 17146.7
      },
      "armed": {
       "taps": 212,
       "holds": 0,
       "drags": 0,
-      "travel": 63528
+      "travel": 33047.9
      }
     }
    }
@@ -9983,36 +9983,36 @@
       "travel": 40415.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 190,
       "holds": 0,
       "drags": 0,
-      "travel": 57277
+      "travel": 30937
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 53,
-      "travel": 57277
+      "travel": 30937
      },
      "tapPlace-drag": {
       "taps": 55,
       "holds": 0,
       "drags": 41,
-      "travel": 19354.2
+      "travel": 18097.6
      },
      "tapPlace-hold": {
       "taps": 137,
       "holds": 41,
       "drags": 0,
-      "travel": 19354.2
+      "travel": 18097.6
      },
      "armed": {
       "taps": 191,
       "holds": 0,
       "drags": 0,
-      "travel": 60021.9
+      "travel": 31463.2
      }
     }
    }
@@ -10073,36 +10073,36 @@
       "travel": 32961.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 164,
       "holds": 0,
       "drags": 0,
-      "travel": 49345.9
+      "travel": 25573.8
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 48,
-      "travel": 49345.9
+      "travel": 25573.8
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 33,
-      "travel": 13098.7
+      "travel": 11903.1
      },
      "tapPlace-hold": {
       "taps": 116,
       "holds": 33,
       "drags": 0,
-      "travel": 13098.7
+      "travel": 11903.1
      },
      "armed": {
       "taps": 162,
       "holds": 0,
       "drags": 0,
-      "travel": 49035.4
+      "travel": 25866
      }
     }
    }
@@ -10163,36 +10163,36 @@
       "travel": 33633.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 156,
       "holds": 0,
       "drags": 0,
-      "travel": 44523.6
+      "travel": 21880.4
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 45,
-      "travel": 44523.6
+      "travel": 21880.4
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 32,
-      "travel": 10951.9
+      "travel": 9695.3
      },
      "tapPlace-hold": {
       "taps": 111,
       "holds": 32,
       "drags": 0,
-      "travel": 10951.9
+      "travel": 9695.3
      },
      "armed": {
       "taps": 163,
       "holds": 0,
       "drags": 0,
-      "travel": 52226.1
+      "travel": 25146.3
      }
     }
    }
@@ -10253,36 +10253,36 @@
       "travel": 28633.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 158,
       "holds": 0,
       "drags": 0,
-      "travel": 45612.7
+      "travel": 22131.7
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 46,
-      "travel": 45612.7
+      "travel": 22131.7
      },
      "tapPlace-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 32,
-      "travel": 11526.6
+      "travel": 10222.3
      },
      "tapPlace-hold": {
       "taps": 112,
       "holds": 32,
       "drags": 0,
-      "travel": 11526.6
+      "travel": 10222.3
      },
      "armed": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 44097.5
+      "travel": 21407
      }
     }
    }
@@ -10343,36 +10343,36 @@
       "travel": 45180.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 222,
       "holds": 0,
       "drags": 0,
-      "travel": 67271.1
+      "travel": 35517
      },
      "classic-drag": {
       "taps": 94,
       "holds": 0,
       "drags": 64,
-      "travel": 67271.1
+      "travel": 35517
      },
      "tapPlace-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 46,
-      "travel": 19350.4
+      "travel": 18095.8
      },
      "tapPlace-hold": {
       "taps": 158,
       "holds": 46,
       "drags": 0,
-      "travel": 19350.4
+      "travel": 18095.8
      },
      "armed": {
       "taps": 216,
       "holds": 0,
       "drags": 0,
-      "travel": 65581.7
+      "travel": 36140
      }
     }
    }
@@ -10433,36 +10433,36 @@
       "travel": 42150.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 208,
       "holds": 0,
       "drags": 0,
-      "travel": 61382.2
+      "travel": 32811
      },
      "classic-drag": {
       "taps": 92,
       "holds": 0,
       "drags": 58,
-      "travel": 61382.2
+      "travel": 32811
      },
      "tapPlace-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 45,
-      "travel": 17309.9
+      "travel": 16031.4
      },
      "tapPlace-hold": {
       "taps": 150,
       "holds": 45,
       "drags": 0,
-      "travel": 17309.9
+      "travel": 16031.4
      },
      "armed": {
       "taps": 208,
       "holds": 0,
       "drags": 0,
-      "travel": 62124.9
+      "travel": 33174.1
      }
     }
    }
@@ -10523,36 +10523,36 @@
       "travel": 21000.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 104,
       "holds": 0,
       "drags": 0,
-      "travel": 31226.8
+      "travel": 15960
      },
      "classic-drag": {
       "taps": 42,
       "holds": 0,
       "drags": 31,
-      "travel": 31226.8
+      "travel": 15960
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 20,
-      "travel": 8585.2
+      "travel": 7284.6
      },
      "tapPlace-hold": {
       "taps": 73,
       "holds": 20,
       "drags": 0,
-      "travel": 8585.2
+      "travel": 7284.6
      },
      "armed": {
       "taps": 103,
       "holds": 0,
       "drags": 0,
-      "travel": 32182.8
+      "travel": 15991.1
      }
     }
    }
@@ -10613,36 +10613,36 @@
       "travel": 17037.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 102,
       "holds": 0,
       "drags": 0,
-      "travel": 30186
+      "travel": 15696.9
      },
      "classic-drag": {
       "taps": 44,
       "holds": 0,
       "drags": 29,
-      "travel": 30186
+      "travel": 15696.9
      },
      "tapPlace-drag": {
       "taps": 31,
       "holds": 0,
       "drags": 21,
-      "travel": 9168.1
+      "travel": 7911.7
      },
      "tapPlace-hold": {
       "taps": 73,
       "holds": 21,
       "drags": 0,
-      "travel": 9168.1
+      "travel": 7911.7
      },
      "armed": {
       "taps": 95,
       "holds": 0,
       "drags": 0,
-      "travel": 24866.9
+      "travel": 13468.7
      }
     }
    }
@@ -10703,36 +10703,36 @@
       "travel": 18232
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 96,
       "holds": 0,
       "drags": 0,
-      "travel": 29296.6
+      "travel": 14577.7
      },
      "classic-drag": {
       "taps": 36,
       "holds": 0,
       "drags": 30,
-      "travel": 29296.6
+      "travel": 14577.7
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 17,
-      "travel": 7516.4
+      "travel": 6319.1
      },
      "tapPlace-hold": {
       "taps": 66,
       "holds": 17,
       "drags": 0,
-      "travel": 7516.4
+      "travel": 6319.1
      },
      "armed": {
       "taps": 92,
       "holds": 0,
       "drags": 0,
-      "travel": 27652.6
+      "travel": 14020.6
      }
     }
    }
@@ -10793,36 +10793,36 @@
       "travel": 15843.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 98,
       "holds": 0,
       "drags": 0,
-      "travel": 29702.1
+      "travel": 14411.2
      },
      "classic-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 30,
-      "travel": 29702.1
+      "travel": 14411.2
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 18,
-      "travel": 7865.9
+      "travel": 6589.2
      },
      "tapPlace-hold": {
       "taps": 68,
       "holds": 18,
       "drags": 0,
-      "travel": 7865.9
+      "travel": 6589.2
      },
      "armed": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 23733
+      "travel": 12214.3
      }
     }
    }
@@ -10883,36 +10883,36 @@
       "travel": 50274.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 250,
       "holds": 0,
       "drags": 0,
-      "travel": 71653.5
+      "travel": 37407.7
      },
      "classic-drag": {
       "taps": 112,
       "holds": 0,
       "drags": 69,
-      "travel": 71653.5
+      "travel": 37407.7
      },
      "tapPlace-drag": {
       "taps": 71,
       "holds": 0,
       "drags": 55,
-      "travel": 18413.4
+      "travel": 17134.9
      },
      "tapPlace-hold": {
       "taps": 181,
       "holds": 55,
       "drags": 0,
-      "travel": 18413.4
+      "travel": 17134.9
      },
      "armed": {
       "taps": 253,
       "holds": 0,
       "drags": 0,
-      "travel": 76008.8
+      "travel": 38623.7
      }
     }
    }
@@ -10973,36 +10973,36 @@
       "travel": 37462.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 190,
       "holds": 0,
       "drags": 0,
-      "travel": 59086.9
+      "travel": 30860.6
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 57,
-      "travel": 59086.9
+      "travel": 30860.6
      },
      "tapPlace-drag": {
       "taps": 59,
       "holds": 0,
       "drags": 37,
-      "travel": 16316.2
+      "travel": 15099.2
      },
      "tapPlace-hold": {
       "taps": 133,
       "holds": 37,
       "drags": 0,
-      "travel": 16316.2
+      "travel": 15099.2
      },
      "armed": {
       "taps": 183,
       "holds": 0,
       "drags": 0,
-      "travel": 55081.3
+      "travel": 29510.3
      }
     }
    }
@@ -11063,36 +11063,36 @@
       "travel": 39351.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 194,
       "holds": 0,
       "drags": 0,
-      "travel": 56831
+      "travel": 28930.2
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 55,
-      "travel": 56831
+      "travel": 28930.2
      },
      "tapPlace-drag": {
       "taps": 57,
       "holds": 0,
       "drags": 41,
-      "travel": 16078.9
+      "travel": 14794
      },
      "tapPlace-hold": {
       "taps": 139,
       "holds": 41,
       "drags": 0,
-      "travel": 16078.9
+      "travel": 14794
      },
      "armed": {
       "taps": 197,
       "holds": 0,
       "drags": 0,
-      "travel": 60294.7
+      "travel": 29629.6
      }
     }
    }
@@ -11153,36 +11153,36 @@
       "travel": 33840.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 162,
       "holds": 0,
       "drags": 0,
-      "travel": 48937.2
+      "travel": 25157.1
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 48,
-      "travel": 48937.2
+      "travel": 25157.1
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 32,
-      "travel": 12285.7
+      "travel": 11015.4
      },
      "tapPlace-hold": {
       "taps": 114,
       "holds": 32,
       "drags": 0,
-      "travel": 12285.7
+      "travel": 11015.4
      },
      "armed": {
       "taps": 164,
       "holds": 0,
       "drags": 0,
-      "travel": 51570.1
+      "travel": 25835
      }
     }
    }
@@ -11243,36 +11243,36 @@
       "travel": 30125.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 48053.1
+      "travel": 23129.6
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 49,
-      "travel": 48053.1
+      "travel": 23129.6
      },
      "tapPlace-drag": {
       "taps": 51,
       "holds": 0,
       "drags": 33,
-      "travel": 11197.2
+      "travel": 9940.6
      },
      "tapPlace-hold": {
       "taps": 117,
       "holds": 33,
       "drags": 0,
-      "travel": 11197.2
+      "travel": 9940.6
      },
      "armed": {
       "taps": 163,
       "holds": 0,
       "drags": 0,
-      "travel": 47336.7
+      "travel": 22121.7
      }
     }
    }
@@ -11333,36 +11333,36 @@
       "travel": 24246.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 142,
       "holds": 0,
       "drags": 0,
-      "travel": 42745.2
+      "travel": 20146.4
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 44,
-      "travel": 42745.2
+      "travel": 20146.4
      },
      "tapPlace-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 26,
-      "travel": 10356.4
+      "travel": 9125.5
      },
      "tapPlace-hold": {
       "taps": 98,
       "holds": 26,
       "drags": 0,
-      "travel": 10356.4
+      "travel": 9125.5
      },
      "armed": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 37472.1
+      "travel": 18142.6
      }
     }
    }
@@ -11423,36 +11423,36 @@
       "travel": 20578.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 110,
       "holds": 0,
       "drags": 0,
-      "travel": 32771.3
+      "travel": 16572.1
      },
      "classic-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 32,
-      "travel": 32771.3
+      "travel": 16572.1
      },
      "tapPlace-drag": {
       "taps": 34,
       "holds": 0,
       "drags": 22,
-      "travel": 10072.7
+      "travel": 8794.2
      },
      "tapPlace-hold": {
       "taps": 78,
       "holds": 22,
       "drags": 0,
-      "travel": 10072.7
+      "travel": 8794.2
      },
      "armed": {
       "taps": 106,
       "holds": 0,
       "drags": 0,
-      "travel": 30907
+      "travel": 15838.5
      }
     }
    }
@@ -11513,36 +11513,36 @@
       "travel": 27437
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 151,
       "holds": 0,
       "drags": 0,
-      "travel": 43887.9
+      "travel": 20926.4
      },
      "classic-drag": {
       "taps": 61,
       "holds": 0,
       "drags": 45,
-      "travel": 43887.9
+      "travel": 20926.4
      },
      "tapPlace-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 30,
-      "travel": 9765
+      "travel": 9038.6
      },
      "tapPlace-hold": {
       "taps": 106,
       "holds": 30,
       "drags": 0,
-      "travel": 9765
+      "travel": 9038.6
      },
      "armed": {
       "taps": 148,
       "holds": 0,
       "drags": 0,
-      "travel": 42468.9
+      "travel": 20422.1
      }
     }
    }
@@ -11603,36 +11603,36 @@
       "travel": 30883
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 158,
       "holds": 0,
       "drags": 0,
-      "travel": 46575.2
+      "travel": 23919.6
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 45,
-      "travel": 46575.2
+      "travel": 23919.6
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 33,
-      "travel": 14055.1
+      "travel": 12770.1
      },
      "tapPlace-hold": {
       "taps": 113,
       "holds": 33,
       "drags": 0,
-      "travel": 14055.1
+      "travel": 12770.1
      },
      "armed": {
       "taps": 155,
       "holds": 0,
       "drags": 0,
-      "travel": 45874.5
+      "travel": 24117.7
      }
     }
    }
@@ -11693,36 +11693,36 @@
       "travel": 27183.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 148,
       "holds": 0,
       "drags": 0,
-      "travel": 42890.9
+      "travel": 21394
      },
      "classic-drag": {
       "taps": 62,
       "holds": 0,
       "drags": 43,
-      "travel": 42890.9
+      "travel": 21394
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 30,
-      "travel": 10383.3
+      "travel": 9172.3
      },
      "tapPlace-hold": {
       "taps": 105,
       "holds": 30,
       "drags": 0,
-      "travel": 10383.3
+      "travel": 9172.3
      },
      "armed": {
       "taps": 145,
       "holds": 0,
       "drags": 0,
-      "travel": 41252.9
+      "travel": 20773
      }
     }
    }
@@ -11783,36 +11783,36 @@
       "travel": 16087.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 28859.4
+      "travel": 13652.1
      },
      "classic-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 30,
-      "travel": 28859.4
+      "travel": 13652.1
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 14,
-      "travel": 7675.7
+      "travel": 6389
      },
      "tapPlace-hold": {
       "taps": 60,
       "holds": 14,
       "drags": 0,
-      "travel": 7675.7
+      "travel": 6389
      },
      "armed": {
       "taps": 82,
       "holds": 0,
       "drags": 0,
-      "travel": 24169.8
+      "travel": 12445
      }
     }
    }
@@ -11873,36 +11873,36 @@
       "travel": 27977
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 43744.7
+      "travel": 21825.8
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 43,
-      "travel": 43744.7
+      "travel": 21825.8
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 33,
-      "travel": 11771.9
+      "travel": 10528.8
      },
      "tapPlace-hold": {
       "taps": 111,
       "holds": 33,
       "drags": 0,
-      "travel": 11771.9
+      "travel": 10528.8
      },
      "armed": {
       "taps": 151,
       "holds": 0,
       "drags": 0,
-      "travel": 42478.1
+      "travel": 21336.6
      }
     }
    }
@@ -11963,36 +11963,36 @@
       "travel": 15837.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 84,
       "holds": 0,
       "drags": 0,
-      "travel": 27310.5
+      "travel": 13291.9
      },
      "classic-drag": {
       "taps": 28,
       "holds": 0,
       "drags": 28,
-      "travel": 27310.5
+      "travel": 13291.9
      },
      "tapPlace-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 13,
-      "travel": 7975.8
+      "travel": 6681.5
      },
      "tapPlace-hold": {
       "taps": 56,
       "holds": 13,
       "drags": 0,
-      "travel": 7975.8
+      "travel": 6681.5
      },
      "armed": {
       "taps": 78,
       "holds": 0,
       "drags": 0,
-      "travel": 24090.4
+      "travel": 12045.8
      }
     }
    }
@@ -12053,36 +12053,36 @@
       "travel": 22129.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 100,
       "holds": 0,
       "drags": 0,
-      "travel": 28843.6
+      "travel": 15567.9
      },
      "classic-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 27,
-      "travel": 28843.6
+      "travel": 15567.9
      },
      "tapPlace-drag": {
       "taps": 29,
       "holds": 0,
       "drags": 22,
-      "travel": 9733.1
+      "travel": 8485.8
      },
      "tapPlace-hold": {
       "taps": 73,
       "holds": 22,
       "drags": 0,
-      "travel": 9733.1
+      "travel": 8485.8
      },
      "armed": {
       "taps": 103,
       "holds": 0,
       "drags": 0,
-      "travel": 33176.3
+      "travel": 17220.8
      }
     }
    }
@@ -12143,36 +12143,36 @@
       "travel": 47027.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 232,
       "holds": 0,
       "drags": 0,
-      "travel": 67955.9
+      "travel": 35839.4
      },
      "classic-drag": {
       "taps": 104,
       "holds": 0,
       "drags": 64,
-      "travel": 67955.9
+      "travel": 35839.4
      },
      "tapPlace-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 51,
-      "travel": 20331.3
+      "travel": 19137.9
      },
      "tapPlace-hold": {
       "taps": 168,
       "holds": 51,
       "drags": 0,
-      "travel": 20331.3
+      "travel": 19137.9
      },
      "armed": {
       "taps": 232,
       "holds": 0,
       "drags": 0,
-      "travel": 69456.9
+      "travel": 36736.8
      }
     }
    }
@@ -12233,36 +12233,36 @@
       "travel": 45062.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 234,
       "holds": 0,
       "drags": 0,
-      "travel": 66986.9
+      "travel": 34279.7
      },
      "classic-drag": {
       "taps": 104,
       "holds": 0,
       "drags": 65,
-      "travel": 66986.9
+      "travel": 34279.7
      },
      "tapPlace-drag": {
       "taps": 67,
       "holds": 0,
       "drags": 51,
-      "travel": 17988.2
+      "travel": 16716.1
      },
      "tapPlace-hold": {
       "taps": 169,
       "holds": 51,
       "drags": 0,
-      "travel": 17988.2
+      "travel": 16716.1
      },
      "armed": {
       "taps": 233,
       "holds": 0,
       "drags": 0,
-      "travel": 67897.5
+      "travel": 34591.7
      }
     }
    }
@@ -12323,36 +12323,36 @@
       "travel": 43874.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 212,
       "holds": 0,
       "drags": 0,
-      "travel": 62859.6
+      "travel": 31776.6
      },
      "classic-drag": {
       "taps": 88,
       "holds": 0,
       "drags": 62,
-      "travel": 62859.6
+      "travel": 31776.6
      },
      "tapPlace-drag": {
       "taps": 64,
       "holds": 0,
       "drags": 43,
-      "travel": 16857.5
+      "travel": 15626.6
      },
      "tapPlace-hold": {
       "taps": 150,
       "holds": 43,
       "drags": 0,
-      "travel": 16857.5
+      "travel": 15626.6
      },
      "armed": {
       "taps": 216,
       "holds": 0,
       "drags": 0,
-      "travel": 67458.4
+      "travel": 33026.1
      }
     }
    }
@@ -12413,36 +12413,36 @@
       "travel": 31959.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 146,
       "holds": 0,
       "drags": 0,
-      "travel": 41472.6
+      "travel": 21746.2
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 40,
-      "travel": 41472.6
+      "travel": 21746.2
      },
      "tapPlace-drag": {
       "taps": 42,
       "holds": 0,
       "drags": 32,
-      "travel": 12395.1
+      "travel": 11176
      },
      "tapPlace-hold": {
       "taps": 106,
       "holds": 32,
       "drags": 0,
-      "travel": 12395.1
+      "travel": 11176
      },
      "armed": {
       "taps": 152,
       "holds": 0,
       "drags": 0,
-      "travel": 47662.9
+      "travel": 24977.9
      }
     }
    }
@@ -12503,36 +12503,36 @@
       "travel": 23474.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 39009.8
+      "travel": 19220.7
      },
      "classic-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 39,
-      "travel": 39009.8
+      "travel": 19220.7
      },
      "tapPlace-drag": {
       "taps": 41,
       "holds": 0,
       "drags": 23,
-      "travel": 10734.9
+      "travel": 9579
      },
      "tapPlace-hold": {
       "taps": 87,
       "holds": 23,
       "drags": 0,
-      "travel": 10734.9
+      "travel": 9579
      },
      "armed": {
       "taps": 121,
       "holds": 0,
       "drags": 0,
-      "travel": 35432.6
+      "travel": 18038.3
      }
     }
    }
@@ -12593,36 +12593,36 @@
       "travel": 52211.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 236,
       "holds": 0,
       "drags": 0,
-      "travel": 69094.2
+      "travel": 36199.2
      },
      "classic-drag": {
       "taps": 104,
       "holds": 0,
       "drags": 66,
-      "travel": 69094.2
+      "travel": 36199.2
      },
      "tapPlace-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 52,
-      "travel": 18697.4
+      "travel": 18422.2
      },
      "tapPlace-hold": {
       "taps": 170,
       "holds": 52,
       "drags": 0,
-      "travel": 18697.4
+      "travel": 18422.2
      },
      "armed": {
       "taps": 246,
       "holds": 0,
       "drags": 0,
-      "travel": 78352
+      "travel": 40419
      }
     }
    }
@@ -12683,36 +12683,36 @@
       "travel": 26536.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 48002
+      "travel": 24462
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 47,
-      "travel": 48002
+      "travel": 24462
      },
      "tapPlace-drag": {
       "taps": 49,
       "holds": 0,
       "drags": 29,
-      "travel": 13032
+      "travel": 11775.6
      },
      "tapPlace-hold": {
       "taps": 107,
       "holds": 29,
       "drags": 0,
-      "travel": 13032
+      "travel": 11775.6
      },
      "armed": {
       "taps": 141,
       "holds": 0,
       "drags": 0,
-      "travel": 38340
+      "travel": 21257
      }
     }
    }
@@ -12773,36 +12773,36 @@
       "travel": 14100.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 80,
       "holds": 0,
       "drags": 0,
-      "travel": 25478.9
+      "travel": 13339.3
      },
      "classic-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 25,
-      "travel": 25478.9
+      "travel": 13339.3
      },
      "tapPlace-drag": {
       "taps": 25,
       "holds": 0,
       "drags": 15,
-      "travel": 6370
+      "travel": 6094.8
      },
      "tapPlace-hold": {
       "taps": 55,
       "holds": 15,
       "drags": 0,
-      "travel": 6370
+      "travel": 6094.8
      },
      "armed": {
       "taps": 73,
       "holds": 0,
       "drags": 0,
-      "travel": 20460.1
+      "travel": 11200.2
      }
     }
    }
@@ -12863,36 +12863,36 @@
       "travel": 25705.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 128,
       "holds": 0,
       "drags": 0,
-      "travel": 38062.3
+      "travel": 20551.8
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 35,
-      "travel": 38062.3
+      "travel": 20551.8
      },
      "tapPlace-drag": {
       "taps": 37,
       "holds": 0,
       "drags": 28,
-      "travel": 13567.3
+      "travel": 12348.1
      },
      "tapPlace-hold": {
       "taps": 93,
       "holds": 28,
       "drags": 0,
-      "travel": 13567.3
+      "travel": 12348.1
      },
      "armed": {
       "taps": 125,
       "holds": 0,
       "drags": 0,
-      "travel": 37086.7
+      "travel": 20631.8
      }
     }
    }
@@ -12953,36 +12953,36 @@
       "travel": 28111.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 144,
       "holds": 0,
       "drags": 0,
-      "travel": 44000.3
+      "travel": 23315.2
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 42,
-      "travel": 44000.3
+      "travel": 23315.2
      },
      "tapPlace-drag": {
       "taps": 44,
       "holds": 0,
       "drags": 29,
-      "travel": 12711.1
+      "travel": 11434.4
      },
      "tapPlace-hold": {
       "taps": 102,
       "holds": 29,
       "drags": 0,
-      "travel": 12711.1
+      "travel": 11434.4
      },
      "armed": {
       "taps": 138,
       "holds": 0,
       "drags": 0,
-      "travel": 40807.9
+      "travel": 22459.5
      }
     }
    }
@@ -13043,36 +13043,36 @@
       "travel": 22991.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 36109.9
+      "travel": 18264.3
      },
      "classic-drag": {
       "taps": 54,
       "holds": 0,
       "drags": 36,
-      "travel": 36109.9
+      "travel": 18264.3
      },
      "tapPlace-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 26,
-      "travel": 9578.1
+      "travel": 8293.1
      },
      "tapPlace-hold": {
       "taps": 90,
       "holds": 26,
       "drags": 0,
-      "travel": 9578.1
+      "travel": 8293.1
      },
      "armed": {
       "taps": 122,
       "holds": 0,
       "drags": 0,
-      "travel": 35060.8
+      "travel": 17485.7
      }
     }
    }
@@ -13133,36 +13133,36 @@
       "travel": 15485.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 82,
       "holds": 0,
       "drags": 0,
-      "travel": 25854.7
+      "travel": 12851.2
      },
      "classic-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 26,
-      "travel": 25854.7
+      "travel": 12851.2
      },
      "tapPlace-drag": {
       "taps": 28,
       "holds": 0,
       "drags": 14,
-      "travel": 7460.1
+      "travel": 6209.9
      },
      "tapPlace-hold": {
       "taps": 56,
       "holds": 14,
       "drags": 0,
-      "travel": 7460.1
+      "travel": 6209.9
      },
      "armed": {
       "taps": 76,
       "holds": 0,
       "drags": 0,
-      "travel": 22861.9
+      "travel": 12170.2
      }
     }
    }
@@ -13223,36 +13223,36 @@
       "travel": 28491.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 162,
       "holds": 0,
       "drags": 0,
-      "travel": 47982.3
+      "travel": 23696
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 48,
-      "travel": 47982.3
+      "travel": 23696
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 32,
-      "travel": 11851
+      "travel": 10572.5
      },
      "tapPlace-hold": {
       "taps": 114,
       "holds": 32,
       "drags": 0,
-      "travel": 11851
+      "travel": 10572.5
      },
      "armed": {
       "taps": 156,
       "holds": 0,
       "drags": 0,
-      "travel": 43448.2
+      "travel": 21596.9
      }
     }
    }
@@ -13313,36 +13313,36 @@
       "travel": 34923.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 50436
+      "travel": 27072.7
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 48,
-      "travel": 50436
+      "travel": 27072.7
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 34,
-      "travel": 14471.7
+      "travel": 13169.3
      },
      "tapPlace-hold": {
       "taps": 118,
       "holds": 34,
       "drags": 0,
-      "travel": 14471.7
+      "travel": 13169.3
      },
      "armed": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 52741.6
+      "travel": 26804
      }
     }
    }
@@ -13403,36 +13403,36 @@
       "travel": 40293
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 188,
       "holds": 0,
       "drags": 0,
-      "travel": 54458
+      "travel": 28648.3
      },
      "classic-drag": {
       "taps": 86,
       "holds": 0,
       "drags": 51,
-      "travel": 54458
+      "travel": 28648.3
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 42,
-      "travel": 17325.3
+      "travel": 16060.4
      },
      "tapPlace-hold": {
       "taps": 137,
       "holds": 42,
       "drags": 0,
-      "travel": 17325.3
+      "travel": 16060.4
      },
      "armed": {
       "taps": 193,
       "holds": 0,
       "drags": 0,
-      "travel": 59835.3
+      "travel": 31381.3
      }
     }
    }
@@ -13493,36 +13493,36 @@
       "travel": 31431.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 172,
       "holds": 0,
       "drags": 0,
-      "travel": 52186.5
+      "travel": 26556.9
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 51,
-      "travel": 52186.5
+      "travel": 26556.9
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 34,
-      "travel": 13961.1
+      "travel": 12772
      },
      "tapPlace-hold": {
       "taps": 121,
       "holds": 34,
       "drags": 0,
-      "travel": 13961.1
+      "travel": 12772
      },
      "armed": {
       "taps": 163,
       "holds": 0,
       "drags": 0,
-      "travel": 46846.3
+      "travel": 24412.7
      }
     }
    }
@@ -13583,36 +13583,36 @@
       "travel": 30973.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 156,
       "holds": 0,
       "drags": 0,
-      "travel": 45206.7
+      "travel": 22692.4
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 45,
-      "travel": 45206.7
+      "travel": 22692.4
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 32,
-      "travel": 12381.4
+      "travel": 11070.8
      },
      "tapPlace-hold": {
       "taps": 111,
       "holds": 32,
       "drags": 0,
-      "travel": 12381.4
+      "travel": 11070.8
      },
      "armed": {
       "taps": 157,
       "holds": 0,
       "drags": 0,
-      "travel": 47045.9
+      "travel": 23644.4
      }
     }
    }
@@ -13673,36 +13673,36 @@
       "travel": 20328.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 98,
       "holds": 0,
       "drags": 0,
-      "travel": 29097.2
+      "travel": 14045.1
      },
      "classic-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 30,
-      "travel": 29097.2
+      "travel": 14045.1
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 18,
-      "travel": 8096
+      "travel": 6798.2
      },
      "tapPlace-hold": {
       "taps": 68,
       "holds": 18,
       "drags": 0,
-      "travel": 8096
+      "travel": 6798.2
      },
      "armed": {
       "taps": 100,
       "holds": 0,
       "drags": 0,
-      "travel": 31865.8
+      "travel": 14954
      }
     }
    }
@@ -13763,36 +13763,36 @@
       "travel": 30057.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 158,
       "holds": 0,
       "drags": 0,
-      "travel": 46526.6
+      "travel": 24017.9
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 45,
-      "travel": 46526.6
+      "travel": 24017.9
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 33,
-      "travel": 12809.7
+      "travel": 11578.8
      },
      "tapPlace-hold": {
       "taps": 113,
       "holds": 33,
       "drags": 0,
-      "travel": 12809.7
+      "travel": 11578.8
      },
      "armed": {
       "taps": 155,
       "holds": 0,
       "drags": 0,
-      "travel": 45119.3
+      "travel": 23227.6
      }
     }
    }
@@ -13853,36 +13853,36 @@
       "travel": 39421.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 218,
       "holds": 0,
       "drags": 0,
-      "travel": 65515.5
+      "travel": 33050.6
      },
      "classic-drag": {
       "taps": 88,
       "holds": 0,
       "drags": 65,
-      "travel": 65515.5
+      "travel": 33050.6
      },
      "tapPlace-drag": {
       "taps": 67,
       "holds": 0,
       "drags": 43,
-      "travel": 16160.1
+      "travel": 14956.4
      },
      "tapPlace-hold": {
       "taps": 153,
       "holds": 43,
       "drags": 0,
-      "travel": 16160.1
+      "travel": 14956.4
      },
      "armed": {
       "taps": 207,
       "holds": 0,
       "drags": 0,
-      "travel": 58391.6
+      "travel": 30919.3
      }
     }
    }
@@ -13943,36 +13943,36 @@
       "travel": 36080.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 196,
       "holds": 0,
       "drags": 0,
-      "travel": 59246.6
+      "travel": 30577.9
      },
      "classic-drag": {
       "taps": 80,
       "holds": 0,
       "drags": 58,
-      "travel": 59246.6
+      "travel": 30577.9
      },
      "tapPlace-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 39,
-      "travel": 15383.3
+      "travel": 14209.9
      },
      "tapPlace-hold": {
       "taps": 138,
       "holds": 39,
       "drags": 0,
-      "travel": 15383.3
+      "travel": 14209.9
      },
      "armed": {
       "taps": 188,
       "holds": 0,
       "drags": 0,
-      "travel": 53375.6
+      "travel": 28313.8
      }
     }
    }
@@ -14033,36 +14033,36 @@
       "travel": 37697.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 48736.8
+      "travel": 24245
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 49,
-      "travel": 48736.8
+      "travel": 24245
      },
      "tapPlace-drag": {
       "taps": 51,
       "holds": 0,
       "drags": 34,
-      "travel": 11466.5
+      "travel": 10164.1
      },
      "tapPlace-hold": {
       "taps": 119,
       "holds": 34,
       "drags": 0,
-      "travel": 11466.5
+      "travel": 10164.1
      },
      "armed": {
       "taps": 177,
       "holds": 0,
       "drags": 0,
-      "travel": 58531.9
+      "travel": 28310.9
      }
     }
    }
@@ -14123,36 +14123,36 @@
       "travel": 30237.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 150,
       "holds": 0,
       "drags": 0,
-      "travel": 43924.7
+      "travel": 22633.4
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 42,
-      "travel": 43924.7
+      "travel": 22633.4
      },
      "tapPlace-drag": {
       "taps": 44,
       "holds": 0,
       "drags": 32,
-      "travel": 14063.1
+      "travel": 12791
      },
      "tapPlace-hold": {
       "taps": 108,
       "holds": 32,
       "drags": 0,
-      "travel": 14063.1
+      "travel": 12791
      },
      "armed": {
       "taps": 148,
       "holds": 0,
       "drags": 0,
-      "travel": 44565.7
+      "travel": 23724.5
      }
     }
    }
@@ -14213,36 +14213,36 @@
       "travel": 29608.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 152,
       "holds": 0,
       "drags": 0,
-      "travel": 46195.1
+      "travel": 25014.9
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 43,
-      "travel": 46195.1
+      "travel": 25014.9
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 32,
-      "travel": 14215.3
+      "travel": 12976.1
      },
      "tapPlace-hold": {
       "taps": 109,
       "holds": 32,
       "drags": 0,
-      "travel": 14215.3
+      "travel": 12976.1
      },
      "armed": {
       "taps": 149,
       "holds": 0,
       "drags": 0,
-      "travel": 44152.8
+      "travel": 22906.8
      }
     }
    }
@@ -14303,36 +14303,36 @@
       "travel": 16571.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 90,
       "holds": 0,
       "drags": 0,
-      "travel": 28057.8
+      "travel": 12830.9
      },
      "classic-drag": {
       "taps": 30,
       "holds": 0,
       "drags": 30,
-      "travel": 28057.8
+      "travel": 12830.9
      },
      "tapPlace-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 14,
-      "travel": 7273.4
+      "travel": 6018.5
      },
      "tapPlace-hold": {
       "taps": 60,
       "holds": 14,
       "drags": 0,
-      "travel": 7273.4
+      "travel": 6018.5
      },
      "armed": {
       "taps": 84,
       "holds": 0,
       "drags": 0,
-      "travel": 26015.4
+      "travel": 12182
      }
     }
    }
@@ -14393,36 +14393,36 @@
       "travel": 32928.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 170,
       "holds": 0,
       "drags": 0,
-      "travel": 52570.1
+      "travel": 27427.9
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 50,
-      "travel": 52570.1
+      "travel": 27427.9
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 35,
-      "travel": 14833.5
+      "travel": 14558.3
      },
      "tapPlace-hold": {
       "taps": 120,
       "holds": 35,
       "drags": 0,
-      "travel": 14833.5
+      "travel": 14558.3
      },
      "armed": {
       "taps": 164,
       "holds": 0,
       "drags": 0,
-      "travel": 48295
+      "travel": 25886.5
      }
     }
    }
@@ -14483,36 +14483,36 @@
       "travel": 35973.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 50215.4
+      "travel": 26437.1
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 48,
-      "travel": 50215.4
+      "travel": 26437.1
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 35,
-      "travel": 15090.2
+      "travel": 13796
      },
      "tapPlace-hold": {
       "taps": 120,
       "holds": 35,
       "drags": 0,
-      "travel": 15090.2
+      "travel": 13796
      },
      "armed": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 53191.6
+      "travel": 28288.7
      }
     }
    }
@@ -14573,36 +14573,36 @@
       "travel": 51497.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 245,
       "holds": 0,
       "drags": 0,
-      "travel": 75441.1
+      "travel": 40055.9
      },
      "classic-drag": {
       "taps": 101,
       "holds": 0,
       "drags": 72,
-      "travel": 75441.1
+      "travel": 40055.9
      },
      "tapPlace-drag": {
       "taps": 73,
       "holds": 0,
       "drags": 50,
-      "travel": 20363.9
+      "travel": 19621.8
      },
      "tapPlace-hold": {
       "taps": 173,
       "holds": 50,
       "drags": 0,
-      "travel": 20363.9
+      "travel": 19621.8
      },
      "armed": {
       "taps": 245,
       "holds": 0,
       "drags": 0,
-      "travel": 76153.1
+      "travel": 40422
      }
     }
    }
@@ -14663,36 +14663,36 @@
       "travel": 27764.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 142,
       "holds": 0,
       "drags": 0,
-      "travel": 41573.7
+      "travel": 21206.2
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 41,
-      "travel": 41573.7
+      "travel": 21206.2
      },
      "tapPlace-drag": {
       "taps": 43,
       "holds": 0,
       "drags": 29,
-      "travel": 11282.6
+      "travel": 9980.2
      },
      "tapPlace-hold": {
       "taps": 101,
       "holds": 29,
       "drags": 0,
-      "travel": 11282.6
+      "travel": 9980.2
      },
      "armed": {
       "taps": 141,
       "holds": 0,
       "drags": 0,
-      "travel": 42160.1
+      "travel": 21208.3
      }
     }
    }
@@ -14753,36 +14753,36 @@
       "travel": 52250.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 254,
       "holds": 0,
       "drags": 0,
-      "travel": 75679.5
+      "travel": 40521.4
      },
      "classic-drag": {
       "taps": 112,
       "holds": 0,
       "drags": 71,
-      "travel": 75679.5
+      "travel": 40521.4
      },
      "tapPlace-drag": {
       "taps": 73,
       "holds": 0,
       "drags": 55,
-      "travel": 22910.5
+      "travel": 21774.3
      },
      "tapPlace-hold": {
       "taps": 183,
       "holds": 55,
       "drags": 0,
-      "travel": 22910.5
+      "travel": 21774.3
      },
      "armed": {
       "taps": 253,
       "holds": 0,
       "drags": 0,
-      "travel": 76232.3
+      "travel": 41457.3
      }
     }
    }
@@ -14843,36 +14843,36 @@
       "travel": 53836.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 260,
       "holds": 0,
       "drags": 0,
-      "travel": 79070.6
+      "travel": 41702.8
      },
      "classic-drag": {
       "taps": 110,
       "holds": 0,
       "drags": 75,
-      "travel": 79070.6
+      "travel": 41702.8
      },
      "tapPlace-drag": {
       "taps": 77,
       "holds": 0,
       "drags": 54,
-      "travel": 22495.1
+      "travel": 21256
      },
      "tapPlace-hold": {
       "taps": 185,
       "holds": 54,
       "drags": 0,
-      "travel": 22495.1
+      "travel": 21256
      },
      "armed": {
       "taps": 257,
       "holds": 0,
       "drags": 0,
-      "travel": 79421.3
+      "travel": 42268.6
      }
     }
    }
@@ -14933,36 +14933,36 @@
       "travel": 17443.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 110,
       "holds": 0,
       "drags": 0,
-      "travel": 34144.4
+      "travel": 16739
      },
      "classic-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 35,
-      "travel": 34144.4
+      "travel": 16739
      },
      "tapPlace-drag": {
       "taps": 37,
       "holds": 0,
       "drags": 19,
-      "travel": 8663.1
+      "travel": 7386.4
      },
      "tapPlace-hold": {
       "taps": 75,
       "holds": 19,
       "drags": 0,
-      "travel": 8663.1
+      "travel": 7386.4
      },
      "armed": {
       "taps": 99,
       "holds": 0,
       "drags": 0,
-      "travel": 26474.8
+      "travel": 13267.9
      }
     }
    }
@@ -15023,36 +15023,36 @@
       "travel": 25869.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 136,
       "holds": 0,
       "drags": 0,
-      "travel": 40239.9
+      "travel": 19959.6
      },
      "classic-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 40,
-      "travel": 40239.9
+      "travel": 19959.6
      },
      "tapPlace-drag": {
       "taps": 42,
       "holds": 0,
       "drags": 27,
-      "travel": 10980.2
+      "travel": 9763.2
      },
      "tapPlace-hold": {
       "taps": 96,
       "holds": 27,
       "drags": 0,
-      "travel": 10980.2
+      "travel": 9763.2
      },
      "armed": {
       "taps": 134,
       "holds": 0,
       "drags": 0,
-      "travel": 39662.3
+      "travel": 19546.8
      }
     }
    }
@@ -15113,36 +15113,36 @@
       "travel": 33513.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 166,
       "holds": 0,
       "drags": 0,
-      "travel": 48701.2
+      "travel": 25085.4
      },
      "classic-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 47,
-      "travel": 48701.2
+      "travel": 25085.4
      },
      "tapPlace-drag": {
       "taps": 49,
       "holds": 0,
       "drags": 35,
-      "travel": 14958.4
+      "travel": 13649.5
      },
      "tapPlace-hold": {
       "taps": 119,
       "holds": 35,
       "drags": 0,
-      "travel": 14958.4
+      "travel": 13649.5
      },
      "armed": {
       "taps": 165,
       "holds": 0,
       "drags": 0,
-      "travel": 49996.9
+      "travel": 25977.5
      }
     }
    }
@@ -15203,36 +15203,36 @@
       "travel": 69488.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 326,
       "holds": 0,
       "drags": 0,
-      "travel": 96966.4
+      "travel": 54921.2
      },
      "classic-drag": {
       "taps": 152,
       "holds": 0,
       "drags": 87,
-      "travel": 96966.4
+      "travel": 54921.2
      },
      "tapPlace-drag": {
       "taps": 89,
       "holds": 0,
       "drags": 75,
-      "travel": 30284.4
+      "travel": 29045.2
      },
      "tapPlace-hold": {
       "taps": 239,
       "holds": 75,
       "drags": 0,
-      "travel": 30284.4
+      "travel": 29045.2
      },
      "armed": {
       "taps": 327,
       "holds": 0,
       "drags": 0,
-      "travel": 99034.3
+      "travel": 56477.2
      }
     }
    }
@@ -15293,36 +15293,36 @@
       "travel": 55424.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 260,
       "holds": 0,
       "drags": 0,
-      "travel": 74705.8
+      "travel": 40692.8
      },
      "classic-drag": {
       "taps": 120,
       "holds": 0,
       "drags": 70,
-      "travel": 74705.8
+      "travel": 40692.8
      },
      "tapPlace-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 59,
-      "travel": 20360
+      "travel": 19057.5
      },
      "tapPlace-hold": {
       "taps": 190,
       "holds": 59,
       "drags": 0,
-      "travel": 20360
+      "travel": 19057.5
      },
      "armed": {
       "taps": 266,
       "holds": 0,
       "drags": 0,
-      "travel": 81377.9
+      "travel": 43984
      }
     }
    }
@@ -15383,36 +15383,36 @@
       "travel": 29860.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 142,
       "holds": 0,
       "drags": 0,
-      "travel": 44904.9
+      "travel": 24986.2
      },
      "classic-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 41,
-      "travel": 44904.9
+      "travel": 24986.2
      },
      "tapPlace-drag": {
       "taps": 43,
       "holds": 0,
       "drags": 29,
-      "travel": 14994.9
+      "travel": 13730.1
      },
      "tapPlace-hold": {
       "taps": 101,
       "holds": 29,
       "drags": 0,
-      "travel": 14994.9
+      "travel": 13730.1
      },
      "armed": {
       "taps": 139,
       "holds": 0,
       "drags": 0,
-      "travel": 43257.9
+      "travel": 23857.9
      }
     }
    }
@@ -15473,36 +15473,36 @@
       "travel": 35653.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 186,
       "holds": 0,
       "drags": 0,
-      "travel": 56948.5
+      "travel": 30000.3
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 54,
-      "travel": 56948.5
+      "travel": 30000.3
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 38,
-      "travel": 16679.8
+      "travel": 15377.4
      },
      "tapPlace-hold": {
       "taps": 132,
       "holds": 38,
       "drags": 0,
-      "travel": 16679.8
+      "travel": 15377.4
      },
      "armed": {
       "taps": 178,
       "holds": 0,
       "drags": 0,
-      "travel": 51920.1
+      "travel": 28282.6
      }
     }
    }
@@ -15563,36 +15563,36 @@
       "travel": 28236.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 144,
       "holds": 0,
       "drags": 0,
-      "travel": 45381.3
+      "travel": 24638.6
      },
      "classic-drag": {
       "taps": 58,
       "holds": 0,
       "drags": 43,
-      "travel": 45381.3
+      "travel": 24638.6
      },
      "tapPlace-drag": {
       "taps": 43,
       "holds": 0,
       "drags": 29,
-      "travel": 11521.7
+      "travel": 11246.5
      },
      "tapPlace-hold": {
       "taps": 101,
       "holds": 29,
       "drags": 0,
-      "travel": 11521.7
+      "travel": 11246.5
      },
      "armed": {
       "taps": 139,
       "holds": 0,
       "drags": 0,
-      "travel": 41222
+      "travel": 22457.1
      }
     }
    }
@@ -15653,36 +15653,36 @@
       "travel": 44499.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 232,
       "holds": 0,
       "drags": 0,
-      "travel": 69920
+      "travel": 36356
      },
      "classic-drag": {
       "taps": 98,
       "holds": 0,
       "drags": 67,
-      "travel": 69920
+      "travel": 36356
      },
      "tapPlace-drag": {
       "taps": 69,
       "holds": 0,
       "drags": 48,
-      "travel": 20176.7
+      "travel": 18876.1
      },
      "tapPlace-hold": {
       "taps": 165,
       "holds": 48,
       "drags": 0,
-      "travel": 20176.7
+      "travel": 18876.1
      },
      "armed": {
       "taps": 225,
       "holds": 0,
       "drags": 0,
-      "travel": 66257.5
+      "travel": 34514
      }
     }
    }
@@ -15743,36 +15743,36 @@
       "travel": 31569
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 44955.2
+      "travel": 23912.6
      },
      "classic-drag": {
       "taps": 70,
       "holds": 0,
       "drags": 42,
-      "travel": 44955.2
+      "travel": 23912.6
      },
      "tapPlace-drag": {
       "taps": 44,
       "holds": 0,
       "drags": 34,
-      "travel": 14807.7
+      "travel": 13546.7
      },
      "tapPlace-hold": {
       "taps": 112,
       "holds": 34,
       "drags": 0,
-      "travel": 14807.7
+      "travel": 13546.7
      },
      "armed": {
       "taps": 154,
       "holds": 0,
       "drags": 0,
-      "travel": 46514.8
+      "travel": 24842.7
      }
     }
    }
@@ -15833,36 +15833,36 @@
       "travel": 17717.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 104,
       "holds": 0,
       "drags": 0,
-      "travel": 31114.4
+      "travel": 15563.5
      },
      "classic-drag": {
       "taps": 42,
       "holds": 0,
       "drags": 31,
-      "travel": 31114.4
+      "travel": 15563.5
      },
      "tapPlace-drag": {
       "taps": 33,
       "holds": 0,
       "drags": 20,
-      "travel": 8595.6
+      "travel": 7308.8
      },
      "tapPlace-hold": {
       "taps": 73,
       "holds": 20,
       "drags": 0,
-      "travel": 8595.6
+      "travel": 7308.8
      },
      "armed": {
       "taps": 97,
       "holds": 0,
       "drags": 0,
-      "travel": 26500.6
+      "travel": 13769.1
      }
     }
    }
@@ -15923,36 +15923,36 @@
       "travel": 11111.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 62,
       "holds": 0,
       "drags": 0,
-      "travel": 19697.8
+      "travel": 9801.4
      },
      "classic-drag": {
       "taps": 22,
       "holds": 0,
       "drags": 20,
-      "travel": 19697.8
+      "travel": 9801.4
      },
      "tapPlace-drag": {
       "taps": 22,
       "holds": 0,
       "drags": 10,
-      "travel": 6136.3
+      "travel": 4921.1
      },
      "tapPlace-hold": {
       "taps": 42,
       "holds": 10,
       "drags": 0,
-      "travel": 6136.3
+      "travel": 4921.1
      },
      "armed": {
       "taps": 58,
       "holds": 0,
       "drags": 0,
-      "travel": 16897.4
+      "travel": 8459.2
      }
     }
    }
@@ -16013,36 +16013,36 @@
       "travel": 51857.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 260,
       "holds": 0,
       "drags": 0,
-      "travel": 78709.4
+      "travel": 42040.4
      },
      "classic-drag": {
       "taps": 110,
       "holds": 0,
       "drags": 75,
-      "travel": 78709.4
+      "travel": 42040.4
      },
      "tapPlace-drag": {
       "taps": 77,
       "holds": 0,
       "drags": 54,
-      "travel": 21651.6
+      "travel": 20355.6
      },
      "tapPlace-hold": {
       "taps": 185,
       "holds": 54,
       "drags": 0,
-      "travel": 21651.6
+      "travel": 20355.6
      },
      "armed": {
       "taps": 255,
       "holds": 0,
       "drags": 0,
-      "travel": 76332.2
+      "travel": 41039.3
      }
     }
    }
@@ -16103,36 +16103,36 @@
       "travel": 24317.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 129,
       "holds": 0,
       "drags": 0,
-      "travel": 39706.7
+      "travel": 20484.7
      },
      "classic-drag": {
       "taps": 51,
       "holds": 0,
       "drags": 39,
-      "travel": 39706.7
+      "travel": 20484.7
      },
      "tapPlace-drag": {
       "taps": 40,
       "holds": 0,
       "drags": 25,
-      "travel": 10333.4
+      "travel": 9613
      },
      "tapPlace-hold": {
       "taps": 90,
       "holds": 25,
       "drags": 0,
-      "travel": 10333.4
+      "travel": 9613
      },
      "armed": {
       "taps": 122,
       "holds": 0,
       "drags": 0,
-      "travel": 35630.5
+      "travel": 19294.2
      }
     }
    }
@@ -16193,36 +16193,36 @@
       "travel": 38728.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 182,
       "holds": 0,
       "drags": 0,
-      "travel": 55488.1
+      "travel": 28895.3
      },
      "classic-drag": {
       "taps": 74,
       "holds": 0,
       "drags": 54,
-      "travel": 55488.1
+      "travel": 28895.3
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 36,
-      "travel": 15347.1
+      "travel": 14068.6
      },
      "tapPlace-hold": {
       "taps": 128,
       "holds": 36,
       "drags": 0,
-      "travel": 15347.1
+      "travel": 14068.6
      },
      "armed": {
       "taps": 182,
       "holds": 0,
       "drags": 0,
-      "travel": 58021.6
+      "travel": 30063.8
      }
     }
    }
@@ -16283,36 +16283,36 @@
       "travel": 39861.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 206,
       "holds": 0,
       "drags": 0,
-      "travel": 60357.7
+      "travel": 30100.5
      },
      "classic-drag": {
       "taps": 86,
       "holds": 0,
       "drags": 60,
-      "travel": 60357.7
+      "travel": 30100.5
      },
      "tapPlace-drag": {
       "taps": 62,
       "holds": 0,
       "drags": 42,
-      "travel": 16045.1
+      "travel": 14854.2
      },
      "tapPlace-hold": {
       "taps": 146,
       "holds": 42,
       "drags": 0,
-      "travel": 16045.1
+      "travel": 14854.2
      },
      "armed": {
       "taps": 204,
       "holds": 0,
       "drags": 0,
-      "travel": 61078.3
+      "travel": 30095.7
      }
     }
    }
@@ -16373,36 +16373,36 @@
       "travel": 48799.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 248,
       "holds": 0,
       "drags": 0,
-      "travel": 74815.4
+      "travel": 40334.5
      },
      "classic-drag": {
       "taps": 108,
       "holds": 0,
       "drags": 70,
-      "travel": 74815.4
+      "travel": 40334.5
      },
      "tapPlace-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 53,
-      "travel": 20715.2
+      "travel": 19474.3
      },
      "tapPlace-hold": {
       "taps": 178,
       "holds": 53,
       "drags": 0,
-      "travel": 20715.2
+      "travel": 19474.3
      },
      "armed": {
       "taps": 242,
       "holds": 0,
       "drags": 0,
-      "travel": 71365.2
+      "travel": 38725.3
      }
     }
    }
@@ -16463,36 +16463,36 @@
       "travel": 51351
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 246,
       "holds": 0,
       "drags": 0,
-      "travel": 75938.8
+      "travel": 41761.9
      },
      "classic-drag": {
       "taps": 108,
       "holds": 0,
       "drags": 69,
-      "travel": 75938.8
+      "travel": 41761.9
      },
      "tapPlace-drag": {
       "taps": 71,
       "holds": 0,
       "drags": 53,
-      "travel": 25054.3
+      "travel": 23791.2
      },
      "tapPlace-hold": {
       "taps": 177,
       "holds": 53,
       "drags": 0,
-      "travel": 25054.3
+      "travel": 23791.2
      },
      "armed": {
       "taps": 243,
       "holds": 0,
       "drags": 0,
-      "travel": 74447.5
+      "travel": 40886.3
      }
     }
    }
@@ -16553,36 +16553,36 @@
       "travel": 32428.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 186,
       "holds": 0,
       "drags": 0,
-      "travel": 54184.4
+      "travel": 26824.9
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 54,
-      "travel": 54184.4
+      "travel": 26824.9
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 38,
-      "travel": 13130
+      "travel": 11836.9
      },
      "tapPlace-hold": {
       "taps": 132,
       "holds": 38,
       "drags": 0,
-      "travel": 13130
+      "travel": 11836.9
      },
      "armed": {
       "taps": 176,
       "holds": 0,
       "drags": 0,
-      "travel": 48554.3
+      "travel": 25102.4
      }
     }
    }
@@ -16643,36 +16643,36 @@
       "travel": 16401.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 92,
       "holds": 0,
       "drags": 0,
-      "travel": 28689.1
+      "travel": 14347.4
      },
      "classic-drag": {
       "taps": 34,
       "holds": 0,
       "drags": 29,
-      "travel": 28689.1
+      "travel": 14347.4
      },
      "tapPlace-drag": {
       "taps": 31,
       "holds": 0,
       "drags": 16,
-      "travel": 7898.2
+      "travel": 6659.1
      },
      "tapPlace-hold": {
       "taps": 63,
       "holds": 16,
       "drags": 0,
-      "travel": 7898.2
+      "travel": 6659.1
      },
      "armed": {
       "taps": 85,
       "holds": 0,
       "drags": 0,
-      "travel": 24514.9
+      "travel": 12737.8
      }
     }
    }
@@ -16733,36 +16733,36 @@
       "travel": 49888.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 252,
       "holds": 0,
       "drags": 0,
-      "travel": 73672
+      "travel": 38919
      },
      "classic-drag": {
       "taps": 112,
       "holds": 0,
       "drags": 70,
-      "travel": 73672
+      "travel": 38919
      },
      "tapPlace-drag": {
       "taps": 72,
       "holds": 0,
       "drags": 55,
-      "travel": 21406.6
+      "travel": 20189.6
      },
      "tapPlace-hold": {
       "taps": 182,
       "holds": 55,
       "drags": 0,
-      "travel": 21406.6
+      "travel": 20189.6
      },
      "armed": {
       "taps": 250,
       "holds": 0,
       "drags": 0,
-      "travel": 73511.3
+      "travel": 39330.2
      }
     }
    }
@@ -16823,36 +16823,36 @@
       "travel": 26573.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 49079.7
+      "travel": 23613.7
      },
      "classic-drag": {
       "taps": 68,
       "holds": 0,
       "drags": 50,
-      "travel": 49079.7
+      "travel": 23613.7
      },
      "tapPlace-drag": {
       "taps": 52,
       "holds": 0,
       "drags": 33,
-      "travel": 11181.5
+      "travel": 9911.2
      },
      "tapPlace-hold": {
       "taps": 118,
       "holds": 33,
       "drags": 0,
-      "travel": 11181.5
+      "travel": 9911.2
      },
      "armed": {
       "taps": 156,
       "holds": 0,
       "drags": 0,
-      "travel": 40519.7
+      "travel": 20141.1
      }
     }
    }
@@ -16913,36 +16913,36 @@
       "travel": 54816.9
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 276,
       "holds": 0,
       "drags": 0,
-      "travel": 80576.9
+      "travel": 41269.9
      },
      "classic-drag": {
       "taps": 122,
       "holds": 0,
       "drags": 77,
-      "travel": 80576.9
+      "travel": 41269.9
      },
      "tapPlace-drag": {
       "taps": 79,
       "holds": 0,
       "drags": 60,
-      "travel": 23402
+      "travel": 22206.5
      },
      "tapPlace-hold": {
       "taps": 199,
       "holds": 60,
       "drags": 0,
-      "travel": 23402
+      "travel": 22206.5
      },
      "armed": {
       "taps": 275,
       "holds": 0,
       "drags": 0,
-      "travel": 82197.3
+      "travel": 42241.1
      }
     }
    }
@@ -17003,36 +17003,36 @@
       "travel": 50761.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 216,
       "holds": 0,
       "drags": 0,
-      "travel": 64366.9
+      "travel": 35383.9
      },
      "classic-drag": {
       "taps": 98,
       "holds": 0,
       "drags": 59,
-      "travel": 64366.9
+      "travel": 35383.9
      },
      "tapPlace-drag": {
       "taps": 61,
       "holds": 0,
       "drags": 48,
-      "travel": 20933.1
+      "travel": 19731.5
      },
      "tapPlace-hold": {
       "taps": 157,
       "holds": 48,
       "drags": 0,
-      "travel": 20933.1
+      "travel": 19731.5
      },
      "armed": {
       "taps": 229,
       "holds": 0,
       "drags": 0,
-      "travel": 75358.8
+      "travel": 39725.6
      }
     }
    }
@@ -17093,36 +17093,36 @@
       "travel": 30442.3
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 152,
       "holds": 0,
       "drags": 0,
-      "travel": 44144.1
+      "travel": 22513.3
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 43,
-      "travel": 44144.1
+      "travel": 22513.3
      },
      "tapPlace-drag": {
       "taps": 45,
       "holds": 0,
       "drags": 32,
-      "travel": 12203.7
+      "travel": 10903.1
      },
      "tapPlace-hold": {
       "taps": 109,
       "holds": 32,
       "drags": 0,
-      "travel": 12203.7
+      "travel": 10903.1
      },
      "armed": {
       "taps": 153,
       "holds": 0,
       "drags": 0,
-      "travel": 46348.3
+      "travel": 23105.9
      }
     }
    }
@@ -17183,36 +17183,36 @@
       "travel": 40541.7
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 200,
       "holds": 0,
       "drags": 0,
-      "travel": 60648.7
+      "travel": 31868.1
      },
      "classic-drag": {
       "taps": 84,
       "holds": 0,
       "drags": 58,
-      "travel": 60648.7
+      "travel": 31868.1
      },
      "tapPlace-drag": {
       "taps": 60,
       "holds": 0,
       "drags": 41,
-      "travel": 16819
+      "travel": 15540.5
      },
      "tapPlace-hold": {
       "taps": 142,
       "holds": 41,
       "drags": 0,
-      "travel": 16819
+      "travel": 15540.5
      },
      "armed": {
       "taps": 198,
       "holds": 0,
       "drags": 0,
-      "travel": 60545.7
+      "travel": 31582.3
      }
     }
    }
@@ -17273,36 +17273,36 @@
       "travel": 32405.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 168,
       "holds": 0,
       "drags": 0,
-      "travel": 47940
+      "travel": 25326.3
      },
      "classic-drag": {
       "taps": 78,
       "holds": 0,
       "drags": 45,
-      "travel": 47940
+      "travel": 25326.3
      },
      "tapPlace-drag": {
       "taps": 47,
       "holds": 0,
       "drags": 38,
-      "travel": 15698.4
+      "travel": 14396
      },
      "tapPlace-hold": {
       "taps": 123,
       "holds": 38,
       "drags": 0,
-      "travel": 15698.4
+      "travel": 14396
      },
      "armed": {
       "taps": 165,
       "holds": 0,
       "drags": 0,
-      "travel": 47456.2
+      "travel": 25536.6
      }
     }
    }
@@ -17363,36 +17363,36 @@
       "travel": 39007.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 184,
       "holds": 0,
       "drags": 0,
-      "travel": 54617.5
+      "travel": 29725.7
      },
      "classic-drag": {
       "taps": 82,
       "holds": 0,
       "drags": 51,
-      "travel": 54617.5
+      "travel": 29725.7
      },
      "tapPlace-drag": {
       "taps": 53,
       "holds": 0,
       "drags": 40,
-      "travel": 16423.3
+      "travel": 15184.2
      },
      "tapPlace-hold": {
       "taps": 133,
       "holds": 40,
       "drags": 0,
-      "travel": 16423.3
+      "travel": 15184.2
      },
      "armed": {
       "taps": 187,
       "holds": 0,
       "drags": 0,
-      "travel": 57565.9
+      "travel": 30669.7
      }
     }
    }
@@ -17453,36 +17453,36 @@
       "travel": 40899.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 194,
       "holds": 0,
       "drags": 0,
-      "travel": 58412.9
+      "travel": 31782.2
      },
      "classic-drag": {
       "taps": 86,
       "holds": 0,
       "drags": 54,
-      "travel": 58412.9
+      "travel": 31782.2
      },
      "tapPlace-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 42,
-      "travel": 19378.8
+      "travel": 18155.3
      },
      "tapPlace-hold": {
       "taps": 140,
       "holds": 42,
       "drags": 0,
-      "travel": 19378.8
+      "travel": 18155.3
      },
      "armed": {
       "taps": 192,
       "holds": 0,
       "drags": 0,
-      "travel": 59009.3
+      "travel": 32825.6
      }
     }
    }
@@ -17543,36 +17543,36 @@
       "travel": 20576.2
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 118,
       "holds": 0,
       "drags": 0,
-      "travel": 35003.1
+      "travel": 16632.8
      },
      "classic-drag": {
       "taps": 46,
       "holds": 0,
       "drags": 36,
-      "travel": 35003.1
+      "travel": 16632.8
      },
      "tapPlace-drag": {
       "taps": 38,
       "holds": 0,
       "drags": 22,
-      "travel": 8706.6
+      "travel": 7404.2
      },
      "tapPlace-hold": {
       "taps": 82,
       "holds": 22,
       "drags": 0,
-      "travel": 8706.6
+      "travel": 7404.2
      },
      "armed": {
       "taps": 112,
       "holds": 0,
       "drags": 0,
-      "travel": 31252
+      "travel": 15689.2
      }
     }
    }
@@ -17633,36 +17633,36 @@
       "travel": 51624.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 248,
       "holds": 0,
       "drags": 0,
-      "travel": 75079.9
+      "travel": 40853.8
      },
      "classic-drag": {
       "taps": 110,
       "holds": 0,
       "drags": 69,
-      "travel": 75079.9
+      "travel": 40853.8
      },
      "tapPlace-drag": {
       "taps": 71,
       "holds": 0,
       "drags": 54,
-      "travel": 23218.3
+      "travel": 21961.6
      },
      "tapPlace-hold": {
       "taps": 179,
       "holds": 54,
       "drags": 0,
-      "travel": 23218.3
+      "travel": 21961.6
      },
      "armed": {
       "taps": 247,
       "holds": 0,
       "drags": 0,
-      "travel": 75347
+      "travel": 40975.7
      }
     }
    }
@@ -17723,36 +17723,36 @@
       "travel": 22300.4
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 122,
       "holds": 0,
       "drags": 0,
-      "travel": 36716.5
+      "travel": 18000.1
      },
      "classic-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 37,
-      "travel": 36716.5
+      "travel": 18000.1
      },
      "tapPlace-drag": {
       "taps": 39,
       "holds": 0,
       "drags": 23,
-      "travel": 9822.1
+      "travel": 8535.4
      },
      "tapPlace-hold": {
       "taps": 85,
       "holds": 23,
       "drags": 0,
-      "travel": 9822.1
+      "travel": 8535.4
      },
      "armed": {
       "taps": 117,
       "holds": 0,
       "drags": 0,
-      "travel": 34050.6
+      "travel": 16884.8
      }
     }
    }
@@ -17813,36 +17813,36 @@
       "travel": 33877.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 170,
       "holds": 0,
       "drags": 0,
-      "travel": 51642.3
+      "travel": 28752
      },
      "classic-drag": {
       "taps": 76,
       "holds": 0,
       "drags": 47,
-      "travel": 51642.3
+      "travel": 28752
      },
      "tapPlace-drag": {
       "taps": 49,
       "holds": 0,
       "drags": 37,
-      "travel": 17010.7
+      "travel": 15741.5
      },
      "tapPlace-hold": {
       "taps": 123,
       "holds": 37,
       "drags": 0,
-      "travel": 17010.7
+      "travel": 15741.5
      },
      "armed": {
       "taps": 165,
       "holds": 0,
       "drags": 0,
-      "travel": 48158.7
+      "travel": 27529.8
      }
     }
    }
@@ -17903,36 +17903,36 @@
       "travel": 60317.5
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 292,
       "holds": 0,
       "drags": 0,
-      "travel": 85414.9
+      "travel": 45642.9
      },
      "classic-drag": {
       "taps": 134,
       "holds": 0,
       "drags": 79,
-      "travel": 85414.9
+      "travel": 45642.9
      },
      "tapPlace-drag": {
       "taps": 81,
       "holds": 0,
       "drags": 66,
-      "travel": 25243.5
+      "travel": 23988.6
      },
      "tapPlace-hold": {
       "taps": 213,
       "holds": 66,
       "drags": 0,
-      "travel": 25243.5
+      "travel": 23988.6
      },
      "armed": {
       "taps": 297,
       "holds": 0,
       "drags": 0,
-      "travel": 89389.6
+      "travel": 47057
      }
     }
    }
@@ -17993,36 +17993,36 @@
       "travel": 31094
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 162,
       "holds": 0,
       "drags": 0,
-      "travel": 49999.8
+      "travel": 26231.6
      },
      "classic-drag": {
       "taps": 66,
       "holds": 0,
       "drags": 48,
-      "travel": 49999.8
+      "travel": 26231.6
      },
      "tapPlace-drag": {
       "taps": 50,
       "holds": 0,
       "drags": 32,
-      "travel": 14416
+      "travel": 13200.8
      },
      "tapPlace-hold": {
       "taps": 114,
       "holds": 32,
       "drags": 0,
-      "travel": 14416
+      "travel": 13200.8
      },
      "armed": {
       "taps": 156,
       "holds": 0,
       "drags": 0,
-      "travel": 46379.5
+      "travel": 24212.1
      }
     }
    }
@@ -18083,36 +18083,36 @@
       "travel": 12825.1
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 78,
       "holds": 0,
       "drags": 0,
-      "travel": 23050
+      "travel": 11899.2
      },
      "classic-drag": {
       "taps": 32,
       "holds": 0,
       "drags": 23,
-      "travel": 23050
+      "travel": 11899.2
      },
      "tapPlace-drag": {
       "taps": 25,
       "holds": 0,
       "drags": 15,
-      "travel": 6437.9
+      "travel": 5214.5
      },
      "tapPlace-hold": {
       "taps": 55,
       "holds": 15,
       "drags": 0,
-      "travel": 6437.9
+      "travel": 5214.5
      },
      "armed": {
       "taps": 73,
       "holds": 0,
       "drags": 0,
-      "travel": 19169.4
+      "travel": 9999.2
      }
     }
    }
@@ -18173,36 +18173,36 @@
       "travel": 23869.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 122,
       "holds": 0,
       "drags": 0,
-      "travel": 37358.8
+      "travel": 18860.5
      },
      "classic-drag": {
       "taps": 48,
       "holds": 0,
       "drags": 37,
-      "travel": 37358.8
+      "travel": 18860.5
      },
      "tapPlace-drag": {
       "taps": 39,
       "holds": 0,
       "drags": 23,
-      "travel": 11253.4
+      "travel": 9997
      },
      "tapPlace-hold": {
       "taps": 85,
       "holds": 23,
       "drags": 0,
-      "travel": 11253.4
+      "travel": 9997
      },
      "armed": {
       "taps": 117,
       "holds": 0,
       "drags": 0,
-      "travel": 35812.9
+      "travel": 18450
      }
     }
    }
@@ -18263,36 +18263,36 @@
       "travel": 24675.8
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 126,
       "holds": 0,
       "drags": 0,
-      "travel": 36104.5
+      "travel": 18541.6
      },
      "classic-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 35,
-      "travel": 36104.5
+      "travel": 18541.6
      },
      "tapPlace-drag": {
       "taps": 37,
       "holds": 0,
       "drags": 27,
-      "travel": 10866.1
+      "travel": 9581.1
      },
      "tapPlace-hold": {
       "taps": 91,
       "holds": 27,
       "drags": 0,
-      "travel": 10866.1
+      "travel": 9581.1
      },
      "armed": {
       "taps": 125,
       "holds": 0,
       "drags": 0,
-      "travel": 36934.9
+      "travel": 19120.3
      }
     }
    }
@@ -18353,36 +18353,36 @@
       "travel": 23047.6
      }
     },
-    "low": {
+    "bottom": {
      "classic-taptap": {
       "taps": 124,
       "holds": 0,
       "drags": 0,
-      "travel": 34612.6
+      "travel": 17460.9
      },
      "classic-drag": {
       "taps": 56,
       "holds": 0,
       "drags": 34,
-      "travel": 34612.6
+      "travel": 17460.9
      },
      "tapPlace-drag": {
       "taps": 36,
       "holds": 0,
       "drags": 27,
-      "travel": 10132.6
+      "travel": 8852.3
      },
      "tapPlace-hold": {
       "taps": 90,
       "holds": 27,
       "drags": 0,
-      "travel": 10132.6
+      "travel": 8852.3
      },
      "armed": {
       "taps": 124,
       "holds": 0,
       "drags": 0,
-      "travel": 35191.3
+      "travel": 17432.6
      }
     }
    }
