@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-08T14:45:26.732Z",
+  "head": "5d7afe243ec64b0c9002ce55d405b21310585902",
+  "status": " M docs/ROADMAP.md\n M harness.js\n M uitest/make.js\n M water-sort-survival.html\n?? docs/PROMPT_controls.md\n?? docs/PROMPT_controls2.md\n?? docs/PROMPT_expanding_endless.md\n?? docs/PROMPT_feel.md\n?? docs/PROMPT_uiux_polish.md\n?? research/expansion/\n?? research/uiux/\n?? uitest/expansion.js\n",
+  "engineSha256": "1797179475c5812719a0f3555fb5fb654e3f31770a401b3db2025876dc22b832",
+  "sourceSha256": "72dbce0669ec74cfb43988107b9eb1f947f4ef5badb79c307c5cac6dd1bb9492",
+  "snapshot": "outputs/uiux/before-source.html"
+}

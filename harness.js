@@ -12,7 +12,8 @@ return { DEFAULT_RULES, V1_RULES, sanitizeRules, rulesSig, colorsAt, pieceAt, to
   zoneAt, isZoneStart, newColorAt, zoneBonusAt, isTwinTurn, zoneBreak, zoneStars,
   canFlip, applyFlip, flipsLeft,
   capAt, slotsOf, capsOf, spareCrisis, updateSpareOffer, applySpare,
-  previewPlace, previewPour, nearMiss, breakCombo };`)();
+  previewPlace, previewPour, nearMiss, breakCombo,
+  SCORE_GROWTH_V1, EXPANDING_RULES, isExpanding, sanitizeGrowth, activeColors, growthTarget, nextGrowth, updateGrowth, advancePiece, previewPieces };`)();
 
 const clone = o => JSON.parse(JSON.stringify(o));
 let failures = 0;

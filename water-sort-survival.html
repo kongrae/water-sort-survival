@@ -1,4 +1,5 @@
-<title>물정렬 생존</title>
+<title>보트리스: 물병 정렬 퍼즐</title>
+<meta name="description" content="물 정렬과 콤보의 만남! 병을 비우고 판을 넓히며 최고 기록에 도전하는 무한 워터 소트 퍼즐.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
@@ -22,9 +23,15 @@
   --shadow: 0 1px 2px rgba(22, 36, 44, .08), 0 8px 24px rgba(22, 36, 44, .08);
   --liq0: #e5484d; --liq1: #3e63dd; --liq2: #f0b400; --liq3: #2e9d5d; --liq4: #8e4ec6;
   --liq5: #f2701c; --liq6: #0ba1bd; --liq7: #d6409f; --liq8: #7d5a3c;
-  --font-display: 'Jua', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --font-brand: 'Jua', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
   --font-body: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
   --lh: 30px;
+}
+:root:not(:lang(ko)) {
+  --font-brand: system-ui, 'Nirmala UI', 'Yu Gothic', 'Microsoft YaHei', sans-serif;
+  --font-display: system-ui, 'Nirmala UI', 'Yu Gothic', 'Microsoft YaHei', sans-serif;
+  --font-body: system-ui, 'Nirmala UI', 'Yu Gothic', 'Microsoft YaHei', sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -51,43 +58,64 @@ body {
 .app { max-width: 460px; margin-inline: auto; display: flex; flex-direction: column; gap: 12px; }
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
-.brand h1 { font-family: var(--font-display); font-weight: 400; font-size: 25px; line-height: 1.1; margin: 0; }
+.brand h1 { font-family: var(--font-brand); font-weight: 400; font-size: 22px; line-height: 1.1; margin: 0; }
+.brand-subtitle { display: block; margin-top: 2px; font: 500 12px/16px var(--font-body); color: var(--muted); white-space: nowrap; }
 .chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
 .chip.daily { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 420px) { :root:not(:lang(ko)) .mode-date { display: none; } }
 .top-btns { display: flex; gap: 6px; flex: none; }
-.sbtn { height: 34px; padding-inline: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 13px var(--font-body); cursor: pointer; }
+.sbtn { min-width: 44px; height: 44px; padding-inline: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 13px var(--font-body); cursor: pointer; }
 
 .scorebar { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.score { position: relative; min-width: 0; }
-.score small { display: block; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
-#score { font-family: var(--font-display); font-size: 42px; line-height: 1; font-variant-numeric: tabular-nums; display: inline-block; }
+.score { position: relative; min-width: 0; flex: 1; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 6px; }
+.score small { font-size: 13px; line-height: 18px; color: var(--muted); }
+#score { grid-column: 1 / -1; grid-row: 2; font-family: var(--font-display); font-size: 44px; font-weight: 700; letter-spacing: -.035em; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block; }
 #score.shine { animation: shine .9s ease-out; }
-.pace { display: block; min-height: 18px; margin-top: 2px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pace { grid-column: 2; grid-row: 1; align-self: center; text-align: right; min-width: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pace.up { color: var(--accent); }
 .pace.hl { animation: hl .4s ease-out; }
-.meta { display: grid; grid-template-columns: repeat(3, auto); gap: 16px; text-align: right; font-size: 12px; color: var(--muted); }
-.meta b { display: block; color: var(--ink); font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.meta { display: grid; grid-template-columns: minmax(70px, auto) minmax(40px, auto); gap: 4px 12px; flex: none; text-align: right; font-size: 12px; color: var(--muted); }
+.meta > div:nth-child(2) { grid-column: 1 / -1; grid-row: 2; font-size: 12px; display: flex; justify-content: flex-end; align-items: baseline; gap: 5px; }
+.meta > div:nth-child(3) { grid-column: 2; grid-row: 1; }
+.meta b { display: block; color: var(--ink); font-size: 17px; line-height: 1.25; font-weight: 700; font-variant-numeric: tabular-nums; }
+.meta > div:nth-child(2) b { color: var(--muted); font-size: 12px; font-weight: 500; }
 #combo.fuse::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50% 50% 50% 0; background: var(--liq5); transform: rotate(-45deg); vertical-align: 2px; animation: flick .45s ease-in-out infinite alternate; }
 #combo.shine { animation: badge .8s ease-out; }
 #combo.shake { animation: shake .3s ease-in-out; }
 
-.incoming { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
-.tray { display: flex; align-items: flex-end; gap: 12px; min-height: 92px; }
-.slot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); }
-.queue { display: flex; gap: 10px; align-items: flex-end; }
-.flipbtn { position: relative; align-self: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 700 18px/1 var(--font-body); cursor: pointer; }
+.incoming { display: flex; flex-direction: column; gap: 8px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+.tray { display: flex; align-items: flex-end; gap: 12px; min-height: 76px; }
+.slot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); }
+.current-piece { display: flex; flex: 1; min-width: 104px; align-items: center; justify-content: center; gap: 8px; }
+.current-piece .slot > span { color: var(--accent); font-weight: 700; }
+.current-piece .tube.mini { width: 52px; }
+.next-pieces { display: flex; flex: 1; min-width: 81px; flex-direction: column; align-items: center; gap: 4px; padding-left: 12px; border-left: 1px solid var(--line); box-sizing: border-box; }
+.tray-caption { font-size: 12px; line-height: 18px; color: var(--muted); }
+.queue { display: flex; gap: 10px; min-height: 66px; justify-content: center; align-items: flex-end; }
+.queue .tube.micro { width: 30px; opacity: .92; }
+.queue .slot:not(:first-child) .tube.micro { opacity: .72; }
+.tray:has(.spare-slot:not([hidden])) { gap: 8px; }
+.tray:has(.spare-slot:not([hidden])) .next-pieces { min-width: 77px; padding-left: 8px; }
+.tray:has(.spare-slot:not([hidden])):has(.queue > .slot:nth-child(3)) .next-pieces { min-width: 93px; }
+.tray:has(.spare-slot:not([hidden])):has(.queue > .slot:nth-child(3)) .queue { gap: 6px; }
+.tray:has(.spare-slot:not([hidden])):has(.queue > .slot:nth-child(3)) .tube.micro { width: 24px; }
+.flipbtn { position: relative; align-self: center; flex: none; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 700 18px/1 var(--font-body); cursor: pointer; }
 .flipbtn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 .flipbtn:disabled { opacity: .35; cursor: default; }
 .flipbtn .fb-n { position: absolute; top: -7px; right: -7px; min-width: 17px; height: 17px; padding-inline: 4px; box-sizing: border-box; border-radius: 9px; background: var(--accent); color: var(--accent-ink); font: 700 11px/17px var(--font-body); }
 .spare-slot { margin-left: auto; display: flex; flex-direction: column; align-items: center; gap: 3px; max-width: 96px; font-size: 10px; color: var(--muted); text-align: center; }
-.offer { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 9px; border-radius: 10px; border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: 700 12px/1.3 var(--font-body); cursor: pointer; }
+.offer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-width: 44px; min-height: 44px; padding: 6px 9px; border-radius: 10px; border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: 700 12px/1.3 var(--font-body); cursor: pointer; }
 .offer small { font-weight: 400; font-size: 10px; color: var(--muted); }
 .offer.blink { animation: blink .5s ease-in-out 6; }
-.info { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 12px; color: var(--muted); }
+.run-info { position: relative; display: flex; flex-direction: column; gap: 8px; min-height: 70px; padding-bottom: 10px; border-bottom: 1px solid var(--line); box-sizing: border-box; }
+.info { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px 10px; font-size: 13px; color: var(--muted); }
+#colorInfo { text-align: right; line-height: 1.4; }
+#pourInfo { grid-column: 1 / -1; font-size: 12px; }
+#pourInfo:empty { display: none; }
 .info strong { color: var(--ink); font-weight: 500; }
 .zchip { padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; white-space: nowrap; }
 .count-down { color: var(--accent); font-weight: 700; }
-.dots { display: flex; flex-wrap: wrap; gap: 4px; margin-left: auto; }
+.dots { display: flex; gap: 5px; grid-column: 1 / -1; grid-row: 2; min-height: 12px; }
 .sw { width: 11px; height: 11px; border-radius: 50%; }
 .sw.next { background: transparent !important; border: 2px dashed; box-sizing: border-box; }
 .sw.next.pulse { animation: pulse .7s ease-in-out infinite alternate; }
@@ -98,7 +126,7 @@ body {
 .zbar .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--accent); transition: width .3s ease; }
 .zbar .flag { position: absolute; top: -5px; width: 2px; height: 16px; margin-left: -1px; background: var(--ink); }
 .zbar .flag::after { content: ""; position: absolute; top: 0; left: 2px; border: 4px solid transparent; border-left: 6px solid var(--ink); border-right: 0; }
-.zbar .znote { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.zbar .znote { font-size: 12px; color: var(--muted); white-space: nowrap; }
 
 /* Themes: only bottles, liquid finish and the rack backdrop change. Liquid colours stay the same so they remain easy to tell apart.
    Each theme sets variables on the element carrying data-skin (the root, or a theme preview card), so previews can show any theme. */
@@ -126,6 +154,11 @@ body {
 
 .rack { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 58px)); justify-content: center; gap: 10px; padding-top: 18px; }
 .rack::before { content: ""; position: absolute; z-index: -1; inset: 4px -10px -6px; border-radius: 14px; background: var(--shelf); pointer-events: none; }
+.app.expanding { gap: 8px; }
+.rack.expanding { --lh: 24px; grid-template-columns: repeat(6, minmax(44px, 58px)); grid-template-rows: repeat(2, calc(4 * var(--lh) + 34px)); gap: 14px 8px; }
+.rack.expanding::before { background: linear-gradient(to bottom, transparent calc(50% - 7px), var(--panel) calc(50% - 7px) calc(50% + 7px), transparent calc(50% + 7px)), var(--shelf); }
+.growth-note { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+@media (max-height: 780px) { .rack.expanding { --lh: 20px; } .app.expanding { gap: 6px; } }
 .rack.punch { animation: punch .15s ease-out; }
 .rack.dead { filter: saturate(.3); transition: filter .6s ease; }
 .tube { --cap: 4; appearance: none; border: 0; background: none; padding: 0; margin: 0; color: inherit; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: stretch; position: relative; transition: transform .16s ease, scale .06s ease; }
@@ -138,7 +171,7 @@ body {
 .layer:first-child { border-radius: 5px 5px calc(15px * var(--tube-k)) calc(15px * var(--tube-k)); }
 .layer.ghostL { opacity: .4; }
 .layer.leaving { opacity: .5; }
-.free { margin-top: 5px; text-align: center; font-size: 11px; color: var(--free-ink); font-variant-numeric: tabular-nums; }
+.free { margin-top: 5px; text-align: center; font-size: 12px; color: var(--free-ink); font-variant-numeric: tabular-nums; }
 /* Selected: the contents lift 12px but the button stays put, so its old lower edge still takes taps, and the
    ::before strip takes taps on the lifted top. */
 .tube > * { transition: translate .16s ease; }
@@ -170,15 +203,20 @@ body {
 .tube:disabled { cursor: default; }
 .ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; transform: translate(-50%, -70%) rotate(-8deg); opacity: .92; }
 .ghost.above { transform: translate(-50%, -125%) rotate(-8deg); }   /* piece dragged up from the tray under the bottles: clear of the finger */
-/* 44px touch areas around the smaller flip button and spare cup */
-.flipbtn::before { content: ""; position: absolute; inset: -3px; }
+/* 44px touch area around the smaller spare cup (the flip button itself is 44px). */
 .tube.spare::after { content: ""; position: absolute; top: 0; bottom: 0; left: -5px; right: -5px; }
 /* bottles take drags (pours, both schemes) and long presses (tapPlace) themselves */
 #rack, #rack .tube, #spareSlot .tube { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 /* bottom: the piece tray right under the bottles (the piece is dragged up into them), zone info and status above
    them; this group sits at the foot of the screen, nearer the thumb, and the free space goes to the top */
 .app.tray-bottom { min-height: 100%; }
-.app.tray-bottom > .info { margin-top: auto; }
+.app.tray-bottom > .status { margin-top: auto; }
+.app:not(.tray-bottom) { min-height: 100%; }
+.app:not(.tray-bottom) > .rack { margin-top: auto; }
+/* Ending a run is confirmed in the HUD's existing space, never by moving the bottles. */
+#extraRow { position: absolute; inset: 0; align-items: center; background: var(--bg); z-index: 2; }
+.run-info:has(#extraRow:not([hidden])) > .info,
+.run-info:has(#extraRow:not([hidden])) > .zbar { visibility: hidden; }
 /* only what sits below the bottles decides how low they go, so the prototype note goes */
 .app.tray-bottom > .foot { display: none; }
 .layer.pop { animation: pop .22s ease-out; }
@@ -269,7 +307,7 @@ body {
 .danger.relief { --e: color-mix(in srgb, var(--accent) 60%, transparent); opacity: 1; }
 .danger.relief.fade { opacity: 0; }
 
-.status { min-height: 44px; margin: 0; font-size: 14px; color: var(--muted); text-align: center; text-wrap: balance; }
+.status { min-height: 37px; margin: 0; font-size: 13px; line-height: 1.4; color: var(--muted); text-align: center; text-wrap: balance; }
 .status.warn { color: var(--danger); font-weight: 500; }
 .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .btn { min-height: 44px; padding-inline: 10px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 14px var(--font-body); cursor: pointer; }
@@ -300,18 +338,23 @@ body {
 
 .overlay { position: fixed; inset: 0; z-index: 40; background: var(--scrim); display: grid; place-items: center; padding: 16px; }
 .sheet { width: min(420px, 100%); max-height: calc(100% - 16px); overflow: auto; box-sizing: border-box; background: var(--panel); color: var(--ink); border-radius: 18px; padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; }
-.sheet h2 { font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1.15; margin: 0; text-wrap: balance; }
-.sheet h3 { margin: 4px 0 0; font-size: 13px; color: var(--muted); font-weight: 700; letter-spacing: .04em; }
+.sheet h2 { font-family: var(--font-body); font-weight: 700; font-size: 23px; line-height: 1.3; margin: 0; text-wrap: balance; }
+.sheet h3 { margin: 4px 0 0; font-size: 14px; color: var(--ink); font-weight: 700; }
+.sheet-head { position: sticky; top: -20px; z-index: 3; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--panel); margin: -20px -20px 0; padding: 12px 16px 10px 20px; border-bottom: 1px solid var(--line); flex: none; }
+.sheet-head h2 { min-width: 0; }
+.sheet-head [data-close] { flex: none; font-size: 14px; }
+.settings-group { display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.settings-group h3 { margin: 0 0 4px; }
 .note { margin: 0; font-size: 13px; color: var(--muted); }
 .rules { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
 .rules b { color: var(--accent); font-weight: 700; margin-right: 4px; }
 .facts { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
 .fields { display: flex; flex-direction: column; gap: 10px; }
 .field { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
-.field select { min-width: 110px; height: 36px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 14px var(--font-body); padding-inline: 8px; }
-.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
-.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex: none; }
-.check small { display: block; color: var(--muted); font-size: 12px; }
+.field select { min-width: 110px; max-width: 60%; height: 44px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 14px var(--font-body); padding-inline: 8px; }
+.check { display: flex; gap: 10px; align-items: center; min-height: 44px; font-size: 14px; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 0; accent-color: var(--accent); flex: none; }
+.check small { display: block; color: var(--muted); font-size: 13px; line-height: 1.5; margin-top: 2px; }
 .lab { border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; }
 .lab > summary { min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; }
 .lab-body { display: flex; flex-direction: column; gap: 14px; padding-bottom: 12px; }
@@ -319,7 +362,11 @@ body {
 .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; }
 .stats div { padding: 10px 12px; border-radius: 12px; background: var(--bg); }
 .stats dt { font-size: 12px; color: var(--muted); }
-.stats dd { margin: 0; font-family: var(--font-display); font-size: 24px; font-variant-numeric: tabular-nums; }
+.stats dd { margin: 0; font-family: var(--font-display); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats div { padding: 8px; }
+.stats > div:first-child { grid-column: 1 / -1; background: none; padding: 0 0 12px; border-bottom: 1px solid var(--line); }
+.stats > div:first-child dd { font-size: 44px; line-height: 1.15; letter-spacing: -.035em; }
 .badge { align-self: flex-start; margin: 0; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 700; }
 .zres { display: flex; flex-direction: column; gap: 6px; }
 .zstars { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; }
@@ -340,9 +387,9 @@ body {
 .tprev::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 10px; background: var(--shelf); }
 .tprev .tube.micro { opacity: 1; width: 26px; }
 .theme-card.locked .tprev { opacity: .55; }
-.theme-card b { font-family: var(--font-display); font-weight: 400; font-size: 18px; line-height: 1.2; }
+.theme-card b { font-family: var(--font-body); font-weight: 700; font-size: 18px; line-height: 1.2; }
 .theme-card p { margin: 0; font-size: 12px; color: var(--muted); min-height: 3em; }
-.theme-card .btn { min-height: 36px; font-size: 13px; }
+.theme-card .btn { min-height: 44px; font-size: 13px; }
 .unlock-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--gold-soft); font-size: 14px; }
 .unlock-row b { color: var(--gold); }
 @keyframes burst { to { opacity: 0; transform: translateY(-18px) scale(1.05); } }
@@ -368,11 +415,33 @@ body {
 /* the reduce-effects setting does what the system setting does (docs/PROMPT_feel.md 5.2) */
 :root.fx-reduce *, :root.fx-reduce *::before, :root.fx-reduce *::after { animation-duration: .01ms !important; transition: none !important; }
 :root.fx-reduce .tube.charging .glass { animation-duration: .45s !important; }
+/* Type and spacing tighten on short displays before touch areas do. Liquid identity is unchanged. */
+.brand { flex-wrap: nowrap; gap: 6px; }
+.top { gap: 8px; }
+.zchip { font-size: 12px; }
+.banner, .fx-score, .st-num, .cb-num > span, .cb-word > span, .count { font-weight: 700; }
+.layer { font-weight: 700; }
+.layer[data-color="2"] { color: #16242c; text-shadow: none; }
+.sw { flex: none; color: var(--ink); font-size: 11px; line-height: 12px; text-align: center; }
+.sw { font-weight: 700; }
+.btn { line-height: 1.35; }
+.rack.expanding .free { line-height: 1.35; }
+@media (max-height: 700px) {
+  body { padding-block: 8px; }
+  .app.expanding { gap: 4px; }
+  .app.expanding { gap: 6px; }
+  .rack.expanding { --lh: 17px; grid-template-rows: repeat(2, calc(4 * var(--lh) + 34px)); row-gap: 12px; }
+  .app.expanding .run-info { min-height: 64px; gap: 6px; padding-bottom: 6px; }
+  .app.expanding .status { min-height: 37px; font-size: 13px; }
+  .app.expanding .incoming { padding-block: 8px; }
+  .app.expanding .tray { min-height: 68px; }
+  .app.expanding #score { font-size: 40px; }
+}
 </style>
 
 <div class="app">
   <header class="top">
-    <div class="brand"><h1>물정렬 생존</h1><span class="chip" id="modeChip">무한 모드</span></div>
+    <div class="brand"><h1>보트리스<span class="brand-subtitle">물병 정렬 퍼즐</span></h1><span class="chip" id="modeChip">무한 모드</span></div>
     <div class="top-btns">
       <button class="sbtn" id="btnHelp" type="button">규칙</button>
       <button class="sbtn" id="btnSettings" type="button">설정</button>
@@ -388,11 +457,15 @@ body {
     </div>
   </section>
 
+  <section class="run-info" id="runInfo" aria-label="이번 판 목표"></section>
+
   <section class="incoming" aria-label="들어오는 조각">
     <div class="tray">
-      <div class="slot"><button class="tube mini" id="cup" type="button" aria-label="지금 조각"></button><span>지금</span></div>
-      <button class="flipbtn" id="btnFlip" type="button" hidden aria-pressed="false" aria-label="조각 위아래 바꾸기">⇅<span class="fb-n" id="flipN"></span></button>
-      <div class="queue" id="queue"></div>
+      <div class="current-piece">
+        <div class="slot"><button class="tube mini" id="cup" type="button" aria-label="지금 조각"></button><span class="tray-caption">지금</span></div>
+        <button class="flipbtn" id="btnFlip" type="button" hidden aria-pressed="false" aria-label="조각 위아래 바꾸기">⇅<span class="fb-n" id="flipN"></span></button>
+      </div>
+      <div class="next-pieces"><div class="queue" id="queue"></div><span class="tray-caption">다음</span></div>
       <div class="spare-slot" id="spareSlot" hidden></div>
     </div>
     <div class="info">
@@ -412,7 +485,7 @@ body {
   <nav class="actions" aria-label="게임 조작">
     <button class="btn" id="btnUndo" type="button">되돌리기</button>
     <button class="btn" id="btnNew" type="button">새 게임</button>
-    <button class="btn primary" id="btnMode" type="button">오늘의 도전</button>
+    <button class="btn" id="btnMode" type="button">오늘의 도전</button>
   </nav>
   <p class="foot">프로토타입입니다. 광고는 나오지 않고 광고가 들어갈 자리만 보여줘요.</p>
 </div>
@@ -424,14 +497,15 @@ body {
 
 <div class="overlay" id="ovHelp" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
-    <h2 id="helpTitle">이렇게 플레이해요</h2>
+    <div class="sheet-head"><h2 id="helpTitle">이렇게 플레이해요</h2><button class="sbtn" type="button" data-close>닫기</button></div>
     <ul class="rules">
       <li><b>조각 넣기</b><span id="helpPlace">위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.</span> 빈칸이 충분하면 어느 병에든 들어가요.</li>
       <li><b>붓기</b><span id="helpPour">병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.</span> 받는 병이 비었거나 맨 위 색이 같아야 해요.</li>
-      <li><b>완성</b>한 색으로 가득 찬 병은 저절로 비워지고 점수를 얻어요. 여러 턴 연속으로 완성하면 콤보 배수가 올라가요.</li>
-      <li><b>게임 오버</b>턴이 지날수록 색이 늘어나요. 조각을 넣을 자리를 만들 수 없으면 끝나요.</li>
+      <li><b>완성</b>한 색으로 가득 찬 병은 비워지고 점수를 얻어요. <span id="helpCombo">완성을 이어 가면 콤보 배수가 올라가요.</span></li>
+      <li id="helpGrowth" hidden><b>판 확장</b>점수가 오르면 새 색이 도착하고 위쪽에 빈병이 하나씩 생겨요. 최대 8병으로 최고 기록에 도전하세요.</li>
+      <li><b>게임 오버</b><span id="helpDifficulty">턴이 지날수록 색이 늘어나요.</span> 조각을 넣을 자리를 만들 수 없으면 끝나요.</li>
     </ul>
-    <h3 id="helpV2Title">새 규칙</h3>
+    <h3 id="helpV2Title">플레이 팁</h3>
     <ul class="rules" id="helpV2"></ul>
     <p class="note">오늘의 도전은 모두가 같은 조각 순서로 플레이해요. 끝나면 결과를 복사해 공유할 수 있어요.</p>
     <button class="btn primary" type="button" data-close>시작하기</button>
@@ -450,21 +524,33 @@ body {
 
 <div class="overlay" id="ovSettings" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setTitle">
-    <h2 id="setTitle">설정</h2>
-    <h3>화면 (바로 적용)</h3>
+    <div class="sheet-head"><h2 id="setTitle">설정</h2><button class="sbtn" type="button" data-close>닫기</button></div>
+    <section class="settings-group" aria-labelledby="languageTitle"><h3 id="languageTitle">언어</h3>
+      <div class="field"><label for="optLanguage">언어</label><select id="optLanguage"></select></div>
+    </section>
+    <section class="settings-group" aria-labelledby="soundTitle"><h3 id="soundTitle">소리와 진동</h3>
     <label class="check"><input type="checkbox" id="optSound"><span>소리</span></label>
     <label class="check"><input type="checkbox" id="optVibrate"><span>진동</span></label>
-    <label class="check"><input type="checkbox" id="optReduce"><span>효과 줄이기<small>움직이는 연출(흔들림, 입자, 날아가기, 꽃가루)을 모두 끄고 사망 연출을 건너뛰어요.</small></span></label>
+    </section>
+    <section class="settings-group" aria-labelledby="displayTitle"><h3 id="displayTitle">화면과 접근성</h3>
+    <label class="check"><input type="checkbox" id="optReduce"><span>효과 줄이기<small>움직이는 연출을 끄고 종료 연출을 건너뛰어요.</small></span></label>
     <div class="fields"><div class="field"><label for="optFx">연출</label><select id="optFx"><option value="base">기본</option><option value="juicy">손맛 강화</option></select></div></div>
-    <label class="check"><input type="checkbox" id="optGhost"><span>착지 미리보기<small>넣거나 부으면 어떻게 될지 미리 보여주고, 완성되는 병에 금색 테두리를 둘러요.</small></span></label>
-    <label class="check"><input type="checkbox" id="optPace"><span>최고 기록 페이스<small>점수 아래에 최고 기록(또는 지난 판)과의 차이를 보여줘요.</small></span></label>
-    <label class="check"><input type="checkbox" id="optStaged"><span>단계별 안내<small>끄면 새 기능이 처음부터 모두 보여요.</small></span></label>
-    <label class="check"><input type="checkbox" id="optSymbols"><span>색 기호 표시<small>색마다 모양 기호를 함께 보여줘요.</small></span></label>
-    <h3>테마</h3>
+    <label class="check"><input type="checkbox" id="optGhost"><span>착지 미리보기<small>완성할 수 있는 병을 금색으로 표시해요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optPace"><span>기록 페이스 표시<small>같은 턴의 최고 기록 또는 지난 판과 비교해요.</small></span></label>
+    <label class="check"><input type="checkbox" id="optSymbols"><span>색 기호 표시<small>색과 함께 모양으로 구별해요.</small></span></label>
     <button class="btn" id="btnThemes" type="button">테마 고르기</button>
-    <h3>클라우드 저장</h3>
+    </section>
+    <section class="settings-group" aria-labelledby="controlsTitle"><h3 id="controlsTitle">조작과 안내</h3>
+    <div class="fields">
+      <div class="field"><label for="optControls">조작 방식</label><select id="optControls"><option value="classic">조각 → 병 누르기</option><option value="tapPlace">병 누르면 바로 넣기</option></select></div>
+      <div class="field"><label for="optTray">조각 위치</label><select id="optTray"><option value="top">보드 위</option><option value="bottom">보드 아래</option></select></div>
+    </div>
+    <label class="check"><input type="checkbox" id="optStaged"><span>단계별 안내<small>끄면 모든 기능을 처음부터 보여줘요.</small></span></label>
+    </section>
+    <section class="settings-group" aria-labelledby="saveTitle"><h3 id="saveTitle">저장</h3>
     <p class="note" id="cloudStatus">이 브라우저에만 저장돼요.</p>
     <div class="center-row"><button class="btn primary" id="btnCloudLogin" type="button" hidden>구글로 로그인</button><button class="btn" id="btnCloudLogout" type="button" hidden>로그아웃</button></div>
+    </section>
     <!-- prototype-only settings, folded away (docs/PROMPT_feel.md U4) -->
     <details class="lab" id="labBox">
       <summary>프로토타입 실험</summary>
@@ -472,18 +558,14 @@ body {
         <h3>규칙 (적용하고 새 게임)</h3>
         <p class="note">바꾼 값은 무한 모드 새 게임부터 적용돼요. 오늘의 도전은 기본 규칙으로 고정이에요.</p>
         <form class="fields" id="setForm"></form>
+        <p class="note" id="setGrowthNote" hidden>기본 무한모드는 점수로 판이 커져요. 병·용량·색 수·조각 크기를 바꾸면 고정 병 규칙으로 플레이해요.</p>
         <label class="check"><input type="checkbox" id="optCombo"><span>넣기로 완성해도 콤보 유지<small>완성 없는 턴 다음이라도, 조각을 넣어 완성하면 콤보가 이어져요.</small></span></label>
-        <label class="check"><input type="checkbox" id="optZones"><span>색 구역<small>20턴마다 새 색이 들어와요. 빈 병을 남기고 돌파하면 보너스를 받아요.</small></span></label>
+        <label class="check"><input type="checkbox" id="optZones"><span><span id="zonesLabel">구간 정산</span><small id="zonesDescription">빈병을 남기면 정산 보너스를 받아요.</small></span></label>
         <label class="check"><input type="checkbox" id="optAuto"><span>자동 합치기<small>맨 위 색이 같은 병끼리 알아서 합쳐져요.</small></span></label>
         <div class="row2"><button class="btn" id="btnDefaults" type="button">기본값</button><button class="btn" id="btnClassic" type="button">클래식(v1) 규칙</button></div>
         <button class="btn primary" id="btnApply" type="button">적용하고 새 게임</button>
         <h3>광고 자리 (다음 새 게임부터)</h3>
         <label class="check"><input type="checkbox" id="optOfferSpare"><span>임시 잔 제안 (무한 모드)<small>위기 때 광고를 보면 임시 칸 1개를 20턴 동안 받을 수 있어요.</small></span></label>
-        <h3>조작 (프로토타입, 바로 적용)</h3>
-        <div class="fields">
-          <div class="field"><label for="optControls">조작 방식</label><select id="optControls"><option value="classic">조각 누르고 병 누르기</option><option value="tapPlace">병 누르면 바로 넣기</option></select></div>
-          <div class="field"><label for="optTray">배치</label><select id="optTray"><option value="top">조각 칸 위</option><option value="bottom">조각 칸 아래</option></select></div>
-        </div>
         <label class="check"><input type="checkbox" id="optTryLocked"><span>잠긴 테마도 써보기<small>프로토타입 확인용이에요. 별이 모자라도 모든 테마를 고를 수 있어요.</small></span></label>
         <h3>플레이 테스트 기록</h3>
         <div class="share">
@@ -496,7 +578,6 @@ body {
         </div>
       </div>
     </details>
-    <button class="btn" type="button" data-close>닫기</button>
   </div>
 </div>
 
@@ -515,16 +596,17 @@ body {
 <div class="overlay" id="ovOver" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="overTitle">
     <h2 id="overTitle">자리가 없어요</h2>
-    <p class="note" id="overReason"></p>
-    <ul class="facts" id="overFacts" hidden></ul>
-    <p class="note" id="overGap"></p>
-    <p class="badge" id="overBest" hidden>새 최고 기록</p>
     <dl class="stats">
       <div><dt>점수</dt><dd id="oScore">0</dd></div>
       <div><dt>버틴 턴</dt><dd id="oTurn">0</dd></div>
       <div><dt>완성한 병</dt><dd id="oClears">0</dd></div>
       <div><dt>최대 콤보</dt><dd id="oCombo">-</dd></div>
     </dl>
+    <p class="badge" id="overBest" hidden>새 최고 기록</p>
+    <p class="note" id="overGap"></p>
+    <p class="note" id="overReason"></p>
+    <ul class="facts" id="overFacts" hidden></ul>
+    <div class="row2"><button class="btn" id="btnPeek" type="button">판 보기</button><button class="btn primary" id="btnAgain" type="button">다시 도전</button></div>
     <div class="zres" id="zoneRes" hidden>
       <p class="note" id="zoneReach"></p>
       <div class="zstars" id="zoneStarsRow"></div>
@@ -539,18 +621,16 @@ body {
       <button class="btn" id="btnCopy" type="button">결과 복사</button>
       <p class="note" id="copyMsg"></p>
     </div>
-    <button class="btn primary" id="btnRevive" type="button">광고 보고 이어하기 (1회)</button>
-    <div class="row2"><button class="btn" id="btnPeek" type="button">판 보기</button><button class="btn" id="btnAgain" type="button">다시 하기</button></div>
+    <button class="btn" id="btnRevive" type="button">광고 보고 이어하기 (1회)</button>
   </div>
 </div>
 
 <div class="overlay" id="ovThemes" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="themesTitle">
-    <h2 id="themesTitle">테마</h2>
+    <div class="sheet-head"><h2 id="themesTitle">테마</h2><button class="sbtn" type="button" data-close>닫기</button></div>
     <p class="note" id="themesStars"></p>
     <div class="themes" id="themeList"></div>
     <p class="note">테마는 병 모양과 선반, 액체의 질감만 바꿔요. 액체 색은 그대로라 구분하기 쉬워요. 별은 기본 규칙의 무한 모드와 오늘의 도전 첫 판에서 쌓이고, 한 번 연 테마는 계속 쓸 수 있어요.</p>
-    <button class="btn" type="button" data-close>닫기</button>
   </div>
 </div>
 
@@ -562,6 +642,83 @@ body {
   </div>
 </div>
 
+<script id="i18n">
+// Embedded into the standalone game by scripts/embed-i18n.js. Translations need no network request.
+window.WSSLocale = (() => {
+  const catalog = {"정산 {0}":["Bonus {0}","精算 {0}","结算 {0}","結算 {0}","Bono {0}","Bônus {0}","बोनस {0}","Bonus {0}"],"{0}구역":["Zone {0}","エリア {0}","区域 {0}","區域 {0}","Zona {0}","Zona {0}","क्षेत्र {0}","Zona {0}"],"심해 {0}":["Depth {0}","深海 {0}","深海 {0}","深海 {0}","Profundidad {0}","Profundidade {0}","गहराई {0}","Kedalaman {0}"],"트리플!":["Triple!","トリプル！","三连！","三連！","¡Triple!","Triplo!","ट्रिपल!","Triple!"],"더블!":["Double!","ダブル！","双连！","雙連！","¡Doble!","Duplo!","डबल!","Double!"],"콤보 ×{0} · +{1}점":["Combo ×{0} · +{1} pts","コンボ ×{0} · +{1}点","连击 ×{0} · +{1}分","連擊 ×{0} · +{1}分","Combo ×{0} · +{1} pts","Combo ×{0} · +{1} pts","कॉम्बो ×{0} · +{1} अंक","Kombo ×{0} · +{1} poin"],"새 색 {0} · 다음 조각들에 도착해요":["New color: {0} · coming next","新色 {0} · 次のピースに登場","新颜色：{0} · 即将出现","新顏色：{0} · 即將出現","Nuevo color: {0} · viene pronto","Nova cor: {0} · vem a seguir","नया रंग: {0} · अगले टुकड़ों में","Warna baru: {0} · segera muncul"],"빈병 +1 · {0}병으로 계속 도전!":["Empty bottle +1 · now {0} bottles!","空き瓶 +1 · {0}本で挑戦！","空瓶 +1 · 继续挑战{0}瓶！","空瓶 +1 · 繼續挑戰{0}瓶！","¡Botella +1 · ahora {0} botellas!","Garrafa +1 · agora {0} garrafas!","खाली बोतल +1 · अब {0} बोतलें!","Botol kosong +1 · kini {0} botol!"],"{0} · 새 색 {1} ({2}종)":["{0} · new: {1} ({2} colors)","{0} · 新色 {1}（{2}色）","{0} · 新颜色{1}（{2}色）","{0} · 新顏色{1}（{2}色）","{0} · nuevo: {1} ({2} colores)","{0} · nova: {1} ({2} cores)","{0} · नया: {1} ({2} रंग)","{0} · baru: {1} ({2} warna)"],"+{0} 돌파 보너스":["+{0} zone bonus","+{0} 突破ボーナス","+{0} 突破奖励","+{0} 突破獎勵","+{0} bono de zona","+{0} bônus de zona","+{0} क्षेत्र बोनस","+{0} bonus zona"],"규칙이 바뀌어 오늘의 도전을 새로 시작해요.":["Rules changed. Today's challenge restarts.","ルール変更のため今日のチャレンジを再開します。","规则已更新，今日挑战重新开始。","規則已更新，今日挑戰重新開始。","Cambian las reglas. Se reinicia el reto diario.","Regras novas. O desafio diário reinicia.","नियम बदले हैं। दैनिक चुनौती फिर शुरू होगी।","Aturan berubah. Tantangan harian dimulai ulang."],"임시 잔이 비어서 사라졌어요.":["The empty spare cup has expired.","空の一時カップが消えました。","临时杯已清空并消失。","臨時杯已清空並消失。","El vaso temporal vacío ha caducado.","O copo temporário vazio expirou.","खाली अस्थायी कप हट गया।","Gelas sementara kosong telah hilang."],"최고 기록 경신":["New best!","新記録！","新纪录！","新紀錄！","¡Nuevo récord!","Novo recorde!","नया रिकॉर्ड!","Rekor baru!"],"신기록 페이스예요":["On pace for a new best!","新記録ペース！","正在冲击新纪录！","正在挑戰新紀錄！","¡Vas hacia un nuevo récord!","A caminho de um novo recorde!","नए रिकॉर्ड की ओर!","Menuju rekor baru!"],"지난 판보다 앞서고 있어요":["Ahead of your last run!","前回を上回っています！","已超过上次进度！","已超過上次進度！","¡Superas tu última partida!","Melhor que a última partida!","पिछली बाज़ी से आगे!","Lebih baik dari permainan terakhir!"],"빈 병이에요. 부을 병을 먼저 고르세요.":["Empty bottle. Choose a source first.","空の瓶です。注ぐ元の瓶を選んでください。","这是空瓶，请先选择源瓶。","這是空瓶，請先選擇來源瓶。","Botella vacía. Elige primero el origen.","Garrafa vazia. Escolha a origem primeiro.","बोतल खाली है। पहले स्रोत चुनें।","Botol kosong. Pilih botol asal dulu."],"이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.":["Pour limit reached. Place the piece.","注ぐ回数の上限です。ピースを入れてください。","本回合倾倒次数已用完，请放入色块。","本回合傾倒次數已用完，請放入色塊。","Límite de vertidos. Coloca la pieza.","Limite de despejos. Coloque a peça.","डालने की सीमा पूरी। टुकड़ा रखें।","Batas tuang tercapai. Masukkan potongan."],"임시 잔이 차 있어요.":["The spare cup is full.","一時カップは満杯です。","临时杯已满。","臨時杯已滿。","El vaso temporal está lleno.","O copo temporário está cheio.","अस्थायी कप भरा है।","Gelas sementara penuh."],"그 병은 가득 찼어요.":["That bottle is full.","その瓶は満杯です。","这个瓶子已满。","這個瓶子已滿。","Esa botella está llena.","Essa garrafa está cheia.","वह बोतल भरी है।","Botol itu penuh."],"받는 병이 비었거나 맨 위 색이 같아야 부을 수 있어요.":["Pour into an empty bottle or matching top color.","空の瓶か、一番上が同じ色の瓶に注げます。","只能倒入空瓶或顶部颜色相同的瓶子。","只能倒入空瓶或頂部顏色相同的瓶子。","Vierte en una botella vacía o del mismo color arriba.","Despeje numa garrafa vazia ou com a mesma cor no topo.","खाली बोतल या ऊपर समान रंग में ही डालें।","Tuang ke botol kosong atau warna atas yang sama."],"임시 잔에는 조각을 넣을 수 없어요.":["You cannot place pieces in the spare cup.","一時カップにピースは入れられません。","临时杯不能放入色块。","臨時杯不能放入色塊。","No puedes colocar piezas en el vaso temporal.","Não é possível colocar peças no copo temporário.","अस्थायी कप में टुकड़े नहीं रख सकते।","Potongan tidak bisa dimasukkan ke gelas sementara."],"조각은 {0}칸이 필요한데 이 병은 {1}칸 남았어요.":["Need {0} spaces; this bottle has {1}.","必要な空きは{0}、この瓶は{1}です。","需要{0}格，此瓶剩余{1}格。","需要{0}格，此瓶剩餘{1}格。","Se necesitan {0} huecos; hay {1}.","Precisa de {0} espaços; há {1}.","{0} जगह चाहिए; बोतल में {1} बची हैं।","Butuh {0} ruang; botol ini punya {1}."],"병을 누르면 바로 들어가요":["Tap a bottle to place","瓶をタップして入れる","点击瓶子直接放入","點擊瓶子直接放入","Toca una botella para colocar","Toque numa garrafa para colocar","रखने के लिए बोतल टैप करें","Ketuk botol untuk memasukkan"],"빈 병이에요.":["The bottle is empty.","空の瓶です。","这是空瓶。","這是空瓶。","La botella está vacía.","A garrafa está vazia.","बोतल खाली है।","Botol ini kosong."],"병 위에 놓아야 넣어져요":["Drop onto a bottle","瓶の上に置いてください","请放到瓶子上","請放到瓶子上","Suelta sobre una botella","Solte sobre uma garrafa","बोतल पर छोड़ें","Lepaskan di atas botol"],"이 넣기로 완성 · 콤보 ×{0}":["This placement clears · combo ×{0}","この配置で完成 · コンボ ×{0}","此次放入可完成 · 连击 ×{0}","此次放入可完成 · 連擊 ×{0}","Completa al colocar · combo ×{0}","Completa ao colocar · combo ×{0}","यह टुकड़ा पूरा करेगा · कॉम्बो ×{0}","Penempatan ini selesai · kombo ×{0}"],"넣으면 콤보 ×{0} 끝나요":["Placing ends combo ×{0}","入れるとコンボ ×{0} 終了","放入将结束连击 ×{0}","放入將結束連擊 ×{0}","Colocar termina el combo ×{0}","Colocar encerra o combo ×{0}","रखने पर कॉम्बो ×{0} खत्म होगा","Memasukkan mengakhiri kombo ×{0}"],"끌어서 부어요":["Drag to pour","ドラッグして注ぐ","拖动倾倒","拖動傾倒","Arrastra para verter","Arraste para despejar","डालने के लिए खींचें","Seret untuk menuang"],"플레이 테스트 기록 ({0}-{1}-{2} {3}:{4}부터)":["Playtest log (since {0}-{1}-{2} {3}:{4})","テスト記録（{0}-{1}-{2} {3}:{4}以降）","测试记录（自{0}-{1}-{2} {3}:{4}）","測試紀錄（自{0}-{1}-{2} {3}:{4}）","Registro de pruebas (desde {0}-{1}-{2} {3}:{4})","Registro de testes (desde {0}-{1}-{2} {3}:{4})","परीक्षण रिकॉर्ड ({0}-{1}-{2} {3}:{4} से)","Catatan uji (sejak {0}-{1}-{2} {3}:{4})"],"{0} · {1}판 {2}턴 · 붓기 끌기{3}/길게{4}/탭{5}/키{6}":["{0} · {1} runs {2} turns · pour drag{3}/hold{4}/tap{5}/key{6}","{0} · {1}回 {2}ターン · 注ぐ ドラッグ{3}/長押し{4}/タップ{5}/キー{6}","{0} · {1}局 {2}回合 · 倾倒 拖动{3}/长按{4}/点击{5}/按键{6}","{0} · {1}局 {2}回合 · 傾倒 拖動{3}/長按{4}/點擊{5}/按鍵{6}","{0} · {1} partidas {2} turnos · verter arrastre{3}/pulsación{4}/toque{5}/tecla{6}","{0} · {1} partidas {2} turnos · despejo arraste{3}/segurar{4}/toque{5}/tecla{6}","{0} · {1} बाज़ियाँ {2} चालें · डालना खींचना{3}/दबाना{4}/टैप{5}/कुंजी{6}","{0} · {1} permainan {2} giliran · tuang seret{3}/tahan{4}/ketuk{5}/tombol{6}"]," · 부으려던 탭 {0} (100턴당 {1}) · 빠른 되돌리기 {2} · 되돌리기 {3}":[" · pour-like taps {0} ({1}/100 turns) · quick undo {2} · undo {3}"," · 注ぐ意図のタップ {0}（{1}/100ターン）· 即取消 {2} · 取消 {3}"," · 疑似倾倒点击{0}（{1}/100回合）· 快速撤销{2} · 撤销{3}"," · 疑似傾倒點擊{0}（{1}/100回合）· 快速復原{2} · 復原{3}"," · toques para verter {0} ({1}/100 turnos) · deshacer rápido {2} · deshacer {3}"," · toques de despejo {0} ({1}/100 turnos) · desfazer rápido {2} · desfazer {3}"," · डालने वाले टैप {0} ({1}/100 चालें) · तुरंत वापस {2} · वापस {3}"," · ketuk tuang {0} ({1}/100 giliran) · batal cepat {2} · batal {3}"]," · 거절 {0} · 취소 {1} · 새 게임 확인 중단 {2}":[" · rejected {0} · canceled {1} · restart aborted {2}"," · 拒否 {0} · 中止 {1} · 再開取消 {2}"," · 拒绝{0} · 取消{1} · 放弃重开{2}"," · 拒絕{0} · 取消{1} · 放棄重開{2}"," · rechazos {0} · cancelaciones {1} · reinicios abortados {2}"," · recusas {0} · cancelamentos {1} · reinícios abortados {2}"," · अस्वीकार {0} · रद्द {1} · नई बाज़ी रद्द {2}"," · ditolak {0} · dibatalkan {1} · mulai ulang batal {2}"],"아직 기록이 없어요.":["No records yet.","記録はまだありません。","暂无记录。","暫無紀錄。","Aún no hay registros.","Ainda não há registros.","अभी कोई रिकॉर्ड नहीं।","Belum ada catatan."],"연출 {0} · {1}판 {2}턴 · 턴당 {3}초 · 빠른 수 {4}% · 되돌리기 {5} · 거절 {6} · ×4 이상 {7}회":["Effects {0} · {1} runs {2} turns · {3}s/turn · fast {4}% · undo {5} · rejected {6} · ×4+ {7}","演出 {0} · {1}回 {2}ターン · {3}秒/ターン · 速手{4}% · 取消{5} · 拒否{6} · ×4以上{7}回","效果{0} · {1}局{2}回合 · {3}秒/回合 · 快速{4}% · 撤销{5} · 拒绝{6} · ×4以上{7}次","效果{0} · {1}局{2}回合 · {3}秒/回合 · 快速{4}% · 復原{5} · 拒絕{6} · ×4以上{7}次","Efectos {0} · {1} partidas {2} turnos · {3}s/turno · rápido {4}% · deshacer {5} · rechazos {6} · ×4+ {7}","Efeitos {0} · {1} partidas {2} turnos · {3}s/turno · rápido {4}% · desfazer {5} · recusas {6} · ×4+ {7}","प्रभाव {0} · {1} बाज़ियाँ {2} चालें · {3}से/चाल · तेज़ {4}% · वापस {5} · अस्वीकार {6} · ×4+ {7}","Efek {0} · {1} permainan {2} giliran · {3}d/giliran · cepat {4}% · batal {5} · ditolak {6} · ×4+ {7}"],"3초 안에 한 번 더 누르면 새 판을 시작해요":["Tap again within 3 seconds to restart","3秒以内にもう一度タップで再開","3秒内再次点击以重新开始","3秒內再次點擊以重新開始","Toca de nuevo en 3 s para reiniciar","Toque de novo em 3 s para reiniciar","फिर शुरू करने के लिए 3 सेकंड में दोबारा टैप करें","Ketuk lagi dalam 3 detik untuk mulai ulang"],"3초 안에 한 번 더 누르면 모드를 전환해요":["Tap again within 3 seconds to switch modes","3秒以内にもう一度タップでモード変更","3秒内再次点击以切换模式","3秒內再次點擊以切換模式","Toca de nuevo en 3 s para cambiar de modo","Toque de novo em 3 s para trocar o modo","मोड बदलने के लिए 3 सेकंड में दोबारा टैप करें","Ketuk lagi dalam 3 detik untuk ganti mode"],"3초 안에 한 번 더 누르면 이 판을 끝내요":["Tap again within 3 seconds to end this run","3秒以内にもう一度タップで終了","3秒内再次点击以结束本局","3秒內再次點擊以結束本局","Toca de nuevo en 3 s para terminar","Toque de novo em 3 s para encerrar","खत्म करने के लिए 3 सेकंड में दोबारा टैप करें","Ketuk lagi dalam 3 detik untuk selesai"],"게임이 끝났어요.":["Game over.","ゲーム終了。","游戏结束。","遊戲結束。","Fin de la partida.","Fim de jogo.","खेल खत्म।","Permainan selesai."],"{0}칸짜리 자리가 없어요. 병끼리 부어서 자리를 만드세요.":["Need {0} spaces. Pour to make room.","{0}マスの空きがありません。注いで空きを作ろう。","没有{0}格空间，请倾倒腾出位置。","沒有{0}格空間，請傾倒騰出位置。","Faltan {0} huecos. Vierte para hacer espacio.","Faltam {0} espaços. Despeje para abrir espaço.","{0} जगह नहीं हैं। डालकर जगह बनाएँ।","Butuh {0} ruang. Tuang untuk membuat ruang."]," 방법이 있어요.":[" A move is possible."," まだ手があります。"," 仍有办法。"," 仍有辦法。"," Hay una jugada posible."," Há uma jogada possível."," चाल संभव है।"," Masih ada langkah."],"완성되는 병 {0}곳 · 다른 병에 넣으면 콤보 ×{1} 끝나요":["{0} clears available · other placements end combo ×{1}","完成できる瓶{0}本 · 他に入れるとコンボ ×{1} 終了","可完成{0}瓶 · 放入其他瓶将结束连击 ×{1}","可完成{0}瓶 · 放入其他瓶將結束連擊 ×{1}","{0} botellas completables · otra corta combo ×{1}","{0} garrafas completáveis · outra encerra combo ×{1}","{0} बोतलें पूरी होंगी · अन्य में कॉम्बो ×{1} खत्म","{0} botol bisa selesai · lainnya akhiri kombo ×{1}"],"넣으면 콤보 ×{0} 끝나요 · 먼저 부어서 완성하면 이어져요":["Placing ends combo ×{0} · pour to clear first","入れるとコンボ ×{0} 終了 · 先に注いで完成しよう","放入将结束连击 ×{0} · 先倾倒完成瓶子","放入將結束連擊 ×{0} · 先傾倒完成瓶子","Colocar corta combo ×{0} · completa vertiendo antes","Colocar encerra combo ×{0} · complete despejando antes","रखने से कॉम्बो ×{0} खत्म · पहले डालकर पूरा करें","Memasukkan akhiri kombo ×{0} · selesaikan dengan tuang dulu"],"조각을 넣을 병을 고르세요.":["Choose a bottle for the piece.","ピースを入れる瓶を選んでください。","请选择放入色块的瓶子。","請選擇放入色塊的瓶子。","Elige una botella para la pieza.","Escolha uma garrafa para a peça.","टुकड़े के लिए बोतल चुनें।","Pilih botol untuk potongan."],"부을 병을 고르세요.":["Choose a bottle to pour into.","注ぐ先の瓶を選んでください。","请选择接收的瓶子。","請選擇接收的瓶子。","Elige una botella donde verter.","Escolha a garrafa de destino.","जिस बोतल में डालना है उसे चुनें।","Pilih botol tujuan."],"병을 누르면 조각이 들어가요. 병에서 병으로 끌면 부어요.":["Tap to place. Drag between bottles to pour.","タップで入れる。瓶から瓶へドラッグで注ぐ。","点击放入，瓶间拖动倾倒。","點擊放入，瓶間拖動傾倒。","Toca para colocar. Arrastra entre botellas para verter.","Toque para colocar. Arraste entre garrafas para despejar.","टैप करके रखें। बोतलों के बीच खींचकर डालें।","Ketuk untuk memasukkan. Seret antarbotol untuk menuang."],"조각을 병으로 끌어다 놓으며 시작하세요.":["Drag the piece onto a bottle to start.","ピースを瓶へドラッグして始めよう。","将色块拖入瓶子开始游戏。","將色塊拖入瓶子開始遊戲。","Arrastra la pieza a una botella para empezar.","Arraste a peça para uma garrafa para começar.","शुरू करने के लिए टुकड़ा बोतल पर खींचें।","Seret potongan ke botol untuk mulai."],"이번 턴에 병을 완성하면 콤보 ×{0}":["Clear a bottle this turn for combo ×{0}","このターンで瓶を完成するとコンボ ×{0}","本回合完成一瓶可连击 ×{0}","本回合完成一瓶可連擊 ×{0}","Completa una botella este turno: combo ×{0}","Complete uma garrafa neste turno: combo ×{0}","इस चाल में बोतल पूरी करें: कॉम्बो ×{0}","Selesaikan botol giliran ini: kombo ×{0}"],"병을 눌러 조각을 넣고, 병끼리 끌어 부어서 한 색으로 채우세요.":["Tap to place; drag to pour. Fill bottles with one color.","タップで入れて、ドラッグで注ぎ、一色にそろえよう。","点击放入，拖动倾倒，把瓶子填成单色。","點擊放入，拖動傾倒，把瓶子填成單色。","Toca para colocar y arrastra para verter. Un color por botella.","Toque para colocar e arraste para despejar. Uma cor por garrafa.","टैप करके रखें, खींचकर डालें। बोतलें एक रंग से भरें।","Ketuk untuk memasukkan; seret untuk menuang. Isi satu warna."],"조각을 넣고, 병끼리 부어서 한 색으로 채우세요.":["Place pieces and pour to fill bottles with one color.","ピースを入れて注ぎ、瓶を一色にそろえよう。","放入色块并倾倒，把瓶子填成单色。","放入色塊並傾倒，把瓶子填成單色。","Coloca y vierte para llenar cada botella de un color.","Coloque e despeje para encher cada garrafa com uma cor.","टुकड़े रखें और डालकर बोतलें एक रंग से भरें।","Masukkan dan tuang agar botol terisi satu warna."],"오늘의 도전 ":["Daily ","今日 ","每日 ","每日 ","Diario ","Diário ","दैनिक ","Harian "],"무한 모드":["Endless","エンドレス","无尽模式","無盡模式","Sin fin","Sem fim","अंतहीन","Tanpa akhir"],"최고 페이스":["Best pace","最高ペース","最佳进度","最佳進度","Ritmo récord","Ritmo recorde","रिकॉर्ड गति","Laju rekor"],"지난 판":["Last run","前回","上一局","上一局","Última partida","Última partida","पिछली बाज़ी","Permainan terakhir"],"지금 조각: 아래부터 ":["Current piece, bottom to top: ","今のピース、下から：","当前色块，从下到上：","目前色塊，從下到上：","Pieza actual, de abajo arriba: ","Peça atual, de baixo para cima: ","वर्तमान टुकड़ा, नीचे से ऊपर: ","Potongan kini, bawah ke atas: "],"⇅로 조각 위아래를 바꿀 수 있어요":["Use ⇅ to flip the piece","⇅でピースの上下を反転","用⇅翻转色块","用⇅翻轉色塊","Usa ⇅ para invertir la pieza","Use ⇅ para inverter a peça","⇅ से टुकड़ा पलटें","Gunakan ⇅ untuk membalik potongan"]," (판당 {0}회)":[" ({0} per run)","（1回のプレイで{0}回）","（每局{0}次）","（每局{0}次）"," ({0} por partida)"," ({0} por partida)"," (हर बाज़ी में {0} बार)"," ({0} per permainan)"],"조각 위아래 바꾸기, 남은 ":["Flip piece, remaining: ","上下反転、残り：","翻转色块，剩余：","翻轉色塊，剩餘：","Invertir pieza, quedan: ","Inverter peça, restam: ","टुकड़ा पलटें, शेष: ","Balik potongan, tersisa: "],"무제한":["Unlimited","無制限","无限","無限","Sin límite","Sem limite","असीमित","Tanpa batas"],"회":[" uses","回","次","次"," usos"," usos"," बार"," kali"],"다음 조각 {0}: 아래부터 ":["Next piece {0}, bottom to top: ","次のピース{0}、下から：","下个色块{0}，从下到上：","下個色塊{0}，從下到上：","Siguiente pieza {0}, de abajo arriba: ","Próxima peça {0}, de baixo para cima: ","अगला टुकड़ा {0}, नीचे से ऊपर: ","Potongan berikut {0}, bawah ke atas: "],"임시 잔":["Spare cup","一時カップ","临时杯","臨時杯","Vaso temporal","Copo temporário","अस्थायी कप","Gelas sementara"],"임시 · {0}턴":["Spare · {0} turns","一時 · {0}ターン","临时 · {0}回合","臨時 · {0}回合","Temporal · {0} turnos","Temporário · {0} turnos","अस्थायी · {0} चालें","Sementara · {0} giliran"],"비우면 사라져요":["Expires when emptied","空にすると消えます","清空后消失","清空後消失","Caduca al vaciarlo","Expira quando vazio","खाली होने पर हटेगा","Hilang saat kosong"],"임시 잔: ":["Spare cup: ","一時カップ：","临时杯：","臨時杯：","Vaso temporal: ","Copo temporário: ","अस्थायी कप: ","Gelas sementara: "],"비어 있음":["empty","空","空","空","vacía","vazia","खाली","kosong"],", {0}턴 남음":[", {0} turns left","、残り{0}ターン","，剩余{0}回合","，剩餘{0}回合",", quedan {0} turnos",", restam {0} turnos",", {0} चालें बची हैं",", tersisa {0} giliran"],"▶ 임시 칸 +1\u003csmall>광고 · ":["▶ Spare +1\u003csmall>Ad · ","▶ 一時 +1\u003csmall>広告 · ","▶ 临时 +1\u003csmall>广告 · ","▶ 臨時 +1\u003csmall>廣告 · ","▶ Extra +1\u003csmall>Anuncio · ","▶ Extra +1\u003csmall>Anúncio · ","▶ जगह +1\u003csmall>विज्ञापन · ","▶ Ruang +1\u003csmall>Iklan · "],"턴\u003c/small>":[" turns\u003c/small>","ターン\u003c/small>","回合\u003c/small>","回合\u003c/small>"," turnos\u003c/small>"," turnos\u003c/small>"," चालें\u003c/small>"," giliran\u003c/small>"],"광고를 보고 임시 칸 1개를 {0}턴 동안 받기":["Watch an ad for a spare space lasting {0} turns","広告を見て{0}ターン使える一時枠を獲得","看广告获得{0}回合的临时空间","看廣告獲得{0}回合的臨時空間","Mira un anuncio por un hueco extra durante {0} turnos","Veja um anúncio por um espaço extra durante {0} turnos","विज्ञापन देखकर {0} चालों के लिए एक जगह पाएँ","Tonton iklan untuk ruang ekstra selama {0} giliran"],"{0}색 · {1}병":["{0} colors · {1} bottles","{0}色 · {1}本","{0}色 · {1}瓶","{0}色 · {1}瓶","{0} colores · {1} botellas","{0} cores · {1} garrafas","{0} रंग · {1} बोतलें","{0} warna · {1} botol"],"{0} · {1}색":["{0} · {1} colors","{0} · {1}色","{0} · {1}色","{0} · {1}色","{0} · {1} colores","{0} · {1} cores","{0} · {1} रंग","{0} · {1} warna"],"최대 확장 · 최고 기록에 도전!":["Max size · beat your best!","最大拡張 · 記録に挑戦！","已完全扩展 · 挑战纪录！","已完全擴展 · 挑戰紀錄！","Máximo · ¡Busca tu récord!","Máximo · Busque o recorde!","पूरा बोर्ड · रिकॉर्ड तोड़ें!","Papan penuh · Kejar rekor!"],"다음 배치부터 새 색 도착":["New color on the next deal","次の配置から新色登場","下次发放出现新颜色","下次發放出現新顏色","Nuevo color: próxima pieza","Nova cor na próxima entrega","अगले टुकड़े में नया रंग","Warna baru: keping berikut"],"병":["bottle","瓶","瓶","瓶","botella","garrafa","बोतल","botol"],"색":["color","色","颜色","顏色","color","cor","रंग","warna"],"다음 {0}까지 {1}점":["Next {0} in {1} pts","次の{0}まで{1}点","距下个{0}还差{1}分","距下個{0}還差{1}分","Próximo {0}: {1} pts","Próximo {0}: {1} pts","अगला {0}: {1} अंक","{0} berikut: {1} poin"],"새 색":["new color","新色","新颜色","新顏色","nuevo color","nova cor","नया रंग","warna baru"],"다음 구역":["next zone","次のエリア","下一区域","下一區域","próxima zona","próxima zona","अगला क्षेत्र","zona berikut"],"\u003cspan class=\"count-down\">{0}까지 {1}\u003c/span>":["\u003cspan class=\"count-down\">{0} in {1}\u003c/span>","\u003cspan class=\"count-down\">{0}まで{1}\u003c/span>","\u003cspan class=\"count-down\">距{0}还有{1}\u003c/span>","\u003cspan class=\"count-down\">距{0}還有{1}\u003c/span>","\u003cspan class=\"count-down\">{0} en {1}\u003c/span>","\u003cspan class=\"count-down\">{0} em {1}\u003c/span>","\u003cspan class=\"count-down\">{0} में {1}\u003c/span>","\u003cspan class=\"count-down\">{0} dalam {1}\u003c/span>"],"{0}턴 뒤 {1}":["{1} in {0} turns","{0}ターン後に{1}","{0}回合后{1}","{0}回合後{1}","{1} en {0} turnos","{1} em {0} turnos","{0} चालों में {1}","{1} dalam {0} giliran"],"\u003cstrong>색 {0}종\u003c/strong>":["\u003cstrong>{0} colors\u003c/strong>","\u003cstrong>{0}色\u003c/strong>","\u003cstrong>{0}种颜色\u003c/strong>","\u003cstrong>{0}種顏色\u003c/strong>","\u003cstrong>{0} colores\u003c/strong>","\u003cstrong>{0} cores\u003c/strong>","\u003cstrong>{0} रंग\u003c/strong>","\u003cstrong>{0} warna\u003c/strong>"]," · {0}턴 뒤 1종 추가":[" · +1 in {0} turns"," · {0}ターン後に+1色"," · {0}回合后新增1色"," · {0}回合後新增1色"," · +1 en {0} turnos"," · +1 em {0} turnos"," · {0} चालों में +1"," · +1 dalam {0} giliran"],"이번 턴 붓기 {0}/{1}":["Pours left {0}/{1}","注げる回数 {0}/{1}","剩余倾倒 {0}/{1}","剩餘傾倒 {0}/{1}","Vertidos restantes {0}/{1}","Despejos restantes {0}/{1}","बाकी डालना {0}/{1}","Sisa tuang {0}/{1}"],"{0}턴 뒤 정산":["Bonus in {0} turns","精算まで{0}ターン","{0}回合后结算","{0}回合後結算","Bono en {0} turnos","Bônus em {0} turnos","{0} चालों में बोनस","Bonus dalam {0} giliran"],"최고 판 ✓":["Best run ✓","最高のプレイ ✓","最佳局 ✓","最佳局 ✓","Mejor partida ✓","Melhor partida ✓","सर्वश्रेष्ठ बाज़ी ✓","Permainan terbaik ✓"],"최고 판: ":["Best run: ","最高のプレイ：","最佳局：","最佳局：","Mejor partida: ","Melhor partida: ","सर्वश्रेष्ठ बाज़ी: ","Permainan terbaik: "],"{0}칸":["{0} free","空き{0}","空{0}格","空{0}格","{0} libres","{0} livres","{0} खाली","{0} sisa"],"병 {0}: ":["Bottle {0}: ","瓶{0}：","瓶{0}：","瓶{0}：","Botella {0}: ","Garrafa {0}: ","बोतल {0}: ","Botol {0}: "],"아래부터 ":["bottom to top: ","下から：","从下到上：","從下到上：","de abajo arriba: ","de baixo para cima: ","नीचे से ऊपर: ","bawah ke atas: "],", 빈칸 {0}":[", {0} empty spaces","、空き{0}","，空位{0}格","，空位{0}格",", {0} huecos libres",", {0} espaços livres",", {0} खाली जगह",", {0} ruang kosong"],"되돌리기 {0}":["Undo {0}","戻す {0}","撤销 {0}","復原 {0}","Deshacer {0}","Desfazer {0}","वापस {0}","Batal {0}"],"한 번 더":["Tap again","もう一度","再点一次","再點一次","Otra vez","Mais uma vez","फिर टैप करें","Ketuk lagi"],"다시 도전":["Try again","再挑戦","再挑战","再挑戰","Reintentar","Tentar de novo","फिर खेलें","Coba lagi"],"새 게임":["New game","新しいゲーム","新游戏","新遊戲","Nueva partida","Novo jogo","नई बाज़ी","Permainan baru"],"전환 확인":["Confirm switch","変更を確認","确认切换","確認切換","Confirmar","Confirmar","बदलें","Konfirmasi"],"오늘의 도전":["Daily challenge","今日の挑戦","每日挑战","每日挑戰","Reto diario","Desafio diário","दैनिक चुनौती","Tantangan harian"],"한 번 더 누르면 {0}으로 전환":["Tap again to switch to {0}","もう一度タップで{0}へ変更","再次点击切换到{0}","再次點擊切換到{0}","Toca de nuevo para cambiar a {0}","Toque de novo para mudar para {0}","{0} के लिए फिर टैप करें","Ketuk lagi untuk beralih ke {0}"],"결과 보기":["View results","結果を見る","查看结果","查看結果","Ver resultados","Ver resultado","नतीजे देखें","Lihat hasil"],"한 번 더 누르면 포기":["Tap again to give up","もう一度で終了","再次点击放弃","再次點擊放棄","Toca para abandonar","Toque para desistir","छोड़ने के लिए फिर टैप","Ketuk lagi untuk menyerah"],"포기하고 결과 보기":["End run & results","終了して結果を見る","结束并查看结果","結束並查看結果","Terminar y ver resultado","Encerrar e ver resultado","खत्म करें और नतीजे देखें","Selesai & lihat hasil"]," 좋아요":[" Nice"," いいね"," 不错"," 不錯"," Bien"," Boa"," बढ़िया"," Bagus"],"여기까지 했어요":["Run ended","ここまで！","本局结束","本局結束","Fin de partida","Fim de jogo","बाज़ी खत्म","Permainan selesai"],"자리가 없어요":["No room left","空きがありません","没有空间了","沒有空間了","Sin espacio","Sem espaço","जगह नहीं बची","Tidak ada ruang"],"{0}칸 조각, 가장 넓은 빈칸 {1}칸: 딱 1칸 모자랐어요":["Piece: {0} cells, largest gap: {1}. Just 1 cell short.","{0}段のピース、最大の空きは{1}段。あと1段でした。","碎片{0}格，最大空位{1}格：只差1格。","碎片{0}格，最大空位{1}格：只差1格。","Pieza de {0}, hueco de {1}: faltó solo 1 espacio.","Peça de {0}, espaço de {1}: faltou só 1 célula.","टुकड़ा {0} खाने का, सबसे बड़ी जगह {1}: बस 1 खाना कम था।","Keping {0} ruang, celah terbesar {1}: kurang 1 ruang."],"{0} {1}/{2}: 1칸만 더 있으면 완성":["{0} {1}/{2}: just 1 cell from a clear","{0} {1}/{2}：あと1段で完成","{0} {1}/{2}：再加1格就完成","{0} {1}/{2}：再加1格就完成","{0} {1}/{2}: a 1 espacio de completar","{0} {1}/{2}: faltou 1 célula para completar","{0} {1}/{2}: पूरा करने में बस 1 खाना बाकी","{0} {1}/{2}: tinggal 1 ruang lagi"],"맨 위에 {0}{1} {2}칸 흩어져 있었어요":["{2} cells of {0}{1} were spread across bottle tops","一番上に{0}{1}が{2}段分散していました","瓶顶分散着{2}格{0}{1}","瓶頂分散著{2}格{0}{1}","Había {2} espacios de {0}{1} repartidos arriba","Havia {2} células de {0}{1} espalhadas no topo","बोतलों के ऊपर {0}{1} के {2} खाने बिखरे थे","Ada {2} ruang {0}{1} tersebar di puncak botol"],"포기를 선택했어요.":["You ended the run.","プレイを終了しました。","你结束了本局。","你結束了本局。","Has terminado la partida.","Você encerrou a partida.","आपने बाज़ी खत्म की।","Kamu mengakhiri permainan."],"{0}칸짜리 조각을 넣을 병을 만들 수 없어요.":["No bottle can be freed for this {0}-cell piece.","{0}段のピースを入れる空きを作れません。","无法腾出空间放入{0}格碎片。","無法騰出空間放入{0}格碎片。","No puedes hacer hueco para esta pieza de {0}.","Não há como abrir espaço para a peça de {0}.","{0} खाने के टुकड़े के लिए बोतल में जगह नहीं बन सकती।","Tidak bisa membuat ruang untuk keping {0} ruang."],"최고 기록보다 +{0}점":["+{0} above your best","自己ベストより+{0}点","超过最佳{0}分","超過最佳{0}分","+{0} sobre tu récord","+{0} acima do recorde","रिकॉर्ड से {0} अंक आगे","+{0} di atas rekor"],"첫 기록이에요":["Your first record","初めての記録です","你的首个记录","你的首個紀錄","Tu primer récord","Seu primeiro recorde","आपका पहला रिकॉर्ड","Rekor pertamamu"],"최고 기록까지 {0}점 (콤보 ×2로 약 {1}병)":["{0} to your best (about {1} clears at ×2)","ベストまで{0}点（×2で約{1}本）","距最佳{0}分（×2连击约{1}瓶）","距最佳{0}分（×2連擊約{1}瓶）","A {0} del récord (unas {1} botellas con ×2)","Faltam {0} (cerca de {1} garrafas com ×2)","रिकॉर्ड तक {0} अंक (×2 पर करीब {1} बोतलें)","{0} menuju rekor (sekitar {1} botol dengan ×2)"],"도달: ":["Reached: ","到達：","到达：","到達：","Llegaste a: ","Alcançou: ","पहुँचे: ","Mencapai: "],"누적 별 {0}":["Total stars: {0}","累計スター{0}","累计星星{0}","累計星星{0}","Estrellas: {0}","Estrelas: {0}","कुल सितारे: {0}","Total bintang: {0}"]," · 다음 테마 '{0}'까지 {1}개":[" · {1} to '{0}'"," · 「{0}」まであと{1}個"," · 距“{0}”还差{1}颗"," · 距「{0}」還差{1}顆"," · Faltan {1} para '{0}'"," · Faltam {1} para '{0}'"," · '{0}' तक {1} और"," · {1} lagi menuju '{0}'"]," · 모든 테마 해금":[" · All themes unlocked"," · 全テーマ解放"," · 已解锁全部主题"," · 已解鎖全部主題"," · Todos los temas desbloqueados"," · Todos os temas liberados"," · सभी थीम खुल गईं"," · Semua tema terbuka"]," · 이 판은 누적에 넣지 않아요":[" · This run doesn't earn stars"," · このプレイは累計に含みません"," · 本局不累计星星"," · 本局不累計星星"," · Esta partida no suma estrellas"," · Esta partida não soma estrelas"," · इस बाज़ी से सितारे नहीं मिलेंगे"," · Permainan ini tidak menambah bintang"],"광고 보고 이어하기 (1회)":["Watch ad & continue (once)","広告を見て続ける（1回）","看广告继续（1次）","看廣告繼續（1次）","Ver anuncio y seguir (1 vez)","Ver anúncio e continuar (1 vez)","विज्ञापन देखकर जारी रखें (1 बार)","Tonton iklan & lanjut (1 kali)"],"{0}턴만 버티면 {1} · 광고 보고 이어하기":["{0} turns to {1} · Watch ad & continue","あと{0}ターンで{1} · 広告で続ける","再撑{0}回合到{1} · 看广告继续","再撐{0}回合到{1} · 看廣告繼續","{0} turnos hasta {1} · Ver anuncio y seguir","{0} turnos até {1} · Ver anúncio e continuar","{1} तक {0} चालें · विज्ञापन देखकर जारी रखें","{0} giliran menuju {1} · Tonton iklan & lanjut"],"신기록까지 {0}점 · 광고 보고 이어하기":["{0} to a new best · Watch ad & continue","新記録まで{0}点 · 広告で続ける","距新纪录{0}分 · 看广告继续","距新紀錄{0}分 · 看廣告繼續","A {0} de un récord · Ver anuncio y seguir","Faltam {0} para o recorde · Ver anúncio e continuar","नए रिकॉर्ड तक {0} अंक · विज्ञापन देखकर जारी रखें","{0} menuju rekor baru · Tonton iklan & lanjut"],"보트리스: 물병 정렬 퍼즐 · 오늘의 도전 {0} · v2":["Botris: Water Sort Puzzle · Daily {0} · v2","ボトリス：ウォーターソート · 今日の挑戦 {0} · v2","瓶特里斯：水排序拼图 · 每日挑战 {0} · v2","瓶特里斯：水排序拼圖 · 每日挑戰 {0} · v2","Botris: Water Sort · Reto diario {0} · v2","Botris: Water Sort · Desafio diário {0} · v2","बोट्रिस: वाटर सॉर्ट पज़ल · दैनिक चुनौती {0} · v2","Botris: Water Sort Puzzle · Harian {0} · v2"],"점수 {0} · {1}턴 · 완성 {2}병 · 최대 콤보 ×{3}":["Score {0} · {1} turns · {2} clears · Best combo ×{3}","{0}点 · {1}ターン · {2}本完成 · 最大コンボ×{3}","得分{0} · {1}回合 · 完成{2}瓶 · 最大连击×{3}","得分{0} · {1}回合 · 完成{2}瓶 · 最大連擊×{3}","{0} puntos · {1} turnos · {2} botellas · Combo máx. ×{3}","{0} pontos · {1} turnos · {2} garrafas · Combo máx. ×{3}","अंक {0} · {1} चालें · {2} बोतलें पूरी · सबसे बड़ा कॉम्बो ×{3}","Skor {0} · {1} giliran · {2} botol selesai · Kombo terbaik ×{3}"],"도달 {0} · 별 {1}개":["Reached {0} · {1} stars","到達{0} · スター{1}個","到达{0} · 星星{1}颗","到達{0} · 星星{1}顆","Llegaste a {0} · {1} estrellas","Alcançou {0} · {1} estrelas","पहुँचे {0} · {1} सितारे","Mencapai {0} · {1} bintang"],"실제 게임에서는 여기서 광고가 재생돼요. ":["An ad would play here in the full game. ","正式版ではここで広告が流れます。","正式版会在此播放广告。","正式版會在此播放廣告。","Aquí se mostraría un anuncio en la versión final. ","Aqui passaria um anúncio na versão final. ","पूरे गेम में यहाँ विज्ञापन चलेगा। ","Di versi penuh, iklan akan diputar di sini. "],"임시 칸을 받았어요. {0}턴 동안 쓸 수 있어요.":["Temporary slot ready for {0} turns.","仮置き枠を{0}ターン使えます。","已获得临时格，可用{0}回合。","已獲得臨時格，可用{0}回合。","Espacio temporal listo por {0} turnos.","Espaço temporário disponível por {0} turnos.","अस्थायी जगह {0} चालों के लिए तैयार।","Ruang sementara tersedia selama {0} giliran."],"끝나면 임시 칸 1개를 {0}턴 동안 받아요":["Get 1 temporary slot for {0} turns afterward","終了後、仮置き枠を1つ{0}ターン使えます","结束后获得1个临时格，可用{0}回合","結束後獲得1個臨時格，可用{0}回合","Obtén 1 espacio temporal por {0} turnos","Ganhe 1 espaço temporário por {0} turnos","इसके बाद {0} चालों के लिए 1 अस्थायी जगह पाएँ","Setelahnya, dapatkan 1 ruang sementara selama {0} giliran"],"가장 많이 찬 병 2개를 비웠어요. 이어서 하세요.":["The 2 fullest bottles are empty. Keep going.","一番詰まった2本を空にしました。続けましょう。","已清空最满的2瓶，继续吧。","已清空最滿的2瓶，繼續吧。","Se vaciaron las 2 botellas más llenas. Continúa.","As 2 garrafas mais cheias foram esvaziadas. Continue.","सबसे भरी 2 बोतलें खाली हो गईं। खेल जारी रखें।","2 botol terisi paling banyak dikosongkan. Lanjutkan."],"끝나면 가장 많이 찬 병 2개를 비워줘요":["The 2 fullest bottles will be emptied afterward","終了後、一番詰まった2本が空になります","结束后清空最满的2瓶","結束後清空最滿的2瓶","Se vaciarán las 2 botellas más llenas","As 2 garrafas mais cheias serão esvaziadas","इसके बाद सबसे भरी 2 बोतलें खाली होंगी","Setelahnya, 2 botol terisi paling banyak akan dikosongkan"],"복사했어요. 친구에게 붙여넣어 보세요.":["Copied! Paste it to share with friends.","コピーしました。友達に送ってみましょう。","已复制，粘贴分享给朋友吧。","已複製，貼上分享給朋友吧。","¡Copiado! Pégalo para compartir.","Copiado! Cole para compartilhar.","कॉपी हो गया! दोस्तों को भेजने के लिए पेस्ट करें।","Tersalin! Tempel untuk dibagikan ke teman."],"텍스트를 선택했어요. 길게 눌러 복사하세요.":["Text selected. Press and hold to copy.","テキストを選択しました。長押しでコピーしてください。","已选中文本，长按复制。","已選取文字，長按複製。","Texto seleccionado. Mantén pulsado para copiar.","Texto selecionado. Toque e segure para copiar.","टेक्स्ट चुना गया। कॉपी करने के लिए दबाकर रखें।","Teks dipilih. Tekan lama untuk menyalin."],"한 수 되돌렸어요.":["Last move undone.","1手戻しました。","已撤销一步。","已撤銷一步。","Último movimiento deshecho.","Última jogada desfeita.","पिछली चाल वापस ली गई।","Langkah terakhir dibatalkan."],"점수가 오르면 색이 늘어나요.":["New colors arrive as your score grows.","スコアが上がると色が増えます。","分数提高会增加颜色。","分數提高會增加顏色。","Al subir tu puntuación llegan más colores.","Mais cores chegam conforme a pontuação aumenta.","अंक बढ़ने पर नए रंग आते हैं।","Warna bertambah seiring naiknya skor."],"턴이 지날수록 색이 늘어나요.":["More colors arrive as turns pass.","ターンが進むと色が増えます。","回合推进会增加颜色。","回合推進會增加顏色。","Llegan más colores al pasar los turnos.","Mais cores chegam conforme os turnos passam.","चालें बढ़ने पर नए रंग आते हैं।","Warna bertambah seiring giliran berlalu."],"넣기로 완성하거나, 직전 완성을 이어 부으면 콤보 배수가 올라가요.":["Complete a bottle by placing, or pour after a clear, to raise your combo.","ピースで完成させるか、直前の完成に続けて注ぐとコンボ倍率が上がります。","放入完成一瓶，或接着上次完成倒水，提升连击倍数。","放入完成一瓶，或接著上次完成倒水，提升連擊倍數。","Completa al colocar, o vierte tras completar, para subir el combo.","Complete ao colocar, ou despeje após completar, para aumentar o combo.","टुकड़ा रखकर बोतल पूरी करें या पूरी बोतल के बाद पानी डालकर कॉम्बो बढ़ाएँ।","Selesaikan dengan memasukkan keping, atau tuang setelah selesai, untuk menaikkan kombo."],"완성 없는 턴이 지나면 콤보가 끊겨요.":["A turn without a clear breaks your combo.","完成しないターンがあるとコンボが途切れます。","一回合未完成会中断连击。","一回合未完成會中斷連擊。","Un turno sin completar rompe el combo.","Um turno sem completar encerra o combo.","बिना बोतल पूरी किए चाल गुजरने पर कॉम्बो टूटता है।","Giliran tanpa menyelesaikan botol memutus kombo."],"점수로 색과 병이 늘어나고, 20턴마다 빈병 정산 보너스":["Score adds colors & bottles; empty-bottle bonus every 20 turns","スコアで色と瓶が増え、20ターンごとに空き瓶ボーナス","分数增加颜色和瓶子，每20回合结算空瓶奖励","分數增加顏色和瓶子，每20回合結算空瓶獎勵","Más colores y botellas por puntos; bono cada 20 turnos por botellas vacías","Pontos trazem cores e garrafas; bônus de garrafas vazias a cada 20 turnos","अंकों से रंग व बोतलें बढ़ती हैं; हर 20 चाल पर खाली बोतल बोनस","Skor menambah warna & botol; bonus botol kosong tiap 20 giliran"],"20턴마다 색 구역, 빈 병을 남기면 돌파 보너스":["New color zone every 20 turns; keep empty bottles for a bonus","20ターンごとに色ゾーン。空き瓶で突破ボーナス","每20回合进入颜色区间，保留空瓶获得突破奖励","每20回合進入顏色區間，保留空瓶獲得突破獎勵","Nueva zona cada 20 turnos; conserva botellas vacías para un bono","Nova zona a cada 20 turnos; mantenha garrafas vazias para um bônus","हर 20 चाल पर नया रंग क्षेत्र; खाली बोतल रखने पर बोनस","Zona warna baru tiap 20 giliran; simpan botol kosong untuk bonus"],"금색 테두리 병 = 이 넣기로 완성":["Gold outline = completes with this piece","金色の枠＝このピースで完成","金色边框＝放入此碎片即可完成","金色邊框＝放入此碎片即可完成","Borde dorado = se completa con esta pieza","Borda dourada = completa com esta peça","सुनहरी सीमा = इस टुकड़े से पूरी होगी","Garis emas = selesai dengan keping ini"],"조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.":["Tap a bottle with room, or drag the piece to it.","入れられる瓶をタップ。ピースをドラッグしてもOK。","点击有空间的瓶子，或拖入碎片。","點擊有空間的瓶子，或拖入碎片。","Toca una botella con espacio o arrastra la pieza.","Toque numa garrafa com espaço ou arraste a peça.","खाली जगह वाली बोतल टैप करें या टुकड़ा उसमें खींचें।","Ketuk botol yang cukup ruang, atau seret keping ke sana."],"아래에 나온 조각을 병으로 끌어 올리거나, 조각을 누른 뒤 병을 누르세요.":["Drag the piece up to a bottle, or tap the piece then a bottle.","下のピースを瓶へドラッグするか、ピース→瓶をタップ。","将下方碎片拖入瓶子，或先点碎片再点瓶子。","將下方碎片拖入瓶子，或先點碎片再點瓶子。","Arrastra la pieza de abajo a una botella, o toca pieza y botella.","Arraste a peça de baixo para uma garrafa, ou toque na peça e na garrafa.","नीचे का टुकड़ा बोतल में खींचें या पहले टुकड़ा, फिर बोतल टैप करें।","Seret keping di bawah ke botol, atau ketuk keping lalu botol."],"위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.":["Drag the piece above to a bottle, or tap the piece then a bottle.","上のピースを瓶へドラッグするか、ピース→瓶をタップ。","将上方碎片拖入瓶子，或先点碎片再点瓶子。","將上方碎片拖入瓶子，或先點碎片再點瓶子。","Arrastra la pieza de arriba a una botella, o toca pieza y botella.","Arraste a peça de cima para uma garrafa, ou toque na peça e na garrafa.","ऊपर का टुकड़ा बोतल में खींचें या पहले टुकड़ा, फिर बोतल टैप करें।","Seret keping di atas ke botol, atau ketuk keping lalu botol."],"병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.":["Drag between bottles, or hold one then tap another to pour the top color.","瓶から瓶へドラッグ、または長押し→別の瓶をタップで一番上の色を移します。","在瓶子间拖动，或长按一瓶再点另一瓶，转移顶部颜色。","在瓶子間拖動，或長按一瓶再點另一瓶，轉移頂部顏色。","Arrastra entre botellas, o mantén una y toca otra para verter el color superior.","Arraste entre garrafas, ou segure uma e toque em outra para despejar a cor do topo.","बोतलों के बीच खींचें या एक को दबाकर दूसरी टैप करें, ऊपर का रंग डालने के लिए।","Seret antarbotol, atau tahan satu lalu ketuk yang lain untuk menuang warna teratas."],"병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요. 병에서 병으로 끌어도 돼요.":["Tap one bottle then another to pour the top color. You can also drag between them.","瓶→別の瓶をタップで一番上の色を移します。ドラッグでもOK。","先点一瓶再点另一瓶，转移顶部颜色，也可拖动。","先點一瓶再點另一瓶，轉移頂部顏色，也可拖動。","Toca una botella y luego otra para verter el color superior. También puedes arrastrar.","Toque numa garrafa e depois em outra para despejar a cor do topo. Também pode arrastar.","ऊपर का रंग डालने के लिए एक बोतल फिर दूसरी टैप करें। खींच भी सकते हैं।","Ketuk satu botol lalu yang lain untuk menuang warna teratas. Bisa juga diseret."],"정산 주기 (성장은 점수)":["Bonus interval (growth uses score)","精算周期（成長はスコア）","结算周期（按分数扩展）","結算週期（按分數擴展）","Intervalo de bono (crece por puntos)","Intervalo do bônus (cresce por pontos)","बोनस अंतराल (अंकों से विस्तार)","Interval bonus (bertambah lewat skor)"],"구간 정산":["Checkpoint bonus","区間精算","区间结算","區間結算","Bono de tramo","Bônus de etapa","चरण बोनस","Bonus tahap"],"색 구역":["Color zones","色ゾーン","颜色区间","顏色區間","Zonas de color","Zonas de cor","रंग क्षेत्र","Zona warna"],"빈병을 남기면 턴 정산 보너스를 받아요. 색과 병은 점수로 늘어나요.":["Keep empty bottles for checkpoint bonuses. Score adds colors and bottles.","空き瓶を残すと周期ボーナス。色と瓶はスコアで増えます。","保留空瓶获得回合结算奖励，颜色和瓶子按分数增加。","保留空瓶獲得回合結算獎勵，顏色和瓶子按分數增加。","Conserva botellas vacías para bonos. Los puntos añaden colores y botellas.","Mantenha garrafas vazias para bônus. Pontos adicionam cores e garrafas.","चरण बोनस के लिए खाली बोतलें रखें। अंकों से रंग और बोतलें बढ़ती हैं।","Simpan botol kosong untuk bonus tahap. Skor menambah warna dan botol."],"턴 주기마다 색이 늘고, 빈병을 남기면 돌파 보너스를 받아요.":["Colors increase at set intervals. Empty bottles earn a breakthrough bonus.","一定ターンごとに色が増え、空き瓶があると突破ボーナス。","按回合周期增加颜色，保留空瓶可获得突破奖励。","按回合週期增加顏色，保留空瓶可獲得突破獎勵。","Llegan colores por intervalos. Las botellas vacías dan un bono.","Cores aumentam por intervalos. Garrafas vazias rendem um bônus.","निश्चित चालों के बाद रंग बढ़ते हैं। खाली बोतलों पर बोनस मिलता है।","Warna bertambah pada interval tertentu. Botol kosong memberi bonus."],"복사했어요.":["Copied.","コピーしました。","已复制。","已複製。","Copiado.","Copiado.","कॉपी हो गया।","Tersalin."],"기록을 비웠어요.":["Log cleared.","記録を消しました。","已清空记录。","已清空紀錄。","Registro borrado.","Registro apagado.","लॉग मिटा दिया।","Catatan dihapus."]," · 모든 테마를 열었어요":[" · All themes unlocked"," · 全テーマ解放"," · 已解锁全部主题"," · 已解鎖全部主題"," · Todos los temas desbloqueados"," · Todos os temas liberados"," · सभी थीम खुल गईं"," · Semua tema terbuka"],"사용 중":["Selected","使用中","使用中","使用中","En uso","Em uso","चुना हुआ","Dipakai"],"적용":["Use","適用","使用","使用","Usar","Usar","लगाएँ","Pakai"],"써보기":["Try","試す","试用","試用","Probar","Experimentar","आज़माएँ","Coba"],"별 {0}개 더 필요":["{0} more stars needed","あとスター{0}個","还需{0}颗星","還需{0}顆星","Faltan {0} estrellas","Faltam {0} estrelas","{0} और सितारे चाहिए","Perlu {0} bintang lagi"]," · 마지막 저장 {0}:{1}":[" · Last saved {0}:{1}"," · 最終保存 {0}:{1}"," · 上次保存 {0}:{1}"," · 上次儲存 {0}:{1}"," · Guardado {0}:{1}"," · Salvo {0}:{1}"," · आखिरी सेव {0}:{1}"," · Terakhir disimpan {0}:{1}"],"구글 계정":["Google account","Googleアカウント","Google账号","Google帳號","Cuenta de Google","Conta Google","Google खाता","Akun Google"],"claude.ai 계정":["claude.ai account","claude.aiアカウント","claude.ai账号","claude.ai帳號","Cuenta de claude.ai","Conta claude.ai","claude.ai खाता","Akun claude.ai"],"이 브라우저에만 저장돼요. 구글로 로그인하면 계정에 저장돼서 기기 사이에 이어져요.":["Saved in this browser. Sign in with Google to sync across devices.","このブラウザに保存します。Googleでログインすると端末間で同期できます。","保存在此浏览器中，登录Google可跨设备同步。","儲存在此瀏覽器中，登入Google可跨裝置同步。","Se guarda en este navegador. Inicia sesión con Google para sincronizar dispositivos.","Salvo neste navegador. Entre com Google para sincronizar entre dispositivos.","इस ब्राउज़र में सेव होता है। डिवाइसों में सिंक करने के लिए Google से लॉग इन करें।","Disimpan di browser ini. Masuk dengan Google untuk sinkronisasi antarperangkat."],"이 브라우저에만 저장돼요. claude.ai 아티팩트 링크에서 로그인한 채로 열면 계정에 저장돼요.":["Saved in this browser. Open the claude.ai artifact while signed in to save to your account.","このブラウザに保存します。claude.aiにログインしてアーティファクトを開くとアカウントに保存します。","保存在此浏览器中，登录claude.ai后打开作品链接可保存到账户。","儲存在此瀏覽器中，登入claude.ai後開啟作品連結可儲存至帳戶。","Se guarda en este navegador. Abre el artefacto de claude.ai con sesión iniciada para guardar en tu cuenta.","Salvo neste navegador. Abra o artefato do claude.ai com login para salvar na conta.","इस ब्राउज़र में सेव होता है। खाते में सेव करने के लिए लॉग इन करके claude.ai आर्टिफैक्ट खोलें।","Disimpan di browser ini. Buka artefak claude.ai setelah masuk untuk menyimpan ke akun."],"{0}에 연결하는 중이에요.":["Connecting to {0}.","{0}に接続中です。","正在连接{0}。","正在連線{0}。","Conectando con {0}.","Conectando a {0}.","{0} से जुड़ रहे हैं।","Menghubungkan ke {0}."],"{0}에 저장돼요. 별·연 테마·최고 기록이 기기 {1}대 사이에 이어져요{2}.":["Saved to {0}. Stars, themes and best scores sync across {1} devices{2}.","{0}に保存します。スター・テーマ・ベスト記録を{1}台で同期します{2}。","保存至{0}。星星、主题与最佳记录可在{1}台设备间同步{2}。","儲存至{0}。星星、主題與最佳紀錄可在{1}台裝置間同步{2}。","Guardado en {0}. Estrellas, temas y récords se sincronizan en {1} dispositivos{2}.","Salvo em {0}. Estrelas, temas e recordes sincronizam em {1} dispositivos{2}.","{0} में सेव। सितारे, थीम और रिकॉर्ड {1} डिवाइसों में सिंक होते हैं{2}।","Disimpan ke {0}. Bintang, tema dan rekor tersinkron di {1} perangkat{2}."],"클라우드 저장을 쓸 수 없어요. 이 브라우저에만 저장돼요.":["Cloud save unavailable. Saved in this browser only.","クラウド保存を使えません。このブラウザに保存します。","云存档不可用，仅保存在此浏览器。","雲端存檔無法使用，僅儲存在此瀏覽器。","La nube no está disponible. Se guarda solo en este navegador.","Nuvem indisponível. Salvo apenas neste navegador.","क्लाउड सेव उपलब्ध नहीं। सिर्फ़ इस ब्राउज़र में सेव होगा।","Penyimpanan cloud tidak tersedia. Hanya disimpan di browser ini."],"로그인 창이 막혔어요. 구글로 로그인을 한 번 더 눌러 주세요.":["Sign-in popup blocked. Tap Google sign-in again.","ログイン画面がブロックされました。もう一度Googleログインを押してください。","登录弹窗被拦截，请再点一次Google登录。","登入彈窗被封鎖，請再點一次Google登入。","Se bloqueó el inicio de sesión. Pulsa Google otra vez.","O popup foi bloqueado. Toque em entrar com Google novamente.","लॉग इन पॉपअप रुका है। Google लॉग इन फिर टैप करें।","Jendela masuk diblokir. Ketuk masuk dengan Google lagi."],"이 브라우저의 기록은 다른 구글 계정에 연결돼 있어요. 그 계정으로 로그인해 주세요.":["This browser's records belong to another Google account. Sign in with that account.","このブラウザの記録は別のGoogleアカウントに紐づいています。そのアカウントでログインしてください。","此浏览器记录关联了另一个Google账号，请用该账号登录。","此瀏覽器紀錄關聯了另一個Google帳號，請用該帳號登入。","Estos registros están vinculados a otra cuenta de Google. Usa esa cuenta.","Os registros estão vinculados a outra conta Google. Entre com essa conta.","इस ब्राउज़र के रिकॉर्ड दूसरे Google खाते से जुड़े हैं। उसी खाते से लॉग इन करें।","Catatan browser ini terhubung ke akun Google lain. Masuk dengan akun tersebut."],"클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.":["Couldn't save to the cloud. We'll retry after your next run.","クラウドに保存できませんでした。次のプレイ終了時に再試行します。","未能保存到云端，下局结束后会重试。","未能儲存至雲端，下局結束後會重試。","No se pudo guardar en la nube. Se reintentará tras la próxima partida.","Não foi possível salvar na nuvem. Tentaremos após a próxima partida.","क्लाउड में सेव नहीं हुआ। अगली बाज़ी के बाद फिर कोशिश होगी।","Gagal menyimpan ke cloud. Akan dicoba lagi setelah permainan berikutnya."],"클라우드에 연결하지 못했어요. 지금은 이 브라우저에만 저장돼요. ":["Couldn't connect to the cloud. Saved in this browser for now. ","クラウドに接続できません。今はこのブラウザに保存します。","无法连接云端，目前仅保存在此浏览器。","無法連線雲端，目前僅儲存在此瀏覽器。","No se pudo conectar a la nube. Por ahora se guarda en este navegador. ","Não foi possível conectar à nuvem. Por enquanto, salvo neste navegador. ","क्लाउड से नहीं जुड़ सके। अभी इसी ब्राउज़र में सेव होगा। ","Gagal terhubung ke cloud. Saat ini disimpan di browser ini. "],"구글로 로그인을 다시 눌러 주세요.":["Tap Google sign-in again.","もう一度Googleログインを押してください。","请再次点击Google登录。","請再次點擊Google登入。","Pulsa iniciar con Google otra vez.","Toque em entrar com Google novamente.","Google लॉग इन फिर टैप करें।","Ketuk masuk dengan Google lagi."],"새로고침한 뒤 다시 로그인해 주세요.":["Refresh and sign in again.","更新してから再ログインしてください。","刷新后重新登录。","重新整理後再登入。","Recarga e inicia sesión de nuevo.","Atualize e entre novamente.","रिफ्रेश करके फिर लॉग इन करें।","Muat ulang lalu masuk lagi."],"새로고침하면 다시 연결해요.":["Refresh to reconnect.","更新すると再接続します。","刷新可重新连接。","重新整理可重新連線。","Recarga para reconectar.","Atualize para reconectar.","फिर जुड़ने के लिए रिफ्रेश करें।","Muat ulang untuk menghubungkan kembali."],"넣기로 완성해도 콤보가 이어져요":["Placing can keep your combo going","ピースで完成してもコンボ継続","放入完成也能延续连击","放入完成也能延續連擊","Colocar también mantiene el combo","Colocar também mantém o combo","टुकड़ा रखकर भी कॉम्बो जारी रहता है","Memasukkan keping juga melanjutkan kombo"],"⇅로 조각을 뒤집을 수 있어요 (판당 {0}회)":["⇅ flips your piece ({0} per run)","⇅で上下反転（1プレイ{0}回）","⇅翻转碎片（每局{0}次）","⇅翻轉碎片（每局{0}次）","⇅ gira la pieza ({0} por partida)","⇅ inverte a peça ({0} por partida)","⇅ से टुकड़ा पलटें (हर बाज़ी {0} बार)","⇅ membalik keping ({0} per permainan)"],"점수로 색과 병이 늘어나는 무한 모드":["Endless mode: score adds colors and bottles","スコアで色と瓶が増えるエンドレスモード","按分数增加颜色与瓶子的无尽模式","按分數增加顏色與瓶子的無盡模式","Modo sin fin: los puntos añaden colores y botellas","Modo infinito: pontos adicionam cores e garrafas","अंतहीन मोड: अंकों से रंग और बोतलें बढ़ती हैं","Mode tanpa akhir: skor menambah warna dan botol"],"빨강":["Red","赤","红色","紅色","Rojo","Vermelho","लाल","Merah"],"파랑":["Blue","青","蓝色","藍色","Azul","Azul","नीला","Biru"],"노랑":["Yellow","黄","黄色","黃色","Amarillo","Amarelo","पीला","Kuning"],"초록":["Green","緑","绿色","綠色","Verde","Verde","हरा","Hijau"],"보라":["Purple","紫","紫色","紫色","Morado","Roxo","बैंगनी","Ungu"],"주황":["Orange","オレンジ","橙色","橙色","Naranja","Laranja","नारंगी","Oranye"],"청록":["Teal","青緑","青绿色","青綠色","Turquesa","Verde-azulado","नील-हरा","Toska"],"분홍":["Pink","ピンク","粉色","粉色","Rosa","Rosa","गुलाबी","Merah muda"],"갈색":["Brown","茶","棕色","棕色","Marrón","Marrom","भूरा","Cokelat"],"좋아요":["Nice","いいね","不错","不錯","Bien","Boa","बढ़िया","Bagus"],"멋져요":["Great","すごい","很棒","很棒","Genial","Ótimo","शानदार","Hebat"],"대단해요!":["Amazing!","お見事！","太厉害了！","太厲害了！","¡Increíble!","Incrível!","कमाल!","Luar biasa!"],"최고예요!!":["Awesome!!","最高！！","太棒了！！","太棒了！！","¡¡Fantástico!!","Sensacional!!","लाजवाब!!","Keren sekali!!"],"병 개수":["Bottles","瓶の数","瓶子数量","瓶子數量","Botellas","Garrafas","बोतलें","Jumlah botol"],"병 용량":["Bottle capacity","瓶の容量","瓶子容量","瓶子容量","Capacidad","Capacidade","बोतल की क्षमता","Kapasitas botol"],"시작 색 수":["Starting colors","開始時の色数","初始颜色数","初始顏色數","Colores iniciales","Cores iniciais","शुरुआती रंग","Warna awal"],"최대 색 수":["Max colors","最大色数","最大颜色数","最大顏色數","Colores máximos","Máximo de cores","अधिकतम रंग","Warna maksimal"],"색 추가 주기":["Color interval","色の追加周期","颜色增加周期","顏色增加週期","Intervalo de colores","Intervalo de cores","रंग जोड़ने का अंतराल","Interval warna"],"추가 안 함":["No new colors","追加なし","不增加","不增加","Sin añadir","Sem adicionar","नए रंग नहीं","Tidak ditambah"],"조각 크기":["Piece size","ピースの大きさ","碎片大小","碎片大小","Tamaño de pieza","Tamanho da peça","टुकड़े का आकार","Ukuran keping"],"미리보기":["Preview","予告","预览","預覽","Vista previa","Prévia","अगला टुकड़ा","Pratinjau"],"없음":["None","なし","无","無","Ninguna","Nenhuma","कोई नहीं","Tidak ada"],"턴당 붓기":["Pours per turn","ターンごとの注ぎ回数","每回合倒水次数","每回合倒水次數","Vertidos por turno","Despejos por turno","हर चाल पानी डालना","Tuang per giliran"],"조각 뒤집기":["Piece flips","ピースの上下反転","碎片翻转","碎片翻轉","Giros de pieza","Inversões da peça","टुकड़ा पलटना","Balik keping"],"끔":["Off","オフ","关闭","關閉","Desactivado","Desativado","बंद","Nonaktif"],"2회 (기본)":["2 (default)","2回（標準）","2次（默认）","2次（預設）","2 (normal)","2 (padrão)","2 (डिफ़ॉल्ट)","2 (bawaan)"],"실험실":["Lab","ラボ","实验室","實驗室","Laboratorio","Laboratório","प्रयोगशाला","Laboratorium"],"투명한 시험관. 기본 테마예요.":["Clear test tubes. The default theme.","透明な試験管。標準テーマです。","透明试管，默认主题。","透明試管，預設主題。","Tubos transparentes. El tema inicial.","Tubos transparentes. O tema padrão.","पारदर्शी टेस्ट ट्यूब। डिफ़ॉल्ट थीम।","Tabung bening. Tema bawaan."],"카페":["Café","カフェ","咖啡馆","咖啡館","Café","Café","कैफ़े","Kafe"],"넓은 유리잔과 원목빛 선반, 거품처럼 밝은 윗면.":["Wide glasses, wooden shelves and a bright foamy surface.","広いグラスと木目の棚、泡のように明るい表面。","宽玻璃杯、木色架子与泡沫般明亮的表面。","寬玻璃杯、木色架子與泡沫般明亮的表面。","Vasos anchos, estantes de madera y una superficie espumosa.","Copos largos, prateleiras de madeira e superfície espumosa.","चौड़े गिलास, लकड़ी की शेल्फ और झाग जैसी चमकीली सतह।","Gelas lebar, rak kayu dan permukaan cerah berbusa."],"보석":["Gem","ジュエル","宝石","寶石","Gema","Joia","रत्न","Permata"],"각진 병과 빛이 비치는 보석 같은 층.":["Faceted bottles with glowing gem-like layers.","角張った瓶と、光を通す宝石のような層。","棱角瓶子与透光的宝石般液层。","稜角瓶子與透光的寶石般液層。","Botellas facetadas con capas luminosas como gemas.","Garrafas facetadas com camadas brilhantes como joias.","चमकती रत्न जैसी परतों वाली तराशी बोतलें।","Botol bersudut dengan lapisan berkilau seperti permata."],"심해":["Deep sea","深海","深海","深海","Mar profundo","Mar profundo","गहरा समुद्र","Laut dalam"],"어두운 유리 속에서 빛나는 물과 올라오는 기포.":["Glowing water and rising bubbles inside dark glass.","暗いガラスの中で光る水と、浮かび上がる気泡。","暗色玻璃中的发光液体与上升气泡。","暗色玻璃中的發光液體與上升氣泡。","Agua brillante y burbujas en vidrio oscuro.","Água brilhante e bolhas em vidro escuro.","गहरे काँच में चमकता पानी और उठते बुलबुले।","Air bercahaya dan gelembung naik dalam kaca gelap."],"보트리스: 물병 정렬 퍼즐":["Botris: Water Sort Puzzle","ボトリス：ウォーターソート","瓶特里斯：水排序拼图","瓶特里斯：水排序拼圖","Botris: Water Sort Puzzle","Botris: Water Sort Puzzle","बोट्रिस: वाटर सॉर्ट पज़ल","Botris: Water Sort Puzzle"],"보트리스":["Botris","ボトリス","瓶特里斯","瓶特里斯","Botris","Botris","बोट्रिस","Botris"],"물병 정렬 퍼즐":["Water Sort Puzzle","ウォーターソート","水排序拼图","水排序拼圖","Water Sort Puzzle","Water Sort Puzzle","वाटर सॉर्ट पज़ल","Water Sort Puzzle"],"규칙":["Rules","ルール","规则","規則","Reglas","Regras","नियम","Aturan"],"설정":["Settings","設定","设置","設定","Ajustes","Ajustes","सेटिंग","Setelan"],"점수":["Score","スコア","得分","得分","Puntos","Pontos","अंक","Skor"],"최고":["Best","ベスト","最佳","最佳","Récord","Recorde","रिकॉर्ड","Rekor"],"턴":["Turn","ターン","回合","回合","Turno","Turno","चाल","Giliran"],"콤보":["Combo","コンボ","连击","連擊","Combo","Combo","कॉम्बो","Kombo"],"지금":["Now","今","当前","目前","Ahora","Agora","अभी","Kini"],"다음":["Next","次","下个","下個","Luego","Próxima","अगला","Berikut"],"되돌리기":["Undo","戻す","撤销","撤銷","Deshacer","Desfazer","वापस लें","Urungkan"],"프로토타입입니다. 광고는 나오지 않고 광고가 들어갈 자리만 보여줘요.":["Prototype: ad placements are shown; no real ads play.","試作版です。広告の枠だけを表示し、実際の広告は流れません。","原型版仅展示广告位置，不播放真实广告。","原型版僅展示廣告位置，不播放真實廣告。","Prototipo: se muestran espacios para anuncios sin reproducirlos.","Protótipo: mostra espaços de anúncios, sem anúncios reais.","प्रोटोटाइप: विज्ञापन की जगह दिखती है; असली विज्ञापन नहीं चलते।","Prototipe: hanya menampilkan tempat iklan, tanpa iklan sungguhan."],"이렇게 플레이해요":["How to play","遊び方","玩法说明","玩法說明","Cómo jugar","Como jogar","कैसे खेलें","Cara bermain"],"닫기":["Close","閉じる","关闭","關閉","Cerrar","Fechar","बंद करें","Tutup"],"조각 넣기":["Place a piece","ピースを入れる","放入碎片","放入碎片","Colocar piezas","Colocar peças","टुकड़ा रखें","Masukkan keping"],"빈칸이 충분하면 어느 병에든 들어가요.":["Any bottle with enough room can take the piece.","空きが足りればどの瓶にも入れられます。","空间足够就能放入任意瓶子。","空間足夠就能放入任意瓶子。","Puedes usar cualquier botella con espacio suficiente.","Qualquer garrafa com espaço suficiente aceita a peça.","काफ़ी जगह हो तो टुकड़ा किसी भी बोतल में जा सकता है।","Bisa dimasukkan ke botol mana pun dengan cukup ruang."],"붓기":["Pour","注ぐ","倒水","倒水","Verter","Despejar","पानी डालें","Tuang"],"병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.":["Tap a bottle then another to pour the top color.","瓶をタップしてから別の瓶をタップすると一番上の色が移ります。","先点一瓶再点另一瓶，转移顶部颜色。","先點一瓶再點另一瓶，轉移頂部顏色。","Toca una botella y luego otra para verter el color superior.","Toque numa garrafa e depois em outra para despejar a cor do topo.","ऊपर का रंग डालने के लिए एक बोतल फिर दूसरी टैप करें।","Ketuk satu botol lalu yang lain untuk menuang warna teratas."],"받는 병이 비었거나 맨 위 색이 같아야 해요.":["The target bottle must be empty or have the same top color.","移動先が空か、一番上が同じ色なら注げます。","目标瓶需为空或顶部颜色相同。","目標瓶需為空或頂部顏色相同。","El destino debe estar vacío o tener el mismo color arriba.","O destino deve estar vazio ou ter a mesma cor no topo.","दूसरी बोतल खाली हो या ऊपर वही रंग हो।","Botol tujuan harus kosong atau memiliki warna teratas yang sama."],"완성":["Clear","完成","完成","完成","Completar","Completar","पूरा करें","Selesaikan"],"한 색으로 가득 찬 병은 비워지고 점수를 얻어요.":["A bottle full of one color clears and scores points.","1色で満杯になると瓶が空になり、点数を獲得します。","一瓶装满同色会清空并获得分数。","一瓶裝滿同色會清空並獲得分數。","Una botella llena de un color se vacía y da puntos.","Uma garrafa cheia de uma cor esvazia e dá pontos.","एक रंग से भरी बोतल खाली होती है और अंक मिलते हैं।","Botol penuh satu warna dikosongkan dan memberi poin."],"완성을 이어 가면 콤보 배수가 올라가요.":["Chain clears to increase your combo multiplier.","連続で完成させるとコンボ倍率が上がります。","连续完成可提升连击倍数。","連續完成可提升連擊倍數。","Completa en cadena para subir el multiplicador.","Complete em sequência para aumentar o multiplicador.","लगातार बोतलें पूरी करके कॉम्बो गुणक बढ़ाएँ।","Selesaikan berturut-turut untuk meningkatkan pengali kombo."],"판 확장":["Board expansion","ボード拡張","棋盘扩展","棋盤擴展","Ampliar el tablero","Expandir o tabuleiro","बोर्ड का विस्तार","Perluasan papan"],"점수가 오르면 새 색이 도착하고 위쪽에 빈병이 하나씩 생겨요. 최대 8병으로 최고 기록에 도전하세요.":["As your score grows, new colors arrive and empty bottles appear above. Chase your best with up to 8 bottles.","スコアが上がると新色と上段の空き瓶が増えます。最大8本で自己ベストに挑戦！","分数提高后加入新颜色，并在上方逐个增加空瓶。最多8瓶挑战最佳记录。","分數提高後加入新顏色，並在上方逐個增加空瓶。最多8瓶挑戰最佳紀錄。","Al subir tus puntos llegan colores y botellas vacías arriba. ¡Busca tu récord con hasta 8 botellas!","Com mais pontos, chegam cores e garrafas vazias acima. Busque seu recorde com até 8 garrafas!","अंक बढ़ने पर नए रंग और ऊपर खाली बोतलें जुड़ती हैं। 8 बोतलों तक अपना रिकॉर्ड बनाएँ।","Saat skor naik, warna baru dan botol kosong muncul di atas. Kejar rekor dengan hingga 8 botol."],"게임 오버":["Game over","ゲームオーバー","游戏结束","遊戲結束","Fin del juego","Fim de jogo","गेम खत्म","Permainan berakhir"],"조각을 넣을 자리를 만들 수 없으면 끝나요.":["The run ends when you can't make room for the piece.","ピースを入れる空きを作れなくなると終了です。","无法为碎片腾出空间时游戏结束。","無法為碎片騰出空間時遊戲結束。","La partida termina si no puedes hacer espacio para la pieza.","A partida termina se não houver como abrir espaço para a peça.","टुकड़े के लिए जगह न बना पाएँ तो बाज़ी खत्म।","Permainan berakhir jika tidak bisa membuat ruang untuk keping."],"플레이 팁":["Tips","ヒント","小技巧","小技巧","Consejos","Dicas","सुझाव","Tips"],"오늘의 도전은 모두가 같은 조각 순서로 플레이해요. 끝나면 결과를 복사해 공유할 수 있어요.":["Everyone gets the same piece order in the daily challenge. Copy your results to share afterward.","今日の挑戦は全員同じ順序のピース。結果をコピーして共有できます。","每日挑战的碎片顺序人人相同，结束后可复制分享结果。","每日挑戰的碎片順序人人相同，結束後可複製分享結果。","El reto diario usa la misma secuencia para todos. Copia y comparte el resultado.","O desafio diário usa a mesma sequência para todos. Copie e compartilhe o resultado.","दैनिक चुनौती में सबको एक ही क्रम मिलता है। नतीजे कॉपी करके साझा करें।","Tantangan harian memakai urutan keping yang sama untuk semua. Salin hasil untuk dibagikan."],"시작하기":["Start","始める","开始","開始","Empezar","Começar","शुरू करें","Mulai"],"새 규칙 3가지":["3 new rules","3つの新ルール","3条新规则","3條新規則","3 reglas nuevas","3 regras novas","3 नए नियम","3 aturan baru"],"이전 규칙으로 하려면 설정에서 '클래식(v1) 규칙'을 고르세요.":["For the old rules, choose 'Classic (v1)' in Settings.","以前のルールは設定の「クラシック(v1)ルール」で選べます。","旧规则可在设置中选择“经典(v1)规则”。","舊規則可在設定中選擇「經典(v1)規則」。","Para las reglas anteriores, elige 'Clásico (v1)' en Ajustes.","Para as regras antigas, escolha 'Clássico (v1)' nos Ajustes.","पुराने नियमों के लिए सेटिंग में 'क्लासिक (v1)' चुनें।","Untuk aturan lama, pilih 'Klasik (v1)' di Setelan."],"확인":["OK","OK","确认","確認","Aceptar","OK","ठीक","OK"],"소리와 진동":["Sound & vibration","音と振動","声音与振动","聲音與震動","Sonido y vibración","Som e vibração","आवाज़ व कंपन","Suara & getaran"],"소리":["Sound","音","声音","聲音","Sonido","Som","आवाज़","Suara"],"진동":["Vibration","振動","振动","震動","Vibración","Vibração","कंपन","Getaran"],"화면과 접근성":["Display & accessibility","表示とアクセシビリティ","显示与无障碍","顯示與無障礙","Pantalla y accesibilidad","Tela e acessibilidade","स्क्रीन व सुलभता","Tampilan & aksesibilitas"],"효과 줄이기":["Reduce motion","動きを減らす","减少动态效果","減少動態效果","Reducir movimiento","Reduzir movimento","गतियाँ कम करें","Kurangi gerakan"],"움직이는 연출을 끄고 종료 연출을 건너뛰어요.":["Disable moving effects and skip the ending animation.","動く演出を止め、終了アニメーションを省略します。","关闭动态效果并跳过结束动画。","關閉動態效果並跳過結束動畫。","Desactiva efectos móviles y salta la animación final.","Desativa efeitos em movimento e pula a animação final.","चलते प्रभाव बंद करें और अंत का ऐनिमेशन छोड़ें।","Matikan efek bergerak dan lewati animasi akhir."],"연출":["Effects","演出","效果","效果","Efectos","Efeitos","प्रभाव","Efek"],"기본":["Standard","標準","标准","標準","Normal","Padrão","सामान्य","Standar"],"손맛 강화":["Extra feedback","手応え強化","强化反馈","強化回饋","Más respuesta","Mais resposta","अधिक प्रतिक्रिया","Umpan balik ekstra"],"착지 미리보기":["Placement preview","配置予告","放置预览","放置預覽","Vista de colocación","Prévia de colocação","रखने का पूर्वावलोकन","Pratinjau penempatan"],"완성할 수 있는 병을 금색으로 표시해요.":["Highlight bottles this piece can complete in gold.","完成できる瓶を金色で表示します。","可完成的瓶子以金色标记。","可完成的瓶子以金色標記。","Marca en dorado las botellas que puedes completar.","Destaca em dourado as garrafas que pode completar.","इस टुकड़े से पूरी होने वाली बोतलें सुनहरी दिखाएँ।","Tandai emas botol yang bisa diselesaikan keping ini."],"기록 페이스 표시":["Record pace","記録ペース","纪录进度","紀錄進度","Ritmo del récord","Ritmo do recorde","रिकॉर्ड की गति","Laju rekor"],"같은 턴의 최고 기록 또는 지난 판과 비교해요.":["Compare with your best or previous run at the same turn.","同じターンのベスト記録や前回のプレイと比較します。","与同回合的最佳记录或上一局比较。","與同回合的最佳紀錄或上一局比較。","Compara con tu récord o partida anterior en el mismo turno.","Compara com o recorde ou a partida anterior no mesmo turno.","उसी चाल पर अपने रिकॉर्ड या पिछली बाज़ी से तुलना करें।","Bandingkan dengan rekor atau permainan sebelumnya pada giliran yang sama."],"색 기호 표시":["Color symbols","色の記号","颜色符号","顏色符號","Símbolos de color","Símbolos de cor","रंग के चिह्न","Simbol warna"],"색과 함께 모양으로 구별해요.":["Use shapes as well as colors.","色と形で見分けられます。","同时用形状和颜色区分。","同時用形狀和顏色區分。","Distingue por formas además de colores.","Diferencie por formas além das cores.","रंगों के साथ आकारों से पहचानें।","Bedakan dengan bentuk selain warna."],"테마 고르기":["Choose theme","テーマを選ぶ","选择主题","選擇主題","Elegir tema","Escolher tema","थीम चुनें","Pilih tema"],"조작과 안내":["Controls & help","操作とガイド","操作与引导","操作與引導","Controles y ayuda","Controles e ajuda","नियंत्रण व सहायता","Kontrol & panduan"],"조작 방식":["Controls","操作方法","操作方式","操作方式","Controles","Controles","नियंत्रण","Kontrol"],"조각 → 병 누르기":["Tap piece → bottle","ピース→瓶をタップ","点碎片→瓶子","點碎片→瓶子","Pieza → botella","Peça → garrafa","टुकड़ा → बोतल टैप","Ketuk keping → botol"],"병 누르면 바로 넣기":["Tap bottle to place","瓶をタップで入れる","点瓶子直接放入","點瓶子直接放入","Tocar botella para colocar","Tocar garrafa para colocar","बोतल टैप करके रखें","Ketuk botol untuk memasukkan"],"조각 위치":["Piece position","ピースの位置","碎片位置","碎片位置","Posición de pieza","Posição da peça","टुकड़े की जगह","Posisi keping"],"보드 위":["Above board","ボードの上","棋盘上方","棋盤上方","Sobre el tablero","Acima do tabuleiro","बोर्ड के ऊपर","Di atas papan"],"보드 아래":["Below board","ボードの下","棋盘下方","棋盤下方","Bajo el tablero","Abaixo do tabuleiro","बोर्ड के नीचे","Di bawah papan"],"단계별 안내":["Progressive tips","段階的なガイド","逐步引导","逐步引導","Consejos graduales","Dicas graduais","क्रमिक सुझाव","Tips bertahap"],"끄면 모든 기능을 처음부터 보여줘요.":["Turn off to show every feature from the start.","オフにすると最初から全機能を表示します。","关闭后从一开始显示全部功能。","關閉後從一開始顯示全部功能。","Desactiva para mostrar todo desde el inicio.","Desative para mostrar tudo desde o início.","बंद करने पर शुरुआत से सभी सुविधाएँ दिखेंगी।","Matikan untuk menampilkan semua fitur sejak awal."],"저장":["Save","保存","保存","儲存","Guardado","Salvamento","सेव","Simpan"],"이 브라우저에만 저장돼요.":["Saved in this browser only.","このブラウザに保存します。","仅保存在此浏览器。","僅儲存在此瀏覽器。","Se guarda solo en este navegador.","Salvo apenas neste navegador.","सिर्फ़ इस ब्राउज़र में सेव होता है।","Hanya disimpan di browser ini."],"구글로 로그인":["Sign in with Google","Googleでログイン","Google登录","Google登入","Entrar con Google","Entrar com Google","Google से लॉग इन","Masuk dengan Google"],"로그아웃":["Sign out","ログアウト","退出登录","登出","Cerrar sesión","Sair","लॉग आउट","Keluar"],"프로토타입 실험":["Prototype experiments","試作版の実験","原型实验","原型實驗","Experimentos","Experimentos","प्रोटोटाइप प्रयोग","Eksperimen prototipe"],"규칙 (적용하고 새 게임)":["Rules (apply & new game)","ルール（適用して新ゲーム）","规则（应用并新开一局）","規則（套用並新開一局）","Reglas (aplicar y reiniciar)","Regras (aplicar e novo jogo)","नियम (लगाएँ व नई बाज़ी)","Aturan (pakai & permainan baru)"],"바꾼 값은 무한 모드 새 게임부터 적용돼요. 오늘의 도전은 기본 규칙으로 고정이에요.":["Changes apply to the next endless run. Daily challenges use fixed default rules.","変更は次のエンドレスから適用。今日の挑戦は標準ルール固定です。","修改应用于下一局无尽模式，每日挑战固定使用默认规则。","修改套用於下一局無盡模式，每日挑戰固定使用預設規則。","Se aplica a la próxima partida sin fin. El reto diario usa reglas fijas.","Aplica ao próximo jogo infinito. O desafio diário usa regras fixas.","बदलाव अगली अंतहीन बाज़ी में लगेंगे। दैनिक चुनौती के नियम तय हैं।","Perubahan berlaku di permainan tanpa akhir berikutnya. Aturan harian tetap."],"기본 무한모드는 점수로 판이 커져요. 병·용량·색 수·조각 크기를 바꾸면 고정 병 규칙으로 플레이해요.":["Default endless grows with score. Changing bottles, capacity, colors or piece size uses a fixed board.","標準エンドレスはスコアで拡張。瓶・容量・色数・ピースの変更時は瓶数固定です。","默认无尽模式按分数扩展，修改瓶数、容量、颜色数或碎片大小后使用固定瓶数。","預設無盡模式按分數擴展，修改瓶數、容量、顏色數或碎片大小後使用固定瓶數。","El modo sin fin crece por puntos. Cambiar botellas, capacidad, colores o piezas fija el tablero.","O infinito cresce por pontos. Mudar garrafas, capacidade, cores ou peças fixa o tabuleiro.","अंतहीन मोड अंकों से बढ़ता है। बोतल, क्षमता, रंग या टुकड़े बदलने पर बोर्ड तय रहता है।","Mode bawaan meluas lewat skor. Mengubah botol, kapasitas, warna atau keping membuat papan tetap."],"넣기로 완성해도 콤보 유지":["Placement clears keep combo","ピースで完成してもコンボ継続","放入完成也保持连击","放入完成也保持連擊","Colocar mantiene el combo","Colocar mantém o combo","टुकड़ा रखकर कॉम्बो जारी","Memasukkan keping menjaga kombo"],"완성 없는 턴 다음이라도, 조각을 넣어 완성하면 콤보가 이어져요.":["Placing a piece to clear keeps your combo, even after a turn without a clear.","完成しないターンの後でも、ピースで完成するとコンボが続きます。","即使上回合未完成，放入碎片完成也能延续连击。","即使上回合未完成，放入碎片完成也能延續連擊。","Completar al colocar mantiene el combo incluso tras un turno sin completar.","Completar ao colocar mantém o combo mesmo após um turno sem completar.","बिना पूरी बोतल वाली चाल के बाद भी टुकड़ा रखकर पूरी करने पर कॉम्बो जारी रहता है।","Menyelesaikan dengan keping menjaga kombo, bahkan setelah giliran tanpa botol selesai."],"빈병을 남기면 정산 보너스를 받아요.":["Keep empty bottles to earn checkpoint bonuses.","空き瓶を残すと精算ボーナス。","保留空瓶可获得结算奖励。","保留空瓶可獲得結算獎勵。","Conserva botellas vacías para ganar bonos.","Mantenha garrafas vazias para ganhar bônus.","चरण बोनस पाने के लिए खाली बोतलें रखें।","Simpan botol kosong untuk bonus tahap."],"자동 합치기":["Auto merge","自動でまとめる","自动合并","自動合併","Unir automáticamente","Unir automaticamente","अपने आप मिलाएँ","Gabung otomatis"],"맨 위 색이 같은 병끼리 알아서 합쳐져요.":["Bottles with the same top color merge automatically.","一番上が同じ色の瓶を自動でまとめます。","顶部同色的瓶子会自动合并。","頂部同色的瓶子會自動合併。","Las botellas con el mismo color arriba se unen solas.","Garrafas com a mesma cor no topo se juntam sozinhas.","ऊपर एक रंग वाली बोतलें अपने आप मिलती हैं।","Botol dengan warna teratas sama digabung otomatis."],"기본값":["Defaults","標準に戻す","默认值","預設值","Predeterminado","Padrão","डिफ़ॉल्ट","Bawaan"],"클래식(v1) 규칙":["Classic (v1)","クラシック(v1)ルール","经典(v1)规则","經典(v1)規則","Clásico (v1)","Clássico (v1)","क्लासिक (v1)","Klasik (v1)"],"적용하고 새 게임":["Apply & new game","適用して新ゲーム","应用并新开一局","套用並新開一局","Aplicar y reiniciar","Aplicar e novo jogo","लगाएँ व नई बाज़ी","Pakai & permainan baru"],"광고 자리 (다음 새 게임부터)":["Ad placements (next run)","広告の枠（次のプレイから）","广告位置（下一局起）","廣告位置（下一局起）","Espacios de anuncios (próxima partida)","Espaços de anúncios (próximo jogo)","विज्ञापन की जगह (अगली बाज़ी)","Tempat iklan (permainan berikutnya)"],"임시 잔 제안 (무한 모드)":["Temporary cup offer (endless)","仮置きカップの提案（エンドレス）","临时杯提示（无尽模式）","臨時杯提示（無盡模式）","Oferta de vaso temporal (sin fin)","Oferta de copo temporário (infinito)","अस्थायी कप का सुझाव (अंतहीन)","Tawaran gelas sementara (tanpa akhir)"],"위기 때 광고를 보면 임시 칸 1개를 20턴 동안 받을 수 있어요.":["In danger, watch an ad to get 1 temporary slot for 20 turns.","ピンチで広告を見ると仮置き枠を1つ20ターン使えます。","危机时看广告可获得1个临时格，持续20回合。","危機時看廣告可獲得1個臨時格，持續20回合。","En peligro, un anuncio da 1 espacio temporal por 20 turnos.","Em perigo, um anúncio dá 1 espaço temporário por 20 turnos.","खतरे में विज्ञापन देखकर 20 चालों के लिए 1 अस्थायी जगह पाएँ।","Saat terdesak, tonton iklan untuk 1 ruang sementara selama 20 giliran."],"잠긴 테마도 써보기":["Try locked themes","未解放テーマも試す","试用锁定主题","試用鎖定主題","Probar temas bloqueados","Testar temas bloqueados","बंद थीम आज़माएँ","Coba tema terkunci"],"프로토타입 확인용이에요. 별이 모자라도 모든 테마를 고를 수 있어요.":["For prototype testing. Choose any theme without enough stars.","試作版の確認用です。スター不足でも全テーマを選べます。","供原型测试，即使星星不足也能选择所有主题。","供原型測試，即使星星不足也能選擇所有主題。","Para probar el prototipo. Elige cualquier tema sin suficientes estrellas.","Para testar o protótipo. Escolha qualquer tema sem estrelas suficientes.","प्रोटोटाइप परीक्षण के लिए। कम सितारों पर भी कोई थीम चुनें।","Untuk uji prototipe. Pilih tema apa pun meski bintang kurang."],"플레이 테스트 기록":["Playtest log","プレイテスト記録","试玩记录","試玩紀錄","Registro de pruebas","Registro de testes","खेल परीक्षण लॉग","Catatan uji bermain"],"조작 방식/배치별로 이 기기에서 센 횟수예요. 게임에는 영향이 없어요.":["Counts on this device by controls and layout. No effect on gameplay.","この端末の操作・配置別の回数。ゲームには影響しません。","此设备按操作和布局统计的次数，不影响游戏。","此裝置按操作和配置統計的次數，不影響遊戲。","Conteos locales por controles y posición. No afecta al juego.","Contagens locais por controles e posição. Não afeta o jogo.","इस डिवाइस पर नियंत्रण व लेआउट के हिसाब से गिनती। खेल पर असर नहीं।","Hitungan di perangkat ini menurut kontrol dan tata letak. Tidak memengaruhi permainan."],"연출별 템포(턴당 시간, 1.2초 안에 둔 수)예요.":["Effect tempo: time per turn and moves within 1.2 seconds.","演出別のテンポ：ターン時間と1.2秒以内の手数。","各效果节奏：每回合时间与1.2秒内落子数。","各效果節奏：每回合時間與1.2秒內落子數。","Ritmo por efecto: tiempo por turno y movimientos en 1,2 segundos.","Ritmo por efeito: tempo por turno e jogadas em 1,2 segundos.","प्रभाव के हिसाब से गति: हर चाल का समय और 1.2 सेकंड के भीतर की चालें।","Tempo per efek: waktu per giliran dan langkah dalam 1,2 detik."],"복사":["Copy","コピー","复制","複製","Copiar","Copiar","कॉपी","Salin"],"초기화":["Clear","消去","清空","清空","Borrar","Limpar","मिटाएँ","Hapus"],"병을 누르면 조각이 바로 들어가요":["Tap a bottle to place the piece","瓶をタップでピースが入ります","点瓶子直接放入碎片","點瓶子直接放入碎片","Toca una botella para colocar","Toque numa garrafa para colocar","टुकड़ा रखने के लिए बोतल टैप करें","Ketuk botol untuk memasukkan keping"],"병에서 병으로 끌면 부어요":["Drag between bottles to pour","瓶から瓶へドラッグで注ぐ","在瓶子间拖动倒水","在瓶子間拖動倒水","Arrastra entre botellas para verter","Arraste entre garrafas para despejar","पानी डालने के लिए बोतलों के बीच खींचें","Seret antarbotol untuk menuang"],"길게 누르면 부을 병을 고를 수 있어요":["Hold a bottle to select it for pouring","長押しで注ぐ瓶を選べます","长按选择倒水的瓶子","長按選擇倒水的瓶子","Mantén pulsado para elegir de dónde verter","Segure para escolher a garrafa de origem","पानी डालने की बोतल चुनने के लिए दबाकर रखें","Tekan lama untuk memilih botol asal"],"버틴 턴":["Turns survived","続いたターン","坚持回合","堅持回合","Turnos jugados","Turnos jogados","खेली चालें","Giliran bertahan"],"완성한 병":["Bottles cleared","完成した瓶","完成瓶数","完成瓶數","Botellas completas","Garrafas completas","पूरी बोतलें","Botol selesai"],"최대 콤보":["Best combo","最大コンボ","最大连击","最大連擊","Combo máximo","Combo máximo","सबसे बड़ा कॉम्बो","Kombo terbaik"],"새 최고 기록":["New best!","新記録！","新纪录！","新紀錄！","¡Nuevo récord!","Novo recorde!","नया रिकॉर्ड!","Rekor baru!"],"판 보기":["View board","ボードを見る","查看棋盘","查看棋盤","Ver tablero","Ver tabuleiro","बोर्ड देखें","Lihat papan"],"새 테마 해금:":["New theme unlocked:","新テーマ解放：","新主题解锁：","新主題解鎖：","Nuevo tema:","Novo tema:","नई थीम खुली:","Tema baru terbuka:"],"적용하기":["Use theme","適用する","使用主题","使用主題","Usar tema","Usar tema","थीम लगाएँ","Pakai tema"],"테마 보기":["View themes","テーマを見る","查看主题","查看主題","Ver temas","Ver temas","थीम देखें","Lihat tema"],"🥃 임시 잔 사용":["🥃 Use temporary cup","🥃 仮置きカップを使う","🥃 使用临时杯","🥃 使用臨時杯","🥃 Usar vaso temporal","🥃 Usar copo temporário","🥃 अस्थायी कप लें","🥃 Pakai gelas sementara"],"공유 텍스트":["Share text","共有テキスト","分享文本","分享文字","Texto para compartir","Texto para compartilhar","साझा करने का टेक्स्ट","Teks berbagi"],"결과 복사":["Copy results","結果をコピー","复制结果","複製結果","Copiar resultado","Copiar resultado","नतीजे कॉपी करें","Salin hasil"],"테마":["Themes","テーマ","主题","主題","Temas","Temas","थीम","Tema"],"테마는 병 모양과 선반, 액체의 질감만 바꿔요. 액체 색은 그대로라 구분하기 쉬워요. 별은 기본 규칙의 무한 모드와 오늘의 도전 첫 판에서 쌓이고, 한 번 연 테마는 계속 쓸 수 있어요.":["Themes change bottle shapes, shelves and liquid texture. Colors stay the same. Earn stars in default endless and your first daily run. Unlocked themes stay available.","テーマは瓶・棚・液体の質感のみ変更。色は変わりません。標準エンドレスと毎日の初挑戦でスターを獲得。一度解放するとずっと使えます。","主题仅改变瓶形、架子和液体质感，颜色保持不变。默认无尽模式与当天首次挑战可累计星星，已解锁主题可一直使用。","主題僅改變瓶形、架子和液體質感，顏色保持不變。預設無盡模式與當天首次挑戰可累計星星，已解鎖主題可一直使用。","Los temas cambian formas, estantes y textura, sin alterar los colores. Gana estrellas en sin fin con reglas iniciales y el primer reto diario. Los temas desbloqueados se conservan.","Temas mudam formas, prateleiras e textura, sem alterar cores. Ganhe estrelas no infinito padrão e no primeiro desafio diário. Temas liberados ficam disponíveis.","थीम बोतल, शेल्फ और पानी की बनावट बदलती हैं, रंग वही रहते हैं। सामान्य अंतहीन मोड व पहले दैनिक खेल में सितारे मिलते हैं। खुली थीम हमेशा उपलब्ध रहती हैं।","Tema mengubah bentuk botol, rak dan tekstur air, tanpa mengubah warna. Dapatkan bintang di mode tanpa akhir bawaan dan permainan harian pertama. Tema terbuka tetap tersedia."],"보상형 광고 자리":["Rewarded ad preview","リワード広告の枠","奖励广告预览","獎勵廣告預覽","Vista de anuncio con premio","Prévia de anúncio com recompensa","इनाम वाले विज्ञापन का पूर्वावलोकन","Pratinjau iklan berhadiah"],"실제 게임에서는 여기서 광고가 재생돼요.":["An ad would play here in the full game.","正式版ではここで広告が流れます。","正式版会在此播放广告。","正式版會在此播放廣告。","Aquí se mostraría un anuncio en la versión final.","Aqui passaria um anúncio na versão final.","पूरे गेम में यहाँ विज्ञापन चलेगा।","Di versi penuh, iklan akan diputar di sini."],"물 정렬과 콤보의 만남! 병을 비우고 판을 넓히며 최고 기록에 도전하는 무한 워터 소트 퍼즐.":["Water sorting meets combos! Clear bottles, expand the board and chase your best in an endless water sort puzzle.","ウォーターソートとコンボが融合！瓶を空にし、ボードを広げて自己ベストに挑むエンドレスパズル。","水排序与连击相遇！清空瓶子、扩展棋盘，在无尽水排序拼图中挑战最高记录。","水排序與連擊相遇！清空瓶子、擴展棋盤，在無盡水排序拼圖中挑戰最高紀錄。","¡Ordenar agua con combos! Vacía botellas, amplía el tablero y busca tu récord en este water sort sin fin.","Água e combos juntos! Esvazie garrafas, expanda o tabuleiro e busque seu recorde neste water sort infinito.","पानी छाँटें और कॉम्बो बनाएँ! बोतलें खाली करें, बोर्ड बढ़ाएँ और अंतहीन वाटर सॉर्ट पज़ल में अपना रिकॉर्ड तोड़ें।","Susun air dan buat kombo! Kosongkan botol, perluas papan dan kejar rekor di puzzle water sort tanpa akhir."],"이번 판 목표":["Run goal","このプレイの目標","本局目标","本局目標","Meta de partida","Meta da partida","इस बाज़ी का लक्ष्य","Target permainan"],"들어오는 조각":["Incoming pieces","入ってくるピース","即将到来的碎片","即將到來的碎片","Piezas entrantes","Peças chegando","आने वाले टुकड़े","Keping masuk"],"지금 조각":["Current piece","現在のピース","当前碎片","目前碎片","Pieza actual","Peça atual","अभी का टुकड़ा","Keping saat ini"],"조각 위아래 바꾸기":["Flip piece vertically","ピースを上下反転","上下翻转碎片","上下翻轉碎片","Invertir pieza","Inverter peça","टुकड़ा ऊपर-नीचे पलटें","Balik keping vertikal"],"게임 조작":["Game controls","ゲーム操作","游戏操作","遊戲操作","Controles del juego","Controles do jogo","गेम नियंत्रण","Kontrol permainan"],"언어":["Language","言語","语言","語言","Idioma","Idioma","भाषा","Bahasa"],"자동 (브라우저 언어)":["Auto (browser language)","自動（ブラウザの言語）","自动（浏览器语言）","自動（瀏覽器語言）","Automático (navegador)","Automático (navegador)","अपने आप (ब्राउज़र की भाषा)","Otomatis (bahasa browser)"],"1개":["1","1個","1个","1個","1","1","1","1"],"2개":["2","2個","2个","2個","2","2","2","2"],"4개":["4","4個","4个","4個","4","4","4","4"],"5개":["5","5個","5个","5個","5","5","5","5"],"6개":["6","6個","6个","6個","6","6","6","6"],"7개":["7","7個","7个","7個","7","7","7","7"],"4칸":["4 cells","4段","4格","4格","4 espacios","4 células","4 खाने","4 ruang"],"5칸":["5 cells","5段","5格","5格","5 espacios","5 células","5 खाने","5 ruang"],"3종":["3 colors","3色","3色","3色","3 colores","3 cores","3 रंग","3 warna"],"4종":["4 colors","4色","4色","4色","4 colores","4 cores","4 रंग","4 warna"],"5종":["5 colors","5色","5色","5色","5 colores","5 cores","5 रंग","5 warna"],"6종":["6 colors","6色","6色","6色","6 colores","6 cores","6 रंग","6 warna"],"7종":["7 colors","7色","7色","7色","7 colores","7 cores","7 रंग","7 warna"],"8종":["8 colors","8色","8色","8色","8 colores","8 cores","8 रंग","8 warna"],"9종":["9 colors","9色","9色","9色","9 colores","9 cores","9 रंग","9 warna"],"10턴마다":["Every 10 turns","10ターンごと","10回合一次","10回合一次","Cada 10 turnos","A cada 10 turnos","हर 10 चाल पर","Tiap 10 giliran"],"15턴마다":["Every 15 turns","15ターンごと","15回合一次","15回合一次","Cada 15 turnos","A cada 15 turnos","हर 15 चाल पर","Tiap 15 giliran"],"20턴마다":["Every 20 turns","20ターンごと","20回合一次","20回合一次","Cada 20 turnos","A cada 20 turnos","हर 20 चाल पर","Tiap 20 giliran"],"30턴마다":["Every 30 turns","30ターンごと","30回合一次","30回合一次","Cada 30 turnos","A cada 30 turnos","हर 30 चाल पर","Tiap 30 giliran"],"1~2칸":["1–2 cells","1–2段","1–2格","1–2格","1–2 espacios","1–2 células","1–2 खाने","1–2 ruang"],"1~3칸":["1–3 cells","1–3段","1–3格","1–3格","1–3 espacios","1–3 células","1–3 खाने","1–3 ruang"],"2~3칸":["2–3 cells","2–3段","2–3格","2–3格","2–3 espacios","2–3 células","2–3 खाने","2–3 ruang"],"1번":["1","1回","1次","1次","1","1","1","1"],"2번":["2","2回","2次","2次","2","2","2","2"],"3번":["3","3回","3次","3次","3","3","3","3"],"3회":["3","3回","3次","3次","3","3","3","3"],"5회":["5","5回","5次","5次","5","5","5","5"]};
+  const languages = [
+    ['ko', '한국어'], ['en', 'English'], ['ja', '日本語'],
+    ['zh-Hans', '简体中文'], ['zh-Hant', '繁體中文'],
+    ['es', 'Español'], ['pt-BR', 'Português (Brasil)'],
+    ['hi', 'हिन्दी'], ['id', 'Bahasa Indonesia'],
+  ];
+  const columns = languages.slice(1).map(([code]) => code);
+  function normalize(value) {
+    const code = String(value || '').replace(/_/g, '-').toLowerCase();
+    if (/^zh(?:-|$)/.test(code)) {
+      if (/(?:^|-)hant(?:-|$)/.test(code)) return 'zh-Hant';
+      if (/(?:^|-)hans(?:-|$)/.test(code)) return 'zh-Hans';
+      return /(?:^|-)(tw|hk|mo)(?:-|$)/.test(code) ? 'zh-Hant' : 'zh-Hans';
+    }
+    if (/^pt(?:-|$)/.test(code)) return 'pt-BR';
+    if (/^in(?:-|$)/.test(code)) return 'id';
+    return languages.find(([lang]) => lang.toLowerCase() === code.split('-')[0])?.[0] || null;
+  }
+  const detect = values => { for (const value of values) { const code = normalize(value); if (code) return code; } return 'en'; };
+  let choice;
+  try { choice = JSON.parse(localStorage.getItem('wsurv.locale')); } catch (_) {}
+  if (choice !== 'auto' && !languages.some(([code]) => code === choice)) choice = 'auto';
+  const requested = normalize(new URLSearchParams(location.search).get('lang'));
+  let locale = requested || (choice === 'auto' ? detect(navigator.languages || [navigator.language]) : choice);
+  const t = (key, ...values) => {
+    const row = catalog[key];
+    const template = locale === 'ko' ? key : row?.[columns.indexOf(locale)] ?? row?.[0] ?? key;
+    return template.replace(/\{(\d+)\}/g, (_, index) => String(values[index] ?? ''));
+  };
+  // Keep original text nodes so changing language preserves markup and event listeners.
+  const textNodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) {
+    const node = walker.currentNode, key = node.nodeValue.trim();
+    if (catalog[key] && !node.parentElement.closest('script, style, textarea, #optLanguage')) textNodes.push([node, node.nodeValue, key]);
+  }
+  const attributes = [];
+  for (const element of document.querySelectorAll('[aria-label], [title]')) {
+    for (const attr of ['aria-label', 'title']) {
+      const key = element.getAttribute(attr);
+      if (key && catalog[key]) attributes.push([element, attr, key]);
+    }
+  }
+  const title = document.title;
+  const description = document.querySelector('meta[name="description"]');
+  const descriptionText = description?.content;
+  function apply() {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = 'ltr';
+    document.title = t(title);
+    if (description) description.content = t(descriptionText);
+    for (const [node, original, key] of textNodes) if (node.isConnected) node.nodeValue = original.replace(key, t(key));
+    for (const [element, attr, key] of attributes) if (element.isConnected) element.setAttribute(attr, t(key));
+    const select = document.getElementById('optLanguage');
+    if (select) {
+      select.replaceChildren(new Option(t('자동 (브라우저 언어)'), 'auto'), ...languages.map(([code, label]) => new Option(label, code)));
+      select.value = choice;
+    }
+  }
+  function set(value) {
+    choice = languages.some(([code]) => code === value) ? value : 'auto';
+    try { localStorage.setItem('wsurv.locale', JSON.stringify(choice)); } catch (_) {}
+    locale = choice === 'auto' ? detect(navigator.languages || [navigator.language]) : choice;
+    const url = new URL(location.href);
+    if (url.searchParams.has('lang')) { url.searchParams.delete('lang'); history.replaceState(null, '', url); }
+    apply();
+    window.dispatchEvent(new Event('wss:localechange'));
+  }
+  apply();
+  return { t, set, apply, current: () => locale, choice: () => choice, languages, normalize, detect };
+})();
+
+</script>
 <script id="engine">
 // Engine: pure game rules. No DOM access, so it can run headless for balance tests.
 // DEFAULT_RULES are the v2 rules. V1_RULES switches every v2 rule off and reproduces the v1 prototype exactly.
@@ -578,6 +735,28 @@ const DEFAULT_RULES = {
   spare: false, spareCap: 1, spareTurns: 20, spareFrom: 15, spareMaxEmpty: 0, spareMaxFree: 7, spareSticky: true,
 };
 const V1_RULES = Object.assign({}, DEFAULT_RULES, { comboPlace: false, flip: false, zones: false, spare: false });
+// Versioned endless progression. Legacy/daily rules keep their original turn-indexed stream.
+const SCORE_GROWTH_V1 = [
+  { score: 0, colors: 4, bottles: 6 },
+  { score: 300, colors: 5, bottles: 6 },
+  { score: 900, colors: 6, bottles: 7 },
+  { score: 1700, colors: 7, bottles: 7 },
+  { score: 2800, colors: 8, bottles: 8 },
+  { score: 4500, colors: 9, bottles: 8 },
+];
+const EXPANDING_RULES = Object.assign({}, DEFAULT_RULES, { expansion: 1, maxColors: 9, growthTable: SCORE_GROWTH_V1, tailDoublePct: 90 });
+function isExpanding(rules) { return rules.expansion === 1; }
+function sanitizeGrowth(table, rules) {
+  const out = [{ score: 0, colors: rules.startColors, bottles: rules.bottles }];
+  for (const row of (Array.isArray(table) ? table : SCORE_GROWTH_V1).slice(1, 16)) {
+    const prev = out[out.length - 1], score = Math.round(Number(row && row.score));
+    const colors = Math.max(prev.colors, Math.min(rules.maxColors, Math.round(Number(row && row.colors))));
+    const bottles = Math.max(prev.bottles, Math.min(8, Math.round(Number(row && row.bottles))));
+    if (!Number.isFinite(score) || !Number.isFinite(colors) || !Number.isFinite(bottles) || score <= prev.score) continue;
+    if (colors !== prev.colors || bottles !== prev.bottles) out.push({ score, colors, bottles });
+  }
+  return out;
+}
 
 function hashStr(s) {
   let h = 2166136261 >>> 0;
@@ -627,11 +806,21 @@ function sanitizeRules(r) {
   if (o.maxColors < o.startColors) o.maxColors = o.startColors;
   if (o.pieceMax > o.cap) o.pieceMax = o.cap;
   if (o.pieceMin > o.pieceMax) o.pieceMin = o.pieceMax;
+  if (isExpanding(r)) {
+    o.expansion = 1;
+    o.growthTable = sanitizeGrowth(r.growthTable, o);
+    o.tailDoublePct = num(r.tailDoublePct, 0, 100, EXPANDING_RULES.tailDoublePct);
+    o.spare = false;
+  }
   return o;
 }
 // Records are only compared between runs with the same signature. v1 rules keep their original signature.
 // spare* is a rescue (like revive), so it is not part of the signature.
 function rulesSig(r) {
+  if (isExpanding(r)) {
+    const legacy = Object.assign({}, r); delete legacy.expansion;
+    return rulesSig(legacy) + '-e1q1p' + r.preview + 'd' + (r.tailDoublePct === undefined ? 50 : r.tailDoublePct) + '-' + r.growthTable.map(x => [x.score, x.colors, x.bottles].join('_')).join('.');
+  }
   const base = [r.bottles, r.cap, r.startColors, r.maxColors, r.colorEvery, r.pieceMin, r.pieceMax, r.pourLimit, r.autoMerge ? 1 : 0].join('-');
   if (!r.comboPlace && !r.flip && !r.zones) return base;
   return base + '-c' + (r.comboPlace ? 1 : 0) +
@@ -653,7 +842,7 @@ function zoneBonusAt(rules, i, bs) {
   let empties = 0; for (const b of bs) if (!b.length) empties++;
   return empties * rules.zoneBonus * mul;
 }
-function isTwinTurn(rules, i) { return !!(rules.zones && rules.zoneTwin) && newColorAt(rules, i) >= 0; }
+function isTwinTurn(rules, i) { return !isExpanding(rules) && !!(rules.zones && rules.zoneTwin) && newColorAt(rules, i) >= 0; }
 // Piece i depends only on the seed and its index, so every player of a daily seed sees the same sequence.
 // A twin overwrites the piece of a colour-adding turn without drawing from the generator.
 function pieceAt(seed, rules, i) {
@@ -766,7 +955,7 @@ function canMakeRoom(bs, need, rules, budget, limit, spare) {
   return false;
 }
 function newState(mode, seed, rules) {
-  return {
+  const S = {
     v: 1, mode, seed, rules,
     bottles: Array.from({ length: rules.bottles }, () => []),
     turn: 0, piece: pieceAt(seed, rules, 0),
@@ -777,6 +966,57 @@ function newState(mode, seed, rules) {
     zoneBonusTotal: 0, zoneLog: [],
     spare: null, spareUsed: false, spareOffer: false, spareArmTurn: -1, spareTurn: -1, spareIn: 0,
   };
+  if (isExpanding(rules)) {
+    S.growth = { activeColors: rules.startColors, generation: 0, queue: [], pendingIntro: [], log: [], pieceIntro: -1 };
+    advancePiece(S);
+  }
+  return S;
+}
+function activeColors(S) { return isExpanding(S.rules) ? S.growth.activeColors : colorsAt(S.rules, S.turn); }
+function growthTarget(S) {
+  const table = S.rules.growthTable;
+  let target = table[0];
+  for (const row of table) { if (S.score < row.score) break; target = row; }
+  return target;
+}
+function nextGrowth(S) {
+  if (!isExpanding(S.rules)) return null;
+  return S.rules.growthTable.find(row => row.colors > S.growth.activeColors || row.bottles > S.bottles.length) || null;
+}
+function updateGrowth(S, placed, hooks) {
+  if (!isExpanding(S.rules) || S.over) return;
+  const target = growthTarget(S), g = S.growth;
+  while (S.bottles.length < target.bottles) {
+    S.bottles.push([]);
+    g.log.push({ kind: 'bottle', value: S.bottles.length, score: S.score, turn: S.turn });
+    if (hooks && hooks.growth) hooks.growth('bottle', S.bottles.length);
+  }
+  if (placed && g.activeColors < target.colors) {
+    const color = g.activeColors++;
+    if (S.rules.zoneTwin) g.pendingIntro.push(color);
+    g.log.push({ kind: 'color', value: g.activeColors, score: S.score, turn: S.turn });
+    if (hooks && hooks.growth) hooks.growth('color', color);
+  }
+}
+function generatePiece(S) {
+  const g = S.growth, r = S.rules, i = g.generation++;
+  const intro = g.pendingIntro.length ? g.pendingIntro.shift() : -1;
+  if (intro >= 0) return { piece: Array(Math.max(r.pieceMin, Math.min(r.zoneTwinSize, r.pieceMax))).fill(intro), intro };
+  const rnd = mulberry32(hashStr(S.seed + '#exp1#' + i));
+  const roll = rnd(), tail = g.activeColors >= r.maxColors && r.pieceMin === 1 && r.pieceMax === 2;
+  const size = tail ? (roll < 1 - r.tailDoublePct / 100 ? 1 : 2) : r.pieceMin + Math.floor(roll * (r.pieceMax - r.pieceMin + 1)), piece = [];
+  for (let j = 0; j < size; j++) piece.push(Math.floor(rnd() * g.activeColors));
+  return { piece, intro: -1 };
+}
+function advancePiece(S) {
+  if (!isExpanding(S.rules)) { S.piece = pieceAt(S.seed, S.rules, S.turn); return; }
+  const g = S.growth, next = g.queue.length ? g.queue.shift() : generatePiece(S);
+  S.piece = next.piece; g.pieceIntro = next.intro;
+  while (g.queue.length < S.rules.preview) g.queue.push(generatePiece(S));
+}
+function previewPieces(S) {
+  if (isExpanding(S.rules)) return S.growth.queue.map(q => ({ piece: q.piece.slice(), intro: q.intro }));
+  return Array.from({ length: S.rules.preview }, (_, j) => ({ piece: pieceAt(S.seed, S.rules, S.turn + j + 1), intro: isTwinTurn(S.rules, S.turn + j + 1) ? newColorAt(S.rules, S.turn + j + 1) : -1 }));
 }
 // Streak counts consecutive turns with at least one completed bottle; each completion scores 100 x streak.
 function settle(S, hooks) {
@@ -816,7 +1056,7 @@ function zoneBreak(S, hooks) {
   S.score += bonus;
   S.zoneBonusTotal = (S.zoneBonusTotal || 0) + bonus;
   (S.zoneLog || (S.zoneLog = [])).push({ zone: z, turn: S.turn, empties, bonus, undoUsed: S.undoUsed || 0, revive: !!S.reviveUsed });
-  if (hooks && hooks.zone) hooks.zone(z, empties, bonus, newColorAt(S.rules, S.turn));
+  if (hooks && hooks.zone) hooks.zone(z, empties, bonus, isExpanding(S.rules) ? -1 : newColorAt(S.rules, S.turn));
 }
 // Per zone reached: reached (always), empty2 = left it with >= 2 empty bottles, clean = no undo or revive used while in it.
 // The zone the run is in (or ended in) has only its "reached" star.
@@ -848,7 +1088,8 @@ function applyPlace(S, t, hooks) {
   settle(S, hooks);
   if (S.rules.comboPlace && closing && prev === 0 && S.turnClears === 0) breakCombo(S, hooks);
   if (isZoneStart(S.rules, S.turn)) zoneBreak(S, hooks);
-  S.piece = pieceAt(S.seed, S.rules, S.turn);
+  updateGrowth(S, true, hooks);
+  advancePiece(S);
   checkStuck(S);
   return true;
 }
@@ -863,6 +1104,7 @@ function applyPour(S, s, t, hooks) {
   if (S.spare && t === S.bottles.length) S.spareIn = (S.spareIn || 0) + 1;
   S.pours++;
   settle(S, hooks);
+  updateGrowth(S, false, hooks);
   checkStuck(S);
   return true;
 }
@@ -963,12 +1205,16 @@ function turnRhythm(S) {
 </script>
 
 <script>
+
 (() => {
   const $ = id => document.getElementById(id);
+  const tr = window.WSSLocale.t;
+  const colorName = c => tr(NAMES[c]);
   const SYMBOLS = ['●', '■', '▲', '◆', '★', '✚', '♥', '♣', '✿'];
   const NAMES = ['빨강', '파랑', '노랑', '초록', '보라', '주황', '청록', '분홍', '갈색'];
   const RESCUE_AD_CAP = 3;           // rewarded rescues per run (revive + spare cup); RC key rescue_ad_cap in the real game
   const BASE_SIG = rulesSig(DEFAULT_RULES);
+  const EXPANDING_SIG = rulesSig(sanitizeRules(EXPANDING_RULES));
   const LS = {
     get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
@@ -988,7 +1234,7 @@ function turnRhythm(S) {
   let paceDisp = null;       // pace label shown for the current run
   let lastWarnTurn = -1;
   let hadSpare = false;
-  let armed = null;          // { id: 'btnNew' | 'btnExtra', timer }: a press waiting for its confirming second press
+  let armed = null;          // { id: 'btnNew' | 'btnMode' | 'btnExtra', timer }: a press waiting for its confirming second press
   let prefs = Object.assign({ symbols: false, sound: true, vibrate: true, reduceFx: reducedMotion, ghost: true, pace: true, staged: true, offerSpare: true }, LS.get('wsurv.prefs', {}));
   let unlock = Object.assign({ runs: 0, sawOver: false, flip: false }, LS.get('wsurv.unlock', {}));
   const savePrefs = () => LS.set('wsurv.prefs', prefs);
@@ -1004,16 +1250,17 @@ function turnRhythm(S) {
     stageDirty = true;
     if (S) { paintStage(); paintHeat(); layoutStage(); dangerFx(false); }
   }
-  window.addEventListener('resize', () => { stageDirty = true; if (S) paintStage(); });
+  window.addEventListener('resize', () => { if (S && isExpanding(S.rules)) cancelGesture(); stageDirty = true; if (S) paintStage(); });
 
   const hooks = {
     move: (t, m) => { if (m > 0) fxq.push({ k: 'pop', i: t, m }); },
     clear: (i, c, gain, streak) => { fxq.push({ k: 'clear', i, c, gain, streak }); if (streak >= 4) ptFx('bigCombos'); },
     comboBreak: (streak, pts) => fxq.push({ k: 'break', streak, pts }),
     zone: (z, empties, bonus, newColor) => fxq.push({ k: 'zone', z, empties, bonus, newColor }),
+    growth: (kind, value) => fxq.push({ k: 'growth', kind, value }),
   };
-  const fmt = n => n.toLocaleString('ko-KR');
-  const iga = w => { const c = w.charCodeAt(w.length - 1) - 0xAC00; return c >= 0 && c < 11172 && c % 28 ? '이' : '가'; };
+  const fmt = n => n.toLocaleString(window.WSSLocale.current());
+  const iga = w => { if (window.WSSLocale.current() !== 'ko') return ''; const c = w.charCodeAt(w.length - 1) - 0xAC00; return c >= 0 && c < 11172 && c % 28 ? '이' : '가'; };
   function todayKey() {
     const d = new Date();
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
@@ -1022,8 +1269,9 @@ function turnRhythm(S) {
   function bestKey() { return bestKeyFor(S); }
   function zonesOn() { return !!S.rules.zones && S.rules.colorEvery > 0; }
   function zoneLabel(z) {
+    if (isExpanding(S.rules)) return tr("정산 {0}", z);
     const r = S.rules, top = r.maxColors - r.startColors + 1;
-    return z <= top ? `${z}구역` : `심해 ${z - top}`;
+    return z <= top ? tr("{0}구역", z) : tr("심해 {0}", z - top);
   }
   function fuseOn() { return !!S.rules.comboPlace && S.turn > 0 && S.streak >= 2 && S.turnClears === 0 && unlocked('fuse'); }
 
@@ -1478,8 +1726,8 @@ function turnRhythm(S) {
     const sb = document.querySelector('.scorebar').getBoundingClientRect();
     let box, over = false;
     if (tray() === 'bottom') {
-      const ex = $('extraRow'), top = (ex.hidden ? sb.bottom : ex.getBoundingClientRect().bottom) + 4;
-      const bottom = document.querySelector('.info').getBoundingClientRect().top - 4;
+      const top = $('runInfo').getBoundingClientRect().bottom + 6;
+      const bottom = $('status').getBoundingClientRect().top - 4;
       box = { left: sb.left, width: sb.width, top, height: Math.max(0, bottom - top) };
     } else { box = { left: sb.left, width: sb.width, top: sb.top, height: sb.height }; over = true; }
     const small = !over && box.height < 56, tight = !over && box.height < 112;
@@ -1523,7 +1771,7 @@ function turnRhythm(S) {
   // the badge steps aside (layoutStage() picks the place). A burst that would come out under 20px is not shown.
   let burstEl = null;
   function comboBurst(k, multi) {
-    const word = multi >= 3 ? '트리플!' : multi === 2 ? '더블!' : CALLS[Math.min(5, k)];
+    const word = multi >= 3 ? tr("트리플!") : multi === 2 ? tr("더블!") : tr(CALLS[Math.min(5, k)]);
     const head = k >= 2 ? '×' + k : multi >= 2 ? word : '', sub = k >= 2 ? word : '';
     if (!head || !burstAt) return;
     const { top, room } = burstAt, two = !!sub;
@@ -1635,9 +1883,10 @@ function turnRhythm(S) {
     for (const f of q) {
       if (f.k === 'swap') { restartAnim(cup, 'swap'); continue; }
       if (f.k === 'spareIn') { restartAnim(spareSlot.querySelector('.tube'), 'enter'); continue; }
+      if (f.k === 'growth') { growthFx(f); continue; }
       if (f.k === 'queue') { queueFx(f); continue; }
       if (f.k === 'break') {
-        if (f.streak >= 3) { SND.glass(); restartAnim($('combo'), 'shake'); banner(`콤보 ×${f.streak} · +${fmt(f.pts)}점`, 'combo', 1000); comboFall(f.streak); }
+        if (f.streak >= 3) { SND.glass(); restartAnim($('combo'), 'shake'); banner(tr("콤보 ×{0} · +{1}점", f.streak, fmt(f.pts)), 'combo', 1000); comboFall(f.streak); }
         continue;
       }
       if (f.k === 'zone') { zoneFx(f); continue; }
@@ -1680,6 +1929,17 @@ function turnRhythm(S) {
     paintScore();
   }
   // F2: the next piece slides from the queue into the cup, and the queue moves up one
+  function growthFx(f) {
+    if (f.kind === 'color') {
+      banner(tr("새 색 {0} · 다음 조각들에 도착해요", colorName(f.value)), 'zone', 1000);
+      SND.rise();
+    } else {
+      const t = tubeEl(f.value - 1);
+      if (t && !prefs.reduceFx) fxAnim(t, [{ opacity: .25, scale: '.85' }, { opacity: 1, scale: '1' }], { duration: 240, delay: (f.value - 7) * 120, easing: 'ease-out' });
+      banner(tr("빈병 +1 · {0}병으로 계속 도전!", f.value), 'zone', 1000);
+      SND.clink(); buzz(20);
+    }
+  }
   function queueFx(f) {
     // the cup's contents slide, not the cup: the button stays where the thumb expects it, even mid-slide. Boxes come
     // from before the move: the cup and the queue slots stay put, only what they show changes.
@@ -1702,10 +1962,10 @@ function turnRhythm(S) {
   }
   // F8: a zone break sweeps the stage in the new colour; each empty bottle's share of the bonus flies to the score
   function zoneFx(f) {
-    const txt = f.newColor >= 0 ? `${zoneLabel(f.z)} · 새 색 ${NAMES[f.newColor]} (${colorsAt(S.rules, S.turn)}종)` : zoneLabel(f.z);
+    const txt = f.newColor >= 0 ? tr("{0} · 새 색 {1} ({2}종)", zoneLabel(f.z), colorName(f.newColor), colorsAt(S.rules, S.turn)) : zoneLabel(f.z);
     banner(txt, 'zone', 800);
     SND.rise();
-    if (f.bonus > 0) scoreFloat(`+${fmt(f.bonus)} 돌파 보너스`);
+    if (f.bonus > 0) scoreFloat(tr("+{0} 돌파 보너스", fmt(f.bonus)));
     waveFx(f.newColor);
     if (f.bonus > 0 && f.empties > 0) {
       scorePend += f.bonus;
@@ -1777,13 +2037,13 @@ function turnRhythm(S) {
   function startGame(mode, fresh) {
     let saved = fresh ? null : LS.get('wsurv.game.' + mode, null);
     let note = '';
-    if (saved && mode === 'daily' && saved.rules && saved.rules.zones === undefined) { saved = null; note = '규칙이 바뀌어 오늘의 도전을 새로 시작해요.'; }
+    if (saved && mode === 'daily' && saved.rules && saved.rules.zones === undefined) { saved = null; note = tr("규칙이 바뀌어 오늘의 도전을 새로 시작해요."); }
     if (saved && saved.v === 1 && !saved.over && (mode !== 'daily' || saved.seed === 'daily:' + todayKey())) {
       S = saved;
       if (S.bestAtStart === undefined) S.bestAtStart = LS.get(bestKeyFor(S), 0);
     } else {
-      const rules = mode === 'daily' ? Object.assign({}, DEFAULT_RULES) : sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES));
-      rules.spare = mode === 'endless' && prefs.offerSpare !== false && unlocked('spare');
+      const rules = mode === 'daily' ? Object.assign({}, DEFAULT_RULES) : endlessRules();
+      rules.spare = !isExpanding(rules) && mode === 'endless' && prefs.offerSpare !== false && unlocked('spare');
       const seed = mode === 'daily' ? 'daily:' + todayKey() : 'run:' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
       S = newState(mode, seed, rules);
       S.cum = []; S.rescueAds = 0;
@@ -1799,11 +2059,17 @@ function turnRhythm(S) {
     closeAll();
     commit();
   }
+  function endlessRules() {
+    const stored = LS.get('wsurv.rules', null);
+    const r = stored ? sanitizeRules(stored) : null;
+    // An old default setting is upgraded only for a fresh run. Non-default custom rules stay custom.
+    return !r || (rulesSig(r) === BASE_SIG && !LS.get('wsurv.rules.custom', false)) ? sanitizeRules(EXPANDING_RULES) : r;
+  }
   function snapshot() { history.push(JSON.stringify(S)); if (history.length > 40) history.shift(); }
   let movedNow = false;    // the commit below follows a pour or a placement (the way out of danger, F7)
   function commit() {
     disarm(true);
-    if (hadSpare && !S.spare && S.spareUsed) { SND.crack(); if (!flash) flash = '임시 잔이 비어서 사라졌어요.'; }
+    if (hadSpare && !S.spare && S.spareUsed) { SND.crack(); if (!flash) flash = tr("임시 잔이 비어서 사라졌어요."); }
     render();
     dangerFx(movedNow); movedNow = false;
     coachPour();
@@ -1855,14 +2121,14 @@ function turnRhythm(S) {
     const best = S.bestAtStart || 0;
     if (best > 0 && S.score > best && !S.newBestShown) {
       S.newBestShown = true;
-      banner('최고 기록 경신', 'best', 1200, true);
+      banner(tr("최고 기록 경신"), 'best', 1200, true);
       restartAnim($('score'), 'shine');
       buzz([40, 60, 40]); SND.fanfare();
       if (!prefs.reduceFx) confetti();
     }
     if (prefs.pace && unlocked('pace') && S.turn >= 10 && !S.paceAhead) {
       const d = paceDiff();
-      if (d && d.diff > 0) { S.paceAhead = true; banner(d.kind === 'best' ? '신기록 페이스예요' : '지난 판보다 앞서고 있어요', 'pace', 900); SND.doMiSol(); }
+      if (d && d.diff > 0) { S.paceAhead = true; banner(d.kind === 'best' ? tr("신기록 페이스예요") : tr("지난 판보다 앞서고 있어요"), 'pace', 900); SND.doMiSol(); }
     }
   }
 
@@ -1912,7 +2178,7 @@ function turnRhythm(S) {
     if (sel === 'cup') { tryPlace(i); return; }
     if (sel === null) {
       if (ctl() === 'tapPlace' && i < n) { pourLikeTap(i); tryPlace(i); return; }
-      if (slots[i] && slots[i].length) { sel = i; selVia = via; } else flash = '빈 병이에요. 부을 병을 먼저 고르세요.';
+      if (slots[i] && slots[i].length) { sel = i; selVia = via; } else flash = tr("빈 병이에요. 부을 병을 먼저 고르세요.");
       render(); return;
     }
     if (sel === i) { sel = null; render(); return; }
@@ -1925,7 +2191,7 @@ function turnRhythm(S) {
   function pourTo(from, i, keepTarget, how, fromRects) {
     const slots = slotsOf(S), caps = capsOf(S);
     if (S.rules.pourLimit && S.pours >= S.rules.pourLimit) {
-      sel = null; flash = '이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.';
+      sel = null; flash = tr("이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.");
       refuse(i); render(); return;
     }
     if (canPour(slots, from, i, caps)) {
@@ -1957,12 +2223,12 @@ function turnRhythm(S) {
   }
   function pourFailText(i) {
     const n = S.bottles.length, slots = slotsOf(S);
-    if (S.rules.pourLimit && S.pours >= S.rules.pourLimit) return '이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.';
+    if (S.rules.pourLimit && S.pours >= S.rules.pourLimit) return tr("이번 턴에 부을 수 있는 횟수를 다 썼어요. 조각을 넣으세요.");
     const full = slots[i].length >= (i === n ? S.rules.spareCap : S.rules.cap);
-    return full ? (i === n ? '임시 잔이 차 있어요.' : '그 병은 가득 찼어요.') : '받는 병이 비었거나 맨 위 색이 같아야 부을 수 있어요.';
+    return full ? (i === n ? tr("임시 잔이 차 있어요.") : tr("그 병은 가득 찼어요.")) : tr("받는 병이 비었거나 맨 위 색이 같아야 부을 수 있어요.");
   }
   function placeFailText(i) {
-    return i === S.bottles.length ? '임시 잔에는 조각을 넣을 수 없어요.' : `조각은 ${S.piece.length}칸이 필요한데 이 병은 ${S.rules.cap - S.bottles[i].length}칸 남았어요.`;
+    return i === S.bottles.length ? tr("임시 잔에는 조각을 넣을 수 없어요.") : tr("조각은 {0}칸이 필요한데 이 병은 {1}칸 남았어요.", S.piece.length, S.rules.cap - S.bottles[i].length);
   }
   // feedback for a move that happened / was refused (sound and vibration follow the settings); juicy sounds and
   // buzzes when the move lands instead (6, F1-F2)
@@ -2023,14 +2289,14 @@ function turnRhythm(S) {
   // prevSel: the selection before a press that turned out to be a tap (a drag start selects the piece on the way)
   function onCupTap(prevSel) {
     if (!S || S.over) return;
-    if (ctl() === 'tapPlace') { sel = null; flash = '병을 누르면 바로 들어가요'; render(); return; }
+    if (ctl() === 'tapPlace') { sel = null; flash = tr("병을 누르면 바로 들어가요"); render(); return; }
     sel = (prevSel === undefined ? sel : prevSel) === 'cup' ? null : 'cup';
     render();
   }
   function pickSource(i, via) {
     if (!S || S.over) return;
     const s = slotsOf(S)[i];
-    if (!s || !s.length) { flash = '빈 병이에요.'; render(); return; }
+    if (!s || !s.length) { flash = tr("빈 병이에요."); render(); return; }
     sel = i; selVia = via; render();
   }
   function tubeEl(i) { return i === S.bottles.length ? spareSlot.querySelector('.tube') : rack.children[i]; }
@@ -2041,13 +2307,25 @@ function turnRhythm(S) {
     const el = document.elementFromPoint(x, y);
     const t = el && el.closest('#rack .tube, #spareSlot .tube');
     if (t) return Number(t.dataset.i);
-    const tubes = rack.children;
+    const tubes = [...rack.children];
     if (!tubes.length) return null;
-    const rr = rack.getBoundingClientRect(), a = tubes[0].getBoundingClientRect(), b = tubes[tubes.length - 1].getBoundingClientRect();
-    if (x < a.left || x > b.right || y < rr.top || y > Math.max(a.bottom, b.bottom)) return null;
+    if (!isExpanding(S.rules)) {
+      // Legacy/custom single-row boards retain the 18px landing strip above their bottles.
+      const rr = rack.getBoundingClientRect(), a = tubes[0].getBoundingClientRect(), b = tubes[tubes.length - 1].getBoundingClientRect();
+      if (x < a.left || x > b.right || y < rr.top || y > Math.max(a.bottom, b.bottom)) return null;
+      let best = null, distance = Infinity;
+      for (const tube of tubes) {
+        const r = tube.getBoundingClientRect(), d = Math.abs(x - (r.left + r.width / 2));
+        if (d < distance) { distance = d; best = Number(tube.dataset.i); }
+      }
+      return best;
+    }
+    // Only bridge horizontal gaps within the row under the pointer; never bridge the empty row or row gap.
+    const row = tubes.map(t => ({ i: Number(t.dataset.i), r: t.getBoundingClientRect() })).filter(t => y >= t.r.top && y <= t.r.bottom);
+    if (!row.length || x < Math.min(...row.map(t => t.r.left)) || x > Math.max(...row.map(t => t.r.right))) return null;
     let best = null, bd = Infinity;
-    for (let i = 0; i < tubes.length; i++) {
-      const r = tubes[i].getBoundingClientRect(), d = Math.abs(x - (r.left + r.width / 2));
+    for (const { i, r } of row) {
+      const d = Math.abs(x - (r.left + r.width / 2));
       if (d < bd) { bd = d; best = i; }
     }
     return best;
@@ -2223,7 +2501,7 @@ function turnRhythm(S) {
     if (!cancel && !g.left) { g.ghost.remove(); onCupTap(g.selBefore); return; }   // a wobble that never left the piece is a tap
     if (t !== null) { const carried = juicy() ? layerRects(g.ghost) : null; g.ghost.remove(); tryPlace(t, true, carried); return; }
     sel = null;
-    if (!cancel) { flash = '병 위에 놓아야 넣어져요'; sendBack(g.ghost); ptAdd('cancels'); } else g.ghost.remove();
+    if (!cancel) { flash = tr("병 위에 놓아야 넣어져요"); sendBack(g.ghost); ptAdd('cancels'); } else g.ghost.remove();
     render();
   }
   // a drop that lands nowhere glides back where it came from: the piece to the tray, poured liquid to its bottle
@@ -2270,7 +2548,7 @@ function turnRhythm(S) {
       for (const c of S.piece) glass.append(layerEl(c, 'ghostL drag'));
       if (p.clears) { el.classList.add('gold', 'dgold'); const k = document.createElement('span'); k.className = 'cork drag'; el.append(k); }
     }
-    if (fuseOn()) setStatus(p.clears ? `이 넣기로 완성 · 콤보 ×${S.streak + 1}` : `넣으면 콤보 ×${S.streak} 끝나요`, !p.clears);
+    if (fuseOn()) setStatus(p.clears ? tr("이 넣기로 완성 · 콤보 ×{0}", S.streak + 1) : tr("넣으면 콤보 ×{0} 끝나요", S.streak), !p.clears);
   }
   // pour drag: the targets already show their pour ghosts (render, sel = source); this marks the one under the finger
   function showPourHover(t) {
@@ -2295,14 +2573,12 @@ function turnRhythm(S) {
     document.documentElement.dataset.controls = ctl();
     const bottom = tray() === 'bottom', st = $('status');
     document.querySelector('.app').classList.toggle('tray-bottom', bottom);
+    // Record/growth information stays together for either tray preference.
+    $('runInfo').append(info, $('zoneBar'), extraRow);
     if (bottom) {
-      // top to bottom: score, (free space), zone info, zone bar, status, bottles, piece tray, buttons. The give-up row
-      // goes up under the score, out of the thumb's way, where the free space takes it in without moving the bottles.
-      $('zoneBar').before(info); rack.before(st); rack.after(incoming);
-      document.querySelector('.scorebar').after(extraRow);
+      rack.before(st); rack.after(incoming);
     } else {
-      document.querySelector('.scorebar').after(incoming); incoming.append(info);
-      rack.after(st); st.after(extraRow);
+      $('runInfo').after(incoming); rack.after(st);
     }
   }
 
@@ -2380,7 +2656,7 @@ function turnRhythm(S) {
     svg.append(arc, head);
     const lab = document.createElement('span');
     lab.className = 'pour-hint-label';
-    lab.textContent = '끌어서 부어요';
+    lab.textContent = tr("끌어서 부어요");
     lab.style.left = Math.min(innerWidth - 60, Math.max(60, cx)) + 'px';
     lab.style.top = ((y1 + 2 * cy + y2) / 4 - 6) + 'px';
     hintEl = document.createElement('div');
@@ -2416,15 +2692,15 @@ function turnRhythm(S) {
   }
   function ptText() {
     const d = new Date(pt.since), two = x => String(x).padStart(2, '0');
-    const head = `플레이 테스트 기록 (${d.getFullYear()}-${two(d.getMonth() + 1)}-${two(d.getDate())} ${two(d.getHours())}:${two(d.getMinutes())}부터)`;
+    const head = tr("플레이 테스트 기록 ({0}-{1}-{2} {3}:{4}부터)", d.getFullYear(), two(d.getMonth() + 1), two(d.getDate()), two(d.getHours()), two(d.getMinutes()));
     const rows = Object.keys(pt.by).sort().map(k => {
       const r = pt.by[k], p = r.pours || {};
       const per100 = r.turns ? (r.pourLikeTaps * 100 / r.turns).toFixed(1) : '-';
-      return `${k} · ${r.runs}판 ${r.turns}턴 · 붓기 끌기${p.drag || 0}/길게${p.hold || 0}/탭${p.tap || 0}/키${p.key || 0}`
-        + ` · 부으려던 탭 ${r.pourLikeTaps} (100턴당 ${per100}) · 빠른 되돌리기 ${r.quickUndos} · 되돌리기 ${r.undos}`
-        + ` · 거절 ${r.rejects} · 취소 ${r.cancels} · 새 게임 확인 중단 ${r.newGameAborts}`;
+      return tr("{0} · {1}판 {2}턴 · 붓기 끌기{3}/길게{4}/탭{5}/키{6}", k, r.runs, r.turns, p.drag || 0, p.hold || 0, p.tap || 0, p.key || 0)
+        + tr(" · 부으려던 탭 {0} (100턴당 {1}) · 빠른 되돌리기 {2} · 되돌리기 {3}", r.pourLikeTaps, per100, r.quickUndos, r.undos)
+        + tr(" · 거절 {0} · 취소 {1} · 새 게임 확인 중단 {2}", r.rejects, r.cancels, r.newGameAborts);
     });
-    return [head].concat(rows.length ? rows : ['아직 기록이 없어요.']).join('\n');
+    return [head].concat(rows.length ? rows : [tr("아직 기록이 없어요.")]).join('\n');
   }
   // tempo per effects setting (docs/PROMPT_feel.md 8), beside 'by' in the same record: each count goes to the
   // setting in use at that moment. turnMs adds the time from the run shown (or the last placement) to each
@@ -2445,10 +2721,10 @@ function turnRhythm(S) {
   }
   function ptFxText() {
     const fx = pt.fx || {}, keys = Object.keys(fx).sort();
-    if (!keys.length) return '아직 기록이 없어요.';
+    if (!keys.length) return tr("아직 기록이 없어요.");
     return keys.map(k => {
       const r = fx[k], per = r.turns ? (r.turnMs / r.turns / 1000).toFixed(1) : '-', fast = r.moves ? Math.round(r.fastMoves * 100 / r.moves) : 0;
-      return `연출 ${k} · ${r.runs}판 ${r.turns}턴 · 턴당 ${per}초 · 빠른 수 ${fast}% · 되돌리기 ${r.undos} · 거절 ${r.rejects} · ×4 이상 ${r.bigCombos}회`;
+      return tr("연출 {0} · {1}판 {2}턴 · 턴당 {3}초 · 빠른 수 {4}% · 되돌리기 {5} · 거절 {6} · ×4 이상 {7}회", k, r.runs, r.turns, per, fast, r.undos, r.rejects, r.bigCombos);
     }).join('\n');
   }
   function ptShow() { $('ptText').value = ptText(); $('ptFxText').value = ptFxText(); $('ptMsg').textContent = ''; }
@@ -2458,6 +2734,7 @@ function turnRhythm(S) {
     const L = document.createElement('span');
     L.className = 'layer' + (cls ? ' ' + cls : '');
     L.style.setProperty('--lc', `var(--liq${c})`);
+    L.dataset.color = c;
     if (prefs.symbols) L.textContent = SYMBOLS[c];
     return L;
   }
@@ -2474,21 +2751,21 @@ function turnRhythm(S) {
   function setStatus(msg, warn) { const st = $('status'); st.textContent = msg; st.classList.toggle('warn', !!warn); }
   function statusText() {
     if (flash) return [flash, true];
-    if (armed) return [armed.id === 'btnNew' ? '3초 안에 한 번 더 누르면 새 판을 시작해요' : '3초 안에 한 번 더 누르면 이 판을 끝내요', true];
-    if (S.over) return ['게임이 끝났어요.', true];
-    if (S.stuck) return [`${S.piece.length}칸짜리 자리가 없어요. 병끼리 부어서 자리를 만드세요.` + (S.stuck === 'room' ? ' 방법이 있어요.' : ''), true];
+    if (armed) return [armed.id === 'btnNew' ? tr("3초 안에 한 번 더 누르면 새 판을 시작해요") : armed.id === 'btnMode' ? tr("3초 안에 한 번 더 누르면 모드를 전환해요") : tr("3초 안에 한 번 더 누르면 이 판을 끝내요"), true];
+    if (S.over) return [tr("게임이 끝났어요."), true];
+    if (S.stuck) return [tr("{0}칸짜리 자리가 없어요. 병끼리 부어서 자리를 만드세요.", S.piece.length) + (S.stuck === 'room' ? tr(" 방법이 있어요.") : ''), true];
     if (sel === 'cup' || (sel === null && ctl() === 'tapPlace' && fuseOn())) {
       if (fuseOn()) {
         let k = 0; for (let i = 0; i < S.bottles.length; i++) if (previewPlace(S, i).clears) k++;
-        return [k ? `완성되는 병 ${k}곳 · 다른 병에 넣으면 콤보 ×${S.streak} 끝나요` : `넣으면 콤보 ×${S.streak} 끝나요 · 먼저 부어서 완성하면 이어져요`, false];
+        return [k ? tr("완성되는 병 {0}곳 · 다른 병에 넣으면 콤보 ×{1} 끝나요", k, S.streak) : tr("넣으면 콤보 ×{0} 끝나요 · 먼저 부어서 완성하면 이어져요", S.streak), false];
       }
-      return ['조각을 넣을 병을 고르세요.', false];
+      return [tr("조각을 넣을 병을 고르세요."), false];
     }
-    if (typeof sel === 'number') return ['부을 병을 고르세요.', false];
-    if (S.turn === 0) return [ctl() === 'tapPlace' ? '병을 누르면 조각이 들어가요. 병에서 병으로 끌면 부어요.' : '조각을 병으로 끌어다 놓으며 시작하세요.', false];
+    if (typeof sel === 'number') return [tr("부을 병을 고르세요."), false];
+    if (S.turn === 0) return [ctl() === 'tapPlace' ? tr("병을 누르면 조각이 들어가요. 병에서 병으로 끌면 부어요.") : tr("조각을 병으로 끌어다 놓으며 시작하세요."), false];
     // juicy: the stage shows the combo, so the status line keeps to instructions and warnings (U2)
-    if (S.streak >= 1 && S.turnClears === 0 && fxMode() !== 'juicy') return [`이번 턴에 병을 완성하면 콤보 ×${S.streak + 1}`, false];
-    return [ctl() === 'tapPlace' ? '병을 눌러 조각을 넣고, 병끼리 끌어 부어서 한 색으로 채우세요.' : '조각을 넣고, 병끼리 부어서 한 색으로 채우세요.', false];
+    if (S.streak >= 1 && S.turnClears === 0 && fxMode() !== 'juicy') return [tr("이번 턴에 병을 완성하면 콤보 ×{0}", S.streak + 1), false];
+    return [ctl() === 'tapPlace' ? tr("병을 눌러 조각을 넣고, 병끼리 끌어 부어서 한 색으로 채우세요.") : tr("조각을 넣고, 병끼리 부어서 한 색으로 채우세요."), false];
   }
   function renderStatus() { const [m, w] = statusText(); setStatus(m, w); }
   function render() {
@@ -2497,8 +2774,13 @@ function turnRhythm(S) {
     const fa = document.activeElement;
     const focusSlot = fa && fa.matches && fa.matches('#rack .tube, #spareSlot .tube') ? Number(fa.dataset.i) : null;
     const daily = S.mode === 'daily';
-    $('modeChip').textContent = daily ? '오늘의 도전 ' + S.seed.slice(11) : '무한 모드';
-    $('modeChip').classList.toggle('daily', daily);
+    const chip = $('modeChip'), modeText = daily ? tr("오늘의 도전 ") + S.seed.slice(11) : tr("무한 모드");
+    chip.textContent = daily ? tr("오늘의 도전 ").trim() : modeText;
+    if (daily) {
+      const date = document.createElement('span'); date.className = 'mode-date'; date.textContent = ' ' + S.seed.slice(11); chip.append(date);
+    }
+    chip.setAttribute('aria-label', modeText); chip.title = modeText;
+    chip.classList.toggle('daily', daily);
     paintScore();
     $('turn').textContent = S.turn;
     const cb = $('combo');
@@ -2511,7 +2793,7 @@ function turnRhythm(S) {
     if (prefs.pace && unlocked('pace') && paceValid() && S.turn >= 5) {
       const d = paceDiff();
       if (d && (!paceDisp || paceDisp.seed !== S.seed || hadClear)) {
-        const word = d.kind === 'best' ? '최고 페이스' : '지난 판';
+        const word = d.kind === 'best' ? tr("최고 페이스") : tr("지난 판");
         const text = `${word} ${d.diff > 0 ? '▲' : d.diff < 0 ? '▼' : '±'}${fmt(Math.abs(d.diff))}`;
         const changed = !paceDisp || paceDisp.text !== text;
         paceDisp = { seed: S.seed, text, up: d.diff > 0 };
@@ -2522,16 +2804,16 @@ function turnRhythm(S) {
 
     // cup, flip, queue
     paintTube(cup, S.piece, r.pieceMax);
-    if (isTwinTurn(r, S.turn)) tagNew(cup);
+    if (isExpanding(r) ? S.growth.pieceIntro >= 0 : isTwinTurn(r, S.turn)) tagNew(cup);
     cup.classList.toggle('sel', sel === 'cup');
     cup.setAttribute('aria-pressed', sel === 'cup' ? 'true' : 'false');
     cup.disabled = S.over;
-    cup.setAttribute('aria-label', '지금 조각: 아래부터 ' + S.piece.map(c => NAMES[c]).join(', '));
+    cup.setAttribute('aria-label', tr("지금 조각: 아래부터 ") + S.piece.map(c => colorName(c)).join(', '));
     const fb = $('btnFlip');
     const flipVisible = !!r.flip && unlocked('flip');
     if (flipVisible && prefs.staged && !unlock.flip) {
       unlock.flip = true; saveUnlock();
-      if (!prefs.seenFlipHint) { prefs.seenFlipHint = true; savePrefs(); banner(`⇅로 조각 위아래를 바꿀 수 있어요` + (r.flipLimit ? ` (판당 ${r.flipLimit}회)` : ''), 'info', 1800); }
+      if (!prefs.seenFlipHint) { prefs.seenFlipHint = true; savePrefs(); banner(tr("⇅로 조각 위아래를 바꿀 수 있어요") + (r.flipLimit ? tr(" (판당 {0}회)", r.flipLimit) : ''), 'info', 1800); }
     }
     fb.hidden = !flipVisible;
     if (flipVisible) {
@@ -2539,16 +2821,19 @@ function turnRhythm(S) {
       $('flipN').textContent = left === Infinity ? '∞' : left;
       fb.disabled = !canFlip(S);
       fb.setAttribute('aria-pressed', S.flipped ? 'true' : 'false');
-      fb.setAttribute('aria-label', '조각 위아래 바꾸기, 남은 ' + (left === Infinity ? '무제한' : left + '회'));
+      fb.setAttribute('aria-label', tr("조각 위아래 바꾸기, 남은 ") + (left === Infinity ? tr("무제한") : left + tr("회")));
     }
     const q = $('queue'); q.textContent = '';
-    for (let j = 1; j <= r.preview; j++) {
+    const previews = previewPieces(S);
+    q.parentElement.hidden = previews.length === 0;
+    for (let j = 1; j <= previews.length; j++) {
       const slot = document.createElement('div'); slot.className = 'slot';
       const t = document.createElement('div'); t.className = 'tube micro';
-      paintTube(t, pieceAt(S.seed, r, S.turn + j), r.pieceMax);
-      if (isTwinTurn(r, S.turn + j)) tagNew(slot);
-      const lab = document.createElement('span'); lab.textContent = j === 1 ? '다음' : '';
-      slot.append(t, lab); q.append(slot);
+      t.setAttribute('role', 'img');
+      t.setAttribute('aria-label', tr("다음 조각 {0}: 아래부터 ", j) + previews[j - 1].piece.map(c => colorName(c)).join(', '));
+      paintTube(t, previews[j - 1].piece, r.pieceMax);
+      if (previews[j - 1].intro >= 0) tagNew(slot);
+      slot.append(t); q.append(slot);
     }
 
     // spare cup slot (F4)
@@ -2560,46 +2845,50 @@ function turnRhythm(S) {
       paintTube(t, S.spare, r.spareCap);
       const remain = r.spareTurns ? Math.max(0, r.spareTurns - (S.turn - S.spareTurn)) : null;
       const lab = document.createElement('span');
-      lab.textContent = remain === null ? '임시 잔' : remain > 0 ? `임시 · ${remain}턴` : (S.spare.length ? '비우면 사라져요' : '');
-      t.setAttribute('aria-label', '임시 잔: ' + (S.spare.length ? NAMES[S.spare[0]] : '비어 있음') + (remain ? `, ${remain}턴 남음` : ''));
+      lab.textContent = remain === null ? tr("임시 잔") : remain > 0 ? tr("임시 · {0}턴", remain) : (S.spare.length ? tr("비우면 사라져요") : '');
+      t.setAttribute('aria-label', tr("임시 잔: ") + (S.spare.length ? colorName(S.spare[0]) : tr("비어 있음")) + (remain ? tr(", {0}턴 남음", remain) : ''));
       t.setAttribute('aria-pressed', sel === n ? 'true' : 'false');
       spareSlot.append(t, lab);
       spareSlot.hidden = false;
     } else if (offerVisible) {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'offer';
-      b.innerHTML = '▶ 임시 칸 +1<small>광고 · ' + (r.spareTurns || '∞') + '턴</small>';
-      b.setAttribute('aria-label', `광고를 보고 임시 칸 1개를 ${r.spareTurns}턴 동안 받기`);
+      b.innerHTML = tr("▶ 임시 칸 +1<small>광고 · ") + (r.spareTurns || '∞') + tr("턴</small>");
+      b.setAttribute('aria-label', tr("광고를 보고 임시 칸 1개를 {0}턴 동안 받기", r.spareTurns));
       spareSlot.append(b);
       spareSlot.hidden = false;
       if (!S.spareOfferSeen) { S.spareOfferSeen = true; b.classList.add('blink'); SND.clink(); buzz(30); }
     } else spareSlot.hidden = true;
 
     // colours, zone chip and countdown (F3)
-    const k = colorsAt(r, S.turn);
-    const hasNext = r.colorEvery && k < r.maxColors;
+    const expanding = isExpanding(r), k = activeColors(S);
+    const hasNext = expanding ? !!nextGrowth(S) && k < r.maxColors : r.colorEvery && k < r.maxColors;
     const zOn = zonesOn();
     const left = r.colorEvery ? r.colorEvery - (S.turn % r.colorEvery) : 0;
     const zc = $('zoneChip');
-    zc.hidden = !zOn;
-    if (zOn) zc.textContent = `${zoneLabel(zoneAt(r, S.turn))} · ${k}색`;
+    zc.hidden = !zOn && !expanding;
+    if (zOn || expanding) zc.textContent = expanding ? tr("{0}색 · {1}병", k, n) : tr("{0} · {1}색", zoneLabel(zoneAt(r, S.turn)), k);
     const ci = $('colorInfo');
-    if (zOn) {
-      const what = hasNext ? '새 색' : '다음 구역';
-      ci.innerHTML = left <= 3 ? `<span class="count-down">${what}까지 ${left}</span>` : `${left}턴 뒤 ${what}`;
+    ci.classList.toggle('growth-note', expanding);
+    if (expanding) {
+      const next = nextGrowth(S), remaining = next ? Math.max(0, next.score - S.score) : 0;
+      ci.textContent = !next ? tr("최대 확장 · 최고 기록에 도전!") : remaining === 0 ? tr("다음 배치부터 새 색 도착") : tr("다음 {0}까지 {1}점", next.bottles > n ? tr("병") : tr("색"), fmt(remaining));
+    } else if (zOn) {
+      const what = hasNext ? tr("새 색") : tr("다음 구역");
+      ci.innerHTML = left <= 3 ? tr("<span class=\"count-down\">{0}까지 {1}</span>", what, left) : tr("{0}턴 뒤 {1}", left, what);
       if (left === 1 && lastWarnTurn !== S.turn && S.turn > 0) { lastWarnTurn = S.turn; SND.warn(); }
     } else {
-      ci.innerHTML = `<strong>색 ${k}종</strong>` + (hasNext ? ` · ${left}턴 뒤 1종 추가` : '');
+      ci.innerHTML = tr("<strong>색 {0}종</strong>", k) + (hasNext ? tr(" · {0}턴 뒤 1종 추가", left) : '');
     }
     const dots = $('dots'); dots.textContent = '';
     for (let c = 0; c < k + (hasNext ? 1 : 0); c++) {
       const s = document.createElement('span');
       s.className = 'sw' + (c === k ? ' next' + (zOn && left <= 3 ? ' pulse' : '') : '');
       if (c === k) s.style.borderColor = `var(--liq${c})`; else s.style.background = `var(--liq${c})`;
-      s.title = NAMES[c];
+      s.title = colorName(c); if (prefs.symbols) s.textContent = SYMBOLS[c];
       dots.append(s);
     }
-    $('pourInfo').textContent = r.pourLimit ? `이번 턴 붓기 ${Math.max(0, r.pourLimit - S.pours)}/${r.pourLimit}` : '';
+    $('pourInfo').textContent = r.pourLimit ? tr("이번 턴 붓기 {0}/{1}", Math.max(0, r.pourLimit - S.pours), r.pourLimit) : '';
 
     // zone bar with the best run's flag
     const zb = $('zoneBar');
@@ -2608,27 +2897,30 @@ function turnRhythm(S) {
       const ce = r.colorEvery, zStart = S.turn - (S.turn % ce);
       $('zoneFill').style.width = (100 * (S.turn % ce) / ce) + '%';
       const flag = $('zoneFlag'), note = $('zoneNote');
-      flag.hidden = true; note.textContent = '';
+      flag.hidden = true; note.textContent = expanding ? tr("{0}턴 뒤 정산", left) : '';
       const br = prefs.pace && unlocked('pace') ? bestRun() : null;
       if (br && br.turn) {
-        if (br.turn < S.turn) note.textContent = '최고 판 ✓';
+        if (br.turn < S.turn) { if (!expanding) note.textContent = tr("최고 판 ✓"); }
         else if (br.turn < zStart + ce) { flag.hidden = false; flag.style.left = (100 * (br.turn - zStart) / ce) + '%'; }
-        else note.textContent = '최고 판: ' + zoneLabel(zoneAt(r, br.turn));
+        else if (!expanding) note.textContent = tr("최고 판: ") + zoneLabel(zoneAt(r, br.turn));
       }
     }
 
     // rack, selection, landing ghosts (F6)
-    rack.style.setProperty('--n', n);
+    rack.style.setProperty('--n', expanding ? 6 : n);
+    if (rack.classList.toggle('expanding', expanding) !== document.querySelector('.app').classList.contains('expanding')) stageDirty = true;
+    document.querySelector('.app').classList.toggle('expanding', expanding);
     rack.textContent = '';
     const slots = slotsOf(S), caps = capsOf(S);
     const pourBlocked = !!(r.pourLimit && S.pours >= r.pourLimit);
     S.bottles.forEach((b, i) => {
       const t = document.createElement('button');
       t.type = 'button'; t.className = 'tube'; t.dataset.i = i; t.disabled = S.over;
+      if (expanding) { t.style.gridRow = i < 6 ? '2' : '1'; t.style.gridColumn = String(i < 6 ? i + 1 : i === 6 ? 3 : 4); }
       paintTube(t, b, cap);
-      const free = document.createElement('span'); free.className = 'free'; free.textContent = `빈 ${cap - b.length}`;
+      const free = document.createElement('span'); free.className = 'free'; free.textContent = tr("{0}칸", cap - b.length);
       t.append(free);
-      t.setAttribute('aria-label', `병 ${i + 1}: ` + (b.length ? '아래부터 ' + b.map(c => NAMES[c]).join(', ') : '비어 있음') + `, 빈칸 ${cap - b.length}`);
+      t.setAttribute('aria-label', tr("병 {0}: ", i + 1) + (b.length ? tr("아래부터 ") + b.map(c => colorName(c)).join(', ') : tr("비어 있음")) + tr(", 빈칸 {0}", cap - b.length));
       t.setAttribute('aria-pressed', sel === i ? 'true' : 'false');
       rack.append(t);
     });
@@ -2667,18 +2959,21 @@ function turnRhythm(S) {
     reapplyGesture();
     if (focusSlot !== null) { const el = tubeEl(focusSlot); if (el && !el.disabled) el.focus({ preventScroll: true }); }
 
-    $('btnUndo').textContent = `되돌리기 ${S.undoLeft}`;
+    $('btnUndo').textContent = tr("되돌리기 {0}", S.undoLeft);
     $('btnUndo').disabled = !history.length || S.undoLeft <= 0 || S.over;
     // the undo nudge stays through renders (a cloud merge too) until its undo is gone or a pour source is picked
     if (undoNudge && (!undoOk() || typeof sel === 'number')) nudgeUndo(false); else paintUndo();
     const armNew = !!armed && armed.id === 'btnNew', armExtra = !!armed && armed.id === 'btnExtra';
-    $('btnNew').textContent = armNew ? '한 번 더' : daily ? '다시 도전' : '새 게임';
+    $('btnNew').textContent = armNew ? tr("한 번 더") : daily ? tr("다시 도전") : tr("새 게임");
     $('btnNew').classList.toggle('armed', armNew);
-    $('btnMode').textContent = daily ? '무한 모드' : '오늘의 도전';
+    const armMode = !!armed && armed.id === 'btnMode';
+    $('btnMode').textContent = armMode ? tr("전환 확인") : daily ? tr("무한 모드") : tr("오늘의 도전");
+    $('btnMode').classList.toggle('armed', armMode);
+    $('btnMode').setAttribute('aria-label', armMode ? tr("한 번 더 누르면 {0}으로 전환", daily ? tr("무한 모드") : tr("오늘의 도전")) : $('btnMode').textContent);
     const showExtra = S.over ? overClosed : !!S.stuck;
     $('extraRow').hidden = !showExtra;
     // the asking label keeps about the width of the usual one, so the confirming press lands where the first did
-    $('btnExtra').textContent = S.over ? '결과 보기' : armExtra ? '한 번 더 누르면 포기' : '포기하고 결과 보기';
+    $('btnExtra').textContent = S.over ? tr("결과 보기") : armExtra ? tr("한 번 더 누르면 포기") : tr("포기하고 결과 보기");
     $('btnExtra').classList.toggle('armed', armExtra);
 
     // juicy: layers still in flight stay hidden in the rebuilt bottles; the stage follows the run
@@ -2696,18 +2991,19 @@ function turnRhythm(S) {
     for (const f of fxq) {
       if (f.k === 'swap') { restartAnim(cup, 'swap'); continue; }
       if (f.k === 'spareIn') { restartAnim(spareSlot.querySelector('.tube'), 'enter'); continue; }
+      if (f.k === 'growth') { growthFx(f); continue; }
       if (f.k === 'break') {
         if (f.streak >= 3) {
           SND.glass(); restartAnim($('combo'), 'shake');
-          banner(`콤보 ×${f.streak} · +${fmt(f.pts)}점`, 'combo', 1000);
+          banner(tr("콤보 ×{0} · +{1}점", f.streak, fmt(f.pts)), 'combo', 1000);
         }
         continue;
       }
       if (f.k === 'zone') {
-        const txt = f.newColor >= 0 ? `${zoneLabel(f.z)} · 새 색 ${NAMES[f.newColor]} (${colorsAt(S.rules, S.turn)}종)` : zoneLabel(f.z);
+        const txt = f.newColor >= 0 ? tr("{0} · 새 색 {1} ({2}종)", zoneLabel(f.z), colorName(f.newColor), colorsAt(S.rules, S.turn)) : zoneLabel(f.z);
         banner(txt, 'zone', 800);
         SND.rise();
-        if (f.bonus > 0) scoreFloat(`+${fmt(f.bonus)} 돌파 보너스`);
+        if (f.bonus > 0) scoreFloat(tr("+{0} 돌파 보너스", fmt(f.bonus)));
         continue;
       }
       const t = tubeEl(f.i);
@@ -2724,7 +3020,7 @@ function turnRhythm(S) {
         for (let j = 0; j < S.rules.cap; j++) { const x = document.createElement('i'); x.style.background = `var(--liq${f.c})`; burst.append(x); }
         clip.append(fe, burst);
         const fl = document.createElement('span'); fl.className = 'float fx-float' + (f.streak >= 2 ? ' big' : '');
-        fl.textContent = '+' + f.gain + (f.streak >= 2 ? ` ×${f.streak}` : '') + (f.streak === 2 ? ' 좋아요' : '');
+        fl.textContent = '+' + f.gain + (f.streak >= 2 ? ` ×${f.streak}` : '') + (f.streak === 2 ? tr(" 좋아요") : '');
         box.append(clip, fl);
         fxAdd(box, 1000);
       } else if (f.k === 'shake') {
@@ -2741,7 +3037,7 @@ function turnRhythm(S) {
     // sound: one chime per completion; two or more in one move rise as an arpeggio
     if (clears.length >= 2) {
       clears.forEach((f, j) => chime(f.streak + j, j * 0.07));
-      banner(clears.length === 2 ? '더블!' : '트리플!', 'combo', 800);
+      banner(clears.length === 2 ? tr("더블!") : tr("트리플!"), 'combo', 800);
     } else chime(clears[0].streak, 0);
     if (maxStreak >= 3) restartAnim($('combo'), 'shine');
     if (maxStreak >= 4) {
@@ -2753,6 +3049,36 @@ function turnRhythm(S) {
   }
 
   // ---------- sheets ----------
+  // Keep keyboard navigation in the top sheet and return it to the opener on close.
+  const sheets = [...document.querySelectorAll('.overlay')], sheetOpeners = new Map();
+  let sheetStack = [];
+  const sheetTabStops = o => [...o.querySelectorAll('button, input, select, textarea, summary, a[href], [tabindex]')]
+    .filter(e => !e.disabled && e.tabIndex >= 0 && e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden');
+  function syncSheetFocus() {
+    const visible = sheets.filter(o => !o.hidden), previous = sheetStack[sheetStack.length - 1];
+    let opener = null;
+    for (const o of sheetStack) if (!visible.includes(o)) { if (o === previous) opener = sheetOpeners.get(o); sheetOpeners.delete(o); }
+    sheetStack = sheetStack.filter(o => visible.includes(o));
+    for (const o of visible) if (!sheetStack.includes(o)) { sheetOpeners.set(o, document.activeElement); sheetStack.push(o); }
+    const top = sheetStack[sheetStack.length - 1];
+    document.querySelector('.app').inert = !!top;
+    sheets.forEach(o => { o.inert = !!top && o !== top; });
+    if (opener && opener.isConnected && !opener.disabled && (!top || top.contains(opener))) opener.focus({ preventScroll: true });
+    if (top && !top.contains(document.activeElement)) {
+      const first = sheetTabStops(top)[0];
+      if (first) first.focus({ preventScroll: true });
+    }
+  }
+  const focusWatch = new MutationObserver(syncSheetFocus);
+  sheets.forEach(o => focusWatch.observe(o, { attributes: true, attributeFilter: ['hidden'] }));
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const top = sheetStack[sheetStack.length - 1]; if (!top) return;
+    const stops = sheetTabStops(top), first = stops[0], last = stops[stops.length - 1];
+    if (!first) { e.preventDefault(); return; }
+    if (e.shiftKey && (document.activeElement === first || !top.contains(document.activeElement))) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && (document.activeElement === last || !top.contains(document.activeElement))) { e.preventDefault(); first.focus(); }
+  });
   function closeAll() { document.querySelectorAll('.overlay').forEach(o => { if (o.id !== 'ovAd') o.hidden = true; }); }
   document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => { b.closest('.overlay').hidden = true; }));
   // Escape closes the open sheets; with none open it cancels the drag in progress or the selection
@@ -2799,7 +3125,7 @@ function turnRhythm(S) {
         const k = 'wsurv.stars.daily.' + S.seed;
         S.starsEligible = !LS.get(k, false);
         if (S.starsEligible) LS.set(k, true);
-      } else S.starsEligible = rulesSig(S.rules) === BASE_SIG;
+      } else S.starsEligible = rulesSig(S.rules) === BASE_SIG || rulesSig(S.rules) === EXPANDING_SIG;
     }
     if (!S.starsEligible) return;
     const total = runStars(), add = total - (S.starsAdded || 0);
@@ -2821,26 +3147,26 @@ function turnRhythm(S) {
     }
     const r = S.rules, gave = S.overReason === 'gaveup';
     const nm = nearMiss(S);
-    $('overTitle').textContent = gave ? '여기까지 했어요' : '자리가 없어요';
+    $('overTitle').textContent = gave ? tr("여기까지 했어요") : tr("자리가 없어요");
     // near-miss facts: what the engine knows, at most two lines
     const facts = [];
     if (!gave) {
-      if (nm.short === 1) facts.push(`${nm.need}칸 조각, 가장 넓은 빈칸 ${nm.maxFree}칸: 딱 1칸 모자랐어요`);
-      if (nm.almost.length) facts.push(`${NAMES[nm.almost[0]]} ${r.cap - 1}/${r.cap}: 1칸만 더 있으면 완성`);
+      if (nm.short === 1) facts.push(tr("{0}칸 조각, 가장 넓은 빈칸 {1}칸: 딱 1칸 모자랐어요", nm.need, nm.maxFree));
+      if (nm.almost.length) facts.push(tr("{0} {1}/{2}: 1칸만 더 있으면 완성", colorName(nm.almost[0]), r.cap - 1, r.cap));
       if (facts.length < 2 && nm.scattered.length) {
         const c = nm.scattered[0];
         let sum = 0; for (const b of S.bottles) if (b.length && b[b.length - 1] === c) sum += topSeg(b).n;
-        facts.push(`맨 위에 ${NAMES[c]}${iga(NAMES[c])} ${sum}칸 흩어져 있었어요`);
+        facts.push(tr("맨 위에 {0}{1} {2}칸 흩어져 있었어요", colorName(c), iga(NAMES[c]), sum));
       }
     }
-    $('overReason').textContent = gave ? '포기를 선택했어요.' : facts.length ? '' : `${S.piece.length}칸짜리 조각을 넣을 병을 만들 수 없어요.`;
+    $('overReason').textContent = gave ? tr("포기를 선택했어요.") : facts.length ? '' : tr("{0}칸짜리 조각을 넣을 병을 만들 수 없어요.", S.piece.length);
     $('overReason').hidden = !gave && !!facts.length;
     const ul = $('overFacts'); ul.textContent = '';
     facts.slice(0, 2).forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.append(li); });
     ul.hidden = !facts.length;
     // distance to the record
     const best = S.bestAtStart || 0, gap = best - S.score;
-    $('overGap').textContent = S.newBest ? (best > 0 ? `최고 기록보다 +${fmt(S.score - best)}점` : '첫 기록이에요') : (best > 0 ? `최고 기록까지 ${fmt(gap)}점 (콤보 ×2로 약 ${Math.ceil(gap / 200)}병)` : '');
+    $('overGap').textContent = S.newBest ? (best > 0 ? tr("최고 기록보다 +{0}점", fmt(S.score - best)) : tr("첫 기록이에요")) : (best > 0 ? tr("최고 기록까지 {0}점 (콤보 ×2로 약 {1}병)", fmt(gap), Math.ceil(gap / 200)) : '');
     $('overBest').hidden = !S.newBest;
     $('oScore').textContent = fmt(S.score);
     // the score bar shows the run's points at once now; juicy counts the sheet's score up (U3)
@@ -2854,16 +3180,16 @@ function turnRhythm(S) {
     zr.hidden = !zonesOn();
     if (zonesOn()) {
       const stars = zoneStars(S);
-      $('zoneReach').textContent = '도달: ' + zoneLabel(zoneAt(r, S.turn));
+      $('zoneReach').textContent = tr("도달: ") + zoneLabel(zoneAt(r, S.turn));
       const row = $('zoneStarsRow'); row.textContent = '';
       stars.forEach(s => { const sp = document.createElement('span'); sp.innerHTML = `${zoneLabel(s.zone)} <b>${'★'.repeat(s.stars)}${'☆'.repeat(3 - s.stars)}</b>`; row.append(sp); });
       const total = starsTotal(), next = nextTheme();
-      $('starTotal').textContent = `누적 별 ${total}` + (next ? ` · 다음 테마 '${next.name}'까지 ${next.need - total}개` : ' · 모든 테마 해금') + (S.starsEligible ? '' : ' · 이 판은 누적에 넣지 않아요');
+      $('starTotal').textContent = tr("누적 별 {0}", total) + (next ? tr(" · 다음 테마 '{0}'까지 {1}개", tr(next.name), next.need - total) : tr(" · 모든 테마 해금")) + (S.starsEligible ? '' : tr(" · 이 판은 누적에 넣지 않아요"));
       const fresh = (S.newThemes || []).map(id => THEMES.find(t => t.id === id)).filter(Boolean);
       $('unlockRow').hidden = !fresh.length;
       if (fresh.length) {
         const last = fresh[fresh.length - 1];
-        $('unlockName').textContent = fresh.map(t => t.name).join(', ');
+        $('unlockName').textContent = fresh.map(t => tr(t.name)).join(', ');
         $('btnUnlockApply').dataset.skin = last.id;
         $('btnUnlockApply').hidden = currentSkin() === last.id;
       }
@@ -2873,19 +3199,19 @@ function turnRhythm(S) {
     const canRevive = !S.reviveUsed && !gave && (S.rescueAds || 0) < RESCUE_AD_CAP;
     const rb = $('btnRevive');
     rb.hidden = !canRevive;
-    let rt = '광고 보고 이어하기 (1회)';
-    if (zonesOn() && nm.zoneLeft != null && nm.zoneLeft <= 3) rt = `${nm.zoneLeft}턴만 버티면 ${zoneLabel(zoneAt(r, S.turn) + 1)} · 광고 보고 이어하기`;
-    else if (best > 0 && gap > 0 && gap <= (S.score / Math.max(1, S.turn)) * 12) rt = `신기록까지 ${fmt(gap)}점 · 광고 보고 이어하기`;
+    let rt = tr("광고 보고 이어하기 (1회)");
+    if (zonesOn() && nm.zoneLeft != null && nm.zoneLeft <= 3) rt = tr("{0}턴만 버티면 {1} · 광고 보고 이어하기", nm.zoneLeft, zoneLabel(zoneAt(r, S.turn) + 1));
+    else if (best > 0 && gap > 0 && gap <= (S.score / Math.max(1, S.turn)) * 12) rt = tr("신기록까지 {0}점 · 광고 보고 이어하기", fmt(gap));
     rb.textContent = rt;
     // daily share
     const daily = S.mode === 'daily';
     $('shareBox').hidden = !daily;
     if (daily) {
       const lines = [
-        `물정렬 생존 · 오늘의 도전 ${S.seed.slice(6)} · v2`,
-        `점수 ${fmt(S.score)} · ${S.turn}턴 · 완성 ${S.clears}병 · 최대 콤보 ×${S.maxStreak}`,
+        tr("보트리스: 물병 정렬 퍼즐 · 오늘의 도전 {0} · v2", S.seed.slice(6)),
+        tr("점수 {0} · {1}턴 · 완성 {2}병 · 최대 콤보 ×{3}", fmt(S.score), S.turn, S.clears, S.maxStreak),
       ];
-      if (zonesOn()) lines.push(`도달 ${zoneLabel(zoneAt(r, S.turn))} · 별 ${runStars()}개` + (S.reviveUsed ? ' 🩹' : ''));
+      if (zonesOn()) lines.push(tr("도달 {0} · 별 {1}개", zoneLabel(zoneAt(r, S.turn)), runStars()) + (S.reviveUsed ? ' 🩹' : ''));
       else if (S.reviveUsed) lines[1] += ' 🩹';
       lines.push(turnRhythm(S));
       $('shareText').value = lines.join('\n');
@@ -2915,7 +3241,7 @@ function turnRhythm(S) {
   }
   function showAd(done, rewardText) {
     let n = 3;
-    $('adNote').textContent = '실제 게임에서는 여기서 광고가 재생돼요. ' + (rewardText || '');
+    $('adNote').textContent = tr("실제 게임에서는 여기서 광고가 재생돼요. ") + (rewardText || '');
     $('adCount').textContent = n;
     $('ovAd').hidden = false;
     const tick = setInterval(() => {
@@ -2934,10 +3260,10 @@ function turnRhythm(S) {
         history = [];
         fxq.push({ k: 'spareIn' });
         SND.ching();
-        flash = `임시 칸을 받았어요. ${S.rules.spareTurns}턴 동안 쓸 수 있어요.`;
+        flash = tr("임시 칸을 받았어요. {0}턴 동안 쓸 수 있어요.", S.rules.spareTurns);
       }
       commit();
-    }, `끝나면 임시 칸 1개를 ${S.rules.spareTurns}턴 동안 받아요`);
+    }, tr("끝나면 임시 칸 1개를 {0}턴 동안 받아요", S.rules.spareTurns));
   }
   $('btnRevive').addEventListener('click', () => {
     $('ovOver').hidden = true;
@@ -2949,10 +3275,10 @@ function turnRhythm(S) {
       S.overShown = false;
       rack.classList.remove('dead');
       idx.forEach(i => fxq.push({ k: 'flash', i }));
-      flash = '가장 많이 찬 병 2개를 비웠어요. 이어서 하세요.';
+      flash = tr("가장 많이 찬 병 2개를 비웠어요. 이어서 하세요.");
       overClosed = false;
       commit();
-    }, '끝나면 가장 많이 찬 병 2개를 비워줘요');
+    }, tr("끝나면 가장 많이 찬 병 2개를 비워줘요"));
   });
   $('btnPeek').addEventListener('click', () => { overClosed = true; $('ovOver').hidden = true; render(); });
   $('btnAgain').addEventListener('click', () => startGame(S.mode, true));
@@ -2964,8 +3290,8 @@ function turnRhythm(S) {
   });
   $('btnCopy').addEventListener('click', () => {
     const ta = $('shareText');
-    const done = () => { $('copyMsg').textContent = '복사했어요. 친구에게 붙여넣어 보세요.'; };
-    const fallback = () => { ta.focus(); ta.select(); $('copyMsg').textContent = '텍스트를 선택했어요. 길게 눌러 복사하세요.'; };
+    const done = () => { $('copyMsg').textContent = tr("복사했어요. 친구에게 붙여넣어 보세요."); };
+    const fallback = () => { ta.focus(); ta.select(); $('copyMsg').textContent = tr("텍스트를 선택했어요. 길게 눌러 복사하세요."); };
     try { navigator.clipboard.writeText(ta.value).then(done, fallback); } catch (e) { fallback(); }
   });
   $('btnUndo').addEventListener('click', () => {
@@ -2974,7 +3300,7 @@ function turnRhythm(S) {
     S = JSON.parse(history.pop());
     Object.assign(S, keep);
     clearFx(); setHeat(heat - 3);
-    sel = null; fxq = []; flash = '한 수 되돌렸어요.'; paceDisp = null; hadSpare = !!S.spare;
+    sel = null; fxq = []; flash = tr("한 수 되돌렸어요."); paceDisp = null; hadSpare = !!S.spare;
     ptFx('undos'); ptAdd('undos');
     // an undo soon after a placement by bottle tap: maybe a pour that became a placement (a weak sign, see 5)
     if (lastMove && lastMove.kind === 'tapPlace' && now() - lastMove.at <= 5000) ptAdd('quickUndos');
@@ -3007,17 +3333,26 @@ function turnRhythm(S) {
   const noRepeat = e => { if (e.repeat) e.preventDefault(); };
   $('btnNew').addEventListener('keydown', noRepeat);
   $('btnExtra').addEventListener('keydown', noRepeat);
-  $('btnMode').addEventListener('click', () => startGame(S.mode === 'daily' ? 'endless' : 'daily', false));
+  $('btnMode').addEventListener('keydown', noRepeat);
+  $('btnMode').addEventListener('click', () => {
+    if ((!armed || armed.id !== 'btnMode') && S.turn >= 1 && !S.over) { arm('btnMode'); return; }
+    disarm(false);
+    startGame(S.mode === 'daily' ? 'endless' : 'daily', false);
+  });
   // the place and pour lines follow the control scheme in use when the sheet opens; a first visit (first) leaves out
   // the 'new rules' list, since every rule is new then (U5)
   function openHelp(first) {
+    $('helpGrowth').hidden = !isExpanding(S.rules);
+    $('helpDifficulty').textContent = isExpanding(S.rules) ? tr("점수가 오르면 색이 늘어나요.") : tr("턴이 지날수록 색이 늘어나요.");
+    $('helpCombo').textContent = S.rules.comboPlace ? tr("넣기로 완성하거나, 직전 완성을 이어 부으면 콤보 배수가 올라가요.") : tr("완성 없는 턴이 지나면 콤보가 끊겨요.");
+    fillList('helpV2', v2Lines().concat([isExpanding(S.rules) ? tr("점수로 색과 병이 늘어나고, 20턴마다 빈병 정산 보너스") : tr("20턴마다 색 구역, 빈 병을 남기면 돌파 보너스"), tr("금색 테두리 병 = 이 넣기로 완성")]));
     $('helpV2').hidden = $('helpV2Title').hidden = first === true;
     const tap = ctl() === 'tapPlace';
-    $('helpPlace').textContent = tap ? '조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.'
-      : tray() === 'bottom' ? '아래에 나온 조각을 병으로 끌어 올리거나, 조각을 누른 뒤 병을 누르세요.'
-        : '위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.';
-    $('helpPour').textContent = tap ? '병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.'
-      : '병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요. 병에서 병으로 끌어도 돼요.';
+    $('helpPlace').textContent = tap ? tr("조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.")
+      : tray() === 'bottom' ? tr("아래에 나온 조각을 병으로 끌어 올리거나, 조각을 누른 뒤 병을 누르세요.")
+        : tr("위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.");
+    $('helpPour').textContent = tap ? tr("병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.")
+      : tr("병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요. 병에서 병으로 끌어도 돼요.");
     $('ovHelp').hidden = false;
   }
   $('btnHelp').addEventListener('click', openHelp);
@@ -3034,20 +3369,25 @@ function turnRhythm(S) {
     ['pourLimit', '턴당 붓기', [[0, '무제한'], [3, '3번'], [2, '2번'], [1, '1번']]],
     ['flipMode', '조각 뒤집기', [['off', '끔'], ['2', '2회 (기본)'], ['3', '3회'], ['5', '5회'], ['0', '무제한']]],
   ];
+  let formRules = null;
   function buildForm(r) {
+    formRules = sanitizeRules(r);
+    $('setGrowthNote').hidden = !isExpanding(r);
     const form = $('setForm'); form.textContent = '';
     for (const [key, label, opts] of FIELDS) {
       const row = document.createElement('div'); row.className = 'field';
-      const lab = document.createElement('label'); lab.htmlFor = 'set-' + key; lab.textContent = label;
+      const lab = document.createElement('label'); lab.htmlFor = 'set-' + key; lab.textContent = key === 'colorEvery' && isExpanding(r) ? tr("정산 주기 (성장은 점수)") : tr(label);
       const s = document.createElement('select'); s.id = 'set-' + key;
       const cur = key === 'piece' ? r.pieceMin + '-' + r.pieceMax : key === 'flipMode' ? (r.flip ? String(r.flipLimit) : 'off') : String(r[key]);
-      for (const [v, t] of opts) { const o = document.createElement('option'); o.value = v; o.textContent = t; if (String(v) === cur) o.selected = true; s.append(o); }
+      for (const [v, t] of opts) { const o = document.createElement('option'); o.value = v; o.textContent = tr(t); if (String(v) === cur) o.selected = true; s.append(o); }
       if (![...s.options].some(o => o.selected)) { const o = document.createElement('option'); o.value = cur; o.textContent = cur; o.selected = true; s.append(o); }
       row.append(lab, s); form.append(row);
     }
     $('optAuto').checked = !!r.autoMerge;
     $('optCombo').checked = !!r.comboPlace;
     $('optZones').checked = !!r.zones;
+    $('zonesLabel').textContent = isExpanding(r) ? tr("구간 정산") : tr("색 구역");
+    $('zonesDescription').textContent = isExpanding(r) ? tr("빈병을 남기면 턴 정산 보너스를 받아요. 색과 병은 점수로 늘어나요.") : tr("턴 주기마다 색이 늘고, 빈병을 남기면 돌파 보너스를 받아요.");
   }
   function fillPrefs() {
     $('optOfferSpare').checked = prefs.offerSpare !== false;
@@ -3067,28 +3407,32 @@ function turnRhythm(S) {
     const v = k => $('set-' + k).value;
     const [pmin, pmax] = v('piece').split('-').map(Number);
     const fm = v('flipMode');
-    const base = sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES));
-    return sanitizeRules(Object.assign({}, base, {
+    const base = formRules || endlessRules();
+    const selected = Object.assign({}, base, {
       bottles: v('bottles'), cap: v('cap'), startColors: v('startColors'), maxColors: v('maxColors'),
       colorEvery: v('colorEvery'), pieceMin: pmin, pieceMax: pmax, preview: v('preview'), pourLimit: v('pourLimit'),
       autoMerge: $('optAuto').checked, comboPlace: $('optCombo').checked, zones: $('optZones').checked,
       flip: fm !== 'off', flipLimit: fm === 'off' ? base.flipLimit : Number(fm),
       spare: false,
-    }));
+    });
+    // Board/colour edits are explicit fixed-board custom rules; cosmetic/input settings never touch this form.
+    if (isExpanding(base) && ['bottles', 'cap', 'startColors', 'maxColors', 'pieceMin', 'pieceMax'].some(k => Number(selected[k]) !== base[k])) { delete selected.expansion; delete selected.growthTable; }
+    return sanitizeRules(selected);
   }
-  $('btnSettings').addEventListener('click', () => { buildForm(sanitizeRules(LS.get('wsurv.rules', DEFAULT_RULES))); fillPrefs(); ptShow(); $('ovSettings').hidden = false; });
+  $('btnSettings').addEventListener('click', () => { buildForm(endlessRules()); fillPrefs(); ptShow(); $('ovSettings').hidden = false; });
   // play-test record: copy for pasting into a report; reset before a trial
   $('btnPtCopy').addEventListener('click', () => {
     const ta = $('ptText');
-    const done = () => { $('ptMsg').textContent = '복사했어요.'; };
-    const fallback = () => { ta.focus(); ta.select(); $('ptMsg').textContent = '텍스트를 선택했어요. 길게 눌러 복사하세요.'; };
+    const done = () => { $('ptMsg').textContent = tr("복사했어요."); };
+    const fallback = () => { ta.focus(); ta.select(); $('ptMsg').textContent = tr("텍스트를 선택했어요. 길게 눌러 복사하세요."); };
     try { navigator.clipboard.writeText(ta.value + '\n' + $('ptFxText').value).then(done, fallback); } catch (e) { fallback(); }
   });
-  $('btnPtReset').addEventListener('click', () => { pt = ptNew(); LS.set(PT, pt); ptShow(); $('ptMsg').textContent = '기록을 비웠어요.'; });
-  $('btnDefaults').addEventListener('click', () => buildForm(DEFAULT_RULES));
+  $('btnPtReset').addEventListener('click', () => { pt = ptNew(); LS.set(PT, pt); ptShow(); $('ptMsg').textContent = tr("기록을 비웠어요."); });
+  $('btnDefaults').addEventListener('click', () => buildForm(EXPANDING_RULES));
   $('btnClassic').addEventListener('click', () => buildForm(V1_RULES));
   $('btnApply').addEventListener('click', () => {
     LS.set('wsurv.rules', readForm());
+    LS.set('wsurv.rules.custom', true);
     startGame('endless', true);
   });
   const PREF_IDS = { optOfferSpare: 'offerSpare', optSound: 'sound', optVibrate: 'vibrate', optReduce: 'reduceFx', optGhost: 'ghost', optPace: 'pace', optStaged: 'staged', optSymbols: 'symbols', optTryLocked: 'tryLocked' };
@@ -3157,7 +3501,7 @@ function turnRhythm(S) {
   function useSkin(id) { prefs.skin = id; savePrefs(); applySkin(); if (!$('ovThemes').hidden) buildThemes(); }
   function buildThemes() {
     const total = starsTotal(), cur = currentSkin(), next = nextTheme();
-    $('themesStars').textContent = `누적 별 ${total}` + (next ? ` · 다음 테마 '${next.name}'까지 ${next.need - total}개` : ' · 모든 테마를 열었어요');
+    $('themesStars').textContent = tr("누적 별 {0}", total) + (next ? tr(" · 다음 테마 '{0}'까지 {1}개", tr(next.name), next.need - total) : tr(" · 모든 테마를 열었어요"));
     const list = $('themeList'); list.textContent = '';
     for (const t of THEMES) {
       const open = themeOpen(t), earned = isOwned(t);
@@ -3166,13 +3510,13 @@ function turnRhythm(S) {
       const prev = document.createElement('div');
       prev.className = 'tprev'; prev.dataset.skin = t.id; prev.setAttribute('aria-hidden', 'true');
       for (const s of SAMPLE) { const tb = document.createElement('div'); tb.className = 'tube micro'; paintTube(tb, s, 4); prev.append(tb); }
-      const name = document.createElement('b'); name.textContent = t.name;
-      const desc = document.createElement('p'); desc.textContent = t.desc;
+      const name = document.createElement('b'); name.textContent = tr(t.name);
+      const desc = document.createElement('p'); desc.textContent = tr(t.desc);
       const btn = document.createElement('button');
       btn.type = 'button'; btn.className = 'btn' + (t.id !== cur && open ? ' primary' : '');
-      if (t.id === cur) { btn.textContent = '사용 중'; btn.disabled = true; }
-      else if (open) { btn.textContent = earned ? '적용' : '써보기'; btn.addEventListener('click', () => { useSkin(t.id); render(); }); }
-      else { btn.textContent = `별 ${t.need - total}개 더 필요`; btn.disabled = true; }
+      if (t.id === cur) { btn.textContent = tr("사용 중"); btn.disabled = true; }
+      else if (open) { btn.textContent = earned ? tr("적용") : tr("써보기"); btn.addEventListener('click', () => { useSkin(t.id); render(); }); }
+      else { btn.textContent = tr("별 {0}개 더 필요", t.need - total); btn.disabled = true; }
       card.append(prev, name, desc, btn);
       list.append(card);
     }
@@ -3274,20 +3618,20 @@ function turnRhythm(S) {
   function denied(e) { return !!e && ['revoked', 'not_granted', 'invalid_argument', 'permission-denied'].includes(e.code); }
   function showCloudStatus() {
     const t = new Date(cloud.savedAt);
-    const hm = cloud.savedAt ? ` · 마지막 저장 ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}` : '';
-    const where = cloud.kind === 'firebase' ? '구글 계정' + (cloud.account ? `(${cloud.account})` : '') : 'claude.ai 계정';
+    const hm = cloud.savedAt ? tr(" · 마지막 저장 {0}:{1}", String(t.getHours()).padStart(2, '0'), String(t.getMinutes()).padStart(2, '0')) : '';
+    const where = cloud.kind === 'firebase' ? tr("구글 계정") + (cloud.account ? `(${cloud.account})` : '') : tr("claude.ai 계정");
     const canGoogle = !inViewer && !!FIREBASE_CONFIG;
     $('cloudStatus').textContent = {
-      local: canGoogle ? '이 브라우저에만 저장돼요. 구글로 로그인하면 계정에 저장돼서 기기 사이에 이어져요.'
-        : '이 브라우저에만 저장돼요. claude.ai 아티팩트 링크에서 로그인한 채로 열면 계정에 저장돼요.',
-      connecting: `${where}에 연결하는 중이에요.`,
-      on: `${where}에 저장돼요. 별·연 테마·최고 기록이 기기 ${cloud.devices}대 사이에 이어져요${hm}.`,
-      denied: '클라우드 저장을 쓸 수 없어요. 이 브라우저에만 저장돼요.',
-      blocked: '로그인 창이 막혔어요. 구글로 로그인을 한 번 더 눌러 주세요.',
-      other: '이 브라우저의 기록은 다른 구글 계정에 연결돼 있어요. 그 계정으로 로그인해 주세요.',
-      error: cloud.backend ? '클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.'
-        : '클라우드에 연결하지 못했어요. 지금은 이 브라우저에만 저장돼요. '
-          + (canGoogle && !(fbImportFailed && !fb) ? '구글로 로그인을 다시 눌러 주세요.' : canGoogle ? '새로고침한 뒤 다시 로그인해 주세요.' : '새로고침하면 다시 연결해요.'),
+      local: canGoogle ? tr("이 브라우저에만 저장돼요. 구글로 로그인하면 계정에 저장돼서 기기 사이에 이어져요.")
+        : tr("이 브라우저에만 저장돼요. claude.ai 아티팩트 링크에서 로그인한 채로 열면 계정에 저장돼요."),
+      connecting: tr("{0}에 연결하는 중이에요.", where),
+      on: tr("{0}에 저장돼요. 별·연 테마·최고 기록이 기기 {1}대 사이에 이어져요{2}.", where, cloud.devices, hm),
+      denied: tr("클라우드 저장을 쓸 수 없어요. 이 브라우저에만 저장돼요."),
+      blocked: tr("로그인 창이 막혔어요. 구글로 로그인을 한 번 더 눌러 주세요."),
+      other: tr("이 브라우저의 기록은 다른 구글 계정에 연결돼 있어요. 그 계정으로 로그인해 주세요."),
+      error: cloud.backend ? tr("클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.")
+        : tr("클라우드에 연결하지 못했어요. 지금은 이 브라우저에만 저장돼요. ")
+          + (canGoogle && !(fbImportFailed && !fb) ? tr("구글로 로그인을 다시 눌러 주세요.") : canGoogle ? tr("새로고침한 뒤 다시 로그인해 주세요.") : tr("새로고침하면 다시 연결해요.")),
     }[cloud.state];
     $('btnCloudLogin').hidden = !(canGoogle && !cloud.backend && cloud.state !== 'connecting');
     $('btnCloudLogout').hidden = !(cloud.kind === 'firebase' && cloud.backend);
@@ -3414,11 +3758,23 @@ function turnRhythm(S) {
 
   function v2Lines() {
     const n = DEFAULT_RULES.flipLimit;
-    return ['넣기로 완성해도 콤보가 이어져요', `⇅로 조각을 뒤집을 수 있어요 (판당 ${n}회)`, '20턴마다 색 구역, 빈 병을 남기면 돌파 보너스'];
+    return [tr("넣기로 완성해도 콤보가 이어져요"), tr("⇅로 조각을 뒤집을 수 있어요 (판당 {0}회)", n)];
   }
   function fillList(id, items) { const ul = $(id); ul.textContent = ''; items.forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.append(li); }); }
-  fillList('helpV2', v2Lines().concat(['금색 테두리 병 = 이 넣기로 완성']));
-  fillList('v2Lines', v2Lines());
+  fillList('helpV2', v2Lines().concat([tr("금색 테두리 병 = 이 넣기로 완성")]));
+  fillList('v2Lines', v2Lines().concat([tr("점수로 색과 병이 늘어나는 무한 모드")]));
+
+  // Update labels without rebooting the run or undo history.
+  $('optLanguage').addEventListener('change', e => window.WSSLocale.set(e.target.value));
+  window.addEventListener('wss:localechange', () => {
+    cancelGesture(); clearFx(); flash = ''; paceDisp = null; stageDirty = true;
+    if (!$('ovSettings').hidden && formRules) buildForm(readForm());
+    fillList("v2Lines", v2Lines().concat([tr("점수로 색과 병이 늘어나는 무한 모드")]));
+    if (!$('ovHelp').hidden) openHelp($('helpV2').hidden);
+    if (!$('ovThemes').hidden) buildThemes();
+    if (!$('ovOver').hidden) showOver();
+    showCloudStatus(); ptShow(); render();
+  });
 
   function boot(data) {
     // stars earned before cloud save existed all belong to this device
@@ -3447,4 +3803,5 @@ function turnRhythm(S) {
   try { window.claude?.hot?.snapshot?.(() => ({ S })); } catch (e) { /* hot reload is optional */ }
   window.claude?.hot?.ready ? window.claude.hot.ready(boot) : boot(window.claude?.hot?.data ?? {});
 })();
+
 </script>

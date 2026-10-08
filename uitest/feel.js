@@ -106,8 +106,9 @@ window.__feelTests = async function (T, H) {
   async function juicyTests() {
     // the stage and the status line (U1, U2, F4)
     await setup(MID, [2, 2], { streak: 2, turn: 10, turnClears: 0 });
-    const st = box($('stage')), sb = box(document.querySelector('.scorebar')), info = box(document.querySelector('.info'));
-    ck('[U1] the stage fills the free space under the score', getComputedStyle($('stage')).display !== 'none' && st.t >= sb.b && st.b <= info.t && st.h >= 56, JSON.stringify({ st, sb: sb.b, info: info.t }));
+    const st = box($('stage')), hud = box($('runInfo')), statusBox = box($('status'));
+    // UI polish groups the goal HUD under the score; effects use the remaining space before the status/board.
+    ck('[U1] the stage fills the free space under the goal HUD', getComputedStyle($('stage')).display !== 'none' && st.t >= hud.b && st.b <= statusBox.t && st.h >= 56, JSON.stringify({ st, hud: hud.b, status: statusBox.t }));
     ck('[F4] the stage shows the combo badge with its fuse', $('stCombo').textContent === '×2' && $('stHud').classList.contains('on') && $('stHud').classList.contains('fuse'), $('stHud').className + ' ' + $('stCombo').textContent);
     ck('[U1] banners show in the stage', $('bannerLayer').classList.contains('staged') && Math.abs(box($('bannerLayer')).t - st.t) <= 1);
     ck('[U2] the status line leaves the combo to the stage', !status().includes('이번 턴에 병을 완성하면') && status() === '조각을 넣고, 병끼리 부어서 한 색으로 채우세요.', status());
@@ -260,7 +261,8 @@ window.__feelTests = async function (T, H) {
     ck('[U2] base: the status line still shows the combo goal', status() === '이번 턴에 병을 완성하면 콤보 ×3', status());
     $('btnSettings').click(); await sleep(20);
     const lab = $('labBox'), sh = document.querySelector('#ovSettings .sheet');
-    ck('[U4] prototype settings are folded away', lab.tagName === 'DETAILS' && !lab.open && lab.contains($('ptText')) && lab.contains($('optControls')) && lab.contains($('setForm')) && !lab.contains($('optSound')) && !lab.contains($('optFx')));
+    ck('[U4] prototype settings are folded away', lab.tagName === 'DETAILS' && !lab.open && lab.contains($('ptText')) && lab.contains($('setForm')) && !lab.contains($('optSound')) && !lab.contains($('optFx')));
+    ck('[UIUX] controls and tray are available outside prototype settings', !lab.contains($('optControls')) && !lab.contains($('optTray')) && $('controlsTitle').parentElement.contains($('optControls')) && $('controlsTitle').parentElement.contains($('optTray')));
     ck('[U4] the effects setting shows the base pick', $('optFx').value === 'base', JSON.stringify(stored()));
     const folded = sh.scrollHeight;
     lab.open = true; await sleep(20);

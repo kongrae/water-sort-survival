@@ -22,7 +22,7 @@ $owner = 'kongrae'
 $repoName = 'water-sort-survival'
 $repoUrl = "https://github.com/$owner/$repoName.git"
 $apiUrl = "https://api.github.com/repos/$owner/$repoName"
-$repoDescription = 'Water Sort Survival - endless water sort puzzle prototype'
+$repoDescription = 'Botris: Water Sort Puzzle - expanding endless mode, combos and daily challenges'
 $pagesDir = Join-Path $projectDir 'outputs/pages'
 $siteUrl = "https://$owner.github.io/$repoName/"
 

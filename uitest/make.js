@@ -13,7 +13,11 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   try { localStorage.clear(); } catch (e) {}
   var today = (function () { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); })();
   var set = function (k, v) { localStorage.setItem(k, JSON.stringify(v)); };
+  set('wsurv.locale', 'ko');
   var V1R = { bottles: 6, cap: 4, startColors: 4, maxColors: 8, colorEvery: 20, pieceMin: 1, pieceMax: 2, preview: 2, pourLimit: 0, autoMerge: false };
+  // Historical feature scenarios deliberately keep their v2 rules. Expansion has separate real-input coverage.
+  set('wsurv.rules', Object.assign({}, V1R, { comboPlace: true, flip: true, flipLimit: 2, zones: true, zoneBonus: 20, zoneMulMax: 5, zoneTwin: true, zoneTwinSize: 1 }));
+  set('wsurv.rules.custom', true);
   if (sc === 'existing' || sc === 'v1saves') set('wsurv.seenHelp', true);
   if (sc === 'v1saves') {
     set('wsurv.game.daily', { v: 1, mode: 'daily', seed: 'daily:' + today, rules: V1R, bottles: [[0], [], [], [], [], []], turn: 1, piece: [1], score: 0, streak: 0, maxStreak: 0, turnClears: 0, clears: 0, turnLog: [], undoLeft: 3, reviveUsed: false, pours: 0, over: false, overReason: '', stuck: null });

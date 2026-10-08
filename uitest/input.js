@@ -576,7 +576,7 @@ window.__inputTests = async function (T) {
     if (MODE === 'classic') {
       let t = G().turn;
       await done();
-      ck('[6.3] classic: no pour hint', G().turn === t + 1 && !arc());
+      ck('[6.3] classic: no pour hint', G().turn === t + 1 && !arc(), JSON.stringify({before:t,after:G().turn,arc:!!arc(),selected:anySel(),status:status(),inert:document.querySelector('.app').inert}));
       return;
     }
     // the only completing pour goes out of the spare cup: no hint

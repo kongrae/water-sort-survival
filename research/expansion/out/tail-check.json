@@ -1,0 +1,535 @@
+{
+  "selection": "first six seeds surviving 500 in steady-tail-90/d2; conditional sample, not population estimate",
+  "cap": 1500,
+  "rules": {
+    "bottles": 6,
+    "cap": 4,
+    "startColors": 4,
+    "maxColors": 9,
+    "colorEvery": 20,
+    "pieceMin": 1,
+    "pieceMax": 2,
+    "preview": 2,
+    "pourLimit": 0,
+    "autoMerge": false,
+    "comboPlace": true,
+    "flip": true,
+    "flipLimit": 2,
+    "zones": true,
+    "zoneBonus": 20,
+    "zoneMulMax": 5,
+    "zoneTwin": true,
+    "zoneTwinSize": 1,
+    "spare": false,
+    "spareCap": 1,
+    "spareTurns": 20,
+    "spareFrom": 15,
+    "spareMaxEmpty": 0,
+    "spareMaxFree": 7,
+    "spareSticky": true,
+    "expansion": 1,
+    "growthTable": [
+      {
+        "score": 0,
+        "colors": 4,
+        "bottles": 6
+      },
+      {
+        "score": 300,
+        "colors": 5,
+        "bottles": 6
+      },
+      {
+        "score": 900,
+        "colors": 6,
+        "bottles": 7
+      },
+      {
+        "score": 1700,
+        "colors": 7,
+        "bottles": 7
+      },
+      {
+        "score": 2800,
+        "colors": 8,
+        "bottles": 8
+      },
+      {
+        "score": 4500,
+        "colors": 9,
+        "bottles": 8
+      }
+    ],
+    "tailDoublePct": 90
+  },
+  "rows": [
+    {
+      "seed": "expansion-0",
+      "depth": 2,
+      "turn": 884,
+      "score": 74400,
+      "over": true,
+      "reason": "noroom",
+      "bottles": 8,
+      "colors": 9,
+      "maxStreak": 6,
+      "metrics": {
+        "firstClear": 6,
+        "pours": 1640,
+        "unlocks": [
+          {
+            "turn": 20,
+            "score": 920,
+            "from": 6,
+            "to": 7,
+            "before": {
+              "free": 16,
+              "targets": 4
+            },
+            "after": {
+              "free": 19,
+              "targets": 5
+            }
+          },
+          {
+            "turn": 57,
+            "score": 2900,
+            "from": 7,
+            "to": 8,
+            "before": {
+              "free": 16,
+              "targets": 6
+            },
+            "after": {
+              "free": 24,
+              "targets": 7
+            }
+          }
+        ],
+        "phases": {
+          "6b-4c": {
+            "count": 9,
+            "free": 147,
+            "targets": 40
+          },
+          "6b-5c": {
+            "count": 10,
+            "free": 175,
+            "targets": 47
+          },
+          "7b-6c": {
+            "count": 19,
+            "free": 363,
+            "targets": 108
+          },
+          "7b-7c": {
+            "count": 19,
+            "free": 276,
+            "targets": 91
+          },
+          "8b-8c": {
+            "count": 22,
+            "free": 432,
+            "targets": 130
+          },
+          "8b-9c": {
+            "count": 805,
+            "free": 13450,
+            "targets": 3552
+          }
+        },
+        "stableAssigned": 3
+      }
+    },
+    {
+      "seed": "expansion-1",
+      "depth": 2,
+      "turn": 1500,
+      "score": 130780,
+      "over": false,
+      "reason": "",
+      "bottles": 8,
+      "colors": 9,
+      "maxStreak": 7,
+      "metrics": {
+        "firstClear": 5,
+        "pours": 2739,
+        "unlocks": [
+          {
+            "turn": 22,
+            "score": 920,
+            "from": 6,
+            "to": 7,
+            "before": {
+              "free": 16,
+              "targets": 4
+            },
+            "after": {
+              "free": 24,
+              "targets": 7
+            }
+          },
+          {
+            "turn": 60,
+            "score": 2880,
+            "from": 7,
+            "to": 8,
+            "before": {
+              "free": 19,
+              "targets": 6
+            },
+            "after": {
+              "free": 27,
+              "targets": 8
+            }
+          }
+        ],
+        "phases": {
+          "6b-4c": {
+            "count": 13,
+            "free": 220,
+            "targets": 63
+          },
+          "6b-5c": {
+            "count": 9,
+            "free": 141,
+            "targets": 41
+          },
+          "7b-6c": {
+            "count": 18,
+            "free": 311,
+            "targets": 92
+          },
+          "7b-7c": {
+            "count": 20,
+            "free": 350,
+            "targets": 112
+          },
+          "8b-8c": {
+            "count": 32,
+            "free": 579,
+            "targets": 174
+          },
+          "8b-9c": {
+            "count": 1408,
+            "free": 23238,
+            "targets": 6126
+          }
+        },
+        "stableAssigned": 2
+      }
+    },
+    {
+      "seed": "expansion-2",
+      "depth": 2,
+      "turn": 848,
+      "score": 73920,
+      "over": true,
+      "reason": "noroom",
+      "bottles": 8,
+      "colors": 9,
+      "maxStreak": 6,
+      "metrics": {
+        "firstClear": 8,
+        "pours": 1527,
+        "unlocks": [
+          {
+            "turn": 22,
+            "score": 1120,
+            "from": 6,
+            "to": 7,
+            "before": {
+              "free": 16,
+              "targets": 4
+            },
+            "after": {
+              "free": 24,
+              "targets": 6
+            }
+          },
+          {
+            "turn": 54,
+            "score": 2800,
+            "from": 7,
+            "to": 8,
+            "before": {
+              "free": 17,
+              "targets": 6
+            },
+            "after": {
+              "free": 25,
+              "targets": 7
+            }
+          }
+        ],
+        "phases": {
+          "6b-4c": {
+            "count": 9,
+            "free": 168,
+            "targets": 47
+          },
+          "6b-5c": {
+            "count": 13,
+            "free": 203,
+            "targets": 68
+          },
+          "7b-6c": {
+            "count": 12,
+            "free": 229,
+            "targets": 68
+          },
+          "7b-7c": {
+            "count": 20,
+            "free": 334,
+            "targets": 98
+          },
+          "8b-8c": {
+            "count": 25,
+            "free": 461,
+            "targets": 134
+          },
+          "8b-9c": {
+            "count": 769,
+            "free": 12258,
+            "targets": 3200
+          }
+        },
+        "stableAssigned": 3
+      }
+    },
+    {
+      "seed": "expansion-4",
+      "depth": 2,
+      "turn": 1500,
+      "score": 126180,
+      "over": false,
+      "reason": "",
+      "bottles": 8,
+      "colors": 9,
+      "maxStreak": 6,
+      "metrics": {
+        "firstClear": 3,
+        "pours": 2710,
+        "unlocks": [
+          {
+            "turn": 28,
+            "score": 1080,
+            "from": 6,
+            "to": 7,
+            "before": {
+              "free": 14,
+              "targets": 5
+            },
+            "after": {
+              "free": 22,
+              "targets": 6
+            }
+          },
+          {
+            "turn": 60,
+            "score": 2880,
+            "from": 7,
+            "to": 8,
+            "before": {
+              "free": 17,
+              "targets": 6
+            },
+            "after": {
+              "free": 20,
+              "targets": 6
+            }
+          }
+        ],
+        "phases": {
+          "6b-4c": {
+            "count": 12,
+            "free": 217,
+            "targets": 64
+          },
+          "6b-5c": {
+            "count": 16,
+            "free": 233,
+            "targets": 64
+          },
+          "7b-6c": {
+            "count": 11,
+            "free": 194,
+            "targets": 56
+          },
+          "7b-7c": {
+            "count": 20,
+            "free": 333,
+            "targets": 105
+          },
+          "8b-8c": {
+            "count": 28,
+            "free": 491,
+            "targets": 149
+          },
+          "8b-9c": {
+            "count": 1413,
+            "free": 23482,
+            "targets": 6263
+          }
+        },
+        "stableAssigned": 7
+      }
+    },
+    {
+      "seed": "expansion-5",
+      "depth": 2,
+      "turn": 1251,
+      "score": 108940,
+      "over": true,
+      "reason": "noroom",
+      "bottles": 8,
+      "colors": 9,
+      "maxStreak": 6,
+      "metrics": {
+        "firstClear": 6,
+        "pours": 2298,
+        "unlocks": [
+          {
+            "turn": 23,
+            "score": 920,
+            "from": 6,
+            "to": 7,
+            "before": {
+              "free": 15,
+              "targets": 5
+            },
+            "after": {
+              "free": 23,
+              "targets": 7
+            }
+          },
+          {
+            "turn": 58,
+            "score": 3040,
+            "from": 7,
+            "to": 8,
+            "before": {
+              "free": 17,
+              "targets": 4
+            },
+            "after": {
+              "free": 25,
+              "targets": 6
+            }
+          }
+        ],
+        "phases": {
+          "6b-4c": {
+            "count": 11,
+            "free": 189,
+            "targets": 49
+          },
+          "6b-5c": {
+            "count": 12,
+            "free": 192,
+            "targets": 58
+          },
+          "7b-6c": {
+            "count": 18,
+            "free": 347,
+            "targets": 102
+          },
+          "7b-7c": {
+            "count": 17,
+            "free": 251,
+            "targets": 84
+          },
+          "8b-8c": {
+            "count": 20,
+            "free": 425,
+            "targets": 122
+          },
+          "8b-9c": {
+            "count": 1173,
+            "free": 19879,
+            "targets": 5257
+          }
+        },
+        "stableAssigned": 0
+      }
+    },
+    {
+      "seed": "expansion-11",
+      "depth": 2,
+      "turn": 984,
+      "score": 83660,
+      "over": true,
+      "reason": "noroom",
+      "bottles": 8,
+      "colors": 9,
+      "maxStreak": 5,
+      "metrics": {
+        "firstClear": 7,
+        "pours": 1830,
+        "unlocks": [
+          {
+            "turn": 27,
+            "score": 1080,
+            "from": 6,
+            "to": 7,
+            "before": {
+              "free": 13,
+              "targets": 5
+            },
+            "after": {
+              "free": 21,
+              "targets": 6
+            }
+          },
+          {
+            "turn": 60,
+            "score": 2860,
+            "from": 7,
+            "to": 8,
+            "before": {
+              "free": 17,
+              "targets": 4
+            },
+            "after": {
+              "free": 19,
+              "targets": 5
+            }
+          }
+        ],
+        "phases": {
+          "6b-4c": {
+            "count": 11,
+            "free": 196,
+            "targets": 55
+          },
+          "6b-5c": {
+            "count": 16,
+            "free": 213,
+            "targets": 60
+          },
+          "7b-6c": {
+            "count": 12,
+            "free": 227,
+            "targets": 65
+          },
+          "7b-7c": {
+            "count": 20,
+            "free": 338,
+            "targets": 102
+          },
+          "8b-8c": {
+            "count": 20,
+            "free": 367,
+            "targets": 107
+          },
+          "8b-9c": {
+            "count": 905,
+            "free": 14522,
+            "targets": 3784
+          }
+        },
+        "stableAssigned": 1
+      }
+    }
+  ]
+}

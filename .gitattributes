@@ -1,0 +1,2 @@
+# Prefix/suffix messages intentionally keep spaces in the final translation column.
+locales/messages.tsv whitespace=-blank-at-eol

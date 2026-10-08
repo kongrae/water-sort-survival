@@ -181,7 +181,10 @@
       placeAt(0);
       check('pace label vs last run', /^지난 판 [▲▼±]/.test($('pace').textContent), $('pace').textContent);
       // daily: no cup, v2 share
+      const runBeforeModeChange = JSON.stringify(G());
       $('btnMode').click();
+      check('first mode press preserves the started run', JSON.stringify(G()) === runBeforeModeChange);
+      $('btnMode').click();  // confirm before discarding the current endless run
       S = G();
       check('daily: spare off and hidden', S.rules.spare === false && $('spareSlot').hidden);
       $('btnExtra').hidden = false; S.stuck = 'room';
@@ -337,7 +340,12 @@
       check('nothing written for the other account', !Object.keys(window.__fbStore).some(p => p.startsWith('users/g2/')) && num('wsurv.fb.auto') === false && num('wsurv.fb.uid') === 'g1');
       $('ovSettings').querySelector('[data-close]').click();
     }
-    if (SC === 'controls' || SC === 'geom' || SC === 'feel') await window.__inputTests({ check, G, $, sleep, send, SC, P, tube });
+    if (SC === 'controls' || SC === 'geom' || SC === 'feel') {
+      // These pointer tests measure element centres; wait for the normal font layout before taking coordinates.
+      // The UI polish suite separately verifies a blocked font request and its fallback layout.
+      if (document.fonts) await document.fonts.ready;
+      await window.__inputTests({ check, G, $, sleep, send, SC, P, tube });
+    }
     check('no script errors', window.__errors.length === 0, window.__errors.join(' | '));
   } catch (e) {
     check('driver exception', false, e && e.stack || e);
