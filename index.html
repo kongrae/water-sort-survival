@@ -177,15 +177,13 @@ body {
 .tube.spare.enter { animation: slideIn .3s ease-out; }
 .tube:disabled { cursor: default; }
 .ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; transform: translate(-50%, -70%) rotate(-8deg); opacity: .92; }
-.ghost.above { transform: translate(-50%, -125%) rotate(-8deg); }   /* tray below the bottles: drawn clear of the finger */
 /* 44px touch areas around the smaller flip button and spare cup */
 .flipbtn::before { content: ""; position: absolute; inset: -3px; }
 .tube.spare::after { content: ""; position: absolute; top: 0; bottom: 0; left: -5px; right: -5px; }
-/* tapPlace: bottles take drags and long presses themselves */
-[data-controls="tapPlace"] #rack, [data-controls="tapPlace"] #rack .tube, [data-controls="tapPlace"] #spareSlot .tube { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
-/* tray below the bottles (bottom), or the tray on top and the bottles low (low): the rack sits low, nearer the thumb */
-.app.tray-bottom, .app.tray-low { min-height: 100%; }
-.app.tray-bottom > .zbar, .app.tray-bottom > .zbar[hidden] + .rack,
+/* bottles take drags (pours, both schemes) and long presses (tapPlace) themselves */
+#rack, #rack .tube, #spareSlot .tube { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+/* low: the tray stays on top and the rack sits low, nearer the thumb */
+.app.tray-low { min-height: 100%; }
 .app.tray-low > .zbar, .app.tray-low > .zbar[hidden] + .rack { margin-top: auto; }
 /* low: only what sits below the bottles decides how low they go, so the prototype note goes */
 .app.tray-low > .foot { display: none; }
@@ -389,7 +387,7 @@ body {
     <h3>조작 (프로토타입, 바로 적용)</h3>
     <div class="fields">
       <div class="field"><label for="optControls">조작 방식</label><select id="optControls"><option value="classic">조각 누르고 병 누르기</option><option value="tapPlace">병 누르면 바로 넣기</option></select></div>
-      <div class="field"><label for="optTray">배치</label><select id="optTray"><option value="top">조각 칸 위</option><option value="bottom">조각 칸 아래</option><option value="low">병 줄을 아래로</option></select></div>
+      <div class="field"><label for="optTray">배치</label><select id="optTray"><option value="top">조각 칸 위</option><option value="low">병 줄을 아래로</option></select></div>
     </div>
     <h3>화면 (바로 적용)</h3>
     <label class="check"><input type="checkbox" id="optSound"><span>소리</span></label>
@@ -898,7 +896,7 @@ function turnRhythm(S) {
   let paceDisp = null;       // pace label shown for the current run
   let lastWarnTurn = -1;
   let hadSpare = false;
-  let newArm = 0;            // timer of a new-game press waiting for its confirming second press (0 = none)
+  let armed = null;          // { id: 'btnNew' | 'btnExtra', timer }: a press waiting for its confirming second press
   let prefs = Object.assign({ symbols: false, sound: true, vibrate: true, reduceFx: reducedMotion, ghost: true, pace: true, staged: true, offerSpare: true }, LS.get('wsurv.prefs', {}));
   let unlock = Object.assign({ runs: 0, sawOver: false, flip: false }, LS.get('wsurv.unlock', {}));
   const savePrefs = () => LS.set('wsurv.prefs', prefs);
@@ -1073,7 +1071,7 @@ function turnRhythm(S) {
   }
   function snapshot() { history.push(JSON.stringify(S)); if (history.length > 40) history.shift(); }
   function commit() {
-    disarmNew(true);
+    disarm(true);
     if (hadSpare && !S.spare && S.spareUsed) { SND.crack(); if (!flash) flash = '임시 잔이 비어서 사라졌어요.'; }
     render();
     hadSpare = !!S.spare;
@@ -1136,16 +1134,18 @@ function turnRhythm(S) {
   }
 
   // ---------- input ----------
-  // Two schemes (prefs.controls, set in the settings sheet):
+  // Two schemes (prefs.controls, set in the settings sheet; tapPlace unless the player picked classic):
+  //   tapPlace: tap a bottle to place the piece there; long-press a bottle and tap another to pour (the pour that
+  //             needs no dragging)
   //   classic:  tap the piece then a bottle, or drag the piece onto a bottle; tap two bottles to pour
-  //   tapPlace: tap a bottle to place the piece there; drag from bottle to bottle, or long-press a bottle and tap
-  //             another, to pour (the long press is the pour that needs no dragging)
+  // In both, dragging from bottle to bottle pours, and dragging the piece onto a bottle places it.
   // Pointer input is handled on pointerup, for one gesture at a time: a finger that touches down during a gesture is
   // ignored, and so are the clicks that follow pointer gestures. Clicks with no pointer behind them (keyboard,
   // screen readers) still act through the click listeners.
   const SLOP = 8, LONG_MS = 450, LIFT = 12;
-  const ctl = () => prefs.controls === 'tapPlace' ? 'tapPlace' : 'classic';
-  const tray = () => prefs.tray === 'bottom' || prefs.tray === 'low' ? prefs.tray : 'top';
+  // defaults chosen at checkpoint C; a stored value is the player's own pick (a stored 'bottom' layout is gone: low)
+  const ctl = () => prefs.controls === 'classic' ? 'classic' : 'tapPlace';
+  const tray = () => prefs.tray === 'top' ? 'top' : 'low';
   let gest = null;              // { kind: 'cup' | 'press' | 'pour' | 'none', id, x, y, ... }
   const ignored = new Set();    // pointers that started during another gesture or were cancelled by Escape
   let quietUntil = 0;           // clicks before this time come from a pointer gesture that has been handled
@@ -1234,7 +1234,6 @@ function turnRhythm(S) {
     // like a pour that became a placement)
     const tapIn = !viaDrag && ctl() === 'tapPlace', pourable = [];
     if (tapIn) for (let t = 0; t < S.bottles.length; t++) if (t !== i && previewPour(S, i, t).ok) pourable.push(t);
-    const nudged = !!undoNudge;
     snapshot();
     applyPlace(S, i, hooks);
     afterPlace();
@@ -1243,8 +1242,9 @@ function turnRhythm(S) {
     lastMove = { kind: viaDrag ? 'dragPlace' : 'tapPlace', at: now() };
     lastTap = tapIn ? { slot: i, at: now(), seq: inputSeq, pourable } : null;
     commit();
-    // a placement by bottle tap lights the undo button; one made while it is lit turns it off instead (6.2)
-    nudgeUndo(tapIn && !nudged && undoOk());
+    // every placement by bottle tap lights the undo button for 5s (again): the pour that went wrong is often the
+    // first tap of a turn, right after the last turn's placement
+    nudgeUndo(tapIn && undoOk());
     pourHint();
   }
   // tapPlace: a tap on bottle i right after a placement by tap, with nothing in between, on a bottle the placed-into
@@ -1286,12 +1286,6 @@ function turnRhythm(S) {
     }
     return best;
   }
-  // Where a piece drop lands: under the finger with the tray on top; at the ghost's centre with the tray below the
-  // bottles, where the finger would hide the bottle it is over.
-  function dropSlot(g, x, y) {
-    if (tray() === 'bottom' && g.ghost) { const r = g.ghost.getBoundingClientRect(); return slotAt(r.left + r.width / 2, r.top + r.height / 2); }
-    return slotAt(x, y);
-  }
 
   rack.addEventListener('click', e => {
     if (pointerClick(e)) return;
@@ -1329,8 +1323,8 @@ function turnRhythm(S) {
     if (e.target.closest('button, select, input, label, a, #rack, #spareSlot, .overlay')) return;
     sel = null; render();
   });
-  // long presses on bottles must not open the browser's menu (tapPlace uses them)
-  const noMenu = e => { if (ctl() === 'tapPlace') e.preventDefault(); };
+  // a long press or a slow drag on a bottle must not open the browser's menu (tapPlace picks a source that way)
+  const noMenu = e => e.preventDefault();
   rack.addEventListener('contextmenu', noMenu);
   spareSlot.addEventListener('contextmenu', noMenu);
   // a touch that starts on a sheet is not a game input, even if the sheet closes before the finger lifts
@@ -1386,7 +1380,7 @@ function turnRhythm(S) {
       if (!g.moved && dist > SLOP) {
         g.moved = true; sel = 'cup'; render();
         const gh = document.createElement('div');
-        gh.className = 'tube mini ghost' + (tray() === 'bottom' ? ' above' : '');
+        gh.className = 'tube mini ghost';
         paintTube(gh, S.piece, S.rules.pieceMax);
         document.body.append(gh);
         g.ghost = gh;
@@ -1395,20 +1389,34 @@ function turnRhythm(S) {
       g.ghost.style.left = x + 'px';
       g.ghost.style.top = y + 'px';
       // no landing hint while the finger is still on the piece: letting go there is a tap
-      const t = g.left ? dropSlot(g, x, y) : null;
+      const t = g.left ? slotAt(x, y) : null;
       if (t !== g.over) { clearDragHover(); g.over = t; if (t !== null) showDragHover(t); }
       return;
     }
     if (!g.moved && dist > SLOP) {
       g.moved = true;
       clearTimeout(g.timer); g.timer = 0; clearCharge();
+    }
+    // both schemes: a drag from a bottle with liquid becomes a pour once it leaves that bottle, and the liquid it
+    // carries follows the finger. Until then (a wobble inside the bottle) letting go is still a tap.
+    if (g.kind === 'press' && g.moved && slotAt(x, y) !== g.slot) {
       const s = slotsOf(S)[g.slot];
-      // tapPlace: a drag from a bottle with liquid pours. Otherwise the press stays a tap if it ends on the same bottle.
-      if (ctl() === 'tapPlace' && s && s.length) { g.kind = 'pour'; sel = g.slot; render(); }
+      if (s && s.length) { g.kind = 'pour'; sel = g.slot; render(); g.ghost = pourGhost(g.slot); }
     }
     if (g.kind !== 'pour') return;
+    g.ghost.style.left = x + 'px';
+    g.ghost.style.top = y + 'px';
     const t = slotAt(x, y);
     if (t !== g.over) { clearDragHover(); g.over = t; if (t !== null && t !== g.slot) showPourHover(t); }
+  }
+  // the liquid a pour drag carries, drawn above the finger like the piece: the source's top run of one colour
+  function pourGhost(i) {
+    const { c, n } = topSeg(slotsOf(S)[i]);
+    const gh = document.createElement('div');
+    gh.className = 'tube mini ghost pour';
+    paintTube(gh, Array(n).fill(c), n);
+    document.body.append(gh);
+    return gh;
   }
   function gestEnd(e, cancel) {
     const g = gest;
@@ -1421,14 +1429,18 @@ function turnRhythm(S) {
     if (g.kind === 'pour') {
       const t = cancel ? null : slotAt(e.clientX, e.clientY);
       clearDragHover();
+      // the carried liquid goes into the target, or glides back to its bottle when the drop pours nothing
+      const pours = t !== null && t !== g.slot && !(S.rules.pourLimit && S.pours >= S.rules.pourLimit) && canPour(slotsOf(S), g.slot, t, capsOf(S));
+      if (pours || cancel) g.ghost.remove();
       if (t === null || t === g.slot) { sel = null; render(); if (!cancel && t === null) ptAdd('cancels'); } else pourTo(g.slot, t, false, 'drag');
+      if (!pours && !cancel) sendBack(g.ghost, tubeEl(g.slot));
       return;
     }
     if (g.kind === 'press' && !cancel && !g.held && (!g.moved || slotAt(e.clientX, e.clientY) === g.slot)) onTube(g.slot, 'tap');
   }
   function cupEnd(g, e, cancel) {
     if (!g.moved) { if (!cancel) onCupTap(g.selBefore); return; }
-    const t = cancel || !g.left ? null : dropSlot(g, e.clientX, e.clientY);
+    const t = cancel || !g.left ? null : slotAt(e.clientX, e.clientY);
     clearDragHover();
     if (!cancel && !g.left) { g.ghost.remove(); onCupTap(g.selBefore); return; }   // a wobble that never left the piece is a tap
     if (t !== null) { g.ghost.remove(); tryPlace(t, true); return; }
@@ -1436,10 +1448,10 @@ function turnRhythm(S) {
     if (!cancel) { flash = '병 위에 놓아야 넣어져요'; sendBack(g.ghost); ptAdd('cancels'); } else g.ghost.remove();
     render();
   }
-  // a piece dropped outside the rack glides back to the tray
-  function sendBack(gh) {
+  // a drop that lands nowhere glides back where it came from: the piece to the tray, poured liquid to its bottle
+  function sendBack(gh, to) {
     if (prefs.reduceFx) { gh.remove(); return; }
-    const r = cup.getBoundingClientRect();
+    const r = (to || cup).getBoundingClientRect();
     gh.style.transition = 'left .18s ease-in, top .18s ease-in, opacity .18s ease-in';
     void gh.offsetWidth;
     gh.style.left = (r.left + r.width / 2) + 'px'; gh.style.top = (r.top + r.height / 2) + 'px'; gh.style.opacity = '0';
@@ -1500,12 +1512,10 @@ function turnRhythm(S) {
   const incoming = document.querySelector('.incoming'), extraRow = $('extraRow');
   function applyControls() {
     document.documentElement.dataset.controls = ctl();
-    const t = tray(), app = document.querySelector('.app');
-    app.classList.toggle('tray-bottom', t === 'bottom');
-    app.classList.toggle('tray-low', t === 'low');
-    if (t === 'bottom') rack.after(incoming); else document.querySelector('.scorebar').after(incoming);
+    const low = tray() === 'low';
+    document.querySelector('.app').classList.toggle('tray-low', low);
     // low: the give-up row sits above the zone bar, out of the thumb's way; the free space over the bottles takes it in
-    if (t === 'low') incoming.after(extraRow); else $('status').after(extraRow);
+    if (low) incoming.after(extraRow); else $('status').after(extraRow);
   }
 
   // ---------- undo nudge (tapPlace) ----------
@@ -1645,7 +1655,7 @@ function turnRhythm(S) {
   function setStatus(msg, warn) { const st = $('status'); st.textContent = msg; st.classList.toggle('warn', !!warn); }
   function statusText() {
     if (flash) return [flash, true];
-    if (newArm) return ['3초 안에 한 번 더 누르면 새 판을 시작해요', true];
+    if (armed) return [armed.id === 'btnNew' ? '3초 안에 한 번 더 누르면 새 판을 시작해요' : '3초 안에 한 번 더 누르면 이 판을 끝내요', true];
     if (S.over) return ['게임이 끝났어요.', true];
     if (S.stuck) return [`${S.piece.length}칸짜리 자리가 없어요. 병끼리 부어서 자리를 만드세요.` + (S.stuck === 'room' ? ' 방법이 있어요.' : ''), true];
     if (sel === 'cup' || (sel === null && ctl() === 'tapPlace' && fuseOn())) {
@@ -1842,16 +1852,15 @@ function turnRhythm(S) {
     $('btnUndo').disabled = !history.length || S.undoLeft <= 0 || S.over;
     // the undo nudge stays through renders (a cloud merge too) until its undo is gone or a pour source is picked
     if (undoNudge && (!undoOk() || typeof sel === 'number')) nudgeUndo(false); else paintUndo();
-    $('btnNew').textContent = newArm ? '한 번 더' : daily ? '다시 도전' : '새 게임';
-    $('btnNew').classList.toggle('armed', !!newArm);
+    const armNew = !!armed && armed.id === 'btnNew', armExtra = !!armed && armed.id === 'btnExtra';
+    $('btnNew').textContent = armNew ? '한 번 더' : daily ? '다시 도전' : '새 게임';
+    $('btnNew').classList.toggle('armed', armNew);
     $('btnMode').textContent = daily ? '무한 모드' : '오늘의 도전';
     const showExtra = S.over ? overClosed : !!S.stuck;
-    // tray below the bottles: keep the row's space so the bottles and tray do not jump when it appears
-    // (low needs no reserve: the row sits above the bottles, in the space that keeps them low)
-    const ex = $('extraRow');
-    ex.hidden = !showExtra && tray() !== 'bottom';
-    ex.style.visibility = showExtra ? '' : 'hidden';
-    $('btnExtra').textContent = S.over ? '결과 보기' : '포기하고 결과 보기';
+    $('extraRow').hidden = !showExtra;
+    // the asking label keeps about the width of the usual one, so the confirming press lands where the first did
+    $('btnExtra').textContent = S.over ? '결과 보기' : armExtra ? '한 번 더 누르면 포기' : '포기하고 결과 보기';
+    $('btnExtra').classList.toggle('armed', armExtra);
 
     applyFx();
     flash = '';
@@ -2098,6 +2107,8 @@ function turnRhythm(S) {
   $('btnAgain').addEventListener('click', () => startGame(S.mode, true));
   $('btnExtra').addEventListener('click', () => {
     if (S.over) { overClosed = false; showOver(); render(); return; }
+    if (!armed || armed.id !== 'btnExtra') { arm('btnExtra'); return; }
+    disarm(false);
     giveUp(S); overClosed = false; commit();
   });
   $('btnCopy').addEventListener('click', () => {
@@ -2120,28 +2131,38 @@ function turnRhythm(S) {
     commit();
     pourHint();
   });
-  // A run in progress asks for a second press within 3s (the button sits next to undo). Any change to the board,
-  // which includes another button of the row doing its job, calls the confirmation off (commit).
+  // A run in progress asks for a second press within 3s (the button sits next to undo).
   $('btnNew').addEventListener('click', () => {
-    if (!newArm && S.turn >= 1 && !S.over) { newArm = setTimeout(() => { disarmNew(true); render(); }, 3000); render(); return; }
-    disarmNew(false);
+    if ((!armed || armed.id !== 'btnNew') && S.turn >= 1 && !S.over) { arm('btnNew'); return; }
+    disarm(false);
     startGame(S.mode, true);
   });
-  // a held key repeats keydown: only the first press counts
-  $('btnNew').addEventListener('keydown', e => { if (e.repeat) e.preventDefault(); });
-  function disarmNew(abort) {
-    if (!newArm) return;
-    clearTimeout(newArm); newArm = 0;
-    if (abort) ptAdd('newGameAborts');
+  // New game and give up end the run in progress, so each asks for a second press within 3s. Running out of time,
+  // the other button, or any change to the board (commit), which includes another button of the row doing its job,
+  // calls the question off.
+  function arm(id) {
+    disarm(true);
+    armed = { id, timer: setTimeout(() => { disarm(true); render(); }, 3000) };
+    render();
   }
+  function disarm(abort) {
+    if (!armed) return;
+    clearTimeout(armed.timer);
+    if (abort && armed.id === 'btnNew') ptAdd('newGameAborts');
+    armed = null;
+  }
+  // a held key repeats keydown: only the first press counts
+  const noRepeat = e => { if (e.repeat) e.preventDefault(); };
+  $('btnNew').addEventListener('keydown', noRepeat);
+  $('btnExtra').addEventListener('keydown', noRepeat);
   $('btnMode').addEventListener('click', () => startGame(S.mode === 'daily' ? 'endless' : 'daily', false));
   // the place and pour lines follow the control scheme in use when the sheet opens
   function openHelp() {
     const tap = ctl() === 'tapPlace';
     $('helpPlace').textContent = tap ? '조각이 들어갈 병을 누르세요. 조각을 병으로 끌어도 돼요.'
-      : (tray() === 'bottom' ? '아래에' : '위에') + ' 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.';
+      : '위에 나온 조각을 병으로 끌어다 놓거나, 조각을 누른 뒤 병을 누르세요.';
     $('helpPour').textContent = tap ? '병에서 병으로 끌거나, 병을 길게 누른 뒤 다른 병을 누르면 맨 위 색이 옮겨가요.'
-      : '병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.';
+      : '병에서 병으로 끌거나, 병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.';
     $('ovHelp').hidden = false;
   }
   $('btnHelp').addEventListener('click', openHelp);
@@ -2231,8 +2252,7 @@ function turnRhythm(S) {
     if (hint) $('ovCtl').hidden = false;
   });
   $('optTray').addEventListener('change', e => {
-    const v = e.target.value;
-    prefs.tray = v === 'bottom' || v === 'low' ? v : 'top';
+    prefs.tray = e.target.value === 'top' ? 'top' : 'low';
     savePrefs();
     cancelGesture();
     applyControls();
@@ -2554,7 +2574,10 @@ function turnRhythm(S) {
       startGame(LS.get('wsurv.mode', 'endless') === 'daily' ? 'daily' : 'endless', false);
     }
     if (showV2) $('ovV2').hidden = false;
-    if (newUser) { openHelp(); LS.set('wsurv.seenHelp', true); prefs.seenV2 = true; savePrefs(); }
+    // the help a new player sees explains the default scheme; a player from before tapPlace became the default who
+    // never picked a scheme gets its three lines once
+    if (newUser) { openHelp(); LS.set('wsurv.seenHelp', true); prefs.seenV2 = true; if (ctl() === 'tapPlace') prefs.seenTapHint = true; savePrefs(); }
+    else if (prefs.controls === undefined && !prefs.seenTapHint) { prefs.seenTapHint = true; savePrefs(); $('ovCtl').hidden = false; }
     cloudInit();
   }
   try { window.claude?.hot?.snapshot?.(() => ({ S })); } catch (e) { /* hot reload is optional */ }
