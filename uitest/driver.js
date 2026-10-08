@@ -305,6 +305,25 @@
       await sleep(50);
       check('another device update arrives live and opens deep', num('wsurv.themes.owned').includes('deep'), localStorage.getItem('wsurv.themes.owned'));
     }
+    if (SC === 'firebase') {
+      const num = k => JSON.parse(localStorage.getItem(k));
+      $('btnSettings').click();
+      check('outside the viewer: sign-in offered', !$('btnCloudLogin').hidden && $('btnCloudLogout').hidden && $('cloudStatus').textContent.includes('구글로 로그인하면'), $('cloudStatus').textContent);
+      $('btnCloudLogin').click();
+      await sleep(400);
+      check('signed in with Google once', window.__fbSignIns === 1, window.__fbSignIns);
+      check('stars summed across devices (10 + 40)', num('wsurv.stars.total') === 50, num('wsurv.stars.total'));
+      check('cafe owned via the other device', num('wsurv.themes.owned').includes('cafe'), localStorage.getItem('wsurv.themes.owned'));
+      const mine = Object.keys(window.__fbStore).find(p => p.startsWith('users/g1/devices/') && !p.endsWith('/dev-other'));
+      check('own document written under users/<uid>/devices', !!mine && window.__fbStore[mine].starsMine === 10 && mine.endsWith('/' + num('wsurv.device')), mine);
+      check('status names the Google account and 2 devices', $('cloudStatus').textContent.includes('구글 계정(player@example.com)') && $('cloudStatus').textContent.includes('기기 2대'), $('cloudStatus').textContent);
+      check('sign-out offered while synced', $('btnCloudLogin').hidden && !$('btnCloudLogout').hidden);
+      check('auto-reconnect remembered', num('wsurv.fb.auto') === true);
+      $('btnCloudLogout').click();
+      await sleep(100);
+      check('signed out: back to this browser only', !$('btnCloudLogin').hidden && $('btnCloudLogout').hidden && $('cloudStatus').textContent.startsWith('이 브라우저에만') && num('wsurv.fb.auto') === false, $('cloudStatus').textContent);
+      $('ovSettings').querySelector('[data-close]').click();
+    }
     check('no script errors', window.__errors.length === 0, window.__errors.join(' | '));
   } catch (e) {
     check('driver exception', false, e && e.stack || e);

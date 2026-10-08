@@ -331,6 +331,7 @@ body {
     <h2 id="setTitle">설정</h2>
     <h3>클라우드 저장</h3>
     <p class="note" id="cloudStatus">이 브라우저에만 저장돼요.</p>
+    <div class="center-row"><button class="btn primary" id="btnCloudLogin" type="button" hidden>구글로 로그인</button><button class="btn" id="btnCloudLogout" type="button" hidden>로그아웃</button></div>
     <h3>테마</h3>
     <button class="btn" id="btnThemes" type="button">테마 고르기</button>
     <label class="check"><input type="checkbox" id="optTryLocked"><span>잠긴 테마도 써보기<small>프로토타입 확인용이에요. 별이 모자라도 모든 테마를 고를 수 있어요.</small></span></label>
@@ -1775,12 +1776,17 @@ function turnRhythm(S) {
   $('btnThemesOver').addEventListener('click', openThemes);
   $('btnUnlockApply').addEventListener('click', e => { const b = e.currentTarget; useSkin(b.dataset.skin); b.hidden = true; render(); });
 
-  // ---------- cloud save (claude.ai artifact viewer only) ----------
-  // Each device writes ONE document of its own under the viewer's private subtree data/users/<id>/, so devices never
-  // overwrite each other. Every device reads all of them and merges: stars are summed per device, owned themes are
-  // united, records take the maximum. In-progress games and display settings stay on the device.
-  // Outside the viewer (GitHub Pages, a saved file) there is no claude.use, and everything stays in this browser.
-  const cloud = { state: 'local', col: null, unsub: null, devices: 0, savedAt: 0, lastBody: '', busy: false, again: false, timer: 0 };
+  // ---------- cloud save ----------
+  // Each device writes ONE document of its own, so devices never overwrite each other. Every device reads all of them
+  // and merges: stars are summed per device, owned themes are united, records take the maximum. In-progress games and
+  // display settings stay on the device. Two stores share this logic:
+  //   - inside the claude.ai artifact viewer: the viewer's private db subtree, data/users/<id>/<device>
+  //   - anywhere else (GitHub Pages): Firebase after Google sign-in, users/<uid>/devices/<device> (see firestore.rules)
+  // Without either, everything stays in this browser.
+  const FIREBASE_CONFIG = null;   // web app config from the Firebase console; these values are public by design
+  const FIREBASE_SDK = 'https://www.gstatic.com/firebasejs/13.0.0/';
+  const inViewer = !!(window.claude && typeof window.claude.use === 'function');
+  const cloud = { state: 'local', kind: '', backend: null, unsub: null, devices: 0, savedAt: 0, lastBody: '', busy: false, again: false, timer: 0, account: '' };
   function deviceId() {
     let id = LS.get('wsurv.device', null);
     if (!id) { id = 'dev-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10); LS.set('wsurv.device', id); }
@@ -1801,10 +1807,10 @@ function turnRhythm(S) {
       unlock: { runs: unlock.runs || 0, sawOver: !!unlock.sawOver, flip: !!unlock.flip },
     };
   }
-  // Applies every device's document to local storage. Idempotent, never writes to the cloud.
-  function mergeCloud(docs) {
+  // Applies every device's document body to local storage. Idempotent, never writes to the cloud.
+  function mergeCloud(bodies) {
     const me = deviceId();
-    const all = docs.map(d => d.exists ? d.data() : null).filter(x => x && x.v === 1);
+    const all = bodies.filter(x => x && x.v === 1);
     let others = 0;
     const own = ownedSet();
     for (const x of all) {
@@ -1830,48 +1836,121 @@ function turnRhythm(S) {
   }
   // One write at a time to this device's document, only when its content changed.
   async function cloudSave() {
-    if (!cloud.col) return;
+    if (!cloud.backend) return;
     if (cloud.busy) { cloud.again = true; return; }
     const body = localSave(), key = JSON.stringify(body);
     if (key === cloud.lastBody) return;
     cloud.busy = true;
     try {
-      await cloud.col.doc(deviceId()).set(Object.assign(body, { savedAt: new Date().toISOString() }));
+      await cloud.backend.save(deviceId(), Object.assign(body, { savedAt: new Date().toISOString() }));
       cloud.lastBody = key; cloud.savedAt = Date.now(); cloud.state = 'on';
     } catch (e) {
-      cloud.state = e && (e.code === 'revoked' || e.code === 'not_granted' || e.code === 'invalid_argument') ? 'denied' : 'error';
+      cloud.state = denied(e) ? 'denied' : 'error';
     }
     cloud.busy = false;
     showCloudStatus();
     if (cloud.again) { cloud.again = false; cloudSave(); }
   }
-  function cloudSaveSoon() { if (!cloud.col) return; clearTimeout(cloud.timer); cloud.timer = setTimeout(cloudSave, 800); }
+  function cloudSaveSoon() { if (!cloud.backend) return; clearTimeout(cloud.timer); cloud.timer = setTimeout(cloudSave, 800); }
+  function denied(e) { return !!e && ['revoked', 'not_granted', 'invalid_argument', 'permission-denied'].includes(e.code); }
   function showCloudStatus() {
     const t = new Date(cloud.savedAt);
     const hm = cloud.savedAt ? ` · 마지막 저장 ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}` : '';
+    const where = cloud.kind === 'firebase' ? '구글 계정' + (cloud.account ? `(${cloud.account})` : '') : 'claude.ai 계정';
+    const canGoogle = !inViewer && !!FIREBASE_CONFIG;
     $('cloudStatus').textContent = {
-      local: '이 브라우저에만 저장돼요. claude.ai 아티팩트 링크에서 로그인한 채로 열면 계정에 저장돼요.',
-      connecting: 'claude.ai 계정에 연결하는 중이에요.',
-      on: `claude.ai 계정에 저장돼요. 별·연 테마·최고 기록이 기기 ${cloud.devices}대 사이에 이어져요${hm}.`,
+      local: canGoogle ? '이 브라우저에만 저장돼요. 구글로 로그인하면 계정에 저장돼서 기기 사이에 이어져요.'
+        : '이 브라우저에만 저장돼요. claude.ai 아티팩트 링크에서 로그인한 채로 열면 계정에 저장돼요.',
+      connecting: `${where}에 연결하는 중이에요.`,
+      on: `${where}에 저장돼요. 별·연 테마·최고 기록이 기기 ${cloud.devices}대 사이에 이어져요${hm}.`,
       denied: '클라우드 저장을 쓸 수 없어요. 이 브라우저에만 저장돼요.',
       error: '클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.',
     }[cloud.state];
+    $('btnCloudLogin').hidden = !(canGoogle && !cloud.backend && cloud.state !== 'connecting');
+    $('btnCloudLogout').hidden = !(cloud.kind === 'firebase' && cloud.backend);
   }
+  async function startSync(backend, kind) {
+    mergeCloud(await backend.load());
+    cloud.backend = backend; cloud.kind = kind; cloud.state = 'on';
+    await cloudSave();
+    cloud.unsub = backend.watch(mergeCloud, () => { cloud.state = 'error'; showCloudStatus(); });
+  }
+  function stopSync() {
+    if (cloud.unsub) cloud.unsub();
+    Object.assign(cloud, { unsub: null, backend: null, kind: '', account: '', lastBody: '', savedAt: 0, devices: 0, state: 'local' });
+  }
+  // claude.ai viewer store
+  function claudeBackend(col) {
+    const bodies = docs => docs.map(d => d.exists ? d.data() : null);
+    return {
+      load: async () => bodies((await col.get()).docs),
+      save: (id, body) => col.doc(id).set(body),
+      watch: (next, err) => col.onSnapshot(qs => next(bodies(qs.docs)), err),
+    };
+  }
+  // Firebase store (loaded only outside the viewer, and only once someone signs in or has signed in before)
+  let fb = null;
+  async function loadFirebase() {
+    if (fb) return fb;
+    const [app, A, F] = await Promise.all(['app', 'auth', 'firestore'].map(m => import(FIREBASE_SDK + 'firebase-' + m + '.js')));
+    const a = app.initializeApp(FIREBASE_CONFIG);
+    fb = { A, F, auth: A.getAuth(a), db: F.getFirestore(a) };
+    return fb;
+  }
+  function firebaseBackend(uid) {
+    const { F, db } = fb, col = F.collection(db, 'users', uid, 'devices');
+    return {
+      load: async () => (await F.getDocs(col)).docs.map(d => d.data()),
+      save: (id, body) => F.setDoc(F.doc(col, id), body),
+      watch: (next, err) => F.onSnapshot(col, qs => next(qs.docs.map(d => d.data())), err),
+    };
+  }
+  // interactive: from the sign-in button. Otherwise restores a session from an earlier visit or a sign-in redirect.
+  async function firebaseConnect(interactive) {
+    cloud.state = 'connecting'; cloud.kind = 'firebase'; showCloudStatus();
+    try {
+      const { A, auth } = await loadFirebase();
+      let user = await new Promise(res => { const off = A.onAuthStateChanged(auth, u => { off(); res(u); }); });
+      if (!user && interactive) {
+        const provider = new A.GoogleAuthProvider();
+        try { user = (await A.signInWithPopup(auth, provider)).user; } catch (e) {
+          if (!e || !['auth/popup-blocked', 'auth/operation-not-supported-in-this-environment'].includes(e.code)) throw e;
+          LS.set('wsurv.fb.auto', true);   // the page comes back from the redirect signed in
+          await A.signInWithRedirect(auth, provider);
+          return;
+        }
+      }
+      if (!user) { LS.set('wsurv.fb.auto', false); stopSync(); showCloudStatus(); return; }
+      LS.set('wsurv.fb.auto', true);
+      cloud.account = user.email || '';
+      await startSync(firebaseBackend(user.uid), 'firebase');
+    } catch (e) {
+      const cancelled = !!e && ['auth/popup-closed-by-user', 'auth/cancelled-popup-request'].includes(e.code);
+      if (cancelled) stopSync(); else { cloud.backend = null; cloud.state = denied(e) ? 'denied' : 'error'; }
+      showCloudStatus();
+    }
+  }
+  async function firebaseLogout() {
+    stopSync();
+    LS.set('wsurv.fb.auto', false);
+    try { if (fb) await fb.A.signOut(fb.auth); } catch (e) { /* already signed out */ }
+    showCloudStatus();
+  }
+  $('btnCloudLogin').addEventListener('click', () => firebaseConnect(true));
+  $('btnCloudLogout').addEventListener('click', firebaseLogout);
   async function cloudInit() {
-    const C = window.claude;
-    if (!C || typeof C.use !== 'function') { showCloudStatus(); return; }
+    if (!inViewer) {
+      if (FIREBASE_CONFIG && LS.get('wsurv.fb.auto', false)) firebaseConnect(false); else showCloudStatus();
+      return;
+    }
     cloud.state = 'connecting'; showCloudStatus();
     try {
-      const [db, user] = await Promise.all([C.use('db'), C.use('user')]);
+      const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
       const uid = user ? await user.id() : null;
       if (!db || !uid) { cloud.state = 'local'; showCloudStatus(); return; }
-      const col = db.collection('data/users/' + uid);
-      mergeCloud((await col.get()).docs);
-      cloud.col = col; cloud.state = 'on';
-      await cloudSave();
-      cloud.unsub = col.onSnapshot(qs => mergeCloud(qs.docs), () => { cloud.state = 'error'; showCloudStatus(); });
+      await startSync(claudeBackend(db.collection('data/users/' + uid)), 'claude');
     } catch (e) {
-      cloud.state = e && (e.code === 'revoked' || e.code === 'not_granted') ? 'denied' : 'error';
+      cloud.backend = null; cloud.state = denied(e) ? 'denied' : 'error';
       showCloudStatus();
     }
   }

@@ -1,0 +1,14 @@
+rules_version = '2';
+// Cloud save for the GitHub Pages build: each signed-in player reads and writes only their own device documents
+// at users/{uid}/devices/{device}. Paste into Firebase console > Firestore > Rules and publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/devices/{device} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.v == 1
+        && request.resource.data.device == device
+        && request.resource.data.keys().hasOnly(['v', 'device', 'starsMine', 'owned', 'best', 'daily', 'starsDaily', 'unlock', 'savedAt']);
+    }
+  }
+}
