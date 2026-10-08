@@ -391,7 +391,7 @@ body {
     <h2 id="themesTitle">테마</h2>
     <p class="note" id="themesStars"></p>
     <div class="themes" id="themeList"></div>
-    <p class="note">테마는 병 모양과 선반, 액체의 질감만 바꿔요. 액체 색은 그대로라 구분하기 쉬워요. 별은 기본 규칙의 무한 모드와 오늘의 도전 첫 판에서 쌓여요.</p>
+    <p class="note">테마는 병 모양과 선반, 액체의 질감만 바꿔요. 액체 색은 그대로라 구분하기 쉬워요. 별은 기본 규칙의 무한 모드와 오늘의 도전 첫 판에서 쌓이고, 한 번 연 테마는 계속 쓸 수 있어요.</p>
     <button class="btn" type="button" data-close>닫기</button>
   </div>
 </div>
@@ -1499,10 +1499,9 @@ function turnRhythm(S) {
     if (!S.starsEligible) return;
     const total = runStars(), add = total - (S.starsAdded || 0);
     if (add > 0) {
-      const before = starsTotal();
-      LS.set('wsurv.stars.total', before + add); S.starsAdded = total;
-      // themes whose threshold this run crossed
-      const opened = THEMES.filter(t => t.need > before && t.need <= before + add).map(t => t.id);
+      LS.set('wsurv.stars.total', starsTotal() + add); S.starsAdded = total;
+      // themes this run opened for the first time (already owned ones are not announced again)
+      const opened = syncOwned();
       if (opened.length) S.newThemes = (S.newThemes || []).concat(opened);
     }
   }
@@ -1549,7 +1548,7 @@ function turnRhythm(S) {
       $('zoneReach').textContent = '도달: ' + zoneLabel(zoneAt(r, S.turn));
       const row = $('zoneStarsRow'); row.textContent = '';
       stars.forEach(s => { const sp = document.createElement('span'); sp.innerHTML = `${zoneLabel(s.zone)} <b>${'★'.repeat(s.stars)}${'☆'.repeat(3 - s.stars)}</b>`; row.append(sp); });
-      const total = starsTotal(), next = THEMES.find(t => t.need > total);
+      const total = starsTotal(), next = nextTheme();
       $('starTotal').textContent = `누적 별 ${total}` + (next ? ` · 다음 테마 '${next.name}'까지 ${next.need - total}개` : ' · 모든 테마 해금') + (S.starsEligible ? '' : ' · 이 판은 누적에 넣지 않아요');
       const fresh = (S.newThemes || []).map(id => THEMES.find(t => t.id === id)).filter(Boolean);
       $('unlockRow').hidden = !fresh.length;
@@ -1722,16 +1721,35 @@ function turnRhythm(S) {
   ];
   const SAMPLE = [[0, 0, 1], [2, 3, 3], [4, 4, 4, 4]];
   function starsTotal() { return LS.get('wsurv.stars.total', 0); }
-  function themeOpen(t) { return !!prefs.tryLocked || starsTotal() >= t.need; }
+  // A theme stays open once opened, even if its threshold is raised later (wsurv.themes.owned).
+  // Thresholds of the first theme release (15/45/90) are honoured once, when the owned list is first created.
+  const LEGACY_NEED = { cafe: 15, gem: 45, deep: 90 };
+  function ownedSet() { return new Set(LS.get('wsurv.themes.owned', ['lab'])); }
+  function isOwned(t) { return t.need === 0 || ownedSet().has(t.id); }
+  function migrateOwned() {
+    if (LS.get('wsurv.themes.owned', null)) return;
+    const total = starsTotal(), own = ['lab'];
+    for (const t of THEMES) if (t.need && total >= Math.min(t.need, LEGACY_NEED[t.id] || t.need)) own.push(t.id);
+    LS.set('wsurv.themes.owned', own);
+  }
+  // Records every theme the star total has reached and returns the ones opened just now.
+  function syncOwned() {
+    const own = ownedSet(), total = starsTotal(), fresh = [];
+    for (const t of THEMES) if (t.need && !own.has(t.id) && total >= t.need) { own.add(t.id); fresh.push(t.id); }
+    if (fresh.length) LS.set('wsurv.themes.owned', [...own]);
+    return fresh;
+  }
+  function nextTheme() { return THEMES.find(t => !isOwned(t)); }
+  function themeOpen(t) { return !!prefs.tryLocked || isOwned(t); }
   function currentSkin() { const t = THEMES.find(x => x.id === prefs.skin); return t && themeOpen(t) ? t.id : 'lab'; }
   function applySkin() { document.documentElement.dataset.skin = currentSkin(); }
   function useSkin(id) { prefs.skin = id; savePrefs(); applySkin(); if (!$('ovThemes').hidden) buildThemes(); }
   function buildThemes() {
-    const total = starsTotal(), cur = currentSkin(), next = THEMES.find(t => t.need > total);
+    const total = starsTotal(), cur = currentSkin(), next = nextTheme();
     $('themesStars').textContent = `누적 별 ${total}` + (next ? ` · 다음 테마 '${next.name}'까지 ${next.need - total}개` : ' · 모든 테마를 열었어요');
     const list = $('themeList'); list.textContent = '';
     for (const t of THEMES) {
-      const open = themeOpen(t), earned = total >= t.need;
+      const open = themeOpen(t), earned = isOwned(t);
       const card = document.createElement('div');
       card.className = 'theme-card' + (t.id === cur ? ' on' : '') + (open ? '' : ' locked');
       const prev = document.createElement('div');
@@ -1762,7 +1780,7 @@ function turnRhythm(S) {
   fillList('v2Lines', v2Lines());
 
   function boot(data) {
-    applySkin();
+    migrateOwned(); syncOwned(); applySkin();
     const newUser = !LS.get('wsurv.seenHelp', false);
     const showV2 = !newUser && !prefs.seenV2;
     if (showV2) {

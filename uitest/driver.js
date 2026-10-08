@@ -249,6 +249,33 @@
       $('ovThemes').querySelector('[data-close]').click(); $('ovSettings').querySelector('[data-close]').click();
       check('no horizontal scroll', noOverflow());
     }
+    if (SC === 'legacy') {
+      const skin = () => document.documentElement.dataset.skin;
+      const cards = () => [...document.querySelectorAll('#themeList .theme-card')];
+      check('theme opened under the old 15-star rule comes back', skin() === 'cafe', skin());
+      check('owned list created once', JSON.stringify(JSON.parse(localStorage.getItem('wsurv.themes.owned'))) === '["lab","cafe"]', localStorage.getItem('wsurv.themes.owned'));
+      $('btnSettings').click(); $('btnThemes').click();
+      check('cafe in use, next theme is gem', cards()[1].classList.contains('on') && $('themesStars').textContent.includes("다음 테마 '보석'까지 130개"), $('themesStars').textContent);
+      check('gem still locked by the new rule', cards()[2].querySelector('.btn').textContent === '별 130개 더 필요');
+      // a theme already owned stays usable whatever the star total says
+      localStorage.setItem('wsurv.themes.owned', JSON.stringify(['lab', 'cafe', 'gem']));
+      $('ovThemes').querySelector('[data-close]').click(); $('btnThemes').click();
+      check('owned gem selectable below its threshold', cards()[2].querySelector('.btn').textContent === '적용' && !cards()[2].querySelector('.btn').disabled, cards()[2].querySelector('.btn').textContent);
+      cards()[2].querySelector('.btn').click();
+      check('owned gem applied', skin() === 'gem');
+      check('next theme skips owned ones', $('themesStars').textContent.includes("다음 테마 '심해'까지 480개"), $('themesStars').textContent);
+      $('ovThemes').querySelector('[data-close]').click(); $('ovSettings').querySelector('[data-close]').click();
+      // a run past 30 stars must not announce cafe again
+      localStorage.setItem('wsurv.stars.total', '28');
+      const S = G();
+      S.bottles = [[0, 1, 2, 2], [1, 0, 3, 2], [3, 1, 0, 2], [3, 2, 3, 1], [0, 2, 1, 3], [1, 3, 2]];
+      S.turn = 45; S.cum = Array(45).fill(0); S.piece = [0];
+      S.zoneLog = [{ zone: 2, turn: 20, empties: 3, bonus: 120, undoUsed: 0, revive: false }, { zone: 3, turn: 40, empties: 3, bonus: 180, undoUsed: 0, revive: false }];
+      $('cup').click(); document.querySelectorAll('#rack .tube')[5].click();
+      await sleep(1600);
+      check('owned theme not announced again', JSON.parse(localStorage.getItem('wsurv.stars.total')) >= 30 && $('unlockRow').hidden, localStorage.getItem('wsurv.stars.total'));
+      check('board keeps the chosen theme after the run', skin() === 'gem');
+    }
     check('no script errors', window.__errors.length === 0, window.__errors.join(' | '));
   } catch (e) {
     check('driver exception', false, e && e.stack || e);
