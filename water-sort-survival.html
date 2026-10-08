@@ -229,6 +229,9 @@ body {
 .stage.hot { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--liq5) 70%, transparent), 0 0 14px color-mix(in srgb, var(--liq5) 35%, transparent); animation: hot .5s ease-in-out infinite alternate; }
 @keyframes hot { to { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--liq0) 70%, transparent), 0 0 20px color-mix(in srgb, var(--liq0) 30%, transparent); } }
 .stage.small .st-row, .stage.small .st-heat { display: none; }
+/* a short stage (360x740), or the stage over the score bar (tray on top), cannot hold a banner and the combo row at
+   once: the banner wins while it shows */
+.stage.tight.bn .st-row, .stage.over.bn .st-row { display: none; }
 .stage.over .st-combo { display: none; }
 .stage.over .st-row { bottom: auto; top: 50%; transform: translateY(-50%); }
 .banner-layer.staged { place-items: start center; }
@@ -966,9 +969,10 @@ function turnRhythm(S) {
   let unlock = Object.assign({ runs: 0, sawOver: false, flip: false }, LS.get('wsurv.unlock', {}));
   const savePrefs = () => LS.set('wsurv.prefs', prefs);
   const saveUnlock = () => LS.set('wsurv.unlock', unlock);
-  // Effects (docs/PROMPT_feel.md): 'base' keeps them as they were, 'juicy' adds flights, bursts and the stage. Stored
-  // only when picked, like the control scheme. Reduced effects tone either down to what reduced motion does.
-  const fxMode = () => prefs.fx === 'juicy' ? 'juicy' : 'base';
+  // Effects (docs/PROMPT_feel.md): 'juicy' (the default since checkpoint D) adds flights, bursts and the stage;
+  // 'base' keeps the effects of before. Stored only when picked, like the control scheme. Reduced effects tone either
+  // down to what reduced motion does.
+  const fxMode = () => prefs.fx === 'base' ? 'base' : 'juicy';
   const juicy = () => fxMode() === 'juicy' && !prefs.reduceFx;
   function applyFxPrefs() {
     document.documentElement.classList.toggle('fx-reduce', !!prefs.reduceFx);
@@ -1459,6 +1463,7 @@ function turnRhythm(S) {
     Object.assign(stage.style, { left: box.left + 'px', top: box.top + 'px', width: box.width + 'px', height: box.height + 'px' });
     stage.classList.toggle('over', over);
     stage.classList.toggle('small', !over && box.height < 56);
+    stage.classList.toggle('tight', !over && box.height < 96);
     Object.assign(bl.style, { inset: 'auto', left: bb.left + 'px', top: bb.top + 'px', width: bb.width + 'px', height: bb.height + 'px' });
     bl.classList.add('staged');
   }
@@ -1475,6 +1480,8 @@ function turnRhythm(S) {
     if (stageDirty || ex !== stageExtra) { stageDirty = false; stageExtra = ex; layoutStage(); }
   }
   try { document.fonts.ready.then(() => { stageDirty = true; if (S) paintStage(); }); } catch (e) { /* no font loading API */ }
+  // the stage knows when a banner shows (.bn), however it was shown
+  new MutationObserver(() => stage.classList.toggle('bn', !$('banner').hidden)).observe($('banner'), { attributes: true, attributeFilter: ['hidden'] });
   function callout(k) {
     const text = CALLS[Math.min(5, k)] || '';
     if (!text) return;

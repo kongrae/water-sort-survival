@@ -1,8 +1,8 @@
 // Runs uitest scenarios in headless Chrome and prints pass/fail counts. Test-only.
 // usage: node uitest/run.js [scenario ...] [--motion=reduce|full|both] [--only=<variant substring>]
 //   default: every scenario, both motion modes. Builds the pages first (make.js).
-// Headless Chrome on this PC reports prefers-reduced-motion unless --force-prefers-no-reduced-motion is given,
-// so "reduce" is the flagless run and "full" adds that flag.
+// "reduce" runs with --force-prefers-reduced-motion and "full" with --force-prefers-no-reduced-motion. (The reduce run
+// used to be flagless, relying on this PC's system setting to report reduced motion.)
 // A scenario is one frame page (frame-<sc>.html) or several variants (frame-<sc>~<variant>.html), each run in its
 // own browser profile because the game keeps its prefs and rules in localStorage.
 // Rows a page sends as { data } (geom measurements) are saved to research/controls/out/<sc>-<motion>.json, the feel
@@ -37,7 +37,8 @@ for (const motion of motions) {
       const size = fs.existsSync(sizeFile) ? fs.readFileSync(sizeFile, 'utf8').trim() : '900,1000';
       const flags = ['--headless=new', '--disable-gpu', '--no-first-run', '--hide-scrollbars', '--allow-file-access-from-files',
         `--user-data-dir=${prof}`, `--window-size=${size}`, '--virtual-time-budget=120000'];
-      if (motion === 'full') flags.push('--force-prefers-no-reduced-motion');
+      // both modes are forced: the system setting this used to follow can change (it did during the feel work)
+      flags.push(motion === 'full' ? '--force-prefers-no-reduced-motion' : '--force-prefers-reduced-motion');
       let out = '';
       try {
         out = execFileSync(CHROME, flags.concat(['--dump-dom', 'file:///' + path.join(DIR, page).replace(/\\/g, '/')]),

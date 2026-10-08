@@ -255,7 +255,7 @@ window.__feelTests = async function (T, H) {
     $('btnSettings').click(); await sleep(20);
     const lab = $('labBox'), sh = document.querySelector('#ovSettings .sheet');
     ck('[U4] prototype settings are folded away', lab.tagName === 'DETAILS' && !lab.open && lab.contains($('ptText')) && lab.contains($('optControls')) && lab.contains($('setForm')) && !lab.contains($('optSound')) && !lab.contains($('optFx')));
-    ck('[U4] the effects setting shows base', $('optFx').value === 'base' && !('fx' in stored()), JSON.stringify(stored()));
+    ck('[U4] the effects setting shows the base pick', $('optFx').value === 'base', JSON.stringify(stored()));
     const folded = sh.scrollHeight;
     lab.open = true; await sleep(20);
     const opened = sh.scrollHeight;
@@ -292,6 +292,8 @@ window.__feelTests = async function (T, H) {
 
   // ---------- U5: a first visit ----------
   async function newUserTests() {
+    // checkpoint D: the juicy effects are the default for a player who never picked (nothing stored)
+    ck('[default] nothing picked: the effects are juicy, and the default is not stored', document.documentElement.dataset.fx === 'juicy' && !('fx' in stored()) && getComputedStyle($('stage')).display !== 'none', JSON.stringify(stored()));
     ck('[U5] a first visit opens the help without the new-rules list', !$('ovHelp').hidden && $('helpV2').hidden && $('helpV2Title').hidden);
     ck('[U5] no coach while the help is open', q('.coach-dot') === 0);
     G().piece = [2];   // one layer: placed on the empty board it leaves no pour, so the pour coach waits for the board below
@@ -326,16 +328,19 @@ window.__feelTests = async function (T, H) {
     s.piece = [0, 1]; s.flipped = false; s.streak = 4; s.turnClears = 0; s.turn = Math.max(s.turn, 10);
     window.__boot({ S: s }); await sleep(120);
     const rk0 = box($('rack'));
-    // show the biggest things the stage holds: a banner, the combo with a callout, the heat bar
+    // show the biggest things the stage holds: the combo with a callout and the heat bar, then a banner too
     const bn = $('banner');
-    bn.textContent = '최고 기록 경신'; bn.className = 'banner big'; bn.hidden = false;
+    const vis = el => el.offsetParent ? box(el) : null;
     $('stCall').textContent = '최고예요!!';
     $('stHeat').hidden = false; $('stHeatFill').style.width = '100%';
     await sleep(30);
+    const alone = { combo: vis($('stCombo')), call: vis($('stCall')) };
+    bn.textContent = '최고 기록 경신'; bn.className = 'banner big'; bn.hidden = false;
+    await sleep(30);
     const parts = { rack: box($('rack')), status: box($('status')), actions: box(document.querySelector('.actions')), extra: $('extraRow').hidden ? null : box($('extraRow')) };
-    const shown = { banner: box(bn), combo: $('stCombo').offsetParent ? box($('stCombo')) : null, call: $('stCall').offsetParent ? box($('stCall')) : null, stage: box($('stage')) };
+    const shown = { banner: box(bn), combo: vis($('stCombo')), call: vis($('stCall')), stage: box($('stage')) };
     const d = { size, tray: TRAY, rules, vw: innerWidth, vh: innerHeight, scrollW: document.documentElement.scrollWidth, scrollH: document.documentElement.scrollHeight,
-      stage: shown.stage, banner: shown.banner, combo: shown.combo, call: shown.call, rack: parts.rack, rackShift: parts.rack.t - rk0.t };
+      stage: shown.stage, banner: shown.banner, combo: alone.combo, call: alone.call, comboWithBanner: shown.combo, callWithBanner: shown.call, rack: parts.rack, rackShift: parts.rack.t - rk0.t };
     // stuck: the give-up row appears (tray under the bottles: in the free space); does anything overlap or move?
     const st = G(); st.stuck = 'room'; window.__boot({ S: st }); await sleep(80);
     bn.hidden = false;
@@ -354,6 +359,9 @@ window.__feelTests = async function (T, H) {
       if (!b) continue;
       g(`the ${k} clears the bottles, the status line and the buttons`, !hit(b, parts.rack) && !hit(b, parts.status) && !hit(b, parts.actions), JSON.stringify({ [k]: b, rack: parts.rack.t, status: parts.status.t }));
     }
+    // a short stage, or the stage over the score bar, hides the combo row while a banner shows (checkpoint D);
+    // elsewhere they sit apart
+    g('a banner and the stage combo do not overlap', !hit(d.banner, d.comboWithBanner) && !hit(d.banner, d.callWithBanner), JSON.stringify({ banner: d.banner, combo: d.comboWithBanner, call: d.callWithBanner }));
     g('stuck: the banner clears the give-up row, the bottles and the status line', !hit(d.stuck.banner, d.stuck.extra) && !hit(d.stuck.banner, parts.rack) && !hit(d.stuck.banner, parts.status), JSON.stringify(d.stuck));
     if (TRAY === 'bottom' && rules === 'default') g('the combo fits the stage', !!d.combo && d.combo.t >= d.stage.t - 1 && d.combo.b <= d.stage.b + 1, JSON.stringify({ combo: d.combo, stage: d.stage }));
   }

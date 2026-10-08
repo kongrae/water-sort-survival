@@ -31,8 +31,10 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     var pr = { seenV2: true };
     if (p.get('controls')) pr.controls = p.get('controls');
     if (p.get('tray')) pr.tray = p.get('tray');
-    // feel: the effects setting, and reduced effects set either way (rfx=1/0) instead of following the system
-    if (p.get('fx')) pr.fx = p.get('fx');
+    // the effects setting, and reduced effects set either way (rfx=1/0) instead of following the system. Scenarios
+    // written before the juicy effects became the default (controls, geom, manual: real.js) keep the base effects
+    // unless they ask; feel without fx plays the default
+    if (p.get('fx')) pr.fx = p.get('fx'); else if (sc !== 'feel') pr.fx = 'base';
     if (p.get('rfx')) pr.reduceFx = p.get('rfx') === '1';
     // case=newuser: a first visit (no help seen yet)
     if (p.get('case') !== 'newuser') set('wsurv.seenHelp', true);
@@ -69,10 +71,10 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     };
   }
   // the scenarios written before tapPlace + low became the default play with the controls of that time, so their
-  // checks stay as they were (docs/PROMPT_controls2.md 8)
+  // checks stay as they were (docs/PROMPT_controls2.md 8); likewise the base effects (docs/PROMPT_feel.md 10.1)
   if (sc !== 'controls' && sc !== 'geom' && sc !== 'manual' && sc !== 'feel') {
     var pv = JSON.parse(localStorage.getItem('wsurv.prefs') || '{}');
-    pv.controls = 'classic'; pv.tray = 'top';
+    pv.controls = 'classic'; pv.tray = 'top'; pv.fx = 'base';
     set('wsurv.prefs', pv);
   }
   window.__errors = [];
@@ -121,7 +123,7 @@ for (const tray of ['top', 'bottom']) {
 // feel (docs/PROMPT_feel.md): both effect settings at 390x844, reduced effects, a first visit, and the juicy
 // layout's geometry (the stage and the banner) at the geom sizes
 for (const fx of ['base', 'juicy']) {
-  for (const pt of ['touch', 'mouse']) framePage('feel', `${fx}-${pt}`, { src: `uitest.html?scenario=feel${fx === 'juicy' ? '&fx=juicy&rfx=0' : ''}&pt=${pt}`, w: 390, h: 844 });
+  for (const pt of ['touch', 'mouse']) framePage('feel', `${fx}-${pt}`, { src: `uitest.html?scenario=feel${fx === 'juicy' ? '&fx=juicy&rfx=0' : '&fx=base'}&pt=${pt}`, w: 390, h: 844 });
 }
 framePage('feel', 'juicy-rfx-touch', { src: 'uitest.html?scenario=feel&fx=juicy&rfx=1&pt=touch', w: 390, h: 844 });
 framePage('feel', 'case-newuser', { src: 'uitest.html?scenario=feel&case=newuser&pt=touch', w: 390, h: 844 });
