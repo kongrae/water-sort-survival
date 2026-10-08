@@ -27,7 +27,7 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   if (p.get('skin')) { set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true, skin: p.get('skin'), tryLocked: true }); set('wsurv.unlock', { runs: 3, sawOver: true, flip: true }); }
   // hot.ready hands boot() to the tests (window.__boot({ S })) so a test can re-render after editing the live state
   window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; }, ready: function (cb) { window.__boot = cb; cb({}); } } };
-  if (sc === 'controls' || sc === 'geom') {
+  if (sc === 'controls' || sc === 'geom' || sc === 'manual') {
     var pr = { seenV2: true };
     if (p.get('controls')) pr.controls = p.get('controls');
     if (p.get('tray')) pr.tray = p.get('tray');

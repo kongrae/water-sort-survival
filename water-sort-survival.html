@@ -1249,7 +1249,7 @@ function turnRhythm(S) {
     sel = null; render();
   });
   // long presses on bottles must not open the browser's menu (tapPlace uses them)
-  const noMenu = e => { if (ctl() === 'tapPlace' && e.target.closest('.tube')) e.preventDefault(); };
+  const noMenu = e => { if (ctl() === 'tapPlace') e.preventDefault(); };
   rack.addEventListener('contextmenu', noMenu);
   spareSlot.addEventListener('contextmenu', noMenu);
 
@@ -1267,6 +1267,8 @@ function turnRhythm(S) {
     const i = slotAt(e.clientX, e.clientY);
     if (i === null) return;
     gest = { kind: 'press', id: e.pointerId, x: e.clientX, y: e.clientY, slot: i, moved: false, held: false, timer: 0, over: null };
+    // capture on the container, which render() keeps: the pressed bottle button is rebuilt during the gesture
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) { /* the window listeners follow the pointer anyway */ }
     const s = slotsOf(S)[i];
     if (ctl() === 'tapPlace' && typeof sel !== 'number') {
       // a press held this long is not a tap: on a bottle with liquid it picks the pour source

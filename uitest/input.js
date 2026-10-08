@@ -82,7 +82,7 @@ window.__inputTests = async function (T) {
       if (PT === 'touch' && !p.done && !p.longPress && p.maxD <= SLOP && performance.now() - p.t0 >= LONG) {
         p.longPress = true;
         const ev = new MouseEvent('contextmenu', { bubbles: true, cancelable: true, composed: true, clientX: p.x, clientY: p.y });
-        route(p, p.x, p.y).dispatchEvent(ev);
+        hit(p.x, p.y).dispatchEvent(ev);   // the menu goes to the element under the finger, not the capture target
         if (!ev.defaultPrevented) { p.menu = true; cancel(p); }
       }
     }
