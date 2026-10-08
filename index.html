@@ -337,6 +337,8 @@ body {
 <div class="overlay" id="ovSettings" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setTitle">
     <h2 id="setTitle">설정</h2>
+    <h3>클라우드 저장</h3>
+    <p class="note" id="cloudStatus">이 브라우저에만 저장돼요.</p>
     <h3>테마</h3>
     <button class="btn" id="btnThemes" type="button">테마 고르기</button>
     <label class="check"><input type="checkbox" id="optTryLocked"><span>잠긴 테마도 써보기<small>프로토타입 확인용이에요. 별이 모자라도 모든 테마를 고를 수 있어요.</small></span></label>
@@ -823,6 +825,7 @@ function turnRhythm(S) {
     get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
     del(k) { try { localStorage.removeItem(k); } catch (e) { /* storage unavailable */ } },
+    keys() { try { return Object.keys(localStorage); } catch (e) { return []; } },
   };
   const rack = $('rack'), cup = $('cup'), spareSlot = $('spareSlot');
   const reducedMotion = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
@@ -1508,6 +1511,7 @@ function turnRhythm(S) {
     const total = runStars(), add = total - (S.starsAdded || 0);
     if (add > 0) {
       LS.set('wsurv.stars.total', starsTotal() + add); S.starsAdded = total;
+      LS.set('wsurv.stars.mine', LS.get('wsurv.stars.mine', 0) + add);   // stars earned on this device (cloud save sums devices)
       // themes this run opened for the first time (already owned ones are not announced again)
       const opened = syncOwned();
       if (opened.length) S.newThemes = (S.newThemes || []).concat(opened);
@@ -1518,7 +1522,7 @@ function turnRhythm(S) {
       S.overShown = true;
       S.newBest = S.score > 0 && S.score > (S.bestAtStart || 0);
       if (S.score > LS.get(bestKey(), 0)) LS.set(bestKey(), S.score);
-      endRunOnce(); savePace(); addStars();
+      endRunOnce(); savePace(); addStars(); cloudSaveSoon();
       LS.set('wsurv.game.' + S.mode, S);
     }
     const r = S.rules, gave = S.overReason === 'gaveup';
@@ -1779,6 +1783,107 @@ function turnRhythm(S) {
   $('btnThemesOver').addEventListener('click', openThemes);
   $('btnUnlockApply').addEventListener('click', e => { const b = e.currentTarget; useSkin(b.dataset.skin); b.hidden = true; render(); });
 
+  // ---------- cloud save (claude.ai artifact viewer only) ----------
+  // Each device writes ONE document of its own under the viewer's private subtree data/users/<id>/, so devices never
+  // overwrite each other. Every device reads all of them and merges: stars are summed per device, owned themes are
+  // united, records take the maximum. In-progress games and display settings stay on the device.
+  // Outside the viewer (GitHub Pages, a saved file) there is no claude.use, and everything stays in this browser.
+  const cloud = { state: 'local', col: null, unsub: null, devices: 0, savedAt: 0, lastBody: '', busy: false, again: false, timer: 0 };
+  function deviceId() {
+    let id = LS.get('wsurv.device', null);
+    if (!id) { id = 'dev-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10); LS.set('wsurv.device', id); }
+    return id;
+  }
+  function localSave() {
+    const best = [], daily = [], starsDaily = [];
+    for (const k of LS.keys()) {
+      if (k.startsWith('wsurv.best.')) best.push([k.slice(11), LS.get(k, 0)]);
+      else if (k.startsWith('wsurv.daily.') && k.endsWith('.v2')) daily.push([k.slice(12), LS.get(k, 0)]);
+      else if (k.startsWith('wsurv.stars.daily.')) starsDaily.push(k.slice(18));
+    }
+    daily.sort((a, b) => a[0] < b[0] ? -1 : 1);
+    starsDaily.sort();
+    return {
+      v: 1, device: deviceId(), starsMine: LS.get('wsurv.stars.mine', 0), owned: [...ownedSet()].sort(),
+      best, daily: daily.slice(-120), starsDaily: starsDaily.slice(-120),
+      unlock: { runs: unlock.runs || 0, sawOver: !!unlock.sawOver, flip: !!unlock.flip },
+    };
+  }
+  // Applies every device's document to local storage. Idempotent, never writes to the cloud.
+  function mergeCloud(docs) {
+    const me = deviceId();
+    const all = docs.map(d => d.exists ? d.data() : null).filter(x => x && x.v === 1);
+    let others = 0;
+    const own = ownedSet();
+    for (const x of all) {
+      if (x.device !== me) others += Number(x.starsMine) || 0;
+      (x.owned || []).forEach(id => own.add(id));
+      for (const [k, v] of x.best || []) if (Number(v) > LS.get('wsurv.best.' + k, 0)) LS.set('wsurv.best.' + k, Number(v));
+      for (const [k, v] of x.daily || []) if (Number(v) > LS.get('wsurv.daily.' + k, 0)) LS.set('wsurv.daily.' + k, Number(v));
+      for (const s of x.starsDaily || []) if (!LS.get('wsurv.stars.daily.' + s, false)) LS.set('wsurv.stars.daily.' + s, true);
+      if (x.unlock) {
+        unlock.runs = Math.max(unlock.runs || 0, Number(x.unlock.runs) || 0);
+        unlock.sawOver = unlock.sawOver || !!x.unlock.sawOver;
+        unlock.flip = unlock.flip || !!x.unlock.flip;
+      }
+    }
+    saveUnlock();
+    LS.set('wsurv.themes.owned', [...own]);
+    LS.set('wsurv.stars.total', LS.get('wsurv.stars.mine', 0) + others);
+    syncOwned();
+    cloud.devices = Math.max(1, all.filter(x => x.device !== me).length + 1);
+    applySkin();
+    if (S) { render(); if (!$('ovThemes').hidden) buildThemes(); }
+    showCloudStatus();
+  }
+  // One write at a time to this device's document, only when its content changed.
+  async function cloudSave() {
+    if (!cloud.col) return;
+    if (cloud.busy) { cloud.again = true; return; }
+    const body = localSave(), key = JSON.stringify(body);
+    if (key === cloud.lastBody) return;
+    cloud.busy = true;
+    try {
+      await cloud.col.doc(deviceId()).set(Object.assign(body, { savedAt: new Date().toISOString() }));
+      cloud.lastBody = key; cloud.savedAt = Date.now(); cloud.state = 'on';
+    } catch (e) {
+      cloud.state = e && (e.code === 'revoked' || e.code === 'not_granted' || e.code === 'invalid_argument') ? 'denied' : 'error';
+    }
+    cloud.busy = false;
+    showCloudStatus();
+    if (cloud.again) { cloud.again = false; cloudSave(); }
+  }
+  function cloudSaveSoon() { if (!cloud.col) return; clearTimeout(cloud.timer); cloud.timer = setTimeout(cloudSave, 800); }
+  function showCloudStatus() {
+    const t = new Date(cloud.savedAt);
+    const hm = cloud.savedAt ? ` · 마지막 저장 ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}` : '';
+    $('cloudStatus').textContent = {
+      local: '이 브라우저에만 저장돼요. claude.ai 아티팩트 링크에서 로그인한 채로 열면 계정에 저장돼요.',
+      connecting: 'claude.ai 계정에 연결하는 중이에요.',
+      on: `claude.ai 계정에 저장돼요. 별·연 테마·최고 기록이 기기 ${cloud.devices}대 사이에 이어져요${hm}.`,
+      denied: '클라우드 저장을 쓸 수 없어요. 이 브라우저에만 저장돼요.',
+      error: '클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.',
+    }[cloud.state];
+  }
+  async function cloudInit() {
+    const C = window.claude;
+    if (!C || typeof C.use !== 'function') { showCloudStatus(); return; }
+    cloud.state = 'connecting'; showCloudStatus();
+    try {
+      const [db, user] = await Promise.all([C.use('db'), C.use('user')]);
+      const uid = user ? await user.id() : null;
+      if (!db || !uid) { cloud.state = 'local'; showCloudStatus(); return; }
+      const col = db.collection('data/users/' + uid);
+      mergeCloud((await col.get()).docs);
+      cloud.col = col; cloud.state = 'on';
+      await cloudSave();
+      cloud.unsub = col.onSnapshot(qs => mergeCloud(qs.docs), () => { cloud.state = 'error'; showCloudStatus(); });
+    } catch (e) {
+      cloud.state = e && (e.code === 'revoked' || e.code === 'not_granted') ? 'denied' : 'error';
+      showCloudStatus();
+    }
+  }
+
   function v2Lines() {
     const n = DEFAULT_RULES.flipLimit;
     return ['넣기로 완성해도 콤보가 이어져요', `⇅로 조각을 뒤집을 수 있어요 (판당 ${n}회)`, '20턴마다 색 구역, 빈 병을 남기면 돌파 보너스'];
@@ -1788,6 +1893,8 @@ function turnRhythm(S) {
   fillList('v2Lines', v2Lines());
 
   function boot(data) {
+    // stars earned before cloud save existed all belong to this device
+    if (LS.get('wsurv.stars.mine', null) === null) LS.set('wsurv.stars.mine', starsTotal());
     migrateOwned(); syncOwned(); applySkin();
     const newUser = !LS.get('wsurv.seenHelp', false);
     const showV2 = !newUser && !prefs.seenV2;
@@ -1805,6 +1912,7 @@ function turnRhythm(S) {
     }
     if (showV2) $('ovV2').hidden = false;
     if (newUser) { $('ovHelp').hidden = false; LS.set('wsurv.seenHelp', true); prefs.seenV2 = true; savePrefs(); }
+    cloudInit();
   }
   try { window.claude?.hot?.snapshot?.(() => ({ S })); } catch (e) { /* hot reload is optional */ }
   window.claude?.hot?.ready ? window.claude.hot.ready(boot) : boot(window.claude?.hot?.data ?? {});
