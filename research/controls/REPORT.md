@@ -29,7 +29,8 @@
 ### 좌표 (390x844, rules=default)
 
 - top: source=research/controls/out/geom-reduce.json; cup (53, 201.5); flip (107, 209); spare (335.625, 215); bottles x = [41.7, 103, 164.3, 225.6, 287, 348.3], y = [437.8]
-- bottom: source=research/controls/out/geom-reduce.json; cup (53, 577.5); flip (107, 585); spare (335.625, 591); bottles x = [41.7, 103, 164.3, 225.6, 287, 348.3], y = [432.3]
+- bottom: source=research/controls/out/geom-reduce.json; cup (53, 521.5); flip (107, 529); spare (335.625, 535); bottles x = [41.7, 103, 164.3, 225.6, 287, 348.3], y = [376.3]
+- low: source=research/controls/out/geom-reduce.json; cup (53, 201.5); flip (107, 209); spare (335.625, 215); bottles x = [41.7, 103, 164.3, 225.6, 287, 348.3], y = [622.3]
 
 ## 기준선 비교 (ctl-0..49)
 
@@ -48,8 +49,8 @@
 
 | bot | seeds | avg turns | alive@300 | pours/turn | flips/turn | zero-pour turns | same-source pours | pours after last place | time (s) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| greedy | 200 | 47.0 | 0 | 0.71 | 0.04 | 52.9% | 12.9% | 0 | 5.0 |
-| bot2 | 200 | 125.9 | 0 | 1.30 | 0.01 | 33.2% | 19.0% | 0 | 6.1 |
+| greedy | 200 | 47.0 | 0 | 0.71 | 0.04 | 52.9% | 12.9% | 0 | 5.7 |
+| bot2 | 200 | 125.9 | 0 | 1.30 | 0.01 | 33.2% | 19.0% | 0 | 6.6 |
 
 턴당 pour 수 분포:
 
@@ -70,6 +71,11 @@
 | greedy | bottom | tapPlace-drag | 1.04 | 0.00 | 0.71 | 1.75 | -49% | 267 | -50% |
 | greedy | bottom | tapPlace-hold | 2.46 | 0.71 | 0.00 | 2.46 | -29% | 267 | -50% |
 | greedy | bottom | armed | 3.40 | 0.00 | 0.00 | 3.40 | -2% | 530 | -1% |
+| greedy | low | classic-taptap | 3.46 | 0.00 | 0.00 | 3.46 | - | 1035 | - |
+| greedy | low | classic-drag | 1.46 | 0.00 | 1.00 | 2.46 | -29% | 1035 | +0% |
+| greedy | low | tapPlace-drag | 1.04 | 0.00 | 0.71 | 1.75 | -49% | 292 | -72% |
+| greedy | low | tapPlace-hold | 2.46 | 0.71 | 0.00 | 2.46 | -29% | 292 | -72% |
+| greedy | low | armed | 3.40 | 0.00 | 0.00 | 3.40 | -2% | 1016 | -2% |
 | bot2 | top | classic-taptap | 4.61 | 0.00 | 0.00 | 4.61 | - | 812 | - |
 | bot2 | top | classic-drag | 2.61 | 0.00 | 1.00 | 3.61 | -22% | 812 | +0% |
 | bot2 | top | tapPlace-drag | 1.01 | 0.00 | 1.30 | 2.31 | -50% | 400 | -51% |
@@ -80,6 +86,11 @@
 | bot2 | bottom | tapPlace-drag | 1.01 | 0.00 | 1.30 | 2.31 | -50% | 398 | -39% |
 | bot2 | bottom | tapPlace-hold | 3.61 | 1.30 | 0.00 | 3.61 | -22% | 398 | -39% |
 | bot2 | bottom | armed | 4.94 | 0.00 | 0.00 | 4.94 | +7% | 760 | +17% |
+| bot2 | low | classic-taptap | 4.61 | 0.00 | 0.00 | 4.61 | - | 1160 | - |
+| bot2 | low | classic-drag | 2.61 | 0.00 | 1.00 | 3.61 | -22% | 1160 | +0% |
+| bot2 | low | tapPlace-drag | 1.01 | 0.00 | 1.30 | 2.31 | -50% | 407 | -65% |
+| bot2 | low | tapPlace-hold | 3.61 | 1.30 | 0.00 | 3.61 | -22% | 407 | -65% |
+| bot2 | low | armed | 4.94 | 0.00 | 0.00 | 4.94 | +7% | 1450 | +25% |
 
 ## 결과: ctl-0..49
 
@@ -100,6 +111,11 @@
 | greedy | bottom | tapPlace-drag | 1.04 | 0.00 | 0.70 | 1.74 | -49% | 267 | -50% |
 | greedy | bottom | tapPlace-hold | 2.44 | 0.70 | 0.00 | 2.44 | -29% | 267 | -50% |
 | greedy | bottom | armed | 3.38 | 0.00 | 0.00 | 3.38 | -2% | 529 | -1% |
+| greedy | low | classic-taptap | 3.44 | 0.00 | 0.00 | 3.44 | - | 1033 | - |
+| greedy | low | classic-drag | 1.44 | 0.00 | 1.00 | 2.44 | -29% | 1033 | +0% |
+| greedy | low | tapPlace-drag | 1.04 | 0.00 | 0.70 | 1.74 | -49% | 294 | -72% |
+| greedy | low | tapPlace-hold | 2.44 | 0.70 | 0.00 | 2.44 | -29% | 294 | -72% |
+| greedy | low | armed | 3.38 | 0.00 | 0.00 | 3.38 | -2% | 1013 | -2% |
 | bot2 | top | classic-taptap | 4.61 | 0.00 | 0.00 | 4.61 | - | 814 | - |
 | bot2 | top | classic-drag | 2.61 | 0.00 | 1.00 | 3.61 | -22% | 814 | +0% |
 | bot2 | top | tapPlace-drag | 1.01 | 0.00 | 1.30 | 2.31 | -50% | 402 | -51% |
@@ -110,13 +126,20 @@
 | bot2 | bottom | tapPlace-drag | 1.01 | 0.00 | 1.30 | 2.31 | -50% | 399 | -39% |
 | bot2 | bottom | tapPlace-hold | 3.61 | 1.30 | 0.00 | 3.61 | -22% | 399 | -39% |
 | bot2 | bottom | armed | 4.94 | 0.00 | 0.00 | 4.94 | +7% | 760 | +16% |
+| bot2 | low | classic-taptap | 4.61 | 0.00 | 0.00 | 4.61 | - | 1162 | - |
+| bot2 | low | classic-drag | 2.61 | 0.00 | 1.00 | 3.61 | -22% | 1162 | +0% |
+| bot2 | low | tapPlace-drag | 1.01 | 0.00 | 1.30 | 2.31 | -50% | 408 | -65% |
+| bot2 | low | tapPlace-hold | 3.61 | 1.30 | 0.00 | 3.61 | -22% | 408 | -65% |
+| bot2 | low | armed | 4.94 | 0.00 | 0.00 | 4.94 | +7% | 1446 | +24% |
 
 ## 관찰 (200 시드)
 
 - greedy / top: actions/turn 최소 tapPlace-drag (1.75), 최대 classic-taptap (3.46); travel px/turn 최소 tapPlace-drag = tapPlace-hold (274), 최대 classic-taptap = classic-drag (692)
 - greedy / bottom: actions/turn 최소 tapPlace-drag (1.75), 최대 classic-taptap (3.46); travel px/turn 최소 tapPlace-drag = tapPlace-hold (267), 최대 classic-taptap = classic-drag (537)
+- greedy / low: actions/turn 최소 tapPlace-drag (1.75), 최대 classic-taptap (3.46); travel px/turn 최소 tapPlace-drag = tapPlace-hold (292), 최대 classic-taptap = classic-drag (1035)
 - bot2 / top: actions/turn 최소 tapPlace-drag (2.31), 최대 armed (4.94); travel px/turn 최소 tapPlace-drag = tapPlace-hold (400), 최대 armed (979)
 - bot2 / bottom: actions/turn 최소 tapPlace-drag (2.31), 최대 armed (4.94); travel px/turn 최소 tapPlace-drag = tapPlace-hold (398), 최대 armed (760)
+- bot2 / low: actions/turn 최소 tapPlace-drag (2.31), 최대 armed (4.94); travel px/turn 최소 tapPlace-drag = tapPlace-hold (407), 최대 armed (1450)
 
 ## 주의
 

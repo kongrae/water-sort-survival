@@ -1,6 +1,6 @@
 {
  "bot": "bot2",
- "generatedAt": "2026-10-08T02:13:00.972Z",
+ "generatedAt": "2026-10-08T06:25:26.353Z",
  "script": "research/controls/count-actions.js",
  "rules": {
   "bottles": 6,
@@ -33,7 +33,7 @@
  "seeds": 200,
  "firstSubset": 50,
  "maxTurns": 300,
- "secs": 6.129,
+ "secs": 6.565,
  "geometry": [
   {
    "tray": "top",
@@ -84,40 +84,83 @@
    "file": "research/controls/out/geom-reduce.json",
    "cup": {
     "cx": 53,
-    "cy": 577.5
+    "cy": 521.5
    },
    "flip": {
     "cx": 107,
-    "cy": 585
+    "cy": 529
    },
    "spare": {
     "cx": 335.625,
-    "cy": 591
+    "cy": 535
    },
    "bottles": [
     {
      "cx": 41.6640625,
-     "cy": 432.25
+     "cy": 376.25
     },
     {
      "cx": 102.9921875,
-     "cy": 432.25
+     "cy": 376.25
     },
     {
      "cx": 164.3203125,
-     "cy": 432.25
+     "cy": 376.25
     },
     {
      "cx": 225.6484375,
-     "cy": 432.25
+     "cy": 376.25
     },
     {
      "cx": 286.984375,
-     "cy": 432.25
+     "cy": 376.25
     },
     {
      "cx": 348.328125,
-     "cy": 432.25
+     "cy": 376.25
+    }
+   ]
+  },
+  {
+   "tray": "low",
+   "source": "file",
+   "file": "research/controls/out/geom-reduce.json",
+   "cup": {
+    "cx": 53,
+    "cy": 201.5
+   },
+   "flip": {
+    "cx": 107,
+    "cy": 209
+   },
+   "spare": {
+    "cx": 335.625,
+    "cy": 215
+   },
+   "bottles": [
+    {
+     "cx": 41.6640625,
+     "cy": 622.25
+    },
+    {
+     "cx": 102.9921875,
+     "cy": 622.25
+    },
+    {
+     "cx": 164.3203125,
+     "cy": 622.25
+    },
+    {
+     "cx": 225.6484375,
+     "cy": 622.25
+    },
+    {
+     "cx": 286.984375,
+     "cy": 622.25
+    },
+    {
+     "cx": 348.328125,
+     "cy": 622.25
     }
    ]
   }
@@ -283,6 +326,43 @@
       "actionsPerTurn": 4.9433,
       "travelPxPerTurn": 759.9741
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "tapsPerTurn": 4.6078,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 0,
+      "actionsPerTurn": 4.6078,
+      "travelPxPerTurn": 1159.5892
+     },
+     "classic-drag": {
+      "tapsPerTurn": 2.6078,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 1,
+      "actionsPerTurn": 3.6078,
+      "travelPxPerTurn": 1159.5892
+     },
+     "tapPlace-drag": {
+      "tapsPerTurn": 1.014,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 1.2969,
+      "actionsPerTurn": 2.3109,
+      "travelPxPerTurn": 406.7772
+     },
+     "tapPlace-hold": {
+      "tapsPerTurn": 3.6078,
+      "holdsPerTurn": 1.2969,
+      "dragsPerTurn": 0,
+      "actionsPerTurn": 3.6078,
+      "travelPxPerTurn": 406.7772
+     },
+     "armed": {
+      "tapsPerTurn": 4.9433,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 0,
+      "actionsPerTurn": 4.9433,
+      "travelPxPerTurn": 1450.2559
+     }
     }
    }
   },
@@ -382,6 +462,43 @@
       "actionsPerTurn": 4.9402,
       "travelPxPerTurn": 760.0683
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "tapsPerTurn": 4.6129,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 0,
+      "actionsPerTurn": 4.6129,
+      "travelPxPerTurn": 1161.6554
+     },
+     "classic-drag": {
+      "tapsPerTurn": 2.6129,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 1,
+      "actionsPerTurn": 3.6129,
+      "travelPxPerTurn": 1161.6554
+     },
+     "tapPlace-drag": {
+      "tapsPerTurn": 1.0148,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 1.2991,
+      "actionsPerTurn": 2.3139,
+      "travelPxPerTurn": 408.2793
+     },
+     "tapPlace-hold": {
+      "tapsPerTurn": 3.6129,
+      "holdsPerTurn": 1.2991,
+      "dragsPerTurn": 0,
+      "actionsPerTurn": 3.6129,
+      "travelPxPerTurn": 408.2793
+     },
+     "armed": {
+      "tapsPerTurn": 4.9402,
+      "holdsPerTurn": 0,
+      "dragsPerTurn": 0,
+      "actionsPerTurn": 4.9402,
+      "travelPxPerTurn": 1445.8291
+     }
     }
    }
   }
@@ -474,6 +591,38 @@
       "drags": 0,
       "travel": 138230.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 830,
+      "holds": 0,
+      "drags": 0,
+      "travel": 207678.8
+     },
+     "classic-drag": {
+      "taps": 472,
+      "holds": 0,
+      "drags": 179,
+      "travel": 207678.8
+     },
+     "tapPlace-drag": {
+      "taps": 181,
+      "holds": 0,
+      "drags": 235,
+      "travel": 73490.9
+     },
+     "tapPlace-hold": {
+      "taps": 651,
+      "holds": 235,
+      "drags": 0,
+      "travel": 73490.9
+     },
+     "armed": {
+      "taps": 893,
+      "holds": 0,
+      "drags": 0,
+      "travel": 262792.3
+     }
     }
    }
   },
@@ -563,6 +712,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 181033.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1070,
+      "holds": 0,
+      "drags": 0,
+      "travel": 262091.9
+     },
+     "classic-drag": {
+      "taps": 632,
+      "holds": 0,
+      "drags": 219,
+      "travel": 262091.9
+     },
+     "tapPlace-drag": {
+      "taps": 221,
+      "holds": 0,
+      "drags": 315,
+      "travel": 94885.9
+     },
+     "tapPlace-hold": {
+      "taps": 851,
+      "holds": 315,
+      "drags": 0,
+      "travel": 94885.9
+     },
+     "armed": {
+      "taps": 1167,
+      "holds": 0,
+      "drags": 0,
+      "travel": 342775.8
      }
     }
    }
@@ -654,6 +835,38 @@
       "drags": 0,
       "travel": 73587.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 472,
+      "holds": 0,
+      "drags": 0,
+      "travel": 120935.9
+     },
+     "classic-drag": {
+      "taps": 256,
+      "holds": 0,
+      "drags": 108,
+      "travel": 120935.9
+     },
+     "tapPlace-drag": {
+      "taps": 108,
+      "holds": 0,
+      "drags": 128,
+      "travel": 38813.3
+     },
+     "tapPlace-hold": {
+      "taps": 364,
+      "holds": 128,
+      "drags": 0,
+      "travel": 38813.3
+     },
+     "armed": {
+      "taps": 498,
+      "holds": 0,
+      "drags": 0,
+      "travel": 143176
+     }
     }
    }
   },
@@ -743,6 +956,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 78671
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 504,
+      "holds": 0,
+      "drags": 0,
+      "travel": 120798.3
+     },
+     "classic-drag": {
+      "taps": 296,
+      "holds": 0,
+      "drags": 104,
+      "travel": 120798.3
+     },
+     "tapPlace-drag": {
+      "taps": 106,
+      "holds": 0,
+      "drags": 147,
+      "travel": 43135.4
+     },
+     "tapPlace-hold": {
+      "taps": 400,
+      "holds": 147,
+      "drags": 0,
+      "travel": 43135.4
+     },
+     "armed": {
+      "taps": 540,
+      "holds": 0,
+      "drags": 0,
+      "travel": 153094.1
      }
     }
    }
@@ -834,6 +1079,38 @@
       "drags": 0,
       "travel": 102446.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 592,
+      "holds": 0,
+      "drags": 0,
+      "travel": 148797.4
+     },
+     "classic-drag": {
+      "taps": 344,
+      "holds": 0,
+      "drags": 124,
+      "travel": 148797.4
+     },
+     "tapPlace-drag": {
+      "taps": 126,
+      "holds": 0,
+      "drags": 171,
+      "travel": 55411.3
+     },
+     "tapPlace-hold": {
+      "taps": 468,
+      "holds": 171,
+      "drags": 0,
+      "travel": 55411.3
+     },
+     "armed": {
+      "taps": 640,
+      "holds": 0,
+      "drags": 0,
+      "travel": 190570.8
+     }
     }
    }
   },
@@ -923,6 +1200,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 76442
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 444,
+      "holds": 0,
+      "drags": 0,
+      "travel": 111930.5
+     },
+     "classic-drag": {
+      "taps": 256,
+      "holds": 0,
+      "drags": 94,
+      "travel": 111930.5
+     },
+     "tapPlace-drag": {
+      "taps": 96,
+      "holds": 0,
+      "drags": 127,
+      "travel": 42332.1
+     },
+     "tapPlace-hold": {
+      "taps": 350,
+      "holds": 127,
+      "drags": 0,
+      "travel": 42332.1
+     },
+     "armed": {
+      "taps": 486,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147054.1
      }
     }
    }
@@ -1014,6 +1323,38 @@
       "drags": 0,
       "travel": 62325.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 418,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110055.1
+     },
+     "classic-drag": {
+      "taps": 216,
+      "holds": 0,
+      "drags": 101,
+      "travel": 110055.1
+     },
+     "tapPlace-drag": {
+      "taps": 103,
+      "holds": 0,
+      "drags": 107,
+      "travel": 33684.6
+     },
+     "tapPlace-hold": {
+      "taps": 317,
+      "holds": 107,
+      "drags": 0,
+      "travel": 33684.6
+     },
+     "armed": {
+      "taps": 427,
+      "holds": 0,
+      "drags": 0,
+      "travel": 119820.7
+     }
     }
    }
   },
@@ -1103,6 +1444,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 53271.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 352,
+      "holds": 0,
+      "drags": 0,
+      "travel": 88487.1
+     },
+     "classic-drag": {
+      "taps": 196,
+      "holds": 0,
+      "drags": 78,
+      "travel": 88487.1
+     },
+     "tapPlace-drag": {
+      "taps": 80,
+      "holds": 0,
+      "drags": 97,
+      "travel": 30478.6
+     },
+     "tapPlace-hold": {
+      "taps": 274,
+      "holds": 97,
+      "drags": 0,
+      "travel": 30478.6
+     },
+     "armed": {
+      "taps": 364,
+      "holds": 0,
+      "drags": 0,
+      "travel": 100515.4
      }
     }
    }
@@ -1194,6 +1567,38 @@
       "drags": 0,
       "travel": 72816.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 456,
+      "holds": 0,
+      "drags": 0,
+      "travel": 115081.4
+     },
+     "classic-drag": {
+      "taps": 254,
+      "holds": 0,
+      "drags": 101,
+      "travel": 115081.4
+     },
+     "tapPlace-drag": {
+      "taps": 103,
+      "holds": 0,
+      "drags": 126,
+      "travel": 40186.4
+     },
+     "tapPlace-hold": {
+      "taps": 355,
+      "holds": 126,
+      "drags": 0,
+      "travel": 40186.4
+     },
+     "armed": {
+      "taps": 485,
+      "holds": 0,
+      "drags": 0,
+      "travel": 140453.5
+     }
     }
    }
   },
@@ -1283,6 +1688,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 98583.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 580,
+      "holds": 0,
+      "drags": 0,
+      "travel": 145826.2
+     },
+     "classic-drag": {
+      "taps": 334,
+      "holds": 0,
+      "drags": 123,
+      "travel": 145826.2
+     },
+     "tapPlace-drag": {
+      "taps": 125,
+      "holds": 0,
+      "drags": 166,
+      "travel": 53432.1
+     },
+     "tapPlace-hold": {
+      "taps": 457,
+      "holds": 166,
+      "drags": 0,
+      "travel": 53432.1
+     },
+     "armed": {
+      "taps": 621,
+      "holds": 0,
+      "drags": 0,
+      "travel": 181531.2
      }
     }
    }
@@ -1374,6 +1811,38 @@
       "drags": 0,
       "travel": 93203.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 567,
+      "holds": 0,
+      "drags": 0,
+      "travel": 141982.3
+     },
+     "classic-drag": {
+      "taps": 327,
+      "holds": 0,
+      "drags": 120,
+      "travel": 141982.3
+     },
+     "tapPlace-drag": {
+      "taps": 121,
+      "holds": 0,
+      "drags": 163,
+      "travel": 52216.7
+     },
+     "tapPlace-hold": {
+      "taps": 447,
+      "holds": 163,
+      "drags": 0,
+      "travel": 52216.7
+     },
+     "armed": {
+      "taps": 609,
+      "holds": 0,
+      "drags": 0,
+      "travel": 177173.4
+     }
     }
    }
   },
@@ -1463,6 +1932,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 68142.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 424,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110185.8
+     },
+     "classic-drag": {
+      "taps": 226,
+      "holds": 0,
+      "drags": 99,
+      "travel": 110185.8
+     },
+     "tapPlace-drag": {
+      "taps": 101,
+      "holds": 0,
+      "drags": 112,
+      "travel": 35328.1
+     },
+     "tapPlace-hold": {
+      "taps": 325,
+      "holds": 112,
+      "drags": 0,
+      "travel": 35328.1
+     },
+     "armed": {
+      "taps": 453,
+      "holds": 0,
+      "drags": 0,
+      "travel": 135697.4
      }
     }
    }
@@ -1554,6 +2055,38 @@
       "drags": 0,
       "travel": 119441.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 726,
+      "holds": 0,
+      "drags": 0,
+      "travel": 179165.8
+     },
+     "classic-drag": {
+      "taps": 420,
+      "holds": 0,
+      "drags": 153,
+      "travel": 179165.8
+     },
+     "tapPlace-drag": {
+      "taps": 155,
+      "holds": 0,
+      "drags": 209,
+      "travel": 63171.8
+     },
+     "tapPlace-hold": {
+      "taps": 573,
+      "holds": 209,
+      "drags": 0,
+      "travel": 63171.8
+     },
+     "armed": {
+      "taps": 779,
+      "holds": 0,
+      "drags": 0,
+      "travel": 225327.4
+     }
     }
    }
   },
@@ -1643,6 +2176,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 70017.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 437,
+      "holds": 0,
+      "drags": 0,
+      "travel": 112486.9
+     },
+     "classic-drag": {
+      "taps": 237,
+      "holds": 0,
+      "drags": 100,
+      "travel": 112486.9
+     },
+     "tapPlace-drag": {
+      "taps": 101,
+      "holds": 0,
+      "drags": 118,
+      "travel": 37384.2
+     },
+     "tapPlace-hold": {
+      "taps": 337,
+      "holds": 118,
+      "drags": 0,
+      "travel": 37384.2
+     },
+     "armed": {
+      "taps": 463,
+      "holds": 0,
+      "drags": 0,
+      "travel": 135091.3
      }
     }
    }
@@ -1734,6 +2299,38 @@
       "drags": 0,
       "travel": 162061.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 924,
+      "holds": 0,
+      "drags": 0,
+      "travel": 235957.2
+     },
+     "classic-drag": {
+      "taps": 532,
+      "holds": 0,
+      "drags": 196,
+      "travel": 235957.2
+     },
+     "tapPlace-drag": {
+      "taps": 198,
+      "holds": 0,
+      "drags": 265,
+      "travel": 87839.9
+     },
+     "tapPlace-hold": {
+      "taps": 728,
+      "holds": 265,
+      "drags": 0,
+      "travel": 87839.9
+     },
+     "armed": {
+      "taps": 996,
+      "holds": 0,
+      "drags": 0,
+      "travel": 298122.1
+     }
     }
    }
   },
@@ -1823,6 +2420,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 134650.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 800,
+      "holds": 0,
+      "drags": 0,
+      "travel": 203825.2
+     },
+     "classic-drag": {
+      "taps": 450,
+      "holds": 0,
+      "drags": 175,
+      "travel": 203825.2
+     },
+     "tapPlace-drag": {
+      "taps": 177,
+      "holds": 0,
+      "drags": 224,
+      "travel": 70834
+     },
+     "tapPlace-hold": {
+      "taps": 625,
+      "holds": 224,
+      "drags": 0,
+      "travel": 70834
+     },
+     "armed": {
+      "taps": 863,
+      "holds": 0,
+      "drags": 0,
+      "travel": 257258.9
      }
     }
    }
@@ -1914,6 +2543,38 @@
       "drags": 0,
       "travel": 77612.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 464,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113017.2
+     },
+     "classic-drag": {
+      "taps": 264,
+      "holds": 0,
+      "drags": 100,
+      "travel": 113017.2
+     },
+     "tapPlace-drag": {
+      "taps": 102,
+      "holds": 0,
+      "drags": 131,
+      "travel": 35830.1
+     },
+     "tapPlace-hold": {
+      "taps": 364,
+      "holds": 131,
+      "drags": 0,
+      "travel": 35830.1
+     },
+     "armed": {
+      "taps": 508,
+      "holds": 0,
+      "drags": 0,
+      "travel": 151057
+     }
     }
    }
   },
@@ -2003,6 +2664,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 115395.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 682,
+      "holds": 0,
+      "drags": 0,
+      "travel": 168670.9
+     },
+     "classic-drag": {
+      "taps": 394,
+      "holds": 0,
+      "drags": 144,
+      "travel": 168670.9
+     },
+     "tapPlace-drag": {
+      "taps": 146,
+      "holds": 0,
+      "drags": 196,
+      "travel": 59259.1
+     },
+     "tapPlace-hold": {
+      "taps": 538,
+      "holds": 196,
+      "drags": 0,
+      "travel": 59259.1
+     },
+     "armed": {
+      "taps": 750,
+      "holds": 0,
+      "drags": 0,
+      "travel": 224718.9
      }
     }
    }
@@ -2094,6 +2787,38 @@
       "drags": 0,
       "travel": 91739.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 540,
+      "holds": 0,
+      "drags": 0,
+      "travel": 140224.6
+     },
+     "classic-drag": {
+      "taps": 288,
+      "holds": 0,
+      "drags": 126,
+      "travel": 140224.6
+     },
+     "tapPlace-drag": {
+      "taps": 128,
+      "holds": 0,
+      "drags": 143,
+      "travel": 45839.4
+     },
+     "tapPlace-hold": {
+      "taps": 414,
+      "holds": 143,
+      "drags": 0,
+      "travel": 45839.4
+     },
+     "armed": {
+      "taps": 588,
+      "holds": 0,
+      "drags": 0,
+      "travel": 181981.3
+     }
     }
    }
   },
@@ -2183,6 +2908,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 79532.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 490,
+      "holds": 0,
+      "drags": 0,
+      "travel": 123653
+     },
+     "classic-drag": {
+      "taps": 278,
+      "holds": 0,
+      "drags": 106,
+      "travel": 123653
+     },
+     "tapPlace-drag": {
+      "taps": 108,
+      "holds": 0,
+      "drags": 138,
+      "travel": 44166.8
+     },
+     "tapPlace-hold": {
+      "taps": 384,
+      "holds": 138,
+      "drags": 0,
+      "travel": 44166.8
+     },
+     "armed": {
+      "taps": 526,
+      "holds": 0,
+      "drags": 0,
+      "travel": 153661.5
      }
     }
    }
@@ -2274,6 +3031,38 @@
       "drags": 0,
       "travel": 49928.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 319,
+      "holds": 0,
+      "drags": 0,
+      "travel": 81600.2
+     },
+     "classic-drag": {
+      "taps": 169,
+      "holds": 0,
+      "drags": 75,
+      "travel": 81600.2
+     },
+     "tapPlace-drag": {
+      "taps": 76,
+      "holds": 0,
+      "drags": 84,
+      "travel": 24991
+     },
+     "tapPlace-hold": {
+      "taps": 244,
+      "holds": 84,
+      "drags": 0,
+      "travel": 24991
+     },
+     "armed": {
+      "taps": 340,
+      "holds": 0,
+      "drags": 0,
+      "travel": 100872
+     }
     }
    }
   },
@@ -2363,6 +3152,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 57675.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 364,
+      "holds": 0,
+      "drags": 0,
+      "travel": 89125.3
+     },
+     "classic-drag": {
+      "taps": 206,
+      "holds": 0,
+      "drags": 79,
+      "travel": 89125.3
+     },
+     "tapPlace-drag": {
+      "taps": 81,
+      "holds": 0,
+      "drags": 102,
+      "travel": 29681.4
+     },
+     "tapPlace-hold": {
+      "taps": 285,
+      "holds": 102,
+      "drags": 0,
+      "travel": 29681.4
+     },
+     "armed": {
+      "taps": 387,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110935.2
      }
     }
    }
@@ -2454,6 +3275,38 @@
       "drags": 0,
       "travel": 72579.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 448,
+      "holds": 0,
+      "drags": 0,
+      "travel": 109058.5
+     },
+     "classic-drag": {
+      "taps": 260,
+      "holds": 0,
+      "drags": 94,
+      "travel": 109058.5
+     },
+     "tapPlace-drag": {
+      "taps": 96,
+      "holds": 0,
+      "drags": 129,
+      "travel": 38698.3
+     },
+     "tapPlace-hold": {
+      "taps": 354,
+      "holds": 129,
+      "drags": 0,
+      "travel": 38698.3
+     },
+     "armed": {
+      "taps": 484,
+      "holds": 0,
+      "drags": 0,
+      "travel": 140286.3
+     }
     }
    }
   },
@@ -2543,6 +3396,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 71905
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 460,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113918.4
+     },
+     "classic-drag": {
+      "taps": 256,
+      "holds": 0,
+      "drags": 102,
+      "travel": 113918.4
+     },
+     "tapPlace-drag": {
+      "taps": 104,
+      "holds": 0,
+      "drags": 127,
+      "travel": 36568.1
+     },
+     "tapPlace-hold": {
+      "taps": 358,
+      "holds": 127,
+      "drags": 0,
+      "travel": 36568.1
+     },
+     "armed": {
+      "taps": 494,
+      "holds": 0,
+      "drags": 0,
+      "travel": 143219.5
      }
     }
    }
@@ -2634,6 +3519,38 @@
       "drags": 0,
       "travel": 50936.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 318,
+      "holds": 0,
+      "drags": 0,
+      "travel": 81620.4
+     },
+     "classic-drag": {
+      "taps": 174,
+      "holds": 0,
+      "drags": 72,
+      "travel": 81620.4
+     },
+     "tapPlace-drag": {
+      "taps": 74,
+      "holds": 0,
+      "drags": 86,
+      "travel": 27454.9
+     },
+     "tapPlace-hold": {
+      "taps": 246,
+      "holds": 86,
+      "drags": 0,
+      "travel": 27454.9
+     },
+     "armed": {
+      "taps": 336,
+      "holds": 0,
+      "drags": 0,
+      "travel": 98467.1
+     }
     }
    }
   },
@@ -2723,6 +3640,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 76277.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 471,
+      "holds": 0,
+      "drags": 0,
+      "travel": 119793.1
+     },
+     "classic-drag": {
+      "taps": 261,
+      "holds": 0,
+      "drags": 105,
+      "travel": 119793.1
+     },
+     "tapPlace-drag": {
+      "taps": 106,
+      "holds": 0,
+      "drags": 130,
+      "travel": 39890.4
+     },
+     "tapPlace-hold": {
+      "taps": 366,
+      "holds": 130,
+      "drags": 0,
+      "travel": 39890.4
+     },
+     "armed": {
+      "taps": 504,
+      "holds": 0,
+      "drags": 0,
+      "travel": 148074.3
      }
     }
    }
@@ -2814,6 +3763,38 @@
       "drags": 0,
       "travel": 98601.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 614,
+      "holds": 0,
+      "drags": 0,
+      "travel": 163526.4
+     },
+     "classic-drag": {
+      "taps": 332,
+      "holds": 0,
+      "drags": 141,
+      "travel": 163526.4
+     },
+     "tapPlace-drag": {
+      "taps": 143,
+      "holds": 0,
+      "drags": 165,
+      "travel": 56079.1
+     },
+     "tapPlace-hold": {
+      "taps": 473,
+      "holds": 165,
+      "drags": 0,
+      "travel": 56079.1
+     },
+     "armed": {
+      "taps": 633,
+      "holds": 0,
+      "drags": 0,
+      "travel": 180124.7
+     }
     }
    }
   },
@@ -2903,6 +3884,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 132795
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 794,
+      "holds": 0,
+      "drags": 0,
+      "travel": 197843.6
+     },
+     "classic-drag": {
+      "taps": 462,
+      "holds": 0,
+      "drags": 166,
+      "travel": 197843.6
+     },
+     "tapPlace-drag": {
+      "taps": 168,
+      "holds": 0,
+      "drags": 230,
+      "travel": 72328
+     },
+     "tapPlace-hold": {
+      "taps": 628,
+      "holds": 230,
+      "drags": 0,
+      "travel": 72328
+     },
+     "armed": {
+      "taps": 854,
+      "holds": 0,
+      "drags": 0,
+      "travel": 248798
      }
     }
    }
@@ -2994,6 +4007,38 @@
       "drags": 0,
       "travel": 53513.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 342,
+      "holds": 0,
+      "drags": 0,
+      "travel": 84487.9
+     },
+     "classic-drag": {
+      "taps": 196,
+      "holds": 0,
+      "drags": 73,
+      "travel": 84487.9
+     },
+     "tapPlace-drag": {
+      "taps": 75,
+      "holds": 0,
+      "drags": 97,
+      "travel": 30679.2
+     },
+     "tapPlace-hold": {
+      "taps": 269,
+      "holds": 97,
+      "drags": 0,
+      "travel": 30679.2
+     },
+     "armed": {
+      "taps": 361,
+      "holds": 0,
+      "drags": 0,
+      "travel": 101444
+     }
     }
    }
   },
@@ -3083,6 +4128,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 115830.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 702,
+      "holds": 0,
+      "drags": 0,
+      "travel": 175025.3
+     },
+     "classic-drag": {
+      "taps": 406,
+      "holds": 0,
+      "drags": 148,
+      "travel": 175025.3
+     },
+     "tapPlace-drag": {
+      "taps": 150,
+      "holds": 0,
+      "drags": 202,
+      "travel": 63667.5
+     },
+     "tapPlace-hold": {
+      "taps": 554,
+      "holds": 202,
+      "drags": 0,
+      "travel": 63667.5
+     },
+     "armed": {
+      "taps": 744,
+      "holds": 0,
+      "drags": 0,
+      "travel": 212515.7
      }
     }
    }
@@ -3174,6 +4251,38 @@
       "drags": 0,
       "travel": 92393.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 574,
+      "holds": 0,
+      "drags": 0,
+      "travel": 143098.1
+     },
+     "classic-drag": {
+      "taps": 326,
+      "holds": 0,
+      "drags": 124,
+      "travel": 143098.1
+     },
+     "tapPlace-drag": {
+      "taps": 126,
+      "holds": 0,
+      "drags": 162,
+      "travel": 49151.7
+     },
+     "tapPlace-hold": {
+      "taps": 450,
+      "holds": 162,
+      "drags": 0,
+      "travel": 49151.7
+     },
+     "armed": {
+      "taps": 608,
+      "holds": 0,
+      "drags": 0,
+      "travel": 173543.3
+     }
     }
    }
   },
@@ -3263,6 +4372,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 92014.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 538,
+      "holds": 0,
+      "drags": 0,
+      "travel": 136067.5
+     },
+     "classic-drag": {
+      "taps": 312,
+      "holds": 0,
+      "drags": 113,
+      "travel": 136067.5
+     },
+     "tapPlace-drag": {
+      "taps": 113,
+      "holds": 0,
+      "drags": 156,
+      "travel": 49791.9
+     },
+     "tapPlace-hold": {
+      "taps": 425,
+      "holds": 156,
+      "drags": 0,
+      "travel": 49791.9
+     },
+     "armed": {
+      "taps": 573,
+      "holds": 0,
+      "drags": 0,
+      "travel": 166870
      }
     }
    }
@@ -3354,6 +4495,38 @@
       "drags": 0,
       "travel": 64505.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 402,
+      "holds": 0,
+      "drags": 0,
+      "travel": 100655.7
+     },
+     "classic-drag": {
+      "taps": 226,
+      "holds": 0,
+      "drags": 88,
+      "travel": 100655.7
+     },
+     "tapPlace-drag": {
+      "taps": 90,
+      "holds": 0,
+      "drags": 112,
+      "travel": 35693
+     },
+     "tapPlace-hold": {
+      "taps": 314,
+      "holds": 112,
+      "drags": 0,
+      "travel": 35693
+     },
+     "armed": {
+      "taps": 428,
+      "holds": 0,
+      "drags": 0,
+      "travel": 124883.9
+     }
     }
    }
   },
@@ -3443,6 +4616,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 109045.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 668,
+      "holds": 0,
+      "drags": 0,
+      "travel": 162412.1
+     },
+     "classic-drag": {
+      "taps": 388,
+      "holds": 0,
+      "drags": 140,
+      "travel": 162412.1
+     },
+     "tapPlace-drag": {
+      "taps": 142,
+      "holds": 0,
+      "drags": 193,
+      "travel": 56989.9
+     },
+     "tapPlace-hold": {
+      "taps": 528,
+      "holds": 193,
+      "drags": 0,
+      "travel": 56989.9
+     },
+     "armed": {
+      "taps": 722,
+      "holds": 0,
+      "drags": 0,
+      "travel": 209937.2
      }
     }
    }
@@ -3534,6 +4739,38 @@
       "drags": 0,
       "travel": 57244.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 374,
+      "holds": 0,
+      "drags": 0,
+      "travel": 95807.3
+     },
+     "classic-drag": {
+      "taps": 202,
+      "holds": 0,
+      "drags": 86,
+      "travel": 95807.3
+     },
+     "tapPlace-drag": {
+      "taps": 88,
+      "holds": 0,
+      "drags": 100,
+      "travel": 31865.4
+     },
+     "tapPlace-hold": {
+      "taps": 288,
+      "holds": 100,
+      "drags": 0,
+      "travel": 31865.4
+     },
+     "armed": {
+      "taps": 392,
+      "holds": 0,
+      "drags": 0,
+      "travel": 112951.3
+     }
     }
    }
   },
@@ -3623,6 +4860,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 89360.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 540,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133788.5
+     },
+     "classic-drag": {
+      "taps": 310,
+      "holds": 0,
+      "drags": 115,
+      "travel": 133788.5
+     },
+     "tapPlace-drag": {
+      "taps": 117,
+      "holds": 0,
+      "drags": 154,
+      "travel": 47410.9
+     },
+     "tapPlace-hold": {
+      "taps": 425,
+      "holds": 154,
+      "drags": 0,
+      "travel": 47410.9
+     },
+     "armed": {
+      "taps": 585,
+      "holds": 0,
+      "drags": 0,
+      "travel": 172320.3
      }
     }
    }
@@ -3714,6 +4983,38 @@
       "drags": 0,
       "travel": 60757.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 390,
+      "holds": 0,
+      "drags": 0,
+      "travel": 98874.1
+     },
+     "classic-drag": {
+      "taps": 212,
+      "holds": 0,
+      "drags": 89,
+      "travel": 98874.1
+     },
+     "tapPlace-drag": {
+      "taps": 91,
+      "holds": 0,
+      "drags": 105,
+      "travel": 32082.9
+     },
+     "tapPlace-hold": {
+      "taps": 301,
+      "holds": 105,
+      "drags": 0,
+      "travel": 32082.9
+     },
+     "armed": {
+      "taps": 411,
+      "holds": 0,
+      "drags": 0,
+      "travel": 118419.9
+     }
     }
    }
   },
@@ -3803,6 +5104,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 47137.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 304,
+      "holds": 0,
+      "drags": 0,
+      "travel": 77068.5
+     },
+     "classic-drag": {
+      "taps": 164,
+      "holds": 0,
+      "drags": 70,
+      "travel": 77068.5
+     },
+     "tapPlace-drag": {
+      "taps": 72,
+      "holds": 0,
+      "drags": 81,
+      "travel": 23809.1
+     },
+     "tapPlace-hold": {
+      "taps": 234,
+      "holds": 81,
+      "drags": 0,
+      "travel": 23809.1
+     },
+     "armed": {
+      "taps": 324,
+      "holds": 0,
+      "drags": 0,
+      "travel": 94279.2
      }
     }
    }
@@ -3894,6 +5227,38 @@
       "drags": 0,
       "travel": 52308.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 356,
+      "holds": 0,
+      "drags": 0,
+      "travel": 95351.8
+     },
+     "classic-drag": {
+      "taps": 180,
+      "holds": 0,
+      "drags": 88,
+      "travel": 95351.8
+     },
+     "tapPlace-drag": {
+      "taps": 90,
+      "holds": 0,
+      "drags": 89,
+      "travel": 27953
+     },
+     "tapPlace-hold": {
+      "taps": 268,
+      "holds": 89,
+      "drags": 0,
+      "travel": 27953
+     },
+     "armed": {
+      "taps": 362,
+      "holds": 0,
+      "drags": 0,
+      "travel": 101675.1
+     }
     }
    }
   },
@@ -3983,6 +5348,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 74795.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 444,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110721.9
+     },
+     "classic-drag": {
+      "taps": 250,
+      "holds": 0,
+      "drags": 97,
+      "travel": 110721.9
+     },
+     "tapPlace-drag": {
+      "taps": 99,
+      "holds": 0,
+      "drags": 124,
+      "travel": 38729
+     },
+     "tapPlace-hold": {
+      "taps": 347,
+      "holds": 124,
+      "drags": 0,
+      "travel": 38729
+     },
+     "armed": {
+      "taps": 489,
+      "holds": 0,
+      "drags": 0,
+      "travel": 149043.5
      }
     }
    }
@@ -4074,6 +5471,38 @@
       "drags": 0,
       "travel": 114586.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 672,
+      "holds": 0,
+      "drags": 0,
+      "travel": 174095.4
+     },
+     "classic-drag": {
+      "taps": 382,
+      "holds": 0,
+      "drags": 145,
+      "travel": 174095.4
+     },
+     "tapPlace-drag": {
+      "taps": 147,
+      "holds": 0,
+      "drags": 190,
+      "travel": 64509.9
+     },
+     "tapPlace-hold": {
+      "taps": 527,
+      "holds": 190,
+      "drags": 0,
+      "travel": 64509.9
+     },
+     "armed": {
+      "taps": 717,
+      "holds": 0,
+      "drags": 0,
+      "travel": 211094.5
+     }
     }
    }
   },
@@ -4163,6 +5592,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 63876.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 402,
+      "holds": 0,
+      "drags": 0,
+      "travel": 100212.6
+     },
+     "classic-drag": {
+      "taps": 222,
+      "holds": 0,
+      "drags": 90,
+      "travel": 100212.6
+     },
+     "tapPlace-drag": {
+      "taps": 92,
+      "holds": 0,
+      "drags": 110,
+      "travel": 33746.9
+     },
+     "tapPlace-hold": {
+      "taps": 312,
+      "holds": 110,
+      "drags": 0,
+      "travel": 33746.9
+     },
+     "armed": {
+      "taps": 428,
+      "holds": 0,
+      "drags": 0,
+      "travel": 124623.1
      }
     }
    }
@@ -4254,6 +5715,38 @@
       "drags": 0,
       "travel": 94689.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 568,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147061.8
+     },
+     "classic-drag": {
+      "taps": 318,
+      "holds": 0,
+      "drags": 125,
+      "travel": 147061.8
+     },
+     "tapPlace-drag": {
+      "taps": 127,
+      "holds": 0,
+      "drags": 158,
+      "travel": 52539.2
+     },
+     "tapPlace-hold": {
+      "taps": 443,
+      "holds": 158,
+      "drags": 0,
+      "travel": 52539.2
+     },
+     "armed": {
+      "taps": 601,
+      "holds": 0,
+      "drags": 0,
+      "travel": 176602.4
+     }
     }
    }
   },
@@ -4343,6 +5836,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 126770.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 752,
+      "holds": 0,
+      "drags": 0,
+      "travel": 185886.7
+     },
+     "classic-drag": {
+      "taps": 434,
+      "holds": 0,
+      "drags": 159,
+      "travel": 185886.7
+     },
+     "tapPlace-drag": {
+      "taps": 161,
+      "holds": 0,
+      "drags": 216,
+      "travel": 65981.9
+     },
+     "tapPlace-hold": {
+      "taps": 593,
+      "holds": 216,
+      "drags": 0,
+      "travel": 65981.9
+     },
+     "armed": {
+      "taps": 813,
+      "holds": 0,
+      "drags": 0,
+      "travel": 238807.1
      }
     }
    }
@@ -4434,6 +5959,38 @@
       "drags": 0,
       "travel": 206941.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1194,
+      "holds": 0,
+      "drags": 0,
+      "travel": 300498.2
+     },
+     "classic-drag": {
+      "taps": 694,
+      "holds": 0,
+      "drags": 250,
+      "travel": 300498.2
+     },
+     "tapPlace-drag": {
+      "taps": 252,
+      "holds": 0,
+      "drags": 346,
+      "travel": 113284.8
+     },
+     "tapPlace-hold": {
+      "taps": 944,
+      "holds": 346,
+      "drags": 0,
+      "travel": 113284.8
+     },
+     "armed": {
+      "taps": 1288,
+      "holds": 0,
+      "drags": 0,
+      "travel": 380831.1
+     }
     }
    }
   },
@@ -4523,6 +6080,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 56053.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 357,
+      "holds": 0,
+      "drags": 0,
+      "travel": 93364.4
+     },
+     "classic-drag": {
+      "taps": 185,
+      "holds": 0,
+      "drags": 86,
+      "travel": 93364.4
+     },
+     "tapPlace-drag": {
+      "taps": 87,
+      "holds": 0,
+      "drags": 92,
+      "travel": 28548
+     },
+     "tapPlace-hold": {
+      "taps": 271,
+      "holds": 92,
+      "drags": 0,
+      "travel": 28548
+     },
+     "armed": {
+      "taps": 379,
+      "holds": 0,
+      "drags": 0,
+      "travel": 112606.7
      }
     }
    }
@@ -4614,6 +6203,38 @@
       "drags": 0,
       "travel": 147939.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 908,
+      "holds": 0,
+      "drags": 0,
+      "travel": 223830.1
+     },
+     "classic-drag": {
+      "taps": 534,
+      "holds": 0,
+      "drags": 187,
+      "travel": 223830.1
+     },
+     "tapPlace-drag": {
+      "taps": 189,
+      "holds": 0,
+      "drags": 266,
+      "travel": 83673.8
+     },
+     "tapPlace-hold": {
+      "taps": 721,
+      "holds": 266,
+      "drags": 0,
+      "travel": 83673.8
+     },
+     "armed": {
+      "taps": 969,
+      "holds": 0,
+      "drags": 0,
+      "travel": 276685.5
+     }
     }
    }
   },
@@ -4703,6 +6324,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 141607.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 814,
+      "holds": 0,
+      "drags": 0,
+      "travel": 208302.9
+     },
+     "classic-drag": {
+      "taps": 476,
+      "holds": 0,
+      "drags": 169,
+      "travel": 208302.9
+     },
+     "tapPlace-drag": {
+      "taps": 171,
+      "holds": 0,
+      "drags": 237,
+      "travel": 81433.9
+     },
+     "tapPlace-hold": {
+      "taps": 645,
+      "holds": 237,
+      "drags": 0,
+      "travel": 81433.9
+     },
+     "armed": {
+      "taps": 869,
+      "holds": 0,
+      "drags": 0,
+      "travel": 256312.5
      }
     }
    }
@@ -4794,6 +6447,38 @@
       "drags": 0,
       "travel": 119369.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 684,
+      "holds": 0,
+      "drags": 0,
+      "travel": 176257
+     },
+     "classic-drag": {
+      "taps": 388,
+      "holds": 0,
+      "drags": 148,
+      "travel": 176257
+     },
+     "tapPlace-drag": {
+      "taps": 150,
+      "holds": 0,
+      "drags": 193,
+      "travel": 64923.7
+     },
+     "tapPlace-hold": {
+      "taps": 536,
+      "holds": 193,
+      "drags": 0,
+      "travel": 64923.7
+     },
+     "armed": {
+      "taps": 742,
+      "holds": 0,
+      "drags": 0,
+      "travel": 224770.5
+     }
     }
    }
   },
@@ -4883,6 +6568,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 89689.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 557,
+      "holds": 0,
+      "drags": 0,
+      "travel": 136599.2
+     },
+     "classic-drag": {
+      "taps": 321,
+      "holds": 0,
+      "drags": 118,
+      "travel": 136599.2
+     },
+     "tapPlace-drag": {
+      "taps": 119,
+      "holds": 0,
+      "drags": 160,
+      "travel": 47360.1
+     },
+     "tapPlace-hold": {
+      "taps": 439,
+      "holds": 160,
+      "drags": 0,
+      "travel": 47360.1
+     },
+     "armed": {
+      "taps": 603,
+      "holds": 0,
+      "drags": 0,
+      "travel": 175123.6
      }
     }
    }
@@ -4974,6 +6691,38 @@
       "drags": 0,
       "travel": 74872.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 460,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113229.3
+     },
+     "classic-drag": {
+      "taps": 258,
+      "holds": 0,
+      "drags": 101,
+      "travel": 113229.3
+     },
+     "tapPlace-drag": {
+      "taps": 103,
+      "holds": 0,
+      "drags": 128,
+      "travel": 37296.5
+     },
+     "tapPlace-hold": {
+      "taps": 359,
+      "holds": 128,
+      "drags": 0,
+      "travel": 37296.5
+     },
+     "armed": {
+      "taps": 503,
+      "holds": 0,
+      "drags": 0,
+      "travel": 150854.4
+     }
     }
    }
   },
@@ -5063,6 +6812,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 79432.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 492,
+      "holds": 0,
+      "drags": 0,
+      "travel": 123308
+     },
+     "classic-drag": {
+      "taps": 280,
+      "holds": 0,
+      "drags": 106,
+      "travel": 123308
+     },
+     "tapPlace-drag": {
+      "taps": 108,
+      "holds": 0,
+      "drags": 139,
+      "travel": 44884.5
+     },
+     "tapPlace-hold": {
+      "taps": 386,
+      "holds": 139,
+      "drags": 0,
+      "travel": 44884.5
+     },
+     "armed": {
+      "taps": 516,
+      "holds": 0,
+      "drags": 0,
+      "travel": 145488.6
      }
     }
    }
@@ -5154,6 +6935,38 @@
       "drags": 0,
       "travel": 47911.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 312,
+      "holds": 0,
+      "drags": 0,
+      "travel": 78410.9
+     },
+     "classic-drag": {
+      "taps": 166,
+      "holds": 0,
+      "drags": 73,
+      "travel": 78410.9
+     },
+     "tapPlace-drag": {
+      "taps": 75,
+      "holds": 0,
+      "drags": 82,
+      "travel": 24166.6
+     },
+     "tapPlace-hold": {
+      "taps": 239,
+      "holds": 82,
+      "drags": 0,
+      "travel": 24166.6
+     },
+     "armed": {
+      "taps": 333,
+      "holds": 0,
+      "drags": 0,
+      "travel": 98478.4
+     }
     }
    }
   },
@@ -5243,6 +7056,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 71021.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 436,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113528.4
+     },
+     "classic-drag": {
+      "taps": 234,
+      "holds": 0,
+      "drags": 101,
+      "travel": 113528.4
+     },
+     "tapPlace-drag": {
+      "taps": 103,
+      "holds": 0,
+      "drags": 116,
+      "travel": 38280.1
+     },
+     "tapPlace-hold": {
+      "taps": 335,
+      "holds": 116,
+      "drags": 0,
+      "travel": 38280.1
+     },
+     "armed": {
+      "taps": 469,
+      "holds": 0,
+      "drags": 0,
+      "travel": 140505.6
      }
     }
    }
@@ -5334,6 +7179,38 @@
       "drags": 0,
       "travel": 91105.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 553,
+      "holds": 0,
+      "drags": 0,
+      "travel": 138160.4
+     },
+     "classic-drag": {
+      "taps": 313,
+      "holds": 0,
+      "drags": 120,
+      "travel": 138160.4
+     },
+     "tapPlace-drag": {
+      "taps": 121,
+      "holds": 0,
+      "drags": 156,
+      "travel": 48415
+     },
+     "tapPlace-hold": {
+      "taps": 433,
+      "holds": 156,
+      "drags": 0,
+      "travel": 48415
+     },
+     "armed": {
+      "taps": 599,
+      "holds": 0,
+      "drags": 0,
+      "travel": 178187.5
+     }
     }
    }
   },
@@ -5423,6 +7300,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 92851.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 542,
+      "holds": 0,
+      "drags": 0,
+      "travel": 138344
+     },
+     "classic-drag": {
+      "taps": 304,
+      "holds": 0,
+      "drags": 119,
+      "travel": 138344
+     },
+     "tapPlace-drag": {
+      "taps": 121,
+      "holds": 0,
+      "drags": 151,
+      "travel": 49643.3
+     },
+     "tapPlace-hold": {
+      "taps": 423,
+      "holds": 151,
+      "drags": 0,
+      "travel": 49643.3
+     },
+     "armed": {
+      "taps": 585,
+      "holds": 0,
+      "drags": 0,
+      "travel": 175712.4
      }
     }
    }
@@ -5514,6 +7423,38 @@
       "drags": 0,
       "travel": 106618.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 612,
+      "holds": 0,
+      "drags": 0,
+      "travel": 159560.7
+     },
+     "classic-drag": {
+      "taps": 338,
+      "holds": 0,
+      "drags": 137,
+      "travel": 159560.7
+     },
+     "tapPlace-drag": {
+      "taps": 139,
+      "holds": 0,
+      "drags": 168,
+      "travel": 57528.3
+     },
+     "tapPlace-hold": {
+      "taps": 475,
+      "holds": 168,
+      "drags": 0,
+      "travel": 57528.3
+     },
+     "armed": {
+      "taps": 661,
+      "holds": 0,
+      "drags": 0,
+      "travel": 202369.2
+     }
     }
    }
   },
@@ -5603,6 +7544,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 100836.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 624,
+      "holds": 0,
+      "drags": 0,
+      "travel": 152980.2
+     },
+     "classic-drag": {
+      "taps": 354,
+      "holds": 0,
+      "drags": 135,
+      "travel": 152980.2
+     },
+     "tapPlace-drag": {
+      "taps": 137,
+      "holds": 0,
+      "drags": 176,
+      "travel": 51535.1
+     },
+     "tapPlace-hold": {
+      "taps": 489,
+      "holds": 176,
+      "drags": 0,
+      "travel": 51535.1
+     },
+     "armed": {
+      "taps": 679,
+      "holds": 0,
+      "drags": 0,
+      "travel": 200526
      }
     }
    }
@@ -5694,6 +7667,38 @@
       "drags": 0,
       "travel": 47195
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 302,
+      "holds": 0,
+      "drags": 0,
+      "travel": 74589
+     },
+     "classic-drag": {
+      "taps": 166,
+      "holds": 0,
+      "drags": 68,
+      "travel": 74589
+     },
+     "tapPlace-drag": {
+      "taps": 70,
+      "holds": 0,
+      "drags": 82,
+      "travel": 24489.9
+     },
+     "tapPlace-hold": {
+      "taps": 234,
+      "holds": 82,
+      "drags": 0,
+      "travel": 24489.9
+     },
+     "armed": {
+      "taps": 326,
+      "holds": 0,
+      "drags": 0,
+      "travel": 95295.5
+     }
     }
    }
   },
@@ -5783,6 +7788,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 78525.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 500,
+      "holds": 0,
+      "drags": 0,
+      "travel": 128978.1
+     },
+     "classic-drag": {
+      "taps": 270,
+      "holds": 0,
+      "drags": 115,
+      "travel": 128978.1
+     },
+     "tapPlace-drag": {
+      "taps": 117,
+      "holds": 0,
+      "drags": 134,
+      "travel": 43296.9
+     },
+     "tapPlace-hold": {
+      "taps": 385,
+      "holds": 134,
+      "drags": 0,
+      "travel": 43296.9
+     },
+     "armed": {
+      "taps": 525,
+      "holds": 0,
+      "drags": 0,
+      "travel": 151338.7
      }
     }
    }
@@ -5874,6 +7911,38 @@
       "drags": 0,
       "travel": 77246.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 468,
+      "holds": 0,
+      "drags": 0,
+      "travel": 117590.4
+     },
+     "classic-drag": {
+      "taps": 270,
+      "holds": 0,
+      "drags": 99,
+      "travel": 117590.4
+     },
+     "tapPlace-drag": {
+      "taps": 101,
+      "holds": 0,
+      "drags": 134,
+      "travel": 44238.4
+     },
+     "tapPlace-hold": {
+      "taps": 369,
+      "holds": 134,
+      "drags": 0,
+      "travel": 44238.4
+     },
+     "armed": {
+      "taps": 499,
+      "holds": 0,
+      "drags": 0,
+      "travel": 145491.7
+     }
     }
    }
   },
@@ -5963,6 +8032,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 86060.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 525,
+      "holds": 0,
+      "drags": 0,
+      "travel": 128088.1
+     },
+     "classic-drag": {
+      "taps": 299,
+      "holds": 0,
+      "drags": 113,
+      "travel": 128088.1
+     },
+     "tapPlace-drag": {
+      "taps": 114,
+      "holds": 0,
+      "drags": 149,
+      "travel": 42527.3
+     },
+     "tapPlace-hold": {
+      "taps": 412,
+      "holds": 149,
+      "drags": 0,
+      "travel": 42527.3
+     },
+     "armed": {
+      "taps": 572,
+      "holds": 0,
+      "drags": 0,
+      "travel": 169491.4
      }
     }
    }
@@ -6054,6 +8155,38 @@
       "drags": 0,
       "travel": 100483.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 616,
+      "holds": 0,
+      "drags": 0,
+      "travel": 152763
+     },
+     "classic-drag": {
+      "taps": 348,
+      "holds": 0,
+      "drags": 134,
+      "travel": 152763
+     },
+     "tapPlace-drag": {
+      "taps": 136,
+      "holds": 0,
+      "drags": 173,
+      "travel": 51452.2
+     },
+     "tapPlace-hold": {
+      "taps": 482,
+      "holds": 173,
+      "drags": 0,
+      "travel": 51452.2
+     },
+     "armed": {
+      "taps": 670,
+      "holds": 0,
+      "drags": 0,
+      "travel": 198536.6
+     }
     }
    }
   },
@@ -6143,6 +8276,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 146453.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 854,
+      "holds": 0,
+      "drags": 0,
+      "travel": 216822.1
+     },
+     "classic-drag": {
+      "taps": 484,
+      "holds": 0,
+      "drags": 185,
+      "travel": 216822.1
+     },
+     "tapPlace-drag": {
+      "taps": 187,
+      "holds": 0,
+      "drags": 241,
+      "travel": 78394.7
+     },
+     "tapPlace-hold": {
+      "taps": 669,
+      "holds": 241,
+      "drags": 0,
+      "travel": 78394.7
+     },
+     "armed": {
+      "taps": 923,
+      "holds": 0,
+      "drags": 0,
+      "travel": 275903.9
      }
     }
    }
@@ -6234,6 +8399,38 @@
       "drags": 0,
       "travel": 64850
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 416,
+      "holds": 0,
+      "drags": 0,
+      "travel": 104434
+     },
+     "classic-drag": {
+      "taps": 232,
+      "holds": 0,
+      "drags": 92,
+      "travel": 104434
+     },
+     "tapPlace-drag": {
+      "taps": 94,
+      "holds": 0,
+      "drags": 115,
+      "travel": 35713.5
+     },
+     "tapPlace-hold": {
+      "taps": 324,
+      "holds": 115,
+      "drags": 0,
+      "travel": 35713.5
+     },
+     "armed": {
+      "taps": 442,
+      "holds": 0,
+      "drags": 0,
+      "travel": 126070.6
+     }
     }
    }
   },
@@ -6323,6 +8520,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 102497.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 638,
+      "holds": 0,
+      "drags": 0,
+      "travel": 157370.6
+     },
+     "classic-drag": {
+      "taps": 364,
+      "holds": 0,
+      "drags": 137,
+      "travel": 157370.6
+     },
+     "tapPlace-drag": {
+      "taps": 139,
+      "holds": 0,
+      "drags": 181,
+      "travel": 53203.2
+     },
+     "tapPlace-hold": {
+      "taps": 501,
+      "holds": 181,
+      "drags": 0,
+      "travel": 53203.2
+     },
+     "armed": {
+      "taps": 691,
+      "holds": 0,
+      "drags": 0,
+      "travel": 200947.2
      }
     }
    }
@@ -6414,6 +8643,38 @@
       "drags": 0,
       "travel": 100853.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 622,
+      "holds": 0,
+      "drags": 0,
+      "travel": 158850.1
+     },
+     "classic-drag": {
+      "taps": 352,
+      "holds": 0,
+      "drags": 135,
+      "travel": 158850.1
+     },
+     "tapPlace-drag": {
+      "taps": 137,
+      "holds": 0,
+      "drags": 175,
+      "travel": 56242.6
+     },
+     "tapPlace-hold": {
+      "taps": 487,
+      "holds": 175,
+      "drags": 0,
+      "travel": 56242.6
+     },
+     "armed": {
+      "taps": 659,
+      "holds": 0,
+      "drags": 0,
+      "travel": 190313.7
+     }
     }
    }
   },
@@ -6503,6 +8764,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 75175.4
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 448,
+      "holds": 0,
+      "drags": 0,
+      "travel": 116443.3
+     },
+     "classic-drag": {
+      "taps": 248,
+      "holds": 0,
+      "drags": 100,
+      "travel": 116443.3
+     },
+     "tapPlace-drag": {
+      "taps": 102,
+      "holds": 0,
+      "drags": 123,
+      "travel": 41781.4
+     },
+     "tapPlace-hold": {
+      "taps": 348,
+      "holds": 123,
+      "drags": 0,
+      "travel": 41781.4
+     },
+     "armed": {
+      "taps": 474,
+      "holds": 0,
+      "drags": 0,
+      "travel": 140097.5
      }
     }
    }
@@ -6594,6 +8887,38 @@
       "drags": 0,
       "travel": 77131.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 476,
+      "holds": 0,
+      "drags": 0,
+      "travel": 116455.3
+     },
+     "classic-drag": {
+      "taps": 270,
+      "holds": 0,
+      "drags": 103,
+      "travel": 116455.3
+     },
+     "tapPlace-drag": {
+      "taps": 105,
+      "holds": 0,
+      "drags": 134,
+      "travel": 39250.1
+     },
+     "tapPlace-hold": {
+      "taps": 373,
+      "holds": 134,
+      "drags": 0,
+      "travel": 39250.1
+     },
+     "armed": {
+      "taps": 519,
+      "holds": 0,
+      "drags": 0,
+      "travel": 153096.5
+     }
     }
    }
   },
@@ -6683,6 +9008,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 162032.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 962,
+      "holds": 0,
+      "drags": 0,
+      "travel": 237791.7
+     },
+     "classic-drag": {
+      "taps": 562,
+      "holds": 0,
+      "drags": 200,
+      "travel": 237791.7
+     },
+     "tapPlace-drag": {
+      "taps": 202,
+      "holds": 0,
+      "drags": 280,
+      "travel": 87516.9
+     },
+     "tapPlace-hold": {
+      "taps": 762,
+      "holds": 280,
+      "drags": 0,
+      "travel": 87516.9
+     },
+     "armed": {
+      "taps": 1048,
+      "holds": 0,
+      "drags": 0,
+      "travel": 311407.1
      }
     }
    }
@@ -6774,6 +9131,38 @@
       "drags": 0,
       "travel": 113101.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 652,
+      "holds": 0,
+      "drags": 0,
+      "travel": 161821
+     },
+     "classic-drag": {
+      "taps": 384,
+      "holds": 0,
+      "drags": 134,
+      "travel": 161821
+     },
+     "tapPlace-drag": {
+      "taps": 136,
+      "holds": 0,
+      "drags": 191,
+      "travel": 60319.1
+     },
+     "tapPlace-hold": {
+      "taps": 518,
+      "holds": 191,
+      "drags": 0,
+      "travel": 60319.1
+     },
+     "armed": {
+      "taps": 704,
+      "holds": 0,
+      "drags": 0,
+      "travel": 207424.4
+     }
     }
    }
   },
@@ -6863,6 +9252,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 92949.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 552,
+      "holds": 0,
+      "drags": 0,
+      "travel": 140841
+     },
+     "classic-drag": {
+      "taps": 308,
+      "holds": 0,
+      "drags": 122,
+      "travel": 140841
+     },
+     "tapPlace-drag": {
+      "taps": 124,
+      "holds": 0,
+      "drags": 153,
+      "travel": 49647.6
+     },
+     "tapPlace-hold": {
+      "taps": 430,
+      "holds": 153,
+      "drags": 0,
+      "travel": 49647.6
+     },
+     "armed": {
+      "taps": 592,
+      "holds": 0,
+      "drags": 0,
+      "travel": 176860.5
      }
     }
    }
@@ -6954,6 +9375,38 @@
       "drags": 0,
       "travel": 97108.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 604,
+      "holds": 0,
+      "drags": 0,
+      "travel": 150503.4
+     },
+     "classic-drag": {
+      "taps": 344,
+      "holds": 0,
+      "drags": 130,
+      "travel": 150503.4
+     },
+     "tapPlace-drag": {
+      "taps": 132,
+      "holds": 0,
+      "drags": 171,
+      "travel": 52469.5
+     },
+     "tapPlace-hold": {
+      "taps": 474,
+      "holds": 171,
+      "drags": 0,
+      "travel": 52469.5
+     },
+     "armed": {
+      "taps": 644,
+      "holds": 0,
+      "drags": 0,
+      "travel": 184994.8
+     }
     }
    }
   },
@@ -7043,6 +9496,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 88892.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 532,
+      "holds": 0,
+      "drags": 0,
+      "travel": 136039.9
+     },
+     "classic-drag": {
+      "taps": 290,
+      "holds": 0,
+      "drags": 121,
+      "travel": 136039.9
+     },
+     "tapPlace-drag": {
+      "taps": 123,
+      "holds": 0,
+      "drags": 144,
+      "travel": 45378.3
+     },
+     "tapPlace-hold": {
+      "taps": 411,
+      "holds": 144,
+      "drags": 0,
+      "travel": 45378.3
+     },
+     "armed": {
+      "taps": 573,
+      "holds": 0,
+      "drags": 0,
+      "travel": 172545.1
      }
     }
    }
@@ -7134,6 +9619,38 @@
       "drags": 0,
       "travel": 69768.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 414,
+      "holds": 0,
+      "drags": 0,
+      "travel": 107447.3
+     },
+     "classic-drag": {
+      "taps": 228,
+      "holds": 0,
+      "drags": 93,
+      "travel": 107447.3
+     },
+     "tapPlace-drag": {
+      "taps": 95,
+      "holds": 0,
+      "drags": 113,
+      "travel": 38689.7
+     },
+     "tapPlace-hold": {
+      "taps": 321,
+      "holds": 113,
+      "drags": 0,
+      "travel": 38689.7
+     },
+     "armed": {
+      "taps": 445,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133546.3
+     }
     }
    }
   },
@@ -7223,6 +9740,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 98753.4
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 586,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147590.3
+     },
+     "classic-drag": {
+      "taps": 332,
+      "holds": 0,
+      "drags": 127,
+      "travel": 147590.3
+     },
+     "tapPlace-drag": {
+      "taps": 129,
+      "holds": 0,
+      "drags": 165,
+      "travel": 51839.7
+     },
+     "tapPlace-hold": {
+      "taps": 459,
+      "holds": 165,
+      "drags": 0,
+      "travel": 51839.7
+     },
+     "armed": {
+      "taps": 635,
+      "holds": 0,
+      "drags": 0,
+      "travel": 190671
      }
     }
    }
@@ -7314,6 +9863,38 @@
       "drags": 0,
       "travel": 56637.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 379,
+      "holds": 0,
+      "drags": 0,
+      "travel": 94232.7
+     },
+     "classic-drag": {
+      "taps": 209,
+      "holds": 0,
+      "drags": 85,
+      "travel": 94232.7
+     },
+     "tapPlace-drag": {
+      "taps": 86,
+      "holds": 0,
+      "drags": 104,
+      "travel": 29169
+     },
+     "tapPlace-hold": {
+      "taps": 294,
+      "holds": 104,
+      "drags": 0,
+      "travel": 29169
+     },
+     "armed": {
+      "taps": 398,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110799.4
+     }
     }
    }
   },
@@ -7403,6 +9984,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 103083.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 613,
+      "holds": 0,
+      "drags": 0,
+      "travel": 152615.7
+     },
+     "classic-drag": {
+      "taps": 353,
+      "holds": 0,
+      "drags": 130,
+      "travel": 152615.7
+     },
+     "tapPlace-drag": {
+      "taps": 131,
+      "holds": 0,
+      "drags": 176,
+      "travel": 54932.9
+     },
+     "tapPlace-hold": {
+      "taps": 483,
+      "holds": 176,
+      "drags": 0,
+      "travel": 54932.9
+     },
+     "armed": {
+      "taps": 665,
+      "holds": 0,
+      "drags": 0,
+      "travel": 197119.2
      }
     }
    }
@@ -7494,6 +10107,38 @@
       "drags": 0,
       "travel": 56881.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 338,
+      "holds": 0,
+      "drags": 0,
+      "travel": 83248.6
+     },
+     "classic-drag": {
+      "taps": 194,
+      "holds": 0,
+      "drags": 72,
+      "travel": 83248.6
+     },
+     "tapPlace-drag": {
+      "taps": 74,
+      "holds": 0,
+      "drags": 96,
+      "travel": 30455.9
+     },
+     "tapPlace-hold": {
+      "taps": 266,
+      "holds": 96,
+      "drags": 0,
+      "travel": 30455.9
+     },
+     "armed": {
+      "taps": 366,
+      "holds": 0,
+      "drags": 0,
+      "travel": 108462.7
+     }
     }
    }
   },
@@ -7583,6 +10228,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 47008.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 288,
+      "holds": 0,
+      "drags": 0,
+      "travel": 71821
+     },
+     "classic-drag": {
+      "taps": 158,
+      "holds": 0,
+      "drags": 65,
+      "travel": 71821
+     },
+     "tapPlace-drag": {
+      "taps": 67,
+      "holds": 0,
+      "drags": 78,
+      "travel": 23847.9
+     },
+     "tapPlace-hold": {
+      "taps": 223,
+      "holds": 78,
+      "drags": 0,
+      "travel": 23847.9
+     },
+     "armed": {
+      "taps": 313,
+      "holds": 0,
+      "drags": 0,
+      "travel": 93275.7
      }
     }
    }
@@ -7674,6 +10351,38 @@
       "drags": 0,
       "travel": 61608.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 389,
+      "holds": 0,
+      "drags": 0,
+      "travel": 95016.2
+     },
+     "classic-drag": {
+      "taps": 219,
+      "holds": 0,
+      "drags": 85,
+      "travel": 95016.2
+     },
+     "tapPlace-drag": {
+      "taps": 86,
+      "holds": 0,
+      "drags": 109,
+      "travel": 30481.7
+     },
+     "tapPlace-hold": {
+      "taps": 304,
+      "holds": 109,
+      "drags": 0,
+      "travel": 30481.7
+     },
+     "armed": {
+      "taps": 422,
+      "holds": 0,
+      "drags": 0,
+      "travel": 123178.8
+     }
     }
    }
   },
@@ -7763,6 +10472,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 143811.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 826,
+      "holds": 0,
+      "drags": 0,
+      "travel": 205646.5
+     },
+     "classic-drag": {
+      "taps": 482,
+      "holds": 0,
+      "drags": 172,
+      "travel": 205646.5
+     },
+     "tapPlace-drag": {
+      "taps": 174,
+      "holds": 0,
+      "drags": 240,
+      "travel": 76616
+     },
+     "tapPlace-hold": {
+      "taps": 654,
+      "holds": 240,
+      "drags": 0,
+      "travel": 76616
+     },
+     "armed": {
+      "taps": 900,
+      "holds": 0,
+      "drags": 0,
+      "travel": 269372.2
      }
     }
    }
@@ -7854,6 +10595,38 @@
       "drags": 0,
       "travel": 55226.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 344,
+      "holds": 0,
+      "drags": 0,
+      "travel": 83785.7
+     },
+     "classic-drag": {
+      "taps": 194,
+      "holds": 0,
+      "drags": 75,
+      "travel": 83785.7
+     },
+     "tapPlace-drag": {
+      "taps": 75,
+      "holds": 0,
+      "drags": 97,
+      "travel": 27528.3
+     },
+     "tapPlace-hold": {
+      "taps": 269,
+      "holds": 97,
+      "drags": 0,
+      "travel": 27528.3
+     },
+     "armed": {
+      "taps": 375,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110999.8
+     }
     }
    }
   },
@@ -7943,6 +10716,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 43883.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 283,
+      "holds": 0,
+      "drags": 0,
+      "travel": 69756.8
+     },
+     "classic-drag": {
+      "taps": 155,
+      "holds": 0,
+      "drags": 64,
+      "travel": 69756.8
+     },
+     "tapPlace-drag": {
+      "taps": 65,
+      "holds": 0,
+      "drags": 77,
+      "travel": 21677.8
+     },
+     "tapPlace-hold": {
+      "taps": 219,
+      "holds": 77,
+      "drags": 0,
+      "travel": 21677.8
+     },
+     "armed": {
+      "taps": 307,
+      "holds": 0,
+      "drags": 0,
+      "travel": 90926.2
      }
     }
    }
@@ -8034,6 +10839,38 @@
       "drags": 0,
       "travel": 85783
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 548,
+      "holds": 0,
+      "drags": 0,
+      "travel": 138719.1
+     },
+     "classic-drag": {
+      "taps": 308,
+      "holds": 0,
+      "drags": 120,
+      "travel": 138719.1
+     },
+     "tapPlace-drag": {
+      "taps": 122,
+      "holds": 0,
+      "drags": 153,
+      "travel": 48154.4
+     },
+     "tapPlace-hold": {
+      "taps": 428,
+      "holds": 153,
+      "drags": 0,
+      "travel": 48154.4
+     },
+     "armed": {
+      "taps": 580,
+      "holds": 0,
+      "drags": 0,
+      "travel": 164573.8
+     }
     }
    }
   },
@@ -8123,6 +10960,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 94600.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 562,
+      "holds": 0,
+      "drags": 0,
+      "travel": 144176.7
+     },
+     "classic-drag": {
+      "taps": 312,
+      "holds": 0,
+      "drags": 125,
+      "travel": 144176.7
+     },
+     "tapPlace-drag": {
+      "taps": 125,
+      "holds": 0,
+      "drags": 156,
+      "travel": 49239.5
+     },
+     "tapPlace-hold": {
+      "taps": 437,
+      "holds": 156,
+      "drags": 0,
+      "travel": 49239.5
+     },
+     "armed": {
+      "taps": 601,
+      "holds": 0,
+      "drags": 0,
+      "travel": 178215.7
      }
     }
    }
@@ -8214,6 +11083,38 @@
       "drags": 0,
       "travel": 65571.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 418,
+      "holds": 0,
+      "drags": 0,
+      "travel": 101486.6
+     },
+     "classic-drag": {
+      "taps": 242,
+      "holds": 0,
+      "drags": 88,
+      "travel": 101486.6
+     },
+     "tapPlace-drag": {
+      "taps": 90,
+      "holds": 0,
+      "drags": 120,
+      "travel": 35727.9
+     },
+     "tapPlace-hold": {
+      "taps": 330,
+      "holds": 120,
+      "drags": 0,
+      "travel": 35727.9
+     },
+     "armed": {
+      "taps": 446,
+      "holds": 0,
+      "drags": 0,
+      "travel": 126207.6
+     }
     }
    }
   },
@@ -8303,6 +11204,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 179638.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1060,
+      "holds": 0,
+      "drags": 0,
+      "travel": 273733.4
+     },
+     "classic-drag": {
+      "taps": 596,
+      "holds": 0,
+      "drags": 232,
+      "travel": 273733.4
+     },
+     "tapPlace-drag": {
+      "taps": 234,
+      "holds": 0,
+      "drags": 297,
+      "travel": 97541.2
+     },
+     "tapPlace-hold": {
+      "taps": 828,
+      "holds": 297,
+      "drags": 0,
+      "travel": 97541.2
+     },
+     "armed": {
+      "taps": 1136,
+      "holds": 0,
+      "drags": 0,
+      "travel": 336988.6
      }
     }
    }
@@ -8394,6 +11327,38 @@
       "drags": 0,
       "travel": 42492.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 284,
+      "holds": 0,
+      "drags": 0,
+      "travel": 71997.7
+     },
+     "classic-drag": {
+      "taps": 152,
+      "holds": 0,
+      "drags": 66,
+      "travel": 71997.7
+     },
+     "tapPlace-drag": {
+      "taps": 66,
+      "holds": 0,
+      "drags": 76,
+      "travel": 22560.7
+     },
+     "tapPlace-hold": {
+      "taps": 218,
+      "holds": 76,
+      "drags": 0,
+      "travel": 22560.7
+     },
+     "armed": {
+      "taps": 300,
+      "holds": 0,
+      "drags": 0,
+      "travel": 86096.3
+     }
     }
    }
   },
@@ -8483,6 +11448,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 59577.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 378,
+      "holds": 0,
+      "drags": 0,
+      "travel": 97303.4
+     },
+     "classic-drag": {
+      "taps": 204,
+      "holds": 0,
+      "drags": 87,
+      "travel": 97303.4
+     },
+     "tapPlace-drag": {
+      "taps": 89,
+      "holds": 0,
+      "drags": 101,
+      "travel": 32751.9
+     },
+     "tapPlace-hold": {
+      "taps": 291,
+      "holds": 101,
+      "drags": 0,
+      "travel": 32751.9
+     },
+     "armed": {
+      "taps": 393,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113180.4
      }
     }
    }
@@ -8574,6 +11571,38 @@
       "drags": 0,
       "travel": 101682.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 598,
+      "holds": 0,
+      "drags": 0,
+      "travel": 153326.3
+     },
+     "classic-drag": {
+      "taps": 338,
+      "holds": 0,
+      "drags": 130,
+      "travel": 153326.3
+     },
+     "tapPlace-drag": {
+      "taps": 132,
+      "holds": 0,
+      "drags": 168,
+      "travel": 56851
+     },
+     "tapPlace-hold": {
+      "taps": 468,
+      "holds": 168,
+      "drags": 0,
+      "travel": 56851
+     },
+     "armed": {
+      "taps": 642,
+      "holds": 0,
+      "drags": 0,
+      "travel": 191975.6
+     }
     }
    }
   },
@@ -8663,6 +11692,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 133788
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 798,
+      "holds": 0,
+      "drags": 0,
+      "travel": 195347.5
+     },
+     "classic-drag": {
+      "taps": 466,
+      "holds": 0,
+      "drags": 166,
+      "travel": 195347.5
+     },
+     "tapPlace-drag": {
+      "taps": 168,
+      "holds": 0,
+      "drags": 232,
+      "travel": 70549.1
+     },
+     "tapPlace-hold": {
+      "taps": 632,
+      "holds": 232,
+      "drags": 0,
+      "travel": 70549.1
+     },
+     "armed": {
+      "taps": 868,
+      "holds": 0,
+      "drags": 0,
+      "travel": 254758.6
      }
     }
    }
@@ -8754,6 +11815,38 @@
       "drags": 0,
       "travel": 115472.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 714,
+      "holds": 0,
+      "drags": 0,
+      "travel": 184503.2
+     },
+     "classic-drag": {
+      "taps": 390,
+      "holds": 0,
+      "drags": 162,
+      "travel": 184503.2
+     },
+     "tapPlace-drag": {
+      "taps": 164,
+      "holds": 0,
+      "drags": 194,
+      "travel": 62869.2
+     },
+     "tapPlace-hold": {
+      "taps": 552,
+      "holds": 194,
+      "drags": 0,
+      "travel": 62869.2
+     },
+     "armed": {
+      "taps": 756,
+      "holds": 0,
+      "drags": 0,
+      "travel": 220833.6
+     }
     }
    }
   },
@@ -8843,6 +11936,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 58083.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 372,
+      "holds": 0,
+      "drags": 0,
+      "travel": 91989.7
+     },
+     "classic-drag": {
+      "taps": 208,
+      "holds": 0,
+      "drags": 82,
+      "travel": 91989.7
+     },
+     "tapPlace-drag": {
+      "taps": 84,
+      "holds": 0,
+      "drags": 103,
+      "travel": 31465.1
+     },
+     "tapPlace-hold": {
+      "taps": 290,
+      "holds": 103,
+      "drags": 0,
+      "travel": 31465.1
+     },
+     "armed": {
+      "taps": 396,
+      "holds": 0,
+      "drags": 0,
+      "travel": 114473.2
      }
     }
    }
@@ -8934,6 +12059,38 @@
       "drags": 0,
       "travel": 158869
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 943,
+      "holds": 0,
+      "drags": 0,
+      "travel": 237853.8
+     },
+     "classic-drag": {
+      "taps": 533,
+      "holds": 0,
+      "drags": 205,
+      "travel": 237853.8
+     },
+     "tapPlace-drag": {
+      "taps": 206,
+      "holds": 0,
+      "drags": 266,
+      "travel": 82637.7
+     },
+     "tapPlace-hold": {
+      "taps": 738,
+      "holds": 266,
+      "drags": 0,
+      "travel": 82637.7
+     },
+     "armed": {
+      "taps": 1020,
+      "holds": 0,
+      "drags": 0,
+      "travel": 302881.7
+     }
     }
    }
   },
@@ -9023,6 +12180,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 117436.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 696,
+      "holds": 0,
+      "drags": 0,
+      "travel": 173827.5
+     },
+     "classic-drag": {
+      "taps": 402,
+      "holds": 0,
+      "drags": 147,
+      "travel": 173827.5
+     },
+     "tapPlace-drag": {
+      "taps": 149,
+      "holds": 0,
+      "drags": 200,
+      "travel": 62447.5
+     },
+     "tapPlace-hold": {
+      "taps": 549,
+      "holds": 200,
+      "drags": 0,
+      "travel": 62447.5
+     },
+     "armed": {
+      "taps": 751,
+      "holds": 0,
+      "drags": 0,
+      "travel": 220849.4
      }
     }
    }
@@ -9114,6 +12303,38 @@
       "drags": 0,
       "travel": 94875.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 594,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147387.6
+     },
+     "classic-drag": {
+      "taps": 340,
+      "holds": 0,
+      "drags": 127,
+      "travel": 147387.6
+     },
+     "tapPlace-drag": {
+      "taps": 129,
+      "holds": 0,
+      "drags": 169,
+      "travel": 51299.2
+     },
+     "tapPlace-hold": {
+      "taps": 467,
+      "holds": 169,
+      "drags": 0,
+      "travel": 51299.2
+     },
+     "armed": {
+      "taps": 625,
+      "holds": 0,
+      "drags": 0,
+      "travel": 176119.8
+     }
     }
    }
   },
@@ -9203,6 +12424,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 204661.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1194,
+      "holds": 0,
+      "drags": 0,
+      "travel": 301713.1
+     },
+     "classic-drag": {
+      "taps": 692,
+      "holds": 0,
+      "drags": 251,
+      "travel": 301713.1
+     },
+     "tapPlace-drag": {
+      "taps": 253,
+      "holds": 0,
+      "drags": 345,
+      "travel": 111811.1
+     },
+     "tapPlace-hold": {
+      "taps": 943,
+      "holds": 345,
+      "drags": 0,
+      "travel": 111811.1
+     },
+     "armed": {
+      "taps": 1283,
+      "holds": 0,
+      "drags": 0,
+      "travel": 378623.2
      }
     }
    }
@@ -9294,6 +12547,38 @@
       "drags": 0,
       "travel": 130708.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 788,
+      "holds": 0,
+      "drags": 0,
+      "travel": 193443.7
+     },
+     "classic-drag": {
+      "taps": 460,
+      "holds": 0,
+      "drags": 164,
+      "travel": 193443.7
+     },
+     "tapPlace-drag": {
+      "taps": 166,
+      "holds": 0,
+      "drags": 229,
+      "travel": 70416.4
+     },
+     "tapPlace-hold": {
+      "taps": 624,
+      "holds": 229,
+      "drags": 0,
+      "travel": 70416.4
+     },
+     "armed": {
+      "taps": 850,
+      "holds": 0,
+      "drags": 0,
+      "travel": 246379.3
+     }
     }
    }
   },
@@ -9383,6 +12668,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 57900.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 394,
+      "holds": 0,
+      "drags": 0,
+      "travel": 96964.2
+     },
+     "classic-drag": {
+      "taps": 220,
+      "holds": 0,
+      "drags": 87,
+      "travel": 96964.2
+     },
+     "tapPlace-drag": {
+      "taps": 89,
+      "holds": 0,
+      "drags": 109,
+      "travel": 31553.5
+     },
+     "tapPlace-hold": {
+      "taps": 307,
+      "holds": 109,
+      "drags": 0,
+      "travel": 31553.5
+     },
+     "armed": {
+      "taps": 411,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113365
      }
     }
    }
@@ -9474,6 +12791,38 @@
       "drags": 0,
       "travel": 90531.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 554,
+      "holds": 0,
+      "drags": 0,
+      "travel": 144120.9
+     },
+     "classic-drag": {
+      "taps": 306,
+      "holds": 0,
+      "drags": 124,
+      "travel": 144120.9
+     },
+     "tapPlace-drag": {
+      "taps": 126,
+      "holds": 0,
+      "drags": 152,
+      "travel": 51209.6
+     },
+     "tapPlace-hold": {
+      "taps": 430,
+      "holds": 152,
+      "drags": 0,
+      "travel": 51209.6
+     },
+     "armed": {
+      "taps": 582,
+      "holds": 0,
+      "drags": 0,
+      "travel": 169070.3
+     }
     }
    }
   },
@@ -9563,6 +12912,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 153731.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 924,
+      "holds": 0,
+      "drags": 0,
+      "travel": 231832.4
+     },
+     "classic-drag": {
+      "taps": 526,
+      "holds": 0,
+      "drags": 199,
+      "travel": 231832.4
+     },
+     "tapPlace-drag": {
+      "taps": 201,
+      "holds": 0,
+      "drags": 262,
+      "travel": 80525.8
+     },
+     "tapPlace-hold": {
+      "taps": 725,
+      "holds": 262,
+      "drags": 0,
+      "travel": 80525.8
+     },
+     "armed": {
+      "taps": 989,
+      "holds": 0,
+      "drags": 0,
+      "travel": 288803.5
      }
     }
    }
@@ -9654,6 +13035,38 @@
       "drags": 0,
       "travel": 65199.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 416,
+      "holds": 0,
+      "drags": 0,
+      "travel": 103639.9
+     },
+     "classic-drag": {
+      "taps": 236,
+      "holds": 0,
+      "drags": 90,
+      "travel": 103639.9
+     },
+     "tapPlace-drag": {
+      "taps": 92,
+      "holds": 0,
+      "drags": 117,
+      "travel": 36014.9
+     },
+     "tapPlace-hold": {
+      "taps": 326,
+      "holds": 117,
+      "drags": 0,
+      "travel": 36014.9
+     },
+     "armed": {
+      "taps": 440,
+      "holds": 0,
+      "drags": 0,
+      "travel": 125497.2
+     }
     }
    }
   },
@@ -9743,6 +13156,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 182249.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1050,
+      "holds": 0,
+      "drags": 0,
+      "travel": 266553.8
+     },
+     "classic-drag": {
+      "taps": 608,
+      "holds": 0,
+      "drags": 221,
+      "travel": 266553.8
+     },
+     "tapPlace-drag": {
+      "taps": 223,
+      "holds": 0,
+      "drags": 303,
+      "travel": 100673.3
+     },
+     "tapPlace-hold": {
+      "taps": 829,
+      "holds": 303,
+      "drags": 0,
+      "travel": 100673.3
+     },
+     "armed": {
+      "taps": 1145,
+      "holds": 0,
+      "drags": 0,
+      "travel": 344769.3
      }
     }
    }
@@ -9834,6 +13279,38 @@
       "drags": 0,
       "travel": 87607.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 524,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133727.4
+     },
+     "classic-drag": {
+      "taps": 298,
+      "holds": 0,
+      "drags": 113,
+      "travel": 133727.4
+     },
+     "tapPlace-drag": {
+      "taps": 115,
+      "holds": 0,
+      "drags": 148,
+      "travel": 48424
+     },
+     "tapPlace-hold": {
+      "taps": 411,
+      "holds": 148,
+      "drags": 0,
+      "travel": 48424
+     },
+     "armed": {
+      "taps": 557,
+      "holds": 0,
+      "drags": 0,
+      "travel": 162343.6
+     }
     }
    }
   },
@@ -9923,6 +13400,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 79768.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 504,
+      "holds": 0,
+      "drags": 0,
+      "travel": 120902.3
+     },
+     "classic-drag": {
+      "taps": 290,
+      "holds": 0,
+      "drags": 107,
+      "travel": 120902.3
+     },
+     "tapPlace-drag": {
+      "taps": 109,
+      "holds": 0,
+      "drags": 144,
+      "travel": 40275
+     },
+     "tapPlace-hold": {
+      "taps": 397,
+      "holds": 144,
+      "drags": 0,
+      "travel": 40275
+     },
+     "armed": {
+      "taps": 547,
+      "holds": 0,
+      "drags": 0,
+      "travel": 158122.1
      }
     }
    }
@@ -10014,6 +13523,38 @@
       "drags": 0,
       "travel": 73143.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 462,
+      "holds": 0,
+      "drags": 0,
+      "travel": 115553.9
+     },
+     "classic-drag": {
+      "taps": 256,
+      "holds": 0,
+      "drags": 103,
+      "travel": 115553.9
+     },
+     "tapPlace-drag": {
+      "taps": 105,
+      "holds": 0,
+      "drags": 127,
+      "travel": 37536.7
+     },
+     "tapPlace-hold": {
+      "taps": 359,
+      "holds": 127,
+      "drags": 0,
+      "travel": 37536.7
+     },
+     "armed": {
+      "taps": 493,
+      "holds": 0,
+      "drags": 0,
+      "travel": 142648.2
+     }
     }
    }
   },
@@ -10103,6 +13644,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 86600.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 540,
+      "holds": 0,
+      "drags": 0,
+      "travel": 137366.3
+     },
+     "classic-drag": {
+      "taps": 302,
+      "holds": 0,
+      "drags": 119,
+      "travel": 137366.3
+     },
+     "tapPlace-drag": {
+      "taps": 121,
+      "holds": 0,
+      "drags": 150,
+      "travel": 47222
+     },
+     "tapPlace-hold": {
+      "taps": 421,
+      "holds": 150,
+      "drags": 0,
+      "travel": 47222
+     },
+     "armed": {
+      "taps": 577,
+      "holds": 0,
+      "drags": 0,
+      "travel": 168425.3
      }
     }
    }
@@ -10194,6 +13767,38 @@
       "drags": 0,
       "travel": 108089.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 616,
+      "holds": 0,
+      "drags": 0,
+      "travel": 154673.1
+     },
+     "classic-drag": {
+      "taps": 358,
+      "holds": 0,
+      "drags": 129,
+      "travel": 154673.1
+     },
+     "tapPlace-drag": {
+      "taps": 131,
+      "holds": 0,
+      "drags": 178,
+      "travel": 57519.4
+     },
+     "tapPlace-hold": {
+      "taps": 487,
+      "holds": 178,
+      "drags": 0,
+      "travel": 57519.4
+     },
+     "armed": {
+      "taps": 677,
+      "holds": 0,
+      "drags": 0,
+      "travel": 205762.3
+     }
     }
    }
   },
@@ -10283,6 +13888,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 74867.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 464,
+      "holds": 0,
+      "drags": 0,
+      "travel": 117924.1
+     },
+     "classic-drag": {
+      "taps": 258,
+      "holds": 0,
+      "drags": 103,
+      "travel": 117924.1
+     },
+     "tapPlace-drag": {
+      "taps": 105,
+      "holds": 0,
+      "drags": 128,
+      "travel": 40921.4
+     },
+     "tapPlace-hold": {
+      "taps": 361,
+      "holds": 128,
+      "drags": 0,
+      "travel": 40921.4
+     },
+     "armed": {
+      "taps": 493,
+      "holds": 0,
+      "drags": 0,
+      "travel": 143365.9
      }
     }
    }
@@ -10374,6 +14011,38 @@
       "drags": 0,
       "travel": 208137.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1210,
+      "holds": 0,
+      "drags": 0,
+      "travel": 303748.8
+     },
+     "classic-drag": {
+      "taps": 706,
+      "holds": 0,
+      "drags": 252,
+      "travel": 303748.8
+     },
+     "tapPlace-drag": {
+      "taps": 254,
+      "holds": 0,
+      "drags": 352,
+      "travel": 113219.2
+     },
+     "tapPlace-hold": {
+      "taps": 958,
+      "holds": 352,
+      "drags": 0,
+      "travel": 113219.2
+     },
+     "armed": {
+      "taps": 1312,
+      "holds": 0,
+      "drags": 0,
+      "travel": 389370.9
+     }
     }
    }
   },
@@ -10463,6 +14132,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 58311.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 372,
+      "holds": 0,
+      "drags": 0,
+      "travel": 93023.7
+     },
+     "classic-drag": {
+      "taps": 210,
+      "holds": 0,
+      "drags": 81,
+      "travel": 93023.7
+     },
+     "tapPlace-drag": {
+      "taps": 83,
+      "holds": 0,
+      "drags": 104,
+      "travel": 32619.3
+     },
+     "tapPlace-hold": {
+      "taps": 291,
+      "holds": 104,
+      "drags": 0,
+      "travel": 32619.3
+     },
+     "armed": {
+      "taps": 393,
+      "holds": 0,
+      "drags": 0,
+      "travel": 111388.3
      }
     }
    }
@@ -10554,6 +14255,38 @@
       "drags": 0,
       "travel": 97124.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 614,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147854.6
+     },
+     "classic-drag": {
+      "taps": 362,
+      "holds": 0,
+      "drags": 126,
+      "travel": 147854.6
+     },
+     "tapPlace-drag": {
+      "taps": 128,
+      "holds": 0,
+      "drags": 180,
+      "travel": 52961.6
+     },
+     "tapPlace-hold": {
+      "taps": 488,
+      "holds": 180,
+      "drags": 0,
+      "travel": 52961.6
+     },
+     "armed": {
+      "taps": 658,
+      "holds": 0,
+      "drags": 0,
+      "travel": 184971.8
+     }
     }
    }
   },
@@ -10643,6 +14376,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 66473.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 414,
+      "holds": 0,
+      "drags": 0,
+      "travel": 103900.4
+     },
+     "classic-drag": {
+      "taps": 232,
+      "holds": 0,
+      "drags": 91,
+      "travel": 103900.4
+     },
+     "tapPlace-drag": {
+      "taps": 93,
+      "holds": 0,
+      "drags": 115,
+      "travel": 34909.9
+     },
+     "tapPlace-hold": {
+      "taps": 323,
+      "holds": 115,
+      "drags": 0,
+      "travel": 34909.9
+     },
+     "armed": {
+      "taps": 443,
+      "holds": 0,
+      "drags": 0,
+      "travel": 129163.2
      }
     }
    }
@@ -10734,6 +14499,38 @@
       "drags": 0,
       "travel": 102560.3
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 622,
+      "holds": 0,
+      "drags": 0,
+      "travel": 151463.2
+     },
+     "classic-drag": {
+      "taps": 372,
+      "holds": 0,
+      "drags": 125,
+      "travel": 151463.2
+     },
+     "tapPlace-drag": {
+      "taps": 127,
+      "holds": 0,
+      "drags": 185,
+      "travel": 58020
+     },
+     "tapPlace-hold": {
+      "taps": 497,
+      "holds": 185,
+      "drags": 0,
+      "travel": 58020
+     },
+     "armed": {
+      "taps": 669,
+      "holds": 0,
+      "drags": 0,
+      "travel": 192375.4
+     }
     }
    }
   },
@@ -10823,6 +14620,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 207523.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1240,
+      "holds": 0,
+      "drags": 0,
+      "travel": 312249.8
+     },
+     "classic-drag": {
+      "taps": 718,
+      "holds": 0,
+      "drags": 261,
+      "travel": 312249.8
+     },
+     "tapPlace-drag": {
+      "taps": 263,
+      "holds": 0,
+      "drags": 358,
+      "travel": 114311
+     },
+     "tapPlace-hold": {
+      "taps": 979,
+      "holds": 358,
+      "drags": 0,
+      "travel": 114311
+     },
+     "armed": {
+      "taps": 1317,
+      "holds": 0,
+      "drags": 0,
+      "travel": 380394.8
      }
     }
    }
@@ -10914,6 +14743,38 @@
       "drags": 0,
       "travel": 65195.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 409,
+      "holds": 0,
+      "drags": 0,
+      "travel": 103860.1
+     },
+     "classic-drag": {
+      "taps": 223,
+      "holds": 0,
+      "drags": 93,
+      "travel": 103860.1
+     },
+     "tapPlace-drag": {
+      "taps": 94,
+      "holds": 0,
+      "drags": 111,
+      "travel": 34079.5
+     },
+     "tapPlace-hold": {
+      "taps": 316,
+      "holds": 111,
+      "drags": 0,
+      "travel": 34079.5
+     },
+     "armed": {
+      "taps": 432,
+      "holds": 0,
+      "drags": 0,
+      "travel": 124566.8
+     }
     }
    }
   },
@@ -11003,6 +14864,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 99139.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 614,
+      "holds": 0,
+      "drags": 0,
+      "travel": 160449.4
+     },
+     "classic-drag": {
+      "taps": 330,
+      "holds": 0,
+      "drags": 142,
+      "travel": 160449.4
+     },
+     "tapPlace-drag": {
+      "taps": 144,
+      "holds": 0,
+      "drags": 164,
+      "travel": 53821.5
+     },
+     "tapPlace-hold": {
+      "taps": 472,
+      "holds": 164,
+      "drags": 0,
+      "travel": 53821.5
+     },
+     "armed": {
+      "taps": 648,
+      "holds": 0,
+      "drags": 0,
+      "travel": 190492.9
      }
     }
    }
@@ -11094,6 +14987,38 @@
       "drags": 0,
       "travel": 84868.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 515,
+      "holds": 0,
+      "drags": 0,
+      "travel": 127469.6
+     },
+     "classic-drag": {
+      "taps": 293,
+      "holds": 0,
+      "drags": 111,
+      "travel": 127469.6
+     },
+     "tapPlace-drag": {
+      "taps": 112,
+      "holds": 0,
+      "drags": 146,
+      "travel": 43152.5
+     },
+     "tapPlace-hold": {
+      "taps": 404,
+      "holds": 146,
+      "drags": 0,
+      "travel": 43152.5
+     },
+     "armed": {
+      "taps": 562,
+      "holds": 0,
+      "drags": 0,
+      "travel": 167026.3
+     }
     }
    }
   },
@@ -11183,6 +15108,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 117032.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 707,
+      "holds": 0,
+      "drags": 0,
+      "travel": 174778
+     },
+     "classic-drag": {
+      "taps": 407,
+      "holds": 0,
+      "drags": 150,
+      "travel": 174778
+     },
+     "tapPlace-drag": {
+      "taps": 151,
+      "holds": 0,
+      "drags": 203,
+      "travel": 61665.1
+     },
+     "tapPlace-hold": {
+      "taps": 557,
+      "holds": 203,
+      "drags": 0,
+      "travel": 61665.1
+     },
+     "armed": {
+      "taps": 773,
+      "holds": 0,
+      "drags": 0,
+      "travel": 229507
      }
     }
    }
@@ -11274,6 +15231,38 @@
       "drags": 0,
       "travel": 86667.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 528,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133619.4
+     },
+     "classic-drag": {
+      "taps": 296,
+      "holds": 0,
+      "drags": 116,
+      "travel": 133619.4
+     },
+     "tapPlace-drag": {
+      "taps": 118,
+      "holds": 0,
+      "drags": 147,
+      "travel": 46006.6
+     },
+     "tapPlace-hold": {
+      "taps": 412,
+      "holds": 147,
+      "drags": 0,
+      "travel": 46006.6
+     },
+     "armed": {
+      "taps": 566,
+      "holds": 0,
+      "drags": 0,
+      "travel": 166208.3
+     }
     }
    }
   },
@@ -11363,6 +15352,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 75062.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 466,
+      "holds": 0,
+      "drags": 0,
+      "travel": 114293.3
+     },
+     "classic-drag": {
+      "taps": 268,
+      "holds": 0,
+      "drags": 99,
+      "travel": 114293.3
+     },
+     "tapPlace-drag": {
+      "taps": 101,
+      "holds": 0,
+      "drags": 133,
+      "travel": 40172.7
+     },
+     "tapPlace-hold": {
+      "taps": 367,
+      "holds": 133,
+      "drags": 0,
+      "travel": 40172.7
+     },
+     "armed": {
+      "taps": 505,
+      "holds": 0,
+      "drags": 0,
+      "travel": 148312.4
      }
     }
    }
@@ -11454,6 +15475,38 @@
       "drags": 0,
       "travel": 68234.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 430,
+      "holds": 0,
+      "drags": 0,
+      "travel": 105855.8
+     },
+     "classic-drag": {
+      "taps": 240,
+      "holds": 0,
+      "drags": 95,
+      "travel": 105855.8
+     },
+     "tapPlace-drag": {
+      "taps": 97,
+      "holds": 0,
+      "drags": 119,
+      "travel": 34236.2
+     },
+     "tapPlace-hold": {
+      "taps": 335,
+      "holds": 119,
+      "drags": 0,
+      "travel": 34236.2
+     },
+     "armed": {
+      "taps": 463,
+      "holds": 0,
+      "drags": 0,
+      "travel": 136275.2
+     }
     }
    }
   },
@@ -11543,6 +15596,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 83462.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 498,
+      "holds": 0,
+      "drags": 0,
+      "travel": 127026.9
+     },
+     "classic-drag": {
+      "taps": 274,
+      "holds": 0,
+      "drags": 112,
+      "travel": 127026.9
+     },
+     "tapPlace-drag": {
+      "taps": 114,
+      "holds": 0,
+      "drags": 136,
+      "travel": 42202
+     },
+     "tapPlace-hold": {
+      "taps": 386,
+      "holds": 136,
+      "drags": 0,
+      "travel": 42202
+     },
+     "armed": {
+      "taps": 538,
+      "holds": 0,
+      "drags": 0,
+      "travel": 163442.8
      }
     }
    }
@@ -11634,6 +15719,38 @@
       "drags": 0,
       "travel": 76294.8
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 478,
+      "holds": 0,
+      "drags": 0,
+      "travel": 120151
+     },
+     "classic-drag": {
+      "taps": 266,
+      "holds": 0,
+      "drags": 106,
+      "travel": 120151
+     },
+     "tapPlace-drag": {
+      "taps": 108,
+      "holds": 0,
+      "drags": 132,
+      "travel": 40585.7
+     },
+     "tapPlace-hold": {
+      "taps": 372,
+      "holds": 132,
+      "drags": 0,
+      "travel": 40585.7
+     },
+     "armed": {
+      "taps": 508,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147707.9
+     }
     }
    }
   },
@@ -11723,6 +15840,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 61644.4
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 405,
+      "holds": 0,
+      "drags": 0,
+      "travel": 101999.8
+     },
+     "classic-drag": {
+      "taps": 221,
+      "holds": 0,
+      "drags": 92,
+      "travel": 101999.8
+     },
+     "tapPlace-drag": {
+      "taps": 93,
+      "holds": 0,
+      "drags": 110,
+      "travel": 31994
+     },
+     "tapPlace-hold": {
+      "taps": 313,
+      "holds": 110,
+      "drags": 0,
+      "travel": 31994
+     },
+     "armed": {
+      "taps": 427,
+      "holds": 0,
+      "drags": 0,
+      "travel": 121415.5
      }
     }
    }
@@ -11814,6 +15963,38 @@
       "drags": 0,
       "travel": 76153.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 482,
+      "holds": 0,
+      "drags": 0,
+      "travel": 128904
+     },
+     "classic-drag": {
+      "taps": 248,
+      "holds": 0,
+      "drags": 117,
+      "travel": 128904
+     },
+     "tapPlace-drag": {
+      "taps": 119,
+      "holds": 0,
+      "drags": 123,
+      "travel": 40786.9
+     },
+     "tapPlace-hold": {
+      "taps": 365,
+      "holds": 123,
+      "drags": 0,
+      "travel": 40786.9
+     },
+     "armed": {
+      "taps": 501,
+      "holds": 0,
+      "drags": 0,
+      "travel": 146873.8
+     }
     }
    }
   },
@@ -11903,6 +16084,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 81885.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 496,
+      "holds": 0,
+      "drags": 0,
+      "travel": 123353
+     },
+     "classic-drag": {
+      "taps": 278,
+      "holds": 0,
+      "drags": 109,
+      "travel": 123353
+     },
+     "tapPlace-drag": {
+      "taps": 111,
+      "holds": 0,
+      "drags": 138,
+      "travel": 41889.8
+     },
+     "tapPlace-hold": {
+      "taps": 387,
+      "holds": 138,
+      "drags": 0,
+      "travel": 41889.8
+     },
+     "armed": {
+      "taps": 541,
+      "holds": 0,
+      "drags": 0,
+      "travel": 162950.2
      }
     }
    }
@@ -11994,6 +16207,38 @@
       "drags": 0,
       "travel": 84107.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 546,
+      "holds": 0,
+      "drags": 0,
+      "travel": 136601.4
+     },
+     "classic-drag": {
+      "taps": 304,
+      "holds": 0,
+      "drags": 121,
+      "travel": 136601.4
+     },
+     "tapPlace-drag": {
+      "taps": 123,
+      "holds": 0,
+      "drags": 151,
+      "travel": 45787.2
+     },
+     "tapPlace-hold": {
+      "taps": 425,
+      "holds": 151,
+      "drags": 0,
+      "travel": 45787.2
+     },
+     "armed": {
+      "taps": 573,
+      "holds": 0,
+      "drags": 0,
+      "travel": 161344.2
+     }
     }
    }
   },
@@ -12083,6 +16328,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 87601
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 508,
+      "holds": 0,
+      "drags": 0,
+      "travel": 129849.9
+     },
+     "classic-drag": {
+      "taps": 282,
+      "holds": 0,
+      "drags": 113,
+      "travel": 129849.9
+     },
+     "tapPlace-drag": {
+      "taps": 115,
+      "holds": 0,
+      "drags": 140,
+      "travel": 45670.1
+     },
+     "tapPlace-hold": {
+      "taps": 395,
+      "holds": 140,
+      "drags": 0,
+      "travel": 45670.1
+     },
+     "armed": {
+      "taps": 553,
+      "holds": 0,
+      "drags": 0,
+      "travel": 169190.2
      }
     }
    }
@@ -12174,6 +16451,38 @@
       "drags": 0,
       "travel": 68029.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 396,
+      "holds": 0,
+      "drags": 0,
+      "travel": 100508.9
+     },
+     "classic-drag": {
+      "taps": 220,
+      "holds": 0,
+      "drags": 88,
+      "travel": 100508.9
+     },
+     "tapPlace-drag": {
+      "taps": 88,
+      "holds": 0,
+      "drags": 110,
+      "travel": 33538.9
+     },
+     "tapPlace-hold": {
+      "taps": 308,
+      "holds": 110,
+      "drags": 0,
+      "travel": 33538.9
+     },
+     "armed": {
+      "taps": 432,
+      "holds": 0,
+      "drags": 0,
+      "travel": 131632.7
+     }
     }
    }
   },
@@ -12263,6 +16572,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 65615.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 430,
+      "holds": 0,
+      "drags": 0,
+      "travel": 104922.5
+     },
+     "classic-drag": {
+      "taps": 242,
+      "holds": 0,
+      "drags": 94,
+      "travel": 104922.5
+     },
+     "tapPlace-drag": {
+      "taps": 96,
+      "holds": 0,
+      "drags": 120,
+      "travel": 34280.9
+     },
+     "tapPlace-hold": {
+      "taps": 336,
+      "holds": 120,
+      "drags": 0,
+      "travel": 34280.9
+     },
+     "armed": {
+      "taps": 458,
+      "holds": 0,
+      "drags": 0,
+      "travel": 129872
      }
     }
    }
@@ -12354,6 +16695,38 @@
       "drags": 0,
       "travel": 56515.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 380,
+      "holds": 0,
+      "drags": 0,
+      "travel": 96604.9
+     },
+     "classic-drag": {
+      "taps": 204,
+      "holds": 0,
+      "drags": 88,
+      "travel": 96604.9
+     },
+     "tapPlace-drag": {
+      "taps": 90,
+      "holds": 0,
+      "drags": 101,
+      "travel": 29930.6
+     },
+     "tapPlace-hold": {
+      "taps": 292,
+      "holds": 101,
+      "drags": 0,
+      "travel": 29930.6
+     },
+     "armed": {
+      "taps": 394,
+      "holds": 0,
+      "drags": 0,
+      "travel": 109929.5
+     }
     }
    }
   },
@@ -12443,6 +16816,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 118655.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 722,
+      "holds": 0,
+      "drags": 0,
+      "travel": 181290.8
+     },
+     "classic-drag": {
+      "taps": 404,
+      "holds": 0,
+      "drags": 159,
+      "travel": 181290.8
+     },
+     "tapPlace-drag": {
+      "taps": 161,
+      "holds": 0,
+      "drags": 201,
+      "travel": 61279.5
+     },
+     "tapPlace-hold": {
+      "taps": 563,
+      "holds": 201,
+      "drags": 0,
+      "travel": 61279.5
+     },
+     "armed": {
+      "taps": 775,
+      "holds": 0,
+      "drags": 0,
+      "travel": 227452.2
      }
     }
    }
@@ -12534,6 +16939,38 @@
       "drags": 0,
       "travel": 61806.3
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 411,
+      "holds": 0,
+      "drags": 0,
+      "travel": 102786.3
+     },
+     "classic-drag": {
+      "taps": 227,
+      "holds": 0,
+      "drags": 92,
+      "travel": 102786.3
+     },
+     "tapPlace-drag": {
+      "taps": 93,
+      "holds": 0,
+      "drags": 113,
+      "travel": 33099.4
+     },
+     "tapPlace-hold": {
+      "taps": 319,
+      "holds": 113,
+      "drags": 0,
+      "travel": 33099.4
+     },
+     "armed": {
+      "taps": 431,
+      "holds": 0,
+      "drags": 0,
+      "travel": 119955.5
+     }
     }
    }
   },
@@ -12623,6 +17060,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 78865.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 483,
+      "holds": 0,
+      "drags": 0,
+      "travel": 125895.5
+     },
+     "classic-drag": {
+      "taps": 265,
+      "holds": 0,
+      "drags": 109,
+      "travel": 125895.5
+     },
+     "tapPlace-drag": {
+      "taps": 110,
+      "holds": 0,
+      "drags": 132,
+      "travel": 42052.5
+     },
+     "tapPlace-hold": {
+      "taps": 374,
+      "holds": 132,
+      "drags": 0,
+      "travel": 42052.5
+     },
+     "armed": {
+      "taps": 512,
+      "holds": 0,
+      "drags": 0,
+      "travel": 149827.7
      }
     }
    }
@@ -12714,6 +17183,38 @@
       "drags": 0,
       "travel": 109729.3
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 650,
+      "holds": 0,
+      "drags": 0,
+      "travel": 163673.6
+     },
+     "classic-drag": {
+      "taps": 372,
+      "holds": 0,
+      "drags": 139,
+      "travel": 163673.6
+     },
+     "tapPlace-drag": {
+      "taps": 141,
+      "holds": 0,
+      "drags": 185,
+      "travel": 59182.7
+     },
+     "tapPlace-hold": {
+      "taps": 511,
+      "holds": 185,
+      "drags": 0,
+      "travel": 59182.7
+     },
+     "armed": {
+      "taps": 701,
+      "holds": 0,
+      "drags": 0,
+      "travel": 207524.5
+     }
     }
    }
   },
@@ -12803,6 +17304,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 95132.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 560,
+      "holds": 0,
+      "drags": 0,
+      "travel": 141377.2
+     },
+     "classic-drag": {
+      "taps": 322,
+      "holds": 0,
+      "drags": 119,
+      "travel": 141377.2
+     },
+     "tapPlace-drag": {
+      "taps": 121,
+      "holds": 0,
+      "drags": 160,
+      "travel": 52443.9
+     },
+     "tapPlace-hold": {
+      "taps": 441,
+      "holds": 160,
+      "drags": 0,
+      "travel": 52443.9
+     },
+     "armed": {
+      "taps": 597,
+      "holds": 0,
+      "drags": 0,
+      "travel": 175159.4
      }
     }
    }
@@ -12894,6 +17427,38 @@
       "drags": 0,
       "travel": 61458.3
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 386,
+      "holds": 0,
+      "drags": 0,
+      "travel": 93929.4
+     },
+     "classic-drag": {
+      "taps": 222,
+      "holds": 0,
+      "drags": 82,
+      "travel": 93929.4
+     },
+     "tapPlace-drag": {
+      "taps": 84,
+      "holds": 0,
+      "drags": 110,
+      "travel": 33333.4
+     },
+     "tapPlace-hold": {
+      "taps": 304,
+      "holds": 110,
+      "drags": 0,
+      "travel": 33333.4
+     },
+     "armed": {
+      "taps": 412,
+      "holds": 0,
+      "drags": 0,
+      "travel": 117236
+     }
     }
    }
   },
@@ -12983,6 +17548,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 93708
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 586,
+      "holds": 0,
+      "drags": 0,
+      "travel": 149784.5
+     },
+     "classic-drag": {
+      "taps": 330,
+      "holds": 0,
+      "drags": 128,
+      "travel": 149784.5
+     },
+     "tapPlace-drag": {
+      "taps": 130,
+      "holds": 0,
+      "drags": 164,
+      "travel": 52714.9
+     },
+     "tapPlace-hold": {
+      "taps": 458,
+      "holds": 164,
+      "drags": 0,
+      "travel": 52714.9
+     },
+     "armed": {
+      "taps": 616,
+      "holds": 0,
+      "drags": 0,
+      "travel": 175842.9
      }
     }
    }
@@ -13074,6 +17671,38 @@
       "drags": 0,
       "travel": 86820.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 512,
+      "holds": 0,
+      "drags": 0,
+      "travel": 130094.9
+     },
+     "classic-drag": {
+      "taps": 294,
+      "holds": 0,
+      "drags": 109,
+      "travel": 130094.9
+     },
+     "tapPlace-drag": {
+      "taps": 111,
+      "holds": 0,
+      "drags": 146,
+      "travel": 47789.5
+     },
+     "tapPlace-hold": {
+      "taps": 403,
+      "holds": 146,
+      "drags": 0,
+      "travel": 47789.5
+     },
+     "armed": {
+      "taps": 547,
+      "holds": 0,
+      "drags": 0,
+      "travel": 160700
+     }
     }
    }
   },
@@ -13163,6 +17792,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 48338.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 319,
+      "holds": 0,
+      "drags": 0,
+      "travel": 80027.4
+     },
+     "classic-drag": {
+      "taps": 171,
+      "holds": 0,
+      "drags": 74,
+      "travel": 80027.4
+     },
+     "tapPlace-drag": {
+      "taps": 75,
+      "holds": 0,
+      "drags": 85,
+      "travel": 24405.9
+     },
+     "tapPlace-hold": {
+      "taps": 245,
+      "holds": 85,
+      "drags": 0,
+      "travel": 24405.9
+     },
+     "armed": {
+      "taps": 339,
+      "holds": 0,
+      "drags": 0,
+      "travel": 98100.1
      }
     }
    }
@@ -13254,6 +17915,38 @@
       "drags": 0,
       "travel": 114798.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 682,
+      "holds": 0,
+      "drags": 0,
+      "travel": 174984.8
+     },
+     "classic-drag": {
+      "taps": 376,
+      "holds": 0,
+      "drags": 153,
+      "travel": 174984.8
+     },
+     "tapPlace-drag": {
+      "taps": 155,
+      "holds": 0,
+      "drags": 187,
+      "travel": 59007.4
+     },
+     "tapPlace-hold": {
+      "taps": 529,
+      "holds": 187,
+      "drags": 0,
+      "travel": 59007.4
+     },
+     "armed": {
+      "taps": 735,
+      "holds": 0,
+      "drags": 0,
+      "travel": 220647.4
+     }
     }
    }
   },
@@ -13343,6 +18036,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 97610.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 586,
+      "holds": 0,
+      "drags": 0,
+      "travel": 146728.4
+     },
+     "classic-drag": {
+      "taps": 330,
+      "holds": 0,
+      "drags": 128,
+      "travel": 146728.4
+     },
+     "tapPlace-drag": {
+      "taps": 130,
+      "holds": 0,
+      "drags": 164,
+      "travel": 51857.9
+     },
+     "tapPlace-hold": {
+      "taps": 458,
+      "holds": 164,
+      "drags": 0,
+      "travel": 51857.9
+     },
+     "armed": {
+      "taps": 634,
+      "holds": 0,
+      "drags": 0,
+      "travel": 188674.5
      }
     }
    }
@@ -13434,6 +18159,38 @@
       "drags": 0,
       "travel": 244501.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1406,
+      "holds": 0,
+      "drags": 0,
+      "travel": 347984.9
+     },
+     "classic-drag": {
+      "taps": 834,
+      "holds": 0,
+      "drags": 286,
+      "travel": 347984.9
+     },
+     "tapPlace-drag": {
+      "taps": 288,
+      "holds": 0,
+      "drags": 416,
+      "travel": 130926
+     },
+     "tapPlace-hold": {
+      "taps": 1120,
+      "holds": 416,
+      "drags": 0,
+      "travel": 130926
+     },
+     "armed": {
+      "taps": 1528,
+      "holds": 0,
+      "drags": 0,
+      "travel": 452085.1
+     }
     }
    }
   },
@@ -13523,6 +18280,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 98763.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 598,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147142.4
+     },
+     "classic-drag": {
+      "taps": 350,
+      "holds": 0,
+      "drags": 124,
+      "travel": 147142.4
+     },
+     "tapPlace-drag": {
+      "taps": 126,
+      "holds": 0,
+      "drags": 174,
+      "travel": 53326.1
+     },
+     "tapPlace-hold": {
+      "taps": 474,
+      "holds": 174,
+      "drags": 0,
+      "travel": 53326.1
+     },
+     "armed": {
+      "taps": 646,
+      "holds": 0,
+      "drags": 0,
+      "travel": 187959.5
      }
     }
    }
@@ -13614,6 +18403,38 @@
       "drags": 0,
       "travel": 133912.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 790,
+      "holds": 0,
+      "drags": 0,
+      "travel": 199704.7
+     },
+     "classic-drag": {
+      "taps": 454,
+      "holds": 0,
+      "drags": 168,
+      "travel": 199704.7
+     },
+     "tapPlace-drag": {
+      "taps": 170,
+      "holds": 0,
+      "drags": 226,
+      "travel": 73423.8
+     },
+     "tapPlace-hold": {
+      "taps": 622,
+      "holds": 226,
+      "drags": 0,
+      "travel": 73423.8
+     },
+     "armed": {
+      "taps": 852,
+      "holds": 0,
+      "drags": 0,
+      "travel": 251585.3
+     }
     }
    }
   },
@@ -13703,6 +18524,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 74791.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 450,
+      "holds": 0,
+      "drags": 0,
+      "travel": 116269.4
+     },
+     "classic-drag": {
+      "taps": 252,
+      "holds": 0,
+      "drags": 99,
+      "travel": 116269.4
+     },
+     "tapPlace-drag": {
+      "taps": 101,
+      "holds": 0,
+      "drags": 125,
+      "travel": 42029.5
+     },
+     "tapPlace-hold": {
+      "taps": 351,
+      "holds": 125,
+      "drags": 0,
+      "travel": 42029.5
+     },
+     "armed": {
+      "taps": 483,
+      "holds": 0,
+      "drags": 0,
+      "travel": 144003.4
      }
     }
    }
@@ -13794,6 +18647,38 @@
       "drags": 0,
       "travel": 69812.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 410,
+      "holds": 0,
+      "drags": 0,
+      "travel": 104512.5
+     },
+     "classic-drag": {
+      "taps": 228,
+      "holds": 0,
+      "drags": 91,
+      "travel": 104512.5
+     },
+     "tapPlace-drag": {
+      "taps": 93,
+      "holds": 0,
+      "drags": 113,
+      "travel": 36027.8
+     },
+     "tapPlace-hold": {
+      "taps": 319,
+      "holds": 113,
+      "drags": 0,
+      "travel": 36027.8
+     },
+     "armed": {
+      "taps": 449,
+      "holds": 0,
+      "drags": 0,
+      "travel": 137592
+     }
     }
    }
   },
@@ -13883,6 +18768,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 94374.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 572,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147544.1
+     },
+     "classic-drag": {
+      "taps": 312,
+      "holds": 0,
+      "drags": 130,
+      "travel": 147544.1
+     },
+     "tapPlace-drag": {
+      "taps": 130,
+      "holds": 0,
+      "drags": 156,
+      "travel": 48074.3
+     },
+     "tapPlace-hold": {
+      "taps": 442,
+      "holds": 156,
+      "drags": 0,
+      "travel": 48074.3
+     },
+     "armed": {
+      "taps": 610,
+      "holds": 0,
+      "drags": 0,
+      "travel": 180390.6
      }
     }
    }
@@ -13974,6 +18891,38 @@
       "drags": 0,
       "travel": 53718.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 341,
+      "holds": 0,
+      "drags": 0,
+      "travel": 90315.9
+     },
+     "classic-drag": {
+      "taps": 175,
+      "holds": 0,
+      "drags": 83,
+      "travel": 90315.9
+     },
+     "tapPlace-drag": {
+      "taps": 84,
+      "holds": 0,
+      "drags": 87,
+      "travel": 26888.4
+     },
+     "tapPlace-hold": {
+      "taps": 258,
+      "holds": 87,
+      "drags": 0,
+      "travel": 26888.4
+     },
+     "armed": {
+      "taps": 360,
+      "holds": 0,
+      "drags": 0,
+      "travel": 107374.9
+     }
     }
    }
   },
@@ -14063,6 +19012,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 90344.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 568,
+      "holds": 0,
+      "drags": 0,
+      "travel": 144819.9
+     },
+     "classic-drag": {
+      "taps": 314,
+      "holds": 0,
+      "drags": 127,
+      "travel": 144819.9
+     },
+     "tapPlace-drag": {
+      "taps": 127,
+      "holds": 0,
+      "drags": 157,
+      "travel": 48503.3
+     },
+     "tapPlace-hold": {
+      "taps": 441,
+      "holds": 157,
+      "drags": 0,
+      "travel": 48503.3
+     },
+     "armed": {
+      "taps": 605,
+      "holds": 0,
+      "drags": 0,
+      "travel": 175450.2
      }
     }
    }
@@ -14154,6 +19135,38 @@
       "drags": 0,
       "travel": 166101.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 970,
+      "holds": 0,
+      "drags": 0,
+      "travel": 245027.5
+     },
+     "classic-drag": {
+      "taps": 558,
+      "holds": 0,
+      "drags": 206,
+      "travel": 245027.5
+     },
+     "tapPlace-drag": {
+      "taps": 208,
+      "holds": 0,
+      "drags": 278,
+      "travel": 88391.8
+     },
+     "tapPlace-hold": {
+      "taps": 764,
+      "holds": 278,
+      "drags": 0,
+      "travel": 88391.8
+     },
+     "armed": {
+      "taps": 1048,
+      "holds": 0,
+      "drags": 0,
+      "travel": 311420
+     }
     }
    }
   },
@@ -14243,6 +19256,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 45213.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 298,
+      "holds": 0,
+      "drags": 0,
+      "travel": 71020.9
+     },
+     "classic-drag": {
+      "taps": 174,
+      "holds": 0,
+      "drags": 62,
+      "travel": 71020.9
+     },
+     "tapPlace-drag": {
+      "taps": 64,
+      "holds": 0,
+      "drags": 86,
+      "travel": 25824.9
+     },
+     "tapPlace-hold": {
+      "taps": 236,
+      "holds": 86,
+      "drags": 0,
+      "travel": 25824.9
+     },
+     "armed": {
+      "taps": 320,
+      "holds": 0,
+      "drags": 0,
+      "travel": 89195.1
      }
     }
    }
@@ -14334,6 +19379,38 @@
       "drags": 0,
       "travel": 111978.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 708,
+      "holds": 0,
+      "drags": 0,
+      "travel": 179391.9
+     },
+     "classic-drag": {
+      "taps": 396,
+      "holds": 0,
+      "drags": 156,
+      "travel": 179391.9
+     },
+     "tapPlace-drag": {
+      "taps": 158,
+      "holds": 0,
+      "drags": 197,
+      "travel": 61488
+     },
+     "tapPlace-hold": {
+      "taps": 552,
+      "holds": 197,
+      "drags": 0,
+      "travel": 61488
+     },
+     "armed": {
+      "taps": 744,
+      "holds": 0,
+      "drags": 0,
+      "travel": 211678.4
+     }
     }
    }
   },
@@ -14423,6 +19500,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 99117.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 582,
+      "holds": 0,
+      "drags": 0,
+      "travel": 147305.1
+     },
+     "classic-drag": {
+      "taps": 328,
+      "holds": 0,
+      "drags": 127,
+      "travel": 147305.1
+     },
+     "tapPlace-drag": {
+      "taps": 129,
+      "holds": 0,
+      "drags": 163,
+      "travel": 52099.7
+     },
+     "tapPlace-hold": {
+      "taps": 455,
+      "holds": 163,
+      "drags": 0,
+      "travel": 52099.7
+     },
+     "armed": {
+      "taps": 633,
+      "holds": 0,
+      "drags": 0,
+      "travel": 190201
      }
     }
    }
@@ -14514,6 +19623,38 @@
       "drags": 0,
       "travel": 149457.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 874,
+      "holds": 0,
+      "drags": 0,
+      "travel": 224222.2
+     },
+     "classic-drag": {
+      "taps": 484,
+      "holds": 0,
+      "drags": 195,
+      "travel": 224222.2
+     },
+     "tapPlace-drag": {
+      "taps": 197,
+      "holds": 0,
+      "drags": 241,
+      "travel": 76690.3
+     },
+     "tapPlace-hold": {
+      "taps": 679,
+      "holds": 241,
+      "drags": 0,
+      "travel": 76690.3
+     },
+     "armed": {
+      "taps": 945,
+      "holds": 0,
+      "drags": 0,
+      "travel": 285757.9
+     }
     }
    }
   },
@@ -14603,6 +19744,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 48699.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 310,
+      "holds": 0,
+      "drags": 0,
+      "travel": 77535.6
+     },
+     "classic-drag": {
+      "taps": 168,
+      "holds": 0,
+      "drags": 71,
+      "travel": 77535.6
+     },
+     "tapPlace-drag": {
+      "taps": 73,
+      "holds": 0,
+      "drags": 83,
+      "travel": 23402.9
+     },
+     "tapPlace-hold": {
+      "taps": 239,
+      "holds": 83,
+      "drags": 0,
+      "travel": 23402.9
+     },
+     "armed": {
+      "taps": 331,
+      "holds": 0,
+      "drags": 0,
+      "travel": 96621.4
      }
     }
    }
@@ -14694,6 +19867,38 @@
       "drags": 0,
       "travel": 103450.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 625,
+      "holds": 0,
+      "drags": 0,
+      "travel": 157350.3
+     },
+     "classic-drag": {
+      "taps": 357,
+      "holds": 0,
+      "drags": 134,
+      "travel": 157350.3
+     },
+     "tapPlace-drag": {
+      "taps": 135,
+      "holds": 0,
+      "drags": 178,
+      "travel": 56760.1
+     },
+     "tapPlace-hold": {
+      "taps": 491,
+      "holds": 178,
+      "drags": 0,
+      "travel": 56760.1
+     },
+     "armed": {
+      "taps": 667,
+      "holds": 0,
+      "drags": 0,
+      "travel": 194376.1
+     }
     }
    }
   },
@@ -14783,6 +19988,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 118173
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 728,
+      "holds": 0,
+      "drags": 0,
+      "travel": 183762.3
+     },
+     "classic-drag": {
+      "taps": 412,
+      "holds": 0,
+      "drags": 158,
+      "travel": 183762.3
+     },
+     "tapPlace-drag": {
+      "taps": 160,
+      "holds": 0,
+      "drags": 205,
+      "travel": 63610
+     },
+     "tapPlace-hold": {
+      "taps": 570,
+      "holds": 205,
+      "drags": 0,
+      "travel": 63610
+     },
+     "armed": {
+      "taps": 772,
+      "holds": 0,
+      "drags": 0,
+      "travel": 222351.1
      }
     }
    }
@@ -14874,6 +20111,38 @@
       "drags": 0,
       "travel": 104236.7
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 642,
+      "holds": 0,
+      "drags": 0,
+      "travel": 161695.2
+     },
+     "classic-drag": {
+      "taps": 362,
+      "holds": 0,
+      "drags": 140,
+      "travel": 161695.2
+     },
+     "tapPlace-drag": {
+      "taps": 142,
+      "holds": 0,
+      "drags": 180,
+      "travel": 55629.6
+     },
+     "tapPlace-hold": {
+      "taps": 502,
+      "holds": 180,
+      "drags": 0,
+      "travel": 55629.6
+     },
+     "armed": {
+      "taps": 682,
+      "holds": 0,
+      "drags": 0,
+      "travel": 196043.8
+     }
     }
    }
   },
@@ -14963,6 +20232,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 58748.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 384,
+      "holds": 0,
+      "drags": 0,
+      "travel": 97587.8
+     },
+     "classic-drag": {
+      "taps": 206,
+      "holds": 0,
+      "drags": 89,
+      "travel": 97587.8
+     },
+     "tapPlace-drag": {
+      "taps": 91,
+      "holds": 0,
+      "drags": 102,
+      "travel": 31705.2
+     },
+     "tapPlace-hold": {
+      "taps": 295,
+      "holds": 102,
+      "drags": 0,
+      "travel": 31705.2
+     },
+     "armed": {
+      "taps": 409,
+      "holds": 0,
+      "drags": 0,
+      "travel": 119504.1
      }
     }
    }
@@ -15054,6 +20355,38 @@
       "drags": 0,
       "travel": 108586.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 660,
+      "holds": 0,
+      "drags": 0,
+      "travel": 159223.1
+     },
+     "classic-drag": {
+      "taps": 394,
+      "holds": 0,
+      "drags": 133,
+      "travel": 159223.1
+     },
+     "tapPlace-drag": {
+      "taps": 135,
+      "holds": 0,
+      "drags": 196,
+      "travel": 58531.1
+     },
+     "tapPlace-hold": {
+      "taps": 527,
+      "holds": 196,
+      "drags": 0,
+      "travel": 58531.1
+     },
+     "armed": {
+      "taps": 713,
+      "holds": 0,
+      "drags": 0,
+      "travel": 203464.6
+     }
     }
    }
   },
@@ -15143,6 +20476,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 80613.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 492,
+      "holds": 0,
+      "drags": 0,
+      "travel": 118777.7
+     },
+     "classic-drag": {
+      "taps": 286,
+      "holds": 0,
+      "drags": 103,
+      "travel": 118777.7
+     },
+     "tapPlace-drag": {
+      "taps": 105,
+      "holds": 0,
+      "drags": 142,
+      "travel": 42073.7
+     },
+     "tapPlace-hold": {
+      "taps": 389,
+      "holds": 142,
+      "drags": 0,
+      "travel": 42073.7
+     },
+     "armed": {
+      "taps": 537,
+      "holds": 0,
+      "drags": 0,
+      "travel": 157416.6
      }
     }
    }
@@ -15234,6 +20599,38 @@
       "drags": 0,
       "travel": 65896.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 410,
+      "holds": 0,
+      "drags": 0,
+      "travel": 100029.1
+     },
+     "classic-drag": {
+      "taps": 236,
+      "holds": 0,
+      "drags": 87,
+      "travel": 100029.1
+     },
+     "tapPlace-drag": {
+      "taps": 89,
+      "holds": 0,
+      "drags": 117,
+      "travel": 35916.9
+     },
+     "tapPlace-hold": {
+      "taps": 323,
+      "holds": 117,
+      "drags": 0,
+      "travel": 35916.9
+     },
+     "armed": {
+      "taps": 439,
+      "holds": 0,
+      "drags": 0,
+      "travel": 126825.3
+     }
     }
    }
   },
@@ -15323,6 +20720,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 68959.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 442,
+      "holds": 0,
+      "drags": 0,
+      "travel": 114378.5
+     },
+     "classic-drag": {
+      "taps": 236,
+      "holds": 0,
+      "drags": 103,
+      "travel": 114378.5
+     },
+     "tapPlace-drag": {
+      "taps": 105,
+      "holds": 0,
+      "drags": 117,
+      "travel": 37298
+     },
+     "tapPlace-hold": {
+      "taps": 339,
+      "holds": 117,
+      "drags": 0,
+      "travel": 37298
+     },
+     "armed": {
+      "taps": 463,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133582.5
      }
     }
    }
@@ -15414,6 +20843,38 @@
       "drags": 0,
       "travel": 88472.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 534,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133965
+     },
+     "classic-drag": {
+      "taps": 300,
+      "holds": 0,
+      "drags": 117,
+      "travel": 133965
+     },
+     "tapPlace-drag": {
+      "taps": 119,
+      "holds": 0,
+      "drags": 149,
+      "travel": 46980.7
+     },
+     "tapPlace-hold": {
+      "taps": 417,
+      "holds": 149,
+      "drags": 0,
+      "travel": 46980.7
+     },
+     "armed": {
+      "taps": 577,
+      "holds": 0,
+      "drags": 0,
+      "travel": 171143.5
+     }
     }
    }
   },
@@ -15503,6 +20964,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 235203.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1382,
+      "holds": 0,
+      "drags": 0,
+      "travel": 349169.8
+     },
+     "classic-drag": {
+      "taps": 790,
+      "holds": 0,
+      "drags": 296,
+      "travel": 349169.8
+     },
+     "tapPlace-drag": {
+      "taps": 298,
+      "holds": 0,
+      "drags": 394,
+      "travel": 123780.3
+     },
+     "tapPlace-hold": {
+      "taps": 1086,
+      "holds": 394,
+      "drags": 0,
+      "travel": 123780.3
+     },
+     "armed": {
+      "taps": 1488,
+      "holds": 0,
+      "drags": 0,
+      "travel": 440377.4
      }
     }
    }
@@ -15594,6 +21087,38 @@
       "drags": 0,
       "travel": 88802.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 537,
+      "holds": 0,
+      "drags": 0,
+      "travel": 134338.6
+     },
+     "classic-drag": {
+      "taps": 305,
+      "holds": 0,
+      "drags": 116,
+      "travel": 134338.6
+     },
+     "tapPlace-drag": {
+      "taps": 117,
+      "holds": 0,
+      "drags": 152,
+      "travel": 46088.4
+     },
+     "tapPlace-hold": {
+      "taps": 421,
+      "holds": 152,
+      "drags": 0,
+      "travel": 46088.4
+     },
+     "armed": {
+      "taps": 583,
+      "holds": 0,
+      "drags": 0,
+      "travel": 173188.9
+     }
     }
    }
   },
@@ -15683,6 +21208,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 82578.1
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 496,
+      "holds": 0,
+      "drags": 0,
+      "travel": 126563.6
+     },
+     "classic-drag": {
+      "taps": 276,
+      "holds": 0,
+      "drags": 110,
+      "travel": 126563.6
+     },
+     "tapPlace-drag": {
+      "taps": 112,
+      "holds": 0,
+      "drags": 137,
+      "travel": 45158.5
+     },
+     "tapPlace-hold": {
+      "taps": 386,
+      "holds": 137,
+      "drags": 0,
+      "travel": 45158.5
+     },
+     "armed": {
+      "taps": 530,
+      "holds": 0,
+      "drags": 0,
+      "travel": 156597.4
      }
     }
    }
@@ -15774,6 +21331,38 @@
       "drags": 0,
       "travel": 64994.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 412,
+      "holds": 0,
+      "drags": 0,
+      "travel": 103333.4
+     },
+     "classic-drag": {
+      "taps": 228,
+      "holds": 0,
+      "drags": 92,
+      "travel": 103333.4
+     },
+     "tapPlace-drag": {
+      "taps": 94,
+      "holds": 0,
+      "drags": 113,
+      "travel": 35341.6
+     },
+     "tapPlace-hold": {
+      "taps": 320,
+      "holds": 113,
+      "drags": 0,
+      "travel": 35341.6
+     },
+     "armed": {
+      "taps": 442,
+      "holds": 0,
+      "drags": 0,
+      "travel": 129560
+     }
     }
    }
   },
@@ -15863,6 +21452,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 69207.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 426,
+      "holds": 0,
+      "drags": 0,
+      "travel": 109058.7
+     },
+     "classic-drag": {
+      "taps": 228,
+      "holds": 0,
+      "drags": 99,
+      "travel": 109058.7
+     },
+     "tapPlace-drag": {
+      "taps": 99,
+      "holds": 0,
+      "drags": 114,
+      "travel": 34397.4
+     },
+     "tapPlace-hold": {
+      "taps": 327,
+      "holds": 114,
+      "drags": 0,
+      "travel": 34397.4
+     },
+     "armed": {
+      "taps": 461,
+      "holds": 0,
+      "drags": 0,
+      "travel": 139069.3
      }
     }
    }
@@ -15954,6 +21575,38 @@
       "drags": 0,
       "travel": 132623
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 774,
+      "holds": 0,
+      "drags": 0,
+      "travel": 198780.5
+     },
+     "classic-drag": {
+      "taps": 440,
+      "holds": 0,
+      "drags": 167,
+      "travel": 198780.5
+     },
+     "tapPlace-drag": {
+      "taps": 169,
+      "holds": 0,
+      "drags": 219,
+      "travel": 73138
+     },
+     "tapPlace-hold": {
+      "taps": 607,
+      "holds": 219,
+      "drags": 0,
+      "travel": 73138
+     },
+     "armed": {
+      "taps": 833,
+      "holds": 0,
+      "drags": 0,
+      "travel": 248562.7
+     }
     }
    }
   },
@@ -16043,6 +21696,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 78834.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 480,
+      "holds": 0,
+      "drags": 0,
+      "travel": 121569
+     },
+     "classic-drag": {
+      "taps": 266,
+      "holds": 0,
+      "drags": 107,
+      "travel": 121569
+     },
+     "tapPlace-drag": {
+      "taps": 109,
+      "holds": 0,
+      "drags": 132,
+      "travel": 41633.8
+     },
+     "tapPlace-hold": {
+      "taps": 373,
+      "holds": 132,
+      "drags": 0,
+      "travel": 41633.8
+     },
+     "armed": {
+      "taps": 517,
+      "holds": 0,
+      "drags": 0,
+      "travel": 152786.8
      }
     }
    }
@@ -16134,6 +21819,38 @@
       "drags": 0,
       "travel": 112877.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 680,
+      "holds": 0,
+      "drags": 0,
+      "travel": 165606.7
+     },
+     "classic-drag": {
+      "taps": 402,
+      "holds": 0,
+      "drags": 139,
+      "travel": 165606.7
+     },
+     "tapPlace-drag": {
+      "taps": 141,
+      "holds": 0,
+      "drags": 200,
+      "travel": 61271.5
+     },
+     "tapPlace-hold": {
+      "taps": 541,
+      "holds": 200,
+      "drags": 0,
+      "travel": 61271.5
+     },
+     "armed": {
+      "taps": 729,
+      "holds": 0,
+      "drags": 0,
+      "travel": 208427.1
+     }
     }
    }
   },
@@ -16223,6 +21940,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 183468.5
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1050,
+      "holds": 0,
+      "drags": 0,
+      "travel": 269346.8
+     },
+     "classic-drag": {
+      "taps": 604,
+      "holds": 0,
+      "drags": 223,
+      "travel": 269346.8
+     },
+     "tapPlace-drag": {
+      "taps": 225,
+      "holds": 0,
+      "drags": 301,
+      "travel": 100780.6
+     },
+     "tapPlace-hold": {
+      "taps": 827,
+      "holds": 301,
+      "drags": 0,
+      "travel": 100780.6
+     },
+     "armed": {
+      "taps": 1135,
+      "holds": 0,
+      "drags": 0,
+      "travel": 341497.5
      }
     }
    }
@@ -16314,6 +22063,38 @@
       "drags": 0,
       "travel": 50276.2
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 321,
+      "holds": 0,
+      "drags": 0,
+      "travel": 85076.3
+     },
+     "classic-drag": {
+      "taps": 165,
+      "holds": 0,
+      "drags": 78,
+      "travel": 85076.3
+     },
+     "tapPlace-drag": {
+      "taps": 79,
+      "holds": 0,
+      "drags": 82,
+      "travel": 26524.5
+     },
+     "tapPlace-hold": {
+      "taps": 243,
+      "holds": 82,
+      "drags": 0,
+      "travel": 26524.5
+     },
+     "armed": {
+      "taps": 331,
+      "holds": 0,
+      "drags": 0,
+      "travel": 95489.5
+     }
     }
    }
   },
@@ -16403,6 +22184,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 64099.9
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 373,
+      "holds": 0,
+      "drags": 0,
+      "travel": 98429
+     },
+     "classic-drag": {
+      "taps": 197,
+      "holds": 0,
+      "drags": 88,
+      "travel": 98429
+     },
+     "tapPlace-drag": {
+      "taps": 89,
+      "holds": 0,
+      "drags": 98,
+      "travel": 31614.9
+     },
+     "tapPlace-hold": {
+      "taps": 285,
+      "holds": 98,
+      "drags": 0,
+      "travel": 31614.9
+     },
+     "armed": {
+      "taps": 401,
+      "holds": 0,
+      "drags": 0,
+      "travel": 123530.5
      }
     }
    }
@@ -16494,6 +22307,38 @@
       "drags": 0,
       "travel": 189404
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1128,
+      "holds": 0,
+      "drags": 0,
+      "travel": 282544.5
+     },
+     "classic-drag": {
+      "taps": 660,
+      "holds": 0,
+      "drags": 234,
+      "travel": 282544.5
+     },
+     "tapPlace-drag": {
+      "taps": 236,
+      "holds": 0,
+      "drags": 329,
+      "travel": 105626.9
+     },
+     "tapPlace-hold": {
+      "taps": 894,
+      "holds": 329,
+      "drags": 0,
+      "travel": 105626.9
+     },
+     "armed": {
+      "taps": 1200,
+      "holds": 0,
+      "drags": 0,
+      "travel": 344982.6
+     }
     }
    }
   },
@@ -16583,6 +22428,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 88972.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 538,
+      "holds": 0,
+      "drags": 0,
+      "travel": 136095.2
+     },
+     "classic-drag": {
+      "taps": 304,
+      "holds": 0,
+      "drags": 117,
+      "travel": 136095.2
+     },
+     "tapPlace-drag": {
+      "taps": 119,
+      "holds": 0,
+      "drags": 151,
+      "travel": 49018
+     },
+     "tapPlace-hold": {
+      "taps": 421,
+      "holds": 151,
+      "drags": 0,
+      "travel": 49018
+     },
+     "armed": {
+      "taps": 581,
+      "holds": 0,
+      "drags": 0,
+      "travel": 171927.8
      }
     }
    }
@@ -16674,6 +22551,38 @@
       "drags": 0,
       "travel": 106237.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 632,
+      "holds": 0,
+      "drags": 0,
+      "travel": 161138.1
+     },
+     "classic-drag": {
+      "taps": 352,
+      "holds": 0,
+      "drags": 140,
+      "travel": 161138.1
+     },
+     "tapPlace-drag": {
+      "taps": 142,
+      "holds": 0,
+      "drags": 175,
+      "travel": 55567.2
+     },
+     "tapPlace-hold": {
+      "taps": 492,
+      "holds": 175,
+      "drags": 0,
+      "travel": 55567.2
+     },
+     "armed": {
+      "taps": 684,
+      "holds": 0,
+      "drags": 0,
+      "travel": 206903.2
+     }
     }
    }
   },
@@ -16763,6 +22672,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 59092.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 370,
+      "holds": 0,
+      "drags": 0,
+      "travel": 96886
+     },
+     "classic-drag": {
+      "taps": 198,
+      "holds": 0,
+      "drags": 86,
+      "travel": 96886
+     },
+     "tapPlace-drag": {
+      "taps": 86,
+      "holds": 0,
+      "drags": 99,
+      "travel": 30963
+     },
+     "tapPlace-hold": {
+      "taps": 284,
+      "holds": 99,
+      "drags": 0,
+      "travel": 30963
+     },
+     "armed": {
+      "taps": 388,
+      "holds": 0,
+      "drags": 0,
+      "travel": 113004.4
      }
     }
    }
@@ -16854,6 +22795,38 @@
       "drags": 0,
       "travel": 76172.6
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 472,
+      "holds": 0,
+      "drags": 0,
+      "travel": 116726.4
+     },
+     "classic-drag": {
+      "taps": 264,
+      "holds": 0,
+      "drags": 104,
+      "travel": 116726.4
+     },
+     "tapPlace-drag": {
+      "taps": 106,
+      "holds": 0,
+      "drags": 131,
+      "travel": 38880.9
+     },
+     "tapPlace-hold": {
+      "taps": 368,
+      "holds": 131,
+      "drags": 0,
+      "travel": 38880.9
+     },
+     "armed": {
+      "taps": 512,
+      "holds": 0,
+      "drags": 0,
+      "travel": 151164.6
+     }
     }
    }
   },
@@ -16943,6 +22916,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 88731.7
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 547,
+      "holds": 0,
+      "drags": 0,
+      "travel": 135898.7
+     },
+     "classic-drag": {
+      "taps": 311,
+      "holds": 0,
+      "drags": 118,
+      "travel": 135898.7
+     },
+     "tapPlace-drag": {
+      "taps": 119,
+      "holds": 0,
+      "drags": 155,
+      "travel": 47191.1
+     },
+     "tapPlace-hold": {
+      "taps": 429,
+      "holds": 155,
+      "drags": 0,
+      "travel": 47191.1
+     },
+     "armed": {
+      "taps": 593,
+      "holds": 0,
+      "drags": 0,
+      "travel": 174092.8
      }
     }
    }
@@ -17034,6 +23039,38 @@
       "drags": 0,
       "travel": 137562.4
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 824,
+      "holds": 0,
+      "drags": 0,
+      "travel": 199980.1
+     },
+     "classic-drag": {
+      "taps": 488,
+      "holds": 0,
+      "drags": 168,
+      "travel": 199980.1
+     },
+     "tapPlace-drag": {
+      "taps": 170,
+      "holds": 0,
+      "drags": 243,
+      "travel": 72494.9
+     },
+     "tapPlace-hold": {
+      "taps": 656,
+      "holds": 243,
+      "drags": 0,
+      "travel": 72494.9
+     },
+     "armed": {
+      "taps": 894,
+      "holds": 0,
+      "drags": 0,
+      "travel": 259830
+     }
     }
    }
   },
@@ -17123,6 +23160,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 56832.3
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 350,
+      "holds": 0,
+      "drags": 0,
+      "travel": 86339.2
+     },
+     "classic-drag": {
+      "taps": 198,
+      "holds": 0,
+      "drags": 76,
+      "travel": 86339.2
+     },
+     "tapPlace-drag": {
+      "taps": 78,
+      "holds": 0,
+      "drags": 98,
+      "travel": 29971.8
+     },
+     "tapPlace-hold": {
+      "taps": 274,
+      "holds": 98,
+      "drags": 0,
+      "travel": 29971.8
+     },
+     "armed": {
+      "taps": 376,
+      "holds": 0,
+      "drags": 0,
+      "travel": 110268.7
      }
     }
    }
@@ -17214,6 +23283,38 @@
       "drags": 0,
       "travel": 100510.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 600,
+      "holds": 0,
+      "drags": 0,
+      "travel": 155551.8
+     },
+     "classic-drag": {
+      "taps": 328,
+      "holds": 0,
+      "drags": 136,
+      "travel": 155551.8
+     },
+     "tapPlace-drag": {
+      "taps": 138,
+      "holds": 0,
+      "drags": 163,
+      "travel": 53132.6
+     },
+     "tapPlace-hold": {
+      "taps": 464,
+      "holds": 163,
+      "drags": 0,
+      "travel": 53132.6
+     },
+     "armed": {
+      "taps": 640,
+      "holds": 0,
+      "drags": 0,
+      "travel": 191668.2
+     }
     }
    }
   },
@@ -17303,6 +23404,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 93250.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 572,
+      "holds": 0,
+      "drags": 0,
+      "travel": 145738.8
+     },
+     "classic-drag": {
+      "taps": 328,
+      "holds": 0,
+      "drags": 122,
+      "travel": 145738.8
+     },
+     "tapPlace-drag": {
+      "taps": 124,
+      "holds": 0,
+      "drags": 163,
+      "travel": 55084.8
+     },
+     "tapPlace-hold": {
+      "taps": 450,
+      "holds": 163,
+      "drags": 0,
+      "travel": 55084.8
+     },
+     "armed": {
+      "taps": 604,
+      "holds": 0,
+      "drags": 0,
+      "travel": 171907.9
      }
     }
    }
@@ -17394,6 +23527,38 @@
       "drags": 0,
       "travel": 162006
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 946,
+      "holds": 0,
+      "drags": 0,
+      "travel": 237780.2
+     },
+     "classic-drag": {
+      "taps": 546,
+      "holds": 0,
+      "drags": 200,
+      "travel": 237780.2
+     },
+     "tapPlace-drag": {
+      "taps": 202,
+      "holds": 0,
+      "drags": 272,
+      "travel": 86187.7
+     },
+     "tapPlace-hold": {
+      "taps": 746,
+      "holds": 272,
+      "drags": 0,
+      "travel": 86187.7
+     },
+     "armed": {
+      "taps": 1026,
+      "holds": 0,
+      "drags": 0,
+      "travel": 304747.4
+     }
     }
    }
   },
@@ -17483,6 +23648,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 72998.4
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 454,
+      "holds": 0,
+      "drags": 0,
+      "travel": 109670.8
+     },
+     "classic-drag": {
+      "taps": 266,
+      "holds": 0,
+      "drags": 94,
+      "travel": 109670.8
+     },
+     "tapPlace-drag": {
+      "taps": 96,
+      "holds": 0,
+      "drags": 132,
+      "travel": 40585.8
+     },
+     "tapPlace-hold": {
+      "taps": 360,
+      "holds": 132,
+      "drags": 0,
+      "travel": 40585.8
+     },
+     "armed": {
+      "taps": 490,
+      "holds": 0,
+      "drags": 0,
+      "travel": 141146.4
      }
     }
    }
@@ -17574,6 +23771,38 @@
       "drags": 0,
       "travel": 112003.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 698,
+      "holds": 0,
+      "drags": 0,
+      "travel": 172515
+     },
+     "classic-drag": {
+      "taps": 400,
+      "holds": 0,
+      "drags": 149,
+      "travel": 172515
+     },
+     "tapPlace-drag": {
+      "taps": 151,
+      "holds": 0,
+      "drags": 199,
+      "travel": 59500.6
+     },
+     "tapPlace-hold": {
+      "taps": 549,
+      "holds": 199,
+      "drags": 0,
+      "travel": 59500.6
+     },
+     "armed": {
+      "taps": 743,
+      "holds": 0,
+      "drags": 0,
+      "travel": 211404.9
+     }
     }
    }
   },
@@ -17663,6 +23892,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 111105.2
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 664,
+      "holds": 0,
+      "drags": 0,
+      "travel": 167418.5
+     },
+     "classic-drag": {
+      "taps": 376,
+      "holds": 0,
+      "drags": 144,
+      "travel": 167418.5
+     },
+     "tapPlace-drag": {
+      "taps": 146,
+      "holds": 0,
+      "drags": 187,
+      "travel": 58726.9
+     },
+     "tapPlace-hold": {
+      "taps": 520,
+      "holds": 187,
+      "drags": 0,
+      "travel": 58726.9
+     },
+     "armed": {
+      "taps": 716,
+      "holds": 0,
+      "drags": 0,
+      "travel": 212780.6
      }
     }
    }
@@ -17754,6 +24015,38 @@
       "drags": 0,
       "travel": 86578.1
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 526,
+      "holds": 0,
+      "drags": 0,
+      "travel": 133324.8
+     },
+     "classic-drag": {
+      "taps": 294,
+      "holds": 0,
+      "drags": 116,
+      "travel": 133324.8
+     },
+     "tapPlace-drag": {
+      "taps": 118,
+      "holds": 0,
+      "drags": 146,
+      "travel": 46683.6
+     },
+     "tapPlace-hold": {
+      "taps": 410,
+      "holds": 146,
+      "drags": 0,
+      "travel": 46683.6
+     },
+     "armed": {
+      "taps": 562,
+      "holds": 0,
+      "drags": 0,
+      "travel": 165013.6
+     }
     }
    }
   },
@@ -17843,6 +24136,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 129760
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 760,
+      "holds": 0,
+      "drags": 0,
+      "travel": 188828.1
+     },
+     "classic-drag": {
+      "taps": 438,
+      "holds": 0,
+      "drags": 161,
+      "travel": 188828.1
+     },
+     "tapPlace-drag": {
+      "taps": 163,
+      "holds": 0,
+      "drags": 218,
+      "travel": 67728
+     },
+     "tapPlace-hold": {
+      "taps": 599,
+      "holds": 218,
+      "drags": 0,
+      "travel": 67728
+     },
+     "armed": {
+      "taps": 825,
+      "holds": 0,
+      "drags": 0,
+      "travel": 244656.5
      }
     }
    }
@@ -17934,6 +24259,38 @@
       "drags": 0,
       "travel": 199519.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 1174,
+      "holds": 0,
+      "drags": 0,
+      "travel": 292367.4
+     },
+     "classic-drag": {
+      "taps": 682,
+      "holds": 0,
+      "drags": 246,
+      "travel": 292367.4
+     },
+     "tapPlace-drag": {
+      "taps": 248,
+      "holds": 0,
+      "drags": 340,
+      "travel": 106717
+     },
+     "tapPlace-hold": {
+      "taps": 928,
+      "holds": 340,
+      "drags": 0,
+      "travel": 106717
+     },
+     "armed": {
+      "taps": 1276,
+      "holds": 0,
+      "drags": 0,
+      "travel": 378916
+     }
     }
    }
   },
@@ -18023,6 +24380,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 64366.8
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 419,
+      "holds": 0,
+      "drags": 0,
+      "travel": 103402.5
+     },
+     "classic-drag": {
+      "taps": 233,
+      "holds": 0,
+      "drags": 93,
+      "travel": 103402.5
+     },
+     "tapPlace-drag": {
+      "taps": 94,
+      "holds": 0,
+      "drags": 116,
+      "travel": 32658.3
+     },
+     "tapPlace-hold": {
+      "taps": 326,
+      "holds": 116,
+      "drags": 0,
+      "travel": 32658.3
+     },
+     "armed": {
+      "taps": 448,
+      "holds": 0,
+      "drags": 0,
+      "travel": 128692.3
      }
     }
    }
@@ -18114,6 +24503,38 @@
       "drags": 0,
       "travel": 119737.9
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 726,
+      "holds": 0,
+      "drags": 0,
+      "travel": 183373.1
+     },
+     "classic-drag": {
+      "taps": 418,
+      "holds": 0,
+      "drags": 154,
+      "travel": 183373.1
+     },
+     "tapPlace-drag": {
+      "taps": 156,
+      "holds": 0,
+      "drags": 208,
+      "travel": 69280.6
+     },
+     "tapPlace-hold": {
+      "taps": 572,
+      "holds": 208,
+      "drags": 0,
+      "travel": 69280.6
+     },
+     "armed": {
+      "taps": 770,
+      "holds": 0,
+      "drags": 0,
+      "travel": 223281.6
+     }
     }
    }
   },
@@ -18203,6 +24624,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 139491
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 798,
+      "holds": 0,
+      "drags": 0,
+      "travel": 205053.7
+     },
+     "classic-drag": {
+      "taps": 454,
+      "holds": 0,
+      "drags": 172,
+      "travel": 205053.7
+     },
+     "tapPlace-drag": {
+      "taps": 174,
+      "holds": 0,
+      "drags": 226,
+      "travel": 76480.7
+     },
+     "tapPlace-hold": {
+      "taps": 626,
+      "holds": 226,
+      "drags": 0,
+      "travel": 76480.7
+     },
+     "armed": {
+      "taps": 860,
+      "holds": 0,
+      "drags": 0,
+      "travel": 258876.9
      }
     }
    }
@@ -18294,6 +24747,38 @@
       "drags": 0,
       "travel": 142056.5
      }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 842,
+      "holds": 0,
+      "drags": 0,
+      "travel": 213684.6
+     },
+     "classic-drag": {
+      "taps": 482,
+      "holds": 0,
+      "drags": 180,
+      "travel": 213684.6
+     },
+     "tapPlace-drag": {
+      "taps": 182,
+      "holds": 0,
+      "drags": 240,
+      "travel": 77941.4
+     },
+     "tapPlace-hold": {
+      "taps": 662,
+      "holds": 240,
+      "drags": 0,
+      "travel": 77941.4
+     },
+     "armed": {
+      "taps": 900,
+      "holds": 0,
+      "drags": 0,
+      "travel": 262918.6
+     }
     }
    }
   },
@@ -18383,6 +24868,38 @@
       "holds": 0,
       "drags": 0,
       "travel": 76000.6
+     }
+    },
+    "low": {
+     "classic-taptap": {
+      "taps": 490,
+      "holds": 0,
+      "drags": 0,
+      "travel": 125738.3
+     },
+     "classic-drag": {
+      "taps": 262,
+      "holds": 0,
+      "drags": 114,
+      "travel": 125738.3
+     },
+     "tapPlace-drag": {
+      "taps": 116,
+      "holds": 0,
+      "drags": 130,
+      "travel": 39205.3
+     },
+     "tapPlace-hold": {
+      "taps": 376,
+      "holds": 130,
+      "drags": 0,
+      "travel": 39205.3
+     },
+     "armed": {
+      "taps": 516,
+      "holds": 0,
+      "drags": 0,
+      "travel": 149061.5
      }
     }
    }
