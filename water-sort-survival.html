@@ -1879,7 +1879,8 @@ function turnRhythm(S) {
       blocked: '로그인 창이 막혔어요. 구글로 로그인을 한 번 더 눌러 주세요.',
       other: '이 브라우저의 기록은 다른 구글 계정에 연결돼 있어요. 그 계정으로 로그인해 주세요.',
       error: cloud.backend ? '클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.'
-        : '클라우드에 연결하지 못했어요. 지금은 이 브라우저에만 저장돼요. ' + (canGoogle ? '구글로 로그인을 다시 눌러 주세요.' : '새로고침하면 다시 연결해요.'),
+        : '클라우드에 연결하지 못했어요. 지금은 이 브라우저에만 저장돼요. '
+          + (canGoogle && !(fbImportFailed && !fb) ? '구글로 로그인을 다시 눌러 주세요.' : canGoogle ? '새로고침한 뒤 다시 로그인해 주세요.' : '새로고침하면 다시 연결해요.'),
     }[cloud.state];
     $('btnCloudLogin').hidden = !(canGoogle && !cloud.backend && cloud.state !== 'connecting');
     $('btnCloudLogout').hidden = !(cloud.kind === 'firebase' && cloud.backend);
@@ -1905,7 +1906,7 @@ function turnRhythm(S) {
     };
   }
   // Firebase store (loaded only outside the viewer: when the settings sheet opens, or at boot after an earlier sign-in)
-  let fb = null, fbLoad = null;
+  let fb = null, fbLoad = null, fbImportFailed = false;
   function loadFirebase() {
     if (!fbLoad) {
       fbLoad = Promise.all(['app', 'auth', 'firestore'].map(m => import(FIREBASE_SDK + 'firebase-' + m + '.js'))).then(([app, A, F]) => {
@@ -1914,7 +1915,8 @@ function turnRhythm(S) {
         fb.auth.authStateReady().then(() => { fb.ready = true; });
         return fb;
       });
-      fbLoad.catch(() => { fbLoad = null; });   // offline or blocked: the next attempt loads again
+      // offline or blocked: most browsers keep a failed module import until the page reloads, so say so (see showCloudStatus)
+      fbLoad.catch(() => { fbLoad = null; fbImportFailed = true; });
     }
     return fbLoad;
   }
@@ -1925,8 +1927,14 @@ function turnRhythm(S) {
     const { F, db } = fb, col = F.collection(db, 'users', uid, 'devices');
     const body = d => { const x = d.data(); return Object.assign(x, { best: pairsIn(x.best), daily: pairsIn(x.daily) }); };
     return {
-      // from the server only: offline, getDocs resolves with an empty cache and the other devices' stars would drop out
-      load: async () => (await F.getDocsFromServer(col)).docs.map(body),
+      // the first snapshot synced with the server: offline, getDocs would resolve with an empty cache and the other
+      // devices' stars would drop out. Waiting here lets the SDK reconnect on its own ("connecting" until then).
+      load: () => new Promise((res, rej) => {
+        const off = F.onSnapshot(col, { includeMetadataChanges: true }, qs => {
+          if (qs.metadata.fromCache) return;
+          off(); res(qs.docs.map(body));
+        }, rej);
+      }),
       save: (id, b) => F.setDoc(F.doc(col, id), Object.assign({}, b, { best: pairsOut(b.best), daily: pairsOut(b.daily) })),
       watch: (next, err) => F.onSnapshot(col, qs => next(qs.docs.map(body)), err),
     };
@@ -1979,7 +1987,7 @@ function turnRhythm(S) {
     firebaseConnect(true, popup);
   });
   $('btnCloudLogout').addEventListener('click', firebaseLogout);
-  $('btnSettings').addEventListener('click', () => { if (!inViewer && FIREBASE_CONFIG && !cloud.backend) loadFirebase().catch(() => {}); });
+  $('btnSettings').addEventListener('click', () => { if (!inViewer && FIREBASE_CONFIG && !cloud.backend && navigator.onLine !== false) loadFirebase().catch(() => {}); });
   async function cloudInit() {
     if (!inViewer) {
       if (FIREBASE_CONFIG && LS.get('wsurv.fb.auto', false)) firebaseConnect(false); else showCloudStatus();
