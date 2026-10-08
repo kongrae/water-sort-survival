@@ -1783,7 +1783,16 @@ function turnRhythm(S) {
   //   - inside the claude.ai artifact viewer: the viewer's private db subtree, data/users/<id>/<device>
   //   - anywhere else (GitHub Pages): Firebase after Google sign-in, users/<uid>/devices/<device> (see firestore.rules)
   // Without either, everything stays in this browser.
-  const FIREBASE_CONFIG = null;   // web app config from the Firebase console; these values are public by design
+  // web app config from the Firebase console (project water-sort-survival); these values are public by design,
+  // access is limited by firestore.rules and the authorized domains. null keeps everything in the browser.
+  const FIREBASE_CONFIG = {
+    apiKey: 'AIzaSyCyvJRv0RMzgta5L7FJVEpaK8dUdiBQyUk',
+    authDomain: 'water-sort-survival.firebaseapp.com',
+    projectId: 'water-sort-survival',
+    storageBucket: 'water-sort-survival.firebasestorage.app',
+    messagingSenderId: '801548245572',
+    appId: '1:801548245572:web:e16590212af216f22afa11',
+  };
   const FIREBASE_SDK = 'https://www.gstatic.com/firebasejs/13.0.0/';
   const inViewer = !!(window.claude && typeof window.claude.use === 'function');
   const cloud = { state: 'local', kind: '', backend: null, unsub: null, devices: 0, savedAt: 0, lastBody: '', busy: false, again: false, timer: 0, account: '' };
@@ -1836,15 +1845,18 @@ function turnRhythm(S) {
   }
   // One write at a time to this device's document, only when its content changed.
   async function cloudSave() {
-    if (!cloud.backend) return;
+    const backend = cloud.backend;
+    if (!backend) return;
     if (cloud.busy) { cloud.again = true; return; }
     const body = localSave(), key = JSON.stringify(body);
     if (key === cloud.lastBody) return;
     cloud.busy = true;
     try {
-      await cloud.backend.save(deviceId(), Object.assign(body, { savedAt: new Date().toISOString() }));
+      await backend.save(deviceId(), Object.assign(body, { savedAt: new Date().toISOString() }));
+      if (cloud.backend !== backend) return;   // signed out while saving: stopSync already reset the state
       cloud.lastBody = key; cloud.savedAt = Date.now(); cloud.state = 'on';
     } catch (e) {
+      if (cloud.backend !== backend) return;
       cloud.state = denied(e) ? 'denied' : 'error';
     }
     cloud.busy = false;
@@ -1864,7 +1876,10 @@ function turnRhythm(S) {
       connecting: `${where}에 연결하는 중이에요.`,
       on: `${where}에 저장돼요. 별·연 테마·최고 기록이 기기 ${cloud.devices}대 사이에 이어져요${hm}.`,
       denied: '클라우드 저장을 쓸 수 없어요. 이 브라우저에만 저장돼요.',
-      error: '클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.',
+      blocked: '로그인 창이 막혔어요. 구글로 로그인을 한 번 더 눌러 주세요.',
+      other: '이 브라우저의 기록은 다른 구글 계정에 연결돼 있어요. 그 계정으로 로그인해 주세요.',
+      error: cloud.backend ? '클라우드에 저장하지 못했어요. 다음 판이 끝날 때 다시 시도해요.'
+        : '클라우드에 연결하지 못했어요. 지금은 이 브라우저에만 저장돼요. ' + (canGoogle ? '구글로 로그인을 다시 눌러 주세요.' : '새로고침하면 다시 연결해요.'),
     }[cloud.state];
     $('btnCloudLogin').hidden = !(canGoogle && !cloud.backend && cloud.state !== 'connecting');
     $('btnCloudLogout').hidden = !(cloud.kind === 'firebase' && cloud.backend);
@@ -1877,7 +1892,8 @@ function turnRhythm(S) {
   }
   function stopSync() {
     if (cloud.unsub) cloud.unsub();
-    Object.assign(cloud, { unsub: null, backend: null, kind: '', account: '', lastBody: '', savedAt: 0, devices: 0, state: 'local' });
+    clearTimeout(cloud.timer);
+    Object.assign(cloud, { unsub: null, backend: null, kind: '', account: '', lastBody: '', savedAt: 0, devices: 0, state: 'local', busy: false, again: false });
   }
   // claude.ai viewer store
   function claudeBackend(col) {
@@ -1888,39 +1904,60 @@ function turnRhythm(S) {
       watch: (next, err) => col.onSnapshot(qs => next(bodies(qs.docs)), err),
     };
   }
-  // Firebase store (loaded only outside the viewer, and only once someone signs in or has signed in before)
-  let fb = null;
-  async function loadFirebase() {
-    if (fb) return fb;
-    const [app, A, F] = await Promise.all(['app', 'auth', 'firestore'].map(m => import(FIREBASE_SDK + 'firebase-' + m + '.js')));
-    const a = app.initializeApp(FIREBASE_CONFIG);
-    fb = { A, F, auth: A.getAuth(a), db: F.getFirestore(a) };
-    return fb;
+  // Firebase store (loaded only outside the viewer: when the settings sheet opens, or at boot after an earlier sign-in)
+  let fb = null, fbLoad = null;
+  function loadFirebase() {
+    if (!fbLoad) {
+      fbLoad = Promise.all(['app', 'auth', 'firestore'].map(m => import(FIREBASE_SDK + 'firebase-' + m + '.js'))).then(([app, A, F]) => {
+        const a = app.initializeApp(FIREBASE_CONFIG);
+        fb = { A, F, auth: A.getAuth(a), db: F.getFirestore(a), ready: false };
+        fb.auth.authStateReady().then(() => { fb.ready = true; });
+        return fb;
+      });
+      fbLoad.catch(() => { fbLoad = null; });   // offline or blocked: the next attempt loads again
+    }
+    return fbLoad;
   }
+  // Firestore rejects arrays inside arrays, so the [key, value] record pairs are stored there as {k, v} maps.
+  const pairsOut = list => (list || []).map(([k, v]) => ({ k, v }));
+  const pairsIn = list => (list || []).map(p => [p.k, p.v]);
   function firebaseBackend(uid) {
     const { F, db } = fb, col = F.collection(db, 'users', uid, 'devices');
+    const body = d => { const x = d.data(); return Object.assign(x, { best: pairsIn(x.best), daily: pairsIn(x.daily) }); };
     return {
-      load: async () => (await F.getDocs(col)).docs.map(d => d.data()),
-      save: (id, body) => F.setDoc(F.doc(col, id), body),
-      watch: (next, err) => F.onSnapshot(col, qs => next(qs.docs.map(d => d.data())), err),
+      // from the server only: offline, getDocs resolves with an empty cache and the other devices' stars would drop out
+      load: async () => (await F.getDocsFromServer(col)).docs.map(body),
+      save: (id, b) => F.setDoc(F.doc(col, id), Object.assign({}, b, { best: pairsOut(b.best), daily: pairsOut(b.daily) })),
+      watch: (next, err) => F.onSnapshot(col, qs => next(qs.docs.map(body)), err),
     };
   }
-  // interactive: from the sign-in button. Otherwise restores a session from an earlier visit or a sign-in redirect.
-  async function firebaseConnect(interactive) {
+  function googleProvider() { const p = new fb.A.GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' }); return p; }
+  // interactive: from the sign-in button (popup: the sign-in the button already started). Otherwise restores the session of an earlier visit.
+  async function firebaseConnect(interactive, popup) {
     cloud.state = 'connecting'; cloud.kind = 'firebase'; showCloudStatus();
     try {
       const { A, auth } = await loadFirebase();
-      let user = await new Promise(res => { const off = A.onAuthStateChanged(auth, u => { off(); res(u); }); });
+      await auth.authStateReady();
+      let user = auth.currentUser;
       if (!user && interactive) {
-        const provider = new A.GoogleAuthProvider();
-        try { user = (await A.signInWithPopup(auth, provider)).user; } catch (e) {
-          if (!e || !['auth/popup-blocked', 'auth/operation-not-supported-in-this-environment'].includes(e.code)) throw e;
-          LS.set('wsurv.fb.auto', true);   // the page comes back from the redirect signed in
-          await A.signInWithRedirect(auth, provider);
+        try { user = (await (popup || A.signInWithPopup(auth, googleProvider()))).user; } catch (e) {
+          // no signInWithRedirect fallback: it cannot finish on github.io (the auth domain's storage is partitioned).
+          // The SDK is loaded by now, so the next tap opens the popup right away.
+          if (!e || e.code !== 'auth/popup-blocked') throw e;
+          stopSync(); cloud.state = 'blocked'; showCloudStatus();
           return;
         }
       }
       if (!user) { LS.set('wsurv.fb.auto', false); stopSync(); showCloudStatus(); return; }
+      // this browser's progress belongs to the first account that synced it; another account would inherit it for good
+      const bound = LS.get('wsurv.fb.uid', null);
+      if (bound && bound !== user.uid) {
+        LS.set('wsurv.fb.auto', false);
+        try { await A.signOut(auth); } catch (e) { /* already signed out */ }
+        stopSync(); cloud.state = 'other'; showCloudStatus();
+        return;
+      }
+      LS.set('wsurv.fb.uid', user.uid);
       LS.set('wsurv.fb.auto', true);
       cloud.account = user.email || '';
       await startSync(firebaseBackend(user.uid), 'firebase');
@@ -1936,8 +1973,13 @@ function turnRhythm(S) {
     try { if (fb) await fb.A.signOut(fb.auth); } catch (e) { /* already signed out */ }
     showCloudStatus();
   }
-  $('btnCloudLogin').addEventListener('click', () => firebaseConnect(true));
+  $('btnCloudLogin').addEventListener('click', () => {
+    // with the SDK ready, start the popup inside the tap itself: mobile browsers and Safari block popups opened after a delay
+    const popup = fb && fb.ready && !fb.auth.currentUser ? fb.A.signInWithPopup(fb.auth, googleProvider()) : null;
+    firebaseConnect(true, popup);
+  });
   $('btnCloudLogout').addEventListener('click', firebaseLogout);
+  $('btnSettings').addEventListener('click', () => { if (!inViewer && FIREBASE_CONFIG && !cloud.backend) loadFirebase().catch(() => {}); });
   async function cloudInit() {
     if (!inViewer) {
       if (FIREBASE_CONFIG && LS.get('wsurv.fb.auto', false)) firebaseConnect(false); else showCloudStatus();

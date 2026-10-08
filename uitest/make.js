@@ -28,8 +28,10 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   window.claude = { hot: { snapshot: function (fn) { window.__snapFn = fn; } } };
   if (sc === 'firebase') {
     set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.stars.total', 10); set('wsurv.themes.owned', ['lab']);
-    // read by mockfb/firebase-firestore.js: another device's save already in the signed-in account
-    window.__fbStore = { 'users/g1/devices/dev-other': { v: 1, device: 'dev-other', starsMine: 40, owned: ['lab', 'cafe'], best: [], daily: [], starsDaily: [], unlock: { runs: 4, sawOver: true, flip: true } } };
+    set('wsurv.best.6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1', 300);
+    // read by mockfb/firebase-firestore.js: another device's save already in the signed-in account, records stored as {k, v} maps
+    window.__fbStore = { 'users/g1/devices/dev-other': { v: 1, device: 'dev-other', starsMine: 40, owned: ['lab', 'cafe'], best: [{ k: '6-4-4-8-20-1-2-0-0-c1-f2-z20x5t1', v: 900 }], daily: [], starsDaily: [], unlock: { runs: 4, sawOver: true, flip: true } } };
+    window.__fbBlockPopup = 1;
   }
   if (sc === 'cloud') {
     set('wsurv.seenHelp', true); set('wsurv.prefs', { seenV2: true }); set('wsurv.unlock', { runs: 1, sawOver: false, flip: false });
@@ -55,9 +57,12 @@ const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
 })();
 </script></head><body>`;
 const driver = fs.readFileSync(path.join(__dirname, 'driver.js'), 'utf8');
-fs.writeFileSync(path.join(__dirname, 'uitest.html'), head + page + '\n<script>' + driver + '</script></body></html>');
-// Pages build stand-in: a dummy Firebase config with the SDK served from mockfb/ (in-memory auth and Firestore)
-const fbPage = page.replace('const FIREBASE_CONFIG = null;', "const FIREBASE_CONFIG = { apiKey: 'test', projectId: 'test' };")
+// The scenarios below run without Firebase (never the real project); the firebase scenario gets a dummy config
+// with the SDK served from mockfb/ (in-memory auth and Firestore).
+const CONFIG_RE = /const FIREBASE_CONFIG = (null|\{[\s\S]*?\n  \});/;
+if (!CONFIG_RE.test(page)) throw new Error('FIREBASE_CONFIG not found');
+fs.writeFileSync(path.join(__dirname, 'uitest.html'), head + page.replace(CONFIG_RE, 'const FIREBASE_CONFIG = null;') + '\n<script>' + driver + '</script></body></html>');
+const fbPage = page.replace(CONFIG_RE, "const FIREBASE_CONFIG = { apiKey: 'test', projectId: 'test' };")
   .replace("'https://www.gstatic.com/firebasejs/13.0.0/'", "new URL('mockfb/', location.href).href");
 if (fbPage.split('mockfb/').length !== 2 || !fbPage.includes("apiKey: 'test'")) throw new Error('firebase test build did not change');
 fs.writeFileSync(path.join(__dirname, 'uitest-fb.html'), head + fbPage + '\n<script>' + driver + '</script></body></html>');
