@@ -166,14 +166,17 @@ window.__feelTests = async function (T, H) {
     await setup(MID, [2, 2], { streak: 3, turn: 10, turnClears: 0, lastBigTurn: -1 });
     const s1 = G().score;
     await tap(tube(3)); await tap(tube(2));
-    ck('[F3] a completing pour: the state at once, the bottle shows what it held until the liquid lands', G().bottles[2].length === 0 && G().score === s1 + 400 && q('#fxLayer .fx-col i') === 3,
-      `${JSON.stringify(G().bottles)} +${G().score - s1} col ${q('#fxLayer .fx-col i')}`);
+    ck('[F3] a completing pour: the state at once, the bottle shows what it held until the liquid lands', G().bottles[2].length === 0 && G().score === s1 + 400 && q('#fxLayer .fx-col .layer') === 3,
+      `${JSON.stringify(G().bottles)} +${G().score - s1} col ${q('#fxLayer .fx-col .layer')}`);
     ck('[F5] the score waits for the points', scoreText() === fmt(s1), scoreText());
     await sleep(230);   // 260ms after the move: landed at 190, flash 60 + hold 70 until 320
-    ck('[F3] on landing the full bottle flashes and holds; nothing has burst yet', q('#fxLayer .fx-col i') === 4 && q('#fxLayer .fx-drop') === 0 && !document.querySelector('#stage .cb'),
-      `${q('#fxLayer .fx-col i')} ${q('#fxLayer .fx-drop')} ${q('#stage .cb')}`);
+    ck('[F3] on landing the full bottle gathers; nothing has burst yet', q('#fxLayer .fx-col .layer') === 4 && q('#fxLayer .fx-drop') === 0 && !document.querySelector('#stage .cb'),
+      `${q('#fxLayer .fx-col .layer')} ${q('#fxLayer .fx-drop')} ${q('#stage .cb')}`);
     await sleep(100);   // 360ms
-    ck('[F3] then it bursts: bounded drops, two waves, the points take off', q('#fxLayer .fx-drop') >= 28 && q('#fxLayer .fx-drop') <= 96 && q('#fxLayer .fx-ring') === 2 && q('#fxLayer .fx-score') === 1, `drops ${q('#fxLayer .fx-drop')} ring ${q('#fxLayer .fx-ring')} score ${q('#fxLayer .fx-score')}`);
+    const beads = [...document.querySelectorAll('#fxLayer .fx-drop')];
+    ck('[F3] then it bursts: bounded beads and elongated lobes, two waves, points take off', beads.length > 0 && beads.length <= 96 &&
+      beads.some(e => parseFloat(e.style.height) > parseFloat(e.style.width) * 1.4) && beads.some(e => e.style.width === e.style.height) &&
+      q('#fxLayer .fx-ring') === 2 && q('#fxLayer .fx-score') === 1, `drops ${beads.length} ring ${q('#fxLayer .fx-ring')} score ${q('#fxLayer .fx-score')}`);
     // the combo bursts with the bottle: the multiplier and its word over the stage, the badge steps aside; no banner
     const cb = document.querySelector('#stage .cb'), line = sel => (cb && cb.querySelector(sel + ' .f') || {}).textContent;
     ck('[F4] the combo bursts on the stage with its word while the badge steps aside', !!cb && line('.cb-num') === '×4' && line('.cb-word') === '대단해요!' && q('#stage .cb-rays') === 1 &&

@@ -3,7 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const BASE = path.join(__dirname, '..');
-const page = fs.readFileSync(path.join(BASE, 'water-sort-survival.html'), 'utf8');
+const sourceArg = process.argv.find(a => a.startsWith('--source='));
+const page = fs.readFileSync(sourceArg ? path.resolve(sourceArg.slice(9)) : path.join(BASE, 'water-sort-survival.html'), 'utf8');
 const head = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <script>

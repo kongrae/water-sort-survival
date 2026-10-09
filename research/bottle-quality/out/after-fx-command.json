@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-09T14:59:43.754Z",
+  "command": "node uitest/fx-polish.js",
+  "sourceSha256": "65eee1c83905a3bbc9550807a334d3838238ee770aa961284e636156707c3962",
+  "exitCode": 0,
+  "stdout": "FX polish 122/122, 0 failed\n",
+  "stderr": ""
+}

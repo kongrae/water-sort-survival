@@ -17,7 +17,7 @@ const args = process.argv.slice(2);
 const opt = (k, d) => { const a = args.find(x => x.startsWith(`--${k}=`)); return a ? a.split('=')[1] : d; };
 const motionArg = opt('motion', 'both'), only = opt('only', '');
 const motions = motionArg === 'both' ? ['reduce', 'full'] : [motionArg];
-execFileSync(process.execPath, [path.join(DIR, 'make.js')], { stdio: 'ignore' });
+execFileSync(process.execPath, [path.join(DIR, 'make.js'), ...args.filter(a => a.startsWith('--source='))], { stdio: 'ignore' });
 const files = fs.readdirSync(DIR);
 const pagesOf = sc => files.filter(f => f === `frame-${sc}.html` || (f.startsWith(`frame-${sc}~`) && f.endsWith('.html')))
   .filter(f => !only || f.includes(only)).sort();

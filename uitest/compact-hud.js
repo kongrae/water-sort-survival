@@ -26,13 +26,16 @@ async function main(){
     .replace('<body>','<body>'+init);
   const server=http.createServer((req,res)=>{res.setHeader('Content-Type','text/html; charset=utf-8');res.end(page);});
   await new Promise(r=>server.listen(8153,'127.0.0.1',r));
+  const profile=path.join(OUT,'profile-'+Date.now()),activePort=path.join(profile,'DevToolsActivePort');
   const chrome=spawn(process.env.CHROME||'C:/Program Files/Google/Chrome/Application/chrome.exe',
-    ['--headless=new','--no-first-run','--hide-scrollbars','--force-prefers-no-reduced-motion','--remote-debugging-port=9347',
-      '--user-data-dir='+path.join(OUT,'profile-'+Date.now()),'about:blank'],{stdio:'ignore'});
+    ['--headless=new','--no-first-run','--hide-scrollbars','--force-prefers-no-reduced-motion','--remote-debugging-port=0',
+      '--user-data-dir='+profile,'about:blank'],{stdio:'ignore'});
   const checks=[],geometry=[];let ws;
   const ck=(name,pass,detail)=>{checks.push({name,pass:!!pass,...(pass||detail===undefined?{}:{detail})});if(!pass&&checks.filter(c=>!c.pass).length<=12)console.log('FAIL '+name+' '+JSON.stringify(detail));};
   try{
-    let tabs;for(let i=0;i<80&&!tabs?.some(t=>t.type==='page');i++){await pause(100);try{tabs=await(await fetch('http://127.0.0.1:9347/json/list')).json();}catch{}}
+    for(let i=0;i<100&&!fs.existsSync(activePort);i++){await pause(100);if(chrome.exitCode!==null)throw Error('Dedicated Chrome exited: '+chrome.exitCode);}
+    const port=Number(fs.readFileSync(activePort,'utf8').split('\n')[0]);
+    let tabs;for(let i=0;i<80&&!tabs?.some(t=>t.type==='page');i++){await pause(100);try{tabs=await(await fetch('http://127.0.0.1:'+port+'/json/list')).json();}catch{}}
     ws=new WebSocket(tabs.find(t=>t.type==='page').webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j;});
     let seq=0;const pending=new Map();ws.onmessage=e=>{const m=JSON.parse(e.data);if(pending.has(m.id)){pending.get(m.id)(m);pending.delete(m.id);}};
     const send=(method,params={})=>new Promise((r,j)=>{const id=++seq;pending.set(id,m=>m.error?j(Error(m.error.message)):r(m.result));ws.send(JSON.stringify({id,method,params}));});

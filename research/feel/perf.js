@@ -5,6 +5,8 @@
 // Each move's select press comes a frame and 40ms before the timed press, as real taps do (pressed back to back,
 // the second press would also pay the layout of the first press's render).
 // usage: node research/feel/perf.js   (builds the test pages; writes research/feel/out/perf.json)
+// Optional --source=<saved source> compares a baseline without replacing the working source.
+// --steady fixes the seed and uses 20 warm-up moves; keep its results separate from the default protocol.
 const fs = require('fs');
 const path = require('path');
 const { spawn, execFileSync } = require('child_process');
@@ -14,6 +16,8 @@ const OUT = path.join(__dirname, 'out');
 const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9361;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Optional paired steady-state diagnostic; retain the original six-warm-up protocol by default.
+const steady = process.argv.includes('--steady');
 
 // runs in the page: 40 quick pours, 10 placements, 5 completions at combo x4 or more
 const SEQUENCE = `(async () => {
@@ -22,6 +26,7 @@ const SEQUENCE = `(async () => {
   const tubes = () => document.querySelectorAll('#rack .tube');
   const key = el => el.dispatchEvent(new MouseEvent('click', { bubbles: true, detail: 0 }));
   const boot = o => { const s = G(); Object.assign(s, { over: false, stuck: null, spare: null, spareOffer: false, flipped: false, pours: 0, turnClears: 0, streak: 0 }, o); window.__boot({ S: s }); };
+  ${steady ? "window.__boot({S:newState('endless','bottle-quality-perf-fixed',G().rules)});" : ''}
   const ms = [], kinds = { pour: [], place: [], clear: [] };
   let longTasks = 0, longest = 0, maxFx = 0;
   const po = new PerformanceObserver(l => { for (const e of l.getEntries()) { longTasks++; longest = Math.max(longest, e.duration); } });
@@ -44,7 +49,7 @@ const SEQUENCE = `(async () => {
     if (state() !== k0) made++;
   };
   boot({ bottles: [[0], [], [1, 1], [2], [3, 3], [2, 1]], piece: [1] }); await wait(300);
-  for (let k = 0; k < 6; k++) { const a = k % 2 ? 1 : 0; await move(null, () => tubes()[a], () => tubes()[1 - a]); await wait(50); }
+  for (let k = 0; k < ${steady ? 20 : 6}; k++) { const a = k % 2 ? 1 : 0; await move(null, () => tubes()[a], () => tubes()[1 - a]); await wait(50); }
   await wait(400);
   for (let k = 0; k < 40; k++) { const a = k % 2 ? 1 : 0; await move('pour', () => tubes()[a], () => tubes()[1 - a]); await wait(50); }
   await wait(600);
@@ -63,11 +68,11 @@ const SEQUENCE = `(async () => {
   clearInterval(sample); po.disconnect();
   const q = (a, f) => { const s = a.slice().sort((x, y) => x - y); return s.length ? +s[Math.min(s.length - 1, Math.floor(s.length * f))].toFixed(2) : null; };
   const sum = a => ({ n: a.length, p50: q(a, .5), p90: q(a, .9), max: a.length ? +Math.max(...a).toFixed(2) : null });
-  return { all: sum(ms), pour: sum(kinds.pour), place: sum(kinds.place), clear: sum(kinds.clear), made, longTasks, longest: +longest.toFixed(1), maxFx, errors: window.__errors };
+  return { all: sum(ms), pour: sum(kinds.pour), place: sum(kinds.place), clear: sum(kinds.clear), samples: kinds, protocol: {warmupMoves:${steady ? 20 : 6},seed:${steady ? "'bottle-quality-perf-fixed'" : 'null'}}, made, longTasks, longest: +longest.toFixed(1), maxFx, errors: window.__errors };
 })()`;
 
 async function main() {
-  execFileSync(process.execPath, [path.join(UIT, 'make.js')], { stdio: 'ignore' });
+  execFileSync(process.execPath, [path.join(UIT, 'make.js'), ...process.argv.slice(2).filter(a => a.startsWith('--source='))], { stdio: 'ignore' });
   fs.mkdirSync(OUT, { recursive: true });
   const prof = path.join(UIT, 'prof-perf');
   fs.rmSync(prof, { recursive: true, force: true });

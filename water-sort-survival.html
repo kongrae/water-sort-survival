@@ -141,7 +141,9 @@ body {
 
 /* Themes: only bottles, liquid finish and the rack backdrop change. Liquid colours stay the same so they remain easy to tell apart.
    Each theme sets variables on the element carrying data-skin (the root, or a theme preview card), so previews can show any theme. */
-:root, [data-skin] { --tube-k: 1; --rim-h: 6px; --rim-r: 4px; --sheen: none; --glow: 0px; --shelf: none; --free-ink: var(--muted); --bubbles: none; --bubble-anim: none; }
+:root, [data-skin] { --tube-k: 1; --rim-h: 6px; --rim-r: 4px; --sheen: none; --glow: 0px; --shelf: none; --free-ink: var(--muted); --bubbles: none; --bubble-anim: none;
+  --glass-depth: inset 2px 0 3px rgba(255,255,255,.15), inset -3px 0 5px rgba(0,0,0,.18), inset 0 -4px 2px rgba(255,255,255,.16), 0 3px 4px rgba(0,0,0,.16);
+  --water-depth: linear-gradient(90deg, rgba(0,0,0,.12), transparent 18%, rgba(255,255,255,.09) 30%, transparent 52%, rgba(0,0,0,.17)); }
 [data-skin="lab"] { --glass: #f7fafb; --glass-edge: #8fa3ae; }
 [data-skin="cafe"] { --glass: #fffaf2; --glass-edge: #a8825f; --tube-k: .45; --rim-h: 8px; --rim-r: 2px;
   --sheen: linear-gradient(to bottom, rgba(255, 255, 255, .55) 0 3px, rgba(255, 255, 255, 0) 3px); --shelf: linear-gradient(to bottom, #f7ecdd, #eed9bd); }
@@ -169,11 +171,18 @@ body {
 .rack.dead { filter: saturate(.3); transition: filter .6s ease; }
 .tube { --cap: 4; appearance: none; border: 0; background: none; padding: 0; margin: 0; color: inherit; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: stretch; position: relative; transition: transform .16s ease, scale .06s ease; }
 .tube:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
-.rim { height: var(--rim-h); margin-inline: -4px; border-radius: var(--rim-r); background: var(--glass-edge); }
-.glass { position: relative; height: calc(var(--cap) * var(--lh) + 8px); border: 2px solid var(--glass-edge); border-top: 0; border-radius: 0 0 calc(20px * var(--tube-k)) calc(20px * var(--tube-k)); background: var(--glass); display: flex; flex-direction: column-reverse; gap: 2px; padding: 3px; overflow: hidden; }
-.glass::after { content: ""; position: absolute; right: 0; top: 0; bottom: 3px; width: 5px; background: repeating-linear-gradient(to top, transparent 0 calc(var(--lh) - 1px), var(--glass-edge) calc(var(--lh) - 1px) var(--lh)); opacity: .55; pointer-events: none; }
-.glass::before { content: ""; position: absolute; inset: 0; z-index: 1; background-image: var(--bubbles); background-size: 100% 48px; background-repeat: repeat-y; animation: var(--bubble-anim) 2.6s linear infinite; pointer-events: none; }
-.layer { flex: none; height: calc(var(--lh) - 2px); border-radius: 5px; display: grid; place-items: center; color: #fff; font-size: 13px; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .4); transform-origin: bottom; background-color: var(--lc); background-image: var(--sheen); box-shadow: 0 0 var(--glow) var(--lc); }
+.rim { position: relative; height: var(--rim-h); margin-inline: -4px; border-radius: var(--rim-r); background: var(--glass-edge); background-image: linear-gradient(180deg, rgba(255,255,255,.5), transparent 44%, rgba(0,0,0,.25)); box-shadow: 0 1px 0 rgba(255,255,255,.12); }
+.rim::after { content: ""; position: absolute; inset: 1px 5px 2px; border-radius: 50%; background: var(--glass); box-shadow: inset 0 1px 2px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.4); pointer-events: none; }
+.glass { position: relative; height: calc(var(--cap) * var(--lh) + 8px); border: 2px solid var(--glass-edge); border-top: 0; border-radius: 0 0 calc(20px * var(--tube-k)) calc(20px * var(--tube-k)); background: linear-gradient(90deg, rgba(0,0,0,.12), transparent 24% 62%, rgba(0,0,0,.2)), var(--glass); box-shadow: var(--glass-depth), var(--glass-ring, 0 0 transparent); display: flex; flex-direction: column-reverse; gap: 2px; padding: 3px; overflow: hidden; }
+.glass::after { content: ""; position: absolute; right: 0; top: 0; bottom: 3px; width: 5px; z-index: 2; background: repeating-linear-gradient(to top, transparent 0 calc(var(--lh) - 1px), var(--glass-edge) calc(var(--lh) - 1px) var(--lh)); opacity: .7; pointer-events: none; }
+.glass::before { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; background-image: linear-gradient(90deg, transparent 5%, rgba(255,255,255,.25) 8%, rgba(255,255,255,.06) 15%, transparent 20% 84%, rgba(255,255,255,.12) 92%, transparent 96%), linear-gradient(0deg, rgba(255,255,255,.2), transparent 6px), var(--bubbles); background-size: 100% 100%; pointer-events: none; }
+.layer { position: relative; flex: none; height: calc(var(--lh) - 2px); border-radius: 5px 5px 2px 2px; display: grid; place-items: center; color: #fff; font-size: 13px; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .4); transform-origin: bottom; background-color: var(--lc); background-image: var(--water-depth); box-shadow: 0 0 var(--glow) var(--lc); }
+.layer::before { position: absolute; left: 0; right: 0; top: 0; height: 4px; border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.04)); pointer-events: none; }
+.layer.join-above { border-top-left-radius: 0; border-top-right-radius: 0; }
+.layer.join-above::before { display: none; }
+.layer.join-below { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.layer.join-below::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background-color: var(--lc); background-image: var(--water-depth); pointer-events: none; }
+.layer:last-child::before { content: ""; height: 5px; box-shadow: 0 -1px 0 rgba(255,255,255,.22); }
 .layer:first-child { border-radius: 5px 5px calc(15px * var(--tube-k)) calc(15px * var(--tube-k)); }
 .layer.ghostL { opacity: .4; }
 .layer.leaving { opacity: .5; }
@@ -186,10 +195,10 @@ body {
 .tube.charging .glass { animation: charge .45s linear forwards; }
 .tube.sel .glass { border-color: var(--accent); }
 .tube.sel .rim { background: var(--accent); }
-.tube.can .glass { box-shadow: 0 0 0 3px var(--accent-soft); }
-.tube.hover .glass { box-shadow: 0 0 0 3px var(--accent); }
-.tube.gold .glass { box-shadow: 0 0 0 3px var(--gold); background: var(--gold-soft); }
-.tube.reject .glass { box-shadow: 0 0 0 3px var(--danger); }
+.tube.can .glass { --glass-ring: 0 0 0 3px var(--accent-soft); }
+.tube.hover .glass { --glass-ring: 0 0 0 3px var(--accent); }
+.tube.gold .glass { --glass-ring: 0 0 0 3px var(--gold); background-color: var(--gold-soft); }
+.tube.reject .glass { --glass-ring: 0 0 0 3px var(--danger); }
 .cork { position: absolute; top: -10px; left: 50%; width: 46%; height: 9px; transform: translateX(-50%); border-radius: 3px 3px 1px 1px; background: var(--liq8); pointer-events: none; }
 .tube.flash .glass { animation: flash .6s ease-out; }
 .tube.shake { animation: shake .3s ease-in-out; }
@@ -202,6 +211,11 @@ body {
 .tube.micro .glass { border-radius: 0 0 calc(9px * var(--tube-k)) calc(9px * var(--tube-k)); padding: 2px; gap: 1px; border-width: 1.5px; }
 .tube.micro .layer { height: calc(var(--lh) - 1px); border-radius: 3px; font-size: 9px; }
 .tube.micro .layer:first-child { border-radius: 3px 3px calc(7px * var(--tube-k)) calc(7px * var(--tube-k)); }
+.tube.micro .layer.join-below::after { bottom: -1px; height: 1px; }
+.tube.micro .layer::before { height: 3px; }
+.tube.mini .glass::before, .tube.micro .glass::before { opacity: .65; }
+.tube .glass .layer.join-above { border-top-left-radius: 0; border-top-right-radius: 0; }
+.tube .glass .layer.join-below { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
 .tube.micro .glass::after, .tube.mini .glass::after { display: none; }
 /* Three units occupy the existing two-unit preview frame, never the rack's height budget. */
 .tube.mini.piece-three, .app.expanding .tube.mini.piece-three { --lh: calc(var(--piece-lh, 22px) * 2 / 3); }
@@ -246,24 +260,23 @@ body {
 .tube.press .glass { filter: brightness(1.08); }
 /* juicy effects (docs/PROMPT_feel.md 6): moved layers fly as blobs while the layers they become wait unseen */
 .fx-blob { left: 0; top: 0; border-radius: 45% 45% 35% 35%; background-color: var(--lc); background-image: linear-gradient(110deg, rgba(255,255,255,.4), transparent 45%), var(--sheen); box-shadow: 0 0 var(--glow) var(--lc); transform-origin: 0 0; will-change: transform; }
-:root[data-fx="juicy"] .rack .layer { background-image: linear-gradient(110deg, rgba(255,255,255,.22), transparent 42%), var(--sheen); }
-:root[data-fx="juicy"] .rack .glass::before { background-image: linear-gradient(90deg, transparent 3px, rgba(255,255,255,.16) 4px, transparent 6px), var(--bubbles); }
+.layer:not(.join-above) { background-image: var(--water-depth), var(--sheen); }
 .fx-source { opacity: .65; transform-origin: 50% 100%; }
 .fx-source .free { visibility: hidden; }
 .fx-flow { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.fx-flow path { fill: none; stroke: var(--lc); stroke-width: 4; stroke-linecap: round; stroke-dasharray: .22 .78; }
-.fx-surface { border: 2px solid var(--lc); border-top-color: rgba(255,255,255,.85); border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+.fx-flow path { fill: none; stroke: var(--lc); stroke-width: 5; stroke-linecap: round; stroke-dasharray: .28 .72; }
+.fx-flow path + path { stroke: rgba(255,255,255,.5); stroke-width: 1.3; }
+.fx-surface { border: 1px solid var(--lc); border-top-color: rgba(255,255,255,.8); border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,.24), transparent); box-sizing: border-box; transform-origin: 50% 50%; }
 .fx-sheen { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.7) 45%, transparent 60%); }
 .fx-growth { border: 2px solid var(--lc, var(--accent)); border-radius: 5px 5px 20px 20px; box-sizing: border-box; box-shadow: inset 0 0 12px var(--accent-soft); }
 .layer.await { opacity: 0; }
-.layer.land { animation: land .12s ease-out; }
-@keyframes land { 0% { transform: scaleY(.82); } 60% { transform: scaleY(1.05); } 100% { transform: none; } }
+.layer.land::before { animation: land .28s ease-out; }
+@keyframes land { 0% { transform: scale(1.03, .5) translateY(2px); } 38% { transform: scale(.98, 1.3) translateY(-1px); } 72% { transform: scale(1.01, .9); } 100% { transform: none; } }
 .fx-col { position: absolute; inset: 3px; display: flex; flex-direction: column-reverse; gap: 2px; }
-.fx-col i { flex: none; height: calc(var(--lh) - 2px); border-radius: 5px; background-color: var(--lc); background-image: var(--sheen); }
-.fx-white { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 65%, rgba(255,255,255,.7), transparent 75%), var(--lc); opacity: 0; }
+.fx-col .layer { font-size: 13px; }
+.fx-white { position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 24%, rgba(255,255,255,.65), transparent 65%); box-shadow: inset 0 0 0 1px var(--lc); opacity: 0; }
 .fx-drop { left: 0; top: 0; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 55% 45% 50% 50%; background: var(--lc); background-image: radial-gradient(circle at 30% 25%, rgba(255,255,255,.85), transparent 45%); will-change: transform, opacity; }
-.fx-ring { border: 3px solid var(--lc); border-radius: 50%; box-sizing: border-box; will-change: transform, opacity; }
-.fx-cork { width: 22px; height: 9px; margin-left: -11px; border-radius: 3px 3px 1px 1px; background: var(--liq8); }
+.fx-ring { border: 1.5px solid var(--lc); border-top-color: rgba(255,255,255,.7); border-radius: 50%; box-sizing: border-box; will-change: transform, opacity; }
 .fx-edge { border-radius: 4px; box-shadow: 0 0 0 3px var(--danger); }
 .fx-score { left: 0; top: 0; white-space: nowrap; font-family: var(--font-display); font-size: 24px; line-height: 1; color: #ffd25a; will-change: transform, opacity;
   text-shadow: 0 2px 0 #8a4b00, 2px 0 0 #8a4b00, -2px 0 0 #8a4b00, 0 -2px 0 #8a4b00, 1.5px 1.5px 0 #8a4b00, -1.5px 1.5px 0 #8a4b00, 1.5px -1.5px 0 #8a4b00, -1.5px -1.5px 0 #8a4b00, 0 4px 8px rgba(0, 0, 0, .25); }
@@ -1528,10 +1541,10 @@ function turnRhythm(S) {
     tick() { tone(1046.5, 0, .05, 'triangle', .05); },
     nope() { tone(233.08, 0, .1, 'square', .035); },
     // juicy (6): st is the transposition in semitones (combo step and heat)
-    drip(j, st) { const f = 620 * Math.pow(2, (3 * j + st) / 12); sweep(f, f * .72, 0, .075, 'sine', .1); tone(f * 2, .025, .045, 'triangle', .025); },
-    thunk(st) { const f = 150 * Math.pow(2, st / 12); sweep(f, f * .6, 0, .1, 'sine', .22); noise(0, .03, .05, 900); },
-    impact(p) { noise(0, .08, .09 + .015 * p, 1400); sweep(120 + p * 8, 52, 0, .14, 'sine', .16 + .02 * p); tone(880 * Math.pow(2, p / 12), .035, .12, 'triangle', .04); },
-    cork() { sweep(1900, 950, 0, .07, 'triangle', .06); },
+    drip(j, st) { const f = 620 * Math.pow(2, (3 * j + st) / 12); sweep(f * 1.25, f * .65, 0, .095, 'sine', .09); tone(f * 2, .02, .055, 'sine', .025); },
+    thunk(st) { const f = 180 * Math.pow(2, st / 12); sweep(f * 1.3, f * .65, 0, .12, 'sine', .18); noise(0, .045, .045, 1800); },
+    impact(p) { noise(0, .12, .09, 1800); sweep(150 + p * 12, 65, 0, .17, 'sine', .18); tone(880 * Math.pow(2, p / 12), .025, .14, 'sine', .045); },
+    cork() { sweep(650, 1400, 0, .09, 'sine', .035); },
     bonk() { sweep(180, 120, 0, .12, 'triangle', .1); },
     heart() { const os = []; for (let b = 0; b < 8; b++) os.push(sweep(68, 48, b * .72, .11, 'sine', .26), sweep(64, 46, b * .72 + .19, .1, 'sine', .17)); return os.filter(Boolean); },
     relief() { tone(587.33, 0, .16, 'triangle', .09); tone(880, .1, .22, 'triangle', .09); },
@@ -1590,7 +1603,7 @@ function turnRhythm(S) {
     if (S) settleAnims();
     for (const el of [...fxLive]) fxDrop(el);
     for (const id of fxTimers) clearTimeout(id);
-    fxTimers.clear(); flights.length = 0; drops.length = 0;
+    fxTimers.clear(); flights.length = 0; drops.length = 0; clearViews.clear();
     scorePend = 0;
     if (count) { clearInterval(count.id); count = null; }
     if (S) paintScore();
@@ -1618,6 +1631,7 @@ function turnRhythm(S) {
   }
   const flights = [];   // landings still to come: { to, colors, done, clr, prefill, onLand, blobs, landed }
   const drops = [];     // live drop nodes, oldest first
+  const clearViews = new Set(); // filled completion snapshots yield immediately when their bottle is reused
   let scorePend = 0;    // points on their way to the score (juicy): the score shows S.score minus these
   function fxBox(r, cls) {
     const b = document.createElement('div');
@@ -1704,7 +1718,7 @@ function turnRhythm(S) {
     const clip = fxEl('fx-clip', gg), col = document.createElement('div');
     clip.style.setProperty('--lh', gg.lh + 'px');
     col.className = 'fx-col';
-    for (let j = 0; j < n; j++) col.append(liq(document.createElement('i'), c));
+    for (let j = 0; j < n; j++) appendLiquid(col, c, j > 0, j < n - 1);
     clip.append(col);
     return fxAdd(clip, ms);
   }
@@ -1740,42 +1754,64 @@ function turnRhythm(S) {
       // a pour's top layer leaves first and lands lowest; a piece moves as one
       const src = f.kind === 'pour' ? f.from[k - 1 - j] : f.from[j], dst = land[j];
       const delay = f.kind === 'pour' && !f.drag ? j * FT.step : 0;
+      const curve = f.kind === 'pour' && !f.drag ? pourCurve(src, dst, mouth, preGeo?.[f.src]?.glass.top ?? src.top) : null;
       const b = liq(fxEl('fx-blob', src), f.colors[j]);
       fxAdd(b, delay + dur + 60);
       fl.blobs.push(b);
-      if (f.kind === 'pour' && !f.drag) fl.blobs.push(flowFx(src, dst, mouth, f.colors[j], delay, dur));
-      try { b.animate(pathFrames(src, dst, mouth, f), { duration: dur, delay, fill: 'both' }); } catch (e) { /* no WAAPI: it lands where it is */ }
+      if (curve) fl.blobs.push(flowFx(curve, f.colors[j], delay, dur));
+      try { b.animate(pathFrames(src, dst, mouth, f, curve), { duration: dur, delay, fill: 'both' }); } catch (e) { /* no WAAPI: it lands where it is */ }
       fxLater(() => landOne(fl, j, f.kind), delay + dur);
       last = Math.max(last, delay + dur);
     }
     fxLater(() => landAll(fl), last);
   }
-  function pathFrames(a, b, mouth, f) {
+  // The head and trail share one path through both mouths. No SVG geometry reads during input.
+  function pourCurve(a, b, mouth, sourceMouth) {
+    const ax = a.left + a.width / 2, ay = a.top + a.height / 2, bx = b.left + b.width / 2, by = b.top + b.height / 2;
+    const exitY = sourceMouth - 4, entryY = mouth - 4, peak = Math.min(exitY, entryY) - 24, points = [];
+    let length = 0;
+    for (let j = 0; j <= 10; j++) {
+      const t = j / 10;
+      let x, y;
+      if (j <= 2) { x = ax; y = ay + (exitY - ay) * j / 2; }
+      else if (j <= 7) {
+        const v = (j - 2) / 5, u = 1 - v;
+        x = (u * u * u + 3 * u * u * v) * ax + (3 * u * v * v + v * v * v) * bx;
+        y = u * u * u * exitY + 3 * u * v * peak + v * v * v * entryY;
+      } else { x = bx; y = entryY + (by - entryY) * (j - 7) / 3; }
+      if (j) length += Math.hypot(x - points[j - 1].x, y - points[j - 1].y);
+      points.push({ x, y, t, length });
+    }
+    return { points, length: length || 1, path: `M ${ax} ${ay} L ${ax} ${exitY} C ${ax} ${peak} ${bx} ${peak} ${bx} ${entryY} L ${bx} ${by}` };
+  }
+  function pathFrames(a, b, mouth, f, curve) {
     const dx = b.left - a.left, dy = b.top - a.top, sx = b.width / a.width, sy = b.height / a.height;
     const T = (x, y, s1, s2) => `translate(${x}px, ${y}px) scale(${s1}, ${s2})`;
     if (f.drag) return [{ transform: T(0, 0, 1, 1), easing: 'ease-in' }, { transform: T(dx, dy, sx, sy) }];
+    if (curve) return curve.points.map(({ x, y, t }) => {
+      const flow = Math.sin(Math.PI * t), w = (1 + (sx - 1) * t) * (1 - .72 * flow), h = (1 + (sy - 1) * t) * (1 + .18 * flow);
+      return { offset: t, transform: T(x - a.left - a.width * w / 2, y - a.top - a.height * h / 2, w, h) };
+    });
     const peak = Math.min(mouth, a.top) - 28 - a.top, mx = (1 + sx) / 2, my = (1 + sy) / 2;
-    if (f.kind === 'pour') {
-      return [{ transform: T(0, 0, 1, 1), easing: 'ease-out' }, { transform: T(0, -10, 1, 1), offset: FT.lift / (FT.lift + FT.arc), easing: 'ease-out' },
-        { transform: T(dx * .82, peak, mx * .55, my * 1.25), offset: .72, easing: 'ease-in' }, { transform: T(dx, dy, sx, sy) }];
-    }
     return [{ transform: T(0, 0, 1, 1), easing: 'ease-out' }, { transform: T(dx * .9, peak, mx, my), offset: .58, easing: 'ease-in' }, { transform: T(dx, dy, sx, sy) }];
   }
   // the bottle's layers as they are now (render() may have rebuilt them since the move)
   const liveLayers = i => { const t = tubeEl(i); return t ? [...t.querySelectorAll('.glass > .layer:not(.ghostL)')] : []; };
-  function flowFx(a, b, mouth, c, delay, dur) {
+  function flowFx(curve, c, delay, dur) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'), path = document.createElementNS(svg.namespaceURI, 'path');
     svg.setAttribute('class', 'fx fx-flow'); liq(svg, c);
-    const ax = a.left + a.width / 2, bx = b.left + b.width / 2;
-    path.setAttribute('d', `M ${ax} ${a.top + a.height / 2} Q ${(ax + bx) / 2} ${Math.min(mouth, a.top) - 32} ${bx} ${b.top + 3}`);
-    path.setAttribute('pathLength', '1'); svg.append(path); fxAdd(svg, delay + dur + 30);
-    fxAnim(path, [{ strokeDashoffset: 1, opacity: 0 }, { strokeDashoffset: .35, opacity: .65, offset: .4 }, { strokeDashoffset: -.8, opacity: 0 }], { duration: dur, delay, fill: 'both' });
+    path.setAttribute('d', curve.path);
+    path.setAttribute('pathLength', '1'); svg.append(path, path.cloneNode()); fxAdd(svg, delay + dur + 30);
+    const frames = curve.points.map(({ t, length }) => ({ offset: t, strokeDashoffset: .28 - length / curve.length, opacity: t === 0 || t === 1 ? 0 : .85 }));
+    // Both strokes inherit one dash animation instead of scheduling identical animations twice.
+    fxAnim(svg, frames, { duration: dur, delay, fill: 'both' });
     return svg;
   }
   function surfaceFx(r, c, strong) {
     const e = liq(fxEl('fx-surface', r), c);
-    fxAdd(e, strong ? 420 : 260);
-    fxAnim(e, [{ transform: 'scale(.3)', opacity: .85 }, { transform: 'scale(1.2, .9)', opacity: .6, offset: .35 }, { transform: 'scale(1.65, .5)', opacity: 0 }], { duration: strong ? 400 : 240, easing: 'ease-out', fill: 'both' });
+    fxAdd(e, strong ? 420 : 320);
+    fxAnim(e, [{ transform: 'scale(.4, .6)', opacity: .8 }, { transform: 'translateY(1px) scale(1.05, .8)', opacity: .6, offset: .3 },
+      { transform: 'translateY(-1px) scale(.92, .55)', opacity: .35, offset: .6 }, { transform: 'scale(1.1, .3)', opacity: 0 }], { duration: strong ? 400 : 300, easing: 'ease-out', fill: 'both' });
   }
   function landOne(fl, j, kind) {
     if (fl.done || fl.landed[j]) return;
@@ -1783,7 +1819,7 @@ function turnRhythm(S) {
     if (j === fl.colors.length - 1 && !fl.clr) surfaceFx(fl.surface, fl.colors[j], false);
     if (!fl.clr) {
       const ls = liveLayers(fl.to), e = ls[ls.length - fl.colors.length + j];
-      if (e) { e.classList.remove('await'); restartAnim(e, 'land'); }
+      if (e) { e.classList.remove('await'); if (j === fl.colors.length - 1) restartAnim(e, 'land'); }
     }
     if (kind === 'pour') { SND.drip(j, transpose()); if (j === 0) buzz(8); } else if (j === 0) { SND.thunk(transpose()); buzz(12); }
   }
@@ -1793,10 +1829,17 @@ function turnRhythm(S) {
     const k = flights.indexOf(fl); if (k >= 0) flights.splice(k, 1);
     for (const b of fl.blobs) fxDrop(b);
     liveLayers(fl.to).forEach(e => e.classList.remove('await'));
+    if (fl.clr?.reused && fl.prefill) fxDrop(fl.prefill);
     if (fl.onLand) fl.onLand(fl.prefill);
   }
   // a move on a bottle whose landing is still to come, or a press on it: land at once so it shows what it holds
-  function settleFlights(slots) { for (const fl of flights.slice()) if (slots.includes(fl.to)) landAll(fl); }
+  function settleFlights(slots) {
+    for (const c of clearViews) if (slots.includes(c.i)) {
+      c.reused = true;
+      if (c.view) { fxDrop(c.view); c.view = null; }
+    }
+    for (const fl of flights.slice()) if (slots.includes(fl.to)) landAll(fl);
+  }
   // render() rebuilt the bottles: hide again the layers still in flight, unless the bottle changed since (then land)
   function reapplyFlights() {
     for (const fl of flights.slice()) {
@@ -1808,53 +1851,51 @@ function turnRhythm(S) {
     }
   }
 
-  // F3: flash, hold (hit-stop: the effect's clock only), then burst; the move and the next input are not held up
+  // F3: gather the completed colour, release a water crown, then recover the points. Input is always live.
   const holdMs = k => FT.flash + 30 + 10 * Math.min(5, Math.max(1, k));
   function impact(c, prefill, order, multi) {
     if (prefill) fxDrop(prefill);
     const t = tubeEl(c.i); if (!t) return;
-    const p = Math.min(5, Math.max(1, c.streak)), hs = holdMs(c.streak) - FT.flash;
-    const tr = t.getBoundingClientRect(), box = fxBox(tr), clip = glassClip(t), col = document.createElement('div'), wh = document.createElement('i');
-    col.className = 'fx-col'; wh.className = 'fx-white'; liq(wh, c.c);
-    clip.style.setProperty('--lh', glassGeo(t).lh + 'px');
-    for (let j = 0; j < S.rules.cap; j++) col.append(liq(document.createElement('i'), c.c));
-    clip.append(col, wh); box.append(clip);
-    clip.style.transformOrigin = '50% 100%';
-    fxAdd(box, FT.flash + hs + 200);
-    try {
-      clip.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)', offset: .3 }, { transform: 'scale(1.06)' }], { duration: FT.flash + hs, easing: 'ease-out', fill: 'forwards' });
-      wh.animate([{ opacity: .45 }, { opacity: 0 }], { duration: FT.flash, easing: 'ease-out', fill: 'forwards' });
-    } catch (e) { /* no WAAPI */ }
-    corkFx(t);
-    if (order === 0) { chime(c.streak, 0); SND.impact(p); SND.cork(); }
-    if (order === 0) buzz(HAPTIC[p]);
+    const streak = c.groupStreak || c.streak, p = Math.min(5, Math.max(1, streak, multi > 1 ? 3 : 1)), gather = holdMs(streak);
+    const tr = c.tube || t.getBoundingClientRect(), cr = c.glass || glassGeo(t);
+    const clip = fxEl('fx-clip fx-clear', cr), col = document.createElement('div'), wh = liq(fxEl('fx-white'), c.c);
+    clip.dataset.slot = c.i; clip.style.setProperty('--lh', cr.lh + 'px'); col.className = 'fx-col';
+    for (let j = 0; j < S.rules.cap; j++) appendLiquid(col, c.c, j > 0, j < S.rules.cap - 1);
+    clip.append(col, wh); clip.style.transformOrigin = '50% 100%';
+    if (!c.reused) {
+      c.view = fxAdd(clip, gather + 170);
+      fxAnim(col, [{ transform: 'scale(1)' }, { transform: 'scale(.92, .96)' }], { duration: gather, easing: 'ease-in', fill: 'forwards' });
+      fxAnim(wh, [{ opacity: 0 }, { opacity: .55 }], { duration: gather, easing: 'ease-in', fill: 'forwards' });
+    }
+    if (order === 0) SND.cork();
     fxLater(() => {
-      try { col.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' }); } catch (e) { /* no WAAPI */ }
-      const cr = clip.getBoundingClientRect();
+      if (clip.isConnected) {
+        fxAnim(col, [{ transform: 'scale(.92, .96)', opacity: 1 }, { transform: 'scale(.98, .12)', opacity: 0 }], { duration: 150, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'forwards' });
+        fxAnim(wh, [{ opacity: .55 }, { opacity: 0 }], { duration: 100, fill: 'forwards' });
+      }
       burstDrops(cr, c.c, p);
       ringFx(cr, c.c, p);
-      surfaceFx({ left: cr.left, top: cr.top + cr.height * .7, width: cr.width, height: 12 }, c.c, true);
-      shakeFx(p);
+      surfaceFx({ left: cr.left, top: cr.top + cr.height - 8, width: cr.width, height: 8 }, c.c, true);
+      if (order === 0) { chime(streak, 0); SND.impact(p); if (streak >= 5) SND.chord(streak); buzz(HAPTIC[p]); shakeFx(p); }
       scoreFly(tr, c.gain);
-    }, FT.flash + hs);
-  }
-  function corkFx(t) {
-    const g = t.querySelector('.glass').getBoundingClientRect();
-    const k = fxEl('fx-cork', { left: g.left + g.width / 2, top: g.top - 12 });
-    fxAdd(k, 420);
-    try { k.animate([{ transform: 'translate(0, 0) rotate(0)', opacity: 1 }, { transform: `translate(${(Math.random() - .5) * 30}px, -46px) rotate(220deg)`, opacity: 0 }], { duration: 380, easing: 'cubic-bezier(.2,.7,.4,1)', fill: 'forwards' }); } catch (e) { /* no WAAPI */ }
+      fxLater(() => clearViews.delete(c), 180);
+    }, gather);
   }
   function burstDrops(r, c, p, n) {
-    n = n || Math.round((12 + 4 * p) * (1 + heat / 25));
+    // A few large lobes give the splash its silhouette; smaller beads complete the crown.
+    n = n || 10 + 3 * p;
     for (let j = 0; j < n; j++) {
-      const d = liq(fxEl('fx-drop', { left: r.left + Math.random() * r.width, top: r.top + r.height * (.15 + Math.random() * .8) }), c);
-      const sz = j % 5 === 0 ? 10 + Math.random() * 4 : 3 + Math.random() * 6;
-      d.style.width = d.style.height = sz + 'px'; d.style.margin = `${-sz / 2}px 0 0 ${-sz / 2}px`;
-      const ang = (Math.random() - .5) * 2.8, sp = 140 + p * 12 + Math.random() * 130, vx = Math.sin(ang) * sp, vy = -Math.cos(ang) * sp, dur = 380 + Math.random() * 180;
+      const lobe = j % 5 === 0, spread = (j / Math.max(1, n - 1) - .5) * 2;
+      const d = liq(fxEl('fx-drop', { left: r.left + r.width * (.5 + spread * .18), top: r.top + r.height * .23 }), c);
+      const sz = lobe ? 8 + Math.random() * 3 : 3 + Math.random() * 3;
+      d.style.width = sz + 'px'; d.style.height = sz * (lobe ? 1.6 : 1) + 'px'; d.style.margin = `${-sz / 2}px 0 0 ${-sz / 2}px`;
+      d.style.borderRadius = lobe ? '55% 55% 42% 42%' : '50%';
+      const ang = spread * 1.12, sp = 105 + p * 9 + Math.random() * 65, vx = Math.sin(ang) * sp, vy = -Math.cos(ang) * sp, dur = 330 + p * 16 + Math.random() * 90;
       const fr = [];
       for (let q = 0; q <= 4; q++) {
         const s = dur / 1000 * q / 4;
-        fr.push({ transform: `translate(${vx * s}px, ${vy * s + 650 * s * s}px) scale(${1 - .45 * q / 4})`, opacity: q < 3 ? 1 : q === 3 ? .8 : 0 });
+        const angle = Math.atan2(vx, -(vy + 900 * s)) * 180 / Math.PI;
+        fr.push({ transform: `translate(${vx * s}px, ${vy * s + 450 * s * s}px) rotate(${angle}deg) scale(${1 - .6 * q / 4}, ${lobe && q === 0 ? .55 : 1 - .3 * q / 4})`, opacity: q < 3 ? .95 : q === 3 ? .65 : 0 });
       }
       fxAdd(d, dur + 30);
       try { d.animate(fr, { duration: dur, fill: 'forwards' }); } catch (e) { /* no WAAPI */ }
@@ -1865,13 +1906,14 @@ function turnRhythm(S) {
     while (drops.length > FX_PARTICLE_LIMIT) fxDrop(drops.shift());
   }
   function ringFx(r, c, p = 1) {
-    const s = r.width * 1.3, e = liq(fxEl('fx-ring', { left: r.left + r.width / 2 - s / 2, top: r.top + r.height / 2 - s / 2, width: s, height: s }), c);
+    const s = r.width, base = { left: r.left, top: r.top + r.height - 11, width: s, height: 10 };
+    const e = liq(fxEl('fx-ring', base), c);
     fxAdd(e, 430);
-    fxAnim(e, [{ transform: 'scale(.35, .7)', opacity: .8 }, { transform: `scale(${1.7 + p * .12}, 1.1)`, opacity: 0 }], { duration: 400, easing: 'ease-out', fill: 'forwards' });
+    fxAnim(e, [{ transform: 'scale(.4, .65)', opacity: .8 }, { transform: `scale(${1.35 + p * .1}, 1.5)`, opacity: 0 }], { duration: 400, easing: 'ease-out', fill: 'forwards' });
     if (p >= 3) {
-      const outer = liq(fxEl('fx-ring', { left: r.left + r.width / 2 - s / 2, top: r.top + r.height / 2 - s / 2, width: s, height: s }), c);
+      const outer = liq(fxEl('fx-ring', base), c);
       outer.style.borderWidth = '1px'; fxAdd(outer, 480);
-      fxAnim(outer, [{ transform: 'scale(.45)', opacity: .55 }, { transform: 'scale(2.7, 1.2)', opacity: 0 }], { duration: 430, delay: 25, easing: 'ease-out', fill: 'both' });
+      fxAnim(outer, [{ transform: 'scale(.5)', opacity: .5 }, { transform: 'scale(2, 2.3)', opacity: 0 }], { duration: 430, delay: 25, easing: 'ease-out', fill: 'both' });
     }
   }
   function shakeFx(p) {
@@ -2152,7 +2194,11 @@ function turnRhythm(S) {
     const flyTo = new Set(flies.map(f => f.to));
     if (clears.some(c => c.streak >= 4)) S.lastBigTurn = S.turn;
     // the points of this move wait in the air until their effect lands
-    for (const c of clears) scorePend += c.gain;
+    for (const c of clears) {
+      scorePend += c.gain;
+      c.glass = preGeo?.[c.i]?.glass; c.tube = preGeo?.[c.i]?.tube;
+      clearViews.add(c);
+    }
     for (const f of q) {
       if (f.k === 'swap') { restartAnim(cup, 'swap'); continue; }
       if (f.k === 'spareIn') { restartAnim(spareSlot.querySelector('.tube'), 'enter'); continue; }
@@ -2180,11 +2226,13 @@ function turnRhythm(S) {
       }
     }
     // completions go off together (70ms apart) once the move's liquid has landed, or now if nothing flies
+    let grouped = false;
     const group = () => {
-      if (!clears.length) return;
+      if (!clears.length || grouped) return;
+      grouped = true;
       const maxK = Math.max(...clears.map(c => c.streak));
+      for (const c of clears) c.groupStreak = maxK;
       if (maxK >= 3) restartAnim($('combo'), 'shine');
-      if (maxK >= 5) SND.chord(maxK);
       // the combo bursts with the first bottle, once its hold is over (the burst takes the place of the combo banners)
       fxLater(() => {
         comboBurst(maxK, clears.length);
@@ -3049,12 +3097,20 @@ function turnRhythm(S) {
     if (prefs.symbols) L.textContent = SYMBOLS[c];
     return L;
   }
+  // Keep the cell pitch and symbols while joining adjacent real cells of the same liquid.
+  // Preview/drag layers remain separate so a ghost never changes the apparent occupied volume.
+  function appendLiquid(glass, c, below, above) {
+    const layer = layerEl(c);
+    if (below) layer.className += ' join-below';
+    if (above) layer.className += ' join-above';
+    glass.append(layer);
+  }
   function paintTube(el, layers, capN) {
     el.textContent = '';
     el.style.setProperty('--cap', capN);
     const rim = document.createElement('span'); rim.className = 'rim';
     const glass = document.createElement('span'); glass.className = 'glass';
-    for (const c of layers) glass.append(layerEl(c));
+    for (let j = 0; j < layers.length; j++) appendLiquid(glass, layers[j], j > 0 && layers[j - 1] === layers[j], j + 1 < layers.length && layers[j + 1] === layers[j]);
     el.append(rim, glass);
     return glass;
   }

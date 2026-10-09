@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-09T15:05:44.978Z",
+  "command": "node uitest/presentation-audit.js --out=outputs/bottle-quality/presentation --data=research/bottle-quality/out/presentation",
+  "sourceSha256": "65eee1c83905a3bbc9550807a334d3838238ee770aa961284e636156707c3962",
+  "exitCode": 0,
+  "stdout": "Typography locale ko complete\nTypography locale en complete\nTypography locale ja complete\nTypography locale zh-Hans complete\nTypography locale zh-Hant complete\nTypography locale es complete\nTypography locale pt-BR complete\nTypography locale hi complete\nTypography locale id complete\nPresentation after 2741/2741, 0 failed\n",
+  "stderr": ""
+}

@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-09T15:02:00.288Z",
+  "command": "node uitest/mobile-viewport.js",
+  "sourceSha256": "65eee1c83905a3bbc9550807a334d3838238ee770aa961284e636156707c3962",
+  "exitCode": 0,
+  "stdout": "Mobile viewport 68/68, 0 failed\n",
+  "stderr": ""
+}

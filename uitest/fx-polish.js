@@ -38,11 +38,13 @@ async function main() {
     const send=(method,params={})=>new Promise((r,j)=>{const id=++seq;pending.set(id,m=>m.error?j(Error(JSON.stringify(m.error))):r(m.result));ws.send(JSON.stringify({id,method,params}));});
     const js=async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value;};
     await send('Page.enable');
+    let navigation=0;
     const load=async(query='',w=390,h=844)=>{
       await send('Emulation.setDeviceMetricsOverride',{width:w,height:h,deviceScaleFactor:1,mobile:true});
-      await send('Page.navigate',{url:'file:///'+file.replace(/\\/g,'/')+'?'+query});
-      for(let i=0;i<100;i++){await sleep(30);if(await js('!!window.__snapFn?.().S'))break;}
-      await js('document.fonts.ready.then(()=>true)');await sleep(90);
+      const url='file:///'+file.replace(/\\/g,'/')+'?'+query+'&qaLoad='+(++navigation);
+      await send('Page.navigate',{url});await send('Page.bringToFront');
+      for(let i=0;i<100;i++){await sleep(30);if(await js('location.href==='+JSON.stringify(url)+'&&!!window.__snapFn?.().S'))break;}
+      await js('document.fonts.ready.then(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>r(true)))))');await sleep(90);
     };
     const click=async selector=>{
       const pt=await js(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
