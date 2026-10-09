@@ -14,7 +14,7 @@ async function main() {
   execFileSync(process.execPath, [path.join(DIR, 'make.js')], { stdio: 'ignore' });
   const prof = path.join(DIR, 'prof-real');
   fs.rmSync(prof, { recursive: true, force: true });
-  const chrome = spawn(CHROME, ['--headless=new', '--disable-gpu', '--no-first-run', '--allow-file-access-from-files', '--hide-scrollbars',
+  const chrome = spawn(CHROME, ['--headless=new', '--disable-gpu', '--no-first-run', '--allow-file-access-from-files', '--hide-scrollbars', '--force-prefers-no-reduced-motion',
     `--remote-debugging-port=${PORT}`, `--user-data-dir=${prof}`, '--window-size=600,900', 'about:blank'], { stdio: 'ignore' });
   let fails = 0, total = 0;
   try {

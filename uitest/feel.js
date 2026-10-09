@@ -6,7 +6,7 @@ window.__feelTests = async function (T, H) {
   const { check, G, $, sleep, send, SC } = T;
   const { down, up, tap, press, moveTo, release, center, setup, cup, tube, anySel, status, cloudPush, closeSheets, record, PT } = H;
   const P = T.P;
-  const FX = P.get('fx') === 'juicy' ? 'juicy' : 'base', RFX = P.get('rfx') === '1', CASE = P.get('case') || '';
+  const FX = P.get('fx') === 'juicy' ? 'juicy' : 'base', RFX = P.get('rfx') === '1' || matchMedia('(prefers-reduced-motion: reduce)').matches, CASE = P.get('case') || '';
   const ck = (name, cond, detail) => check(`[feel ${CASE || FX}${RFX ? '+rfx' : ''}/${PT}] ${name}`, cond, detail);
 
   // a board where pouring bottle 3 into bottle 2 completes it, and pouring 0 into 5 is the next quick move
@@ -41,7 +41,7 @@ window.__feelTests = async function (T, H) {
     if (FX === 'juicy' && !RFX) await juicyTests(); else await p1Tests();
     await p2p3Tests();
     if (FX === 'base') await baseExtraTests();
-    if (RFX) await rfxTests();
+    if (RFX && FX === 'juicy') await rfxTests();
   } catch (e) { ck('feel test exception', false, e && e.stack || e); }
 
   // ---------- 5. the effect base ----------
@@ -173,15 +173,15 @@ window.__feelTests = async function (T, H) {
     ck('[F3] on landing the full bottle flashes and holds; nothing has burst yet', q('#fxLayer .fx-col i') === 4 && q('#fxLayer .fx-drop') === 0 && !document.querySelector('#stage .cb'),
       `${q('#fxLayer .fx-col i')} ${q('#fxLayer .fx-drop')} ${q('#stage .cb')}`);
     await sleep(100);   // 360ms
-    ck('[F3] then it bursts: drops, a ring, the points take off', q('#fxLayer .fx-drop') >= 36 && q('#fxLayer .fx-ring') === 1 && q('#fxLayer .fx-score') === 1, `drops ${q('#fxLayer .fx-drop')} ring ${q('#fxLayer .fx-ring')} score ${q('#fxLayer .fx-score')}`);
+    ck('[F3] then it bursts: bounded drops, two waves, the points take off', q('#fxLayer .fx-drop') >= 28 && q('#fxLayer .fx-drop') <= 96 && q('#fxLayer .fx-ring') === 2 && q('#fxLayer .fx-score') === 1, `drops ${q('#fxLayer .fx-drop')} ring ${q('#fxLayer .fx-ring')} score ${q('#fxLayer .fx-score')}`);
     // the combo bursts with the bottle: the multiplier and its word over the stage, the badge steps aside; no banner
     const cb = document.querySelector('#stage .cb'), line = sel => (cb && cb.querySelector(sel + ' .f') || {}).textContent;
     ck('[F4] the combo bursts on the stage with its word while the badge steps aside', !!cb && line('.cb-num') === '×4' && line('.cb-word') === '대단해요!' && q('#stage .cb-rays') === 1 &&
       $('stage').classList.contains('cb-on') && $('stCombo').textContent === '×4', `${cb ? cb.textContent : 'no burst'} ${$('stage').className}`);
     ck('[F4] the burst takes the place of the combo banners', $('banner').hidden, $('banner').textContent);
-    ck('[F3] a x4 completion shakes the rack and the stage', shaking($('rack')) && shaking($('stage')));
+    ck('[F3] a x4 completion shakes the reward stage and keeps the live rack still', !shaking($('rack')) && shaking($('stage')));
     const drops = [...document.querySelectorAll('#fxLayer .fx-drop')].map(e => e.getAnimations()[0]).filter(Boolean);
-    ck('[F3] drops fly for 0.45-0.6s', drops.length > 0 && drops.every(a => a.effect.getTiming().duration >= 450 && a.effect.getTiming().duration <= 600));
+    ck('[F3] droplets finish within the 350-650ms reward window', drops.length > 0 && drops.every(a => a.effect.getTiming().duration >= 350 && a.effect.getTiming().duration <= 650));
     await sleep(940);   // 1.3s
     ck('[F5] the points have arrived: the score shows the run\'s score', scoreText() === fmt(G().score), `${scoreText()} vs ${G().score}`);
     ck('[F3] every effect node is gone once played', liveFx() === 0, liveFx());
@@ -354,7 +354,7 @@ window.__feelTests = async function (T, H) {
     window.__boot({ S: sb }); await sleep(80);
     await tap(tube(1)); await tap(tube(0));
     let cb = null;
-    for (let t = 0; t < 60 && !(cb = document.querySelector('#stage .cb')); t++) await sleep(10);
+    if (!RFX) for (let t = 0; t < 60 && !(cb = document.querySelector('#stage .cb')); t++) await sleep(10);
     if (cb) cb.getAnimations({ subtree: true }).forEach(a => a.cancel());
     const word = cb && cb.querySelector('.cb-word');
     const burst = cb ? { num: box(cb.querySelector('.cb-num')), word: word ? box(word) : null, text: cb.textContent } : null;
@@ -391,6 +391,7 @@ window.__feelTests = async function (T, H) {
     // small (where the banners go too)
     const R = d.stage.h < 56 && TRAY === 'bottom' ? box(document.querySelector('.scorebar')) : d.stage;
     const inside = b => !!b && b.t >= R.t - 2 && b.b <= R.b + 2 && b.l >= R.l - 2 && b.r <= R.r + 2;
-    g('a x5 burst fits its place', !!d.burst && d.burst.text.startsWith('×5×5') && inside(B.num) && inside(B.word), JSON.stringify({ burst: d.burst, place: R }));
+    if (RFX) g('OS reduced motion leaves the reward static and the score immediate', !d.burst && !document.querySelector('.fx-drop, .fx-blob') && scoreText() === fmt(G().score));
+    else g('a x5 burst fits its place', !!d.burst && d.burst.text.startsWith('×5×5') && inside(B.num) && inside(B.word), JSON.stringify({ burst: d.burst, place: R }));
   }
 };
