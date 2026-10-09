@@ -108,7 +108,13 @@ check('v1, v2 and daily transitions/signatures match the source at the baseline 
   }
 });
 check('same seed and policy reproduces expansion state, with colors capped after large scores', () => {
-  const rules = R(); const A = run(rules, 'replay', 80, 1), B = run(rules, 'replay', 80, 1); assert.deepEqual(A, B);
+  const rules = R(); const A = run(rules, 'replay', 80, 1), B = run(rules, 'replay', 80, 1);
+  // Wall-clock instrumentation varies between runs; all state and deterministic metrics must match.
+  for (const result of [A, B]) {
+    assert.ok(Number.isFinite(result.metrics.elapsedMs) && result.metrics.elapsedMs >= 0);
+    delete result.metrics.elapsedMs;
+  }
+  assert.deepEqual(A, B);
   const S = fresh(); S.score = 100000;
   for (let i = 0; i < 12; i++) { S.piece = [0]; E.applyPlace(S, i % 8); }
   assert.equal(E.activeColors(S), 8); assert.equal(S.bottles.length, 8);

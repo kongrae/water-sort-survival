@@ -1,5 +1,5 @@
 // Real DOM regression checks in an isolated Chrome profile; no player storage is touched.
-const fs = require('fs'), path = require('path'), crypto = require('crypto');
+const fs = require('fs'), path = require('path');
 const { spawn, execFileSync } = require('child_process');
 const BASE = path.resolve(__dirname, '..'), OUT = path.join(BASE, 'outputs/i18n');
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -37,8 +37,9 @@ async function main() {
   const rows = []; let ws;
   const ck = (name,pass,detail) => { rows.push({name,pass:!!pass,...(detail===undefined?{}:{detail})}); if(!pass)console.log('FAIL '+name+' '+JSON.stringify(detail)); };
   try {
-    const engine = source.match(/<script id="engine">([\s\S]*?)<\/script>/)[1];
-    ck('engine unchanged', crypto.createHash('sha256').update(engine).digest('hex') === '1797179475c5812719a0f3555fb5fb654e3f31770a401b3db2025876dc22b832');
+    // Hold/triples intentionally change the engine. Preserve the historical hash file and verify behavior instead.
+    execFileSync(process.execPath, [path.join(BASE, 'research/hold-triple/engine-test.js')], { stdio: 'pipe' });
+    ck('feature and historical engine contracts', true);
     for (const script of source.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)) new Function(script[1]);
     let targets; for(let i=0;i<150&&!targets?.some(t=>t.type==='page');i++){await sleep(100);try{targets=await(await fetch('http://127.0.0.1:9339/json/list')).json();}catch{}}
     if(!targets?.some(t=>t.type==='page'))throw Error('Isolated test Chrome did not become ready; exit code '+chrome.exitCode);

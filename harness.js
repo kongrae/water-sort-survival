@@ -13,7 +13,8 @@ return { DEFAULT_RULES, V1_RULES, sanitizeRules, rulesSig, colorsAt, pieceAt, to
   canFlip, applyFlip, flipsLeft,
   capAt, slotsOf, capsOf, spareCrisis, updateSpareOffer, applySpare,
   previewPlace, previewPour, nearMiss, breakCombo,
-  SCORE_GROWTH_V1, EXPANDING_RULES, isExpanding, sanitizeGrowth, activeColors, growthTarget, nextGrowth, updateGrowth, advancePiece, previewPieces };`)();
+  SCORE_GROWTH_V1, EXPANDING_RULES, ENDLESS_RULES, isExpanding, sanitizeGrowth, activeColors, growthTarget, nextGrowth, updateGrowth, generatePiece, advancePiece, previewPieces,
+  hasHold, hasTriple, maxPieceSize, canHold, holdCandidate, applyHold, validFeatureState };`)();
 
 const clone = o => JSON.parse(JSON.stringify(o));
 let failures = 0;

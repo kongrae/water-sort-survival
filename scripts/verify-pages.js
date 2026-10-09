@@ -15,14 +15,15 @@ async function main() {
   const release = JSON.parse((await version.text()).replace(/^\uFEFF/,''));
   const localHash = hash(fs.readFileSync(path.join(BASE,'dist/index.html'))), publicHash = hash(bytes);
   const html = bytes.toString('utf8'), engine = html.match(/<script id="engine">([\s\S]*?)<\/script>/)?.[1];
+  const sourceEngine = fs.readFileSync(path.join(BASE,'water-sort-survival.html'),'utf8').match(/<script id="engine">([\s\S]*?)<\/script>/)?.[1];
   const checks = {
     exactBuild:localHash===publicHash,
     exactSourceCommit:release.sourceCommit===commit,
     localizedRuntime:html.includes('<script id="i18n">')&&html.includes("['hi', 'हिन्दी']")&&html.includes("['id', 'Bahasa Indonesia']"),
     oneTitle:(html.match(/<title>/g)||[]).length===1,
-    engineUnchanged:!!engine&&hash(engine)==='1797179475c5812719a0f3555fb5fb654e3f31770a401b3db2025876dc22b832'
+    engineUnchanged:!!engine&&!!sourceEngine&&hash(engine)===hash(sourceEngine)
   };
-  const report = {checkedAt:new Date().toISOString(),url:SITE,expectedCommit:commit,release,localHash,publicHash,checks};
+  const report = {checkedAt:new Date().toISOString(),url:SITE,expectedCommit:commit,release,localHash,publicHash,sourceEngineHash:sourceEngine&&hash(sourceEngine),publicEngineHash:engine&&hash(engine),checks};
   const out = path.join(BASE,'outputs/i18n');fs.mkdirSync(out,{recursive:true});
   fs.writeFileSync(path.join(out,'public.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify(report,null,2));

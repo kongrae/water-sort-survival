@@ -1,0 +1,315 @@
+{
+  "capturedAt": "2026-10-09T07:21:50.210Z",
+  "baseline": {
+    "capturedAt": "2026-10-09T06:27:23.644Z",
+    "head": "20807de536113e3ef2f155f516f3a154df9db75e",
+    "status": "?? docs/PROMPT_hold_triple_endless.md\n",
+    "sourceSha256": "41c671bc1d816195433cfeba1e02bcd415d4ab899862951bc5b1f409a85bf538",
+    "engineSha256": "1797179475c5812719a0f3555fb5fb654e3f31770a401b3db2025876dc22b832"
+  },
+  "sourceSha256": "185e63a2b8867ecaa856e24aa44afb75ab05d60dbe85e4c2bbed6627a86fd452",
+  "engineSha256": "333fea6ad4798a2484d1bcfc8b791bd20765bd3c56352f82ed657faefe8a9239",
+  "botSha256": "cbfab9c578f1de67d011566cb77adb30a95be0b3408bcadbe1ac11857146ceee",
+  "distSha256": "23b7516b20d9fabfe22cdbef703e8d47663819c7b9b6b848d46881966798ca6e",
+  "node": "v24.19.0",
+  "engineChecks": {
+    "v2": {
+      "total": 1070,
+      "passed": 1070
+    },
+    "holdTriple": {
+      "total": 16,
+      "passed": 16
+    },
+    "expansion": {
+      "total": 17,
+      "passed": 17
+    }
+  },
+  "browser": {
+    "holdTriple": {
+      "total": 286,
+      "passed": 286,
+      "physicalDevice": false
+    },
+    "expansion": {
+      "total": 100,
+      "passed": 100,
+      "physicalDevice": false
+    },
+    "uiux": {
+      "total": 110,
+      "passed": 110,
+      "physicalDevice": false
+    },
+    "i18n": {
+      "total": 201,
+      "passed": 201,
+      "physicalDevice": false
+    },
+    "fx": {
+      "total": 122,
+      "passed": 122,
+      "physicalDevice": false
+    },
+    "mobile": {
+      "total": 68,
+      "passed": 68,
+      "physicalDevice": false
+    }
+  },
+  "geometry": [
+    {
+      "viewport": [
+        360,
+        640
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": {
+        "x": 16,
+        "y": 369.171875,
+        "w": 48,
+        "h": 92.828125,
+        "b": 462
+      },
+      "afterGlass": {
+        "x": 16,
+        "y": 369.171875,
+        "w": 48,
+        "h": 92.828125,
+        "b": 462
+      },
+      "upperGlass": {
+        "x": 128,
+        "y": 242.34375,
+        "w": 48,
+        "h": 92.828125,
+        "b": 335.171875
+      },
+      "beforeFrame": 58,
+      "afterFrame": 58
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": {
+        "x": 16,
+        "y": 488,
+        "w": 53,
+        "h": 136,
+        "b": 624
+      },
+      "afterGlass": {
+        "x": 16,
+        "y": 488,
+        "w": 53,
+        "h": 136,
+        "b": 624
+      },
+      "upperGlass": {
+        "x": 138,
+        "y": 310,
+        "w": 53,
+        "h": 136,
+        "b": 446
+      },
+      "beforeFrame": 66,
+      "afterFrame": 66
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": {
+        "x": 16,
+        "y": 559,
+        "w": 56.65625,
+        "h": 136,
+        "b": 695
+      },
+      "afterGlass": {
+        "x": 16,
+        "y": 559,
+        "w": 56.65625,
+        "h": 136,
+        "b": 695
+      },
+      "upperGlass": {
+        "x": 145.3125,
+        "y": 381,
+        "w": 56.671875,
+        "h": 136,
+        "b": 517
+      },
+      "beforeFrame": 66,
+      "afterFrame": 66
+    },
+    {
+      "viewport": [
+        768,
+        1024
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": {
+        "x": 190,
+        "y": 668,
+        "w": 58,
+        "h": 136,
+        "b": 804
+      },
+      "afterGlass": {
+        "x": 190,
+        "y": 668,
+        "w": 58,
+        "h": 136,
+        "b": 804
+      },
+      "upperGlass": {
+        "x": 322,
+        "y": 490,
+        "w": 58,
+        "h": 136,
+        "b": 626
+      },
+      "beforeFrame": 66,
+      "afterFrame": 66
+    },
+    {
+      "viewport": [
+        360,
+        600
+      ],
+      "safeArea": [
+        24,
+        24
+      ],
+      "beforeGlass": {
+        "x": 16,
+        "y": 349.171875,
+        "w": 48,
+        "h": 56.828125,
+        "b": 406
+      },
+      "afterGlass": {
+        "x": 16,
+        "y": 349.171875,
+        "w": 48,
+        "h": 56.828125,
+        "b": 406
+      },
+      "upperGlass": {
+        "x": 128,
+        "y": 258.34375,
+        "w": 48,
+        "h": 56.828125,
+        "b": 315.171875
+      },
+      "beforeFrame": 58,
+      "afterFrame": 58
+    },
+    {
+      "viewport": [
+        390,
+        724
+      ],
+      "safeArea": [
+        47,
+        34
+      ],
+      "beforeGlass": {
+        "x": 16,
+        "y": 431.203125,
+        "w": 53,
+        "h": 70.796875,
+        "b": 502
+      },
+      "afterGlass": {
+        "x": 16,
+        "y": 431.203125,
+        "w": 53,
+        "h": 70.796875,
+        "b": 502
+      },
+      "upperGlass": {
+        "x": 138,
+        "y": 318.40625,
+        "w": 53,
+        "h": 70.796875,
+        "b": 389.203125
+      },
+      "beforeFrame": 66,
+      "afterFrame": 66
+    }
+  ],
+  "latency": {
+    "hold": {
+      "n": 21,
+      "p50": 2,
+      "p95": 2.4000000953674316,
+      "max": 2.5
+    },
+    "place": {
+      "n": 120,
+      "p50": 2.5,
+      "p95": 4.299999952316284,
+      "max": 4.799999952316284
+    },
+    "pour": {
+      "n": 178,
+      "p50": 2.5999999046325684,
+      "p95": 3.4000000953674316,
+      "max": 4.5
+    },
+    "flip": {
+      "n": 2,
+      "p50": 2.200000047683716,
+      "p95": 2.200000047683716,
+      "max": 2.200000047683716
+    }
+  },
+  "otherExecuted": {
+    "nativeRealInput": {
+      "total": 131,
+      "passed": 131,
+      "physicalDevice": false
+    },
+    "saveThemeCloudFirebaseMocks": {
+      "total": 116,
+      "passed": 116,
+      "realAccountWrites": false
+    },
+    "engineV1": {
+      "failures": 0
+    },
+    "historicalEngineTest": {
+      "beforeFailures": 1,
+      "afterFailures": 1,
+      "message": "streak reset after a turn without clear: score 300",
+      "expected": 200,
+      "actual": 300,
+      "explanation": "The historical test expects v1 combo reset while DEFAULT_RULES already use v2 comboPlace. The same failure reproduces on the captured pre-change source."
+    }
+  },
+  "comparisonRuns": 720,
+  "conditionalTailRuns": 36,
+  "preview": "http://127.0.0.1:8151/",
+  "deployed": false,
+  "committed": false
+}

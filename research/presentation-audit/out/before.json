@@ -1,0 +1,6073 @@
+{
+  "rows": [
+    {
+      "name": "typography/ko/360x640/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 285,
+          "cw": 176
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 300.90625,
+          "left": 204.1875
+        }
+      ]
+    },
+    {
+      "name": "combo-word/ko",
+      "pass": true,
+      "detail": {
+        "present": true,
+        "text": "트리플!트리플!",
+        "sw": 70,
+        "cw": 70
+      }
+    },
+    {
+      "name": "sheet/ko/help",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/settings",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/themes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/result",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "oScore",
+          "text": "18,330,602,402",
+          "sw": 310,
+          "cw": 288
+        },
+        {
+          "kind": "sheet-horizontal-scroll",
+          "sw": 330,
+          "cw": 328
+        }
+      ]
+    },
+    {
+      "name": "sheet/ko/result-settled",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "oScore",
+          "text": "123,456,789,012",
+          "sw": 335,
+          "cw": 288
+        },
+        {
+          "kind": "sheet-horizontal-scroll",
+          "sw": 355,
+          "cw": 328
+        }
+      ]
+    },
+    {
+      "name": "sheet/ko/v2",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/controls",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 134,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 149.96875,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 229,
+          "cw": 124
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 244.703125,
+          "left": 151.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/6/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/7/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/8/normal",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,456",
+          "sw": 164,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 179.734375,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ]
+    },
+    {
+      "name": "combo-word/hi",
+      "pass": true,
+      "detail": {
+        "present": true,
+        "text": "ट्रिपल!ट्रिपल!",
+        "sw": 36,
+        "cw": 36
+      }
+    },
+    {
+      "name": "sheet/hi/help",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/settings",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/themes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/result",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/result-settled",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "oScore",
+          "text": "1,23,45,67,89,012",
+          "sw": 337,
+          "cw": 288
+        },
+        {
+          "kind": "sheet-horizontal-scroll",
+          "sw": 357,
+          "cw": 328
+        }
+      ]
+    },
+    {
+      "name": "sheet/hi/v2",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/controls",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 221,
+          "cw": 132
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 236.546875,
+          "left": 160.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/6/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/7/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/8/large",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1.234.567.890",
+          "sw": 270,
+          "cw": 162
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 285.546875,
+          "left": 190.40625
+        }
+      ]
+    },
+    {
+      "name": "combo-word/pt-BR",
+      "pass": true,
+      "detail": {
+        "present": true,
+        "text": "Triplo!Triplo!",
+        "sw": 40,
+        "cw": 40
+      }
+    },
+    {
+      "name": "sheet/pt-BR/help",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/settings",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/themes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/result",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/result-settled",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "oScore",
+          "text": "123.456.789.012",
+          "sw": 317,
+          "cw": 288
+        },
+        {
+          "kind": "sheet-horizontal-scroll",
+          "sw": 337,
+          "cw": 328
+        }
+      ]
+    },
+    {
+      "name": "sheet/pt-BR/v2",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/controls",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "font-outage/ko",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "font-outage/hi",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "font-outage/pt-BR",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "first audible trusted touch starts real audio",
+      "pass": true,
+      "detail": {
+        "state": "running",
+        "time": 0.010666666666666666,
+        "started": 1,
+        "flipped": true,
+        "ever": true,
+        "resumes": [
+          {
+            "at": 416.39999985694885,
+            "state": "suspended",
+            "active": false,
+            "finishedAt": 850.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 424.5,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 850.2999999523163,
+            "after": "running"
+          }
+        ]
+      }
+    },
+    {
+      "name": "next audible touch resumes a suspended audio context",
+      "pass": true,
+      "detail": {
+        "state": "running",
+        "time": 0.072,
+        "started": 2,
+        "resumes": [
+          {
+            "at": 416.39999985694885,
+            "state": "suspended",
+            "active": false,
+            "finishedAt": 850.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 424.5,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 850.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 905.7999999523163,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1023.8999998569489,
+            "after": "running"
+          },
+          {
+            "at": 922.5999999046326,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1024,
+            "after": "running"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mute stops scheduled sounds",
+      "pass": false,
+      "detail": {
+        "started": 18,
+        "ended": 3,
+        "stops": 18,
+        "contexts": 1,
+        "resumes": [
+          {
+            "at": 416.39999985694885,
+            "state": "suspended",
+            "active": false,
+            "finishedAt": 850.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 424.5,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 850.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 905.7999999523163,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1023.8999998569489,
+            "after": "running"
+          },
+          {
+            "at": 922.5999999046326,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1024,
+            "after": "running"
+          }
+        ],
+        "state": "running",
+        "live": 15
+      }
+    },
+    {
+      "name": "mute prevents new sounds",
+      "pass": true
+    },
+    {
+      "name": "clearFx stops scheduled sounds",
+      "pass": false,
+      "detail": {
+        "started": 17,
+        "ended": 1,
+        "stops": 17,
+        "contexts": 1,
+        "resumes": [
+          {
+            "at": 261.39999985694885,
+            "state": "suspended",
+            "active": false,
+            "finishedAt": 285.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 262.89999985694885,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 285.2999999523163,
+            "after": "running"
+          }
+        ],
+        "live": 16
+      }
+    },
+    {
+      "name": "hidden tab stops scheduled sounds",
+      "pass": false,
+      "detail": {
+        "started": 33,
+        "ended": 2,
+        "stops": 33,
+        "contexts": 1,
+        "resumes": [
+          {
+            "at": 261.39999985694885,
+            "state": "suspended",
+            "active": false,
+            "finishedAt": 285.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 262.89999985694885,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 285.2999999523163,
+            "after": "running"
+          }
+        ],
+        "live": 31
+      }
+    },
+    {
+      "name": "closed audio context recovers on the next gesture",
+      "pass": false,
+      "detail": {
+        "started": 2,
+        "ended": 0,
+        "stops": 2,
+        "contexts": 1,
+        "resumes": [
+          {
+            "at": 281,
+            "state": "suspended",
+            "active": false,
+            "finishedAt": 307.2999999523163,
+            "after": "running"
+          },
+          {
+            "at": 287.90000009536743,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 307.2999999523163,
+            "after": "running"
+          }
+        ],
+        "state": "closed"
+      }
+    },
+    {
+      "name": "unsupported audio is silent and does not block input",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "audio-render/base/chord",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "chord",
+        "peak": 0.19731104373931885,
+        "rms": 0.0059803879498396975,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/glass",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "glass",
+        "peak": 0.34592437744140625,
+        "rms": 0.010196084642639595,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/swap",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "swap",
+        "peak": 0.1237882524728775,
+        "rms": 0.002328735379913784,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/warn",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "warn",
+        "peak": 0.048191413283348083,
+        "rms": 0.0022369672285787435,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/rise",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "rise",
+        "peak": 0.09823452681303024,
+        "rms": 0.004455295514039116,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/doMiSol",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "doMiSol",
+        "peak": 0.10434715449810028,
+        "rms": 0.005825163188269007,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/clink",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "clink",
+        "peak": 0.09612119942903519,
+        "rms": 0.002436018372536626,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/ching",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "ching",
+        "peak": 0.11702194064855576,
+        "rms": 0.0036179754956265735,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/crack",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "crack",
+        "peak": 0.23524121940135956,
+        "rms": 0.0070583190708675995,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/thud",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "thud",
+        "peak": 0.278305321931839,
+        "rms": 0.010116198778750921,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/fanfare",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "fanfare",
+        "peak": 0.10680423676967621,
+        "rms": 0.006022180911465563,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/tick",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "tick",
+        "peak": 0.04685400053858757,
+        "rms": 0.0006466752914203552,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/nope",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "nope",
+        "peak": 0.03300473466515541,
+        "rms": 0.0009672557819464941,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/drip",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "drip",
+        "peak": 0.09821333736181259,
+        "rms": 0.0018712071963484997,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/thunk",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "thunk",
+        "peak": 0.2145068347454071,
+        "rms": 0.0044942606835757515,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/impact",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "impact",
+        "peak": 0.40883398056030273,
+        "rms": 0.007629094900972679,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/cork",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "cork",
+        "peak": 0.056589335203170776,
+        "rms": 0.0009060092708516079,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/bonk",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "bonk",
+        "peak": 0.08853036910295486,
+        "rms": 0.0018656437667109917,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/heart",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "heart",
+        "peak": 0.20629630982875824,
+        "rms": 0.018378178851862395,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/relief",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "relief",
+        "peak": 0.08617106825113297,
+        "rms": 0.0030711363548645977,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/chime",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "chime",
+        "peak": 0.16708776354789734,
+        "rms": 0.006259082627991148,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/burst",
+      "pass": false,
+      "detail": {
+        "fx": "base",
+        "name": "burst",
+        "peak": 6.5435686111450195,
+        "rms": 0.14739224581140556,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/chord",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "chord",
+        "peak": 0.15416760742664337,
+        "rms": 0.006982975411453688,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/glass",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "glass",
+        "peak": 0.27673953771591187,
+        "rms": 0.009434966924788554,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/swap",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "swap",
+        "peak": 0.05508620664477348,
+        "rms": 0.0012352869118799242,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/warn",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "warn",
+        "peak": 0.07564471662044525,
+        "rms": 0.002788141947663572,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/rise",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "rise",
+        "peak": 0.14566142857074738,
+        "rms": 0.005804048593875611,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/doMiSol",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "doMiSol",
+        "peak": 0.15629328787326813,
+        "rms": 0.007773645633626778,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/clink",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "clink",
+        "peak": 0.06622816622257233,
+        "rms": 0.001779701736374532,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/ching",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "ching",
+        "peak": 0.08195841312408447,
+        "rms": 0.0028299159983527504,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/crack",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "crack",
+        "peak": 0.14976899325847626,
+        "rms": 0.005668405873643721,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/thud",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "thud",
+        "peak": 0.13529323041439056,
+        "rms": 0.007597173878952927,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/fanfare",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "fanfare",
+        "peak": 0.16764654219150543,
+        "rms": 0.00842911072195438,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/tick",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "tick",
+        "peak": 0.019964175298810005,
+        "rms": 0.00030106260580072073,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/nope",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "nope",
+        "peak": 0.014307641424238682,
+        "rms": 0.000535620303677855,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/drip",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "drip",
+        "peak": 0.03854593634605408,
+        "rms": 0.0009112171150496088,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/thunk",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "thunk",
+        "peak": 0.08803718537092209,
+        "rms": 0.002197373668031987,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/impact",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "impact",
+        "peak": 0.16108055412769318,
+        "rms": 0.004123067241593922,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/cork",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "cork",
+        "peak": 0.022291768342256546,
+        "rms": 0.00042399800287259916,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/bonk",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "bonk",
+        "peak": 0.03718850761651993,
+        "rms": 0.0010061011108667426,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/heart",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "heart",
+        "peak": 0.32372668385505676,
+        "rms": 0.027712488238998773,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/relief",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "relief",
+        "peak": 0.1281127780675888,
+        "rms": 0.0037833237236902795,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/chime",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "chime",
+        "peak": 0.08324030786752701,
+        "rms": 0.005092045550997421,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/burst",
+      "pass": false,
+      "detail": {
+        "fx": "juicy",
+        "name": "burst",
+        "peak": 1.0728404521942139,
+        "rms": 0.031256548328504406,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "tutorial motion/off",
+      "pass": true,
+      "detail": {
+        "reduced": false,
+        "nodes": 2,
+        "running": 2
+      }
+    },
+    {
+      "name": "tutorial pour motion/off",
+      "pass": true,
+      "detail": {
+        "nodes": 1,
+        "running": 1
+      }
+    },
+    {
+      "name": "tutorial motion/preference",
+      "pass": false,
+      "detail": {
+        "reduced": true,
+        "nodes": 2,
+        "running": 2
+      }
+    },
+    {
+      "name": "tutorial pour motion/preference",
+      "pass": false,
+      "detail": {
+        "nodes": 1,
+        "running": 1
+      }
+    },
+    {
+      "name": "tutorial motion/os",
+      "pass": false,
+      "detail": {
+        "reduced": true,
+        "nodes": 2,
+        "running": 2
+      }
+    },
+    {
+      "name": "tutorial pour motion/os",
+      "pass": false,
+      "detail": {
+        "nodes": 1,
+        "running": 1
+      }
+    },
+    {
+      "name": "combo burst starts normally",
+      "pass": true
+    },
+    {
+      "name": "enabling reduced effects settles existing motion",
+      "pass": false
+    },
+    {
+      "name": "death effect starts/os-reduce",
+      "pass": true
+    },
+    {
+      "name": "death effect cleans up/os-reduce",
+      "pass": false,
+      "detail": {
+        "ghosts": 1,
+        "done": 0,
+        "over": true
+      }
+    },
+    {
+      "name": "death effect starts/new-run",
+      "pass": true
+    },
+    {
+      "name": "death effect cleans up/new-run",
+      "pass": false,
+      "detail": {
+        "ghosts": 1,
+        "done": 0,
+        "over": false
+      }
+    },
+    {
+      "name": "previous death cannot affect a new run",
+      "pass": false
+    },
+    {
+      "name": "death effect starts/hidden",
+      "pass": true
+    },
+    {
+      "name": "death effect cleans up/hidden",
+      "pass": false,
+      "detail": {
+        "ghosts": 1,
+        "done": 0,
+        "over": true
+      }
+    },
+    {
+      "name": "no runtime errors after audio audit",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "fonts": [
+    {
+      "locale": "ko",
+      "selector": ".brand h1",
+      "fonts": [
+        {
+          "familyName": "Jua",
+          "postScriptName": "Jua-Regular",
+          "isCustomFont": true,
+          "glyphCount": 4
+        },
+        {
+          "familyName": "IBM Plex Sans KR Medium",
+          "postScriptName": "IBMPlexSansKR-Medium",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": "#score",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Bold",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": "#holdAction",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Bold",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": "#status",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Regular",
+          "isCustomFont": true,
+          "glyphCount": 27
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": ".cb-word .f",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Bold",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": ".brand h1",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 2
+        },
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI",
+          "isCustomFont": false,
+          "glyphCount": 17
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": "#score",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": "#holdAction",
+      "fonts": [
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": "#status",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 8
+        },
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI",
+          "isCustomFont": false,
+          "glyphCount": 31
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": ".cb-word .f",
+      "fonts": [
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 5
+        },
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 1
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": ".brand h1",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 23
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": "#score",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 7
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": "#holdAction",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 6
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": "#status",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 55
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": ".cb-word .f",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 7
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "kind": "mute",
+      "started": 18,
+      "ended": 3,
+      "stops": 18,
+      "contexts": 1,
+      "resumes": [
+        {
+          "at": 416.39999985694885,
+          "state": "suspended",
+          "active": false,
+          "finishedAt": 850.2999999523163,
+          "after": "running"
+        },
+        {
+          "at": 424.5,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 850.2999999523163,
+          "after": "running"
+        },
+        {
+          "at": 905.7999999523163,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1023.8999998569489,
+          "after": "running"
+        },
+        {
+          "at": 922.5999999046326,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1024,
+          "after": "running"
+        }
+      ],
+      "state": "running",
+      "live": 15
+    },
+    {
+      "kind": "clear",
+      "started": 17,
+      "ended": 1,
+      "stops": 17,
+      "contexts": 1,
+      "resumes": [
+        {
+          "at": 261.39999985694885,
+          "state": "suspended",
+          "active": false,
+          "finishedAt": 285.2999999523163,
+          "after": "running"
+        },
+        {
+          "at": 262.89999985694885,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 285.2999999523163,
+          "after": "running"
+        }
+      ],
+      "live": 16
+    },
+    {
+      "kind": "hidden",
+      "started": 33,
+      "ended": 2,
+      "stops": 33,
+      "contexts": 1,
+      "resumes": [
+        {
+          "at": 261.39999985694885,
+          "state": "suspended",
+          "active": false,
+          "finishedAt": 285.2999999523163,
+          "after": "running"
+        },
+        {
+          "at": 262.89999985694885,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 285.2999999523163,
+          "after": "running"
+        }
+      ],
+      "live": 31
+    },
+    {
+      "fx": "base",
+      "name": "chord",
+      "peak": 0.19731104373931885,
+      "rms": 0.0059803879498396975,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "glass",
+      "peak": 0.34592437744140625,
+      "rms": 0.010196084642639595,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "swap",
+      "peak": 0.1237882524728775,
+      "rms": 0.002328735379913784,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "warn",
+      "peak": 0.048191413283348083,
+      "rms": 0.0022369672285787435,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "rise",
+      "peak": 0.09823452681303024,
+      "rms": 0.004455295514039116,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "doMiSol",
+      "peak": 0.10434715449810028,
+      "rms": 0.005825163188269007,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "clink",
+      "peak": 0.09612119942903519,
+      "rms": 0.002436018372536626,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "ching",
+      "peak": 0.11702194064855576,
+      "rms": 0.0036179754956265735,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "crack",
+      "peak": 0.23524121940135956,
+      "rms": 0.0070583190708675995,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "thud",
+      "peak": 0.278305321931839,
+      "rms": 0.010116198778750921,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "fanfare",
+      "peak": 0.10680423676967621,
+      "rms": 0.006022180911465563,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "tick",
+      "peak": 0.04685400053858757,
+      "rms": 0.0006466752914203552,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "nope",
+      "peak": 0.03300473466515541,
+      "rms": 0.0009672557819464941,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "drip",
+      "peak": 0.09821333736181259,
+      "rms": 0.0018712071963484997,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "thunk",
+      "peak": 0.2145068347454071,
+      "rms": 0.0044942606835757515,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "impact",
+      "peak": 0.40883398056030273,
+      "rms": 0.007629094900972679,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "cork",
+      "peak": 0.056589335203170776,
+      "rms": 0.0009060092708516079,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "bonk",
+      "peak": 0.08853036910295486,
+      "rms": 0.0018656437667109917,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "heart",
+      "peak": 0.20629630982875824,
+      "rms": 0.018378178851862395,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "relief",
+      "peak": 0.08617106825113297,
+      "rms": 0.0030711363548645977,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "chime",
+      "peak": 0.16708776354789734,
+      "rms": 0.006259082627991148,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "burst",
+      "peak": 6.5435686111450195,
+      "rms": 0.14739224581140556,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "chord",
+      "peak": 0.15416760742664337,
+      "rms": 0.006982975411453688,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "glass",
+      "peak": 0.27673953771591187,
+      "rms": 0.009434966924788554,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "swap",
+      "peak": 0.05508620664477348,
+      "rms": 0.0012352869118799242,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "warn",
+      "peak": 0.07564471662044525,
+      "rms": 0.002788141947663572,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "rise",
+      "peak": 0.14566142857074738,
+      "rms": 0.005804048593875611,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "doMiSol",
+      "peak": 0.15629328787326813,
+      "rms": 0.007773645633626778,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "clink",
+      "peak": 0.06622816622257233,
+      "rms": 0.001779701736374532,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "ching",
+      "peak": 0.08195841312408447,
+      "rms": 0.0028299159983527504,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "crack",
+      "peak": 0.14976899325847626,
+      "rms": 0.005668405873643721,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "thud",
+      "peak": 0.13529323041439056,
+      "rms": 0.007597173878952927,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "fanfare",
+      "peak": 0.16764654219150543,
+      "rms": 0.00842911072195438,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "tick",
+      "peak": 0.019964175298810005,
+      "rms": 0.00030106260580072073,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "nope",
+      "peak": 0.014307641424238682,
+      "rms": 0.000535620303677855,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "drip",
+      "peak": 0.03854593634605408,
+      "rms": 0.0009112171150496088,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "thunk",
+      "peak": 0.08803718537092209,
+      "rms": 0.002197373668031987,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "impact",
+      "peak": 0.16108055412769318,
+      "rms": 0.004123067241593922,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "cork",
+      "peak": 0.022291768342256546,
+      "rms": 0.00042399800287259916,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "bonk",
+      "peak": 0.03718850761651993,
+      "rms": 0.0010061011108667426,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "heart",
+      "peak": 0.32372668385505676,
+      "rms": 0.027712488238998773,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "relief",
+      "peak": 0.1281127780675888,
+      "rms": 0.0037833237236902795,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "chime",
+      "peak": 0.08324030786752701,
+      "rms": 0.005092045550997421,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "burst",
+      "peak": 1.0728404521942139,
+      "rms": 0.031256548328504406,
+      "tail": 0,
+      "bad": 0
+    }
+  ],
+  "snapshots": [
+    {
+      "tag": "ko/360x640/dark/lab/8/large",
+      "problems": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,234,567,890",
+          "sw": 233,
+          "cw": 146
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 249.109375,
+          "left": 174.1875
+        }
+      ],
+      "lang": "ko",
+      "theme": "dark",
+      "skin": "lab",
+      "bottles": 8,
+      "fonts": [
+        "IBM Plex Sans KR",
+        "Jua"
+      ],
+      "resultScore": "0",
+      "scoreSize": "36px",
+      "errors": [],
+      "scope": "game"
+    },
+    {
+      "tag": "hi/390x844/dark/lab/8/large",
+      "problems": [
+        {
+          "kind": "text-overflow",
+          "key": "score",
+          "text": "1,23,45,67,890",
+          "sw": 280,
+          "cw": 154
+        },
+        {
+          "kind": "score-meta-overlap",
+          "right": 295.53125,
+          "left": 181.515625
+        }
+      ],
+      "lang": "hi",
+      "theme": "dark",
+      "skin": "lab",
+      "bottles": 8,
+      "fonts": [
+        "IBM Plex Sans KR",
+        "Jua"
+      ],
+      "resultScore": "123,456,789,012",
+      "scoreSize": "44px",
+      "errors": [],
+      "scope": "game"
+    }
+  ],
+  "sourceSha256": "185e63a2b8867ecaa856e24aa44afb75ab05d60dbe85e4c2bbed6627a86fd452",
+  "engineSha256": "333fea6ad4798a2484d1bcfc8b791bd20765bd3c56352f82ed657faefe8a9239",
+  "physicalDevice": false,
+  "phase": "before",
+  "quick": true,
+  "effectsOnly": false,
+  "sourcePath": "outputs/presentation-audit/before-source.html"
+}
