@@ -1,0 +1,20 @@
+{
+  "engineSha256": "333fea6ad4798a2484d1bcfc8b791bd20765bd3c56352f82ed657faefe8a9239",
+  "commands": [
+    {
+      "command": "node test-v2.js",
+      "exitCode": 0,
+      "output": "test-v2: 1070 checks, 0 failures\n"
+    },
+    {
+      "command": "node research/hold-triple/engine-test.js",
+      "exitCode": 0,
+      "output": "ok old flags stay absent, new defaults sanitize, fixed custom rules drop features\nok empty hold consumes exactly one queue entry; swaps never generate; previews 0..3\nok hold does not change score, turn, pours, combo, growth or logs; failures are atomic\nok introduction metadata and visible orientation travel with the held piece\nok flip reservations cannot exceed the placement-charged budget\nok only a successful placement restores hold before the next stuck check; revive does not\nok hold-only survival, unavailable hold and empty next-preview survival are distinguished\nok bounded room searches stay unknown, and a held alternative can require pouring\nok triple gate, intro exceptions and committed queue do not rewrite revealed pieces\nok triple statistics and remaining tail distribution match the fixed-seed hypothesis\nok no triple branch leaves every ordinary generated piece unchanged\nok three scattered free cells cannot accept a triple, while a contiguous slot can clear\nok feature state restoration is strict; corrupt holds/queues/budgets are rejected\nok save and undo snapshots replay hold/flip/place/pour exactly without duplicate growth\nok policy signatures isolate candidates and do not change during play\nok all historical rules and expanding transitions/signatures match the captured HEAD\nhold/triple engine: 16 groups passed\n"
+    },
+    {
+      "command": "node research/expansion/engine-test.js",
+      "exitCode": 0,
+      "output": "ok fresh standard starts at 6 bottles / 4 colors and keeps a confirmed queue\nok below / exactly / beyond threshold: successful action earns only due bottles\nok clear by placement earns a full normal bottle before stuck checking\nok clear by pouring unlocks immediately, but color activation waits for placement\nok crossing several thresholds pays all bottles and admits only one color per placement\nok earned bottle prevents a full-board loss in the same placement\nok failed and ended actions never consume generation or pay progression\nok new bottles accept pours, reversed pieces and normal completion scoring\nok zone settlement uses pre-unlock empties and cannot create a recursive unlock bonus\nok preview and cloned search actions do not mutate the live state\nok save / restoration replays identical state and undoes expansion without duplicate history\nok growth profile and queue policy signatures stay fixed through unlocks and isolate records\nok preview counts 0..3 restore and remain consistent across color admissions\nok table sanitization clamps colors/bottles and discards invalid or decreasing thresholds\nok tail weighting starts at the color cap and participates in the record signature\nok v1, v2 and daily transitions/signatures match the source at the baseline commit\nok same seed and policy reproduces expansion state, with colors capped after large scores\nexpansion engine: 17 groups passed\n"
+    }
+  ]
+}

@@ -122,7 +122,7 @@ async function main() {
     }
     await load('fixture=8',360,640);
     await js('(()=>{const s=window.__snapFn().S;s.score=123456;s.streak=123;s.maxStreak=123;s.bestAtStart=987654;window.__boot({S:s});return true;})()');await sleep(150);
-    ck('large score and combo fit their containers',await js('(()=>{const a=document.getElementById("score").getBoundingClientRect(),b=document.querySelector(".meta").getBoundingClientRect();return a.right+4<=b.left&&document.documentElement.scrollWidth<=innerWidth;})()'));
+    ck('large score and combo fit their containers',await js('(()=>{const score=document.getElementById("score"),a=score.getBoundingClientRect(),b=document.querySelector(".meta").getBoundingClientRect(),range=e=>{const q=document.createRange();q.selectNodeContents(e);return q.getBoundingClientRect();},text=range(score),combo=document.getElementById("combo");return !(a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top)&&text.width<=score.clientWidth*.9&&range(combo).width<=combo.getBoundingClientRect().width+.2&&document.documentElement.scrollWidth<=innerWidth;})()'));
     await shot('large-numbers');
     // The longest normal warning and an unlock banner must clear the eight-bottle board on a short screen.
     const fixed=await geom();

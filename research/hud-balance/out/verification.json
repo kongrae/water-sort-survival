@@ -1,0 +1,172 @@
+{
+  "checkedAt": "2026-10-09T13:08:26.076Z",
+  "baselineCommit": "0d39aeb607232b898c5e043827be8e5c99ee506e",
+  "baselineSourceSha256": "8189cf3faf151414d78c4ae2c30f870e9ac329d8cbb24719dcb6f93db6a2b191",
+  "sourceSha256": "dd90fe5bc5f5481933a636da3096b242ea1c3cca6ca8c43076d4f171c287cd7c",
+  "engineSha256": "333fea6ad4798a2484d1bcfc8b791bd20765bd3c56352f82ed657faefe8a9239",
+  "engineUnchanged": true,
+  "distSha256": "ba3cd5bd3a21998fec00028f729f74185d75bd8a82f24e8727bd2022f6e49d6b",
+  "preview": {
+    "url": "http://127.0.0.1:8151/",
+    "status": 200,
+    "sha256": "ba3cd5bd3a21998fec00028f729f74185d75bd8a82f24e8727bd2022f6e49d6b",
+    "matchesDist": true
+  },
+  "results": [
+    {
+      "name": "compact HUD",
+      "file": "ui-after.json",
+      "total": 1316,
+      "failures": 0
+    },
+    {
+      "name": "count animation CPU x4",
+      "file": "ui-counter.json",
+      "total": 3,
+      "failures": 0
+    },
+    {
+      "name": "presentation",
+      "file": "presentation/after.json",
+      "total": 2741,
+      "failures": 0
+    },
+    {
+      "name": "HOLD/triple input",
+      "file": "hold-triple-browser.json",
+      "total": 286,
+      "failures": 0
+    },
+    {
+      "name": "UIUX",
+      "file": "uiux-browser.json",
+      "total": 110,
+      "failures": 0
+    },
+    {
+      "name": "i18n",
+      "file": "i18n-browser.json",
+      "total": 201,
+      "failures": 0
+    },
+    {
+      "name": "effects",
+      "file": "fx-browser.json",
+      "total": 122,
+      "failures": 0
+    },
+    {
+      "name": "mobile",
+      "file": "mobile-browser.json",
+      "total": 68,
+      "failures": 0
+    }
+  ],
+  "geometry": [
+    {
+      "viewport": [
+        360,
+        640
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": 92.828125,
+      "afterGlass": 135.46875,
+      "beforeDailyGlass": 129.546875,
+      "afterDailyGlass": 135.46875,
+      "beforeHud": 176.25,
+      "afterHud": 91
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": 136,
+      "afterGlass": 136,
+      "beforeDailyGlass": 136,
+      "afterDailyGlass": 136,
+      "beforeHud": 201.40625,
+      "afterHud": 92
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": 136,
+      "afterGlass": 136,
+      "beforeDailyGlass": 136,
+      "afterDailyGlass": 136,
+      "beforeHud": 201.40625,
+      "afterHud": 92
+    },
+    {
+      "viewport": [
+        768,
+        1024
+      ],
+      "safeArea": [
+        0,
+        0
+      ],
+      "beforeGlass": 136,
+      "afterGlass": 136,
+      "beforeDailyGlass": 136,
+      "afterDailyGlass": 136,
+      "beforeHud": 201.40625,
+      "afterHud": 92
+    },
+    {
+      "viewport": [
+        360,
+        600
+      ],
+      "safeArea": [
+        24,
+        24
+      ],
+      "beforeGlass": 56.828125,
+      "afterGlass": 99.46875,
+      "beforeDailyGlass": 57.546875,
+      "afterDailyGlass": 99.46875,
+      "beforeHud": 176.25,
+      "afterHud": 91
+    },
+    {
+      "viewport": [
+        390,
+        724
+      ],
+      "safeArea": [
+        47,
+        34
+      ],
+      "beforeGlass": 70.75,
+      "afterGlass": 136,
+      "beforeDailyGlass": 136,
+      "afterDailyGlass": 136,
+      "beforeHud": 197.40625,
+      "afterHud": 91
+    }
+  ],
+  "balance": {
+    "runs": 320,
+    "cap": 1500,
+    "engineMatches": true,
+    "botSha256": "cbfab9c578f1de67d011566cb77adb30a95be0b3408bcadbe1ac11857146ceee"
+  },
+  "sameBottleHeightAcrossModes": true,
+  "physicalDevice": false,
+  "humanBalanceApproved": false
+}

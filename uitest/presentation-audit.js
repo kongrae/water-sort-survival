@@ -1,9 +1,11 @@
 // Local typography, motion and real/offline Web Audio audit. Test-only hooks never enter the build.
-// node uitest/presentation-audit.js [--before] [--quick] [--effects-only] [--source=path]
+// node uitest/presentation-audit.js [--before] [--quick] [--effects-only] [--source=path] [--out=path] [--data=path]
 const fs=require('fs'),path=require('path'),http=require('http'),crypto=require('crypto');
 const {spawn,execFileSync}=require('child_process');
-const BASE=path.resolve(__dirname,'..'),OUT=path.join(BASE,'outputs/presentation-audit');
-const DATA=path.join(BASE,'research/presentation-audit/out'),PORT=8152,CDP=9346;
+const BASE=path.resolve(__dirname,'..');
+const option=(name,fallback)=>process.argv.find(a=>a.startsWith('--'+name+'='))?.slice(name.length+3)||fallback;
+const OUT=path.resolve(option('out',path.join(BASE,'outputs/presentation-audit')));
+const DATA=path.resolve(option('data',path.join(BASE,'research/presentation-audit/out'))),PORT=8152,CDP=9346;
 const before=process.argv.includes('--before'),quick=process.argv.includes('--quick'),phase=process.argv.includes('--probe')?'probe':before?'before':'after';
 const effectsOnly=process.argv.includes('--effects-only'),sourcePath=process.argv.find(a=>a.startsWith('--source='))?.slice(9);
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
@@ -92,7 +94,7 @@ async function main(){
       }
       if(!scope.closest('.overlay')){
         const range=e=>{const q=document.createRange();q.selectNodeContents(e);return q.getBoundingClientRect();},a=range(document.getElementById('score')),b=document.querySelector('.meta').getBoundingClientRect();
-        if(a.right+3>b.left)problems.push({kind:'score-meta-overlap',right:a.right,left:b.left});
+        if(a.right+3>b.left&&a.left<b.right+3&&a.bottom>b.top&&a.top<b.bottom)problems.push({kind:'score-meta-overlap',score:{left:a.left,right:a.right,top:a.top,bottom:a.bottom},meta:{left:b.left,right:b.right,top:b.top,bottom:b.bottom}});
         const actions=document.querySelector('.actions').getBoundingClientRect();
         if(actions.bottom>innerHeight+1)problems.push({kind:'actions-cut',bottom:actions.bottom,height:innerHeight});
         if(document.documentElement.scrollWidth>innerWidth+1)problems.push({kind:'page-width',w:document.documentElement.scrollWidth});

@@ -1,0 +1,2378 @@
+{
+  "checkedAt": "2026-10-09T13:03:06.156Z",
+  "sourceSha256": "dd90fe5bc5f5481933a636da3096b242ea1c3cca6ca8c43076d4f171c287cd7c",
+  "engineSha256": "333fea6ad4798a2484d1bcfc8b791bd20765bd3c56352f82ed657faefe8a9239",
+  "checks": [
+    {
+      "name": "result count fits every frame at CPU x4/ko",
+      "pass": true
+    },
+    {
+      "name": "result count fits every frame at CPU x4/en",
+      "pass": true
+    },
+    {
+      "name": "result count fits every frame at CPU x4/ja",
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "lang": "ko",
+      "scenario": "result count CPU x4",
+      "samples": [
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        }
+      ]
+    },
+    {
+      "lang": "en",
+      "scenario": "result count CPU x4",
+      "samples": [
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        }
+      ]
+    },
+    {
+      "lang": "ja",
+      "scenario": "result count CPU x4",
+      "samples": [
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        },
+        {
+          "text": "123,456,789,012",
+          "width": 253.40625,
+          "available": 288,
+          "sheetWidth": 328,
+          "sheetAvailable": 328
+        }
+      ]
+    }
+  ],
+  "physicalDevice": false
+}

@@ -1,0 +1,4210 @@
+{
+  "rows": [
+    {
+      "name": "typography/ko/360x640/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/dark/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/360x640/light/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/dark/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/ko/390x844/light/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "combo-word/ko",
+      "pass": true,
+      "detail": {
+        "present": true,
+        "text": "트리플!트리플!",
+        "sw": 70,
+        "cw": 70
+      }
+    },
+    {
+      "name": "sheet/ko/help",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/settings",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/themes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/result",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/result-settled",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/v2",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/ko/controls",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/dark/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/360x640/light/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/dark/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/hi/390x844/light/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "combo-word/hi",
+      "pass": true,
+      "detail": {
+        "present": true,
+        "text": "ट्रिपल!ट्रिपल!",
+        "sw": 36,
+        "cw": 36
+      }
+    },
+    {
+      "name": "sheet/hi/help",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/settings",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/themes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/result",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/result-settled",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/v2",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/hi/controls",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/dark/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/360x640/light/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/dark/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "dark",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/lab/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "lab",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/cafe/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "cafe",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/gem/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "gem",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/6/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/6/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 6
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/7/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/7/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 7
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/8/normal",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "typography/pt-BR/390x844/light/deep/8/large",
+      "pass": true,
+      "detail": {
+        "theme": "light",
+        "skin": "deep",
+        "bottles": 8
+      }
+    },
+    {
+      "name": "combo-word/pt-BR",
+      "pass": true,
+      "detail": {
+        "present": true,
+        "text": "Triplo!Triplo!",
+        "sw": 40,
+        "cw": 40
+      }
+    },
+    {
+      "name": "sheet/pt-BR/help",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "sbtn",
+          "text": "Fechar",
+          "sw": 44,
+          "cw": 42
+        }
+      ]
+    },
+    {
+      "name": "sheet/pt-BR/settings",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "sbtn",
+          "text": "Fechar",
+          "sw": 44,
+          "cw": 42
+        }
+      ]
+    },
+    {
+      "name": "sheet/pt-BR/themes",
+      "pass": false,
+      "detail": [
+        {
+          "kind": "text-overflow",
+          "key": "sbtn",
+          "text": "Fechar",
+          "sw": 44,
+          "cw": 42
+        }
+      ]
+    },
+    {
+      "name": "sheet/pt-BR/result",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/result-settled",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/v2",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "sheet/pt-BR/controls",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "font-outage/ko",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "font-outage/hi",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "font-outage/pt-BR",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "first audible trusted touch starts real audio",
+      "pass": true,
+      "detail": {
+        "state": "running",
+        "time": 0.010666666666666666,
+        "started": 1,
+        "flipped": true,
+        "ever": true,
+        "resumes": []
+      }
+    },
+    {
+      "name": "next audible touch resumes a suspended audio context",
+      "pass": true,
+      "detail": {
+        "state": "running",
+        "time": 0.08,
+        "started": 2,
+        "resumes": [
+          {
+            "at": 1690.2999999523163,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.4000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.4000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.9000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.9000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mute stops scheduled sounds",
+      "pass": true,
+      "detail": {
+        "started": 18,
+        "ended": 18,
+        "stops": 35,
+        "contexts": 1,
+        "resumes": [
+          {
+            "at": 1690.2999999523163,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.4000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.4000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.9000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          },
+          {
+            "at": 1706.9000000953674,
+            "state": "suspended",
+            "active": true,
+            "finishedAt": 1783.7999999523163,
+            "after": "running"
+          }
+        ],
+        "state": "running",
+        "live": 0
+      }
+    },
+    {
+      "name": "mute prevents new sounds",
+      "pass": true
+    },
+    {
+      "name": "clearFx stops scheduled sounds",
+      "pass": true,
+      "detail": {
+        "started": 17,
+        "ended": 17,
+        "stops": 34,
+        "contexts": 1,
+        "resumes": [],
+        "live": 0
+      }
+    },
+    {
+      "name": "hidden tab stops scheduled sounds",
+      "pass": true,
+      "detail": {
+        "started": 33,
+        "ended": 33,
+        "stops": 66,
+        "contexts": 1,
+        "resumes": [],
+        "live": 0
+      }
+    },
+    {
+      "name": "closed audio context recovers on the next gesture",
+      "pass": true,
+      "detail": {
+        "started": 2,
+        "ended": 1,
+        "stops": 3,
+        "contexts": 2,
+        "resumes": [],
+        "state": "running"
+      }
+    },
+    {
+      "name": "unsupported audio is silent and does not block input",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "audio-render/base/chord",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "chord",
+        "peak": 0.12847301363945007,
+        "rms": 0.005819146330063837,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/glass",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "glass",
+        "peak": 0.23061628639698029,
+        "rms": 0.007862472645456751,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/swap",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "swap",
+        "peak": 0.04590517282485962,
+        "rms": 0.0010294057856262482,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/warn",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "warn",
+        "peak": 0.06303726136684418,
+        "rms": 0.002323451685397347,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/rise",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "rise",
+        "peak": 0.12138453125953674,
+        "rms": 0.004836707285785578,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/doMiSol",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "doMiSol",
+        "peak": 0.1302444040775299,
+        "rms": 0.006478038205566773,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/clink",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "clink",
+        "peak": 0.05519013851881027,
+        "rms": 0.0014830848220793,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/ching",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "ching",
+        "peak": 0.06829868257045746,
+        "rms": 0.002358263393164975,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/crack",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "crack",
+        "peak": 0.12480749934911728,
+        "rms": 0.004723671680776909,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/thud",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "thud",
+        "peak": 0.11274436116218567,
+        "rms": 0.0063309784049739234,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/fanfare",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "fanfare",
+        "peak": 0.13970544934272766,
+        "rms": 0.00702425912366374,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/tick",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "tick",
+        "peak": 0.016636813059449196,
+        "rms": 0.00025088551214667236,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/nope",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "nope",
+        "peak": 0.011923035606741905,
+        "rms": 0.00044635026554244256,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/drip",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "drip",
+        "peak": 0.03212161362171173,
+        "rms": 0.0007593476156426639,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/thunk",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "thunk",
+        "peak": 0.07336432486772537,
+        "rms": 0.0018311447734247837,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/impact",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "impact",
+        "peak": 0.13423380255699158,
+        "rms": 0.0034358894579938387,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/cork",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "cork",
+        "peak": 0.018576472997665405,
+        "rms": 0.00035333167893139675,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/bonk",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "bonk",
+        "peak": 0.030990425497293472,
+        "rms": 0.00083841761436339,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/heart",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "heart",
+        "peak": 0.2697722315788269,
+        "rms": 0.02309374086654498,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/relief",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "relief",
+        "peak": 0.1067606508731842,
+        "rms": 0.003152769847201687,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/chime",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "chime",
+        "peak": 0.0693669244647026,
+        "rms": 0.004243371402515407,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/base/burst",
+      "pass": true,
+      "detail": {
+        "fx": "base",
+        "name": "burst",
+        "peak": 0.8940335512161255,
+        "rms": 0.02604712431922792,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/chord",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "chord",
+        "peak": 0.12847301363945007,
+        "rms": 0.005819146330063837,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/glass",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "glass",
+        "peak": 0.23061628639698029,
+        "rms": 0.007862472645456751,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/swap",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "swap",
+        "peak": 0.04590517282485962,
+        "rms": 0.0010294057856262482,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/warn",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "warn",
+        "peak": 0.06303726136684418,
+        "rms": 0.002323451685397347,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/rise",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "rise",
+        "peak": 0.12138453125953674,
+        "rms": 0.004836707286740711,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/doMiSol",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "doMiSol",
+        "peak": 0.1302444040775299,
+        "rms": 0.0064780382057791006,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/clink",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "clink",
+        "peak": 0.05519013851881027,
+        "rms": 0.0014830848220793,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/ching",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "ching",
+        "peak": 0.06829868257045746,
+        "rms": 0.002358263393164975,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/crack",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "crack",
+        "peak": 0.12480749934911728,
+        "rms": 0.004723671680776909,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/thud",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "thud",
+        "peak": 0.11274436116218567,
+        "rms": 0.0063309784049739234,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/fanfare",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "fanfare",
+        "peak": 0.13970544934272766,
+        "rms": 0.00702425912366374,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/tick",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "tick",
+        "peak": 0.016636813059449196,
+        "rms": 0.00025088551214667236,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/nope",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "nope",
+        "peak": 0.011923035606741905,
+        "rms": 0.00044635026554244256,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/drip",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "drip",
+        "peak": 0.03212161362171173,
+        "rms": 0.0007593476156426639,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/thunk",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "thunk",
+        "peak": 0.07336432486772537,
+        "rms": 0.0018311447734247837,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/impact",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "impact",
+        "peak": 0.13423380255699158,
+        "rms": 0.0034358894576570374,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/cork",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "cork",
+        "peak": 0.018576472997665405,
+        "rms": 0.00035333167893139675,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/bonk",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "bonk",
+        "peak": 0.030990425497293472,
+        "rms": 0.00083841761436339,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/heart",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "heart",
+        "peak": 0.2697722315788269,
+        "rms": 0.02309374086654498,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/relief",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "relief",
+        "peak": 0.1067606508731842,
+        "rms": 0.003152769847201687,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/chime",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "chime",
+        "peak": 0.0693669244647026,
+        "rms": 0.004243371402515407,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "audio-render/juicy/burst",
+      "pass": true,
+      "detail": {
+        "fx": "juicy",
+        "name": "burst",
+        "peak": 0.8940337300300598,
+        "rms": 0.026047119353737765,
+        "tail": 0,
+        "bad": 0
+      }
+    },
+    {
+      "name": "tutorial motion/off",
+      "pass": true,
+      "detail": {
+        "reduced": false,
+        "nodes": 2,
+        "running": 2
+      }
+    },
+    {
+      "name": "tutorial pour motion/off",
+      "pass": true,
+      "detail": {
+        "nodes": 1,
+        "running": 1
+      }
+    },
+    {
+      "name": "tutorial motion/preference",
+      "pass": true,
+      "detail": {
+        "reduced": true,
+        "nodes": 2,
+        "running": 0
+      }
+    },
+    {
+      "name": "tutorial pour motion/preference",
+      "pass": true,
+      "detail": {
+        "nodes": 1,
+        "running": 0
+      }
+    },
+    {
+      "name": "tutorial motion/os",
+      "pass": true,
+      "detail": {
+        "reduced": true,
+        "nodes": 2,
+        "running": 0
+      }
+    },
+    {
+      "name": "tutorial pour motion/os",
+      "pass": true,
+      "detail": {
+        "nodes": 1,
+        "running": 0
+      }
+    },
+    {
+      "name": "combo burst starts normally",
+      "pass": true
+    },
+    {
+      "name": "enabling reduced effects settles existing motion",
+      "pass": true
+    },
+    {
+      "name": "death effect starts/os-reduce",
+      "pass": true
+    },
+    {
+      "name": "death effect cleans up/os-reduce",
+      "pass": true,
+      "detail": {
+        "ghosts": 0,
+        "done": 1,
+        "over": true
+      }
+    },
+    {
+      "name": "death effect starts/new-run",
+      "pass": true
+    },
+    {
+      "name": "death effect cleans up/new-run",
+      "pass": true,
+      "detail": {
+        "ghosts": 0,
+        "done": 0,
+        "over": false
+      }
+    },
+    {
+      "name": "previous death cannot affect a new run",
+      "pass": true
+    },
+    {
+      "name": "death effect starts/hidden",
+      "pass": true
+    },
+    {
+      "name": "death effect cleans up/hidden",
+      "pass": true,
+      "detail": {
+        "ghosts": 0,
+        "done": 1,
+        "over": true
+      }
+    },
+    {
+      "name": "no runtime errors after audio audit",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "fonts": [
+    {
+      "locale": "ko",
+      "selector": ".brand h1",
+      "fonts": [
+        {
+          "familyName": "Jua",
+          "postScriptName": "Jua-Regular",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": "#score",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Bold",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": "#holdAction",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Bold",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": "#status",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Regular",
+          "isCustomFont": true,
+          "glyphCount": 27
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "selector": ".cb-word .f",
+      "fonts": [
+        {
+          "familyName": "IBM Plex Sans KR",
+          "postScriptName": "IBMPlexSansKR-Bold",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": ".brand h1",
+      "fonts": [
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI",
+          "isCustomFont": false,
+          "glyphCount": 6
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": "#score",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": "#holdAction",
+      "fonts": [
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": "#status",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 8
+        },
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI",
+          "isCustomFont": false,
+          "glyphCount": 31
+        }
+      ]
+    },
+    {
+      "locale": "hi",
+      "selector": ".cb-word .f",
+      "fonts": [
+        {
+          "familyName": "Nirmala UI",
+          "postScriptName": "NirmalaUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 5
+        },
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 1
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": ".brand h1",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 6
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": "#score",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 7
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": "#holdAction",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 6
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": "#status",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothic",
+          "isCustomFont": false,
+          "glyphCount": 55
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "selector": ".cb-word .f",
+      "fonts": [
+        {
+          "familyName": "Malgun Gothic",
+          "postScriptName": "MalgunGothicBold",
+          "isCustomFont": false,
+          "glyphCount": 7
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "kind": "mute",
+      "started": 18,
+      "ended": 18,
+      "stops": 35,
+      "contexts": 1,
+      "resumes": [
+        {
+          "at": 1690.2999999523163,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1783.7999999523163,
+          "after": "running"
+        },
+        {
+          "at": 1706.4000000953674,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1783.7999999523163,
+          "after": "running"
+        },
+        {
+          "at": 1706.4000000953674,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1783.7999999523163,
+          "after": "running"
+        },
+        {
+          "at": 1706.9000000953674,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1783.7999999523163,
+          "after": "running"
+        },
+        {
+          "at": 1706.9000000953674,
+          "state": "suspended",
+          "active": true,
+          "finishedAt": 1783.7999999523163,
+          "after": "running"
+        }
+      ],
+      "state": "running",
+      "live": 0
+    },
+    {
+      "kind": "clear",
+      "started": 17,
+      "ended": 17,
+      "stops": 34,
+      "contexts": 1,
+      "resumes": [],
+      "live": 0
+    },
+    {
+      "kind": "hidden",
+      "started": 33,
+      "ended": 33,
+      "stops": 66,
+      "contexts": 1,
+      "resumes": [],
+      "live": 0
+    },
+    {
+      "fx": "base",
+      "name": "chord",
+      "peak": 0.12847301363945007,
+      "rms": 0.005819146330063837,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "glass",
+      "peak": 0.23061628639698029,
+      "rms": 0.007862472645456751,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "swap",
+      "peak": 0.04590517282485962,
+      "rms": 0.0010294057856262482,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "warn",
+      "peak": 0.06303726136684418,
+      "rms": 0.002323451685397347,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "rise",
+      "peak": 0.12138453125953674,
+      "rms": 0.004836707285785578,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "doMiSol",
+      "peak": 0.1302444040775299,
+      "rms": 0.006478038205566773,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "clink",
+      "peak": 0.05519013851881027,
+      "rms": 0.0014830848220793,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "ching",
+      "peak": 0.06829868257045746,
+      "rms": 0.002358263393164975,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "crack",
+      "peak": 0.12480749934911728,
+      "rms": 0.004723671680776909,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "thud",
+      "peak": 0.11274436116218567,
+      "rms": 0.0063309784049739234,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "fanfare",
+      "peak": 0.13970544934272766,
+      "rms": 0.00702425912366374,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "tick",
+      "peak": 0.016636813059449196,
+      "rms": 0.00025088551214667236,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "nope",
+      "peak": 0.011923035606741905,
+      "rms": 0.00044635026554244256,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "drip",
+      "peak": 0.03212161362171173,
+      "rms": 0.0007593476156426639,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "thunk",
+      "peak": 0.07336432486772537,
+      "rms": 0.0018311447734247837,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "impact",
+      "peak": 0.13423380255699158,
+      "rms": 0.0034358894579938387,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "cork",
+      "peak": 0.018576472997665405,
+      "rms": 0.00035333167893139675,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "bonk",
+      "peak": 0.030990425497293472,
+      "rms": 0.00083841761436339,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "heart",
+      "peak": 0.2697722315788269,
+      "rms": 0.02309374086654498,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "relief",
+      "peak": 0.1067606508731842,
+      "rms": 0.003152769847201687,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "chime",
+      "peak": 0.0693669244647026,
+      "rms": 0.004243371402515407,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "base",
+      "name": "burst",
+      "peak": 0.8940335512161255,
+      "rms": 0.02604712431922792,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "chord",
+      "peak": 0.12847301363945007,
+      "rms": 0.005819146330063837,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "glass",
+      "peak": 0.23061628639698029,
+      "rms": 0.007862472645456751,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "swap",
+      "peak": 0.04590517282485962,
+      "rms": 0.0010294057856262482,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "warn",
+      "peak": 0.06303726136684418,
+      "rms": 0.002323451685397347,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "rise",
+      "peak": 0.12138453125953674,
+      "rms": 0.004836707286740711,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "doMiSol",
+      "peak": 0.1302444040775299,
+      "rms": 0.0064780382057791006,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "clink",
+      "peak": 0.05519013851881027,
+      "rms": 0.0014830848220793,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "ching",
+      "peak": 0.06829868257045746,
+      "rms": 0.002358263393164975,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "crack",
+      "peak": 0.12480749934911728,
+      "rms": 0.004723671680776909,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "thud",
+      "peak": 0.11274436116218567,
+      "rms": 0.0063309784049739234,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "fanfare",
+      "peak": 0.13970544934272766,
+      "rms": 0.00702425912366374,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "tick",
+      "peak": 0.016636813059449196,
+      "rms": 0.00025088551214667236,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "nope",
+      "peak": 0.011923035606741905,
+      "rms": 0.00044635026554244256,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "drip",
+      "peak": 0.03212161362171173,
+      "rms": 0.0007593476156426639,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "thunk",
+      "peak": 0.07336432486772537,
+      "rms": 0.0018311447734247837,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "impact",
+      "peak": 0.13423380255699158,
+      "rms": 0.0034358894576570374,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "cork",
+      "peak": 0.018576472997665405,
+      "rms": 0.00035333167893139675,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "bonk",
+      "peak": 0.030990425497293472,
+      "rms": 0.00083841761436339,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "heart",
+      "peak": 0.2697722315788269,
+      "rms": 0.02309374086654498,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "relief",
+      "peak": 0.1067606508731842,
+      "rms": 0.003152769847201687,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "chime",
+      "peak": 0.0693669244647026,
+      "rms": 0.004243371402515407,
+      "tail": 0,
+      "bad": 0
+    },
+    {
+      "fx": "juicy",
+      "name": "burst",
+      "peak": 0.8940337300300598,
+      "rms": 0.026047119353737765,
+      "tail": 0,
+      "bad": 0
+    }
+  ],
+  "snapshots": [
+    {
+      "tag": "ko/360x640/dark/lab/8/large",
+      "problems": [],
+      "lang": "ko",
+      "theme": "dark",
+      "skin": "lab",
+      "bottles": 8,
+      "fonts": [
+        "IBM Plex Sans KR",
+        "Jua"
+      ],
+      "resultScore": "0",
+      "scoreSize": "21.0653px",
+      "errors": [],
+      "scope": "game"
+    },
+    {
+      "tag": "hi/390x844/dark/lab/8/large",
+      "problems": [],
+      "lang": "hi",
+      "theme": "dark",
+      "skin": "lab",
+      "bottles": 8,
+      "fonts": [
+        "IBM Plex Sans KR",
+        "Jua"
+      ],
+      "resultScore": "123,456,789,012",
+      "scoreSize": "27.5648px",
+      "errors": [],
+      "scope": "game"
+    }
+  ],
+  "sourceSha256": "d74f1d2ba85d7c71bd3381584dd9b39243f0944c9b2c66b7eef0d8719eeeeff2",
+  "engineSha256": "333fea6ad4798a2484d1bcfc8b791bd20765bd3c56352f82ed657faefe8a9239",
+  "physicalDevice": false,
+  "phase": "after",
+  "quick": true,
+  "effectsOnly": false,
+  "sourcePath": "water-sort-survival.html"
+}

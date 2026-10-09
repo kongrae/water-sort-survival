@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
 <style>
-/* Layout: one phone-width column. Score strip, incoming tray (cup, flip, queue, spare cup) with zone info, zone bar, bottle rack, action row. Sheets for rules, settings and results. */
+/* Layout: compact title/score/tools row, best/combo and next goal, bottle rack, incoming tray and actions. */
 :root {
   color-scheme: light;
   --bg: #edf1f3;
@@ -50,35 +50,36 @@ body {
   padding: max(12px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(28px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   -webkit-tap-highlight-color: transparent; box-sizing: border-box;
 }
-.app { max-width: 460px; margin-inline: auto; display: flex; flex-direction: column; gap: 12px; touch-action: pinch-zoom; }
+.app { max-width: 460px; margin-inline: auto; display: flex; flex-direction: column; gap: 4px; touch-action: pinch-zoom; }
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
-.brand h1 { font-family: var(--font-brand); font-weight: 400; font-size: 22px; line-height: 1.1; margin: 0; }
-.brand-subtitle { display: block; margin-top: 2px; font: 500 12px/16px var(--font-body); color: var(--muted); white-space: nowrap; }
-.chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; max-width: 110px; flex: none; }
+.brand h1 { font-family: var(--font-brand); font-weight: 400; font-size: 20px; line-height: 1.1; margin: 0; }
+.brand-subtitle { display: none; }
+.chip { max-width: 100%; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; font-size: 10px; line-height: 14px; padding: 0 6px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
 .chip.daily { border-color: var(--accent); color: var(--accent); }
-@media (max-width: 420px) { :root:not(:lang(ko)) .mode-date { display: none; } }
+.mode-date { display: none; }
 .top-btns { display: flex; gap: 6px; flex: none; }
 .sbtn { min-width: 44px; height: 44px; padding-inline: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: 500 13px var(--font-body); cursor: pointer; }
+.top-btns .sbtn { width: 44px; padding: 0; display: grid; place-items: center; }
+.sbtn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 
-.scorebar { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.score { position: relative; min-width: 0; flex: 1; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 6px; }
-.score small { font-size: 13px; line-height: 18px; color: var(--muted); }
-#score { --number-base: 44px; grid-column: 1 / -1; grid-row: 2; font-family: var(--font-display); font-size: var(--number-base); font-weight: 700; letter-spacing: -.035em; line-height: calc(var(--number-base) * 1.1); font-variant-numeric: tabular-nums; display: inline-block; }
+.scorebar { display: flex; min-width: 0; flex: 1; align-items: center; }
+.score { position: relative; min-width: 0; flex: 1; text-align: right; }
+.score small { display: none; }
+#score { --number-base: 32px; font-family: var(--font-display); font-size: var(--number-base); font-weight: 700; letter-spacing: -.035em; line-height: calc(var(--number-base) * 1.1); font-variant-numeric: tabular-nums; display: block; }
 #score.shine { animation: shine .9s ease-out; }
-.pace { grid-column: 2; grid-row: 1; align-self: center; text-align: right; min-width: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pace { display: none; }
 .pace.up { color: var(--accent); }
 .pace.hl { animation: hl .4s ease-out; }
-.meta { display: grid; grid-template-columns: minmax(70px, auto) minmax(40px, auto); gap: 4px 12px; flex: none; text-align: right; font-size: 12px; color: var(--muted); }
-.meta > div:nth-child(2) { grid-column: 1 / -1; grid-row: 2; font-size: 12px; display: flex; justify-content: flex-end; align-items: baseline; gap: 5px; }
-.meta > div:nth-child(3) { grid-column: 2; grid-row: 1; }
-.meta b { display: block; color: var(--ink); font-size: 17px; line-height: 1.25; font-weight: 700; font-variant-numeric: tabular-nums; }
-.meta > div:nth-child(2) b { color: var(--muted); font-size: 12px; font-weight: 500; }
+.meta { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); }
+.meta > div { display: flex; align-items: baseline; gap: 5px; min-width: 0; }
+.meta > div:nth-child(2) { display: none; }
+.meta b { color: var(--ink); font-size: 15px; line-height: 1.25; font-weight: 700; font-variant-numeric: tabular-nums; }
 #combo.fuse::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50% 50% 50% 0; background: var(--liq5); transform: rotate(-45deg); vertical-align: 2px; animation: flick .45s ease-in-out infinite alternate; }
 #combo.shine { animation: badge .8s ease-out; }
 #combo.shake { animation: shake .3s ease-in-out; }
 
-.incoming { display: flex; flex-direction: column; gap: 8px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+.incoming { display: flex; flex-direction: column; gap: 8px; padding: 6px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
 .tray { display: flex; align-items: flex-end; gap: 12px; min-height: 76px; }
 .slot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); }
 .current-piece { display: flex; flex: 1; min-width: 104px; align-items: center; justify-content: center; gap: 8px; }
@@ -117,21 +118,21 @@ body {
 .offer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-width: 44px; min-height: 44px; padding: 6px 9px; border-radius: 10px; border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: 700 12px/1.3 var(--font-body); cursor: pointer; }
 .offer small { font-weight: 400; font-size: 10px; color: var(--muted); }
 .offer.blink { animation: blink .5s ease-in-out 6; }
-.run-info { position: relative; display: flex; flex-direction: column; gap: 8px; min-height: 70px; padding-bottom: 10px; border-bottom: 1px solid var(--line); box-sizing: border-box; }
-.info { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px 10px; font-size: 13px; color: var(--muted); }
+.run-info { position: relative; display: flex; flex-direction: column; gap: 4px; min-height: 44px; box-sizing: border-box; }
+.info { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 4px 8px; font-size: 12px; color: var(--muted); }
 #colorInfo { text-align: right; line-height: 1.4; }
 #pourInfo { grid-column: 1 / -1; font-size: 12px; }
 #pourInfo:empty { display: none; }
 .info strong { color: var(--ink); font-weight: 500; }
 .zchip { padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; white-space: nowrap; }
 .count-down { color: var(--accent); font-weight: 700; }
-.dots { display: flex; gap: 5px; grid-column: 1 / -1; grid-row: 2; min-height: 12px; }
+.dots { display: none; }
 .sw { width: 11px; height: 11px; border-radius: 50%; }
 .sw.next { background: transparent !important; border: 2px dashed; box-sizing: border-box; }
 .sw.next.pulse { animation: pulse .7s ease-in-out infinite alternate; }
 .tag-new { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); padding: 0 4px; border-radius: 4px; background: var(--accent); color: var(--accent-ink); font: 700 9px/1.5 var(--font-body); pointer-events: none; white-space: nowrap; }
 
-.zbar { display: flex; align-items: center; gap: 8px; min-height: 16px; }
+.zbar { display: none; }
 .zbar .track { position: relative; flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
 .zbar .fill { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--accent); transition: width .3s ease; }
 .zbar .flag { position: absolute; top: -5px; width: 2px; height: 16px; margin-left: -1px; background: var(--ink); }
@@ -156,14 +157,14 @@ body {
 :root:not([data-theme="light"])[data-skin="gem"], :root:not([data-theme="light"]) [data-skin="gem"] { --glass: #1d1a28; --glass-edge: #6c6488; --shelf: radial-gradient(120% 90% at 50% 0%, #2a2440, #1d1830); }
 :root:not([data-theme="light"])[data-skin="deep"], :root:not([data-theme="light"]) [data-skin="deep"] { --glass: #0e2230; --glass-edge: #3e7d97; }
 
-.rack { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 58px)); justify-content: center; gap: 10px; padding-top: 18px; }
+.rack { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 58px)); justify-content: center; gap: 14px 10px; padding-top: 12px; }
 .rack::before { content: ""; position: absolute; z-index: -1; inset: 4px -10px -6px; border-radius: 14px; background: var(--shelf); pointer-events: none; }
-.app.expanding { gap: 8px; }
+.app.expanding { gap: 4px; }
 .rack.expanding { --lh: 30px; grid-template-columns: repeat(6, minmax(44px, 58px)); grid-template-rows: repeat(2, calc(4 * var(--lh) + 38px + var(--rim-h))); gap: 14px 8px; }
 .rack.expanding .glass, .rack.expanding .rim, .rack.expanding .free { flex-shrink: 0; }
 .rack.expanding::before { background: linear-gradient(to bottom, transparent calc(50% - 7px), var(--panel) calc(50% - 7px) calc(50% + 7px), transparent calc(50% + 7px)), var(--shelf); }
-.growth-note { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
-@media (max-height: 780px) { .app.expanding { gap: 6px; } }
+.growth-note { font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+@media (max-height: 780px) { .app, .app.expanding { gap: 3px; } }
 .rack.punch { animation: punch .15s ease-out; }
 .rack.dead { filter: saturate(.3); transition: filter .6s ease; }
 .tube { --cap: 4; appearance: none; border: 0; background: none; padding: 0; margin: 0; color: inherit; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: stretch; position: relative; transition: transform .16s ease, scale .06s ease; }
@@ -227,7 +228,7 @@ body {
 .run-info:has(#extraRow:not([hidden])) > .info,
 .run-info:has(#extraRow:not([hidden])) > .zbar { visibility: hidden; }
 /* only what sits below the bottles decides how low they go, so the prototype note goes */
-.app.tray-bottom > .foot { display: none; }
+.app > .foot { display: none; }
 .layer.pop { animation: pop .22s ease-out; }
 .burst { position: absolute; inset: 3px; display: flex; flex-direction: column-reverse; gap: 2px; pointer-events: none; animation: burst .55s ease-out forwards; }
 .burst i { height: calc(var(--lh) - 2px); border-radius: 5px; }
@@ -438,9 +439,9 @@ body {
 :root.fx-reduce *, :root.fx-reduce *::before, :root.fx-reduce *::after { animation-duration: .01ms !important; transition: none !important; }
 :root.fx-reduce .tube.charging .glass { animation-duration: .45s !important; }
 /* Type and spacing tighten on short displays before touch areas do. Liquid identity is unchanged. */
-.brand { flex-wrap: nowrap; gap: 6px; }
+.brand { flex-wrap: nowrap; }
 .top { gap: 8px; }
-.zchip { font-size: 12px; }
+.zchip { font-size: 11px; }
 .banner, .fx-score, .st-num, .cb-num > span, .cb-word > span, .count { font-weight: 700; }
 .layer { font-weight: 700; }
 .layer[data-color="2"] { color: #16242c; text-shadow: none; }
@@ -450,45 +451,39 @@ body {
 .rack.expanding .free { line-height: 1.35; }
 @media (max-height: 700px) {
   body { padding-top: max(8px, env(safe-area-inset-top, 0px)); padding-bottom: max(8px, env(safe-area-inset-bottom, 0px)); }
-  .app.expanding { gap: 4px; }
-  .rack.expanding { padding-top: 14px; row-gap: 10px; }
-  .app.expanding .run-info { min-height: 64px; gap: 6px; padding-bottom: 6px; }
+  .rack, .rack.expanding { padding-top: 10px; row-gap: 10px; }
   .app.expanding .status { min-height: 37px; font-size: 13px; }
-  .app.expanding .incoming { padding-block: 8px; }
+  .incoming { padding-block: 6px; }
   .app.expanding .tray { min-height: 68px; }
-  .app.expanding #score { --number-base: 40px; }
 }
 /* Browser bars and safe areas can leave less than 640px. Tighten the chrome before shrinking bottles. */
 @media (max-height: 640px) {
-  .app.expanding { gap: 3px; }
-  .rack.expanding { padding-top: 8px; row-gap: 6px; }
-  .app.expanding .run-info { min-height: 54px; gap: 4px; padding-bottom: 4px; }
-  .app.expanding .incoming { padding-block: 4px; }
-  .app.expanding .tube.mini { --lh: 18px; }
+  .rack, .rack.expanding { padding-top: 8px; row-gap: 6px; }
+  .incoming { padding-block: 4px; }
+  .tube.mini { --lh: 18px; }
   .app.expanding .tube.mini.piece-three { --piece-lh: 18px; }
-  .app.expanding #score { --number-base: 36px; }
 }
 </style>
 
 <div class="app">
   <header class="top">
     <div class="brand"><h1>보트리스<span class="brand-subtitle">물병 정렬 퍼즐</span></h1><span class="chip" id="modeChip">무한 모드</span></div>
+    <section class="scorebar" aria-label="점수">
+      <div class="score"><small>점수</small><span id="score">0</span><span class="pace" id="pace"></span></div>
+    </section>
     <div class="top-btns">
-      <button class="sbtn" id="btnHelp" type="button">규칙</button>
-      <button class="sbtn" id="btnSettings" type="button">설정</button>
+      <button class="sbtn" id="btnHelp" type="button" aria-label="규칙" title="규칙"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 8.5a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4"/><path d="M12 16.5v.5"/></svg></button>
+      <button class="sbtn" id="btnSettings" type="button" aria-label="설정" title="설정"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="var(--panel)"/><circle cx="15" cy="12" r="2" fill="var(--panel)"/><circle cx="9" cy="18" r="2" fill="var(--panel)"/></svg></button>
     </div>
   </header>
 
-  <section class="scorebar" aria-label="점수">
-    <div class="score"><small>점수</small><span id="score">0</span><span class="pace" id="pace"></span></div>
+  <section class="run-info" id="runInfo" aria-label="이번 판 목표">
     <div class="meta">
       <div>최고<b id="best">0</b></div>
       <div>턴<b id="turn">0</b></div>
       <div>콤보<b id="combo">-</b></div>
     </div>
   </section>
-
-  <section class="run-info" id="runInfo" aria-label="이번 판 목표"></section>
 
   <section class="incoming" aria-label="들어오는 조각">
     <div class="tray">
@@ -1905,18 +1900,21 @@ function turnRhythm(S) {
   let scoreShown = null, count = null;
   // the best shown follows the score shown, so a record does not show before its points have arrived
   let numberFitFrame = 0;
+  function fitNumber(el) {
+    if (!el.getClientRects().length) return;
+    el.style.fontSize = '';
+    const base = parseFloat(getComputedStyle(el).getPropertyValue('--number-base'));
+    const range = document.createRange(); range.selectNodeContents(el);
+    const width = range.getBoundingClientRect().width, available = el.clientWidth;
+    // Reserve a little room for the score's short scale pulse without moving the fixed line box.
+    if (width > available * .88) el.style.fontSize = Math.max(10, base * available * .88 / width) + 'px';
+  }
   function scheduleNumberFit() {
     if (numberFitFrame) return;
     numberFitFrame = requestAnimationFrame(() => {
       numberFitFrame = 0;
       for (const el of [$('score'), ...document.querySelectorAll('#ovOver .stats dd')]) {
-        if (!el.getClientRects().length) continue;
-        el.style.fontSize = '';
-        const base = parseFloat(getComputedStyle(el).getPropertyValue('--number-base'));
-        const range = document.createRange(); range.selectNodeContents(el);
-        const width = range.getBoundingClientRect().width, available = el.clientWidth;
-        // Reserve a little room for the score's short scale pulse without moving the fixed line box.
-        if (width > available * .88) el.style.fontSize = Math.max(10, base * available * .88 / width) + 'px';
+        fitNumber(el);
       }
     });
   }
@@ -1993,7 +1991,7 @@ function turnRhythm(S) {
   let rackFitFrame = 0, rackFitKey = '';
   function scheduleRackFit(force) {
     if (!S) return;
-    const key = [tray(), isExpanding(S.rules),
+    const key = [tray(), S.mode, isExpanding(S.rules),
       S.rules.cap, S.rules.preview, hasHold(S.rules), hasTriple(S.rules), prefs.skin, window.WSSLocale.current()].join('/');
     if (!force && key === rackFitKey) return;
     rackFitKey = key;
@@ -2007,13 +2005,15 @@ function turnRhythm(S) {
       const gap = parseFloat(getComputedStyle(app).rowGap) || 0;
       const view = Math.min(document.body.clientHeight, document.documentElement.clientHeight, window.visualViewport ? window.visualViewport.height : innerHeight);
       const available = view - parseFloat(bs.paddingTop) - parseFloat(bs.paddingBottom) - fixed - gap * (children.length - 1);
-      // Expanding rows reserve the complete bottle even while the upper one is empty.
-      // Daily/custom boards use one row and retain their own capacity and caption height.
+      // Standard daily/endless bottles share a height budget, including safe areas and the future upper row.
+      // Short screens use the same smaller height in both modes; custom capacities retain their own fitting.
       const expanding = isExpanding(S.rules), rows = expanding ? 2 : 1;
+      const sharedHeight = S.rules.cap === DEFAULT_RULES.cap && (expanding || S.mode === 'daily');
+      const fitRows = sharedHeight ? 2 : rows;
       const caption = rack.querySelector('.free'), cs = caption && getComputedStyle(caption);
-      const bottleOverhead = expanding ? 38 : 16 + (caption ? caption.offsetHeight + parseFloat(cs.marginTop) : 23);
-      const overhead = parseFloat(rs.paddingTop) + (rows - 1) * parseFloat(rs.rowGap) + rows * (bottleOverhead + parseFloat(rs.getPropertyValue('--rim-h')));
-      const lh = Math.floor(Math.max(10, Math.min(30, (available - overhead - 1) / (rows * S.rules.cap))) * 100) / 100;
+      const bottleOverhead = sharedHeight ? 38 : 16 + (caption ? caption.offsetHeight + parseFloat(cs.marginTop) : 23);
+      const overhead = parseFloat(rs.paddingTop) + (fitRows - 1) * parseFloat(rs.rowGap) + fitRows * (bottleOverhead + parseFloat(rs.getPropertyValue('--rim-h')));
+      const lh = Math.floor(Math.max(10, Math.min(30, (available - overhead - 1) / (fitRows * S.rules.cap))) * 100) / 100;
       rack.style.setProperty('--lh', lh + 'px');
       stageDirty = true; if (S) paintStage();
     });
@@ -3568,7 +3568,7 @@ function turnRhythm(S) {
   function overCountUp() {
     const el = $('oScore'), to = S.score, t0 = now();
     clearInterval(overCount);
-    const step = () => { const q = Math.min(1, (now() - t0) / 600); el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - q, 3)))); scheduleNumberFit(); if (q >= 1) clearInterval(overCount); };
+    const step = () => { const q = Math.min(1, (now() - t0) / 600); el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - q, 3)))); fitNumber(el); if (q >= 1) clearInterval(overCount); };
     overCount = setInterval(step, 30);
     step();
     if (S.newBest) {

@@ -91,13 +91,14 @@ async function main(){
       const baseline={};await load('',w,h,true,top,bottom);
       for(const n of [6,7,8]){await setup({n,old:true});baseline[n]=await geom();}
       await load('',w,h,false,top,bottom);
+      await setup({n:6});const currentSix=await geom();
       for(const n of [6,7,8])for(const length of [2,3]){
         if(length===3&&n<8)continue;
         await setup({n,piece:length===3?[0,1,1]:[0,1],hold:n>=7?{piece:[2,3,3].slice(0,length),intro:-1,flipped:false}:null});
         const g=await geom(),old=baseline[n];geometry.push({w,h,top,bottom,n,length,before:old,after:g});
-        ck('bottle height and anchoring preserved/'+w+'x'+h+'/'+n+'/'+length,
-          g.tubes.every((t,i)=>Math.abs(t.h-old.tubes[i].h)<.15&&Math.abs(t.y-old.tubes[i].y)<.15&&Math.abs(t.x-old.tubes[i].x)<.15)&&
-          g.bottleGlass.every((t,i)=>Math.abs(t.h-old.bottleGlass[i].h)<.15&&Math.abs(t.y-old.bottleGlass[i].y)<.15&&Math.abs(t.x-old.bottleGlass[i].x)<.15),{before:old.tubes,after:g.tubes,beforeGlass:old.bottleGlass,afterGlass:g.bottleGlass});
+        ck('bottle height improves without growth or piece resizing/'+w+'x'+h+'/'+n+'/'+length,
+          g.tubes.every((t,i)=>t.h>=old.tubes[i].h-.15&&Math.abs(t.h-currentSix.tubes[0].h)<.15&&Math.abs(t.x-old.tubes[i].x)<.15&&(i>=6||Math.abs(t.y-currentSix.tubes[i].y)<.15))&&
+          g.bottleGlass.every((t,i)=>t.h>=old.bottleGlass[i].h-.15&&Math.abs(t.h-currentSix.bottleGlass[0].h)<.15&&Math.abs(t.x-old.bottleGlass[i].x)<.15&&(i>=6||Math.abs(t.y-currentSix.bottleGlass[i].y)<.15)),{before:old.tubes,after:g.tubes,currentSix:currentSix.tubes,beforeGlass:old.bottleGlass,afterGlass:g.bottleGlass});
         ck('preview frame does not grow/'+w+'x'+h+'/'+n+'/'+length,Math.abs(g.glass.h-old.glass.h)<.15,{before:old.glass.h,after:g.glass.h});
         ck('fixed portrait and 44px targets/'+w+'x'+h+'/'+n+'/'+length,g.actions.b<=h-bottom+.1&&g.tubes.every(t=>t.w>=44&&t.b<=g.actions.y)&&g.hold.w>=44&&g.hold.h>=44&&g.scroll[0]===0&&g.scroll[1]===0&&g.scroll[2]<=w,g);
         ck('tray groups do not overlap/'+w+'x'+h+'/'+n+'/'+length,g.overlaps.every((r,i,a)=>!i||r.x>=a[i-1].x+a[i-1].w-.1),g.overlaps);
