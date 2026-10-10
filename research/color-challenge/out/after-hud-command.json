@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-10T09:04:28.060Z",
+  "command": "node uitest/compact-hud.js --quick",
+  "sourceSha256": "029a8a2b91e8ba4d88bbc8f29bf454973ab79b4d3492712fdcdd5cde3b6e5648",
+  "exitCode": 0,
+  "stdout": "Compact HUD 164/164, 0 failed\n",
+  "stderr": ""
+}

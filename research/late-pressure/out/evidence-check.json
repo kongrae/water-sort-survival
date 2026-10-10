@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-10T02:45:40.250Z",
+  "sourceSha256": "b190f39f2228ab890f0815104e211b87b36576297299a42e71989337e18a8fc7",
+  "engineSha256": "ba978d8460f51423f7b23e4f81062bbe0f41c7bf7934737a6bd043d747261b6c",
+  "botSha256": "4329e2331ab296f5e2ae5d47fdb5bb72f568dc2af13aeaf458de7e62ed660012",
+  "node": "v24.19.0",
+  "passed": 6,
+  "checks": [
+    "final engine statistics and real-input browser results match current engine",
+    "initial 240 plus bounded 80 tuning games use all prespecified fresh seeds",
+    "measured explicit selected rules replay identically under final default configuration",
+    "required final regressions pass; historical feel failure names/counts remain exact",
+    "baseline signatures and pre-existing tracked evidence were not rewritten",
+    "paired cold/steady/late performance protocols complete all inputs without runtime errors"
+  ],
+  "selectedCurve": [
+    {
+      "score": 4500,
+      "triplePct": 5,
+      "tripleMonoPct": 50
+    },
+    {
+      "score": 10000,
+      "triplePct": 8,
+      "tripleMonoPct": 30
+    },
+    {
+      "score": 15000,
+      "triplePct": 10,
+      "tripleMonoPct": 20
+    },
+    {
+      "score": 25000,
+      "triplePct": 12,
+      "tripleMonoPct": 10
+    }
+  ],
+  "comparisonGames": 320,
+  "physicalDevice": false,
+  "humanFun": false
+}

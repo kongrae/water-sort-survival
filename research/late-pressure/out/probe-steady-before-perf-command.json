@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-10T02:09:57.176Z",
+  "command": "node research/feel/perf.js --source=outputs/late-pressure/before-source.html --steady",
+  "sourceSha256": "65eee1c83905a3bbc9550807a334d3838238ee770aa961284e636156707c3962",
+  "exitCode": 0,
+  "stdout": "| setting | CPU | moves made | move p50 / p90 / max (ms) | pour p90 | place p90 | x4+ completion p90 | long tasks (longest) | effect nodes max |\n|---|---|---|---|---|---|---|---|---|\n| base | x1 | 55/55 | 1 / 1.2 / 4.4 | 1.2 | 1.2 | 4.4 | 0 (0) | 23 |\n| base | x4 | 55/55 | 4 / 5.2 / 13.4 | 4.4 | 4.5 | 13.4 | 0 (0) | 23 |\n| juicy | x1 | 55/55 | 1.2 / 1.4 / 2.1 | 1.4 | 1.6 | 1.5 | 0 (0) | 54 |\n| juicy | x4 | 55/55 | 5.6 / 6.6 / 7.7 | 6.6 | 5.6 | 7 | 0 (0) | 54 |\n",
+  "stderr": ""
+}

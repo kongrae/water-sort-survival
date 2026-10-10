@@ -1,0 +1,251 @@
+{
+  "checkedAt": "2026-10-10T09:02:38.800Z",
+  "sourceSha256": "029a8a2b91e8ba4d88bbc8f29bf454973ab79b4d3492712fdcdd5cde3b6e5648",
+  "engineSha256": "ce13fd20a514345496da5cb1eafedc7c0dd967db326c8096d5f64a1d9f66615d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "passed": 9,
+  "checks": [
+    "legacy signatures, sanitized rules and generated streams remain exact",
+    "old/new real-action bot replays match states and actions, not just aggregate score",
+    "linear interpolation, anchors, adjacent scores, fractional values and upper clamp",
+    "actual bottle/color gates and priority color introductions keep old policy",
+    "policy sanitization preserves floats, limits malformed rows, signatures include complete table",
+    "score crossing preserves published queue/HOLD; generation uses the new actual score",
+    "save/reload and undo snapshots replay same hold/place generation at thresholds",
+    "query/solver clones and failed/ended input do not advance player state",
+    "fixed-seed eligible generation frequencies, mono/shape/color balance and ordinary tail"
+  ],
+  "statistics": [
+    {
+      "score": 4500,
+      "n": 80000,
+      "seeds": 8,
+      "eligibleOnly": true,
+      "introductions": 0,
+      "expected": {
+        "triplePct": 5,
+        "tripleMonoPct": 50
+      },
+      "counts": {
+        "one": 7768,
+        "two": 68342,
+        "triple": 3890,
+        "mono": 2002,
+        "AAB": 619,
+        "ABA": 649,
+        "BAA": 620,
+        "colors": [
+          435,
+          479,
+          444,
+          421,
+          424,
+          388,
+          471,
+          416,
+          412
+        ]
+      },
+      "tolerances": {
+        "triple": 0.004,
+        "mono": 0.025,
+        "shape": 0.035,
+        "ordinaryTail": 0.008,
+        "color": 0.035
+      }
+    },
+    {
+      "score": 7250,
+      "n": 80000,
+      "seeds": 8,
+      "eligibleOnly": true,
+      "introductions": 0,
+      "expected": {
+        "triplePct": 6.5,
+        "tripleMonoPct": 40
+      },
+      "counts": {
+        "one": 7464,
+        "two": 67304,
+        "triple": 5232,
+        "mono": 2129,
+        "AAB": 1052,
+        "ABA": 1067,
+        "BAA": 984,
+        "colors": [
+          569,
+          599,
+          568,
+          586,
+          582,
+          590,
+          586,
+          553,
+          599
+        ]
+      },
+      "tolerances": {
+        "triple": 0.004,
+        "mono": 0.025,
+        "shape": 0.035,
+        "ordinaryTail": 0.008,
+        "color": 0.035
+      }
+    },
+    {
+      "score": 10000,
+      "n": 80000,
+      "seeds": 8,
+      "eligibleOnly": true,
+      "introductions": 0,
+      "expected": {
+        "triplePct": 8,
+        "tripleMonoPct": 30
+      },
+      "counts": {
+        "one": 7350,
+        "two": 66226,
+        "triple": 6424,
+        "mono": 1947,
+        "AAB": 1534,
+        "ABA": 1489,
+        "BAA": 1454,
+        "colors": [
+          659,
+          720,
+          709,
+          764,
+          671,
+          738,
+          692,
+          728,
+          743
+        ]
+      },
+      "tolerances": {
+        "triple": 0.004,
+        "mono": 0.025,
+        "shape": 0.035,
+        "ordinaryTail": 0.008,
+        "color": 0.035
+      }
+    },
+    {
+      "score": 15000,
+      "n": 80000,
+      "seeds": 8,
+      "eligibleOnly": true,
+      "introductions": 0,
+      "expected": {
+        "triplePct": 10,
+        "tripleMonoPct": 20
+      },
+      "counts": {
+        "one": 7162,
+        "two": 64791,
+        "triple": 8047,
+        "mono": 1655,
+        "AAB": 2155,
+        "ABA": 2082,
+        "BAA": 2155,
+        "colors": [
+          900,
+          898,
+          901,
+          917,
+          858,
+          924,
+          853,
+          884,
+          912
+        ]
+      },
+      "tolerances": {
+        "triple": 0.004,
+        "mono": 0.025,
+        "shape": 0.035,
+        "ordinaryTail": 0.008,
+        "color": 0.035
+      }
+    },
+    {
+      "score": 20000,
+      "n": 80000,
+      "seeds": 8,
+      "eligibleOnly": true,
+      "introductions": 0,
+      "expected": {
+        "triplePct": 11,
+        "tripleMonoPct": 15
+      },
+      "counts": {
+        "one": 7100,
+        "two": 64148,
+        "triple": 8752,
+        "mono": 1271,
+        "AAB": 2504,
+        "ABA": 2445,
+        "BAA": 2532,
+        "colors": [
+          954,
+          953,
+          953,
+          956,
+          1000,
+          1032,
+          963,
+          979,
+          962
+        ]
+      },
+      "tolerances": {
+        "triple": 0.004,
+        "mono": 0.025,
+        "shape": 0.035,
+        "ordinaryTail": 0.008,
+        "color": 0.035
+      }
+    },
+    {
+      "score": 25000,
+      "n": 80000,
+      "seeds": 8,
+      "eligibleOnly": true,
+      "introductions": 0,
+      "expected": {
+        "triplePct": 12,
+        "tripleMonoPct": 10
+      },
+      "counts": {
+        "one": 7065,
+        "two": 63259,
+        "triple": 9676,
+        "mono": 982,
+        "AAB": 2846,
+        "ABA": 2983,
+        "BAA": 2865,
+        "colors": [
+          1075,
+          1067,
+          1036,
+          1077,
+          1104,
+          1093,
+          1073,
+          1070,
+          1081
+        ]
+      },
+      "tolerances": {
+        "triple": 0.004,
+        "mono": 0.025,
+        "shape": 0.035,
+        "ordinaryTail": 0.008,
+        "color": 0.035
+      }
+    }
+  ],
+  "baselineSource": "outputs/late-pressure/before-source.html",
+  "statisticalSamples": 480000
+}

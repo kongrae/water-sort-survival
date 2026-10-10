@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-10T02:38:02.069Z",
+  "sourceSha256": "b190f39f2228ab890f0815104e211b87b36576297299a42e71989337e18a8fc7",
+  "engineSha256": "ba978d8460f51423f7b23e4f81062bbe0f41c7bf7934737a6bd043d747261b6c",
+  "botSha256": "4329e2331ab296f5e2ae5d47fdb5bb72f568dc2af13aeaf458de7e62ed660012",
+  "node": "v24.19.0",
+  "rows": [
+    {
+      "phase": "after",
+      "exitCode": 0
+    },
+    {
+      "phase": "probe-steady-after",
+      "exitCode": 0
+    },
+    {
+      "phase": "probe-late-before",
+      "exitCode": 0
+    },
+    {
+      "phase": "probe-late-after",
+      "exitCode": 0
+    }
+  ]
+}

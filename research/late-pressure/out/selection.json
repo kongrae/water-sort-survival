@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-10-10T02:33:03.110Z",
+  "sourceSha256": "b190f39f2228ab890f0815104e211b87b36576297299a42e71989337e18a8fc7",
+  "engineSha256": "ba978d8460f51423f7b23e4f81062bbe0f41c7bf7934737a6bd043d747261b6c",
+  "botSha256": "4329e2331ab296f5e2ae5d47fdb5bb72f568dc2af13aeaf458de7e62ed660012",
+  "node": "v24.19.0",
+  "label": "full",
+  "rules": {
+    "bottles": 6,
+    "cap": 4,
+    "startColors": 4,
+    "maxColors": 9,
+    "colorEvery": 20,
+    "pieceMin": 1,
+    "pieceMax": 2,
+    "preview": 2,
+    "pourLimit": 0,
+    "autoMerge": false,
+    "comboPlace": true,
+    "flip": true,
+    "flipLimit": 2,
+    "zones": true,
+    "zoneBonus": 20,
+    "zoneMulMax": 5,
+    "zoneTwin": true,
+    "zoneTwinSize": 1,
+    "spare": false,
+    "spareCap": 1,
+    "spareTurns": 20,
+    "spareFrom": 15,
+    "spareMaxEmpty": 0,
+    "spareMaxFree": 7,
+    "spareSticky": true,
+    "expansion": 1,
+    "growthTable": [
+      {
+        "score": 0,
+        "colors": 4,
+        "bottles": 6
+      },
+      {
+        "score": 300,
+        "colors": 5,
+        "bottles": 6
+      },
+      {
+        "score": 900,
+        "colors": 6,
+        "bottles": 7
+      },
+      {
+        "score": 1700,
+        "colors": 7,
+        "bottles": 7
+      },
+      {
+        "score": 2800,
+        "colors": 8,
+        "bottles": 8
+      },
+      {
+        "score": 4500,
+        "colors": 9,
+        "bottles": 8
+      }
+    ],
+    "tailDoublePct": 90,
+    "holdVersion": 1,
+    "holdBottles": 7,
+    "tripleVersion": 1,
+    "tripleBottles": 8,
+    "triplePct": 5,
+    "tripleMonoPct": 50,
+    "pressureVersion": 1,
+    "pressureTable": [
+      {
+        "score": 4500,
+        "triplePct": 5,
+        "tripleMonoPct": 50
+      },
+      {
+        "score": 10000,
+        "triplePct": 8,
+        "tripleMonoPct": 30
+      },
+      {
+        "score": 15000,
+        "triplePct": 10,
+        "tripleMonoPct": 20
+      },
+      {
+        "score": 25000,
+        "triplePct": 12,
+        "tripleMonoPct": 10
+      }
+    ]
+  },
+  "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10",
+  "reason": "The bounded 15% trial also capped 24/40; no additional survival-pressure benefit established, retain the lower 12% candidate.",
+  "baselineCapped": 31,
+  "selectedCapped": 24,
+  "tunedCapped": 24,
+  "releaseBalanceApproved": false,
+  "humanFunValidated": false
+}

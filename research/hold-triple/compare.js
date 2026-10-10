@@ -9,11 +9,11 @@ const OUT = path.resolve(option('out', path.join(__dirname, 'out'))); fs.mkdirSy
 const seedPrefix = option('seed-prefix', 'expansion-');
 let configs = [
   ['baseline', E.sanitizeRules(E.EXPANDING_RULES)],
-  ['hold', E.sanitizeRules({ ...E.ENDLESS_RULES, tripleVersion: 0 })],
-  ['triple-5', E.sanitizeRules({ ...E.ENDLESS_RULES, holdVersion: 0 })],
-  ['triple-10', E.sanitizeRules({ ...E.ENDLESS_RULES, holdVersion: 0, triplePct: 10 })],
-  ['both-5', E.sanitizeRules(E.ENDLESS_RULES)],
-  ['both-10', E.sanitizeRules({ ...E.ENDLESS_RULES, triplePct: 10 })],
+  ['hold', E.sanitizeRules({ ...E.LEGACY_ENDLESS_RULES, tripleVersion: 0 })],
+  ['triple-5', E.sanitizeRules({ ...E.LEGACY_ENDLESS_RULES, holdVersion: 0 })],
+  ['triple-10', E.sanitizeRules({ ...E.LEGACY_ENDLESS_RULES, holdVersion: 0, triplePct: 10 })],
+  ['both-5', E.sanitizeRules(E.LEGACY_ENDLESS_RULES)],
+  ['both-10', E.sanitizeRules({ ...E.LEGACY_ENDLESS_RULES, triplePct: 10 })],
 ];
 if (option('conditions', '')) {
   const labels = option('conditions', '').split(',');

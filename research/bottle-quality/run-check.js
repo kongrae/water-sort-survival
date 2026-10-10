@@ -2,7 +2,10 @@
 // node research/bottle-quality/run-check.js before|after perf|fx|hud|hold|i18n|mobile|real|engine
 const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const { spawnSync, execFileSync } = require('child_process');
-const BASE = path.resolve(__dirname, '../..'), DATA = path.join(__dirname, 'out'), OUT = path.join(BASE, 'outputs/bottle-quality');
+const BASE = path.resolve(__dirname, '../..');
+const task = process.argv.find(a => a.startsWith('--task='))?.slice(7) || 'bottle-quality';
+if (!/^[a-z][a-z0-9-]*$/.test(task)) throw Error('Invalid evidence task');
+const DATA = path.join(BASE, 'research', task, 'out'), OUT = path.join(BASE, 'outputs', task);
 const [phase, name] = process.argv.slice(2);
 if (!/^(before|after|probe[-\w]*)$/.test(phase || '')) throw Error('Expected before, after or probe-name');
 const configs = {
@@ -15,12 +18,12 @@ const configs = {
   real: ['uitest/real.js', []],
   engine: ['test-v2.js', []],
   feel: ['uitest/run.js', ['research/feel/out/feel-full.json', 'research/feel/out/feel-reduce.json'], ['feel', '--motion=both']],
-  presentation: ['uitest/presentation-audit.js', [], ['--out=outputs/bottle-quality/presentation', '--data=research/bottle-quality/out/presentation']],
+  presentation: ['uitest/presentation-audit.js', [], ['--out=outputs/' + task + '/presentation', '--data=research/' + task + '/out/presentation']],
   holdEngine: ['research/hold-triple/engine-test.js', []],
   expansionEngine: ['research/expansion/engine-test.js', []]
 };
 const config = configs[name]; if (!config) throw Error('Unknown check');
-const extraArgs = process.argv.slice(4);
+const extraArgs = process.argv.slice(4).filter(a => !a.startsWith('--task='));
 fs.mkdirSync(DATA, { recursive: true }); fs.mkdirSync(OUT, { recursive: true });
 const sourceArg = extraArgs.find(a => a.startsWith('--source='));
 const source = fs.readFileSync(sourceArg ? path.resolve(sourceArg.slice(9)) : path.join(BASE, 'water-sort-survival.html'));

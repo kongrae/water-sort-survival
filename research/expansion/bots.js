@@ -3,6 +3,8 @@ const { E, flipOrients, pickWithBudget } = require('../../harness');
 function clone(S) {
   const C = { ...S, bottles: S.bottles.map(b => b.slice()), turnLog: S.turnLog.slice(), zoneLog: S.zoneLog.slice(), piece: S.piece.slice(), spare: S.spare && S.spare.slice() };
   if (S.hold) C.hold = { ...S.hold, piece: S.hold.piece.slice() };
+  if (S.challenge) C.challenge = { ...S.challenge, active: S.challenge.active && { ...S.challenge.active },
+    lastResult: S.challenge.lastResult && { ...S.challenge.lastResult } };
   if (S.growth) C.growth = { ...S.growth, queue: S.growth.queue.map(q => ({ piece: q.piece.slice(), intro: q.intro })), pendingIntro: S.growth.pendingIntro.slice(), log: S.growth.log.slice() };
   return C;
 }
@@ -66,7 +68,7 @@ function roomPath(S) {
 function boardFacts(S) {
   return { free: S.bottles.reduce((n, b) => n + S.rules.cap - b.length, 0), targets: S.bottles.filter(b => S.rules.cap - b.length >= S.piece.length).length };
 }
-function run(rules, seed, maxTurns, depth, trace) {
+function run(rules, seed, maxTurns, depth, trace, observe) {
   const S = E.newState('endless', seed, rules);
   const started = performance.now();
   const actions = [];
@@ -91,6 +93,7 @@ function run(rules, seed, maxTurns, depth, trace) {
     if (S.stuck && S.stuck.startsWith('unknown')) metrics.unknown++;
     if (S.clears && metrics.firstClear === null) metrics.firstClear = S.turn;
     if (S.bottles.length > n) metrics.unlocks.push({ turn: S.turn, score: S.score, from: n, to: S.bottles.length, before, after: boardFacts(S) });
+    if (observe) observe(S, kind, gen);
   };
   while (S.turn < maxTurns && !S.over) {
     settle(S, depth, move); if (S.over) break;

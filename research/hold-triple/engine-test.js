@@ -6,7 +6,8 @@ const { E } = require('../../harness');
 const clone = s => JSON.parse(JSON.stringify(s));
 let groups = 0;
 function check(name, fn) { fn(); groups++; console.log('ok ' + name); }
-const rules = patch => E.sanitizeRules({ ...E.ENDLESS_RULES, ...patch });
+// These contracts exercise the fixed 5/10% policy; the versioned pressure curve has its own suite.
+const rules = patch => E.sanitizeRules({ ...E.LEGACY_ENDLESS_RULES, ...patch });
 function fixture(patch, n = 7) {
   const s = E.newState('endless', 'hold-contract', rules(patch));
   s.score = n === 8 ? 4500 : 900; E.updateGrowth(s, false);
@@ -16,7 +17,8 @@ function fixture(patch, n = 7) {
 check('old flags stay absent, new defaults sanitize, fixed custom rules drop features', () => {
   const old = E.sanitizeRules(E.EXPANDING_RULES);
   assert(!E.hasHold(old) && !E.hasTriple(old));
-  assert.deepStrictEqual(rules(), E.ENDLESS_RULES);
+  assert.deepStrictEqual(rules(), E.LEGACY_ENDLESS_RULES);
+  assert.deepStrictEqual(E.sanitizeRules(E.ENDLESS_RULES), E.ENDLESS_RULES);
   assert(!E.hasHold(E.sanitizeRules({ ...E.ENDLESS_RULES, expansion: 0 })));
   assert(!E.hasTriple(rules({ pieceMax: 4 })));
   const s = E.newState('endless', 'six', rules()), before = clone(s);

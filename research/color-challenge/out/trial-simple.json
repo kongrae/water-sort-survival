@@ -1,0 +1,3196 @@
+{
+  "checkedAt": "2026-10-10T08:48:57.393Z",
+  "sourceSha256": "98fc711021ed590631487a8e440f5b01f6704cdfadf63f83650389375ab2bb98",
+  "engineSha256": "f522740d0fe666c9c7d811f570d7fc33dd4b2d28b7c434e423822fbc6f702351",
+  "node": "v24.19.0",
+  "n": 16,
+  "cap": 500,
+  "depth": 2,
+  "policy": "unchanged survival bot; goals not in evaluation",
+  "rows": [
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-0",
+      "turn": 350,
+      "score": 33380,
+      "over": true,
+      "reason": "noroom",
+      "termination": "engine-no-legal-room",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-1",
+      "turn": 500,
+      "score": 44700,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-2",
+      "turn": 500,
+      "score": 47220,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-3",
+      "turn": 500,
+      "score": 43060,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-4",
+      "turn": 500,
+      "score": 49900,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-5",
+      "turn": 500,
+      "score": 44240,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-6",
+      "turn": 500,
+      "score": 46660,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-7",
+      "turn": 500,
+      "score": 45840,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-8",
+      "turn": 294,
+      "score": 25340,
+      "over": true,
+      "reason": "noroom",
+      "termination": "engine-no-legal-room",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-9",
+      "turn": 500,
+      "score": 46460,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-10",
+      "turn": 500,
+      "score": 47120,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-11",
+      "turn": 500,
+      "score": 48220,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-12",
+      "turn": 500,
+      "score": 46120,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-13",
+      "turn": 500,
+      "score": 47020,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-14",
+      "turn": 500,
+      "score": 47760,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "pressure",
+      "seed": "color-challenge-20261010-15",
+      "turn": 500,
+      "score": 46640,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [],
+      "completed": 0,
+      "missed": 0,
+      "bonus": 0,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-0",
+      "turn": 350,
+      "score": 34130,
+      "over": true,
+      "reason": "noroom",
+      "termination": "engine-no-legal-room",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 135,
+          "status": "complete",
+          "finishTurn": 138,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 178,
+          "status": "complete",
+          "finishTurn": 179,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 220,
+          "status": "complete",
+          "finishTurn": 222,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 270,
+          "status": "complete",
+          "finishTurn": 271,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 309,
+          "status": "complete",
+          "finishTurn": 312,
+          "placements": 3,
+          "reward": 150
+        }
+      ],
+      "completed": 5,
+      "missed": 0,
+      "bonus": 750,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-1",
+      "turn": 500,
+      "score": 47200,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 138,
+          "status": "complete",
+          "finishTurn": 140,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 189,
+          "status": "complete",
+          "finishTurn": 191,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 242,
+          "status": "complete",
+          "finishTurn": 244,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 293,
+          "status": "complete",
+          "finishTurn": 294,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 340,
+          "status": "complete",
+          "finishTurn": 342,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 386,
+          "status": "complete",
+          "finishTurn": 387,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 422,
+          "status": "complete",
+          "finishTurn": 424,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 482,
+          "status": "complete",
+          "finishTurn": 484,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-2",
+      "turn": 500,
+      "score": 48420,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 153,
+          "status": "complete",
+          "finishTurn": 154,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 192,
+          "status": "complete",
+          "finishTurn": 193,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 249,
+          "status": "complete",
+          "finishTurn": 249,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 301,
+          "status": "complete",
+          "finishTurn": 303,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 337,
+          "status": "complete",
+          "finishTurn": 337,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 387,
+          "status": "complete",
+          "finishTurn": 387,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 432,
+          "status": "complete",
+          "finishTurn": 434,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 467,
+          "status": "complete",
+          "finishTurn": 469,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-3",
+      "turn": 500,
+      "score": 45210,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 147,
+          "status": "complete",
+          "finishTurn": 149,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 197,
+          "status": "complete",
+          "finishTurn": 197,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 241,
+          "status": "complete",
+          "finishTurn": 241,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 293,
+          "status": "complete",
+          "finishTurn": 294,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 345,
+          "status": "complete",
+          "finishTurn": 346,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 394,
+          "status": "complete",
+          "finishTurn": 397,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 452,
+          "status": "complete",
+          "finishTurn": 454,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 500
+        }
+      ],
+      "completed": 7,
+      "missed": 0,
+      "bonus": 1050,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-4",
+      "turn": 500,
+      "score": 52150,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 137,
+          "status": "complete",
+          "finishTurn": 138,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 173,
+          "status": "complete",
+          "finishTurn": 174,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 224,
+          "status": "complete",
+          "finishTurn": 227,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 271,
+          "status": "complete",
+          "finishTurn": 271,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 310,
+          "status": "complete",
+          "finishTurn": 311,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 363,
+          "status": "complete",
+          "finishTurn": 364,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 404,
+          "status": "complete",
+          "finishTurn": 405,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 439,
+          "status": "complete",
+          "finishTurn": 440,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 50000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 480,
+          "status": "complete",
+          "finishTurn": 481,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 9,
+      "missed": 0,
+      "bonus": 1350,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-5",
+      "turn": 500,
+      "score": 45440,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 144,
+          "status": "complete",
+          "finishTurn": 145,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 188,
+          "status": "complete",
+          "finishTurn": 188,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 229,
+          "status": "complete",
+          "finishTurn": 232,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 279,
+          "status": "complete",
+          "finishTurn": 280,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 320,
+          "status": "complete",
+          "finishTurn": 322,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 382,
+          "status": "complete",
+          "finishTurn": 385,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 438,
+          "status": "complete",
+          "finishTurn": 439,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 495,
+          "status": "complete",
+          "finishTurn": 497,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-6",
+      "turn": 500,
+      "score": 47860,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 143,
+          "status": "complete",
+          "finishTurn": 145,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 183,
+          "status": "complete",
+          "finishTurn": 186,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 231,
+          "status": "complete",
+          "finishTurn": 234,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 275,
+          "status": "complete",
+          "finishTurn": 275,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 326,
+          "status": "complete",
+          "finishTurn": 328,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 375,
+          "status": "complete",
+          "finishTurn": 375,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 420,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 473,
+          "status": "complete",
+          "finishTurn": 474,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-7",
+      "turn": 500,
+      "score": 47040,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 142,
+          "status": "complete",
+          "finishTurn": 144,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 197,
+          "status": "complete",
+          "finishTurn": 198,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 247,
+          "status": "complete",
+          "finishTurn": 249,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 288,
+          "status": "complete",
+          "finishTurn": 290,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 336,
+          "status": "complete",
+          "finishTurn": 338,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 380,
+          "status": "complete",
+          "finishTurn": 381,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 435,
+          "status": "complete",
+          "finishTurn": 437,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 481,
+          "status": "complete",
+          "finishTurn": 482,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-8",
+      "turn": 294,
+      "score": 25940,
+      "over": true,
+      "reason": "noroom",
+      "termination": "engine-no-legal-room",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 136,
+          "status": "complete",
+          "finishTurn": 137,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 182,
+          "status": "complete",
+          "finishTurn": 182,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 235,
+          "status": "complete",
+          "finishTurn": 236,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 280,
+          "status": "complete",
+          "finishTurn": 280,
+          "placements": 0,
+          "reward": 150
+        }
+      ],
+      "completed": 4,
+      "missed": 0,
+      "bonus": 600,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-9",
+      "turn": 500,
+      "score": 47660,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 145,
+          "status": "complete",
+          "finishTurn": 148,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 199,
+          "status": "complete",
+          "finishTurn": 200,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 248,
+          "status": "complete",
+          "finishTurn": 250,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 300,
+          "status": "complete",
+          "finishTurn": 300,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 341,
+          "status": "complete",
+          "finishTurn": 342,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 381,
+          "status": "complete",
+          "finishTurn": 382,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 430,
+          "status": "complete",
+          "finishTurn": 431,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 471,
+          "status": "complete",
+          "finishTurn": 472,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-10",
+      "turn": 500,
+      "score": 48320,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 140,
+          "status": "complete",
+          "finishTurn": 140,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 185,
+          "status": "complete",
+          "finishTurn": 188,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 229,
+          "status": "complete",
+          "finishTurn": 231,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 280,
+          "status": "complete",
+          "finishTurn": 280,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 333,
+          "status": "complete",
+          "finishTurn": 334,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 372,
+          "status": "complete",
+          "finishTurn": 373,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 420,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 467,
+          "status": "complete",
+          "finishTurn": 469,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-11",
+      "turn": 500,
+      "score": 49420,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 140,
+          "status": "complete",
+          "finishTurn": 140,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 200,
+          "status": "complete",
+          "finishTurn": 201,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 242,
+          "status": "complete",
+          "finishTurn": 245,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 292,
+          "status": "complete",
+          "finishTurn": 295,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 312,
+          "status": "complete",
+          "finishTurn": 315,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 358,
+          "status": "complete",
+          "finishTurn": 359,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 405,
+          "status": "complete",
+          "finishTurn": 406,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 443,
+          "status": "complete",
+          "finishTurn": 444,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-12",
+      "turn": 500,
+      "score": 47320,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 152,
+          "status": "complete",
+          "finishTurn": 152,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 186,
+          "status": "complete",
+          "finishTurn": 187,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 228,
+          "status": "complete",
+          "finishTurn": 231,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 271,
+          "status": "complete",
+          "finishTurn": 272,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 310,
+          "status": "complete",
+          "finishTurn": 311,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 365,
+          "status": "complete",
+          "finishTurn": 367,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 420,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 479,
+          "status": "complete",
+          "finishTurn": 481,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-13",
+      "turn": 500,
+      "score": 48220,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 146,
+          "status": "complete",
+          "finishTurn": 147,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 194,
+          "status": "complete",
+          "finishTurn": 196,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 238,
+          "status": "complete",
+          "finishTurn": 240,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 290,
+          "status": "complete",
+          "finishTurn": 291,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 340,
+          "status": "complete",
+          "finishTurn": 343,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 375,
+          "status": "complete",
+          "finishTurn": 375,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 419,
+          "status": "complete",
+          "finishTurn": 421,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 470,
+          "status": "complete",
+          "finishTurn": 473,
+          "placements": 3,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-14",
+      "turn": 500,
+      "score": 48960,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 143,
+          "status": "complete",
+          "finishTurn": 144,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 179,
+          "status": "complete",
+          "finishTurn": 181,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 228,
+          "status": "complete",
+          "finishTurn": 231,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 274,
+          "status": "complete",
+          "finishTurn": 276,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 326,
+          "status": "complete",
+          "finishTurn": 327,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 378,
+          "status": "complete",
+          "finishTurn": 381,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 413,
+          "status": "complete",
+          "finishTurn": 414,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 457,
+          "status": "complete",
+          "finishTurn": 459,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal12",
+      "seed": "color-challenge-20261010-15",
+      "turn": 500,
+      "score": 47840,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 153,
+          "status": "complete",
+          "finishTurn": 156,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 194,
+          "status": "complete",
+          "finishTurn": 195,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 234,
+          "status": "complete",
+          "finishTurn": 236,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 290,
+          "status": "complete",
+          "finishTurn": 291,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 323,
+          "status": "complete",
+          "finishTurn": 325,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 381,
+          "status": "complete",
+          "finishTurn": 383,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 421,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 476,
+          "status": "complete",
+          "finishTurn": 478,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-0",
+      "turn": 350,
+      "score": 34130,
+      "over": true,
+      "reason": "noroom",
+      "termination": "engine-no-legal-room",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 135,
+          "status": "complete",
+          "finishTurn": 138,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 178,
+          "status": "complete",
+          "finishTurn": 179,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 220,
+          "status": "complete",
+          "finishTurn": 222,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 270,
+          "status": "complete",
+          "finishTurn": 271,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 309,
+          "status": "complete",
+          "finishTurn": 312,
+          "placements": 3,
+          "reward": 150
+        }
+      ],
+      "completed": 5,
+      "missed": 0,
+      "bonus": 750,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-1",
+      "turn": 500,
+      "score": 47200,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 138,
+          "status": "complete",
+          "finishTurn": 140,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 189,
+          "status": "complete",
+          "finishTurn": 191,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 242,
+          "status": "complete",
+          "finishTurn": 244,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 293,
+          "status": "complete",
+          "finishTurn": 294,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 340,
+          "status": "complete",
+          "finishTurn": 342,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 386,
+          "status": "complete",
+          "finishTurn": 387,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 422,
+          "status": "complete",
+          "finishTurn": 424,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 482,
+          "status": "complete",
+          "finishTurn": 484,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-2",
+      "turn": 500,
+      "score": 48420,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 153,
+          "status": "complete",
+          "finishTurn": 154,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 192,
+          "status": "complete",
+          "finishTurn": 193,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 249,
+          "status": "complete",
+          "finishTurn": 249,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 301,
+          "status": "complete",
+          "finishTurn": 303,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 337,
+          "status": "complete",
+          "finishTurn": 337,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 387,
+          "status": "complete",
+          "finishTurn": 387,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 432,
+          "status": "complete",
+          "finishTurn": 434,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 467,
+          "status": "complete",
+          "finishTurn": 469,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-3",
+      "turn": 500,
+      "score": 45210,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 147,
+          "status": "complete",
+          "finishTurn": 149,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 197,
+          "status": "complete",
+          "finishTurn": 197,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 241,
+          "status": "complete",
+          "finishTurn": 241,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 293,
+          "status": "complete",
+          "finishTurn": 294,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 345,
+          "status": "complete",
+          "finishTurn": 346,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 394,
+          "status": "complete",
+          "finishTurn": 397,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 452,
+          "status": "complete",
+          "finishTurn": 454,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 500
+        }
+      ],
+      "completed": 7,
+      "missed": 0,
+      "bonus": 1050,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-4",
+      "turn": 500,
+      "score": 52150,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 137,
+          "status": "complete",
+          "finishTurn": 138,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 173,
+          "status": "complete",
+          "finishTurn": 174,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 224,
+          "status": "complete",
+          "finishTurn": 227,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 271,
+          "status": "complete",
+          "finishTurn": 271,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 310,
+          "status": "complete",
+          "finishTurn": 311,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 363,
+          "status": "complete",
+          "finishTurn": 364,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 404,
+          "status": "complete",
+          "finishTurn": 405,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 439,
+          "status": "complete",
+          "finishTurn": 440,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 50000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 480,
+          "status": "complete",
+          "finishTurn": 481,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 9,
+      "missed": 0,
+      "bonus": 1350,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-5",
+      "turn": 500,
+      "score": 45440,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 144,
+          "status": "complete",
+          "finishTurn": 145,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 188,
+          "status": "complete",
+          "finishTurn": 188,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 229,
+          "status": "complete",
+          "finishTurn": 232,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 279,
+          "status": "complete",
+          "finishTurn": 280,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 320,
+          "status": "complete",
+          "finishTurn": 322,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 382,
+          "status": "complete",
+          "finishTurn": 385,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 438,
+          "status": "complete",
+          "finishTurn": 439,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 495,
+          "status": "complete",
+          "finishTurn": 497,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-6",
+      "turn": 500,
+      "score": 47860,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 143,
+          "status": "complete",
+          "finishTurn": 145,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 183,
+          "status": "complete",
+          "finishTurn": 186,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 231,
+          "status": "complete",
+          "finishTurn": 234,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 275,
+          "status": "complete",
+          "finishTurn": 275,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 326,
+          "status": "complete",
+          "finishTurn": 328,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 375,
+          "status": "complete",
+          "finishTurn": 375,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 420,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 473,
+          "status": "complete",
+          "finishTurn": 474,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-7",
+      "turn": 500,
+      "score": 47040,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 142,
+          "status": "complete",
+          "finishTurn": 144,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 197,
+          "status": "complete",
+          "finishTurn": 198,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 247,
+          "status": "complete",
+          "finishTurn": 249,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 288,
+          "status": "complete",
+          "finishTurn": 290,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 336,
+          "status": "complete",
+          "finishTurn": 338,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 380,
+          "status": "complete",
+          "finishTurn": 381,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 435,
+          "status": "complete",
+          "finishTurn": 437,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 481,
+          "status": "complete",
+          "finishTurn": 482,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-8",
+      "turn": 294,
+      "score": 25940,
+      "over": true,
+      "reason": "noroom",
+      "termination": "engine-no-legal-room",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 136,
+          "status": "complete",
+          "finishTurn": 137,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 182,
+          "status": "complete",
+          "finishTurn": 182,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 235,
+          "status": "complete",
+          "finishTurn": 236,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 280,
+          "status": "complete",
+          "finishTurn": 280,
+          "placements": 0,
+          "reward": 150
+        }
+      ],
+      "completed": 4,
+      "missed": 0,
+      "bonus": 600,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-9",
+      "turn": 500,
+      "score": 47660,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 145,
+          "status": "complete",
+          "finishTurn": 148,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 199,
+          "status": "complete",
+          "finishTurn": 200,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 248,
+          "status": "complete",
+          "finishTurn": 250,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 300,
+          "status": "complete",
+          "finishTurn": 300,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 341,
+          "status": "complete",
+          "finishTurn": 342,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 381,
+          "status": "complete",
+          "finishTurn": 382,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 430,
+          "status": "complete",
+          "finishTurn": 431,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 471,
+          "status": "complete",
+          "finishTurn": 472,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-10",
+      "turn": 500,
+      "score": 48320,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 140,
+          "status": "complete",
+          "finishTurn": 140,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 185,
+          "status": "complete",
+          "finishTurn": 188,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 229,
+          "status": "complete",
+          "finishTurn": 231,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 280,
+          "status": "complete",
+          "finishTurn": 280,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 333,
+          "status": "complete",
+          "finishTurn": 334,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 372,
+          "status": "complete",
+          "finishTurn": 373,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 420,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 467,
+          "status": "complete",
+          "finishTurn": 469,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-11",
+      "turn": 500,
+      "score": 49420,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 140,
+          "status": "complete",
+          "finishTurn": 140,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 200,
+          "status": "complete",
+          "finishTurn": 201,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 242,
+          "status": "complete",
+          "finishTurn": 245,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 292,
+          "status": "complete",
+          "finishTurn": 295,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 312,
+          "status": "complete",
+          "finishTurn": 315,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 358,
+          "status": "complete",
+          "finishTurn": 359,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 405,
+          "status": "complete",
+          "finishTurn": 406,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 443,
+          "status": "complete",
+          "finishTurn": 444,
+          "placements": 1,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-12",
+      "turn": 500,
+      "score": 47320,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 152,
+          "status": "complete",
+          "finishTurn": 152,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 186,
+          "status": "complete",
+          "finishTurn": 187,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 228,
+          "status": "complete",
+          "finishTurn": 231,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 271,
+          "status": "complete",
+          "finishTurn": 272,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 310,
+          "status": "complete",
+          "finishTurn": 311,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 365,
+          "status": "complete",
+          "finishTurn": 367,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 420,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 479,
+          "status": "complete",
+          "finishTurn": 481,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-13",
+      "turn": 500,
+      "score": 48220,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 146,
+          "status": "complete",
+          "finishTurn": 147,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 194,
+          "status": "complete",
+          "finishTurn": 196,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 238,
+          "status": "complete",
+          "finishTurn": 240,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 290,
+          "status": "complete",
+          "finishTurn": 291,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 340,
+          "status": "complete",
+          "finishTurn": 343,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 375,
+          "status": "complete",
+          "finishTurn": 375,
+          "placements": 0,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 419,
+          "status": "complete",
+          "finishTurn": 421,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 470,
+          "status": "complete",
+          "finishTurn": 473,
+          "placements": 3,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-14",
+      "turn": 500,
+      "score": 48960,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 143,
+          "status": "complete",
+          "finishTurn": 144,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 179,
+          "status": "complete",
+          "finishTurn": 181,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 228,
+          "status": "complete",
+          "finishTurn": 231,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 274,
+          "status": "complete",
+          "finishTurn": 276,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 326,
+          "status": "complete",
+          "finishTurn": 327,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 378,
+          "status": "complete",
+          "finishTurn": 381,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 6,
+          "goal": 1,
+          "startTurn": 413,
+          "status": "complete",
+          "finishTurn": 414,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 3,
+          "goal": 1,
+          "startTurn": 457,
+          "status": "complete",
+          "finishTurn": 459,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    },
+    {
+      "condition": "goal6",
+      "seed": "color-challenge-20261010-15",
+      "turn": 500,
+      "score": 47840,
+      "over": false,
+      "reason": "",
+      "termination": "placement-cap/right-censored",
+      "goals": [
+        {
+          "milestone": 10000,
+          "color": 8,
+          "goal": 1,
+          "startTurn": 153,
+          "status": "complete",
+          "finishTurn": 156,
+          "placements": 3,
+          "reward": 150
+        },
+        {
+          "milestone": 15000,
+          "color": 4,
+          "goal": 1,
+          "startTurn": 194,
+          "status": "complete",
+          "finishTurn": 195,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 20000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 234,
+          "status": "complete",
+          "finishTurn": 236,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 25000,
+          "color": 7,
+          "goal": 1,
+          "startTurn": 290,
+          "status": "complete",
+          "finishTurn": 291,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 30000,
+          "color": 1,
+          "goal": 1,
+          "startTurn": 323,
+          "status": "complete",
+          "finishTurn": 325,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 35000,
+          "color": 2,
+          "goal": 1,
+          "startTurn": 381,
+          "status": "complete",
+          "finishTurn": 383,
+          "placements": 2,
+          "reward": 150
+        },
+        {
+          "milestone": 40000,
+          "color": 5,
+          "goal": 1,
+          "startTurn": 420,
+          "status": "complete",
+          "finishTurn": 421,
+          "placements": 1,
+          "reward": 150
+        },
+        {
+          "milestone": 45000,
+          "color": 0,
+          "goal": 1,
+          "startTurn": 476,
+          "status": "complete",
+          "finishTurn": 478,
+          "placements": 2,
+          "reward": 150
+        }
+      ],
+      "completed": 8,
+      "missed": 0,
+      "bonus": 1200,
+      "signature": "6-4-4-9-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_6_150_2"
+    }
+  ],
+  "summaries": [
+    {
+      "condition": "pressure",
+      "runs": 16,
+      "reach10k": 16,
+      "capped": 14,
+      "goals": 0,
+      "ended": 0,
+      "completed": 0,
+      "completionRate": null,
+      "goal1": 0,
+      "goal2": 0,
+      "meanCompletionPlacements": null,
+      "bonusScoreShare": 0,
+      "humanFunValidated": false
+    },
+    {
+      "condition": "goal12",
+      "runs": 16,
+      "reach10k": 16,
+      "capped": 14,
+      "goals": 122,
+      "ended": 121,
+      "completed": 121,
+      "completionRate": 1,
+      "goal1": 122,
+      "goal2": 0,
+      "meanCompletionPlacements": 1.4462809917355373,
+      "bonusScoreShare": 0.024824586598826474,
+      "humanFunValidated": false
+    },
+    {
+      "condition": "goal6",
+      "runs": 16,
+      "reach10k": 16,
+      "capped": 14,
+      "goals": 122,
+      "ended": 121,
+      "completed": 121,
+      "completionRate": 1,
+      "goal1": 122,
+      "goal2": 0,
+      "meanCompletionPlacements": 1.4462809917355373,
+      "bonusScoreShare": 0.024824586598826474,
+      "humanFunValidated": false
+    }
+  ],
+  "complete": true
+}

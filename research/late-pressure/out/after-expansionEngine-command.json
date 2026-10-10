@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-10T02:18:47.515Z",
+  "command": "node research/expansion/engine-test.js",
+  "sourceSha256": "b190f39f2228ab890f0815104e211b87b36576297299a42e71989337e18a8fc7",
+  "exitCode": 0,
+  "stdout": "ok fresh standard starts at 6 bottles / 4 colors and keeps a confirmed queue\nok below / exactly / beyond threshold: successful action earns only due bottles\nok clear by placement earns a full normal bottle before stuck checking\nok clear by pouring unlocks immediately, but color activation waits for placement\nok crossing several thresholds pays all bottles and admits only one color per placement\nok earned bottle prevents a full-board loss in the same placement\nok failed and ended actions never consume generation or pay progression\nok new bottles accept pours, reversed pieces and normal completion scoring\nok zone settlement uses pre-unlock empties and cannot create a recursive unlock bonus\nok preview and cloned search actions do not mutate the live state\nok save / restoration replays identical state and undoes expansion without duplicate history\nok growth profile and queue policy signatures stay fixed through unlocks and isolate records\nok preview counts 0..3 restore and remain consistent across color admissions\nok table sanitization clamps colors/bottles and discards invalid or decreasing thresholds\nok tail weighting starts at the color cap and participates in the record signature\nok v1, v2 and daily transitions/signatures match the source at the baseline commit\nok same seed and policy reproduces expansion state, with colors capped after large scores\nexpansion engine: 17 groups passed\n",
+  "stderr": ""
+}

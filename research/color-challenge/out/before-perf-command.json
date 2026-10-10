@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-10T09:05:16.467Z",
+  "command": "node research/feel/perf.js --pressure --source=outputs/color-challenge/before-source.html",
+  "sourceSha256": "b190f39f2228ab890f0815104e211b87b36576297299a42e71989337e18a8fc7",
+  "exitCode": 0,
+  "stdout": "| setting | CPU | moves made | move p50 / p90 / max (ms) | pour p90 | place p90 | x4+ completion p90 | long tasks (longest) | effect nodes max |\n|---|---|---|---|---|---|---|---|---|\n| base | x1 | 55/55 | 1.2 / 2.6 / 7.7 | 1.4 | 2.6 | 7.7 | 0 (0) | 23 |\n| base | x4 | 55/55 | 6 / 13.4 / 26 | 10.6 | 5.4 | 19.6 | 2 (80) | 23 |\n| juicy | x1 | 55/55 | 1.4 / 1.6 / 1.7 | 1.6 | 1.7 | 1.7 | 0 (0) | 54 |\n| juicy | x4 | 55/55 | 6.8 / 7.9 / 9 | 7.9 | 6 | 8.5 | 0 (0) | 54 |\n",
+  "stderr": ""
+}

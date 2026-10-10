@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-10T08:57:07.934Z",
+  "command": "node uitest/presentation-audit.js --out=outputs/color-challenge/presentation --data=research/color-challenge/out/presentation",
+  "sourceSha256": "029a8a2b91e8ba4d88bbc8f29bf454973ab79b4d3492712fdcdd5cde3b6e5648",
+  "exitCode": 0,
+  "stdout": "Typography locale ko complete\nTypography locale en complete\nTypography locale ja complete\nTypography locale zh-Hans complete\nTypography locale zh-Hant complete\nTypography locale es complete\nTypography locale pt-BR complete\nTypography locale hi complete\nTypography locale id complete\nPresentation after 2741/2741, 0 failed\n",
+  "stderr": ""
+}

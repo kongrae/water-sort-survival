@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-10T09:02:42.332Z",
+  "sourceSha256": "029a8a2b91e8ba4d88bbc8f29bf454973ab79b4d3492712fdcdd5cde3b6e5648",
+  "engineSha256": "ce13fd20a514345496da5cb1eafedc7c0dd967db326c8096d5f64a1d9f66615d",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "name": "demo offers the preparation target",
+      "pass": true
+    },
+    {
+      "name": "demo alternative clear ends only bonus",
+      "pass": true
+    },
+    {
+      "name": "demo target-first succeeds",
+      "pass": true
+    },
+    {
+      "name": "demo never writes player records",
+      "pass": true
+    },
+    {
+      "name": "demo two-bottle goal succeeds",
+      "pass": true
+    },
+    {
+      "name": "demo runtime errors",
+      "pass": true
+    }
+  ],
+  "geometry": [],
+  "fontLoads": [],
+  "physicalDevice": false,
+  "safeArea": "CSS substitution fixture"
+}

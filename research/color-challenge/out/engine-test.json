@@ -1,0 +1,2575 @@
+{
+  "checkedAt": "2026-10-10T08:56:43.866Z",
+  "sourceSha256": "029a8a2b91e8ba4d88bbc8f29bf454973ab79b4d3492712fdcdd5cde3b6e5648",
+  "engineSha256": "ce13fd20a514345496da5cb1eafedc7c0dd967db326c8096d5f64a1d9f66615d",
+  "node": "v24.19.0",
+  "passed": 14,
+  "checks": [
+    "all existing rule contracts, signatures and streams retain their exact semantics",
+    "versioned defaults, sanitization and every scoring field separate records",
+    "10k, actual growth and terminal gates; first threshold-crossing clear is not retroactive",
+    "visible-only witness is deterministic, non-mutating and replayable for 1/2 bottles",
+    "no-material pending goal retries on the next turn without rerolling each pour",
+    "progress counts only target clears, reward is paid once and skipped milestones do not pile up",
+    "pour/HOLD/flip do not spend placements, and failed input is completely inert",
+    "twelfth placement can complete the goal; missed goals award no penalty or rescue",
+    "other-color-first ends only the goal; normal clear/combo/board semantics are preserved",
+    "active/progress/completed save snapshots and bot candidate clones never share goal state",
+    "malformed feature saves are rejected, preserving the existing recovery path",
+    "400 bounded board searches replay their witnesses with different unseen streams",
+    "zero-reward observer keeps the baseline bot action sequence/stream/score exact",
+    "witnesses respect custom placement windows, pour budgets, auto-merge, previews and held flip charges"
+  ],
+  "proofs": [
+    {
+      "seed": "color-proof-0",
+      "color": 1,
+      "goal": 1,
+      "actions": 9,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-1",
+      "color": 7,
+      "goal": 1,
+      "actions": 10,
+      "examined": 518
+    },
+    {
+      "seed": "color-proof-2",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-3",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-4",
+      "color": 0,
+      "goal": 1,
+      "actions": 10,
+      "examined": 739
+    },
+    {
+      "seed": "color-proof-5",
+      "color": 5,
+      "goal": 1,
+      "actions": 5,
+      "examined": 661
+    },
+    {
+      "seed": "color-proof-6",
+      "color": 8,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-7",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-8",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 464
+    },
+    {
+      "seed": "color-proof-9",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-10",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-12",
+      "color": 1,
+      "goal": 1,
+      "actions": 2,
+      "examined": 502
+    },
+    {
+      "seed": "color-proof-13",
+      "color": 6,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-15",
+      "color": 4,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-16",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-17",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-18",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-19",
+      "color": 0,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-20",
+      "color": 8,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-21",
+      "color": 5,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-22",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-23",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-24",
+      "color": 2,
+      "goal": 1,
+      "actions": 15,
+      "examined": 703
+    },
+    {
+      "seed": "color-proof-26",
+      "color": 0,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-27",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-29",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-30",
+      "color": 1,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-32",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-33",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 709
+    },
+    {
+      "seed": "color-proof-35",
+      "color": 5,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-36",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-38",
+      "color": 4,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-39",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 757
+    },
+    {
+      "seed": "color-proof-41",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-42",
+      "color": 4,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-43",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-44",
+      "color": 1,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-45",
+      "color": 1,
+      "goal": 1,
+      "actions": 11,
+      "examined": 753
+    },
+    {
+      "seed": "color-proof-46",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 767
+    },
+    {
+      "seed": "color-proof-47",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-48",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-49",
+      "color": 1,
+      "goal": 1,
+      "actions": 10,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-50",
+      "color": 2,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-51",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-52",
+      "color": 5,
+      "goal": 1,
+      "actions": 7,
+      "examined": 513
+    },
+    {
+      "seed": "color-proof-53",
+      "color": 1,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-54",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-55",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-56",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-57",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-58",
+      "color": 8,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-59",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-62",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-63",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-64",
+      "color": 1,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-65",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-66",
+      "color": 8,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-67",
+      "color": 8,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-68",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-69",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-70",
+      "color": 8,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-71",
+      "color": 4,
+      "goal": 1,
+      "actions": 11,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-72",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-73",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 599
+    },
+    {
+      "seed": "color-proof-74",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-75",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-76",
+      "color": 5,
+      "goal": 1,
+      "actions": 10,
+      "examined": 767
+    },
+    {
+      "seed": "color-proof-77",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-78",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-79",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-80",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-81",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-83",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-84",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-85",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-86",
+      "color": 4,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-87",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-88",
+      "color": 6,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-89",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-91",
+      "color": 1,
+      "goal": 1,
+      "actions": 6,
+      "examined": 742
+    },
+    {
+      "seed": "color-proof-92",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-93",
+      "color": 1,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-94",
+      "color": 0,
+      "goal": 1,
+      "actions": 6,
+      "examined": 456
+    },
+    {
+      "seed": "color-proof-95",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-96",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-97",
+      "color": 5,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-98",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-99",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-100",
+      "color": 7,
+      "goal": 1,
+      "actions": 2,
+      "examined": 319
+    },
+    {
+      "seed": "color-proof-101",
+      "color": 7,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-102",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-103",
+      "color": 8,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-104",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-105",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-106",
+      "color": 7,
+      "goal": 1,
+      "actions": 9,
+      "examined": 667
+    },
+    {
+      "seed": "color-proof-107",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-108",
+      "color": 2,
+      "goal": 1,
+      "actions": 1,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-109",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-110",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-111",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 702
+    },
+    {
+      "seed": "color-proof-112",
+      "color": 6,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-113",
+      "color": 5,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-114",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 530
+    },
+    {
+      "seed": "color-proof-115",
+      "color": 1,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-116",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-117",
+      "color": 4,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-119",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-120",
+      "color": 2,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-121",
+      "color": 5,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-122",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-123",
+      "color": 0,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-124",
+      "color": 4,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-125",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-126",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-127",
+      "color": 2,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-128",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-129",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-130",
+      "color": 5,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-131",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-132",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-133",
+      "color": 5,
+      "goal": 1,
+      "actions": 11,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-134",
+      "color": 0,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-135",
+      "color": 2,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-136",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-137",
+      "color": 1,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-138",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-139",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 670
+    },
+    {
+      "seed": "color-proof-140",
+      "color": 1,
+      "goal": 1,
+      "actions": 7,
+      "examined": 615
+    },
+    {
+      "seed": "color-proof-141",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-142",
+      "color": 3,
+      "goal": 1,
+      "actions": 8,
+      "examined": 480
+    },
+    {
+      "seed": "color-proof-143",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-144",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-145",
+      "color": 0,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-146",
+      "color": 1,
+      "goal": 1,
+      "actions": 1,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-147",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-149",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 713
+    },
+    {
+      "seed": "color-proof-151",
+      "color": 5,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-153",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-154",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 718
+    },
+    {
+      "seed": "color-proof-155",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-156",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-157",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-158",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-159",
+      "color": 2,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-160",
+      "color": 7,
+      "goal": 1,
+      "actions": 6,
+      "examined": 759
+    },
+    {
+      "seed": "color-proof-161",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-162",
+      "color": 8,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-163",
+      "color": 0,
+      "goal": 1,
+      "actions": 6,
+      "examined": 557
+    },
+    {
+      "seed": "color-proof-164",
+      "color": 0,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-166",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 418
+    },
+    {
+      "seed": "color-proof-167",
+      "color": 8,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-168",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-169",
+      "color": 1,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-170",
+      "color": 3,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-171",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 507
+    },
+    {
+      "seed": "color-proof-172",
+      "color": 7,
+      "goal": 1,
+      "actions": 6,
+      "examined": 749
+    },
+    {
+      "seed": "color-proof-173",
+      "color": 2,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-174",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-175",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-176",
+      "color": 2,
+      "goal": 1,
+      "actions": 2,
+      "examined": 477
+    },
+    {
+      "seed": "color-proof-177",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-178",
+      "color": 3,
+      "goal": 1,
+      "actions": 15,
+      "examined": 755
+    },
+    {
+      "seed": "color-proof-180",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-181",
+      "color": 4,
+      "goal": 1,
+      "actions": 11,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-182",
+      "color": 5,
+      "goal": 1,
+      "actions": 3,
+      "examined": 757
+    },
+    {
+      "seed": "color-proof-184",
+      "color": 4,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-185",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-186",
+      "color": 1,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-187",
+      "color": 3,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-188",
+      "color": 4,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-190",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-191",
+      "color": 8,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-193",
+      "color": 3,
+      "goal": 1,
+      "actions": 1,
+      "examined": 642
+    },
+    {
+      "seed": "color-proof-194",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-195",
+      "color": 7,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-196",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 359
+    },
+    {
+      "seed": "color-proof-197",
+      "color": 4,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-198",
+      "color": 2,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-199",
+      "color": 2,
+      "goal": 1,
+      "actions": 9,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-200",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 617
+    },
+    {
+      "seed": "color-proof-201",
+      "color": 1,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-202",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 648
+    },
+    {
+      "seed": "color-proof-203",
+      "color": 3,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-204",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-205",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-206",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-207",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 627
+    },
+    {
+      "seed": "color-proof-208",
+      "color": 3,
+      "goal": 1,
+      "actions": 5,
+      "examined": 665
+    },
+    {
+      "seed": "color-proof-210",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-211",
+      "color": 6,
+      "goal": 1,
+      "actions": 10,
+      "examined": 463
+    },
+    {
+      "seed": "color-proof-212",
+      "color": 0,
+      "goal": 1,
+      "actions": 1,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-213",
+      "color": 8,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-214",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-215",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-216",
+      "color": 5,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-218",
+      "color": 3,
+      "goal": 1,
+      "actions": 1,
+      "examined": 615
+    },
+    {
+      "seed": "color-proof-219",
+      "color": 0,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-220",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-221",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-222",
+      "color": 0,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-223",
+      "color": 8,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-224",
+      "color": 4,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-225",
+      "color": 6,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-226",
+      "color": 5,
+      "goal": 1,
+      "actions": 8,
+      "examined": 657
+    },
+    {
+      "seed": "color-proof-227",
+      "color": 5,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-228",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-229",
+      "color": 3,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-230",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-231",
+      "color": 0,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-232",
+      "color": 5,
+      "goal": 1,
+      "actions": 7,
+      "examined": 710
+    },
+    {
+      "seed": "color-proof-233",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-234",
+      "color": 1,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-235",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-236",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-237",
+      "color": 1,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-238",
+      "color": 5,
+      "goal": 1,
+      "actions": 1,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-239",
+      "color": 1,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-240",
+      "color": 6,
+      "goal": 1,
+      "actions": 11,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-241",
+      "color": 3,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-242",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-243",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-245",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-246",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-247",
+      "color": 2,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-248",
+      "color": 1,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-249",
+      "color": 4,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-250",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 353
+    },
+    {
+      "seed": "color-proof-251",
+      "color": 3,
+      "goal": 1,
+      "actions": 1,
+      "examined": 501
+    },
+    {
+      "seed": "color-proof-252",
+      "color": 8,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-253",
+      "color": 7,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-254",
+      "color": 0,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-255",
+      "color": 7,
+      "goal": 1,
+      "actions": 12,
+      "examined": 692
+    },
+    {
+      "seed": "color-proof-257",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-258",
+      "color": 1,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-259",
+      "color": 5,
+      "goal": 1,
+      "actions": 3,
+      "examined": 571
+    },
+    {
+      "seed": "color-proof-260",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-261",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-262",
+      "color": 0,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-263",
+      "color": 3,
+      "goal": 1,
+      "actions": 7,
+      "examined": 523
+    },
+    {
+      "seed": "color-proof-264",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-265",
+      "color": 7,
+      "goal": 1,
+      "actions": 1,
+      "examined": 204
+    },
+    {
+      "seed": "color-proof-267",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-268",
+      "color": 2,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-269",
+      "color": 0,
+      "goal": 1,
+      "actions": 11,
+      "examined": 637
+    },
+    {
+      "seed": "color-proof-270",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 601
+    },
+    {
+      "seed": "color-proof-271",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-274",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-275",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-276",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-278",
+      "color": 3,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-279",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-280",
+      "color": 7,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-281",
+      "color": 4,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-282",
+      "color": 4,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-283",
+      "color": 4,
+      "goal": 1,
+      "actions": 8,
+      "examined": 575
+    },
+    {
+      "seed": "color-proof-284",
+      "color": 5,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-285",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-286",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 624
+    },
+    {
+      "seed": "color-proof-287",
+      "color": 0,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-288",
+      "color": 0,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-289",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-290",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-291",
+      "color": 3,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-292",
+      "color": 7,
+      "goal": 1,
+      "actions": 6,
+      "examined": 626
+    },
+    {
+      "seed": "color-proof-293",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-294",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-295",
+      "color": 8,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-296",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-297",
+      "color": 2,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-298",
+      "color": 8,
+      "goal": 1,
+      "actions": 1,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-299",
+      "color": 6,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-300",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-301",
+      "color": 7,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-302",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 677
+    },
+    {
+      "seed": "color-proof-303",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-304",
+      "color": 7,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-305",
+      "color": 4,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-306",
+      "color": 7,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-307",
+      "color": 0,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-308",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-309",
+      "color": 5,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-310",
+      "color": 7,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-311",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 640
+    },
+    {
+      "seed": "color-proof-312",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 634
+    },
+    {
+      "seed": "color-proof-313",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 373
+    },
+    {
+      "seed": "color-proof-314",
+      "color": 0,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-315",
+      "color": 2,
+      "goal": 1,
+      "actions": 9,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-317",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-318",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 703
+    },
+    {
+      "seed": "color-proof-319",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 649
+    },
+    {
+      "seed": "color-proof-320",
+      "color": 8,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-321",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-322",
+      "color": 8,
+      "goal": 1,
+      "actions": 8,
+      "examined": 692
+    },
+    {
+      "seed": "color-proof-323",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-324",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-325",
+      "color": 7,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-326",
+      "color": 8,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-327",
+      "color": 8,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-328",
+      "color": 3,
+      "goal": 2,
+      "actions": 9,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-329",
+      "color": 1,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-330",
+      "color": 8,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-331",
+      "color": 5,
+      "goal": 1,
+      "actions": 2,
+      "examined": 538
+    },
+    {
+      "seed": "color-proof-332",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-333",
+      "color": 1,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-334",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-335",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-336",
+      "color": 0,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-337",
+      "color": 6,
+      "goal": 1,
+      "actions": 10,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-338",
+      "color": 3,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-339",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 706
+    },
+    {
+      "seed": "color-proof-341",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-342",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-344",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-345",
+      "color": 0,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-346",
+      "color": 6,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-347",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-348",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-349",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 623
+    },
+    {
+      "seed": "color-proof-350",
+      "color": 5,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-351",
+      "color": 5,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-352",
+      "color": 4,
+      "goal": 2,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-353",
+      "color": 6,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-355",
+      "color": 3,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-357",
+      "color": 1,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-358",
+      "color": 4,
+      "goal": 1,
+      "actions": 8,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-359",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-360",
+      "color": 7,
+      "goal": 1,
+      "actions": 9,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-362",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-363",
+      "color": 4,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-366",
+      "color": 1,
+      "goal": 2,
+      "actions": 10,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-367",
+      "color": 4,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-368",
+      "color": 6,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-369",
+      "color": 4,
+      "goal": 1,
+      "actions": 7,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-370",
+      "color": 7,
+      "goal": 1,
+      "actions": 4,
+      "examined": 308
+    },
+    {
+      "seed": "color-proof-371",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-372",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-373",
+      "color": 1,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-374",
+      "color": 0,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-375",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-376",
+      "color": 1,
+      "goal": 1,
+      "actions": 1,
+      "examined": 261
+    },
+    {
+      "seed": "color-proof-377",
+      "color": 4,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-378",
+      "color": 2,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-379",
+      "color": 8,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-380",
+      "color": 2,
+      "goal": 1,
+      "actions": 5,
+      "examined": 665
+    },
+    {
+      "seed": "color-proof-381",
+      "color": 0,
+      "goal": 1,
+      "actions": 1,
+      "examined": 687
+    },
+    {
+      "seed": "color-proof-382",
+      "color": 8,
+      "goal": 1,
+      "actions": 7,
+      "examined": 650
+    },
+    {
+      "seed": "color-proof-383",
+      "color": 7,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-384",
+      "color": 8,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-385",
+      "color": 3,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-386",
+      "color": 5,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-387",
+      "color": 6,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-388",
+      "color": 6,
+      "goal": 1,
+      "actions": 3,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-389",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-390",
+      "color": 5,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-391",
+      "color": 8,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-392",
+      "color": 6,
+      "goal": 1,
+      "actions": 8,
+      "examined": 538
+    },
+    {
+      "seed": "color-proof-393",
+      "color": 8,
+      "goal": 1,
+      "actions": 10,
+      "examined": 653
+    },
+    {
+      "seed": "color-proof-394",
+      "color": 6,
+      "goal": 1,
+      "actions": 2,
+      "examined": 597
+    },
+    {
+      "seed": "color-proof-395",
+      "color": 4,
+      "goal": 1,
+      "actions": 2,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-396",
+      "color": 3,
+      "goal": 1,
+      "actions": 4,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-397",
+      "color": 2,
+      "goal": 1,
+      "actions": 6,
+      "examined": 768
+    },
+    {
+      "seed": "color-proof-398",
+      "color": 7,
+      "goal": 1,
+      "actions": 2,
+      "examined": 505
+    },
+    {
+      "seed": "color-proof-399",
+      "color": 1,
+      "goal": 1,
+      "actions": 5,
+      "examined": 768
+    }
+  ],
+  "randomCases": 400,
+  "witnessReplays": 1089,
+  "plannerMs": {
+    "p50": 3.7353999999999985,
+    "p90": 4.524300000000039,
+    "p99": 6.0330000000000155,
+    "max": 8.943200000000019
+  },
+  "humanFunValidated": false
+}
