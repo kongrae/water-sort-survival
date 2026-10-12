@@ -1,0 +1,76 @@
+# Android 앱과 Google Play 등록
+
+2026-10-12 시작. 웹 게임(`water-sort-survival.html`)을 상어 SOS(`C:\workspace\bukang-sea`)와 같은 방식(Capacitor 8)으로 감싼 Android 앱이다. 게임 코드는 웹과 같고, 앱 빌드에서만 아래 두 가지가 다르다(`build-pages.js --app`).
+
+- **클라우드 저장 없음**: Google은 앱 안 WebView에서 구글 로그인을 막는다. 그래서 `FIREBASE_CONFIG`를 `null`로 바꾸고 설정의 '저장' 칸을 숨긴다. 기록은 기기에만 남는다.
+- **글꼴 내장**: Google Fonts 링크 대신 `assets/fonts/`의 글자 서브셋(Jua, IBM Plex Sans KR 400/500/700, SIL OFL)을 data URL로 넣는다. 오프라인에서도 같은 글꼴이 나오고 실행 중 외부 요청이 없다. 새 한글을 넣었는데 빌드가 경고하면 `node scripts/app-fonts.js`를 다시 실행한다.
+
+## 명령
+
+```bash
+npm install                 # Capacitor 8 (Node 22 이상)
+npm run build:app           # www/index.html (앱용 빌드)
+npm run android:debug       # build:app + cap sync + 디버그 APK
+npm run android:release     # build:app + cap sync + 서명된 AAB
+node scripts/store-art.js   # 아이콘·스플래시 원본(assets/)과 스토어 아이콘·그래픽 이미지(store/)
+node scripts/store-shots.js # 스토어 스크린샷 6장(store/screenshots/, 1080x1920). build:app 먼저
+```
+
+- 아이콘·스플래시를 바꾸면 `node scripts/store-art.js` 뒤에 `npx @capacitor/assets@3.0.5 generate --android --iconBackgroundColor "#0f171c" --iconBackgroundColorDark "#0f171c" --splashBackgroundColor "#0f171c" --splashBackgroundColorDark "#0f171c"`로 `android/` 리소스를 다시 만든다. 원본 그림은 `store/art/bottle.svg`(게임의 물 색 `--liq0~3`, 코르크 `--liq8`).
+- JDK 21(`~/.jdks/jdk-21*`)과 Android SDK(`%LOCALAPPDATA%\Android\Sdk`)는 상어 SOS와 같이 쓴다. `scripts/android.js`가 그 JDK로 Gradle을 실행한다.
+- 세로 고정, 진동 권한(`navigator.vibrate`), 상태바는 어두운 배경용(SystemBars DARK), Android 12 이상 시스템 스플래시 배경 `#0f171c`.
+- 출시 빌드는 작업 중인 파일이 섞이지 않도록 커밋된 상태의 깨끗한 worktree에서 만든다.
+
+## 앱 정보
+
+- 패키지 이름 **`kr.hongrae.botris`**(2026-10-12 사용자 확정). 첫 업로드 후에는 바꿀 수 없다.
+- 앱 이름: 홈 화면 `보트리스`, 스토어 제목 `보트리스: 물병 정렬 퍼즐`(`docs/STORE_LISTING_ko.md`).
+- 버전: `android/app/build.gradle`의 `versionCode`/`versionName`. Play에 올릴 때마다 versionCode를 1씩 올린다. 첫 업로드는 1(`1.0`).
+- **업로드 키**: `C:\Users\hongrae\.android-keys\botris-upload.jks`(PKCS12, alias `upload`, RSA 2048, 10000일). 비밀번호는 `android/keystore.properties`(gitignore)에만 있다. 두 파일을 함께 백업한다. Play App Signing(기본값)을 쓰므로 잃어버리면 Play Console에서 업로드 키 재설정을 요청할 수 있다(며칠 걸림). 상어 SOS 키와 따로 쓴다.
+
+## 스토어 등록 자료
+
+- 아이콘 `store/icon-512.png`, 그래픽 이미지 `store/feature-graphic.png`(1024x500), 휴대전화 스크린샷 `store/screenshots/1~6`(1080x1920, 실제 엔진으로 봇이 둔 판). 아이콘과 그래픽 이미지는 코드(SVG)로 그렸고 AI 생성물이 아니다.
+- 개인정보처리방침: `store/privacy.html` → Pages `https://kongrae.github.io/water-sort-survival/privacy.html`(`build-pages.js`가 `dist/`에 복사).
+- 제목·짧은 설명은 `docs/STORE_LISTING_ko.md`. 자세한 설명:
+
+```
+물 정렬과 콤보의 만남! 보트리스는 끝없이 들어오는 물 조각을 병에 넣고, 병끼리 부어 한 색으로 채우는 무한 워터 소트 퍼즐입니다.
+
+■ 이렇게 플레이해요
+• 조각 넣기: 아래에 나온 조각을 빈칸이 충분한 병에 넣어요.
+• 붓기: 병을 누르고 다른 병을 누르면 맨 위 색이 옮겨가요.
+• 완성: 한 색으로 가득 찬 병은 비워지고 점수를 얻어요.
+• 콤보: 완성을 이어 가면 콤보 배수가 올라가요.
+• 게임 오버: 조각을 넣을 자리를 만들 수 없으면 끝나요.
+
+■ 점점 넓어지는 판
+점수가 오르면 새 색이 도착하고 빈병이 하나씩 생겨요. 조각 뒤집기, 보관(홀드), 3칸 조각, 색상 도전이 차례로 열리며 판이 점점 깊어집니다.
+
+■ 오늘의 도전
+매일 모두가 같은 조각 순서로 플레이해요. 결과를 복사해 친구와 점수를 비교해 보세요.
+
+■ 테마
+별을 모아 실험실·카페·보석·심해 테마를 열어 보세요.
+
+■ 이런 분께 추천해요
+• 물 정렬 퍼즐을 좋아하지만 정해진 스테이지가 아쉬웠던 분
+• 짧게 한 판, 길게는 최고 기록에 도전하고 싶은 분
+
+회원가입 없이 바로 플레이할 수 있고, 기록은 기기에만 저장됩니다. 한국어·영어·일본어 등 9개 언어를 지원합니다.
+```
+
+## Play Console 설문 답변
+
+- 앱 또는 게임: 게임 / 무료 / 카테고리: 퍼즐
+- 앱 액세스: 모든 기능을 제한 없이 사용 가능(로그인 없음)
+- 광고: 없음. 현재 빌드의 '광고 보고 이어하기'·'보상형 광고 자리'는 광고 SDK 없이 자리만 보여 주는 화면이다. AdMob을 넣으면 광고 답변·데이터 보안·개인정보처리방침·타겟층을 함께 바꾼다.
+- 콘텐츠 등급(IARC): 폭력·성적 콘텐츠·욕설·약물·도박·사용자 간 상호작용·위치 공유·디지털 상품 구매 모두 아니요 → 전체이용가 예상
+- 타겟층: 13세 이상(나중에 광고를 넣을 때 가족 정책 부담이 없음)
+- 데이터 보안: 수집·공유하는 데이터 없음(앱은 외부 통신이 없다. 웹의 구글 로그인은 앱에 없음)
+- 광고 ID: 사용 안 함 / 정부 앱·금융 기능·건강: 해당 없음
+- 연락처 이메일: 상어 SOS와 같은 개발자 계정 연락처(`sky7700sky@naver.com`, 개인정보처리방침 7항)
+
+## 진행 상태
+
+(아래에 날짜별로 기록)

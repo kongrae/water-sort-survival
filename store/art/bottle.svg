@@ -1,0 +1,26 @@
+<!-- Botris bottle mark: game liquid colours (--liq0..3), cork (--liq8), dark glass of the default theme. 1024 grid. -->
+<g id="bottle">
+  <defs>
+    <path id="outline" d="M438 214 V300 H418 A96 96 0 0 0 322 396 V794 A96 96 0 0 0 418 890 H606 A96 96 0 0 0 702 794 V396 A96 96 0 0 0 606 300 H586 V214 A22 22 0 0 0 564 192 H460 A22 22 0 0 0 438 214 Z"/>
+    <clipPath id="glass"><use href="#outline"/></clipPath>
+    <linearGradient id="shine" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <use href="#outline" fill="#1b2830"/>
+  <g clip-path="url(#glass)">
+    <rect x="300" y="752" width="430" height="160" fill="#3e63dd"/>
+    <rect x="300" y="618" width="430" height="134" fill="#2e9d5d"/>
+    <rect x="300" y="484" width="430" height="134" fill="#f0b400"/>
+    <path d="M300 380 C380 352 450 406 512 380 S640 352 730 380 V484 H300Z" fill="#e5484d"/>
+    <rect x="300" y="484" width="430" height="7" fill="#000" opacity=".14"/>
+    <rect x="300" y="618" width="430" height="7" fill="#000" opacity=".14"/>
+    <rect x="300" y="752" width="430" height="7" fill="#000" opacity=".14"/>
+    <rect x="300" y="160" width="430" height="760" fill="url(#shine)"/>
+  </g>
+  <use href="#outline" fill="none" stroke="#e4edf1" stroke-width="18" stroke-linejoin="round"/>
+  <rect x="412" y="134" width="200" height="78" rx="22" fill="#7d5a3c"/>
+  <rect x="428" y="147" width="168" height="15" rx="7.5" fill="#fff" opacity=".2"/>
+  <rect x="362" y="420" width="32" height="230" rx="16" fill="#fff" opacity=".45"/>
+  <circle cx="378" cy="690" r="16" fill="#fff" opacity=".45"/>
+</g>

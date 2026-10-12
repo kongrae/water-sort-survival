@@ -1,0 +1,12 @@
+{
+  "appId": "kr.hongrae.botris",
+  "appName": "보트리스",
+  "webDir": "www",
+  "backgroundColor": "#0f171c",
+  "plugins": {
+    "SystemBars": {
+      "style": "DARK",
+      "insetsHandling": "css"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "water-sort-survival",
+  "version": "1.0.0",
+  "private": true,
+  "description": "보트리스: 물병 정렬 퍼즐 - Android app (Capacitor) around water-sort-survival.html",
+  "scripts": {
+    "build:app": "node build-pages.js www --app",
+    "cap:sync": "npm run build:app && cap sync android",
+    "android:debug": "npm run cap:sync && node scripts/android.js",
+    "android:release": "npm run cap:sync && node scripts/android.js release"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.2",
+    "@capacitor/core": "8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.2"
+  },
+  "license": "UNLICENSED"
+}
