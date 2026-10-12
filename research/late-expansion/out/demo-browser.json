@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-11T00:28:36.732Z",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "engineSha256": "af3c6f650122f105287ebc47f461e94d623cede181ce54b2e3c247aa1945dd5d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "name": "demo actual growth/12000",
+      "pass": true
+    },
+    {
+      "name": "demo native silver goal/12000",
+      "pass": true
+    },
+    {
+      "name": "demo never persists player records/12000",
+      "pass": true
+    },
+    {
+      "name": "demo actual growth/18000",
+      "pass": true
+    },
+    {
+      "name": "demo native silver goal/18000",
+      "pass": true
+    },
+    {
+      "name": "demo never persists player records/18000",
+      "pass": true
+    }
+  ],
+  "geometry": [],
+  "fonts": [],
+  "physicalDevice": false,
+  "safeArea": "16px top/26px bottom CSS fixtures, no physical device"
+}

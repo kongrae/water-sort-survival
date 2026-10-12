@@ -1,0 +1,832 @@
+{
+  "checkedAt": "2026-10-11T00:23:39.755Z",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "engineSha256": "af3c6f650122f105287ebc47f461e94d623cede181ce54b2e3c247aa1945dd5d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "name": "safe-area bottle height/360/top",
+      "pass": false,
+      "detail": {
+        "g": {
+          "bottles": [
+            {
+              "x": 16,
+              "y": 376.53125,
+              "w": 48,
+              "h": 150.46875,
+              "b": 527,
+              "r": 64
+            },
+            {
+              "x": 72,
+              "y": 376.53125,
+              "w": 48,
+              "h": 150.46875,
+              "b": 527,
+              "r": 120
+            },
+            {
+              "x": 128,
+              "y": 376.53125,
+              "w": 48,
+              "h": 150.46875,
+              "b": 527,
+              "r": 176
+            },
+            {
+              "x": 184,
+              "y": 376.53125,
+              "w": 48,
+              "h": 150.46875,
+              "b": 527,
+              "r": 232
+            },
+            {
+              "x": 240,
+              "y": 376.53125,
+              "w": 48,
+              "h": 150.46875,
+              "b": 527,
+              "r": 288
+            },
+            {
+              "x": 296,
+              "y": 376.53125,
+              "w": 48,
+              "h": 150.46875,
+              "b": 527,
+              "r": 344
+            },
+            {
+              "x": 128,
+              "y": 220.0625,
+              "w": 48,
+              "h": 150.46875,
+              "b": 370.53125,
+              "r": 176
+            },
+            {
+              "x": 184,
+              "y": 220.0625,
+              "w": 48,
+              "h": 150.46875,
+              "b": 370.53125,
+              "r": 232
+            },
+            {
+              "x": 240,
+              "y": 220.0625,
+              "w": 48,
+              "h": 150.46875,
+              "b": 370.53125,
+              "r": 288
+            }
+          ],
+          "glass": {
+            "x": 16,
+            "y": 382.53125,
+            "w": 48,
+            "h": 122.46875,
+            "b": 505,
+            "r": 64
+          },
+          "info": {
+            "x": 16,
+            "y": 63,
+            "w": 328,
+            "h": 44,
+            "b": 107,
+            "r": 344
+          },
+          "note": {
+            "x": 88.5625,
+            "y": 86.84375,
+            "w": 255.4375,
+            "h": 16.796875,
+            "b": 103.640625,
+            "r": 344
+          },
+          "text": "은색 먼저 0/2 · 12회",
+          "textWidth": 120.9375,
+          "actions": {
+            "x": 16,
+            "y": 570,
+            "w": 328,
+            "h": 44,
+            "b": 614,
+            "r": 344
+          },
+          "stage": {
+            "x": 16,
+            "y": 220.0625,
+            "w": 104,
+            "h": 150.46875,
+            "b": 370.53125,
+            "r": 120
+          },
+          "banner": {
+            "x": 16,
+            "y": 295.296875,
+            "w": 104,
+            "h": 75.234375,
+            "b": 370.53125,
+            "r": 120
+          },
+          "viewport": [
+            360,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            360,
+            640
+          ],
+          "errors": []
+        },
+        "original": {
+          "bottles": [
+            {
+              "x": 16,
+              "y": 388.46875,
+              "w": 48,
+              "h": 163.46875,
+              "b": 551.9375,
+              "r": 64
+            },
+            {
+              "x": 72,
+              "y": 388.46875,
+              "w": 48,
+              "h": 163.46875,
+              "b": 551.9375,
+              "r": 120
+            },
+            {
+              "x": 128,
+              "y": 388.46875,
+              "w": 48,
+              "h": 163.46875,
+              "b": 551.9375,
+              "r": 176
+            },
+            {
+              "x": 184,
+              "y": 388.46875,
+              "w": 48,
+              "h": 163.46875,
+              "b": 551.9375,
+              "r": 232
+            },
+            {
+              "x": 240,
+              "y": 388.46875,
+              "w": 48,
+              "h": 163.46875,
+              "b": 551.9375,
+              "r": 288
+            },
+            {
+              "x": 296,
+              "y": 388.46875,
+              "w": 48,
+              "h": 163.46875,
+              "b": 551.9375,
+              "r": 344
+            },
+            {
+              "x": 128,
+              "y": 219,
+              "w": 48,
+              "h": 163.46875,
+              "b": 382.46875,
+              "r": 176
+            },
+            {
+              "x": 184,
+              "y": 219,
+              "w": 48,
+              "h": 163.46875,
+              "b": 382.46875,
+              "r": 232
+            }
+          ],
+          "glass": {
+            "x": 16,
+            "y": 394.46875,
+            "w": 48,
+            "h": 135.46875,
+            "b": 529.9375,
+            "r": 64
+          },
+          "info": {
+            "x": 16,
+            "y": 63,
+            "w": 328,
+            "h": 44,
+            "b": 107,
+            "r": 344
+          },
+          "note": {
+            "x": 81.96875,
+            "y": 86.84375,
+            "w": 262.03125,
+            "h": 16.796875,
+            "b": 103.640625,
+            "r": 344
+          },
+          "text": "색상 도전까지 2,000점",
+          "textWidth": 112.875,
+          "actions": {
+            "x": 16,
+            "y": 594.9375,
+            "w": 328,
+            "h": 44,
+            "b": 638.9375,
+            "r": 344
+          },
+          "stage": {
+            "x": 16,
+            "y": 219,
+            "w": 104,
+            "h": 163.46875,
+            "b": 382.46875,
+            "r": 120
+          },
+          "banner": {
+            "x": 240,
+            "y": 219,
+            "w": 104,
+            "h": 163.46875,
+            "b": 382.46875,
+            "r": 344
+          },
+          "viewport": [
+            360,
+            640
+          ],
+          "scroll": [
+            0,
+            0,
+            360,
+            640
+          ],
+          "errors": []
+        }
+      }
+    },
+    {
+      "name": "safe-area no scrolling/clipping/360/top",
+      "pass": true
+    },
+    {
+      "name": "safe-area bottle height/360/bottom",
+      "pass": true
+    },
+    {
+      "name": "safe-area no scrolling/clipping/360/bottom",
+      "pass": true
+    },
+    {
+      "name": "safe-area bottle height/390/top",
+      "pass": true
+    },
+    {
+      "name": "safe-area no scrolling/clipping/390/top",
+      "pass": true
+    },
+    {
+      "name": "safe-area bottle height/390/bottom",
+      "pass": true
+    },
+    {
+      "name": "safe-area no scrolling/clipping/390/bottom",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/ko",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/en",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/ja",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/zh-Hans",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/zh-Hant",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/es",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/pt-BR",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/hi",
+      "pass": true
+    },
+    {
+      "name": "shared goal-end banner fits/id",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/lab/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/lab/light",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/cafe/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/cafe/light",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/gem/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/gem/light",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/deep/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/deep/light",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/classic/false",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/classic/false",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/classic/true",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/classic/true",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/tapPlace/false",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/tapPlace/false",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/tapPlace/true",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/tapPlace/true",
+      "pass": true
+    },
+    {
+      "name": "native ninth bottle pour and clear",
+      "pass": true
+    },
+    {
+      "name": "native new color and correct introduction announcement",
+      "pass": true
+    },
+    {
+      "name": "native ninth unlock",
+      "pass": true
+    },
+    {
+      "name": "native undo removes earned bottle",
+      "pass": true
+    },
+    {
+      "name": "re-crossing pays ninth bottle exactly once",
+      "pass": true
+    },
+    {
+      "name": "reload preserves full growth, queue and score",
+      "pass": true
+    },
+    {
+      "name": "old live color-goal policy is preserved",
+      "pass": true
+    },
+    {
+      "name": "next default upgrades previous color policy",
+      "pass": true
+    },
+    {
+      "name": "explicit prior custom remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "fresh run uses late expansion",
+      "pass": true
+    },
+    {
+      "name": "new policy retains old record under its previous signature",
+      "pass": true
+    },
+    {
+      "name": "settings round trip keeps max colors 10",
+      "pass": true
+    },
+    {
+      "name": "malformed new policy protected for recovery",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/base/0",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/base/0",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/base/1",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/base/1",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/juicy/0",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/juicy/0",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/juicy/1",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/juicy/1",
+      "pass": true
+    },
+    {
+      "name": "desktop ninth bottle geometry",
+      "pass": true
+    }
+  ],
+  "geometry": [],
+  "fonts": [
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "ko",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "en",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "ja",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "zh-Hans",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "zh-Hant",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "es",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "pt-BR",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "hi",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "lang": "id",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "lab",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "lab",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "cafe",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "cafe",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "gem",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "gem",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "deep",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "deep",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {},
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reset": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {},
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reset": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reset": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "base",
+        "reduce": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "base",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "juicy",
+        "reduce": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "juicy",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {},
+      "old": false,
+      "loaded": true
+    }
+  ],
+  "physicalDevice": false,
+  "safeArea": "16px top/26px bottom CSS fixtures, no physical device"
+}

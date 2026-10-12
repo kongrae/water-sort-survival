@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-10-12T01:29:00.988Z",
+  "sourceSha256": "58bf99316cb19dc1e33b8a25206ac4d2a71d95e4bfcc48c9b8ecfe0b8f0e86f9",
+  "engineSha256": "eb893be8a5995ded1c8a40204ed7abb6a9aecb6a688ebe9c3c3caeab8aba49d8",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "checks": [
+    "old rules retain sanitized shape, signatures, streams and complete action state",
+    "versioned caps, full growth signature and canonical round trip",
+    "12k and 18k boundaries admit only earned colors and bottles",
+    "clear crossing color boundary preserves published current, previews and held material",
+    "pour/bonus crossings grant the bottle now and defer color activation to placement",
+    "multiple threshold jump adds one bottle and introduces only one color per placement",
+    "earned ninth bottle is usable before a full-board loss and supports normal actions",
+    "pending late milestones never block 10k goals or reset goals across growth",
+    "silver goal witnesses use only available bottles and visible pieces",
+    "nine-color ordinary tail and complete stream remain exactly baseline below 12k",
+    "fresh real-action bot traces remain exact until the first late growth",
+    "newly generated material is bounded by active colors; ten-color sampling stays uniform",
+    "save/restore/undo replay is deterministic and candidate clones stay isolated",
+    "malformed new rule/state is rejected; failed/ended actions consume nothing"
+  ],
+  "statistics": [
+    {
+      "score": 4500,
+      "n": 12000,
+      "activeColors": 9,
+      "counts": {
+        "one": 1119,
+        "two": 10289,
+        "triple": 592
+      }
+    },
+    {
+      "score": 7250,
+      "n": 12000,
+      "activeColors": 9,
+      "counts": {
+        "one": 1100,
+        "two": 10138,
+        "triple": 762
+      }
+    },
+    {
+      "score": 9999,
+      "n": 12000,
+      "activeColors": 9,
+      "counts": {
+        "one": 1075,
+        "two": 9965,
+        "triple": 960
+      }
+    },
+    {
+      "score": 10000,
+      "n": 12000,
+      "activeColors": 9,
+      "counts": {
+        "one": 1075,
+        "two": 9965,
+        "triple": 960
+      }
+    },
+    {
+      "score": 11999,
+      "n": 12000,
+      "activeColors": 9,
+      "counts": {
+        "one": 1066,
+        "two": 9873,
+        "triple": 1061
+      }
+    },
+    {
+      "score": 25000,
+      "activeColors": 10,
+      "n": 40744,
+      "counts": [
+        4123,
+        4065,
+        4081,
+        4056,
+        4041,
+        4191,
+        4067,
+        4056,
+        4040,
+        4024
+      ]
+    }
+  ]
+}

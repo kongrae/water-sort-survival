@@ -1,0 +1,153 @@
+{
+  "checkedAt": "2026-10-12T02:11:17.000Z",
+  "sourceSha256": "e9081f5a8f131767b6b9d0cb3bbf320ac7033ad6e4d55eea410bc5e098bd9f70",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "label": "A",
+  "extraLabel": "C",
+  "additionalCandidates": 1,
+  "status": "experimental-balance-unresolved",
+  "rules": {
+    "bottles": 6,
+    "cap": 4,
+    "startColors": 4,
+    "maxColors": 13,
+    "colorEvery": 20,
+    "pieceMin": 1,
+    "pieceMax": 2,
+    "preview": 2,
+    "pourLimit": 0,
+    "autoMerge": false,
+    "comboPlace": true,
+    "flip": true,
+    "flipLimit": 2,
+    "zones": true,
+    "zoneBonus": 20,
+    "zoneMulMax": 5,
+    "zoneTwin": true,
+    "zoneTwinSize": 1,
+    "spare": false,
+    "spareCap": 1,
+    "spareTurns": 20,
+    "spareFrom": 15,
+    "spareMaxEmpty": 0,
+    "spareMaxFree": 7,
+    "spareSticky": true,
+    "expansion": 1,
+    "growthTable": [
+      {
+        "score": 0,
+        "colors": 4,
+        "bottles": 6
+      },
+      {
+        "score": 300,
+        "colors": 5,
+        "bottles": 6
+      },
+      {
+        "score": 900,
+        "colors": 6,
+        "bottles": 7
+      },
+      {
+        "score": 1700,
+        "colors": 7,
+        "bottles": 7
+      },
+      {
+        "score": 2800,
+        "colors": 8,
+        "bottles": 8
+      },
+      {
+        "score": 4500,
+        "colors": 9,
+        "bottles": 8
+      },
+      {
+        "score": 12000,
+        "colors": 10,
+        "bottles": 8
+      },
+      {
+        "score": 18000,
+        "colors": 10,
+        "bottles": 9
+      },
+      {
+        "score": 30000,
+        "colors": 11,
+        "bottles": 9
+      },
+      {
+        "score": 40000,
+        "colors": 11,
+        "bottles": 10
+      },
+      {
+        "score": 55000,
+        "colors": 12,
+        "bottles": 10
+      },
+      {
+        "score": 70000,
+        "colors": 12,
+        "bottles": 11
+      },
+      {
+        "score": 85000,
+        "colors": 13,
+        "bottles": 11
+      },
+      {
+        "score": 100000,
+        "colors": 13,
+        "bottles": 12
+      }
+    ],
+    "tailDoublePct": 90,
+    "holdVersion": 1,
+    "holdBottles": 7,
+    "tripleVersion": 1,
+    "tripleBottles": 8,
+    "triplePct": 5,
+    "tripleMonoPct": 50,
+    "pressureVersion": 1,
+    "pressureTable": [
+      {
+        "score": 4500,
+        "triplePct": 5,
+        "tripleMonoPct": 50
+      },
+      {
+        "score": 10000,
+        "triplePct": 8,
+        "tripleMonoPct": 30
+      },
+      {
+        "score": 15000,
+        "triplePct": 10,
+        "tripleMonoPct": 20
+      },
+      {
+        "score": 25000,
+        "triplePct": 12,
+        "tripleMonoPct": 10
+      }
+    ],
+    "colorChallengeVersion": 1,
+    "challengeFrom": 10000,
+    "challengeEvery": 5000,
+    "challengeTurns": 12,
+    "challengeBonus": 150,
+    "challengeMaxGoal": 2,
+    "challengeFirst": true,
+    "lateGrowthVersion": 2
+  },
+  "signature": "6-4-4-13-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8.12000_10_8.18000_10_9.30000_11_9.40000_11_10.55000_12_10.70000_12_11.85000_13_11.100000_13_12-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2_1-lg2",
+  "configurationSha256": "ddc7ac2fce89308f5552504045c9f5448a6a44b2119e70f7da388b9a3d290865",
+  "reason": "탐색에서 A는 16/20, B/C는 각각 18/20 관측 중단으로 모두 선별 목표 10~40%를 크게 넘었다. 더 높은 3칸 확률이 정체를 개선하지 못해, 가장 낮은 생존 비율과 기존 압박 계약을 가진 A를 실험용 표준으로 보존했다. 출시 밸런스 확정이 아니다.",
+  "analysis": "색만 늘리는 조건은 0/20 관측 중단, 마지막 13색 도달 7판 중 3판이 50배치 이내 엔진 종료였다. 전체 성장 A는 11색·9병 평균 빈칸 18.95에서 11색·10병 22.74, 12색·11병 25.30, 13색·12병 27.92로 늘었다. 12병을 얻은 16판 모두 관측 한도까지 생존했다. B/C의 최종 평균 빈칸도 약 28칸이고 반복 색 묶음이 순수 병 완성에 도움이 될 가능성이 있지만, 이는 작은 표본과 봇 정책에 따른 추정이다. 허용된 후보 중 출시 선별 가설을 충족한 안은 없으며 성장 간격과 확률을 무한히 재탐색하지 않았다. 최종·독립 시드는 이 선택 후 고정 규칙으로 실행하며 결과에 맞춰 다시 튜닝하지 않는다."
+}

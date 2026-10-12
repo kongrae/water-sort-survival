@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-11T00:24:31.375Z",
+  "command": "node uitest/i18n.js",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "exitCode": 0,
+  "stdout": "I18N 201/201, 0 failed\n",
+  "stderr": ""
+}

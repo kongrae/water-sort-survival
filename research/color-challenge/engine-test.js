@@ -135,7 +135,8 @@ check('400 bounded board searches replay their witnesses with different unseen s
 check('zero-reward observer keeps the baseline bot action sequence/stream/score exact', () => {
   for(let i=0;i<4;i++) {
     const seed='color-observer-'+i,baseline=run(E.sanitizeRules(E.PRESSURE_ENDLESS_RULES),seed,220,2,true);
-    const current=run(E.sanitizeRules({...E.ENDLESS_RULES,challengeBonus:0}),seed,220,2,true);
+    // Isolate the goal observer from later growth features added to the fresh standard.
+    const current=run(E.sanitizeRules({...E.COLOR_ENDLESS_RULES,challengeBonus:0}),seed,220,2,true);
     assert.deepStrictEqual(current.actions,baseline.actions);const state=copy(current.state);delete state.challenge;state.rules=baseline.state.rules;
     assert.deepStrictEqual(state,baseline.state);
   }

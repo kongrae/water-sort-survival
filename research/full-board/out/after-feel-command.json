@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:27:14.772Z",
+  "command": "node uitest/run.js feel --motion=both",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "1796f4a4b31563a154a1052b71abc80a65e3728cd65398274293b07a68cdbf63",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "ok   feel      reduce pass 230/230\nok   feel      full   pass 324/324\n",
+  "stderr": ""
+}

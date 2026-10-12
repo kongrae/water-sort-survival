@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-12T02:45:58.177Z",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "comparisonSha256": "03b317d5e916f87d29b897f60919e1647e114e11f773b30ced9e7b533b263aec",
+  "configurationSha256": "ddc7ac2fce89308f5552504045c9f5448a6a44b2119e70f7da388b9a3d290865",
+  "policySha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "adapterSha256": "b41e31083c47b7e9f27227cfd5fc40bb066db911650e7b5c410ddebd117f59a9",
+  "command": "node C:\\workspace\\water-sort-survival\\research\\full-board\\compare.js --stage=holdout --labels=baseline,A --n=20 --cap=1500 --workers=8",
+  "exitCode": 0,
+  "elapsedMs": 1005376
+}

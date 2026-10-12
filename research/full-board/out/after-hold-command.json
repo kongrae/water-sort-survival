@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:30:47.817Z",
+  "command": "node uitest/hold-triple.js",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "fa7340916354c65ceed12e9031d0670f2ce34366b97a45af10ad6329aa17e607",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "hold/triple browser 286/286, 0 failed\n",
+  "stderr": ""
+}

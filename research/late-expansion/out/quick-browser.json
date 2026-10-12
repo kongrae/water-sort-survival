@@ -1,0 +1,1233 @@
+{
+  "checkedAt": "2026-10-11T00:19:16.898Z",
+  "sourceSha256": "04f2a7d68c097924f34b51bddf9d1375642b2fbd031f6c5a083dbf82124b1f9a",
+  "engineSha256": "af3c6f650122f105287ebc47f461e94d623cede181ce54b2e3c247aa1945dd5d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "checks": [
+    {
+      "name": "bottle height/390/724/bottom/ko/10000/true",
+      "pass": true
+    },
+    {
+      "name": "no scroll or clipping/390/724/bottom/ko/10000/true",
+      "pass": true
+    },
+    {
+      "name": "bottle targets distinct/390/724/bottom/ko/10000/true",
+      "pass": true
+    },
+    {
+      "name": "goal/growth line fits/390/724/bottom/ko/10000/true",
+      "pass": true
+    },
+    {
+      "name": "reserved effects avoid bottles/390/724/bottom/ko/10000/true",
+      "pass": true
+    },
+    {
+      "name": "localized silver and symbols/390/724/bottom/ko/10000/true",
+      "pass": true
+    },
+    {
+      "name": "bottle height/390/724/bottom/ko/12000/false",
+      "pass": true
+    },
+    {
+      "name": "no scroll or clipping/390/724/bottom/ko/12000/false",
+      "pass": true
+    },
+    {
+      "name": "bottle targets distinct/390/724/bottom/ko/12000/false",
+      "pass": true
+    },
+    {
+      "name": "goal/growth line fits/390/724/bottom/ko/12000/false",
+      "pass": true
+    },
+    {
+      "name": "reserved effects avoid bottles/390/724/bottom/ko/12000/false",
+      "pass": true
+    },
+    {
+      "name": "localized silver and symbols/390/724/bottom/ko/12000/false",
+      "pass": true
+    },
+    {
+      "name": "bottle height/390/724/bottom/ko/18000/false",
+      "pass": true
+    },
+    {
+      "name": "no scroll or clipping/390/724/bottom/ko/18000/false",
+      "pass": true
+    },
+    {
+      "name": "bottle targets distinct/390/724/bottom/ko/18000/false",
+      "pass": true
+    },
+    {
+      "name": "goal/growth line fits/390/724/bottom/ko/18000/false",
+      "pass": true
+    },
+    {
+      "name": "reserved effects avoid bottles/390/724/bottom/ko/18000/false",
+      "pass": true
+    },
+    {
+      "name": "localized silver and symbols/390/724/bottom/ko/18000/false",
+      "pass": true
+    },
+    {
+      "name": "bottle height/390/724/bottom/ko/18000/true",
+      "pass": true
+    },
+    {
+      "name": "no scroll or clipping/390/724/bottom/ko/18000/true",
+      "pass": true
+    },
+    {
+      "name": "bottle targets distinct/390/724/bottom/ko/18000/true",
+      "pass": true
+    },
+    {
+      "name": "goal/growth line fits/390/724/bottom/ko/18000/true",
+      "pass": true
+    },
+    {
+      "name": "reserved effects avoid bottles/390/724/bottom/ko/18000/true",
+      "pass": true
+    },
+    {
+      "name": "localized silver and symbols/390/724/bottom/ko/18000/true",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/lab/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/lab/light",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/cafe/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/cafe/light",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/gem/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/gem/light",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/deep/dark",
+      "pass": true
+    },
+    {
+      "name": "silver filled palette/deep/light",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/classic/false",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/classic/false",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/classic/true",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/classic/true",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/tapPlace/false",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/tapPlace/false",
+      "pass": true
+    },
+    {
+      "name": "ninth bottle native flipped placement/tapPlace/true",
+      "pass": true
+    },
+    {
+      "name": "native silver goal bonus/tapPlace/true",
+      "pass": true
+    },
+    {
+      "name": "native ninth bottle pour and clear",
+      "pass": true
+    },
+    {
+      "name": "native new color and correct introduction announcement",
+      "pass": false,
+      "detail": {
+        "introduced": {
+          "v": 1,
+          "mode": "endless",
+          "seed": "late-ui",
+          "rules": {
+            "bottles": 6,
+            "cap": 4,
+            "startColors": 4,
+            "maxColors": 10,
+            "colorEvery": 20,
+            "pieceMin": 1,
+            "pieceMax": 2,
+            "preview": 2,
+            "pourLimit": 0,
+            "autoMerge": false,
+            "comboPlace": true,
+            "flip": true,
+            "flipLimit": 2,
+            "zones": true,
+            "zoneBonus": 20,
+            "zoneMulMax": 5,
+            "zoneTwin": true,
+            "zoneTwinSize": 1,
+            "spare": false,
+            "spareCap": 1,
+            "spareTurns": 20,
+            "spareFrom": 15,
+            "spareMaxEmpty": 0,
+            "spareMaxFree": 7,
+            "spareSticky": true,
+            "expansion": 1,
+            "lateGrowthVersion": 1,
+            "growthTable": [
+              {
+                "score": 0,
+                "colors": 4,
+                "bottles": 6
+              },
+              {
+                "score": 300,
+                "colors": 5,
+                "bottles": 6
+              },
+              {
+                "score": 900,
+                "colors": 6,
+                "bottles": 7
+              },
+              {
+                "score": 1700,
+                "colors": 7,
+                "bottles": 7
+              },
+              {
+                "score": 2800,
+                "colors": 8,
+                "bottles": 8
+              },
+              {
+                "score": 4500,
+                "colors": 9,
+                "bottles": 8
+              },
+              {
+                "score": 12000,
+                "colors": 10,
+                "bottles": 8
+              },
+              {
+                "score": 18000,
+                "colors": 10,
+                "bottles": 9
+              }
+            ],
+            "tailDoublePct": 90,
+            "colorChallengeVersion": 1,
+            "challengeFrom": 10000,
+            "challengeEvery": 5000,
+            "challengeTurns": 12,
+            "challengeBonus": 150,
+            "challengeMaxGoal": 2,
+            "challengeFirst": true,
+            "holdVersion": 1,
+            "holdBottles": 7,
+            "tripleVersion": 1,
+            "tripleBottles": 8,
+            "triplePct": 5,
+            "tripleMonoPct": 50,
+            "pressureVersion": 1,
+            "pressureTable": [
+              {
+                "score": 4500,
+                "triplePct": 5,
+                "tripleMonoPct": 50
+              },
+              {
+                "score": 10000,
+                "triplePct": 8,
+                "tripleMonoPct": 30
+              },
+              {
+                "score": 15000,
+                "triplePct": 10,
+                "tripleMonoPct": 20
+              },
+              {
+                "score": 25000,
+                "triplePct": 12,
+                "tripleMonoPct": 10
+              }
+            ]
+          },
+          "bottles": [
+            [],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ],
+            [
+              7
+            ]
+          ],
+          "turn": 1,
+          "piece": [
+            8
+          ],
+          "score": 12000,
+          "streak": 1,
+          "maxStreak": 1,
+          "turnClears": 1,
+          "clears": 1,
+          "turnLog": [],
+          "undoLeft": 3,
+          "reviveUsed": false,
+          "pours": 0,
+          "over": false,
+          "overReason": "",
+          "stuck": null,
+          "comboPts": 100,
+          "undoUsed": 0,
+          "flipsPlaced": 0,
+          "flipped": false,
+          "zoneBonusTotal": 0,
+          "zoneLog": [],
+          "spare": null,
+          "spareUsed": false,
+          "spareOffer": false,
+          "spareArmTurn": -1,
+          "spareTurn": -1,
+          "spareIn": 0,
+          "growth": {
+            "activeColors": 10,
+            "generation": 4,
+            "queue": [
+              {
+                "piece": [
+                  8,
+                  1
+                ],
+                "intro": -1
+              },
+              {
+                "piece": [
+                  9
+                ],
+                "intro": 9
+              }
+            ],
+            "pendingIntro": [],
+            "log": [
+              {
+                "kind": "color",
+                "value": 10,
+                "score": 12000,
+                "turn": 1
+              }
+            ],
+            "pieceIntro": -1
+          },
+          "hold": {
+            "piece": [
+              8,
+              1
+            ],
+            "intro": -1,
+            "flipped": false
+          },
+          "holdUsed": false,
+          "challenge": {
+            "nextScore": 15000,
+            "active": null,
+            "completed": 0,
+            "missed": 0,
+            "bonusTotal": 0,
+            "lastColor": -1,
+            "lastResult": null,
+            "checkedTurn": -1
+          },
+          "bestAtStart": 1000000000000,
+          "newBestShown": true,
+          "cum": [
+            12000
+          ]
+        },
+        "announcement": "새 색: 갈색"
+      }
+    },
+    {
+      "name": "native ninth unlock",
+      "pass": true
+    },
+    {
+      "name": "native undo removes earned bottle",
+      "pass": true
+    },
+    {
+      "name": "re-crossing pays ninth bottle exactly once",
+      "pass": true
+    },
+    {
+      "name": "reload preserves full growth, queue and score",
+      "pass": true
+    },
+    {
+      "name": "old live color-goal policy is preserved",
+      "pass": true
+    },
+    {
+      "name": "next default upgrades previous color policy",
+      "pass": true
+    },
+    {
+      "name": "explicit prior custom remains unchanged",
+      "pass": true
+    },
+    {
+      "name": "fresh run uses late expansion",
+      "pass": true
+    },
+    {
+      "name": "settings round trip keeps max colors 10",
+      "pass": true
+    },
+    {
+      "name": "malformed new policy protected for recovery",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/base/0",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/base/0",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/base/1",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/base/1",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/juicy/0",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/juicy/0",
+      "pass": true
+    },
+    {
+      "name": "silver clear/goal FX/juicy/1",
+      "pass": true
+    },
+    {
+      "name": "new game clears growth/FX/juicy/1",
+      "pass": true
+    },
+    {
+      "name": "desktop ninth bottle geometry",
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "tag": "390/724/bottom/ko/10000/true",
+      "bottles": [
+        {
+          "x": 16,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 69
+        },
+        {
+          "x": 77,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 130
+        },
+        {
+          "x": 138,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 252
+        },
+        {
+          "x": 260,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 313
+        },
+        {
+          "x": 321,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 374
+        },
+        {
+          "x": 138,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 252
+        }
+      ],
+      "glass": {
+        "x": 16,
+        "y": 386,
+        "w": 53,
+        "h": 136,
+        "b": 522,
+        "r": 69
+      },
+      "info": {
+        "x": 16,
+        "y": 59,
+        "w": 358,
+        "h": 44,
+        "b": 103,
+        "r": 374
+      },
+      "note": {
+        "x": 81.96875,
+        "y": 82.84375,
+        "w": 292.03125,
+        "h": 16.796875,
+        "b": 99.640625,
+        "r": 374
+      },
+      "text": "갈색 먼저 0/2 · 12회",
+      "textWidth": 120.9375,
+      "actions": {
+        "x": 16,
+        "y": 652,
+        "w": 358,
+        "h": 44,
+        "b": 696,
+        "r": 374
+      },
+      "stage": {
+        "x": 16,
+        "y": 202,
+        "w": 114,
+        "h": 164,
+        "b": 366,
+        "r": 130
+      },
+      "banner": {
+        "x": 260,
+        "y": 202,
+        "w": 114,
+        "h": 164,
+        "b": 366,
+        "r": 374
+      },
+      "viewport": [
+        390,
+        724
+      ],
+      "scroll": [
+        0,
+        0,
+        390,
+        724
+      ],
+      "errors": []
+    },
+    {
+      "tag": "390/724/bottom/ko/12000/false",
+      "bottles": [
+        {
+          "x": 16,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 69
+        },
+        {
+          "x": 77,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 130
+        },
+        {
+          "x": 138,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 252
+        },
+        {
+          "x": 260,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 313
+        },
+        {
+          "x": 321,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 374
+        },
+        {
+          "x": 138,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 252
+        }
+      ],
+      "glass": {
+        "x": 16,
+        "y": 386,
+        "w": 53,
+        "h": 136,
+        "b": 522,
+        "r": 69
+      },
+      "info": {
+        "x": 16,
+        "y": 59,
+        "w": 358,
+        "h": 44,
+        "b": 103,
+        "r": 374
+      },
+      "note": {
+        "x": 88.5625,
+        "y": 82.84375,
+        "w": 285.4375,
+        "h": 16.796875,
+        "b": 99.640625,
+        "r": 374
+      },
+      "text": "다음 병까지 6,000점",
+      "textWidth": 102.171875,
+      "actions": {
+        "x": 16,
+        "y": 652,
+        "w": 358,
+        "h": 44,
+        "b": 696,
+        "r": 374
+      },
+      "stage": {
+        "x": 16,
+        "y": 202,
+        "w": 114,
+        "h": 164,
+        "b": 366,
+        "r": 130
+      },
+      "banner": {
+        "x": 260,
+        "y": 202,
+        "w": 114,
+        "h": 164,
+        "b": 366,
+        "r": 374
+      },
+      "viewport": [
+        390,
+        724
+      ],
+      "scroll": [
+        0,
+        0,
+        390,
+        724
+      ],
+      "errors": []
+    },
+    {
+      "tag": "390/724/bottom/ko/18000/false",
+      "bottles": [
+        {
+          "x": 16,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 69
+        },
+        {
+          "x": 77,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 130
+        },
+        {
+          "x": 138,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 252
+        },
+        {
+          "x": 260,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 313
+        },
+        {
+          "x": 321,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 374
+        },
+        {
+          "x": 138,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 252
+        },
+        {
+          "x": 260,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 313
+        }
+      ],
+      "glass": {
+        "x": 16,
+        "y": 386,
+        "w": 53,
+        "h": 136,
+        "b": 522,
+        "r": 69
+      },
+      "info": {
+        "x": 16,
+        "y": 59,
+        "w": 358,
+        "h": 44,
+        "b": 103,
+        "r": 374
+      },
+      "note": {
+        "x": 88.5625,
+        "y": 82.84375,
+        "w": 285.4375,
+        "h": 16.796875,
+        "b": 99.640625,
+        "r": 374
+      },
+      "text": "색상 도전까지 2,000점",
+      "textWidth": 112.875,
+      "actions": {
+        "x": 16,
+        "y": 652,
+        "w": 358,
+        "h": 44,
+        "b": 696,
+        "r": 374
+      },
+      "stage": {
+        "x": 16,
+        "y": 202,
+        "w": 114,
+        "h": 164,
+        "b": 366,
+        "r": 130
+      },
+      "banner": {
+        "x": 16,
+        "y": 284,
+        "w": 114,
+        "h": 82,
+        "b": 366,
+        "r": 130
+      },
+      "viewport": [
+        390,
+        724
+      ],
+      "scroll": [
+        0,
+        0,
+        390,
+        724
+      ],
+      "errors": []
+    },
+    {
+      "tag": "390/724/bottom/ko/18000/true",
+      "bottles": [
+        {
+          "x": 16,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 69
+        },
+        {
+          "x": 77,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 130
+        },
+        {
+          "x": 138,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 252
+        },
+        {
+          "x": 260,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 313
+        },
+        {
+          "x": 321,
+          "y": 380,
+          "w": 53,
+          "h": 164,
+          "b": 544,
+          "r": 374
+        },
+        {
+          "x": 138,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 191
+        },
+        {
+          "x": 199,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 252
+        },
+        {
+          "x": 260,
+          "y": 202,
+          "w": 53,
+          "h": 164,
+          "b": 366,
+          "r": 313
+        }
+      ],
+      "glass": {
+        "x": 16,
+        "y": 386,
+        "w": 53,
+        "h": 136,
+        "b": 522,
+        "r": 69
+      },
+      "info": {
+        "x": 16,
+        "y": 59,
+        "w": 358,
+        "h": 44,
+        "b": 103,
+        "r": 374
+      },
+      "note": {
+        "x": 88.5625,
+        "y": 82.84375,
+        "w": 285.4375,
+        "h": 16.796875,
+        "b": 99.640625,
+        "r": 374
+      },
+      "text": "은색 먼저 0/2 · 12회",
+      "textWidth": 120.9375,
+      "actions": {
+        "x": 16,
+        "y": 652,
+        "w": 358,
+        "h": 44,
+        "b": 696,
+        "r": 374
+      },
+      "stage": {
+        "x": 16,
+        "y": 202,
+        "w": 114,
+        "h": 164,
+        "b": 366,
+        "r": 130
+      },
+      "banner": {
+        "x": 16,
+        "y": 284,
+        "w": 114,
+        "h": 82,
+        "b": 366,
+        "r": 130
+      },
+      "viewport": [
+        390,
+        724
+      ],
+      "scroll": [
+        0,
+        0,
+        390,
+        724
+      ],
+      "errors": []
+    }
+  ],
+  "fonts": [
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom",
+        "lang": "ko"
+      },
+      "old": false,
+      "loaded": false
+    },
+    {
+      "params": {
+        "skin": "lab",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "lab",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "cafe",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "cafe",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "gem",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "gem",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "deep",
+        "theme": "dark"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "skin": "deep",
+        "theme": "light"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "classic"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "controls": "tapPlace"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {},
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reset": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {},
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reset": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "reset": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "base",
+        "reduce": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "base",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "juicy",
+        "reduce": "0"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "fx": "juicy",
+        "reduce": "1"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {},
+      "old": false,
+      "loaded": true
+    }
+  ],
+  "physicalDevice": false,
+  "safeArea": "CSS fixture API, no physical device"
+}

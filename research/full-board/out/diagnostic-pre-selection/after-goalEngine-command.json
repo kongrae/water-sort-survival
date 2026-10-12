@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-12T01:29:36.407Z",
+  "command": "node research/color-challenge/engine-test.js",
+  "sourceSha256": "58bf99316cb19dc1e33b8a25206ac4d2a71d95e4bfcc48c9b8ecfe0b8f0e86f9",
+  "exitCode": 0,
+  "stdout": "ok all existing rule contracts, signatures and streams retain their exact semantics\nok versioned defaults, sanitization and every scoring field separate records\nok 10k, actual growth and terminal gates; first threshold-crossing clear is not retroactive\nok visible-only witness is deterministic, non-mutating and replayable for 1/2 bottles\nok no-material pending goal retries on the next turn without rerolling each pour\nok progress counts only target clears, reward is paid once and skipped milestones do not pile up\nok pour/HOLD/flip do not spend placements, and failed input is completely inert\nok twelfth placement can complete the goal; missed goals award no penalty or rescue\nok other-color-first ends only the goal; normal clear/combo/board semantics are preserved\nok active/progress/completed save snapshots and bot candidate clones never share goal state\nok malformed feature saves are rejected, preserving the existing recovery path\nok 400 bounded board searches replay their witnesses with different unseen streams\nok zero-reward observer keeps the baseline bot action sequence/stream/score exact\nok witnesses respect custom placement windows, pour budgets, auto-merge, previews and held flip charges\n14 groups passed; 363 witnesses / 1089 replays; planner p90 9.69ms\n",
+  "stderr": ""
+}

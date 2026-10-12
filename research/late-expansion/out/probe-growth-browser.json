@@ -1,0 +1,6664 @@
+{
+  "checkedAt": "2026-10-11T00:40:44.170Z",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "engineSha256": "af3c6f650122f105287ebc47f461e94d623cede181ce54b2e3c247aa1945dd5d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "testSha256": "ca86e63503724168d0ca5b20f87f29094be916aa84ec4c1811dbd7afd29116d5",
+  "checks": [
+    {
+      "name": "growth-stage bottle count/360/640/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/top/7",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/top/8",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/bottom/7",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/bottom/8",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/360/640/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/360/640/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/360/640/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/360/640/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/360/640/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/360/640/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/top/7",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/top/8",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/bottom/7",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/bottom/8",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/390/724/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/390/724/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/390/724/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/390/724/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/390/724/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/390/724/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/top/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/top/7",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/top/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/top/8",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/top/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/top/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/bottom/6",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/bottom/7",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/bottom/7",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/bottom/8",
+      "pass": false
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/bottom/8",
+      "pass": true
+    },
+    {
+      "name": "growth-stage bottle count/1280/900/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage glass height unchanged/1280/900/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage touch width unchanged/1280/900/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage existing positions unchanged/1280/900/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage no scroll/clipping/overlap/1280/900/bottom/9",
+      "pass": true
+    },
+    {
+      "name": "growth-stage effects clear bottles and JS errors/1280/900/bottom/9",
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "tag": "360/640/top/6",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/top/7",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/top/8",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/top/9",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          },
+          {
+            "x": 128,
+            "y": 212.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 375.53125,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 212.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 375.53125,
+            "r": 232
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 381.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 545,
+            "r": 344
+          },
+          {
+            "x": 128,
+            "y": 212.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 375.53125,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 212.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 375.53125,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 212.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 375.53125,
+            "r": 288
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 387.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 523,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 88.5625,
+          "y": 78.84375,
+          "w": 255.4375,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 212.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 375.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 16,
+          "y": 293.796875,
+          "w": 104,
+          "h": 81.734375,
+          "b": 375.53125,
+          "r": 120
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/bottom/6",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/bottom/7",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/bottom/8",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "360/640/bottom/9",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          },
+          {
+            "x": 128,
+            "y": 151.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 314.53125,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 151.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 314.53125,
+            "r": 232
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 78.84375,
+          "w": 262.03125,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 240,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 344
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 64
+          },
+          {
+            "x": 72,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 120
+          },
+          {
+            "x": 128,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 288
+          },
+          {
+            "x": 296,
+            "y": 320.53125,
+            "w": 48,
+            "h": 163.46875,
+            "b": 484,
+            "r": 344
+          },
+          {
+            "x": 128,
+            "y": 151.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 314.53125,
+            "r": 176
+          },
+          {
+            "x": 184,
+            "y": 151.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 314.53125,
+            "r": 232
+          },
+          {
+            "x": 240,
+            "y": 151.0625,
+            "w": 48,
+            "h": 163.46875,
+            "b": 314.53125,
+            "r": 288
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 326.53125,
+          "w": 48,
+          "h": 135.46875,
+          "b": 462,
+          "r": 64
+        },
+        "info": {
+          "x": 16,
+          "y": 55,
+          "w": 328,
+          "h": 44,
+          "b": 99,
+          "r": 344
+        },
+        "note": {
+          "x": 88.5625,
+          "y": 78.84375,
+          "w": 255.4375,
+          "h": 16.796875,
+          "b": 95.640625,
+          "r": 344
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 588,
+          "w": 328,
+          "h": 44,
+          "b": 632,
+          "r": 344
+        },
+        "stage": {
+          "x": 16,
+          "y": 151.0625,
+          "w": 104,
+          "h": 163.46875,
+          "b": 314.53125,
+          "r": 120
+        },
+        "banner": {
+          "x": 16,
+          "y": 232.796875,
+          "w": 104,
+          "h": 81.734375,
+          "b": 314.53125,
+          "r": 120
+        },
+        "viewport": [
+          360,
+          640
+        ],
+        "scroll": [
+          0,
+          0,
+          360,
+          640
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/top/6",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/top/7",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/top/8",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/top/9",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          },
+          {
+            "x": 138,
+            "y": 267,
+            "w": 53,
+            "h": 164,
+            "b": 431,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 267,
+            "w": 53,
+            "h": 164,
+            "b": 431,
+            "r": 252
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 445,
+            "w": 53,
+            "h": 164,
+            "b": 609,
+            "r": 374
+          },
+          {
+            "x": 138,
+            "y": 267,
+            "w": 53,
+            "h": 164,
+            "b": 431,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 267,
+            "w": 53,
+            "h": 164,
+            "b": 431,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 267,
+            "w": 53,
+            "h": 164,
+            "b": 431,
+            "r": 313
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 451,
+          "w": 53,
+          "h": 136,
+          "b": 587,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 88.5625,
+          "y": 82.84375,
+          "w": 285.4375,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 267,
+          "w": 114,
+          "h": 164,
+          "b": 431,
+          "r": 130
+        },
+        "banner": {
+          "x": 16,
+          "y": 349,
+          "w": 114,
+          "h": 82,
+          "b": 431,
+          "r": 130
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/bottom/6",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/bottom/7",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/bottom/8",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "390/724/bottom/9",
+      "before": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          },
+          {
+            "x": 138,
+            "y": 202,
+            "w": 53,
+            "h": 164,
+            "b": 366,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 202,
+            "w": 53,
+            "h": 164,
+            "b": 366,
+            "r": 252
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 81.96875,
+          "y": 82.84375,
+          "w": 292.03125,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 260,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 374
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 16,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 69
+          },
+          {
+            "x": 77,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 130
+          },
+          {
+            "x": 138,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 313
+          },
+          {
+            "x": 321,
+            "y": 380,
+            "w": 53,
+            "h": 164,
+            "b": 544,
+            "r": 374
+          },
+          {
+            "x": 138,
+            "y": 202,
+            "w": 53,
+            "h": 164,
+            "b": 366,
+            "r": 191
+          },
+          {
+            "x": 199,
+            "y": 202,
+            "w": 53,
+            "h": 164,
+            "b": 366,
+            "r": 252
+          },
+          {
+            "x": 260,
+            "y": 202,
+            "w": 53,
+            "h": 164,
+            "b": 366,
+            "r": 313
+          }
+        ],
+        "glass": {
+          "x": 16,
+          "y": 386,
+          "w": 53,
+          "h": 136,
+          "b": 522,
+          "r": 69
+        },
+        "info": {
+          "x": 16,
+          "y": 59,
+          "w": 358,
+          "h": 44,
+          "b": 103,
+          "r": 374
+        },
+        "note": {
+          "x": 88.5625,
+          "y": 82.84375,
+          "w": 285.4375,
+          "h": 16.796875,
+          "b": 99.640625,
+          "r": 374
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 16,
+          "y": 652,
+          "w": 358,
+          "h": 44,
+          "b": 696,
+          "r": 374
+        },
+        "stage": {
+          "x": 16,
+          "y": 202,
+          "w": 114,
+          "h": 164,
+          "b": 366,
+          "r": 130
+        },
+        "banner": {
+          "x": 16,
+          "y": 284,
+          "w": 114,
+          "h": 82,
+          "b": 366,
+          "r": 130
+        },
+        "viewport": [
+          390,
+          724
+        ],
+        "scroll": [
+          0,
+          0,
+          390,
+          724
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/top/6",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/top/7",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/top/8",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/top/9",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          },
+          {
+            "x": 578,
+            "y": 441,
+            "w": 58,
+            "h": 164,
+            "b": 605,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 441,
+            "w": 58,
+            "h": 164,
+            "b": 605,
+            "r": 702
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 619,
+            "w": 58,
+            "h": 164,
+            "b": 783,
+            "r": 834
+          },
+          {
+            "x": 578,
+            "y": 441,
+            "w": 58,
+            "h": 164,
+            "b": 605,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 441,
+            "w": 58,
+            "h": 164,
+            "b": 605,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 441,
+            "w": 58,
+            "h": 164,
+            "b": 605,
+            "r": 768
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 625,
+          "w": 58,
+          "h": 136,
+          "b": 761,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 482.5625,
+          "y": 83.84375,
+          "w": 387.4375,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 441,
+          "w": 124,
+          "h": 164,
+          "b": 605,
+          "r": 570
+        },
+        "banner": {
+          "x": 446,
+          "y": 523,
+          "w": 124,
+          "h": 82,
+          "b": 605,
+          "r": 570
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/bottom/6",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/bottom/7",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/bottom/8",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "다음 색까지 300점",
+        "textWidth": 91.5,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    },
+    {
+      "tag": "1280/900/bottom/9",
+      "before": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          },
+          {
+            "x": 578,
+            "y": 376,
+            "w": 58,
+            "h": 164,
+            "b": 540,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 376,
+            "w": 58,
+            "h": 164,
+            "b": 540,
+            "r": 702
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 475.96875,
+          "y": 83.84375,
+          "w": 394.03125,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 710,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 834
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      },
+      "after": {
+        "bottles": [
+          {
+            "x": 446,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 504
+          },
+          {
+            "x": 512,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 570
+          },
+          {
+            "x": 578,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 768
+          },
+          {
+            "x": 776,
+            "y": 554,
+            "w": 58,
+            "h": 164,
+            "b": 718,
+            "r": 834
+          },
+          {
+            "x": 578,
+            "y": 376,
+            "w": 58,
+            "h": 164,
+            "b": 540,
+            "r": 636
+          },
+          {
+            "x": 644,
+            "y": 376,
+            "w": 58,
+            "h": 164,
+            "b": 540,
+            "r": 702
+          },
+          {
+            "x": 710,
+            "y": 376,
+            "w": 58,
+            "h": 164,
+            "b": 540,
+            "r": 768
+          }
+        ],
+        "glass": {
+          "x": 446,
+          "y": 560,
+          "w": 58,
+          "h": 136,
+          "b": 696,
+          "r": 504
+        },
+        "info": {
+          "x": 410,
+          "y": 60,
+          "w": 460,
+          "h": 44,
+          "b": 104,
+          "r": 870
+        },
+        "note": {
+          "x": 482.5625,
+          "y": 83.84375,
+          "w": 387.4375,
+          "h": 16.796875,
+          "b": 100.640625,
+          "r": 870
+        },
+        "text": "색상 도전까지 2,000점",
+        "textWidth": 112.875,
+        "actions": {
+          "x": 410,
+          "y": 828,
+          "w": 460,
+          "h": 44,
+          "b": 872,
+          "r": 870
+        },
+        "stage": {
+          "x": 446,
+          "y": 376,
+          "w": 124,
+          "h": 164,
+          "b": 540,
+          "r": 570
+        },
+        "banner": {
+          "x": 446,
+          "y": 458,
+          "w": 124,
+          "h": 82,
+          "b": 540,
+          "r": 570
+        },
+        "viewport": [
+          1280,
+          900
+        ],
+        "scroll": [
+          0,
+          0,
+          1280,
+          900
+        ],
+        "errors": []
+      }
+    }
+  ],
+  "fonts": [
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "top"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": true,
+      "loaded": true
+    },
+    {
+      "params": {
+        "tray": "bottom"
+      },
+      "old": false,
+      "loaded": true
+    }
+  ],
+  "physicalDevice": false,
+  "safeArea": "16px top/26px bottom CSS fixtures, no physical device"
+}

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:13:44.093Z",
+  "command": "node research/late-expansion/engine-test.js",
+  "sourceSha256": "e9081f5a8f131767b6b9d0cb3bbf320ac7033ad6e4d55eea410bc5e098bd9f70",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "55949768eb63f2154ade9307ebb616b5c7a19ebf23cb5b6e0fa23d686c1e48aa",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "ok old rules retain sanitized shape, signatures, streams and complete action state\nok versioned caps, full growth signature and canonical round trip\nok 12k and 18k boundaries admit only earned colors and bottles\nok clear crossing color boundary preserves published current, previews and held material\nok pour/bonus crossings grant the bottle now and defer color activation to placement\nok multiple threshold jump adds one bottle and introduces only one color per placement\nok earned ninth bottle is usable before a full-board loss and supports normal actions\nok pending late milestones never block 10k goals or reset goals across growth\nok silver goal witnesses use only available bottles and visible pieces\nok nine-color ordinary tail and complete stream remain exactly baseline below 12k\nok fresh real-action bot traces remain exact until the first late growth\nok newly generated material is bounded by active colors; ten-color sampling stays uniform\nok save/restore/undo replay is deterministic and candidate clones stay isolated\nok malformed new rule/state is rejected; failed/ended actions consume nothing\n14 groups passed\n",
+  "stderr": ""
+}

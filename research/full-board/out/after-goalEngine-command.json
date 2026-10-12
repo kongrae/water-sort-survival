@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:15:01.999Z",
+  "command": "node research/color-challenge/engine-test.js",
+  "sourceSha256": "e9081f5a8f131767b6b9d0cb3bbf320ac7033ad6e4d55eea410bc5e098bd9f70",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "9a0fed5a44e5f06a61dc793169c0ebea73d49baa6e70889a80827b79369225f6",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "ok all existing rule contracts, signatures and streams retain their exact semantics\nok versioned defaults, sanitization and every scoring field separate records\nok 10k, actual growth and terminal gates; first threshold-crossing clear is not retroactive\nok visible-only witness is deterministic, non-mutating and replayable for 1/2 bottles\nok no-material pending goal retries on the next turn without rerolling each pour\nok progress counts only target clears, reward is paid once and skipped milestones do not pile up\nok pour/HOLD/flip do not spend placements, and failed input is completely inert\nok twelfth placement can complete the goal; missed goals award no penalty or rescue\nok other-color-first ends only the goal; normal clear/combo/board semantics are preserved\nok active/progress/completed save snapshots and bot candidate clones never share goal state\nok malformed feature saves are rejected, preserving the existing recovery path\nok 400 bounded board searches replay their witnesses with different unseen streams\nok zero-reward observer keeps the baseline bot action sequence/stream/score exact\nok witnesses respect custom placement windows, pour budgets, auto-merge, previews and held flip charges\n14 groups passed; 363 witnesses / 1089 replays; planner p90 25.44ms\n",
+  "stderr": ""
+}

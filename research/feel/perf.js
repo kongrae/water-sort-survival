@@ -19,7 +19,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // Optional paired steady-state diagnostic; retain the original six-warm-up protocol by default.
 const steady = process.argv.includes('--steady');
 // Optional late-endless fixture. Default/steady historical protocols remain unchanged.
-const pressure = process.argv.includes('--pressure');
+const lateExpansion = process.argv.includes('--late-expansion');
+const fullBoard = Number(process.argv.find(a => a.startsWith('--full-board='))?.slice(13) || 0);
+if (fullBoard && ![10, 11, 12].includes(fullBoard)) throw Error('Expected --full-board=10|11|12');
+const pressure = process.argv.includes('--pressure') || lateExpansion || !!fullBoard;
 
 // runs in the page: 40 quick pours, 10 placements, 5 completions at combo x4 or more
 const SEQUENCE = `(async () => {
@@ -28,7 +31,7 @@ const SEQUENCE = `(async () => {
   const tubes = () => document.querySelectorAll('#rack .tube');
   const key = el => el.dispatchEvent(new MouseEvent('click', { bubbles: true, detail: 0 }));
   const boot = o => { const s = G(); Object.assign(s, { over: false, stuck: null, spare: null, spareOffer: false, flipped: false, pours: 0, turnClears: 0, streak: 0 }, o);
-    ${pressure ? 's.score=25000;s.growth.activeColors=9;s.growth.pendingIntro=[];while(s.bottles.length<8)s.bottles.push([]);' : ''}
+    ${pressure ? `s.score=${fullBoard ? ({10:40000,11:70000,12:100000})[fullBoard] : 25000};s.growth.activeColors=${fullBoard ? fullBoard+1 : lateExpansion ? 10 : 9};s.growth.pendingIntro=[];while(s.bottles.length<${fullBoard || (lateExpansion ? 9 : 8)})s.bottles.push([]);` : ''}
     // Each forced fixture resets its optional goal contract before moving the turn backwards.
     ${pressure ? "if(s.challenge)s.challenge=newState('endless',s.seed,s.rules).challenge;" : ''}
     window.__boot({ S: s }); };
@@ -74,7 +77,7 @@ const SEQUENCE = `(async () => {
   clearInterval(sample); po.disconnect();
   const q = (a, f) => { const s = a.slice().sort((x, y) => x - y); return s.length ? +s[Math.min(s.length - 1, Math.floor(s.length * f))].toFixed(2) : null; };
   const sum = a => ({ n: a.length, p50: q(a, .5), p90: q(a, .9), max: a.length ? +Math.max(...a).toFixed(2) : null });
-  return { all: sum(ms), pour: sum(kinds.pour), place: sum(kinds.place), clear: sum(kinds.clear), samples: kinds, protocol: {warmupMoves:${steady ? 20 : 6},seed:${pressure ? "'late-pressure-perf-fixed'" : steady ? "'bottle-quality-perf-fixed'" : 'null'},pressureFixture:${pressure}}, made, longTasks, longest: +longest.toFixed(1), maxFx, errors: window.__errors };
+  return { all: sum(ms), pour: sum(kinds.pour), place: sum(kinds.place), clear: sum(kinds.clear), samples: kinds, protocol: {warmupMoves:${steady ? 20 : 6},seed:${pressure ? "'late-pressure-perf-fixed'" : steady ? "'bottle-quality-perf-fixed'" : 'null'},pressureFixture:${pressure},lateExpansionFixture:${lateExpansion},fullBoardFixture:${fullBoard}}, made, longTasks, longest: +longest.toFixed(1), maxFx, errors: window.__errors };
 })()`;
 
 async function main() {

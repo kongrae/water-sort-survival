@@ -10,6 +10,7 @@ const [phase, name] = process.argv.slice(2);
 if (!/^(before|after|probe[-\w]*)$/.test(phase || '')) throw Error('Expected before, after or probe-name');
 const configs = {
   perf: ['research/feel/perf.js', ['research/feel/out/perf.json']],
+  planner: ['research/' + task + '/planner-perf.js', []],
   fx: ['uitest/fx-polish.js', ['outputs/fx-polish']],
   hud: ['uitest/compact-hud.js', ['outputs/hud-balance', 'research/hud-balance/out/ui-after.json']],
   hold: ['uitest/hold-triple.js', ['outputs/hold-triple', 'research/hold-triple/out/browser.json']],
@@ -20,7 +21,10 @@ const configs = {
   feel: ['uitest/run.js', ['research/feel/out/feel-full.json', 'research/feel/out/feel-reduce.json'], ['feel', '--motion=both']],
   presentation: ['uitest/presentation-audit.js', [], ['--out=outputs/' + task + '/presentation', '--data=research/' + task + '/out/presentation']],
   holdEngine: ['research/hold-triple/engine-test.js', []],
-  expansionEngine: ['research/expansion/engine-test.js', []]
+  expansionEngine: ['research/expansion/engine-test.js', []],
+  lateEngine: ['research/late-expansion/engine-test.js', ['research/late-expansion/out/engine-test.json']],
+  pressureEngine: ['research/late-pressure/engine-test.js', ['research/late-pressure/out/engine-test.json']],
+  goalEngine: ['research/color-challenge/engine-test.js', ['research/color-challenge/out/engine-test.json']]
 };
 const config = configs[name]; if (!config) throw Error('Unknown check');
 const extraArgs = process.argv.slice(4).filter(a => !a.startsWith('--task='));
@@ -53,7 +57,10 @@ try {
   // Restore only pre-existing files. Newly generated ignored artifacts may stay in place.
   for (const [file, bytes] of backup) if (bytes) fs.writeFileSync(file, bytes);
 }
-const log = { checkedAt: new Date().toISOString(), command: ['node',config[0],...(config[2]||[]),...extraArgs].join(' '), sourceSha256: sha(source), exitCode: result.status, error: result.error?.message, stdout: result.stdout, stderr: result.stderr };
+const log = { checkedAt: new Date().toISOString(), command: ['node',config[0],...(config[2]||[]),...extraArgs].join(' '), sourceSha256: sha(source),
+  engineSha256: sha(source.toString().match(/<script id="engine">([\s\S]*?)<\/script>/)[1]),
+  testSha256: sha(fs.readFileSync(path.join(BASE,config[0]))), node: process.version,
+  exitCode: result.status, error: result.error?.message, stdout: result.stdout, stderr: result.stderr };
 fs.writeFileSync(path.join(DATA, phase + '-' + name + '-command.json'), JSON.stringify(log, null, 2) + '\n');
 process.stdout.write(result.stdout || ''); process.stderr.write(result.stderr || '');
 process.exitCode = result.status ?? 1;

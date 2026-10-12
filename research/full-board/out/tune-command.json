@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-12T02:11:17.012Z",
+  "command": "node research/full-board/compare.js --stage=tune --labels=baseline,color,A,B --n=20 --cap=1500",
+  "exitCode": 0,
+  "sourceSha256": "b6ece74ad47498694487c116154a84f4fea9ff5a6094b6fb07c3130273de5b29",
+  "engineSha256": "eb893be8a5995ded1c8a40204ed7abb6a9aecb6a688ebe9c3c3caeab8aba49d8",
+  "comparisonSha256": "54a3104b9b21cd3dcb2015c017dbb4b2adbb76cb3fa24ed9576f7946aa492366",
+  "configurationSha256": "ddc7ac2fce89308f5552504045c9f5448a6a44b2119e70f7da388b9a3d290865",
+  "recordedAtCompletion": true
+}

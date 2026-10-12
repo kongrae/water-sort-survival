@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T03:14:14.499Z",
+  "command": "node research/feel/perf.js --full-board=11",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "4d0e9fa294abee71e68f60a04cb669b297544ec29d37111703e4aca78ee137eb",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "| setting | CPU | moves made | move p50 / p90 / max (ms) | pour p90 | place p90 | x4+ completion p90 | long tasks (longest) | effect nodes max |\n|---|---|---|---|---|---|---|---|---|\n| base | x1 | 55/55 | 1.3 / 5.2 / 8.4 | 1.4 | 5.2 | 8.4 | 0 (0) | 23 |\n| base | x4 | 55/55 | 5 / 17.7 / 27.6 | 5.6 | 17.7 | 27.6 | 0 (0) | 23 |\n| juicy | x1 | 55/55 | 1.6 / 4.5 / 5.5 | 1.9 | 5.4 | 5.5 | 0 (0) | 54 |\n| juicy | x4 | 55/55 | 6.7 / 17.9 / 19.1 | 7.2 | 19.1 | 18.9 | 0 (0) | 54 |\n",
+  "stderr": ""
+}

@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-12T01:32:46.026Z",
+  "command": "node uitest/fx-polish.js",
+  "sourceSha256": "58bf99316cb19dc1e33b8a25206ac4d2a71d95e4bfcc48c9b8ecfe0b8f0e86f9",
+  "exitCode": 1,
+  "stdout": "FAIL completion produces two waves and particles [{\"at\":20,\"observedAt\":34,\"nodes\":15,\"drops\":0,\"flows\":1,\"surfaces\":0,\"waiting\":0,\"combo\":\"\",\"score\":\"3,200\",\"reduce\":false,\"errors\":[]},{\"at\":230,\"observedAt\":251,\"nodes\":7,\"drops\":0,\"flows\":0,\"surfaces\":0,\"waiting\":0,\"combo\":\"\",\"score\":\"3,200\",\"reduce\":false,\"errors\":[]},{\"at\":390,\"observedAt\":779,\"nodes\":29,\"drops\":18,\"flows\":0,\"surfaces\":0,\"waiting\":0,\"combo\":\"×4×4대단해요!대단해요!\",\"score\":\"3,200\",\"reduce\":false,\"errors\":[]},{\"at\":550,\"observedAt\":962,\"nodes\":8,\"drops\":0,\"flows\":0,\"surfaces\":0,\"waiting\":0,\"combo\":\"×4×4대단해요!대단해요!\",\"score\":\"3,515\",\"reduce\":false,\"errors\":[]},{\"at\":850,\"observedAt\":1164,\"nodes\":8,\"drops\":0,\"flows\":0,\"surfaces\":0,\"waiting\":0,\"combo\":\"×4×4대단해요!대단해요!\",\"score\":\"3,600\",\"reduce\":false,\"errors\":[]},{\"at\":1500,\"observedAt\":1504,\"nodes\":0,\"drops\":0,\"flows\":0,\"surfaces\":0,\"waiting\":0,\"combo\":\"\",\"score\":\"3,600\",\"reduce\":false,\"errors\":[]}]\nFX polish 121/122, 1 failed\n",
+  "stderr": ""
+}

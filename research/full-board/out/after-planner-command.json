@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T03:05:45.446Z",
+  "command": "node research/full-board/planner-perf.js",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "330f3f2a53468cf1b4f451d2a37937b6a4576142fd3e0d45ca2e40bc57371e2e",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "[{\"label\":\"before\",\"found\":315,\"replays\":315,\"examinedMax\":768,\"checks\":400,\"materialEligible\":400,\"nullWithMaterial\":85,\"noVisibleTargetMaterial\":0,\"n\":400,\"p50\":3.842,\"p90\":4.678,\"max\":7.534},{\"label\":\"11c10b\",\"found\":359,\"replays\":359,\"examinedMax\":768,\"checks\":400,\"materialEligible\":400,\"nullWithMaterial\":41,\"noVisibleTargetMaterial\":0,\"n\":400,\"p50\":4.702,\"p90\":5.437,\"max\":9.285},{\"label\":\"12c11b\",\"found\":128,\"replays\":128,\"examinedMax\":768,\"checks\":400,\"materialEligible\":400,\"nullWithMaterial\":272,\"noVisibleTargetMaterial\":0,\"n\":400,\"p50\":4.737,\"p90\":5.962,\"max\":9.526},{\"label\":\"13c12b\",\"found\":338,\"replays\":338,\"examinedMax\":768,\"checks\":400,\"materialEligible\":400,\"nullWithMaterial\":62,\"noVisibleTargetMaterial\":0,\"n\":400,\"p50\":5.618,\"p90\":6.625,\"max\":8.585}]\n",
+  "stderr": ""
+}

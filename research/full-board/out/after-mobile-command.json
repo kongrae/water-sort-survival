@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:31:38.560Z",
+  "command": "node uitest/mobile-viewport.js",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "28ed3bd7d086434f46b8392841fbcb9a85f175fdf5ef6984fb71abc72ad2fbce",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "Mobile viewport 68/68, 0 failed\n",
+  "stderr": ""
+}

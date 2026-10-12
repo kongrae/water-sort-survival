@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-10-12T02:34:03.725Z",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "testSha256": "08d6ef257e934cae426697d6d2bc45e01e6127e286150c2adeda916660c9dd55",
+  "checks": [
+    {
+      "name": "served preview growth/30000",
+      "pass": true
+    },
+    {
+      "name": "served preview native goal/30000",
+      "pass": true
+    },
+    {
+      "name": "preview never writes player records/30000",
+      "pass": true
+    },
+    {
+      "name": "served preview growth/40000",
+      "pass": true
+    },
+    {
+      "name": "served preview native goal/40000",
+      "pass": true
+    },
+    {
+      "name": "preview never writes player records/40000",
+      "pass": true
+    },
+    {
+      "name": "served preview growth/55000",
+      "pass": true
+    },
+    {
+      "name": "served preview native goal/55000",
+      "pass": true
+    },
+    {
+      "name": "preview never writes player records/55000",
+      "pass": true
+    },
+    {
+      "name": "served preview growth/70000",
+      "pass": true
+    },
+    {
+      "name": "served preview native goal/70000",
+      "pass": true
+    },
+    {
+      "name": "preview never writes player records/70000",
+      "pass": true
+    },
+    {
+      "name": "served preview growth/85000",
+      "pass": true
+    },
+    {
+      "name": "served preview native goal/85000",
+      "pass": true
+    },
+    {
+      "name": "preview never writes player records/85000",
+      "pass": true
+    },
+    {
+      "name": "served preview growth/100000",
+      "pass": true
+    },
+    {
+      "name": "served preview native goal/100000",
+      "pass": true
+    },
+    {
+      "name": "preview never writes player records/100000",
+      "pass": true
+    }
+  ],
+  "geometry": [],
+  "fonts": [],
+  "inputs": [],
+  "physicalDevice": false,
+  "safeArea": "not injected in this run"
+}

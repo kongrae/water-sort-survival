@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-12T01:31:44.549Z",
+  "command": "node uitest/hold-triple.js",
+  "sourceSha256": "58bf99316cb19dc1e33b8a25206ac4d2a71d95e4bfcc48c9b8ecfe0b8f0e86f9",
+  "exitCode": 0,
+  "stdout": "hold/triple browser 286/286, 0 failed\n",
+  "stderr": ""
+}

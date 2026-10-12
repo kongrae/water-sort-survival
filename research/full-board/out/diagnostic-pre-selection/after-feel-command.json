@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-12T01:38:48.021Z",
+  "command": "node uitest/run.js feel --motion=both",
+  "sourceSha256": "8233f0ebe8ed72c53420516bec2ad849798328038e461131d6915f476b8dad3c",
+  "exitCode": 0,
+  "stdout": "ok   feel      reduce pass 230/230\nok   feel      full   pass 324/324\n",
+  "stderr": ""
+}

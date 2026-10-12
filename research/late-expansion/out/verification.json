@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-11T00:42:04.804Z",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "engineSha256": "af3c6f650122f105287ebc47f461e94d623cede181ce54b2e3c247aa1945dd5d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "passed": 13,
+  "checks": [
+    "engine-test.json matches final source",
+    "browser.json matches final source",
+    "extras-browser.json matches final source",
+    "demo-browser.json matches final source",
+    "growth-browser.json matches final source",
+    "pressure-engine-test.json matches final source",
+    "color-engine-test.json matches final source",
+    "120 fresh comparisons use exact final engine, unchanged bot and matching early progression",
+    "all required existing regression commands passed against final source",
+    "12 known full-motion failures match the freshly captured baseline; reduced motion passes",
+    "paired 9-color/8-bottle and 10-color/9-bottle performance runs contain 55 valid moves each",
+    "paired 400-case bounded goal searches use exact before/after engines and replay all returned paths",
+    "local served build matches exact bytes; isolated previews are available"
+  ],
+  "buildSha256": "84f75be1383f45b1b9ccb36741439457fa913745f2f3acc338f2322ca605a50a",
+  "comparisonSourceSha256": "72c50640ae2dad3d4b8f8aca9a18690d2ffc6d9e4debe6ec0e115967e7ee488f",
+  "comparisonScope": "pure final engine hash matches; original pre-UI-refinement source hash retained",
+  "knownFailures": [
+    "- [geo 360x740 bottom default] a banner and the stage combo do not overlap",
+    "- [geo 360x740 bottom max] a banner and the stage combo do not overlap",
+    "- [geo 360x740 top default] a x5 burst fits its place",
+    "- [geo 360x740 top default] stuck: the banner clears the give-up row, the bottles and the status line",
+    "- [geo 360x740 top max] a x5 burst fits its place",
+    "- [geo 360x740 top max] stuck: the banner clears the give-up row, the bottles and the status line",
+    "- [geo 390x844 top default] a x5 burst fits its place",
+    "- [geo 390x844 top default] stuck: the banner clears the give-up row, the bottles and the status line",
+    "- [geo 390x844 top max] a x5 burst fits its place",
+    "- [geo 390x844 top max] stuck: the banner clears the give-up row, the bottles and the status line",
+    "- [geo 412x915 top default] a x5 burst fits its place",
+    "- [geo 768x1024 top default] a x5 burst fits its place"
+  ],
+  "localPlay": "http://127.0.0.1:8154/",
+  "demo": "http://127.0.0.1:8160/",
+  "publicDeployed": false
+}

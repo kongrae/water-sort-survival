@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:13:46.187Z",
+  "command": "node research/late-pressure/engine-test.js",
+  "sourceSha256": "e9081f5a8f131767b6b9d0cb3bbf320ac7033ad6e4d55eea410bc5e098bd9f70",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "b171247319201f87c79a3b0d93933c38564c5e5c9920ee4f1c326f9791d796ae",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "ok legacy signatures, sanitized rules and generated streams remain exact\nok old/new real-action bot replays match states and actions, not just aggregate score\nok linear interpolation, anchors, adjacent scores, fractional values and upper clamp\nok actual bottle/color gates and priority color introductions keep old policy\nok policy sanitization preserves floats, limits malformed rows, signatures include complete table\nok score crossing preserves published queue/HOLD; generation uses the new actual score\nok save/reload and undo snapshots replay same hold/place generation at thresholds\nok query/solver clones and failed/ended input do not advance player state\nok fixed-seed eligible generation frequencies, mono/shape/color balance and ordinary tail\n9 groups passed; 480000 eligible samples\n",
+  "stderr": ""
+}

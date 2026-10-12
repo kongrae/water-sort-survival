@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:12:56.651Z",
+  "command": "node research/hold-triple/engine-test.js",
+  "sourceSha256": "e9081f5a8f131767b6b9d0cb3bbf320ac7033ad6e4d55eea410bc5e098bd9f70",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "35a83cc9494a4a8c95c980a72a8d771034096741614e0eec4d643bf019ff04fc",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "ok old flags stay absent, new defaults sanitize, fixed custom rules drop features\nok empty hold consumes exactly one queue entry; swaps never generate; previews 0..3\nok hold does not change score, turn, pours, combo, growth or logs; failures are atomic\nok introduction metadata and visible orientation travel with the held piece\nok flip reservations cannot exceed the placement-charged budget\nok only a successful placement restores hold before the next stuck check; revive does not\nok hold-only survival, unavailable hold and empty next-preview survival are distinguished\nok bounded room searches stay unknown, and a held alternative can require pouring\nok triple gate, intro exceptions and committed queue do not rewrite revealed pieces\nok triple statistics and remaining tail distribution match the fixed-seed hypothesis\nok no triple branch leaves every ordinary generated piece unchanged\nok three scattered free cells cannot accept a triple, while a contiguous slot can clear\nok feature state restoration is strict; corrupt holds/queues/budgets are rejected\nok save and undo snapshots replay hold/flip/place/pour exactly without duplicate growth\nok policy signatures isolate candidates and do not change during play\nok all historical rules and expanding transitions/signatures match the captured HEAD\nhold/triple engine: 16 groups passed\n",
+  "stderr": ""
+}

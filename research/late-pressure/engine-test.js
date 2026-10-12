@@ -6,7 +6,8 @@ const old = baselineEngine(), oldBot = baselineBot(old), checks = [], statistics
 const copy = value => JSON.parse(JSON.stringify(value));
 function check(name, fn) { fn(); checks.push(name); console.log('ok ' + name); }
 function fixture(score = 4500, patch = {}) {
-  const s = E.newState('endless', 'pressure-contract', E.sanitizeRules({ ...E.ENDLESS_RULES, ...patch }));
+  // This suite isolates the pressure policy; later growth introductions have their own contract tests.
+  const s = E.newState('endless', 'pressure-contract', E.sanitizeRules({ ...E.PRESSURE_ENDLESS_RULES, ...patch }));
   s.score = score; s.bottles = Array.from({ length: 8 }, () => []); s.growth.activeColors = 9;
   s.growth.pendingIntro = []; return s;
 }

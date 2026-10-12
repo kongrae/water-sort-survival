@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-12T02:34:25.107Z",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "testSha256": "21f00124c93b3ae3e88215f8387463f9224e008073da353d843601219d8f745e",
+  "results": [
+    {
+      "name": "hud",
+      "command": "node research/bottle-quality/run-check.js after hud --task=full-board",
+      "exitCode": 0,
+      "elapsedMs": 99495
+    },
+    {
+      "name": "hold",
+      "command": "node research/bottle-quality/run-check.js after hold --task=full-board",
+      "exitCode": 0,
+      "elapsedMs": 89902
+    },
+    {
+      "name": "mobile",
+      "command": "node research/bottle-quality/run-check.js after mobile --task=full-board",
+      "exitCode": 0,
+      "elapsedMs": 50700
+    },
+    {
+      "name": "i18n",
+      "command": "node research/bottle-quality/run-check.js after i18n --task=full-board",
+      "exitCode": 0,
+      "elapsedMs": 31132
+    },
+    {
+      "name": "real",
+      "command": "node research/bottle-quality/run-check.js after real --task=full-board",
+      "exitCode": 0,
+      "elapsedMs": 135329
+    }
+  ]
+}

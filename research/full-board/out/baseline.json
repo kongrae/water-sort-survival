@@ -1,0 +1,133 @@
+{
+  "checkedAt": "2026-10-12T01:04:47.765Z",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "engineSha256": "af3c6f650122f105287ebc47f461e94d623cede181ce54b2e3c247aa1945dd5d",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "files": {
+    "before-source.html": {
+      "repositoryPath": "water-sort-survival.html",
+      "sha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50"
+    },
+    "before-harness.js": {
+      "repositoryPath": "harness.js",
+      "sha256": "f6efe3bdab0849321f5a87aa569338e96c57e893ec2fe38bae216e49a0cf53cb"
+    },
+    "before-bots.js": {
+      "repositoryPath": "research/expansion/bots.js",
+      "sha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7"
+    }
+  },
+  "rules": {
+    "bottles": 6,
+    "cap": 4,
+    "startColors": 4,
+    "maxColors": 10,
+    "colorEvery": 20,
+    "pieceMin": 1,
+    "pieceMax": 2,
+    "preview": 2,
+    "pourLimit": 0,
+    "autoMerge": false,
+    "comboPlace": true,
+    "flip": true,
+    "flipLimit": 2,
+    "zones": true,
+    "zoneBonus": 20,
+    "zoneMulMax": 5,
+    "zoneTwin": true,
+    "zoneTwinSize": 1,
+    "spare": false,
+    "spareCap": 1,
+    "spareTurns": 20,
+    "spareFrom": 15,
+    "spareMaxEmpty": 0,
+    "spareMaxFree": 7,
+    "spareSticky": true,
+    "expansion": 1,
+    "growthTable": [
+      {
+        "score": 0,
+        "colors": 4,
+        "bottles": 6
+      },
+      {
+        "score": 300,
+        "colors": 5,
+        "bottles": 6
+      },
+      {
+        "score": 900,
+        "colors": 6,
+        "bottles": 7
+      },
+      {
+        "score": 1700,
+        "colors": 7,
+        "bottles": 7
+      },
+      {
+        "score": 2800,
+        "colors": 8,
+        "bottles": 8
+      },
+      {
+        "score": 4500,
+        "colors": 9,
+        "bottles": 8
+      },
+      {
+        "score": 12000,
+        "colors": 10,
+        "bottles": 8
+      },
+      {
+        "score": 18000,
+        "colors": 10,
+        "bottles": 9
+      }
+    ],
+    "tailDoublePct": 90,
+    "holdVersion": 1,
+    "holdBottles": 7,
+    "tripleVersion": 1,
+    "tripleBottles": 8,
+    "triplePct": 5,
+    "tripleMonoPct": 50,
+    "pressureVersion": 1,
+    "pressureTable": [
+      {
+        "score": 4500,
+        "triplePct": 5,
+        "tripleMonoPct": 50
+      },
+      {
+        "score": 10000,
+        "triplePct": 8,
+        "tripleMonoPct": 30
+      },
+      {
+        "score": 15000,
+        "triplePct": 10,
+        "tripleMonoPct": 20
+      },
+      {
+        "score": 25000,
+        "triplePct": 12,
+        "tripleMonoPct": 10
+      }
+    ],
+    "colorChallengeVersion": 1,
+    "challengeFrom": 10000,
+    "challengeEvery": 5000,
+    "challengeTurns": 12,
+    "challengeBonus": 150,
+    "challengeMaxGoal": 2,
+    "challengeFirst": true,
+    "lateGrowthVersion": 1
+  },
+  "signature": "6-4-4-10-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8.12000_10_8.18000_10_9-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2_1-lg1",
+  "harnessSha256": "f6efe3bdab0849321f5a87aa569338e96c57e893ec2fe38bae216e49a0cf53cb",
+  "commit": "1a619477a8a2b4e6efa9b03ba4e70b8c75982a16",
+  "gitStatus": " M harness.js\n M locales/messages.tsv\n M research/color-challenge/engine-test.js\n M research/feel/perf.js\n M research/late-pressure/engine-test.js\n M water-sort-survival.html\n?? docs/PROMPT_endless_full_board_balance.md\n?? docs/PROMPT_endless_late_expansion.md\n?? research/full-board/\n?? research/late-expansion/\n?? uitest/late-expansion.js\n"
+}

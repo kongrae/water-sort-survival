@@ -16,7 +16,9 @@ return { DEFAULT_RULES, V1_RULES, sanitizeRules, rulesSig, colorsAt, pieceAt, to
   SCORE_GROWTH_V1, EXPANDING_RULES, ENDLESS_RULES, isExpanding, sanitizeGrowth, activeColors, growthTarget, nextGrowth, updateGrowth, generatePiece, advancePiece, previewPieces,
   hasHold, hasTriple, maxPieceSize, canHold, holdCandidate, applyHold, validFeatureState,
   LEGACY_ENDLESS_RULES, PRESSURE_V1, PRESSURE_ENDLESS_RULES, hasPressure, sanitizePressure, pressureAt, nextPressure,
-  hasColorChallenge, colorChallengePlan, updateColorChallenge, colorChallengeClear, validColorChallengeState };`)();
+  hasColorChallenge, colorChallengePlan, updateColorChallenge, colorChallengeClear, validColorChallengeState,
+  COLOR_ENDLESS_RULES, SCORE_LATE_GROWTH_V1, hasLateGrowth, growthBottleLimit, challengeGrowthReady,
+  LATE_GROWTH_V1_RULES, SCORE_FULL_GROWTH_V2, hasFullGrowth, growthColorLimit };`)();
 
 const clone = o => JSON.parse(JSON.stringify(o));
 let failures = 0;

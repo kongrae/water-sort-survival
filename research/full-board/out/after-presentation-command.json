@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T02:24:46.511Z",
+  "command": "node uitest/presentation-audit.js --out=outputs/full-board/presentation --data=research/full-board/out/presentation",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "testSha256": "5b2fdb310175df1fd3336f3fe75dfbd449f8731e688a81e88f606d2fae4d4de7",
+  "node": "v24.19.0",
+  "exitCode": 0,
+  "stdout": "Typography locale ko complete\nTypography locale en complete\nTypography locale ja complete\nTypography locale zh-Hans complete\nTypography locale zh-Hant complete\nTypography locale es complete\nTypography locale pt-BR complete\nTypography locale hi complete\nTypography locale id complete\nPresentation after 2741/2741, 0 failed\n",
+  "stderr": ""
+}

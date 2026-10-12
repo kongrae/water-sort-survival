@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-11T00:28:22.447Z",
+  "command": "node uitest/presentation-audit.js --out=outputs/late-expansion/presentation --data=research/late-expansion/out/presentation",
+  "sourceSha256": "c73d5d72c8c774de68c61c0e8325a4f8081018c71d4ed98bd18802be35ea5a50",
+  "exitCode": 0,
+  "stdout": "Typography locale ko complete\nTypography locale en complete\nTypography locale ja complete\nTypography locale zh-Hans complete\nTypography locale zh-Hant complete\nTypography locale es complete\nTypography locale pt-BR complete\nTypography locale hi complete\nTypography locale id complete\nPresentation after 2741/2741, 0 failed\n",
+  "stderr": ""
+}

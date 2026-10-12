@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-12T03:58:37.358Z",
+  "sourceSha256": "80354adc5d4e4014623a10e8189d82a076383ba19039d2908b6f18a0fe52fa0f",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "recordedAfterCompletion": true,
+  "commands": [
+    {
+      "command": "node build-pages.js",
+      "exitCode": 0
+    },
+    {
+      "command": "node research/full-board/verify-evidence.js",
+      "exitCode": 0
+    },
+    {
+      "command": "node research/full-board/report.js",
+      "exitCode": 0
+    }
+  ],
+  "evidenceGroups": 9,
+  "buildSha256": "5100f786f3def547c2a53b475ac2e9984d9e34d53834db9972cfb41f6e69a945",
+  "reportSha256": "67aa5f1da0339cfa1f6430f891a989d750ca69177fa7f4631b1b8b7cede78142",
+  "reportGeneratorSha256": "bfa7b1c71374161d3599f2e3f4044c0a69575d18da9ecce77f8b74ecddf4ab39",
+  "implementationComplete": true,
+  "balanceStatus": "experimental-balance-unresolved",
+  "publicDeployed": false
+}

@@ -1,0 +1,268 @@
+{
+  "checkedAt": "2026-10-12T02:13:33.076Z",
+  "sourceSha256": "e9081f5a8f131767b6b9d0cb3bbf320ac7033ad6e4d55eea410bc5e098bd9f70",
+  "engineSha256": "73d185e13bfefd3748d7ed1492b0caf1d9e3595721e9dab0b446f791c53430d9",
+  "botSha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "node": "v24.19.0",
+  "testSha256": "c1e82df2cb64c8605af5852a51133b89be3ca396a22bc1272a24b6ecb28ae7c6",
+  "policySha256": "3ad596a342e03a5383a7682c6857c3c90b7d9579ad4bd60eedbf2313357c93b7",
+  "rules": {
+    "bottles": 6,
+    "cap": 4,
+    "startColors": 4,
+    "maxColors": 13,
+    "colorEvery": 20,
+    "pieceMin": 1,
+    "pieceMax": 2,
+    "preview": 2,
+    "pourLimit": 0,
+    "autoMerge": false,
+    "comboPlace": true,
+    "flip": true,
+    "flipLimit": 2,
+    "zones": true,
+    "zoneBonus": 20,
+    "zoneMulMax": 5,
+    "zoneTwin": true,
+    "zoneTwinSize": 1,
+    "spare": false,
+    "spareCap": 1,
+    "spareTurns": 20,
+    "spareFrom": 15,
+    "spareMaxEmpty": 0,
+    "spareMaxFree": 7,
+    "spareSticky": true,
+    "expansion": 1,
+    "lateGrowthVersion": 2,
+    "growthTable": [
+      {
+        "score": 0,
+        "colors": 4,
+        "bottles": 6
+      },
+      {
+        "score": 300,
+        "colors": 5,
+        "bottles": 6
+      },
+      {
+        "score": 900,
+        "colors": 6,
+        "bottles": 7
+      },
+      {
+        "score": 1700,
+        "colors": 7,
+        "bottles": 7
+      },
+      {
+        "score": 2800,
+        "colors": 8,
+        "bottles": 8
+      },
+      {
+        "score": 4500,
+        "colors": 9,
+        "bottles": 8
+      },
+      {
+        "score": 12000,
+        "colors": 10,
+        "bottles": 8
+      },
+      {
+        "score": 18000,
+        "colors": 10,
+        "bottles": 9
+      },
+      {
+        "score": 30000,
+        "colors": 11,
+        "bottles": 9
+      },
+      {
+        "score": 40000,
+        "colors": 11,
+        "bottles": 10
+      },
+      {
+        "score": 55000,
+        "colors": 12,
+        "bottles": 10
+      },
+      {
+        "score": 70000,
+        "colors": 12,
+        "bottles": 11
+      },
+      {
+        "score": 85000,
+        "colors": 13,
+        "bottles": 11
+      },
+      {
+        "score": 100000,
+        "colors": 13,
+        "bottles": 12
+      }
+    ],
+    "tailDoublePct": 90,
+    "colorChallengeVersion": 1,
+    "challengeFrom": 10000,
+    "challengeEvery": 5000,
+    "challengeTurns": 12,
+    "challengeBonus": 150,
+    "challengeMaxGoal": 2,
+    "challengeFirst": true,
+    "holdVersion": 1,
+    "holdBottles": 7,
+    "tripleVersion": 1,
+    "tripleBottles": 8,
+    "triplePct": 5,
+    "tripleMonoPct": 50,
+    "pressureVersion": 1,
+    "pressureTable": [
+      {
+        "score": 4500,
+        "triplePct": 5,
+        "tripleMonoPct": 50
+      },
+      {
+        "score": 10000,
+        "triplePct": 8,
+        "tripleMonoPct": 30
+      },
+      {
+        "score": 15000,
+        "triplePct": 10,
+        "tripleMonoPct": 20
+      },
+      {
+        "score": 25000,
+        "triplePct": 12,
+        "tripleMonoPct": 10
+      }
+    ]
+  },
+  "signature": "6-4-4-13-20-1-2-0-0-c1-f2-z20x5t1-e1q1p2d90-0_4_6.300_5_6.900_6_7.1700_7_7.2800_8_8.4500_9_8.12000_10_8.18000_10_9.30000_11_9.40000_11_10.55000_12_10.70000_12_11.85000_13_11.100000_13_12-h1b7-t1b8p5m50-p1-4500_5_50.10000_8_30.15000_10_20.25000_12_10-cc1-10000_5000_12_150_2_1-lg2",
+  "checks": [
+    "all historical policies keep canonical rules, signatures and actual action states",
+    "full growth is canonical v2 with finite 13-color/12-bottle caps",
+    "all new boundaries minus/exact/plus: earned bottle now, one color per placement",
+    "bottle grants precede no-room loss; new last slots support place/flip/HOLD/pour/clear",
+    "pour and goal bonus pay the bottle in the same settlement, published pieces stay",
+    "large score jump grants all earned bottles but only one introduction per placement",
+    "each new introduction preserves held/published material and consumes one generation",
+    "two-digit liquid keys have no single-layer/multi-layer collision, preserve old keys",
+    "30k pressure anchor preserves ordinary and triple streams at every old segment",
+    "fresh preserved survival policy has identical action/state prefix before 30k",
+    "9-color ordinary tail stays 10/90; active new colors are bounded and sampled",
+    "all growth boundaries retain active goal and do not extend 12-placement deadline",
+    "new color goal witnesses replay real available liquid; future bottles cannot be borrowed",
+    "boundary JSON reload, undo, replay and clone isolation restore complete state",
+    "malformed policies/state reject and illegal or finished inputs consume nothing"
+  ],
+  "statistics": [
+    {
+      "k": 9,
+      "n": 8,
+      "score": 10000,
+      "counts": [
+        3192,
+        3373,
+        3363,
+        3355,
+        3263,
+        3432,
+        3309,
+        3287,
+        3271
+      ],
+      "lengths": [
+        0,
+        1377,
+        12401,
+        1222
+      ],
+      "total": 29845
+    },
+    {
+      "k": 11,
+      "n": 9,
+      "score": 30000,
+      "counts": [
+        2670,
+        2700,
+        2864,
+        2839,
+        2750,
+        2766,
+        2918,
+        2799,
+        2741,
+        2752,
+        2706
+      ],
+      "lengths": [
+        0,
+        1325,
+        11845,
+        1830
+      ],
+      "total": 30505
+    },
+    {
+      "k": 12,
+      "n": 10,
+      "score": 55000,
+      "counts": [
+        2452,
+        2450,
+        2589,
+        2637,
+        2539,
+        2517,
+        2662,
+        2580,
+        2557,
+        2501,
+        2523,
+        2498
+      ],
+      "lengths": [
+        0,
+        1325,
+        11845,
+        1830
+      ],
+      "total": 30505
+    },
+    {
+      "k": 13,
+      "n": 12,
+      "score": 100000,
+      "counts": [
+        2257,
+        2245,
+        2388,
+        2424,
+        2412,
+        2320,
+        2317,
+        2497,
+        2373,
+        2363,
+        2271,
+        2325,
+        2313
+      ],
+      "lengths": [
+        0,
+        1325,
+        11845,
+        1830
+      ],
+      "total": 30505
+    }
+  ]
+}

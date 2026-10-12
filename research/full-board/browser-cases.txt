@@ -1,0 +1,94 @@
+    if(demo){
+      await send('Page.addScriptToEvaluateOnNewDocument',{source:'window.__errors=[];addEventListener("error",e=>__errors.push(e.message));addEventListener("unhandledrejection",e=>__errors.push(String(e.reason)));'});
+      await send('Emulation.setDeviceMetricsOverride',{width:390,height:724,deviceScaleFactor:1,mobile:true});
+      for(const [score,k,n]of [[30000,11,9],[40000,11,10],[55000,12,10],[70000,12,11],[85000,13,11],[100000,13,12]]){
+        await send('Page.navigate',{url:'http://127.0.0.1:8161/game?score='+score});for(let i=0;i<100;i++){await wait(30);if(await js('!!window.__snapFn?.().S'))break;}
+        ck('served preview growth/'+score,(await state()).growth.activeColors===k&&(await state()).bottles.length===n);await place(0);await place(1);await wait(600);
+        ck('served preview native goal/'+score,(await state()).challenge.bonusTotal===300);
+        ck('preview never writes player records/'+score,await js('Object.keys(localStorage).every(k=>!/^wsurv\\.(game|best|stars|pt|runs|rules)/.test(k))&&__errors.length===0'));
+      }
+      await shot('served-demo-12b');return;
+    }
+    // Paired geometry: all earlier bottle positions and height budgets stay identical.
+    const stages=[[0,6],[900,7],[4500,8],[18000,9],[40000,10],[70000,11],[100000,12]];
+    for(const [width,height,mobile]of (quick?[[390,724,true]]:[[360,640,true],[390,724,true],[1280,900,false]]))for(const tray of (quick?['bottom']:['top','bottom'])){
+      await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile});
+      for(const [score,count]of stages){const tag=[width,height,tray,count].join('/');
+        await load({tray},true);await fixture(score,false,true);const original=await geom();
+        await load({tray});await fixture(score);const g=await geom();geometry.push({tag,before:original,after:g});
+        ck('growth count and valid state/'+tag,g.bottles.length===count&&await js('validFeatureState(window.__snapFn().S)'));
+        ck('bottle height and width preserved/'+tag,Math.abs(g.glass.h-original.glass.h)<.2&&g.bottles.every(b=>b.w>=44)&&Math.abs(g.bottles[0].w-original.bottles[0].w)<.2,{g,original});
+        ck('all existing bottle positions preserved/'+tag,original.bottles.every((b,i)=>Math.abs(b.x-g.bottles[i].x)<.2&&Math.abs(b.y-g.bottles[i].y)<.2),{g,original});
+        ck('no scroll/clipping/overlapping bottles/'+tag,g.scroll[2]<=width&&g.scroll[3]<=height&&g.actions.b<=height+.5&&g.bottles.every((b,i)=>b.x>=0&&b.r<=width&&b.y>=0&&b.b<=height&&g.bottles.slice(i+1).every(a=>!overlap(a,b))),g);
+        ck('effects clear occupied bottles/'+tag,g.bottles.every(b=>!overlap(b,g.stage)&&!overlap(b,g.banner))&&g.errors.length===0,g);
+        if(count===12){await js('document.getElementById("banner").textContent="색상 도전 완료 +300";document.getElementById("banner").hidden=false;true');await shot('full-'+width+'-'+tray);}
+      }
+    }
+    if(!quick){
+      // A complete crossed matrix on the smallest display, sampled at all late color/bottle stages.
+      await send('Emulation.setDeviceMetricsOverride',{width:360,height:640,deviceScaleFactor:1,mobile:true});
+      for(const lang of ['ko','en','ja','zh-Hans','zh-Hant','es','pt-BR','hi','id'])for(const tray of ['top','bottom'])for(const [score,count]of [[30000,9],[40000,10],[55000,10],[70000,11],[85000,11],[100000,12]]){
+        await load({lang,tray});await fixture(score,true);const g=await geom(),tag=[lang,tray,score].join('/');geometry.push({tag,...g});
+        ck('localized goal and full layout/'+tag,g.text.includes('0/2')&&g.textWidth<=g.note.w+.5&&g.bottles.length===count&&g.scroll[3]<=640&&g.bottles.every(b=>!overlap(b,g.stage)&&!overlap(b,g.banner)),g);
+        await js('document.documentElement.style.setProperty("--font-body","Arial,sans-serif");document.documentElement.style.setProperty("--font-display","Arial,sans-serif");window.__boot({S:window.__snapFn().S});true');
+        await place(0);await place(1);await wait(70);const after=await state();
+        ck('native localized goal/bonus/'+tag,after.challenge.bonusTotal===300&&after.bottles.length===count);
+        const b=await js('(()=>{const e=document.getElementById("banner");return{text:e.textContent,hidden:e.hidden,h:e.clientHeight,scroll:e.scrollHeight,w:e.clientWidth,sw:e.scrollWidth};})()');
+        ck('localized goal banner fits font fallback/'+tag,!b.hidden&&b.scroll<=b.h+1&&b.sw<=b.w+1,b);
+        ck('localized colors symbols and JS errors/'+tag,await js('!document.body.innerText.includes("undefined")&&!document.body.innerText.includes("□")&&__errors.length===0'));
+      }
+      for(const skin of ['lab','cafe','gem','deep'])for(const theme of ['dark','light']){
+        await load({skin,theme});await fixture();
+        const palette=await js('(()=>{const s=window.__snapFn().S;s.bottles[0]=[10,11,12];window.__boot({S:s});return [10,11,12].map(c=>{const e=document.querySelector(`#rack .layer[data-color="${c}"]`);return {c,color:getComputedStyle(e).backgroundColor,symbol:e.textContent,aria:e.closest(".tube").getAttribute("aria-label")};});})()');
+        ck('new palette and unique symbols/'+skin+'/'+theme,palette.every(p=>p.color!=='rgba(0, 0, 0, 0)'&&p.symbol&&p.aria)&&new Set(palette.map(p=>p.symbol)).size===3&&await js(`document.documentElement.dataset.theme===${JSON.stringify(theme)}&&document.documentElement.dataset.skin===${JSON.stringify(skin)}`),palette);await shot('palette-'+skin+'-'+theme);
+      }
+      for(const [width,height]of [[360,640],[390,724]])for(const tray of ['top','bottom']){
+        await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});
+        const safe=async()=>{await js('document.documentElement.style.setProperty("--test-safe-top","16px");document.documentElement.style.setProperty("--test-safe-bottom","26px");dispatchEvent(new Event("resize"));true');await wait(250);await js('dispatchEvent(new Event("resize"));true');await wait(150);};
+        await load({tray},true);await fixture();await safe();const original=await geom();await load({tray});await fixture(100000,true);await safe();const g=await geom();
+        ck('safe area height and no clipping/'+width+'/'+tray,Math.abs(original.glass.h-g.glass.h)<.2&&g.scroll[3]<=height&&g.actions.b<=height-26+.5,g);
+      }
+      await send('Emulation.setDeviceMetricsOverride',{width:390,height:724,deviceScaleFactor:1,mobile:true});
+      for(const controls of ['classic','tapPlace'])for(const mouse of [false,true])for(const i of [9,10,11]){
+        await load({controls});await fixture();await press('#btnFlip',mouse);await place(i,controls,mouse);ck('native last-slot flip/place/'+controls+'/'+mouse+'/'+i,JSON.stringify((await state()).bottles[i])===JSON.stringify([i,1,12]));
+        await load({controls});await fixture();await js(`(()=>{const s=window.__snapFn().S;s.bottles[${i}]=[12];s.bottles[0]=[12,12,12];window.__boot({S:s});return true;})()`);await press('#rack .tube[data-i="'+i+'"]',mouse,controls==='tapPlace'?550:100);await press('#rack .tube[data-i="0"]',mouse);await wait(750);
+        ck('native last-slot pour/clear/'+controls+'/'+mouse+'/'+i,(await state()).bottles[0].length===0&&(await state()).bottles[i].length===0);
+      }
+      for(const fx of ['base','juicy'])for(const reduce of ['0','1'])for(const tray of ['top','bottom']){
+        await load({fx,reduce,tray});await fixture(100000,true);await js('(()=>{const s=window.__snapFn().S;s.streak=4;s.bottles[9]=[12];s.bottles[10]=[12,12,12];window.__boot({S:s});return true;})()');
+        await press('#rack .tube[data-i="9"]');await press('#rack .tube[data-i="10"]');await wait(450);
+        const live=await js('(()=>{const box=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom,r:r.right};};return{burst:document.querySelector("#stage .cb")?box(document.querySelector("#stage .cb")):null,banner:box(document.getElementById("banner")),info:box(document.querySelector(".info")),cup:box(document.getElementById("cup")),nodes:document.querySelectorAll("#fxLayer .fx").length};})()');
+        ck('compact combo and banner clear essential information/'+fx+'/'+reduce+'/'+tray,(!live.burst||!overlap(live.burst,live.info)&&!overlap(live.burst,live.banner))&&!overlap(live.banner,live.info)&&!overlap(live.banner,live.cup),live);
+        if(fx==='juicy'&&reduce==='0')ck('full-board combo number stays visible/'+tray,!!live.burst,live);
+        await press('#btnUndo');await wait(900);ck('undo cleans full-board effects/'+fx+'/'+reduce+'/'+tray,await js('document.querySelectorAll("#fxLayer .fx,#stage .cb").length===0&&__errors.length===0'));
+        await js('document.getElementById("optSound").checked=false;document.getElementById("optSound").dispatchEvent(new Event("change"));true');await press('#btnHold');ck('muted HOLD remains valid/'+fx+'/'+reduce+'/'+tray,await js('validFeatureState(window.__snapFn().S)&&__errors.length===0'));
+      }
+      for(const score of [39900,69900,99900]){
+        await load({reduce:'1'});await fixture(score);await js('(()=>{const s=window.__snapFn().S;s.bottles[0]=[0,0,0];s.piece=[0];window.__boot({S:s});return true;})()');const before=await state();await place(0);const earned=await state();
+        ck('native boundary earns bottle/'+score,earned.bottles.length===before.bottles.length+1);await press('#btnUndo');ck('native boundary undo/'+score,(await state()).bottles.length===before.bottles.length);await place(0);const saved=await state();await load({reset:'0'});
+        ck('boundary recross/reload exact growth and queue/'+score,JSON.stringify((await state()).growth)===JSON.stringify(saved.growth)&&(await state()).bottles.length===saved.bottles.length);
+      }
+      for(const tray of ['top','bottom']){
+        await load({tray});await fixture();await place(9);await js('(()=>{const s=window.__snapFn().S;s.streak=4;s.maxStreak=4;if(!validFeatureState(s))throw Error("Invalid combo break fixture");window.__boot({S:s});return true;})()');await place(11);await wait(30);
+        const g=await geom(),fall=await js('(()=>{const e=[...document.querySelectorAll("#fxLayer .fx-score")].find(e=>e.textContent==="×4");if(!e)return null;const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom,r:r.right};})()');
+        ck('compact combo break stays clear of active info/'+tray,(await state()).streak===0&&!!fall&&!overlap(fall,g.note)&&fall.y>=g.stage.y-.5&&fall.b<=g.stage.b+.5,{fall,g});
+      }
+      for(const [score,color]of [[29900,11],[54900,12],[84900,13]]){
+        await load({reduce:'1'});await fixture(score);await js('(()=>{const s=window.__snapFn().S;s.bottles[0]=[0,0,0];s.piece=[0];window.__boot({S:s});return true;})()');await place(0);
+        ck('native new color and introduction queue/'+color,(await state()).growth.activeColors===color&&(await state()).growth.queue.some(q=>q.intro===color-1)&&await js('!document.getElementById("banner").textContent.includes("undefined")'));
+      }
+      for(const lang of ['ko','hi','pt-BR']){
+        await load({lang,reduce:'1'});await fixture(100000,true);await js('(()=>{const s=window.__snapFn().S;s.bottles[2]=[1,1,1];s.piece=[1];window.__boot({S:s});return true;})()');await place(2);
+        const g=await geom();ck('full-board failed goal keeps essential goal/info clear/'+lang,!(await state()).over&&(await state()).challenge.lastResult.status==='missed'&&g.bottles.every(b=>!overlap(b,g.banner))&&g.scroll[3]<=724,g);
+      }
+      await load({reduce:'1'});await fixture();await js('(()=>{const s=window.__snapFn().S;s.bottles=Array.from({length:12},()=>[0,1,2,3]);s.bottles[11].pop();s.hold=null;s.piece=[1];window.__boot({S:s});return true;})()');await place(11);await wait(1000);
+      ck('native full-board no-room game ends without JS errors',(await state()).over&&(await state()).overReason==='noroom'&&await js('__errors.length===0'));await shot('full-gameover');
+      await load();await fixture(18000);await js('(()=>{const s=window.__snapFn().S;s.rules=sanitizeRules(LATE_GROWTH_V1_RULES);localStorage.setItem("wsurv.game.endless",JSON.stringify(s));localStorage.setItem("wsurv.rules",JSON.stringify(LATE_GROWTH_V1_RULES));return true;})()');await load({reset:'0'});
+      ck('old v1 continuing run preserves policy',(await state()).rules.lateGrowthVersion===1);ck('next standard updates to v2',await js('window.__endlessRules().lateGrowthVersion===2'));
+      const key=await js('window.__bestKey()');await js(`localStorage.setItem(${JSON.stringify(key)},'777');localStorage.setItem('wsurv.rules.custom','true');true`);ck('explicit custom old v1 preserved',await js('window.__endlessRules().lateGrowthVersion===1'));
+      await js('localStorage.removeItem("wsurv.rules.custom");window.__startGame("endless",true);true');ck('new standard and old record retained',(await state()).rules.lateGrowthVersion===2&&await js(`localStorage.getItem(${JSON.stringify(key)})==='777'`));
+      await press('#btnSettings');await js('document.getElementById("labBox").open=true;true').catch(()=>{});ck('settings preserve max 13',await js('document.getElementById("set-maxColors").value==="13"'));await press('#ovSettings [data-close]');
+      await fixture();await js('(()=>{const s=window.__snapFn().S;s.rules.lateGrowthVersion=999;localStorage.setItem("wsurv.game.endless",JSON.stringify(s));return true;})()');await load({reset:'0'});ck('unsupported policy protected for recovery',await js('!!localStorage.getItem("wsurv.recovery.endless")&&window.__snapFn().S.score===0'));
+      await load();await fixture();await js('document.getElementById("score").textContent="9,999,999,999";dispatchEvent(new Event("resize"));true');await wait(250);ck('large score stays inside header',await js('(()=>{const r=document.getElementById("score").getBoundingClientRect();return r.right<=innerWidth&&document.documentElement.scrollWidth<=innerWidth;})()'));
+      await press('#btnHelp');ck('help includes selected final milestones',await js('document.getElementById("helpGrowth").textContent.includes("13")&&document.getElementById("helpFeatures").textContent.includes("100,000")'));await press('#ovHelp [data-close]');
+    }
