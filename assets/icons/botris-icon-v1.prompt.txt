@@ -1,0 +1,16 @@
+Use case: stylized-concept
+Asset type: Finished mobile game app icon for Botris, a colorful water sorting puzzle game. Generate one 1024×1024 square image.
+
+Composition: A large transparent glass bottle centered prominently in the foreground, with exactly two smaller glass bottles behind it, one to the left and one to the right. Slightly elevated three-quarter 3D viewpoint. The central bottle is the unmistakable focal point. Keep each of the three bottle silhouettes distinct, with readable mouths and visible sides despite partial overlap. Balanced compact composition with generous safe margins around the bottle group for icon cropping. Fill the whole square with the background; do not draw a rounded-square tile, border, device, or app-store mockup.
+
+Bottle design: Cute premium casual-game glass bottles, each with a short neck, thick open lip, smooth body and rounded thick base. No caps, no labels. Strong sculpted three-dimensional form, visible glass thickness, bright controlled edge reflections, subtle refraction at the bottom, soft grounded shadows. Clear glass allows the colored water layers to be seen. Polished high-quality stylized 3D game render, simple strong shapes, not a flat vector illustration.
+
+Colored liquid: The large central bottle contains exactly four sharply separated horizontal water layers: red #E5484D, yellow #F0B400, teal #0BA1BD, and blue #3E63DD. Across the two rear bottles, show clearly separated purple #8E4EC6, green #2E9D5D, and pink #D6409F water layers to enrich the overall palette. All colored liquids remain unmixed, with clean boundaries. Each liquid layer has depth, subtle internal shading, curved meniscus edges and tasteful gleaming highlights; looks like liquid, not opaque plastic or solid cubes. Keep enough clear glass and headspace near the mouths to show these are open water bottles. Saturated, bright, playful palette, clearly differentiated colors, no muddy rainbow gradients.
+
+Background and lighting: Full-bleed deep dark teal #0F171C backdrop with a soft restrained cyan-teal glow behind the central bottle. Bright frontal studio lighting and cyan rim lighting emphasize the glass volume without washing out the colored bands. A very small number of tiny floating droplets and delicate sparkle glints near bottle mouths suggest joyful puzzle completion; keep them sparse and subordinate to the bottles.
+
+Icon readability: Big recognizable bottle silhouettes, bold clearly separated colored bands, strong foreground-background contrast, clean readable even at very small app-icon size. Central bottle and all main details safely within the central region of the square.
+
+Text: None. No letters, game title, numbers, logos or watermark.
+Avoid: more than three bottles, busy game UI, excessive tiny ornaments, mixed rainbow liquid, excessive bloom, blinding reflections that obscure layers, commercial beverage packaging, plastic mineral-water bottles, laboratory setting, dull colors, pre-rounded corners, decorative outer frame.
+Deliver the finished artwork itself.

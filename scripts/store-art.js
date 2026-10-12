@@ -1,4 +1,5 @@
-// Renders the app icon, Android icon/splash sources and the Play feature graphic from store/art/bottle.svg.
+// Renders the Android icon/splash sources and the Play icon from the app icon artwork (assets/icons/botris-icon-v1-1024.png,
+// made by the user on 2026-10-12, prompt next to it), and the Play feature graphic from store/art/bottle.svg.
 // usage: node scripts/store-art.js   (Chrome headless; CHROME overrides the path)
 //   assets/icon-only.png, icon-foreground.png, icon-background.png, splash.png, splash-dark.png  -> @capacitor/assets (docs/ANDROID.md)
 //   store/icon-512.png, store/feature-graphic.png                                              -> Play store listing
@@ -7,11 +8,9 @@ const { execFileSync } = require('child_process');
 const BASE = path.resolve(__dirname, '..');
 const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const bottle = fs.readFileSync(path.join(BASE, 'store/art/bottle.svg'), 'utf8').replace(/<!--[\s\S]*?-->\s*/, '');
+const ART = 'data:image/png;base64,' + fs.readFileSync(path.join(BASE, 'assets/icons/botris-icon-v1-1024.png')).toString('base64');
+const ART_EDGE = '#051a25';   // the artwork's corner colour, used around it where the launcher shows more than the square
 const BG = '#0f171c';
-const background = `<defs><radialGradient id="bg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1d4a54"/><stop offset=".55" stop-color="#122a31"/><stop offset="1" stop-color="${BG}"/></radialGradient></defs><rect width="1024" height="1024" fill="url(#bg)"/>`;
-const svg = (body, size = 1024) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 1024 1024">${body}</svg>`;
-// the bottle spans y 134..890; centre it on 512 and scale it into the given height
-const fit = (h, cy = 512) => { const s = h / 756; return `<g transform="translate(512 ${cy}) scale(${s}) translate(-512 -512)">${bottle}</g>`; };
 function render(name, html, w, h) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'botris-art-'));
   const file = path.join(dir, 'page.html');
@@ -23,13 +22,14 @@ function render(name, html, w, h) {
   fs.rmSync(dir, { recursive: true, force: true });
   console.log(name);
 }
-const icon = svg(background + fit(756, 520));
-render('assets/icon-only.png', icon, 1024, 1024);
-render('store/icon-512.png', svg(background + fit(756, 520), 512), 512, 512);
-// adaptive icon: the launcher masks to roughly the centre 66%, so the foreground bottle stays inside it
-render('assets/icon-foreground.png', svg(fit(560, 516)), 1024, 1024);
-render('assets/icon-background.png', svg(background), 1024, 1024);
-const splash = `<svg xmlns="http://www.w3.org/2000/svg" width="2732" height="2732" viewBox="0 0 2732 2732"><rect width="2732" height="2732" fill="${BG}"/><g transform="translate(1366 1366) scale(.62) translate(-512 -512)">${fit(756, 512)}</g></svg>`;
+const art = (size, style = '') => `<img src="${ART}" width="${size}" height="${size}" style="display:block;${style}">`;
+render('assets/icon-only.png', art(1024), 1024, 1024);
+render('store/icon-512.png', art(512), 512, 512);
+// adaptive icon: @capacitor/assets insets both layers by 16.7%, so this square is the visible 72dp area; the artwork fills it
+// (a circular mask still keeps all three bottles) and the background layer is its edge colour
+render('assets/icon-foreground.png', art(1024), 1024, 1024);
+render('assets/icon-background.png', `<div style="width:1024px;height:1024px;background:${ART_EDGE}"></div>`, 1024, 1024);
+const splash = `<div style="width:2732px;height:2732px;display:grid;place-items:center;background:${BG}">${art(760, 'border-radius:22%')}</div>`;
 render('assets/splash.png', splash, 2732, 2732);
 render('assets/splash-dark.png', splash, 2732, 2732);
 // Play feature graphic 1024x500: bottle row on the left, title on the right
