@@ -18,7 +18,8 @@ return { DEFAULT_RULES, V1_RULES, sanitizeRules, rulesSig, colorsAt, pieceAt, to
   LEGACY_ENDLESS_RULES, PRESSURE_V1, PRESSURE_ENDLESS_RULES, hasPressure, sanitizePressure, pressureAt, nextPressure,
   hasColorChallenge, colorChallengePlan, updateColorChallenge, colorChallengeClear, validColorChallengeState,
   COLOR_ENDLESS_RULES, SCORE_LATE_GROWTH_V1, hasLateGrowth, growthBottleLimit, challengeGrowthReady,
-  LATE_GROWTH_V1_RULES, SCORE_FULL_GROWTH_V2, hasFullGrowth, growthColorLimit };`)();
+  LATE_GROWTH_V1_RULES, SCORE_FULL_GROWTH_V2, hasFullGrowth, growthColorLimit,
+  hasDistinctTriple, validDistinctTripleRules, distinctTriplePct, FULL_GROWTH_V2_RULES, hasChallengeChoice, immediateColorClears };`)();
 
 const clone = o => JSON.parse(JSON.stringify(o));
 let failures = 0;
