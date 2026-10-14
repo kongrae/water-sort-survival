@@ -22,9 +22,10 @@
   --gold-soft: rgba(201, 143, 0, .22);
   --scrim: rgba(8, 16, 20, .55);
   --shadow: 0 1px 2px rgba(22, 36, 44, .08), 0 8px 24px rgba(22, 36, 44, .08);
-  --liq0: #e5484d; --liq1: #3e63dd; --liq2: #f0b400; --liq3: #2e9d5d; --liq4: #8e4ec6;
-  --liq5: #f2701c; --liq6: #0ba1bd; --liq7: #d6409f; --liq8: #7d5a3c; --liq9: #8d9daa;
-  --liq10: #a4c927; --liq11: #354783; --liq12: #db9275;
+  /* Stable color identities; separated hue and lightness in both display themes. */
+  --liq0: #f22b4c; --liq1: #2485f0; --liq2: #ffe43b; --liq3: #149447; --liq4: #934beb;
+  --liq5: #ff8a00; --liq6: #00c7b6; --liq7: #f060cf; --liq8: #96572d; --liq9: #87939f;
+  --liq10: #8dd42d; --liq11: #4654a8; --liq12: #ffd0b5;
   --font-brand: 'Jua', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
   --font-body: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
@@ -41,8 +42,6 @@
   --glass: #1b2830; --glass-edge: #557080; --accent: #3fc2d1; --accent-soft: rgba(63, 194, 209, .2);
   --accent-ink: #06252a; --danger: #ff8a5e; --gold: #f2c94c; --gold-soft: rgba(242, 201, 76, .24); --scrim: rgba(0, 0, 0, .6);
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
-  --liq9: #c0ccd6;
-  --liq10: #c0df58; --liq11: #899bed; --liq12: #f1b79d;
   color-scheme: dark;
 }
 html { height: 100%; overflow: hidden; overscroll-behavior: none; }
@@ -521,7 +520,8 @@ body {
 .layer { font-weight: 700; }
 /* A solid neutral badge keeps the existing 13 symbols readable across all liquid colors. */
 .color-symbol { position: relative; z-index: 3; display: inline-grid; place-items: center; flex: none; box-sizing: border-box; width: clamp(11px, calc(var(--lh, 22px) - 2px), 18px); height: min(18px, calc(var(--lh, 22px) - 2px)); border-radius: 3px; background: #16242c; color: #fff; font: 700 clamp(8px, calc(var(--lh, 22px) * .65), 13px)/1 "Segoe UI Symbol", system-ui, sans-serif; text-shadow: none; pointer-events: none; }
-.tube.micro:has(.color-symbol), .queue .slot .tube.micro:has(.color-symbol) { opacity: 1; }
+/* A preview keeps the board's color even when optional symbols are off. */
+.tube.micro, .queue .slot .tube.micro, .queue .slot:not(:first-child) .tube.micro { opacity: 1; }
 .challenge-swatch:has(.color-symbol) { position: relative; width: 18px; height: 18px; border-radius: 4px; vertical-align: -4px; }
 .challenge-swatch .color-symbol { position: absolute; inset: 2px; width: 14px; height: 14px; font-size: 10px; }
 .color-key summary { min-height: 44px; align-content: center; cursor: pointer; font-size: 14px; }
@@ -1894,7 +1894,7 @@ function turnRhythm(S) {
   let lastWarnTurn = -1;
   let hadSpare = false;
   let armed = null;          // { id: 'btnNew' | 'btnMode' | 'btnExtra', timer }: a press waiting for its confirming second press
-  let prefs = Object.assign({ symbols: true, sound: true, vibrate: true, reduceFx: reducedMotion, ghost: true, pace: true, staged: true, offerSpare: true }, LS.get('wsurv.prefs', {}));
+  let prefs = Object.assign({ symbols: false, sound: true, vibrate: true, reduceFx: reducedMotion, ghost: true, pace: true, staged: true, offerSpare: true }, LS.get('wsurv.prefs', {}));
   let unlock = Object.assign({ runs: 0, sawOver: false, flip: false }, LS.get('wsurv.unlock', {}));
   const savePrefs = () => LS.set('wsurv.prefs', prefs);
   const saveUnlock = () => LS.set('wsurv.unlock', unlock);
