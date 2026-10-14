@@ -548,6 +548,29 @@ body {
   .tube.mini { --lh: 18px; }
   .app.expanding .tube.mini.piece-three { --piece-lh: 18px; }
 }
+/* Short landscape screens keep the board beside the controls instead of below them. */
+@media (orientation: landscape) and (min-width: 568px) and (max-height: 500px) {
+  .app, .app.expanding, .app.tray-bottom {
+    display: grid; max-width: 900px; height: 100%; min-height: 0;
+    grid-template-columns: minmax(284px, 1fr) minmax(240px, .85fr);
+    grid-template-rows: 44px 44px minmax(90px, 1fr) minmax(37px, auto) auto;
+    grid-template-areas: "top top" "board info" "board incoming" "board status" "board actions";
+    gap: 4px 12px;
+  }
+  .app > .top { grid-area: top; }
+  .app > .run-info { grid-area: info; min-width: 0; }
+  .app > .rack { grid-area: board; min-width: 0; margin: 0; align-content: center; align-items: start; }
+  .rack.expanding { column-gap: 4px; }
+  .app > .incoming { grid-area: incoming; min-width: 0; align-self: center; padding-inline: 8px; }
+  .app > .status { grid-area: status; min-width: 0; margin: 0; align-self: center; }
+  .app > .actions { grid-area: actions; min-width: 0; }
+  .actions > .btn { font-size: 12px; padding-inline: 5px; }
+  .tray.has-hold .current-piece { flex-basis: 92px; min-width: 92px; gap: 4px; }
+  .tray.has-hold .current-piece .tube.mini { width: 44px; }
+  .tray.has-hold .next-pieces { padding-left: 4px; }
+  .hold-slot { flex-basis: 44px; }
+  .hold-button { width: 44px; }
+}
 </style>
 
 <div class="app">
@@ -1924,11 +1947,11 @@ function turnRhythm(S) {
     if (S) { paintStage(); paintHeat(); layoutStage(); dangerFx(false); }
   }
   window.addEventListener('resize', () => {
-    if (S && isExpanding(S.rules)) { cancelGesture(); clearFx(); }
+    if (S) { cancelGesture(); clearFx(); }
     scheduleRackFit(true); scheduleNumberFit(); stageDirty = true; if (S) paintStage();
   });
   if (window.visualViewport) window.visualViewport.addEventListener('resize', () => {
-    if (S && isExpanding(S.rules)) { cancelGesture(); clearFx(); }
+    if (S) { cancelGesture(); clearFx(); }
     scheduleRackFit(true);
   });
   if (motionQuery) motionQuery.addEventListener('change', e => {
@@ -2755,9 +2778,10 @@ function turnRhythm(S) {
       const app = document.querySelector('.app'), bs = getComputedStyle(document.body), rs = getComputedStyle(rack);
       const children = [...app.children].filter(e => !e.hidden && getComputedStyle(e).display !== 'none');
       const fixed = children.filter(e => e !== rack).reduce((sum, e) => sum + e.getBoundingClientRect().height, 0);
-      const gap = parseFloat(getComputedStyle(app).rowGap) || 0;
+      const appStyle = getComputedStyle(app), gap = parseFloat(appStyle.rowGap) || 0;
       const view = Math.min(document.body.clientHeight, document.documentElement.clientHeight, window.visualViewport ? window.visualViewport.height : innerHeight);
-      const available = view - parseFloat(bs.paddingTop) - parseFloat(bs.paddingBottom) - fixed - gap * (children.length - 1);
+      const available = view - parseFloat(bs.paddingTop) - parseFloat(bs.paddingBottom) -
+        (appStyle.display === 'grid' ? document.querySelector('.top').getBoundingClientRect().height + gap : fixed + gap * (children.length - 1));
       // Standard daily/endless bottles share a height budget, including safe areas and the future upper row.
       // Short screens use the same smaller height in both modes; custom capacities retain their own fitting.
       const expanding = isExpanding(S.rules), rows = expanding ? 2 : 1;
@@ -3834,7 +3858,9 @@ function turnRhythm(S) {
     quietUntil = now() + 400;
     clearTimeout(g.timer);
     if (g.ghost) g.ghost.remove();
+    sel = null;
     clearDragHover(); clearCharge(); clearPress();
+    render();
   }
   function markCharge() {
     const s = gest && slotsOf(S)[gest.slot], el = s && s.length && tubeEl(gest.slot);
