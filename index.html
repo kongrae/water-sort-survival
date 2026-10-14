@@ -646,7 +646,7 @@ body {
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="v2Title">
     <h2 id="v2Title">새 규칙 3가지</h2>
     <ul class="rules" id="v2Lines"></ul>
-    <p class="note">이전 규칙으로 하려면 설정에서 '클래식(v1) 규칙'을 고르세요.</p>
+    <p class="note" id="v2LegacyNote" hidden>이전 규칙으로 하려면 설정에서 '클래식(v1) 규칙'을 고르세요.</p>
     <button class="btn primary" type="button" data-close>확인</button>
   </div>
 </div>
@@ -684,8 +684,8 @@ body {
     <p class="note" id="cloudStatus">이 브라우저에만 저장돼요.</p>
     <div class="center-row"><button class="btn primary" id="btnCloudLogin" type="button" hidden>구글로 로그인</button><button class="btn" id="btnCloudLogout" type="button" hidden>로그아웃</button></div>
     </section>
-    <!-- prototype-only settings, folded away (docs/PROMPT_feel.md U4) -->
-    <details class="lab" id="labBox">
+    <!-- Prototype controls require an explicit experiments=1 session. -->
+    <details class="lab" id="labBox" hidden>
       <summary>프로토타입 실험</summary>
       <div class="lab-body">
         <h3>규칙 (적용하고 새 게임)</h3>
@@ -1861,6 +1861,9 @@ function turnRhythm(S) {
 (() => {
   const $ = id => document.getElementById(id);
   const tr = window.WSSLocale.t;
+  const EXPERIMENTS = new URLSearchParams(location.search).get('experiments') === '1';
+  $('labBox').hidden = $('v2LegacyNote').hidden = !EXPERIMENTS;
+  $('labBox').querySelectorAll('input, select, textarea, button').forEach(el => { el.disabled = !EXPERIMENTS; });
   const colorName = c => tr(NAMES[c]);
   const SYMBOLS = ['●', '■', '▲', '◆', '★', '✚', '♥', '♣', '✿', '≋', '✦', '◐', '≡'];
   const NAMES = ['빨강', '파랑', '노랑', '초록', '보라', '주황', '청록', '분홍', '갈색', '은색', '라임', '남색', '살구'];
@@ -1910,7 +1913,7 @@ function turnRhythm(S) {
   function guardInput(e) {
     const storageControl = e.target.closest?.('#ovStorage');
     const unavailable = writerState === 'pending' || writerState === 'secondary' || writerState === 'released';
-    if (unavailable || (settlementBlocked && !storageControl) || (finishIntent && !e.target.closest?.('#ovFinish, #ovStorage'))) {
+    if ((!EXPERIMENTS && e.target.closest?.('#labBox')) || unavailable || (settlementBlocked && !storageControl) || (finishIntent && !e.target.closest?.('#ovFinish, #ovStorage'))) {
       e.preventDefault(); e.stopImmediatePropagation();
     }
   }
@@ -3361,6 +3364,8 @@ function turnRhythm(S) {
     commit();
   }
   function endlessRules() {
+    // Public fresh runs use standard rules; saved custom games and settings remain intact.
+    if (!EXPERIMENTS) return sanitizeRules(ENDLESS_RULES);
     const stored = LS.get('wsurv.rules', null);
     // Keep retired settings intact for recovery; only fresh games use the current default.
     const r = stored && !hasRetiredLatePour(stored) ? sanitizeRules(stored) : null;
@@ -4981,7 +4986,7 @@ function turnRhythm(S) {
     if (isExpanding(base) && ['bottles', 'cap', 'startColors', 'maxColors', 'pieceMin', 'pieceMax'].some(k => Number(selected[k]) !== base[k])) { delete selected.expansion; delete selected.growthTable; delete selected.distinctTripleVersion; delete selected.distinctTripleTable; }
     return sanitizeRules(selected);
   }
-  $('btnSettings').addEventListener('click', () => { buildForm(endlessRules()); fillPrefs(); ptShow(); $('ovSettings').hidden = false; });
+  $('btnSettings').addEventListener('click', () => { if (EXPERIMENTS) { buildForm(endlessRules()); ptShow(); } fillPrefs(); $('ovSettings').hidden = false; });
   // play-test record: copy for pasting into a report; reset before a trial
   $('btnPtCopy').addEventListener('click', () => {
     const ta = $('ptText');
@@ -5068,10 +5073,14 @@ function turnRhythm(S) {
     bar.max = theme.need; bar.value = Math.min(theme.need, Math.max(0, total));
     bar.setAttribute('aria-label', tr("누적 별 {0}/{1}", total, theme.need) + ' · ' + tr(theme.name));
   }
-  function themeOpen(t) { return !!prefs.tryLocked || isOwned(t); }
+  function themeOpen(t) { return (EXPERIMENTS && !!prefs.tryLocked) || isOwned(t); }
   function currentSkin() { const t = THEMES.find(x => x.id === prefs.skin); return t && themeOpen(t) ? t.id : 'lab'; }
   function applySkin() { document.documentElement.dataset.skin = currentSkin(); }
-  function useSkin(id) { prefs.skin = id; savePrefs(); applySkin(); if (!$('ovThemes').hidden) buildThemes(); }
+  function useSkin(id) {
+    const theme = THEMES.find(t => t.id === id);
+    if (!theme || !themeOpen(theme)) return;
+    prefs.skin = id; savePrefs(); applySkin(); if (!$('ovThemes').hidden) buildThemes();
+  }
   // Both reward surfaces show the same bottle renderer and scene variables as the live board.
   function themePreview(t) {
     const prev = document.createElement('div');
