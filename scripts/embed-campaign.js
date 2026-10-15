@@ -1,0 +1,22 @@
+// Authored stages run on the same product engine and board as endless.
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const root=path.resolve(__dirname,'..'),file=path.join(root,'water-sort-survival.html');
+let source=fs.readFileSync(file,'utf8');
+const pack=JSON.parse(fs.readFileSync(path.join(root,'campaign/packs/first-eight.json'),'utf8'));
+const guides=JSON.parse(fs.readFileSync(path.join(root,'campaign/packs/first-eight-guides.json'),'utf8'));
+const guidance=fs.readFileSync(path.join(root,'campaign/guidance.js'),'utf8');
+const progress=fs.readFileSync(path.join(root,'campaign/progress.js'),'utf8');
+require('../campaign/guidance').prepare(pack,guides);
+const catalog=new Set(fs.readFileSync(path.join(root,'locales/messages.tsv'),'utf8').split(/\r?\n/).map(row=>row.split('|')[0]));
+const required=guides.lessons.flatMap(g=>[g.title,g.intro]);
+for(const m of guidance.matchAll(/'([^'\r\n]*[가-힣][^'\r\n]*)'/g))required.push(m[1]);
+for(const key of required)if(!catalog.has(key))throw Error('Missing campaign translation: '+key);
+const definition=new Function(source.match(/<script id="engine">([\s\S]*?)<\/script>/)[1]+'\nreturn campaignDefinition;')();
+pack.forEach(definition);
+const normalized=pack.map(definition),sha=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
+const manifest={packHash:sha(normalized),stages:Object.fromEntries(normalized.map(s=>[s.id,sha(s)]))};
+const json=x=>JSON.stringify(x).replace(/</g,'\\u003c');
+const block='<!-- CAMPAIGN_PACK_START -->\n<script id="campaignPack" type="application/json">'+json(pack)+'</script>\n<script id="campaignGuides" type="application/json">'+json(guides)+'</script>\n<script id="campaignManifest" type="application/json">'+json(manifest)+'</script>\n<script id="campaignGuidance">\n'+guidance+'\n</script>\n<script id="campaignProgress">\n'+progress+'\n</script>\n<!-- CAMPAIGN_PACK_END -->';
+if(!source.includes('<!-- CAMPAIGN_PACK_START -->'))throw Error('Missing campaign marker');
+source=source.replace(/<!-- CAMPAIGN_PACK_START -->[\s\S]*?<!-- CAMPAIGN_PACK_END -->/,()=>block);
+fs.writeFileSync(file,source);console.log('Embedded '+pack.length+' authored stages and state-based lessons for the existing game board.');

@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "contentVersion": "first-eight-v1",
+  "lessons": [
+    {"stageId":"campaign-01-01","lesson":"first","title":"첫 완성","intro":"같은 색 4칸을 모으면 병이 비워져요."},
+    {"stageId":"campaign-01-02","lesson":"preview","title":"다음 조각","intro":"다음 두 조각도 확인하세요. 한 병에 들어갈 빈칸이 필요해요."},
+    {"stageId":"campaign-01-03","lesson":"goals","title":"목표 색","intro":"표시된 색의 병을 완성하세요. 다른 색도 정리할 수 있어요."},
+    {"stageId":"campaign-01-04","lesson":"direction","title":"층의 순서","intro":"⇅는 조각의 위아래 색을 바꿔요. 놓기 전에는 다시 바꿀 수 있어요."},
+    {"stageId":"campaign-01-05","lesson":"mixed","title":"혼합 조각","intro":"다른 색 위에도 넣을 수 있어요. 나중에 꺼낼 순서를 생각하세요."},
+    {"stageId":"campaign-01-06","lesson":"hold","title":"잠깐 보관","intro":"홀드는 지금 조각을 보관해요. 다음 조각과 비교해 보세요."},
+    {"stageId":"campaign-01-07","lesson":"repeat","title":"목표 한 병 더","intro":"같은 색 목표가 여러 병이에요. 남은 목표도 확인하세요."},
+    {"stageId":"campaign-01-08","lesson":"combine","title":"순서와 공간","intro":"목표 색과 다음 조각을 함께 보며 순서를 정하세요."}
+  ]
+}
