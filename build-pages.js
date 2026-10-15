@@ -4,6 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 require('./scripts/embed-i18n.js');
+require('./scripts/embed-route.js');
 const outDir = path.resolve(__dirname, process.argv[2] || 'dist');
 const page = fs.readFileSync(path.join(__dirname, 'water-sort-survival.html'), 'utf8');
 const title = (page.match(/<title>[^<]*<\/title>/) || [''])[0];

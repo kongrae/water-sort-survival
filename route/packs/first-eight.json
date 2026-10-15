@@ -1,0 +1,914 @@
+[
+  {
+    "schema": 1,
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 4
+      }
+    ],
+    "edges": [
+      {
+        "from": "A",
+        "to": "J"
+      },
+      {
+        "from": "B",
+        "to": "K"
+      },
+      {
+        "from": "J",
+        "to": "R"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      }
+    ],
+    "layout": {
+      "A": {
+        "x": 0.23,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.77,
+        "y": 0.15
+      },
+      "J": {
+        "x": 0.23,
+        "y": 0.47
+      },
+      "K": {
+        "x": 0.77,
+        "y": 0.47
+      },
+      "R": {
+        "x": 0.23,
+        "y": 0.84
+      },
+      "B-out": {
+        "x": 0.77,
+        "y": 0.84
+      }
+    },
+    "id": "route-01-follow",
+    "title": "화살표를 따라",
+    "description": "연결된 탱크를 거쳐 같은 색 도착지로 보낸다.",
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "contentHash": "6f306750d513dc7adaa90a99e469a2655249a5241c33f8eb7112794cd31f7dfe"
+  },
+  {
+    "schema": 1,
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0
+      ],
+      [],
+      []
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 4
+      }
+    ],
+    "edges": [
+      {
+        "from": "A",
+        "to": "K"
+      },
+      {
+        "from": "B",
+        "to": "K"
+      },
+      {
+        "from": "A",
+        "to": "J"
+      },
+      {
+        "from": "B",
+        "to": "J"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      },
+      {
+        "from": "J",
+        "to": "R"
+      }
+    ],
+    "layout": {
+      "A": {
+        "x": 0.23,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.77,
+        "y": 0.15
+      },
+      "J": {
+        "x": 0.23,
+        "y": 0.47
+      },
+      "K": {
+        "x": 0.77,
+        "y": 0.47
+      },
+      "R": {
+        "x": 0.23,
+        "y": 0.84
+      },
+      "B-out": {
+        "x": 0.77,
+        "y": 0.84
+      }
+    },
+    "id": "route-02-uncover",
+    "title": "위의 색부터",
+    "description": "윗물을 따로 모아 아래에 가려진 색을 드러낸다.",
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "contentHash": "017740ffd98d67d5d2419bfda48a897c40e9086701306d209522ec2b18deb6fc"
+  },
+  {
+    "schema": 1,
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [],
+      []
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "B",
+        "to": "K"
+      },
+      {
+        "from": "A",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "J",
+        "to": "R"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      }
+    ],
+    "layout": {
+      "A": {
+        "x": 0.23,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.77,
+        "y": 0.15
+      },
+      "J": {
+        "x": 0.23,
+        "y": 0.47
+      },
+      "K": {
+        "x": 0.77,
+        "y": 0.47
+      },
+      "R": {
+        "x": 0.23,
+        "y": 0.84
+      },
+      "B-out": {
+        "x": 0.77,
+        "y": 0.84
+      }
+    },
+    "id": "route-03-hold",
+    "title": "파랑을 남겨 두기",
+    "description": "파랑을 K에 남겨 빨강의 길을 연 채로 유지한다.",
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "contentHash": "404224719ae7c693310c1fc7e8cb0bf3481fb1a018b00df487b66c737d7b6ca3"
+  },
+  {
+    "schema": 1,
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      []
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 4
+      }
+    ],
+    "edges": [
+      {
+        "from": "A",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "B",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "A",
+        "to": "K"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      },
+      {
+        "from": "J",
+        "to": "R"
+      }
+    ],
+    "layout": {
+      "A": {
+        "x": 0.23,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.77,
+        "y": 0.15
+      },
+      "J": {
+        "x": 0.23,
+        "y": 0.47
+      },
+      "K": {
+        "x": 0.77,
+        "y": 0.47
+      },
+      "R": {
+        "x": 0.23,
+        "y": 0.84
+      },
+      "B-out": {
+        "x": 0.77,
+        "y": 0.84
+      }
+    },
+    "id": "route-04-reserve",
+    "title": "다시 열 물 확보하기",
+    "description": "파랑을 보내기 전에 다시 수문을 열 예비 파랑부터 드러낸다.",
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "contentHash": "08d5c1e0482d41f8ce20273154f4733e6ab582c73464df5873416b3ef5754189"
+  },
+  {
+    "schema": 1,
+    "id": "route-05-release",
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1
+      ],
+      []
+    ],
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 4
+      }
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "edges": [
+      {
+        "from": "A",
+        "to": "K"
+      },
+      {
+        "from": "B",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "J",
+        "to": "R"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      },
+      {
+        "from": "K",
+        "to": "R"
+      }
+    ],
+    "title": "제어 탱크도 통로",
+    "contentHash": "acb989691d56d24b410fae3a6664ec62aa9861e8dd421069547153087c0360de",
+    "layout": {
+      "A": {
+        "x": 0.23,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.77,
+        "y": 0.15
+      },
+      "K": {
+        "x": 0.23,
+        "y": 0.47
+      },
+      "J": {
+        "x": 0.77,
+        "y": 0.47
+      },
+      "R": {
+        "x": 0.77,
+        "y": 0.84
+      },
+      "B-out": {
+        "x": 0.23,
+        "y": 0.84
+      }
+    },
+    "description": "수문을 쓴 뒤 파랑을 보내 K를 다른 색의 통로로 바꾼다."
+  },
+  {
+    "schema": 1,
+    "id": "route-06-shared",
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "C",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        0,
+        0
+      ],
+      [],
+      []
+    ],
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 4
+      },
+      {
+        "id": "G",
+        "color": 3,
+        "demand": 4
+      }
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "edges": [
+      {
+        "from": "A",
+        "to": "K"
+      },
+      {
+        "from": "B",
+        "to": "K"
+      },
+      {
+        "from": "C",
+        "to": "K"
+      },
+      {
+        "from": "A",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "B",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "C",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "J",
+        "to": "R"
+      },
+      {
+        "from": "J",
+        "to": "G"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      }
+    ],
+    "title": "누가 먼저 지나갈까",
+    "contentHash": "e12e77cb6e3a3ae221848cd3117075a8426d7035917b42fb2530d4922df76a6d",
+    "layout": {
+      "A": {
+        "x": 0.14,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.5,
+        "y": 0.15
+      },
+      "C": {
+        "x": 0.86,
+        "y": 0.15
+      },
+      "K": {
+        "x": 0.29,
+        "y": 0.47
+      },
+      "J": {
+        "x": 0.71,
+        "y": 0.47
+      },
+      "B-out": {
+        "x": 0.2,
+        "y": 0.84
+      },
+      "R": {
+        "x": 0.53,
+        "y": 0.84
+      },
+      "G": {
+        "x": 0.86,
+        "y": 0.84
+      }
+    },
+    "description": "공용 탱크를 쓸 색의 순서에 따라 한 번에 모을지 나눠 보낼지 결정한다."
+  },
+  {
+    "schema": 1,
+    "id": "route-07-split",
+    "title": "한 칸과 세 칸",
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "C",
+      "K",
+      "J"
+    ],
+    "initial": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        3,
+        1
+      ],
+      [
+        0,
+        0,
+        3,
+        3
+      ],
+      [
+        1,
+        1
+      ],
+      []
+    ],
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-one",
+        "color": 1,
+        "demand": 1
+      },
+      {
+        "id": "B-three",
+        "color": 1,
+        "demand": 3
+      },
+      {
+        "id": "G",
+        "color": 3,
+        "demand": 4
+      }
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "edges": [
+      {
+        "from": "A",
+        "to": "K"
+      },
+      {
+        "from": "B",
+        "to": "K"
+      },
+      {
+        "from": "A",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "B",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "C",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "K",
+        "to": "B-one",
+        "gated": true
+      },
+      {
+        "from": "K",
+        "to": "B-three"
+      },
+      {
+        "from": "J",
+        "to": "R"
+      },
+      {
+        "from": "J",
+        "to": "G"
+      }
+    ],
+    "layout": {
+      "A": {
+        "x": 0.14,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.5,
+        "y": 0.15
+      },
+      "C": {
+        "x": 0.86,
+        "y": 0.15
+      },
+      "K": {
+        "x": 0.27,
+        "y": 0.47
+      },
+      "J": {
+        "x": 0.73,
+        "y": 0.47
+      },
+      "B-one": {
+        "x": 0.11,
+        "y": 0.84
+      },
+      "B-three": {
+        "x": 0.35,
+        "y": 0.84
+      },
+      "R": {
+        "x": 0.65,
+        "y": 0.84
+      },
+      "G": {
+        "x": 0.89,
+        "y": 0.84
+      }
+    },
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "contentHash": "b2a7033ce1e58cb7d1cb820494d552cf1001a7bbc153e64a17f3cd8b8a591d17",
+    "description": "분할 목표를 보낼 때 수문에 필요한 파랑 2칸을 함께 계산한다."
+  },
+  {
+    "schema": 1,
+    "id": "route-08-return",
+    "title": "잠깐 맡기고 다시 열기",
+    "capacity": 4,
+    "tankIds": [
+      "A",
+      "B",
+      "C",
+      "K",
+      "J",
+      "P"
+    ],
+    "initial": [
+      [
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        1,
+        1,
+        1,
+        1
+      ],
+      [],
+      []
+    ],
+    "outlets": [
+      {
+        "id": "R",
+        "color": 0,
+        "demand": 4
+      },
+      {
+        "id": "B-out",
+        "color": 1,
+        "demand": 4
+      },
+      {
+        "id": "G",
+        "color": 3,
+        "demand": 4
+      }
+    ],
+    "gate": {
+      "tank": "K",
+      "color": 1,
+      "minUnits": 2
+    },
+    "edges": [
+      {
+        "from": "A",
+        "to": "K"
+      },
+      {
+        "from": "B",
+        "to": "K"
+      },
+      {
+        "from": "B",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "C",
+        "to": "J",
+        "gated": true
+      },
+      {
+        "from": "K",
+        "to": "P"
+      },
+      {
+        "from": "P",
+        "to": "K"
+      },
+      {
+        "from": "K",
+        "to": "R"
+      },
+      {
+        "from": "K",
+        "to": "B-out"
+      },
+      {
+        "from": "J",
+        "to": "G"
+      }
+    ],
+    "layout": {
+      "A": {
+        "x": 0.14,
+        "y": 0.15
+      },
+      "B": {
+        "x": 0.5,
+        "y": 0.15
+      },
+      "C": {
+        "x": 0.86,
+        "y": 0.15
+      },
+      "K": {
+        "x": 0.29,
+        "y": 0.47
+      },
+      "J": {
+        "x": 0.71,
+        "y": 0.47
+      },
+      "P": {
+        "x": 0.13,
+        "y": 0.84
+      },
+      "B-out": {
+        "x": 0.39,
+        "y": 0.84
+      },
+      "R": {
+        "x": 0.64,
+        "y": 0.84
+      },
+      "G": {
+        "x": 0.89,
+        "y": 0.84
+      }
+    },
+    "rulesVersion": "route-v1",
+    "contentVersion": "first-eight-v1",
+    "contentHash": "ea764f153094fe8a07303c2c0db711bcefd4b6978ec76d7dd3e3ec4c78852a73",
+    "description": "파랑을 보관해 K를 빌려 쓴 뒤 되가져오는 시점을 선택한다."
+  }
+]
