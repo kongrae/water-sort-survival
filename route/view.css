@@ -170,3 +170,20 @@
  .route-root #__PREFIX__gatePanel{padding:2px 4px}
  .route-root #__PREFIX__gateToggle{min-height:44px;padding:2px}
 }
+
+/* Product bottles use the endless mode's .tube/.glass/.layer renderer and effects. */
+.route-root.shared-bottles #__PREFIX__nodes{position:absolute;inset:14px 0 0}
+.route-root.shared-bottles #__PREFIX__paths{top:14px;height:calc(100% - 14px)}
+.route-root.shared-bottles .node.tube{min-height:58px;gap:0;background:none;overflow:visible}
+.route-root.shared-bottles .node.tube>.rim,.route-root.shared-bottles .node.tube>.glass{width:75%;flex:none}
+.route-root.shared-bottles .node.tube>.rim{height:var(--rim-h);margin-inline:0}
+.route-root.shared-bottles .node.tube>.glass{height:calc(var(--cap)*var(--lh) + 8px)}
+.route-root.shared-bottles .node.tube>.label{line-height:12px;font-size:11px}
+.route-root.shared-bottles .node.tube>.type,.route-root.shared-bottles .node.tube>.quantity{line-height:13px;font-size:11px}
+.route-root.shared-bottles .node.tube .layer{height:calc(var(--lh) - 2px);border-top:0;background-color:var(--lc);background-image:var(--water-depth)}
+.route-root.shared-bottles .node.outlet{border-color:transparent;border-radius:8px;background:#16323980}
+.route-root.shared-bottles .node.outlet .label{display:flex;align-items:center;justify-content:center;gap:3px}
+.route-root.shared-bottles .node.outlet.complete{background:#163e3f}
+.route-root.shared-bottles .node.controller .glass{--glass-ring:0 0 0 2px #e9ba65}
+.route-root.shared-bottles .node.tube>.cue-tag{translate:none}
+.route-root.shared-bottles .node.pulse .vessel{animation:none}

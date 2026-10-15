@@ -10,8 +10,20 @@ function createRouteView(options){
  const names=['빨강','파랑','노랑','초록','보라','주황','청록','분홍','갈색','은색','라임','남색','살구'];
  const symbols=['●','■','▲','◆','★','✚','♥','♣','✿','≋','✦','◐','≡'];
  let stage,state,selected=null,previewTarget=null,busy=false,pulse=[],drag=null,suppressClickUntil=0,focusNode=null,hintOpen=false,timer=null,gateLinksOpen=false,announcement=null,lessonStage=null;
+ let controls=null,input=null;
+ const bottles=options.bottleUI;
+ root.classList.toggle('shared-bottles',!!bottles);
+ function fitBottles(){
+   if(!bottles)return;const height=$('nodes').getBoundingClientRect().height;
+   root.querySelectorAll('[data-node].tube').forEach(el=>{
+     const cap=Number(el.style.getPropertyValue('--cap')),box=Math.max(58,height*(el.classList.contains('outlet')?0.16:0.232));
+     const rim=parseFloat(getComputedStyle(el).getPropertyValue('--rim-h'))||6;
+     el.style.setProperty('--lh',Math.max(6,Math.min(30,(box-33-rim)/cap))+'px');
+   });
+ }
  const reduced=()=>options.preferences().reduceFx===true||matchMedia('(prefers-reduced-motion: reduce)').matches;
  function setHelp(open){
+   if(open){controls?.cancel();bottles?.clear();}
    $('helpPanel').hidden=!open;$('helpToggle').setAttribute('aria-expanded',String(open));
    root.querySelector('.route-scroll').inert=open;
    for(const id of ['undo','restart','cancel'])$(id).inert=open;
@@ -106,6 +118,17 @@ function createRouteView(options){
       const cue=selected&&suggestion?.to===o.id;
       return `<button class="node outlet ${complete?'complete':''} ${destinationMoves.some(r=>r.to===o.id)?'possible':''} ${pulse.includes(o.id)?'pulse':''} ${cue?'coach-target':''}" data-node="${o.id}" style="left:${x/6}%;top:${y/5.6}%" aria-label="${html("{0}, {1}/{2}칸",label(o.id),state.delivered[i],o.demand)}" ${locked?'disabled':''}><span class="dot" style="background:${color(o.color)}"></span><span class="label">${esc(outletShortName(o))}</span><span class="quantity">${state.delivered[i]}/${o.demand}</span>${cue?'<span class="cue-tag" aria-hidden="true">②</span>':''}</button>`;
     }).join('');
+    if(bottles){
+      root.querySelectorAll('[data-node]').forEach(el=>{
+        const id=el.dataset.node,index=stage.tankIds.indexOf(id),out=stage.outlets.find(o=>o.id===id);
+        const layers=index>=0?state.bottles[index]:Array(state.delivered[stage.outlets.indexOf(out)]).fill(out.color),cap=index>=0?4:out.demand;
+        const title=el.querySelector('.label'),quantity=el.querySelector('.type,.quantity'),cue=el.querySelector('.cue-tag'),dot=el.querySelector('.dot');
+        el.classList.add('tube');el.classList.toggle('sel',selected===id);
+        bottles.paint(el,layers,cap);if(dot)title.prepend(dot);el.prepend(title);el.append(quantity);if(cue)el.append(cue);
+        const move=destinationMoves.find(r=>r.to===id);if(move)bottles.ghost(el,move.color,move.moved);
+      });
+      fitBottles();
+    }
     const defs=`<defs><marker id="${prefix}arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>`;
     $('paths').innerHTML=defs+stage.edges.map((e,i)=>{
       const [sx,sy]=points[e.from], [tx,ty]=points[e.to], up=ty<sy;
@@ -128,6 +151,7 @@ function createRouteView(options){
     root.dataset.reduce=String(reduced());
     if (status.blocked) say('지금 가능한 이동이 없어요. 되돌리기나 다시 시작으로 다른 순서를 시도하세요.',true);
     if(!busy&&activeId) { root.querySelector(`[data-node="${activeId}"]`)?.focus({preventScroll:true});focusNode=null; }
+    controls?.reapply();
   }
   function chooseSource(id) {
     selected=id;render();const canSend=Route.availableMoves(stage,state).moves.some(r=>r.from===id);
@@ -135,11 +159,14 @@ function createRouteView(options){
     else say("이 탱크에서 지금 보낼 수 있는 곳이 없어요. 다른 탱크를 고르거나 되돌려 보세요.",true);
     return canSend;
   }
-  function commit(from,to) {
+  function commit(from,to,how='tap',fromRects) {
     if (busy||options.blocked?.()) return;
+    const preview=Route.previewMove(stage,state,[from,to]);
+    const flight=preview.ok&&bottles?bottles.prepare(input,from,to,preview,how,fromRects):null;
     const result=options.dispatch('move',[from,to]);
-    if (!result.ok) { say(reasons[result.reason]||"이 이동은 할 수 없어요.",true);showPreview(to);return; }
-    focusNode=to;state=result.state;selected=null;pulse=[from,to];busy=!reduced();render();
+    if (!result.ok) { say(reasons[result.reason]||"이 이동은 할 수 없어요.",true);showPreview(to);if(bottles)bottles.reject(input.tube(to));return; }
+    focusNode=to;state=result.state;selected=null;pulse=bottles?[]:[from,to];busy=!bottles&&!reduced();render();
+    if(bottles)bottles.play(flight);
     say(result.won?'모든 목표를 달성했어요.':'물을 옮겼어요.');
     if(Route.status(stage,state).blocked) say('지금 가능한 이동이 없어요. 되돌리기나 다시 시작으로 다른 순서를 시도하세요.',true);
     // The lock prevents a second input during the same transfer's visual feedback.
@@ -162,22 +189,34 @@ function createRouteView(options){
   function reset(index) { const result=options.select(index);if(!result.ok)return;clearTimeout(timer);busy=false;selected=null;pulse=[];drag=null;hintOpen=false;$('stageSelect').value=String(index);render();say('모든 물을 같은 색 도착지로 보내세요.'); }
   $('gateToggle').addEventListener('click',()=>{gateLinksOpen=!gateLinksOpen;render();});
   $('guideToggle').addEventListener('click',()=>{hintOpen=!hintOpen;render();$('guideToggle').focus({preventScroll:true});});
-  $('nodes').addEventListener('click',e=>{const node=e.target.closest('[data-node]');if(node&&!drag&&(e.detail===0||performance.now()>=suppressClickUntil))activate(node.dataset.node);});
+  if(bottles){
+    input={
+      blocked:()=>!state||state.phase==='won'||!!options.blocked?.()||!$('helpPanel').hidden||!root.getClientRects().length,
+      slots:()=>Object.fromEntries([...stage.tankIds.map((id,i)=>[id,state.bottles[i]]),...stage.outlets.map((o,i)=>[o.id,Array(state.delivered[i]).fill(o.color)])]),
+      capacity:id=>stage.outlets.find(o=>o.id===id)?.demand||4,
+      tube:id=>root.querySelector('[data-node="'+id+'"]'),canSource:id=>stage.tankIds.includes(id),
+      preview:(from,to)=>Route.previewMove(stage,state,[from,to]),
+      select:id=>{selected=id;},render,tap:activate,pick:chooseSource,pour:commit,
+      longPress:()=>false,notice:()=>{}
+    };
+    controls=bottles.bind($('board'),input);
+    new ResizeObserver(fitBottles).observe($('board'));
+  }else $('nodes').addEventListener('click',e=>{const node=e.target.closest('[data-node]');if(node&&!drag&&(e.detail===0||performance.now()>=suppressClickUntil))activate(node.dataset.node);});
   $('choices').addEventListener('click',e=>{const b=e.target.closest('[data-target]');if(b&&selected)commit(selected,b.dataset.target);});
   for (const event of ['pointerover','focusin']) {
     $('nodes').addEventListener(event,e=>{const node=e.target.closest('[data-node]');if(node&&node.dataset.node!==selected)showPreview(node.dataset.node);});
     $('choices').addEventListener(event,e=>{const b=e.target.closest('[data-target]');if(b)showPreview(b.dataset.target);});
   }
   // Drag is the same action as two taps. Pointer cancellation never sends water.
-  $('board').addEventListener('pointerdown',e=>{
+  if(!bottles)$('board').addEventListener('pointerdown',e=>{
     const node=e.target.closest('[data-node]');if(busy||options.blocked?.()||drag||!e.isPrimary||e.button!==0||!node)return;
     // A fresh primary press is not the residual click from a cancelled gesture.
     suppressClickUntil=0;
     if(!stage.tankIds.includes(node.dataset.node)||state.phase==='won')return;
     drag={id:node.dataset.node,x:e.clientX,y:e.clientY,pointer:e.pointerId,moved:false};
   });
-  $('board').addEventListener('pointermove',e=>{if(!drag||drag.pointer!==e.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10){if(!drag.moved){drag.moved=true;selected=drag.id;render();}if(!$('board').hasPointerCapture(e.pointerId))$('board').setPointerCapture(e.pointerId);}});
-  $('board').addEventListener('pointerup',e=>{
+  if(!bottles)$('board').addEventListener('pointermove',e=>{if(!drag||drag.pointer!==e.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10){if(!drag.moved){drag.moved=true;selected=drag.id;render();}if(!$('board').hasPointerCapture(e.pointerId))$('board').setPointerCapture(e.pointerId);}});
+  if(!bottles)$('board').addEventListener('pointerup',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;
     if($('board').hasPointerCapture(e.pointerId))$('board').releasePointerCapture(e.pointerId);
     if(!d.moved)return;suppressClickUntil=performance.now()+350;
@@ -185,18 +224,19 @@ function createRouteView(options){
     if(target&&root.contains(target)&&target.dataset.node!==d.id)commit(d.id,target.dataset.node);else {cancelInput();render();say('드래그를 취소했습니다.');}
   });
   function cancelInput(announce=false) {
+    controls?.cancel();
     const interrupted=!!(drag||selected),pointer=drag?.pointer;drag=null;selected=null;previewTarget=null;
     if(pointer!==undefined&&$('board').hasPointerCapture(pointer))$('board').releasePointerCapture(pointer);
     if(interrupted)suppressClickUntil=performance.now()+350;
     if(announce){render();say('선택을 해제했습니다.');}
   }
-  $('board').addEventListener('pointercancel',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
-  $('board').addEventListener('lostpointercapture',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
+  if(!bottles)$('board').addEventListener('pointercancel',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
+  if(!bottles)$('board').addEventListener('lostpointercapture',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
   const interrupt=()=>{if(root.getClientRects().length&&(drag||selected))cancelInput(true);};
   addEventListener('blur',interrupt);addEventListener('resize',interrupt);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)interrupt();});
-  $('undo').addEventListener('click',()=>{if(busy)return;const r=options.dispatch('undo');if(r.ok){state=r.state;selected=null;render();say('직전 이동의 물과 목표, 수문을 복원했어요.');}});
-  $('restart').addEventListener('click',()=>{if(busy)return;const r=options.dispatch('restart');if(r.ok){state=r.state;selected=null;hintOpen=false;render();say('같은 판을 새 시도로 시작했습니다.');}});
+  $('undo').addEventListener('click',()=>{if(busy)return;controls?.cancel();bottles?.clear();const r=options.dispatch('undo');if(r.ok){state=r.state;selected=null;render();say('직전 이동의 물과 목표, 수문을 복원했어요.');}});
+  $('restart').addEventListener('click',()=>{if(busy)return;controls?.cancel();bottles?.clear();const r=options.dispatch('restart');if(r.ok){state=r.state;selected=null;hintOpen=false;render();say('같은 판을 새 시도로 시작했습니다.');}});
   $('cancel').addEventListener('click',()=>cancelInput(true));
   root.addEventListener('keydown',e=>{
     if(!$('helpPanel').hidden){
@@ -218,7 +258,7 @@ function createRouteView(options){
 
  $('stageSelect').innerHTML=stages.map((s,i)=>`<option value="${i}">${i+1}. ${s.title}</option>`).join('');
  if(guides)$('stageSelect').setAttribute('aria-label','스테이지 선택');
- const cancel=()=>{clearTimeout(timer);busy=false;cancelInput();pulse=[];hintOpen=false;gateLinksOpen=false;announcement=null;$('helpPanel').hidden=true;$('helpToggle').setAttribute('aria-expanded','false');root.querySelector('.route-scroll').inert=false;for(const id of ['undo','restart','cancel'])$(id).inert=false;};
+ const cancel=()=>{clearTimeout(timer);busy=false;cancelInput();bottles?.clear();pulse=[];hintOpen=false;gateLinksOpen=false;announcement=null;$('helpPanel').hidden=true;$('helpToggle').setAttribute('aria-expanded','false');root.querySelector('.route-scroll').inert=false;for(const id of ['undo','restart','cancel'])$(id).inert=false;};
  return Object.freeze({render,reset,cancel,say});
 }
 if(typeof module==='object'&&module.exports)module.exports=createRouteView;else global.createRouteView=createRouteView;

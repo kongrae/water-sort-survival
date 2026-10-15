@@ -45,7 +45,7 @@
       if(r.ok){menu=false;view.cancel();view.render();view.say(r.state.moves?'저장된 진행을 이어서 플레이합니다.':'모든 물을 같은 색 도착지로 보내세요.');}refresh();
       if(r.ok){host.closest('.sheet').scrollTop=0;host.querySelector('.route-scroll').scrollTop=0;$('routeList').focus({preventScroll:true});}return r;
     }
-    const view=createRouteView({root:host,translate:tr,prefix:'route-',Route,stages,guides,snapshot:progress.snapshot,blocked:()=>!!(lastIssue||progress.snapshot().issue||(!progress.snapshot().memoryOnly&&!options.storage.writable())),
+    const view=createRouteView({root:host,translate:tr,prefix:'route-',bottleUI:options.bottleUI,Route,stages,guides,snapshot:progress.snapshot,blocked:()=>!!(lastIssue||progress.snapshot().issue||(!progress.snapshot().memoryOnly&&!options.storage.writable())),
       select:index=>choose(index),dispatch:(kind,move)=>{const r=progress.act(kind,move);if(!r.ok&&progress.snapshot().issue)lastIssue=progress.snapshot().issue;refresh();return r;},
       next:()=>{const index=stages.indexOf(progress.snapshot().stage);if(index<stages.length-1)choose(index+1);else showMenu();},
       preferences:options.preferences,setPreferences:options.setPreferences,lastNextLabel:'스테이지 목록으로'});
@@ -56,7 +56,7 @@
     $('routeRetry').addEventListener('click',()=>{lastIssue=null;const r=progress.retry();if(!r.ok)lastIssue=r.reason;view.cancel();if(!progress.snapshot().state)menu=true;refresh();});
     $('routeMemory').addEventListener('click',()=>{lastIssue=null;progress.continueWithoutSaving();if(!progress.snapshot().state)menu=true;view.cancel();refresh();});
     $('routeRecover').addEventListener('click',()=>{lastIssue=null;const r=progress.restartProtected();if(!r.ok)lastIssue=r.reason;else showMenu();refresh();});
-    return Object.freeze({show:()=>{const s=progress.snapshot();if(!s.loaded||(!s.memoryOnly&&!s.dirty))progress.load();lastIssue=null;showMenu();},refresh,close:()=>view.cancel()});
+    return Object.freeze({show:()=>{const s=progress.snapshot();if(!s.loaded||(!s.memoryOnly&&!s.dirty))progress.load();lastIssue=null;showMenu();},refresh,pause:()=>view.cancel(),close:()=>view.cancel()});
   }
   if(typeof module==='object'&&module.exports)module.exports=createRouteApplication;else global.createRouteApplication=createRouteApplication;
 })(typeof globalThis!=='undefined'?globalThis:this);
