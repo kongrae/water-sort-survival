@@ -403,6 +403,7 @@ body {
 .banner { max-width: calc(100% - 48px); padding: 10px 18px; border-radius: 14px; background: var(--panel); color: var(--accent); box-shadow: var(--shadow); font-family: var(--font-display); font-size: 22px; text-align: center; animation: bannerIn .25s ease-out; }
 .banner.big { font-size: 30px; color: var(--gold); }
 .fx-layer { position: fixed; inset: 0; z-index: 35; pointer-events: none; overflow: hidden; }
+.fx-layer.route-fx { z-index: 45; }
 .confetti { position: absolute; top: -12px; pointer-events: none; width: 8px; height: 12px; border-radius: 2px; animation: fall 1.4s linear forwards; }
 .spark { position: absolute; width: 7px; height: 7px; border-radius: 50%; animation: rise 1s ease-out forwards; }
 .deathghost { position: fixed; z-index: 36; }
@@ -2092,6 +2093,23 @@ function turnRhythm(S) {
  .route-root #route-gatePanel{padding:2px 4px}
  .route-root #route-gateToggle{min-height:44px;padding:2px}
 }
+
+/* Product bottles use the endless mode's .tube/.glass/.layer renderer and effects. */
+.route-root.shared-bottles #route-nodes{position:absolute;inset:14px 0 0}
+.route-root.shared-bottles #route-paths{top:14px;height:calc(100% - 14px)}
+.route-root.shared-bottles .node.tube{min-height:58px;gap:0;background:none;overflow:visible}
+.route-root.shared-bottles .node.tube>.rim,.route-root.shared-bottles .node.tube>.glass{width:75%;flex:none}
+.route-root.shared-bottles .node.tube>.rim{height:var(--rim-h);margin-inline:0}
+.route-root.shared-bottles .node.tube>.glass{height:calc(var(--cap)*var(--lh) + 8px)}
+.route-root.shared-bottles .node.tube>.label{line-height:12px;font-size:11px}
+.route-root.shared-bottles .node.tube>.type,.route-root.shared-bottles .node.tube>.quantity{line-height:13px;font-size:11px}
+.route-root.shared-bottles .node.tube .layer{height:calc(var(--lh) - 2px);border-top:0;background-color:var(--lc);background-image:var(--water-depth)}
+.route-root.shared-bottles .node.outlet{border-color:transparent;border-radius:8px;background:#16323980}
+.route-root.shared-bottles .node.outlet .label{display:flex;align-items:center;justify-content:center;gap:3px}
+.route-root.shared-bottles .node.outlet.complete{background:#163e3f}
+.route-root.shared-bottles .node.controller .glass{--glass-ring:0 0 0 2px #e9ba65}
+.route-root.shared-bottles .node.tube>.cue-tag{translate:none}
+.route-root.shared-bottles .node.pulse .vessel{animation:none}
 </style>
 <template id="routeViewTemplate">
 <header><div><div class="eyebrow">BOTTLE SORT · WATER ROUTES</div><h1>물길 스테이지</h1></div><span class="eyebrow">체험 · 8개 스테이지</span></header>
@@ -2506,8 +2524,20 @@ function createRouteView(options){
  const names=['빨강','파랑','노랑','초록','보라','주황','청록','분홍','갈색','은색','라임','남색','살구'];
  const symbols=['●','■','▲','◆','★','✚','♥','♣','✿','≋','✦','◐','≡'];
  let stage,state,selected=null,previewTarget=null,busy=false,pulse=[],drag=null,suppressClickUntil=0,focusNode=null,hintOpen=false,timer=null,gateLinksOpen=false,announcement=null,lessonStage=null;
+ let controls=null,input=null;
+ const bottles=options.bottleUI;
+ root.classList.toggle('shared-bottles',!!bottles);
+ function fitBottles(){
+   if(!bottles)return;const height=$('nodes').getBoundingClientRect().height;
+   root.querySelectorAll('[data-node].tube').forEach(el=>{
+     const cap=Number(el.style.getPropertyValue('--cap')),box=Math.max(58,height*(el.classList.contains('outlet')?0.16:0.232));
+     const rim=parseFloat(getComputedStyle(el).getPropertyValue('--rim-h'))||6;
+     el.style.setProperty('--lh',Math.max(6,Math.min(30,(box-33-rim)/cap))+'px');
+   });
+ }
  const reduced=()=>options.preferences().reduceFx===true||matchMedia('(prefers-reduced-motion: reduce)').matches;
  function setHelp(open){
+   if(open){controls?.cancel();bottles?.clear();}
    $('helpPanel').hidden=!open;$('helpToggle').setAttribute('aria-expanded',String(open));
    root.querySelector('.route-scroll').inert=open;
    for(const id of ['undo','restart','cancel'])$(id).inert=open;
@@ -2602,6 +2632,17 @@ function createRouteView(options){
       const cue=selected&&suggestion?.to===o.id;
       return `<button class="node outlet ${complete?'complete':''} ${destinationMoves.some(r=>r.to===o.id)?'possible':''} ${pulse.includes(o.id)?'pulse':''} ${cue?'coach-target':''}" data-node="${o.id}" style="left:${x/6}%;top:${y/5.6}%" aria-label="${html("{0}, {1}/{2}칸",label(o.id),state.delivered[i],o.demand)}" ${locked?'disabled':''}><span class="dot" style="background:${color(o.color)}"></span><span class="label">${esc(outletShortName(o))}</span><span class="quantity">${state.delivered[i]}/${o.demand}</span>${cue?'<span class="cue-tag" aria-hidden="true">②</span>':''}</button>`;
     }).join('');
+    if(bottles){
+      root.querySelectorAll('[data-node]').forEach(el=>{
+        const id=el.dataset.node,index=stage.tankIds.indexOf(id),out=stage.outlets.find(o=>o.id===id);
+        const layers=index>=0?state.bottles[index]:Array(state.delivered[stage.outlets.indexOf(out)]).fill(out.color),cap=index>=0?4:out.demand;
+        const title=el.querySelector('.label'),quantity=el.querySelector('.type,.quantity'),cue=el.querySelector('.cue-tag'),dot=el.querySelector('.dot');
+        el.classList.add('tube');el.classList.toggle('sel',selected===id);
+        bottles.paint(el,layers,cap);if(dot)title.prepend(dot);el.prepend(title);el.append(quantity);if(cue)el.append(cue);
+        const move=destinationMoves.find(r=>r.to===id);if(move)bottles.ghost(el,move.color,move.moved);
+      });
+      fitBottles();
+    }
     const defs=`<defs><marker id="${prefix}arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>`;
     $('paths').innerHTML=defs+stage.edges.map((e,i)=>{
       const [sx,sy]=points[e.from], [tx,ty]=points[e.to], up=ty<sy;
@@ -2624,6 +2665,7 @@ function createRouteView(options){
     root.dataset.reduce=String(reduced());
     if (status.blocked) say('지금 가능한 이동이 없어요. 되돌리기나 다시 시작으로 다른 순서를 시도하세요.',true);
     if(!busy&&activeId) { root.querySelector(`[data-node="${activeId}"]`)?.focus({preventScroll:true});focusNode=null; }
+    controls?.reapply();
   }
   function chooseSource(id) {
     selected=id;render();const canSend=Route.availableMoves(stage,state).moves.some(r=>r.from===id);
@@ -2631,11 +2673,14 @@ function createRouteView(options){
     else say("이 탱크에서 지금 보낼 수 있는 곳이 없어요. 다른 탱크를 고르거나 되돌려 보세요.",true);
     return canSend;
   }
-  function commit(from,to) {
+  function commit(from,to,how='tap',fromRects) {
     if (busy||options.blocked?.()) return;
+    const preview=Route.previewMove(stage,state,[from,to]);
+    const flight=preview.ok&&bottles?bottles.prepare(input,from,to,preview,how,fromRects):null;
     const result=options.dispatch('move',[from,to]);
-    if (!result.ok) { say(reasons[result.reason]||"이 이동은 할 수 없어요.",true);showPreview(to);return; }
-    focusNode=to;state=result.state;selected=null;pulse=[from,to];busy=!reduced();render();
+    if (!result.ok) { say(reasons[result.reason]||"이 이동은 할 수 없어요.",true);showPreview(to);if(bottles)bottles.reject(input.tube(to));return; }
+    focusNode=to;state=result.state;selected=null;pulse=bottles?[]:[from,to];busy=!bottles&&!reduced();render();
+    if(bottles)bottles.play(flight);
     say(result.won?'모든 목표를 달성했어요.':'물을 옮겼어요.');
     if(Route.status(stage,state).blocked) say('지금 가능한 이동이 없어요. 되돌리기나 다시 시작으로 다른 순서를 시도하세요.',true);
     // The lock prevents a second input during the same transfer's visual feedback.
@@ -2658,22 +2703,34 @@ function createRouteView(options){
   function reset(index) { const result=options.select(index);if(!result.ok)return;clearTimeout(timer);busy=false;selected=null;pulse=[];drag=null;hintOpen=false;$('stageSelect').value=String(index);render();say('모든 물을 같은 색 도착지로 보내세요.'); }
   $('gateToggle').addEventListener('click',()=>{gateLinksOpen=!gateLinksOpen;render();});
   $('guideToggle').addEventListener('click',()=>{hintOpen=!hintOpen;render();$('guideToggle').focus({preventScroll:true});});
-  $('nodes').addEventListener('click',e=>{const node=e.target.closest('[data-node]');if(node&&!drag&&(e.detail===0||performance.now()>=suppressClickUntil))activate(node.dataset.node);});
+  if(bottles){
+    input={
+      blocked:()=>!state||state.phase==='won'||!!options.blocked?.()||!$('helpPanel').hidden||!root.getClientRects().length,
+      slots:()=>Object.fromEntries([...stage.tankIds.map((id,i)=>[id,state.bottles[i]]),...stage.outlets.map((o,i)=>[o.id,Array(state.delivered[i]).fill(o.color)])]),
+      capacity:id=>stage.outlets.find(o=>o.id===id)?.demand||4,
+      tube:id=>root.querySelector('[data-node="'+id+'"]'),canSource:id=>stage.tankIds.includes(id),
+      preview:(from,to)=>Route.previewMove(stage,state,[from,to]),
+      select:id=>{selected=id;},render,tap:activate,pick:chooseSource,pour:commit,
+      longPress:()=>false,notice:()=>{}
+    };
+    controls=bottles.bind($('board'),input);
+    new ResizeObserver(fitBottles).observe($('board'));
+  }else $('nodes').addEventListener('click',e=>{const node=e.target.closest('[data-node]');if(node&&!drag&&(e.detail===0||performance.now()>=suppressClickUntil))activate(node.dataset.node);});
   $('choices').addEventListener('click',e=>{const b=e.target.closest('[data-target]');if(b&&selected)commit(selected,b.dataset.target);});
   for (const event of ['pointerover','focusin']) {
     $('nodes').addEventListener(event,e=>{const node=e.target.closest('[data-node]');if(node&&node.dataset.node!==selected)showPreview(node.dataset.node);});
     $('choices').addEventListener(event,e=>{const b=e.target.closest('[data-target]');if(b)showPreview(b.dataset.target);});
   }
   // Drag is the same action as two taps. Pointer cancellation never sends water.
-  $('board').addEventListener('pointerdown',e=>{
+  if(!bottles)$('board').addEventListener('pointerdown',e=>{
     const node=e.target.closest('[data-node]');if(busy||options.blocked?.()||drag||!e.isPrimary||e.button!==0||!node)return;
     // A fresh primary press is not the residual click from a cancelled gesture.
     suppressClickUntil=0;
     if(!stage.tankIds.includes(node.dataset.node)||state.phase==='won')return;
     drag={id:node.dataset.node,x:e.clientX,y:e.clientY,pointer:e.pointerId,moved:false};
   });
-  $('board').addEventListener('pointermove',e=>{if(!drag||drag.pointer!==e.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10){if(!drag.moved){drag.moved=true;selected=drag.id;render();}if(!$('board').hasPointerCapture(e.pointerId))$('board').setPointerCapture(e.pointerId);}});
-  $('board').addEventListener('pointerup',e=>{
+  if(!bottles)$('board').addEventListener('pointermove',e=>{if(!drag||drag.pointer!==e.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10){if(!drag.moved){drag.moved=true;selected=drag.id;render();}if(!$('board').hasPointerCapture(e.pointerId))$('board').setPointerCapture(e.pointerId);}});
+  if(!bottles)$('board').addEventListener('pointerup',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;
     if($('board').hasPointerCapture(e.pointerId))$('board').releasePointerCapture(e.pointerId);
     if(!d.moved)return;suppressClickUntil=performance.now()+350;
@@ -2681,18 +2738,19 @@ function createRouteView(options){
     if(target&&root.contains(target)&&target.dataset.node!==d.id)commit(d.id,target.dataset.node);else {cancelInput();render();say('드래그를 취소했습니다.');}
   });
   function cancelInput(announce=false) {
+    controls?.cancel();
     const interrupted=!!(drag||selected),pointer=drag?.pointer;drag=null;selected=null;previewTarget=null;
     if(pointer!==undefined&&$('board').hasPointerCapture(pointer))$('board').releasePointerCapture(pointer);
     if(interrupted)suppressClickUntil=performance.now()+350;
     if(announce){render();say('선택을 해제했습니다.');}
   }
-  $('board').addEventListener('pointercancel',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
-  $('board').addEventListener('lostpointercapture',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
+  if(!bottles)$('board').addEventListener('pointercancel',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
+  if(!bottles)$('board').addEventListener('lostpointercapture',e=>{if(drag?.pointer===e.pointerId)cancelInput(true);});
   const interrupt=()=>{if(root.getClientRects().length&&(drag||selected))cancelInput(true);};
   addEventListener('blur',interrupt);addEventListener('resize',interrupt);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)interrupt();});
-  $('undo').addEventListener('click',()=>{if(busy)return;const r=options.dispatch('undo');if(r.ok){state=r.state;selected=null;render();say('직전 이동의 물과 목표, 수문을 복원했어요.');}});
-  $('restart').addEventListener('click',()=>{if(busy)return;const r=options.dispatch('restart');if(r.ok){state=r.state;selected=null;hintOpen=false;render();say('같은 판을 새 시도로 시작했습니다.');}});
+  $('undo').addEventListener('click',()=>{if(busy)return;controls?.cancel();bottles?.clear();const r=options.dispatch('undo');if(r.ok){state=r.state;selected=null;render();say('직전 이동의 물과 목표, 수문을 복원했어요.');}});
+  $('restart').addEventListener('click',()=>{if(busy)return;controls?.cancel();bottles?.clear();const r=options.dispatch('restart');if(r.ok){state=r.state;selected=null;hintOpen=false;render();say('같은 판을 새 시도로 시작했습니다.');}});
   $('cancel').addEventListener('click',()=>cancelInput(true));
   root.addEventListener('keydown',e=>{
     if(!$('helpPanel').hidden){
@@ -2714,7 +2772,7 @@ function createRouteView(options){
 
  $('stageSelect').innerHTML=stages.map((s,i)=>`<option value="${i}">${i+1}. ${s.title}</option>`).join('');
  if(guides)$('stageSelect').setAttribute('aria-label','스테이지 선택');
- const cancel=()=>{clearTimeout(timer);busy=false;cancelInput();pulse=[];hintOpen=false;gateLinksOpen=false;announcement=null;$('helpPanel').hidden=true;$('helpToggle').setAttribute('aria-expanded','false');root.querySelector('.route-scroll').inert=false;for(const id of ['undo','restart','cancel'])$(id).inert=false;};
+ const cancel=()=>{clearTimeout(timer);busy=false;cancelInput();bottles?.clear();pulse=[];hintOpen=false;gateLinksOpen=false;announcement=null;$('helpPanel').hidden=true;$('helpToggle').setAttribute('aria-expanded','false');root.querySelector('.route-scroll').inert=false;for(const id of ['undo','restart','cancel'])$(id).inert=false;};
  return Object.freeze({render,reset,cancel,say});
 }
 if(typeof module==='object'&&module.exports)module.exports=createRouteView;else global.createRouteView=createRouteView;
@@ -2767,7 +2825,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
       if(r.ok){menu=false;view.cancel();view.render();view.say(r.state.moves?'저장된 진행을 이어서 플레이합니다.':'모든 물을 같은 색 도착지로 보내세요.');}refresh();
       if(r.ok){host.closest('.sheet').scrollTop=0;host.querySelector('.route-scroll').scrollTop=0;$('routeList').focus({preventScroll:true});}return r;
     }
-    const view=createRouteView({root:host,translate:tr,prefix:'route-',Route,stages,guides,snapshot:progress.snapshot,blocked:()=>!!(lastIssue||progress.snapshot().issue||(!progress.snapshot().memoryOnly&&!options.storage.writable())),
+    const view=createRouteView({root:host,translate:tr,prefix:'route-',bottleUI:options.bottleUI,Route,stages,guides,snapshot:progress.snapshot,blocked:()=>!!(lastIssue||progress.snapshot().issue||(!progress.snapshot().memoryOnly&&!options.storage.writable())),
       select:index=>choose(index),dispatch:(kind,move)=>{const r=progress.act(kind,move);if(!r.ok&&progress.snapshot().issue)lastIssue=progress.snapshot().issue;refresh();return r;},
       next:()=>{const index=stages.indexOf(progress.snapshot().stage);if(index<stages.length-1)choose(index+1);else showMenu();},
       preferences:options.preferences,setPreferences:options.setPreferences,lastNextLabel:'스테이지 목록으로'});
@@ -2778,7 +2836,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     $('routeRetry').addEventListener('click',()=>{lastIssue=null;const r=progress.retry();if(!r.ok)lastIssue=r.reason;view.cancel();if(!progress.snapshot().state)menu=true;refresh();});
     $('routeMemory').addEventListener('click',()=>{lastIssue=null;progress.continueWithoutSaving();if(!progress.snapshot().state)menu=true;view.cancel();refresh();});
     $('routeRecover').addEventListener('click',()=>{lastIssue=null;const r=progress.restartProtected();if(!r.ok)lastIssue=r.reason;else showMenu();refresh();});
-    return Object.freeze({show:()=>{const s=progress.snapshot();if(!s.loaded||(!s.memoryOnly&&!s.dirty))progress.load();lastIssue=null;showMenu();},refresh,close:()=>view.cancel()});
+    return Object.freeze({show:()=>{const s=progress.snapshot();if(!s.loaded||(!s.memoryOnly&&!s.dirty))progress.load();lastIssue=null;showMenu();},refresh,pause:()=>view.cancel(),close:()=>view.cancel()});
   }
   if(typeof module==='object'&&module.exports)module.exports=createRouteApplication;else global.createRouteApplication=createRouteApplication;
 })(typeof globalThis!=='undefined'?globalThis:this);
@@ -4597,6 +4655,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     if (finishDeath) finishDeath();
     stopSounds();
     if (S) settleAnims();
+    for (const fl of flights) liveLayers(fl.to, fl.ui).forEach(el => el.classList.remove('await'));
     for (const el of [...fxLive]) fxDrop(el);
     for (const id of fxTimers) clearTimeout(id);
     fxTimers.clear(); flights.length = 0; drops.length = 0; clearViews.clear();
@@ -4722,24 +4781,25 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
 
   // F1, F2: the moved layers fly; the layers they become wait unseen (.await) and land when their blob arrives
   function launch(f, clr, onLand) {
-    const t = tubeEl(f.to), k = f.colors.length, gg = f.glass;
-    const fl = { to: f.to, colors: f.colors, done: false, clr, prefill: null, onLand, blobs: [], landed: [], surface: null };
+    const t = f.ui ? f.ui.tube(f.to) : tubeEl(f.to), k = f.colors.length, gg = f.glass;
+    const fl = { to: f.to, ui: f.ui, colors: f.colors, done: false, clr, prefill: null, onLand, blobs: [], landed: [], surface: null };
     if (!t || !gg || !f.from || f.from.length !== k) { landAll(fl); return; }
     // the landing cells: the target's top k now, or (completed and emptied) the top k of a full bottle
-    const len = (slotsOf(S)[f.to] || []).length, land = slotsIn(gg, clr ? S.rules.cap - k : len - k, k);
+    const len = f.ui ? f.ui.slots()[f.to].length : (slotsOf(S)[f.to] || []).length, land = slotsIn(gg, clr ? S.rules.cap - k : len - k, k);
     fl.surface = { left: gg.left + gg.pad, top: land[k - 1].top + 2, width: gg.width - 2 * gg.pad, height: 8 };
     if (clr) fl.prefill = colFx(gg, clr.c, S.rules.cap - k, 2000);
     else [...t.querySelectorAll('.glass > .layer:not(.ghostL)')].slice(-k).forEach(e => e.classList.add('await'));
     flights.push(fl);
     const mouth = gg.top;
     // a tapped pour tips the source bottle toward the target while its liquid lifts out (at most 12 degrees)
-    const sEl = f.kind === 'pour' && !f.drag ? tubeEl(f.src) : null;
+    const sEl = f.kind === 'pour' && !f.drag ? (f.ui ? f.ui.tube(f.src) : tubeEl(f.src)) : null;
     if (sEl) {
       const sgn = gg.left > f.from[0].left ? 1 : -1;
-      const g = f.source ? { tube: f.source, glass: gg } : preGeo && preGeo[f.src];
+      const g = f.source ? { tube: f.source, glass: f.sourceGlass || gg } : preGeo && preGeo[f.src];
       if (g) {
         const copy = fxBox(g.tube, 'tube fx-source');
-        copy.innerHTML = sEl.innerHTML; copy.style.setProperty('--lh', g.glass.lh + 'px'); copy.style.setProperty('--cap', S.rules.cap);
+        copy.innerHTML = f.ui ? [...sEl.children].filter(el=>el.matches('.rim,.glass')).map(el=>el.outerHTML).join('') : sEl.innerHTML;
+        copy.style.setProperty('--lh', g.glass.lh + 'px'); copy.style.setProperty('--cap', f.ui ? f.ui.capacity(f.src) : S.rules.cap);
         fxAdd(copy, 260);
         fxAnim(copy, [{ rotate: '0deg' }, { rotate: `${9 * sgn}deg`, offset: .3 }, { rotate: `${9 * sgn}deg`, offset: .6 }, { rotate: '0deg', opacity: 0 }], { duration: 240, easing: 'ease-out' });
       }
@@ -4750,7 +4810,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
       // a pour's top layer leaves first and lands lowest; a piece moves as one
       const src = f.kind === 'pour' ? f.from[k - 1 - j] : f.from[j], dst = land[j];
       const delay = f.kind === 'pour' && !f.drag ? j * FT.step : 0;
-      const curve = f.kind === 'pour' && !f.drag ? pourCurve(src, dst, mouth, preGeo?.[f.src]?.glass.top ?? src.top) : null;
+      const curve = f.kind === 'pour' && !f.drag ? pourCurve(src, dst, mouth, f.sourceGlass?.top ?? preGeo?.[f.src]?.glass.top ?? src.top) : null;
       const b = liq(fxEl('fx-blob', src), f.colors[j]);
       fxAdd(b, delay + dur + 60);
       fl.blobs.push(b);
@@ -4792,7 +4852,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     return [{ transform: T(0, 0, 1, 1), easing: 'ease-out' }, { transform: T(dx * .9, peak, mx, my), offset: .58, easing: 'ease-in' }, { transform: T(dx, dy, sx, sy) }];
   }
   // the bottle's layers as they are now (render() may have rebuilt them since the move)
-  const liveLayers = i => { const t = tubeEl(i); return t ? [...t.querySelectorAll('.glass > .layer:not(.ghostL)')] : []; };
+  const liveLayers = (i, ui) => { const t = ui ? ui.tube(i) : tubeEl(i); return t ? [...t.querySelectorAll('.glass > .layer:not(.ghostL)')] : []; };
   function flowFx(curve, c, delay, dur) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'), path = document.createElementNS(svg.namespaceURI, 'path');
     svg.setAttribute('class', 'fx fx-flow'); liq(svg, c);
@@ -4814,7 +4874,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     fl.landed[j] = true;
     if (j === fl.colors.length - 1 && !fl.clr) surfaceFx(fl.surface, fl.colors[j], false);
     if (!fl.clr) {
-      const ls = liveLayers(fl.to), e = ls[ls.length - fl.colors.length + j];
+      const ls = liveLayers(fl.to, fl.ui), e = ls[ls.length - fl.colors.length + j];
       if (e) { e.classList.remove('await'); if (j === fl.colors.length - 1) restartAnim(e, 'land'); }
     }
     if (kind === 'pour') { SND.drip(j, transpose()); if (j === 0) buzz(8); } else if (j === 0) { SND.thunk(transpose()); buzz(12); }
@@ -4824,23 +4884,23 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     fl.done = true;
     const k = flights.indexOf(fl); if (k >= 0) flights.splice(k, 1);
     for (const b of fl.blobs) fxDrop(b);
-    liveLayers(fl.to).forEach(e => e.classList.remove('await'));
+    liveLayers(fl.to, fl.ui).forEach(e => e.classList.remove('await'));
     if (fl.clr?.reused && fl.prefill) fxDrop(fl.prefill);
     if (fl.onLand) fl.onLand(fl.prefill);
   }
   // a move on a bottle whose landing is still to come, or a press on it: land at once so it shows what it holds
-  function settleFlights(slots) {
-    for (const c of clearViews) if (slots.includes(c.i)) {
+  function settleFlights(slots, ui) {
+    for (const c of clearViews) if (!ui && slots.includes(c.i)) {
       c.reused = true;
       if (c.view) { fxDrop(c.view); c.view = null; }
     }
-    for (const fl of flights.slice()) if (slots.includes(fl.to)) landAll(fl);
+    for (const fl of flights.slice()) if (fl.ui === ui && slots.includes(fl.to)) landAll(fl);
   }
   // render() rebuilt the bottles: hide again the layers still in flight, unless the bottle changed since (then land)
   function reapplyFlights() {
     for (const fl of flights.slice()) {
       if (fl.clr) continue;
-      const ls = liveLayers(fl.to), k = fl.colors.length, top = ls.slice(-k);
+      const ls = liveLayers(fl.to, fl.ui), k = fl.colors.length, top = ls.slice(-k);
       const same = top.length === k && top.every((e, j) => e.style.getPropertyValue('--lc') === `var(--liq${fl.colors[j]})`);
       if (!same) { landAll(fl); continue; }
       top.forEach((e, j) => { if (!fl.landed[j]) e.classList.add('await'); });
@@ -5924,7 +5984,10 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
       return best;
     }
     // Only bridge horizontal gaps within the row under the pointer; never bridge the empty row or row gap.
-    const row = tubes.map(t => ({ i: Number(t.dataset.i), r: t.getBoundingClientRect() })).filter(t => y >= t.r.top && y <= t.r.bottom);
+    return nearestBottleInRow(tubes,t=>Number(t.dataset.i),x,y);
+  }
+  function nearestBottleInRow(tubes,key,x,y) {
+    const row = tubes.map(t => ({ i: key(t), r: t.getBoundingClientRect() })).filter(t => y >= t.r.top && y <= t.r.bottom);
     if (!row.length || x < Math.min(...row.map(t => t.r.left)) || x > Math.max(...row.map(t => t.r.right))) return null;
     let best = null, bd = Infinity;
     for (const { i, r } of row) {
@@ -5995,7 +6058,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
   spareSlot.addEventListener('contextmenu', noMenu);
   // a touch that starts on a sheet is not a game input, even if the sheet closes before the finger lifts
   // (an ad countdown ending): its click must not reach the bottles underneath
-  document.addEventListener('pointerdown', e => { if (e.target.closest && e.target.closest('.overlay')) ignored.add(e.pointerId); }, { capture: true, passive: true });
+  document.addEventListener('pointerdown', e => { if (e.target.closest && e.target.closest('.overlay') && !(routeOpen && e.target.closest('#route-board'))) ignored.add(e.pointerId); }, { capture: true, passive: true });
 
   cup.addEventListener('pointerdown', e => {
     if (!S || S.over || e.button > 0) return;
@@ -6008,19 +6071,19 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     try { cup.setPointerCapture(e.pointerId); } catch (_) { /* capture is optional: the window listeners follow the pointer */ }
     cup.classList.add('press');
   });
-  function onSlotDown(e) {
-    if (!S || S.over || e.button > 0) return;
+  function onSlotDown(e, ui = null) {
+    if ((ui ? ui.blocked() : !S || S.over) || e.button > 0 || ignored.has(e.pointerId)) return;
     if (gest) { ignored.add(e.pointerId); return; }
-    const i = slotAt(e.clientX, e.clientY);
+    const i = ui ? ui.at(e.clientX, e.clientY) : slotAt(e.clientX, e.clientY);
     if (i === null) return;
-    gest = { kind: 'press', id: e.pointerId, x: e.clientX, y: e.clientY, slot: i, moved: false, held: false, timer: 0, over: null };
+    gest = { kind: 'press', ui, id: e.pointerId, x: e.clientX, y: e.clientY, slot: i, moved: false, held: false, timer: 0, over: null };
     // capture on the container, which render() keeps: the pressed bottle button is rebuilt during the gesture
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) { /* the window listeners follow the pointer anyway */ }
-    settleFlights([i]);   // juicy: a bottle still waiting for its liquid shows it at once when pressed
-    const pe = tubeEl(i); if (pe) pe.classList.add('press');
-    const s = slotsOf(S)[i];
+    settleFlights([i], ui || undefined);   // juicy: a bottle still waiting for its liquid shows it at once when pressed
+    const pe = ui ? ui.tube(i) : tubeEl(i); if (pe) pe.classList.add('press');
+    const s = (ui ? ui.slots() : slotsOf(S))[i];
     // tapPlace: holding a bottle with liquid picks it as the pour source; on an empty one a slow press is still a tap
-    if (ctl() === 'tapPlace' && typeof sel !== 'number' && s && s.length) { gest.timer = setTimeout(longPress, LONG_MS); markCharge(); }
+    if ((ui ? ui.longPress() : ctl() === 'tapPlace' && typeof sel !== 'number') && s && s.length) { gest.timer = setTimeout(longPress, LONG_MS); markCharge(); }
   }
   rack.addEventListener('pointerdown', onSlotDown);
   spareSlot.addEventListener('pointerdown', e => { if (e.target.closest('.tube')) onSlotDown(e); });
@@ -6041,7 +6104,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     // the long press counts from here, not from the touch: every tap on a bottle with liquid starts the timer, and
     // a refused tap must leave the undo nudge on
     nudgeUndo(false);
-    pickSource(g.slot, 'hold');
+    if(g.ui)g.ui.pick(g.slot);else pickSource(g.slot, 'hold');
   }
   function gestMove(e) {
     const g = gest, x = e.clientX, y = e.clientY, dist = Math.hypot(x - g.x, y - g.y);
@@ -6070,19 +6133,19 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     }
     // both schemes: a drag from a bottle with liquid becomes a pour once it leaves that bottle, and the liquid it
     // carries follows the finger. Until then (a wobble inside the bottle) letting go is still a tap.
-    if (g.kind === 'press' && g.moved && slotAt(x, y) !== g.slot) {
-      const s = slotsOf(S)[g.slot];
-      if (s && s.length) { g.kind = 'pour'; sel = g.slot; render(); g.ghost = pourGhost(g.slot); }
+    if (g.kind === 'press' && g.moved && (g.ui ? g.ui.at(x,y) : slotAt(x, y)) !== g.slot) {
+      const s = (g.ui ? g.ui.slots() : slotsOf(S))[g.slot];
+      if (s && s.length && (!g.ui || g.ui.canSource(g.slot))) { g.kind = 'pour'; if(g.ui){g.ui.select(g.slot);g.ui.render();}else{sel = g.slot;render();} g.ghost = pourGhost(g.slot, g.ui); }
     }
     if (g.kind !== 'pour') return;
     g.ghost.style.left = x + 'px';
     g.ghost.style.top = y + 'px';
-    const t = slotAt(x, y);
+    const t = g.ui ? g.ui.at(x,y) : slotAt(x, y);
     if (t !== g.over) { clearDragHover(); g.over = t; if (t !== null && t !== g.slot) showPourHover(t); }
   }
   // the liquid a pour drag carries, drawn above the finger like the piece: the source's top run of one colour
-  function pourGhost(i) {
-    const { c, n } = topSeg(slotsOf(S)[i]);
+  function pourGhost(i, ui) {
+    const { c, n } = topSeg((ui ? ui.slots() : slotsOf(S))[i]);
     const gh = document.createElement('div');
     gh.className = 'tube mini ghost pour';
     paintTube(gh, Array(n).fill(c), n);
@@ -6098,17 +6161,17 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     clearTimeout(g.timer); clearCharge(); clearPress();
     if (g.kind === 'cup') { cupEnd(g, e, cancel); return; }
     if (g.kind === 'pour') {
-      const t = cancel ? null : slotAt(e.clientX, e.clientY);
+      const t = cancel ? null : g.ui ? g.ui.at(e.clientX,e.clientY) : slotAt(e.clientX, e.clientY);
       clearDragHover();
       // the carried liquid goes into the target, or glides back to its bottle when the drop pours nothing
-      const pours = t !== null && t !== g.slot && !(S.rules.pourLimit && S.pours >= S.rules.pourLimit) && canPour(slotsOf(S), g.slot, t, capsOf(S));
+      const pours = t !== null && t !== g.slot && (g.ui ? g.ui.preview(g.slot,t).ok : !(S.rules.pourLimit && S.pours >= S.rules.pourLimit) && canPour(slotsOf(S), g.slot, t, capsOf(S)));
       const carried = pours && juicy() ? layerRects(g.ghost) : null;   // juicy: the pour flies on from the finger
       if (pours || cancel) g.ghost.remove();
-      if (t === null || t === g.slot) { sel = null; render(); if (!cancel && t === null) ptAdd('cancels'); } else pourTo(g.slot, t, false, 'drag', carried);
-      if (!pours && !cancel) sendBack(g.ghost, tubeEl(g.slot));
+      if (t === null || t === g.slot) { if(g.ui){g.ui.select(null);g.ui.render();}else{sel = null;render();} if (!cancel && t === null) ptAdd('cancels'); } else if(g.ui)g.ui.pour(g.slot,t,'drag',carried);else pourTo(g.slot, t, false, 'drag', carried);
+      if (!pours && !cancel) sendBack(g.ghost, g.ui ? g.ui.tube(g.slot) : tubeEl(g.slot));
       return;
     }
-    if (g.kind === 'press' && !cancel && !g.held && (!g.moved || slotAt(e.clientX, e.clientY) === g.slot)) onTube(g.slot, 'tap');
+    if (g.kind === 'press' && !cancel && !g.held && (!g.moved || (g.ui ? g.ui.at(e.clientX,e.clientY) : slotAt(e.clientX, e.clientY)) === g.slot)) {if(g.ui)g.ui.tap(g.slot);else onTube(g.slot, 'tap');}
   }
   function cupEnd(g, e, cancel) {
     if (!g.moved) { if (!cancel) onCupTap(g.selBefore); return; }
@@ -6138,12 +6201,12 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     quietUntil = now() + 400;
     clearTimeout(g.timer);
     if (g.ghost) g.ghost.remove();
-    sel = null;
+    if(g.ui)g.ui.select(null);else sel = null;
     clearDragHover(); clearCharge(); clearPress();
-    render();
+    if(g.ui)g.ui.render();else render();
   }
   function markCharge() {
-    const s = gest && slotsOf(S)[gest.slot], el = s && s.length && tubeEl(gest.slot);
+    const s = gest && (gest.ui ? gest.ui.slots() : slotsOf(S))[gest.slot], el = s && s.length && (gest.ui ? gest.ui.tube(gest.slot) : tubeEl(gest.slot));
     if (el) el.classList.add('charging');
   }
   function clearCharge() { document.querySelectorAll('.tube.charging').forEach(x => x.classList.remove('charging')); }
@@ -6170,20 +6233,60 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
   }
   // pour drag: the targets already show their pour ghosts (render, sel = source); this marks the one under the finger
   function showPourHover(t) {
-    const el = tubeEl(t); if (!el) return;
-    const p = previewPour(S, gest.slot, t);
-    if (!p.ok || (S.rules.pourLimit && S.pours >= S.rules.pourLimit)) { el.classList.add('reject'); setStatus(pourFailText(t), true); return; }
+    const ui=gest?.ui, el = ui ? ui.tube(t) : tubeEl(t); if (!el) return;
+    const p = ui ? ui.preview(gest.slot,t) : previewPour(S, gest.slot, t);
+    if (!p.ok || (!ui && S.rules.pourLimit && S.pours >= S.rules.pourLimit)) { el.classList.add('reject'); if(ui)ui.notice(p);else setStatus(pourFailText(t), true); return; }
     el.classList.add('hover');
   }
   // render() rebuilds the bottles: put back what the gesture in progress shows on them
   function reapplyGesture() {
     const g = gest;
     if (!g) return;
-    if (!g.moved && (g.kind === 'press' || g.kind === 'cup')) { const el = g.kind === 'cup' ? cup : tubeEl(g.slot); if (el) el.classList.add('press'); }
+    if (!g.moved && (g.kind === 'press' || g.kind === 'cup')) { const el = g.kind === 'cup' ? cup : g.ui ? g.ui.tube(g.slot) : tubeEl(g.slot); if (el) el.classList.add('press'); }
     if (g.kind === 'cup' && g.moved && g.over !== null) showDragHover(g.over);
     else if (g.kind === 'pour' && g.over !== null && g.over !== g.slot) showPourHover(g.over);
     else if (g.kind === 'press' && g.timer) markCharge();
   }
+  // A second board supplies its rules and node IDs to the existing bottle gesture controller.
+  // Pointer ownership, slop, capture, the carried liquid and its return animation stay shared.
+  function bindBottleControls(container,ui) {
+    ui.at=(x,y)=>{
+      const hit=document.elementFromPoint(x,y)?.closest('[data-node]');
+      if(hit&&container.contains(hit))return hit.dataset.node;
+      return nearestBottleInRow([...container.querySelectorAll('[data-node]')],t=>t.dataset.node,x,y);
+    };
+    container.addEventListener('click',e=>{
+      if(pointerClick(e)||ui.blocked())return;
+      const node=e.target.closest('[data-node]');
+      if(node)ui.tap(node.dataset.node);
+    });
+    container.addEventListener('pointerdown',e=>onSlotDown(e,ui));
+    container.addEventListener('contextmenu',noMenu);
+    container.addEventListener('lostpointercapture',e=>{if(gest?.ui===ui&&gest.id===e.pointerId)cancelGesture();});
+    container.addEventListener('keydown',e=>{if(e.key==='Escape'&&gest?.ui===ui){e.preventDefault();e.stopPropagation();cancelGesture();}});
+    return Object.freeze({
+      cancel:()=>{if(gest?.ui===ui)cancelGesture();},
+      reapply:()=>{reapplyFlights();if(gest?.ui===ui)reapplyGesture();}
+    });
+  }
+  function prepareBottleFlight(ui,from,to,preview,how,fromRects) {
+    settleFlights([from,to],ui);
+    if(!juicy())return {base:true,ui,to,moved:preview.moved};
+    const source=ui.tube(from),target=ui.tube(to),rim=source.querySelector('.rim').getBoundingClientRect(),glass=source.querySelector('.glass').getBoundingClientRect();
+    return {kind:'pour',src:from,to,ui,from:fromRects||layerRects(source,preview.moved),colors:Array(preview.moved).fill(preview.color),
+      drag:how==='drag',source:{left:glass.left,top:rim.top,width:glass.width,height:glass.bottom-rim.top},sourceGlass:glassGeo(source),glass:glassGeo(target)};
+  }
+  function playBottleFlight(f) {
+    if(f?.base){liveLayers(f.to,f.ui).slice(-f.moved).forEach(el=>el.classList.add('pop'));SND.tick();buzz(10);}
+    else if(f){fxLayer.classList.add('route-fx');f.glass=glassGeo(f.ui.tube(f.to));launch(f,null);}
+    else{SND.tick();buzz(10);}
+  }
+  const sharedBottleUI=Object.freeze({
+    paint:paintTube,bind:bindBottleControls,prepare:prepareBottleFlight,play:playBottleFlight,
+    clear:()=>{clearFx();fxLayer.classList.remove('route-fx');},
+    ghost:(el,color,count)=>{if(prefs.ghost)for(let j=0;j<count;j++)el.querySelector('.glass').append(layerEl(color,'ghostL'));},
+    reject:el=>{if(!effectsReduced())restartAnim(el,'shake');if(juicy())SND.bonk();else SND.nope();buzz([20,40,20]);}
+  });
   // the scheme and the layout, applied at boot and when changed in the settings
   const incoming = document.querySelector('.incoming'), info = incoming.querySelector('.info'), extraRow = $('extraRow');
   function applyControls() {
@@ -7164,7 +7267,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
       if (!routeApp) routeApp = await createRouteApplication({core:{canPour,doPour,topSeg},
         hashText:async text=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text))),b=>b.toString(16).padStart(2,'0')).join(''),
         storage:{read:key=>localStorage.getItem(key),write:(key,text)=>localStorage.setItem(key,text),writable:()=>writerState==='owner'&&!settlementBlocked,attempt:()=> 'route-'+Date.now()+'-'+(++routeAttempt)+'-'+Math.random().toString(36).slice(2,8)},
-        preferences:()=>({symbols:prefs.symbols,reduceFx:!!prefs.reduceFx}),setPreferences:patch=>{Object.assign(prefs,patch);savePrefs();applyFxPrefs();}});
+        bottleUI:sharedBottleUI,preferences:()=>({symbols:prefs.symbols,reduceFx:!!prefs.reduceFx}),setPreferences:patch=>{Object.assign(prefs,patch);savePrefs();applyFxPrefs();}});
       if (S!==entryRun || finishIntent || !canStore() || settlementBlocked || writerState==='released') return;
       closeAll(); cancelGesture(); clearFx(); disarm(false); sel=null; overClosed=true;
       routeOpen=true; routeApp.show(); renderFinishAvailability(); $('ovRoute').hidden=false;
@@ -7173,7 +7276,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
   }
   $('btnRoute').addEventListener('click',enterRoute);
   $('routeExit').addEventListener('click',()=>{routeOpen=false;routeApp?.close();$('ovRoute').hidden=true;render();renderFinishAvailability();$('btnRoute').focus({preventScroll:true});});
-  $('routeSettings').addEventListener('click',()=>{fillPrefs();renderFinishAvailability();$('ovSettings').hidden=false;});
+  $('routeSettings').addEventListener('click',()=>{routeApp?.pause();fillPrefs();renderFinishAvailability();$('ovSettings').hidden=false;});
   $('btnDailyRules').addEventListener('click', () => { $('ovHelp').hidden = true; openDaily(false); });
   $('btnDailyStart').addEventListener('click', () => {
     if (dailyEntry && dailyEntryDate !== todayKey()) { renderDailyInfo(); return; }
