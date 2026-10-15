@@ -11,6 +11,12 @@ function createRouteView(options){
  const symbols=['●','■','▲','◆','★','✚','♥','♣','✿','≋','✦','◐','≡'];
  let stage,state,selected=null,previewTarget=null,busy=false,pulse=[],drag=null,suppressClickUntil=0,focusNode=null,hintOpen=false,timer=null,gateLinksOpen=false,announcement=null,lessonStage=null;
  const reduced=()=>options.preferences().reduceFx===true||matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function setHelp(open){
+   $('helpPanel').hidden=!open;$('helpToggle').setAttribute('aria-expanded',String(open));
+   root.querySelector('.route-scroll').inert=open;
+   for(const id of ['undo','restart','cancel'])$(id).inert=open;
+   (open?$('helpClose'):$('helpToggle')).focus({preventScroll:true});
+ }
   const color = c => `var(--liq${c})`;
   const outletName = o => stage.outlets.filter(p=>p.color===o.color).length>1 ? tr("{0} ({1}칸)",tr(names[o.color]),o.demand) : tr(names[o.color]);
   const outletShortName = o => tr(names[o.color]);
@@ -23,7 +29,7 @@ function createRouteView(options){
     if (stage.id === 'A-retain') points['B-out']=[175,470];
     return points;
   };
-  function say(key,error=false,...args) { announcement={key,error,args};$('message').textContent=tr(key,...args);$('message').classList.toggle('error',error); }
+  function say(key,error=false,...args) { announcement={key,error,args};$('message').textContent=tr(key,...args);$('message').classList.toggle('error',error);root.classList.toggle('has-error',error); }
   const reasons={
     'gate-closed':'수문이 닫혀 있어요. K에 파랑만 2칸 이상 필요해요.',
     'not-connected':'두 지점을 직접 잇는 화살표가 없어요. 다른 탱크를 건너뛸 수 없어요.',
@@ -58,11 +64,18 @@ function createRouteView(options){
     const activeId=active?.dataset.node || active?.dataset.target || focusNode;
     const status=Route.status(stage,state), points=layout();
     const moves=Route.availableMoves(stage,state).moves;
+    const guided=!!guides&&stages.indexOf(stage)===0&&state.phase!=='won';
+    const suggestion=guided?(selected?moves.find(r=>r.from===selected):['A','J','B','K'].map(id=>moves.find(r=>r.from===id)).find(Boolean)):null;
+    $('stageName').textContent=`${stages.indexOf(stage)+1}. ${tr(stage.title)}`;
+    $('coach').textContent=state.phase==='won'?tr(stages.indexOf(stage)===stages.length-1?"모든 목표를 달성했어요.":"성공! 다음 스테이지로 가 보세요."):selected&&!moves.some(r=>r.from===selected)?tr("이 탱크에서 지금 보낼 수 있는 곳이 없어요. 다른 탱크를 고르거나 되돌려 보세요."):selected?
+      (suggestion?tr("② 빛나는 {0}를 누르세요.",label(suggestion.to)):tr("{0} 선택 · 빛나는 곳을 누르세요.",label(selected))):
+      (suggestion?tr("① {0}를 누르세요.",label(suggestion.from)):tr("보낼 물이 있는 탱크를 누르세요."));
     const lesson=guides?.lessons[stages.indexOf(stage)];
     $('lesson').hidden=!lesson;
     if(lesson){
       if(lessonStage!==stage.id){$('lesson').open=lesson.automatic;lessonStage=stage.id;}
       const cue=RouteGuidance.current(stage,state,lesson);
+      if(!guided&&!selected&&lesson.automatic&&state.phase!=='won')$('coach').textContent=tr(cue.text);
       $('lessonTitle').textContent=`${stages.indexOf(stage)+1} / ${stages.length} · ${tr(stage.title)}`;
       $('lessonIntro').textContent=tr(lesson.intro);
       $('lessonHint').textContent=tr(cue.text);$('lessonHint').dataset.cue=cue.id;
@@ -86,10 +99,12 @@ function createRouteView(options){
     $('nodes').innerHTML=stage.tankIds.map((id,i)=>{
       const b=state.bottles[i], [x,y]=points[id], ctrl=hasGates()&&id===stage.gate.tank;
       const description=b.length?b.slice().reverse().map(c=>tr(names[c])).join(", "):tr("비어 있음");
-      return `<button class="node ${ctrl?'controller':''} ${selected===id?'selected':''} ${destinationMoves.some(r=>r.to===id)?'possible':''} ${pulse.includes(id)?'pulse':''}" data-node="${id}" style="left:${x/6}%;top:${y/5.6}%" aria-label="${html("{0}, 위에서부터 {1}, {2}/4칸",label(id),description,b.length)}" aria-pressed="${selected===id}" ${hasGates()&&(ctrl||stage.edges.some(e=>e.gated&&(e.from===id||e.to===id)))?`aria-describedby="${prefix}gate"`:""} ${locked?'disabled':''}><span class="label">${id}</span><span class="vessel">${b.map(c=>`<span class="layer" style="--water:${color(c)}">${$('symbols').checked?`<span class="symbol">${symbols[c]}</span>`:''}</span>`).join('')}</span><span class="type">${ctrl?html("제어"):b.length+" / 4"}</span></button>`;
+      const cue=suggestion&&(selected?suggestion.to===id:suggestion.from===id);
+      return `<button class="node ${ctrl?'controller':''} ${selected===id?'selected':''} ${destinationMoves.some(r=>r.to===id)?'possible':''} ${pulse.includes(id)?'pulse':''} ${cue?(selected?'coach-target':'coach-source'):''}" data-node="${id}" style="left:${x/6}%;top:${y/5.6}%" aria-label="${html("{0}, 위에서부터 {1}, {2}/4칸",label(id),description,b.length)}" aria-pressed="${selected===id}" ${hasGates()&&(ctrl||stage.edges.some(e=>e.gated&&(e.from===id||e.to===id)))?`aria-describedby="${prefix}gate"`:""} ${locked?'disabled':''}><span class="label">${id}</span><span class="vessel">${b.map(c=>`<span class="layer" style="--water:${color(c)}">${$('symbols').checked?`<span class="symbol">${symbols[c]}</span>`:''}</span>`).join('')}</span><span class="type">${ctrl?html("제어"):b.length+" / 4"}</span>${cue?`<span class="cue-tag" aria-hidden="true">${selected?'②':'①'}</span>`:''}</button>`;
     }).join('')+stage.outlets.map((o,i)=>{
       const [x,y]=points[o.id], complete=state.delivered[i]===o.demand;
-      return `<button class="node outlet ${complete?'complete':''} ${destinationMoves.some(r=>r.to===o.id)?'possible':''} ${pulse.includes(o.id)?'pulse':''}" data-node="${o.id}" style="left:${x/6}%;top:${y/5.6}%" aria-label="${html("{0}, {1}/{2}칸",label(o.id),state.delivered[i],o.demand)}" ${locked?'disabled':''}><span class="dot" style="background:${color(o.color)}"></span><span class="label">${esc(outletShortName(o))}</span><span class="quantity">${state.delivered[i]}/${o.demand}</span></button>`;
+      const cue=selected&&suggestion?.to===o.id;
+      return `<button class="node outlet ${complete?'complete':''} ${destinationMoves.some(r=>r.to===o.id)?'possible':''} ${pulse.includes(o.id)?'pulse':''} ${cue?'coach-target':''}" data-node="${o.id}" style="left:${x/6}%;top:${y/5.6}%" aria-label="${html("{0}, {1}/{2}칸",label(o.id),state.delivered[i],o.demand)}" ${locked?'disabled':''}><span class="dot" style="background:${color(o.color)}"></span><span class="label">${esc(outletShortName(o))}</span><span class="quantity">${state.delivered[i]}/${o.demand}</span>${cue?'<span class="cue-tag" aria-hidden="true">②</span>':''}</button>`;
     }).join('');
     const defs=`<defs><marker id="${prefix}arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>`;
     $('paths').innerHTML=defs+stage.edges.map((e,i)=>{
@@ -114,7 +129,12 @@ function createRouteView(options){
     if (status.blocked) say('지금 가능한 이동이 없어요. 되돌리기나 다시 시작으로 다른 순서를 시도하세요.',true);
     if(!busy&&activeId) { root.querySelector(`[data-node="${activeId}"]`)?.focus({preventScroll:true});focusNode=null; }
   }
-  function chooseSource(id) { selected=id;render();say("강조된 목적지로 보낼 수 있어요."); }
+  function chooseSource(id) {
+    selected=id;render();const canSend=Route.availableMoves(stage,state).moves.some(r=>r.from===id);
+    if(canSend)say("빛나는 곳을 누르면 물을 보내요.");
+    else say("이 탱크에서 지금 보낼 수 있는 곳이 없어요. 다른 탱크를 고르거나 되돌려 보세요.",true);
+    return canSend;
+  }
   function commit(from,to) {
     if (busy||options.blocked?.()) return;
     const result=options.dispatch('move',[from,to]);
@@ -130,7 +150,11 @@ function createRouteView(options){
     if (busy||options.blocked?.()) return;
     if (state.phase==='won') { say(reasons['attempt-complete']);return; }
     if (selected===id) { selected=null;render();say('선택을 해제했습니다.');return; }
-    if (selected) { commit(selected,id);return; }
+    if (selected) {
+      const preview=Route.previewMove(stage,state,[selected,id]);
+      if(!preview.ok&&stage.tankIds.includes(id)&&state.bottles[stage.tankIds.indexOf(id)].length){if(chooseSource(id))say('출발 탱크를 바꿨어요. 빛나는 곳을 누르세요.');return;}
+      commit(selected,id);return;
+    }
     if (!stage.tankIds.includes(id)) { say('물을 보낼 출발 탱크를 먼저 골라 주세요.');return; }
     if (!state.bottles[stage.tankIds.indexOf(id)].length) { say(reasons['empty-source'],true);return; }
     chooseSource(id);
@@ -152,13 +176,13 @@ function createRouteView(options){
     if(!stage.tankIds.includes(node.dataset.node)||state.phase==='won')return;
     drag={id:node.dataset.node,x:e.clientX,y:e.clientY,pointer:e.pointerId,moved:false};
   });
-  $('board').addEventListener('pointermove',e=>{if(!drag||drag.pointer!==e.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10){drag.moved=true;if(!$('board').hasPointerCapture(e.pointerId))$('board').setPointerCapture(e.pointerId);}});
+  $('board').addEventListener('pointermove',e=>{if(!drag||drag.pointer!==e.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10){if(!drag.moved){drag.moved=true;selected=drag.id;render();}if(!$('board').hasPointerCapture(e.pointerId))$('board').setPointerCapture(e.pointerId);}});
   $('board').addEventListener('pointerup',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;
     if($('board').hasPointerCapture(e.pointerId))$('board').releasePointerCapture(e.pointerId);
     if(!d.moved)return;suppressClickUntil=performance.now()+350;
     const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-node]');
-    if(target&&root.contains(target)&&target.dataset.node!==d.id)commit(d.id,target.dataset.node);else say('드래그를 취소했습니다.');
+    if(target&&root.contains(target)&&target.dataset.node!==d.id)commit(d.id,target.dataset.node);else {cancelInput();render();say('드래그를 취소했습니다.');}
   });
   function cancelInput(announce=false) {
     const interrupted=!!(drag||selected),pointer=drag?.pointer;drag=null;selected=null;previewTarget=null;
@@ -174,14 +198,27 @@ function createRouteView(options){
   $('undo').addEventListener('click',()=>{if(busy)return;const r=options.dispatch('undo');if(r.ok){state=r.state;selected=null;render();say('직전 이동의 물과 목표, 수문을 복원했어요.');}});
   $('restart').addEventListener('click',()=>{if(busy)return;const r=options.dispatch('restart');if(r.ok){state=r.state;selected=null;hintOpen=false;render();say('같은 판을 새 시도로 시작했습니다.');}});
   $('cancel').addEventListener('click',()=>cancelInput(true));
-  root.addEventListener('keydown',e=>{if(e.key==='Escape'&&!busy&&(selected||drag)){e.preventDefault();e.stopPropagation();cancelInput(true);}});
+  root.addEventListener('keydown',e=>{
+    if(!$('helpPanel').hidden){
+      if(e.key==='Escape'){e.preventDefault();e.stopPropagation();setHelp(false);}
+      if(e.key==='Tab'){
+        const items=[...$('helpPanel').querySelectorAll('button,input,select,summary')].filter(el=>!el.disabled&&el.getClientRects().length),first=items[0],last=items.at(-1);
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+        else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+      }
+      return;
+    }
+    if(e.key==='Escape'&&!busy&&(selected||drag)){e.preventDefault();e.stopPropagation();cancelInput(true);}
+  });
+  $('helpToggle').addEventListener('click',()=>setHelp($('helpPanel').hidden));
+  $('helpClose').addEventListener('click',()=>setHelp(false));
   $('stageSelect').addEventListener('change',()=>reset(Number($('stageSelect').value)));
   $('next').addEventListener('click',()=>{if(!busy&&!options.blocked?.()){options.next();selected=null;hintOpen=false;render();}});
   for(const id of ['symbols','reduce'])$(id).addEventListener('change',()=>{options.setPreferences({[id==='symbols'?'symbols':'reduceFx']:$(id).checked});render();say('표시 설정을 적용했습니다.');});
 
  $('stageSelect').innerHTML=stages.map((s,i)=>`<option value="${i}">${i+1}. ${s.title}</option>`).join('');
  if(guides)$('stageSelect').setAttribute('aria-label','스테이지 선택');
- const cancel=()=>{clearTimeout(timer);busy=false;cancelInput();pulse=[];hintOpen=false;gateLinksOpen=false;announcement=null;};
+ const cancel=()=>{clearTimeout(timer);busy=false;cancelInput();pulse=[];hintOpen=false;gateLinksOpen=false;announcement=null;$('helpPanel').hidden=true;$('helpToggle').setAttribute('aria-expanded','false');root.querySelector('.route-scroll').inert=false;for(const id of ['undo','restart','cancel'])$(id).inert=false;};
  return Object.freeze({render,reset,cancel,say});
 }
 if(typeof module==='object'&&module.exports)module.exports=createRouteView;else global.createRouteView=createRouteView;

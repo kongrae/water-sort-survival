@@ -4,19 +4,25 @@
 <style>:root{color-scheme:dark;--bg:#0f171c;--panel:#17222a;--ink:#e4edf1;--muted:#a5b6bf;--line:#344650;--accent:#3fc2d1;/* PALETTE */}body{margin:0;background:var(--bg)}/* VIEW_CSS */</style></head><body><main class="route-root">
 <header><div><div class="eyebrow">BOTTLE SORT · WATER ROUTES</div><h1>물길 스테이지</h1></div><span class="eyebrow">시제품 · 3개 판</span></header>
 <div class="route-scroll">
-<div class="stage-row"><select id="stageSelect" aria-label="검증 판 선택" disabled></select><span class="moves"><strong id="moves">0</strong> <span data-i18n="수">수</span></span></div>
+<div class="route-top">
+<div class="stage-row"><strong id="stageName"></strong><select id="stageSelect" aria-label="검증 판 선택" disabled></select><span class="moves"><strong id="moves">0</strong> <span data-i18n="수">수</span></span></div>
+<p class="objective" data-i18n="목표: 모든 물을 같은 색 도착지로 보내세요.">목표: 모든 물을 같은 색 도착지로 보내세요.</p>
+<section id="gatePanel"><p id="gate" role="status"></p><button id="gateToggle" aria-expanded="false" aria-controls="gateLinks">수문 연결 보기</button></section>
+</div>
+<div class="board-slot"><div id="board" class="board" aria-label="탱크와 방향 물길"><svg id="paths" viewBox="0 0 600 560" preserveAspectRatio="none" aria-hidden="true"></svg><div id="nodes"></div></div>
+<section id="clear" hidden aria-label="클리어 결과"><h2 data-i18n="모든 물을 보냈어요!">모든 물을 보냈어요!</h2><p id="clearText"></p><button id="next">다음 검증 판</button></section></div>
+<div class="route-feedback"><p id="coach" role="status" aria-live="polite"></p><div id="message" role="status" aria-live="polite">판을 준비하고 있습니다.</div></div>
+</div>
+<section id="helpPanel" class="route-help" aria-label="물길 도움말" hidden>
+<div class="help-head"><strong data-i18n="물길 도움말">물길 도움말</strong><button id="helpClose" data-i18n="닫기">닫기</button></div>
+<p data-i18n="탱크를 선택한 뒤 빛나는 곳을 누르세요. 끌어서 보내도 돼요.">탱크를 선택한 뒤 빛나는 곳을 누르세요. 끌어서 보내도 돼요.</p>
 <details id="lesson" hidden aria-label="이번 스테이지 안내"><summary id="lessonTitle"></summary><p id="lessonIntro"></p><button id="guideToggle" aria-expanded="false" aria-controls="lessonHint">힌트 보기</button><p id="lessonHint" role="status" aria-live="polite" hidden></p></details>
-<div id="goals" aria-label="도착지 목표"></div><section id="gatePanel"><p id="gate" role="status"></p><button id="gateToggle" aria-expanded="false" aria-controls="gateLinks">수문 연결 보기</button><p id="gateLinks" hidden></p></section>
-<p class="hint" data-i18n="출발 탱크 → 목적지를 눌러 보내세요. 화살표 방향으로만 이동합니다.">출발 탱크 → 목적지를 눌러 보내세요. 화살표 방향으로만 이동합니다.</p>
-<div id="board" class="board" aria-label="탱크와 방향 물길"><svg id="paths" viewBox="0 0 600 560" aria-hidden="true"></svg><div id="nodes"></div></div>
+<div id="goals" aria-label="도착지 목표"></div><p id="gateLinks" hidden></p>
 <div id="choiceArea"><div id="choices" aria-label="선택한 탱크에서 가능한 이동"></div><p id="preview"></p></div>
-<div id="message" role="status" aria-live="polite">판을 준비하고 있습니다.</div>
-<section id="clear" hidden aria-label="클리어 결과"><h2 data-i18n="모든 물을 보냈어요!">모든 물을 보냈어요!</h2><p id="clearText"></p><button id="next">다음 검증 판</button></section>
-
 <details><summary data-i18n="규칙과 표시 설정">규칙과 표시 설정</summary><p data-i18n="탱크의 맨 위 연속된 같은 색을 빈칸만큼 보냅니다. 목적지는 표시된 색과 남은 목표량만 받습니다. 같은 색 4칸도 탱크에 남아 있습니다.">탱크의 맨 위 연속된 같은 색을 빈칸만큼 보냅니다. 목적지는 표시된 색과 남은 목표량만 받습니다. 같은 색 4칸도 탱크에 남아 있습니다.</p><p id="gateRule" data-i18n="K에 파랑만 2칸 이상 남겨 두면 수문이 열립니다.">K에 파랑만 2칸 이상 남겨 두면 수문이 열립니다.</p><p data-i18n="목적지에 보낸 물은 소모됩니다. 실수하면 최근 100수까지 되돌릴 수 있습니다. 클리어 뒤에는 새 시도로 재도전합니다.">목적지에 보낸 물은 소모됩니다. 실수하면 최근 100수까지 되돌릴 수 있습니다. 클리어 뒤에는 새 시도로 재도전합니다.</p><p id="gateLegend" data-i18n="K ×는 닫힌 수문, K ▯는 열린 수문입니다.">K ×는 닫힌 수문, K ▯는 열린 수문입니다.</p><p data-i18n="화살표 방향으로만 이동해요. 교차점에서는 다른 길로 갈아탈 수 없어요.">화살표 방향으로만 이동해요. 교차점에서는 다른 길로 갈아탈 수 없어요.</p><div class="settings"><label><input id="symbols" type="checkbox"><span data-i18n="물 색상 기호">물 색상 기호</span></label><label><input id="reduce" type="checkbox"><span data-i18n="동작 효과 줄이기">동작 효과 줄이기</span></label></div></details>
 <p class="footer" data-i18n="연구용 판입니다. 이번 플레이는 새로고침하면 초기화됩니다.">연구용 판입니다. 이번 플레이는 새로고침하면 초기화됩니다.</p><p id="fatal" role="alert" hidden></p>
-</div>
-<div class="actions"><button id="undo" disabled>되돌리기</button><button id="restart" disabled data-i18n="다시 시작">다시 시작</button><button id="cancel" disabled data-i18n="선택 해제">선택 해제</button></div>
+</section>
+<div class="actions"><button id="undo" disabled>되돌리기</button><button id="restart" disabled data-i18n="다시 시작">다시 시작</button><button id="cancel" disabled data-i18n="선택 해제">선택 해제</button><button id="helpToggle" aria-expanded="false" aria-controls="helpPanel" data-i18n="도움말">도움말</button></div>
 </main>
 <!-- ENGINE -->
 <!-- ROUTE -->
