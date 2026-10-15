@@ -1,0 +1,14 @@
+{
+  "files": {
+    "route/engine.js": "5cba735c0abaaec8282b1c4370c977b578d1836e901e527488a6444d771164c0",
+    "route/guidance.js": "efd3e49938cf926a357a22119d9b692d493cda6139bf26599bd5458cb8197c06",
+    "route/progress.js": "5a13eaae3bed09184d925ad4dd68a6bc3b219a0aefe761a46ae3e7fedd32f131",
+    "route/view.js": "5281ae6d6c7c5a5f4d58726ca90389686025cc7a981a9182b9dc777183e56448",
+    "route/app.js": "e74db1f2faf87a341a2f71862fdd19e05f25102555d1eb2ae461844b0f9c111e",
+    "route/view.css": "e7e113f501497d00b8a9077ed3bc2c32bd0100cd9d8108cc6c975e5c744e1bd9",
+    "route/prototype.html": "17f4411ce3a4fceefc726aecb56e315d1e08aae08f9c62638d7c72ebb5ea131d",
+    "route/packs/first-eight.json": "229c6d44ceb76433910f141b16e4e247135a70d35fd9c2d975d0e690104422d4",
+    "route/packs/first-eight-guides.json": "c0e4bbdc610fc8f138e40c366b66c5c0f5ce5492aacf179b03eea15a87154019"
+  },
+  "bundleSha256": "1fc88f8625fa08f36d3039af6ca9e21610b23f3f91194029b72a6f79fe4d2162"
+}
