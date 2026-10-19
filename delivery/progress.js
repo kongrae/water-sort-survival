@@ -35,7 +35,9 @@
     }
     function restore(a){
       if(!object(a)||!only(a,['stageId','attemptId','practice','events','elapsedMs','runningAt'])||!id(a.attemptId)||typeof a.practice!=='boolean'||!duration(a.elapsedMs)||!(a.runningAt===null||integer(a.runningAt))||!Array.isArray(a.events)||a.events.length>MAX_EVENTS)throw Error('invalid-active');
-      const c=stages.find(c=>c.id===a.stageId);if(!c||a.practice&&(c!==stages[0]||a.elapsedMs!==0||a.runningAt!==null))throw Error('invalid-active');
+      const c=stages.find(c=>c.id===a.stageId);
+      if(!c||(c.practiceOnly&&!a.practice))throw Error('invalid-active');
+      if(a.practice&&((!c.practiceOnly&&c!==stages[0])||a.elapsedMs!==0||a.runningAt!==null))throw Error('invalid-active');
       const r={state:E.newDelivery(c),history:[]};for(const event of a.events)if(!step(r,event))throw Error('invalid-action-log');
       if(r.state.over&&a.runningAt!==null)throw Error('invalid-clock');return r;
     }
@@ -45,13 +47,13 @@
       if(!stageCount)throw Error('content-mismatch');
       const allowedIds=new Set(stages.slice(0,stageCount).map(c=>c.id));
       if(!integer(raw.revision)||!object(raw.learning)||!only(raw.learning,['offered','extracted','completed'])||!['offered','extracted','completed'].every(k=>typeof raw.learning[k]==='boolean')||raw.learning.completed&&!raw.learning.offered||!object(raw.records))throw Error('invalid-envelope');
-      for(const [key,v]of Object.entries(raw.records)){const c=stages.find(s=>s.id===key);if(!allowedIds.has(key)||!c||!object(v)||!only(v,['bestMs','stars','attemptId'])||!duration(v.bestMs)||!id(v.attemptId)||v.stars!==E.deliveryStars(v.bestMs,c.starMs))throw Error('invalid-record');}
+      for(const [key,v]of Object.entries(raw.records)){const c=stages.find(s=>s.id===key);if(!allowedIds.has(key)||!c||c.practiceOnly||!object(v)||!only(v,['bestMs','stars','attemptId'])||!duration(v.bestMs)||!id(v.attemptId)||v.stars!==E.deliveryStars(v.bestMs,c.starMs))throw Error('invalid-record');}
       if(raw.active&&!allowedIds.has(raw.active.stageId))throw Error('invalid-active');
       const r=raw.active===null?null:restore(raw.active);
       if(r){const a=raw.active;if(a.stageId===stages[0].id&&!raw.learning.offered)throw Error('invalid-learning');
         if(a.events.some(e=>e[0]==='extract')&&!raw.learning.extracted)throw Error('invalid-learning');
         if(r.state.delivery.phase==='won'){
-          if(a.practice){if(!raw.learning.completed)throw Error('incomplete-result');}
+          if(a.practice){if(a.stageId===stages[0].id&&!raw.learning.completed)throw Error('incomplete-result');}
           else {const record=raw.records[a.stageId];if(!record||record.attemptId!==a.attemptId||record.bestMs>a.elapsedMs)throw Error('incomplete-result');}
         }
       }return {envelope:{...clone(raw),packHash:manifest.packHash},runtime:r};
@@ -94,7 +96,7 @@
       if(!integer(index)||!stages[index])return {ok:false,reason:'invalid-stage'};
       if(!fresh&&envelope.active?.stageId===stages[index].id)return resume();
       const attemptId=storage.attempt();if(!id(attemptId))return {ok:false,reason:'invalid-attempt'};
-      const practice=index===0&&!!guide&&!envelope.learning.offered;
+      const practice=stages[index].practiceOnly===true||index===0&&!!guide&&!envelope.learning.offered;
       const active={stageId:stages[index].id,attemptId,practice,events:[],elapsedMs:0,runningAt:null};
       return publish({...envelope,active,learning:{...envelope.learning,offered:envelope.learning.offered||index===0}},restore(active));
     }
@@ -107,7 +109,7 @@
       const a={...envelope.active,events:envelope.active.events.concat([clone(action)]),elapsedMs:envelope.active.practice?0:elapsedMs,runningAt:r.state.over?null:envelope.active.runningAt===null?null:storage.now()};
       const learning={...envelope.learning,extracted:envelope.learning.extracted||action[0]==='extract'},records={...envelope.records};
       if(r.state.delivery.phase==='won'){
-        if(a.practice)learning.completed=true;
+        if(a.practice){if(a.stageId===stages[0].id)learning.completed=true;}
         else {const c=stages.find(c=>c.id===a.stageId),bestMs=Math.min(records[c.id]?.bestMs??Infinity,a.elapsedMs);records[c.id]={bestMs,stars:E.deliveryStars(bestMs,c.starMs),attemptId:a.attemptId};}
       }return publish({...envelope,active:a,learning,records},r);
     }

@@ -1,6 +1,7 @@
 <!-- Public delivery trial dialogs; bottle board and controls belong to the main app. -->
 <div class="overlay" id="ovDeliveryMenu" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryMenuTitle">
-  <div class="sheet-head"><h2 id="deliveryMenuTitle">색상 납품 · 대표 3판</h2><button class="sbtn" id="deliveryMenuClose" type="button">닫기</button></div>
+  <div class="sheet-head"><h2 id="deliveryMenuTitle">색상 납품 · 대표 12판</h2><button class="sbtn" id="deliveryMenuClose" type="button">닫기</button></div>
+  <p class="note">4~12판은 테스트 연습이에요. 시간·별점 기록 없이 자유롭게 골라 보세요.</p>
   <p>같은 조작으로 색을 모아 주문을 채워 보세요.</p><p class="note" id="deliverySaveNote">이 브라우저에 저장돼요. 연습과 별점 기록은 따로 보관해요. 이어하기는 최근 한 판이며, 다른 판을 시작하면 교체돼요.</p>
   <p class="note">납품 진행·별점·최고 시간은 이 브라우저에만 저장하며 구글 계정과 동기화하지 않아요.</p>
   <div id="deliveryStageList"></div><button class="btn" id="deliveryMenuResume" type="button" hidden>현재 판으로</button>
@@ -15,7 +16,7 @@
 </div></div>
 <div class="overlay" id="ovDeliveryResult" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryResultTitle">
   <h2 id="deliveryResultTitle"></h2><p id="deliveryResultStars" role="img"></p><p id="deliveryResultGoal"></p><p id="deliveryResultText"></p><p id="deliveryResultTarget"></p>
-  <p class="note">임시 시간 기준 · 이 브라우저에 저장했어요.</p>
+  <p class="note">이 브라우저에 저장했어요.</p>
   <div class="campaign-result-actions"><button class="btn primary" id="deliveryNext" type="button">다음 판</button><button class="btn" id="deliveryRetry" type="button">다시 도전</button><button class="btn" id="deliveryResultList" type="button">판 선택</button><button class="btn" id="deliveryExit" type="button">원래 모드로</button></div>
 </div></div>
 <div class="overlay" id="ovDeliveryStorage" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryStorageTitle">

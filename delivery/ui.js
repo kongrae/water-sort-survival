@@ -134,7 +134,7 @@
     if(deliveryProgress.status().issue)showDeliveryStorage();
     const elapsed = deliveryClock.sample(), thresholds = S.delivery.content.starMs;
     if (deliveryPractice) {
-      $('deliveryTime').textContent=tr('첫 연습 · 시간·별점 기록 없음');
+      $('deliveryTime').textContent=tr(S.delivery.content.practiceOnly?'테스트 연습 · 시간·별점 기록 없음':'첫 연습 · 시간·별점 기록 없음');
       return;
     }
     const stars = deliveryStars(elapsed,thresholds);
@@ -170,7 +170,8 @@
     deliveryStages.forEach((c,i)=>{
       const button=document.createElement('button');button.className='btn';button.type='button';button.dataset.stage=i;
       const active=saved.envelope.active?.stageId===c.id&&!saved.state?.over,record=saved.envelope.records[c.id];
-      button.textContent=String.fromCharCode(65+i)+' · '+tr(c.title)+' — '+Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / ')+
+      button.textContent=(i+1)+' · '+tr(c.title)+' — '+Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / ')+
+        (c.practiceOnly?' · '+tr('테스트 연습'):'')+
         (record?' · '+'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):'')+
         (active?' · '+tr(saved.envelope.active.practice?'연습 이어하기':'이어하기'):i===0&&saved.envelope.learning.completed&&!record?' · '+tr('연습 완료'):'');
       button.disabled=!!saved.issue;
@@ -231,12 +232,12 @@
     $('deliveryResultTitle').textContent=tr(won?(deliveryPractice?'연습 완료':'주문 완료'):'다시 준비해 보세요');
     $('deliveryResultStars').textContent=won && !deliveryPractice?'★'.repeat(deliveryStars(elapsed,c.starMs)):'—';
     $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,c.starMs)):tr(deliveryPractice?'연습 완료':'다시 준비해 보세요'));
-    $('deliveryResultText').textContent=deliveryPractice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
+    $('deliveryResultText').textContent=c.practiceOnly?tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.'):deliveryPractice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
       won?tr('이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs)):tr('더 움직일 수 있는 병이 없어요.');
     $('deliveryResultGoal').textContent=Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+S.delivery.delivered[color]+'/'+n).join(' · ');
-    $('deliveryResultTarget').textContent=tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
+    $('deliveryResultTarget').textContent=deliveryPractice?'':tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
     $('deliveryResultTarget').hidden=deliveryPractice;
-    $('deliveryRetry').textContent=tr(deliveryPractice?'별점 도전':'다시 도전');
+    $('deliveryRetry').textContent=tr(deliveryPractice&&!c.practiceOnly?'별점 도전':'다시 도전');
     $('deliveryNext').hidden=!won||deliveryIndex>=deliveryStages.length-1;
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
   }
@@ -247,7 +248,7 @@
     $('btnDelivery').hidden=!deliveryEnabled||isCampaign(S)||active;
     if(!active){app.classList.remove('delivery-coaching');return;}
     app.classList.add('campaign');$('campaignEntry').hidden=true;$('campaignMenu').hidden=true;$('legacyRoute').hidden=true;
-    $('modeChip').textContent=tr('납품')+' '+String.fromCharCode(65+deliveryIndex);$('modeChip').setAttribute('aria-label',$('modeChip').textContent);$('modeChip').title=$('modeChip').textContent;
+    $('modeChip').textContent=tr('납품')+' '+(deliveryIndex+1);$('modeChip').setAttribute('aria-label',$('modeChip').textContent);$('modeChip').title=$('modeChip').textContent;
     $('btnMode').textContent=tr('원래 모드로');$('btnMode').setAttribute('aria-label',$('btnMode').textContent);
     if(!armed)$('btnNew').textContent=tr('다시 도전');
     $('extraRow').hidden=true;$('zoneBar').hidden=true;
@@ -285,7 +286,7 @@
     $('deliveryControlHint').textContent=ctl()==='tapPlace' ?
       tr('탱크로 끌어 제출 · 길게 누르거나 Shift+Enter로 병 선택') :
       tr('병 → 같은 색 탱크 · 드래그로도 보낼 수 있어요.');
-    $('deliveryTimingHint').textContent=deliveryPractice ? tr('첫 연습은 시간·별점 없이 익혀요. 다음 도전부터 기록해요.') :
+    $('deliveryTimingHint').textContent=deliveryStages[deliveryIndex].practiceOnly ? tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.') : deliveryPractice ? tr('첫 연습은 시간·별점 없이 익혀요. 다음 도전부터 기록해요.') :
       tr('시작하면 생각하는 시간도 흘러요. 늦어도 완료하면 1별이에요.');
   }
   // A fresh tap on a tank must work even during the source bottle's click cooldown.
