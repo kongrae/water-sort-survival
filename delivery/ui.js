@@ -57,7 +57,12 @@
   }
   const isDeliveryTarget = target => typeof target === 'string' && target.startsWith('order:');
   function deliveryDestinationAt(x,y) { return deliveryTargetAt(x,y) ?? slotAt(x,y); }
+  function deliverySelectHint() {
+    return ctl()==='tapPlace' ? tr('한 색 병을 길게 누른 뒤 같은 색 탱크를 누르세요.')+'\n'+tr('짧게 누르면 조각을 넣어요.') :
+      tr('한 색 병을 누른 뒤 같은 색 탱크를 누르세요.');
+  }
   function deliveryReason(p) {
+    if(p.reason==='empty')return deliverySelectHint();
     return tr(({mixed:'한 가지 색으로 모으면 보낼 수 있어요.',color:'병과 같은 색의 주문 탱크를 골라 주세요.',
       empty:'보낼 물이 있는 병을 먼저 고르세요.',complete:'이 색 주문은 끝났어요.',ended:'게임이 끝났어요.'})[p.reason] || '같은 색 4칸은 자동으로 납품돼요.');
   }
@@ -295,7 +300,8 @@
     const target=e.target.closest('[data-delivery]');if(!target)return;
     const pressed=deliveryTankPress;deliveryTankPress=null;
     if(e.detail!==0 && pressed!==target.dataset.delivery)return;
-    if(typeof sel!=='number'){flash=tr('보낼 물이 있는 병을 먼저 고르세요.');render();return;}
+    if(S.delivery.delivered[target.dataset.delivery]>=S.delivery.content.goal[target.dataset.delivery]){flash=deliveryReason({reason:'complete'});render();return;}
+    if(typeof sel!=='number'){flash=deliverySelectHint();render();return;}
     extractTo(sel,'order:'+target.dataset.delivery,e.detail===0?'key':'tap');
   });
   $('btnDelivery').addEventListener('click',openDeliveryMenu);
