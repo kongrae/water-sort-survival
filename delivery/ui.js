@@ -11,6 +11,31 @@
   let deliveryExtractLearned = false;
   // Separate learning from scored attempts; neither flag belongs in undo snapshots.
   let deliveryLessonOffered = false, deliveryPractice = false;
+  let deliveryMenuIndex = 0, deliveryNextIndex = -1;
+  function deliveryGoals(container,c,delivered) {
+    container.textContent='';
+    for(const [color,total]of Object.entries(c.goal)){
+      const chip=document.createElement('span');chip.className='delivery-goal';chip.style.setProperty('--order-color','var(--liq'+color+')');
+      chip.textContent=colorName(+color)+' '+(delivered?delivered[color]+'/':'')+total;container.append(chip);
+    }
+  }
+  function selectDeliveryPreview(index) {
+    deliveryMenuIndex=index;
+    const saved=deliveryProgress.snapshot(),journey=deliveryProgress.journey(),c=deliveryStages[index],record=saved.envelope.records[c.id];
+    const active=journey.activeIndex===index,cleared=!!saved.envelope.cleared[c.id];
+    $('deliveryPreviewLabel').textContent=tr(active?'진행 중':cleared?'다시 도전':'다음 도전');
+    const practice=c.practiceOnly||(active?saved.envelope.active.practice:index===0&&prefs.staged&&!saved.envelope.learning.offered);
+    $('deliveryPreviewMode').textContent=tr(practice?'별점 없는 연습':'별점 도전');
+    $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1)+' · '+tr(c.title);
+    deliveryGoals($('deliveryPreviewGoals'),c,active?saved.state.delivery.delivered:null);
+    $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):tr('주문 색을 모아 탱크를 채우세요.');
+    $('deliveryStageStart').textContent=tr(active?'스테이지 {0} 이어하기':cleared?'스테이지 {0} 다시 도전':'스테이지 {0} 시작',index+1);
+    $('deliveryStageStart').disabled=!!saved.issue;
+    $('deliveryReplaceNote').hidden=journey.activeIndex<0||active;
+    $('deliverySavedResume').hidden=journey.activeIndex<0||active;
+    $('deliverySavedResume').disabled=!!saved.issue;
+    for(const button of $('deliveryStageList').children)button.setAttribute('aria-pressed',String(+button.dataset.stage===index));
+  }
   function captureDeliveryAction(action) {
     deliveryProgress.capture(action,S,deliveryClock.sample());
   }
@@ -134,7 +159,7 @@
     if(deliveryProgress.status().issue)showDeliveryStorage();
     const elapsed = deliveryClock.sample(), thresholds = S.delivery.content.starMs;
     if (deliveryPractice) {
-      $('deliveryTime').textContent=tr(S.delivery.content.practiceOnly?'테스트 연습 · 시간·별점 기록 없음':'첫 연습 · 시간·별점 기록 없음');
+      $('deliveryTime').textContent=tr(S.delivery.content.practiceOnly?'별점 없는 연습':'첫 연습 · 시간·별점 기록 없음');
       return;
     }
     const stars = deliveryStars(elapsed,thresholds);
@@ -167,20 +192,25 @@
     clearTimeout(deliveryResultTimer); deliveryResultTimer = 0;
     closeAll();
     $('deliveryStageList').textContent = '';
+    const journey=deliveryProgress.journey();
+    $('deliveryJourneyCount').textContent=tr('{0}/{1} 클리어',journey.count,journey.total);
+    $('deliveryJourneyBar').max=journey.total;$('deliveryJourneyBar').value=journey.count;
+    $('deliveryJourneyBar').setAttribute('aria-label',$('deliveryJourneyCount').textContent);
     deliveryStages.forEach((c,i)=>{
-      const button=document.createElement('button');button.className='btn';button.type='button';button.dataset.stage=i;
-      const active=saved.envelope.active?.stageId===c.id&&!saved.state?.over,record=saved.envelope.records[c.id];
-      button.textContent=(i+1)+' · '+tr(c.title)+' — '+Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / ')+
-        (c.practiceOnly?' · '+tr('테스트 연습'):'')+
-        (record?' · '+'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):'')+
-        (active?' · '+tr(saved.envelope.active.practice?'연습 이어하기':'이어하기'):i===0&&saved.envelope.learning.completed&&!record?' · '+tr('연습 완료'):'');
+      const button=document.createElement('button');button.className='delivery-stage-node';button.type='button';button.dataset.stage=i;
+      const active=journey.activeIndex===i,record=saved.envelope.records[c.id],cleared=!!saved.envelope.cleared[c.id];
+      const number=document.createElement('strong'),status=document.createElement('span');number.textContent=i+1;
+      status.textContent=active?tr('진행 중'):record?'★'.repeat(record.stars):cleared?'✓':i===journey.nextIndex?tr('다음 도전'):'·';
+      button.append(number,status);button.classList.toggle('cleared',cleared);
+      button.setAttribute('aria-label',tr('스테이지 {0}',i+1)+' · '+tr(c.title)+' · '+tr(active?'진행 중':cleared?'클리어':'도전 가능')+(record?' · '+tr('별점 {0}개',record.stars):''));
       button.disabled=!!saved.issue;
-      button.addEventListener('click',()=>startDelivery(i,!active));$('deliveryStageList').append(button);
+      button.addEventListener('click',()=>selectDeliveryPreview(i));$('deliveryStageList').append(button);
     });
+    selectDeliveryPreview(journey.recommendedIndex);
     $('deliveryMenuResume').hidden = !isDelivery(S);
     $('ovDeliveryMenu').hidden = false; syncDeliveryClock();showDeliveryStorage();
   }
-  function startDelivery(i,fresh=true) {
+  function startDelivery(i,fresh=true,ready=false) {
     if (!deliveryEnabled || !canStore() || !deliveryStages[i]) return;
     if(!isDelivery(S)&&!persistRun()){storageIssue(()=>persistRun());return;}
     if(!deliveryProgress.status().loaded)deliveryProgress.load();
@@ -199,7 +229,9 @@
     setHeat(0);rack.classList.remove('dead');stageDirty=true;rackFitKey='';
     $('deliveryPauseTitle').dataset.stage='1';$('deliveryResume').dataset.fresh=fresh?'1':'0';
     updateDeliveryControlHint();
-    $('deliveryResume').textContent=tr(fresh?'시작하기':'계속하기');$('ovDeliveryPause').hidden=false;
+    $('deliveryResume').textContent=tr(fresh?'시작하기':'계속하기');
+    // The preview already shows the order. Repeat the rules only before the first clear.
+    $('ovDeliveryPause').hidden=ready&&(!fresh||deliveryProgress.journey().count>0);
     render();syncDeliveryClock();
     if(saved.issue)showDeliveryStorage();else if(S.over){$('ovDeliveryPause').hidden=true;showDeliveryResult();}
   }
@@ -229,16 +261,24 @@
     if(deliveryProgress.status().issue){showDeliveryStorage();return;}
     const won=S.delivery.phase==='won', elapsed=deliveryClock.finish(), c=S.delivery.content;
     const record=deliveryProgress.snapshot().envelope.records[c.id];
-    $('deliveryResultTitle').textContent=tr(won?(deliveryPractice?'연습 완료':'주문 완료'):'다시 준비해 보세요');
-    $('deliveryResultStars').textContent=won && !deliveryPractice?'★'.repeat(deliveryStars(elapsed,c.starMs)):'—';
-    $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,c.starMs)):tr(deliveryPractice?'연습 완료':'다시 준비해 보세요'));
-    $('deliveryResultText').textContent=c.practiceOnly?tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.'):deliveryPractice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
-      won?tr('이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs)):tr('더 움직일 수 있는 병이 없어요.');
+    const journey=deliveryProgress.journey(deliveryIndex);deliveryNextIndex=journey.nextIndex;
+    $('deliveryResultMark').hidden=!won;
+    $('deliveryResultTitle').textContent=won?tr('스테이지 {0} 클리어!',deliveryIndex+1):tr('다시 준비해 보세요');
+    $('deliveryResultStars').hidden=!won||deliveryPractice;
+    $('deliveryResultStars').textContent=won&&!deliveryPractice?'★'.repeat(deliveryStars(elapsed,c.starMs)):'';
+    $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,c.starMs)):tr('클리어'));
+    $('deliveryResultText').textContent=!won?tr('더 움직일 수 있는 병이 없어요.'):c.practiceOnly?tr('클리어를 저장했어요. 이 판은 별점 없이 플레이해요.'):deliveryPractice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
+      tr('이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs));
     $('deliveryResultGoal').textContent=Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+S.delivery.delivered[color]+'/'+n).join(' · ');
     $('deliveryResultTarget').textContent=deliveryPractice?'':tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
     $('deliveryResultTarget').hidden=deliveryPractice;
     $('deliveryRetry').textContent=tr(deliveryPractice&&!c.practiceOnly?'별점 도전':'다시 도전');
-    $('deliveryNext').hidden=!won||deliveryIndex>=deliveryStages.length-1;
+    $('deliveryRetry').classList.toggle('primary',!won);
+    $('deliveryNext').hidden=!won;
+    $('deliveryNext').textContent=deliveryNextIndex<0?tr('스테이지 보기'):tr('스테이지 {0} 도전',deliveryNextIndex+1);
+    $('deliveryResultProgress').textContent=journey.count===journey.total?tr('모든 스테이지 클리어!'):tr('{0}/{1} 클리어',journey.count,journey.total);
+    const next=deliveryStages[deliveryNextIndex];
+    $('deliveryResultNext').textContent=won&&next?tr('다음 도전')+' · '+tr(next.title)+'\n'+Object.entries(next.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / '):'';
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
   }
   function renderDeliveryUi() {
@@ -281,7 +321,8 @@
     syncDeliveryClock();
   }
   function updateDeliveryControlHint() {
-    $('deliveryPauseTitle').textContent=tr($('deliveryPauseTitle').dataset.stage==='1'?deliveryStages[deliveryIndex].title:'잠시 쉬기');
+    $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+' · '+tr(deliveryStages[deliveryIndex].title):tr('잠시 쉬기');
+    deliveryGoals($('deliveryPauseGoals'),deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
     $('deliveryResume').textContent=tr($('deliveryResume').dataset.fresh==='1'?'시작하기':'계속하기');
     $('deliveryControlHint').textContent=ctl()==='tapPlace' ?
       tr('탱크로 끌어 제출 · 길게 누르거나 Shift+Enter로 병 선택') :
@@ -306,13 +347,15 @@
     extractTo(sel,'order:'+target.dataset.delivery,e.detail===0?'key':'tap');
   });
   $('btnDelivery').addEventListener('click',openDeliveryMenu);
+  $('deliveryStageStart').addEventListener('click',()=>startDelivery(deliveryMenuIndex,deliveryProgress.journey().activeIndex!==deliveryMenuIndex,true));
+  $('deliverySavedResume').addEventListener('click',()=>{const i=deliveryProgress.journey().activeIndex;if(i>=0)startDelivery(i,false,true);});
   $('deliveryMenuClose').addEventListener('click',()=>{if(isDelivery(S)){ $('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery(); }else $('ovDeliveryMenu').hidden=true;});
   $('deliveryMenuResume').addEventListener('click',()=>{$('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery();});
   $('deliveryResume').addEventListener('click',()=>{$('ovDeliveryPause').hidden=true;syncDeliveryClock();render();});
   $('deliveryPause').addEventListener('click',pauseDelivery);
   $('deliveryList').addEventListener('click',openDeliveryMenu);
   $('deliveryResultList').addEventListener('click',openDeliveryMenu);
-  $('deliveryNext').addEventListener('click',()=>startDelivery(deliveryIndex+1));
+  $('deliveryNext').addEventListener('click',()=>{if(deliveryNextIndex<0)openDeliveryMenu();else startDelivery(deliveryNextIndex,true,true);});
   $('deliveryRetry').addEventListener('click',()=>startDelivery(deliveryIndex));
   $('deliveryExit').addEventListener('click',exitDelivery);
   $('deliveryPauseExit').addEventListener('click',exitDelivery);

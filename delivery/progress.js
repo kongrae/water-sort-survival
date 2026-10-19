@@ -10,7 +10,7 @@
   const stable=x=>JSON.stringify(x,(_,v)=>object(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
   function createDeliveryProgress(E,stages,manifest,storage){
     if(!stages.length||!/^[a-f0-9]{64}$/.test(manifest?.packHash)||!['read','write','writable','attempt','now'].every(k=>typeof storage?.[k]==='function'))throw Error('Invalid delivery storage contract');
-    const empty=()=>({schema:1,revision:0,packHash:manifest.packHash,learning:{offered:false,extracted:false,completed:false},active:null,records:{}});
+    const empty=()=>({schema:2,revision:0,packHash:manifest.packHash,learning:{offered:false,extracted:false,completed:false},active:null,records:{},cleared:{}});
     const owned=Object.keys(E.newDelivery(stages[0])),projection=s=>Object.fromEntries(owned.map(k=>[k,s[k]]));
     const compatible=new Map();
     if(manifest.compatiblePacks!==undefined&&!Array.isArray(manifest.compatiblePacks))throw Error('Invalid delivery compatibility manifest');
@@ -42,7 +42,7 @@
       if(r.state.over&&a.runningAt!==null)throw Error('invalid-clock');return r;
     }
     function validate(raw){
-      if(!object(raw)||!only(raw,['schema','revision','packHash','learning','active','records'])||raw.schema!==1)throw Error('unsupported-schema');
+      if(!object(raw)||![1,2].includes(raw.schema)||!only(raw,['schema','revision','packHash','learning','active','records',...(raw.schema===2?['cleared']:[])]))throw Error('unsupported-schema');
       const stageCount=raw.packHash===manifest.packHash?stages.length:compatible.get(raw.packHash);
       if(!stageCount)throw Error('content-mismatch');
       const allowedIds=new Set(stages.slice(0,stageCount).map(c=>c.id));
@@ -56,7 +56,15 @@
           if(a.practice){if(a.stageId===stages[0].id&&!raw.learning.completed)throw Error('incomplete-result');}
           else {const record=raw.records[a.stageId];if(!record||record.attemptId!==a.attemptId||record.bestMs>a.elapsedMs)throw Error('incomplete-result');}
         }
-      }return {envelope:{...clone(raw),packHash:manifest.packHash},runtime:r};
+      }
+      // Old saves prove clears through scored records, A's lesson, or the latest winning run.
+      // Earlier unrecorded practice wins cannot be reconstructed and are not invented.
+      const proven=Object.fromEntries(Object.keys(raw.records).map(key=>[key,true]));
+      if(raw.learning.completed)proven[stages[0].id]=true;
+      if(r?.state.delivery.phase==='won')proven[raw.active.stageId]=true;
+      const cleared=raw.schema===1?proven:raw.cleared;
+      if(!object(cleared)||Object.entries(cleared).some(([key,value])=>!allowedIds.has(key)||value!==true)||Object.keys(proven).some(key=>!cleared[key]))throw Error('invalid-cleared');
+      return {envelope:{...clone(raw),schema:2,packHash:manifest.packHash,cleared:clone(cleared)},runtime:r};
     }
     function status(){return {issue,dirty,loaded};}
     function snapshot(){return {...status(),envelope:clone(envelope),state:runtime?clone(runtime.state):null};}
@@ -66,7 +74,7 @@
       if(text===null){envelope=empty();runtime=null;issue=null;return snapshot();}
       if(typeof text!=='string'||text.length>MAX_TEXT){issue='invalid-envelope';return snapshot();}
       try{const raw=JSON.parse(text),checked=validate(raw);envelope=checked.envelope;runtime=checked.runtime;issue=null;
-        if(raw.packHash!==manifest.packHash)upgradeFrom={key:'wsurv.delivery.upgrade.'+raw.packHash+'.v1',raw:text};}
+        if(raw.packHash!==manifest.packHash||raw.schema===1)upgradeFrom={key:'wsurv.delivery.upgrade.'+(raw.packHash===manifest.packHash?'schema1.':'')+raw.packHash+'.v1',raw:text};}
       catch(e){issue=e instanceof SyntaxError?'invalid-json':e.message;}return snapshot();
     }
     function flush(){
@@ -107,11 +115,12 @@
       if(envelope.active.events.length>=MAX_EVENTS){issue='save-limit';return {ok:false,reason:issue};}
       const r=clone(runtime);if(!step(r,action)||stable(projection(state))!==stable(projection(r.state))){issue='invalid-runtime';return {ok:false,reason:issue};}
       const a={...envelope.active,events:envelope.active.events.concat([clone(action)]),elapsedMs:envelope.active.practice?0:elapsedMs,runningAt:r.state.over?null:envelope.active.runningAt===null?null:storage.now()};
-      const learning={...envelope.learning,extracted:envelope.learning.extracted||action[0]==='extract'},records={...envelope.records};
+      const learning={...envelope.learning,extracted:envelope.learning.extracted||action[0]==='extract'},records={...envelope.records},cleared={...envelope.cleared};
       if(r.state.delivery.phase==='won'){
+        cleared[a.stageId]=true;
         if(a.practice){if(a.stageId===stages[0].id)learning.completed=true;}
         else {const c=stages.find(c=>c.id===a.stageId),bestMs=Math.min(records[c.id]?.bestMs??Infinity,a.elapsedMs);records[c.id]={bestMs,stars:E.deliveryStars(bestMs,c.starMs),attemptId:a.attemptId};}
-      }return publish({...envelope,active:a,learning,records},r);
+      }return publish({...envelope,active:a,learning,records,cleared},r);
     }
     function checkpoint(elapsedMs,running){
       if(issue||!envelope.active||!runtime)return {ok:false,reason:issue||'no-active'};
@@ -134,7 +143,12 @@
         envelope=empty();runtime=null;dirty=true;issue=null;upgradeFrom=null;return flush();
       }catch(_){issue='recovery-failed';return {ok:false,reason:issue};}
     }
-    return Object.freeze({KEY,RECOVERY_KEY,load,status,snapshot,validate,select,capture,checkpoint,resume,retry,restartProtected});
+    function journey(after=-1){
+      const activeIndex=envelope.active&&!runtime?.state.over?stages.findIndex(c=>c.id===envelope.active.stageId):-1;
+      const order=stages.map((_,i)=>i),nextIndex=order.slice(after+1).concat(order.slice(0,after+1)).find(i=>!envelope.cleared[stages[i].id])??-1;
+      return {count:Object.keys(envelope.cleared).length,total:stages.length,activeIndex,nextIndex,recommendedIndex:activeIndex>=0?activeIndex:nextIndex>=0?nextIndex:0};
+    }
+    return Object.freeze({KEY,RECOVERY_KEY,load,status,snapshot,validate,select,capture,checkpoint,resume,retry,restartProtected,journey});
   }
   if(typeof module==='object'&&module.exports)module.exports=createDeliveryProgress;else root.createDeliveryProgress=createDeliveryProgress;
 })(typeof globalThis!=='undefined'?globalThis:this);

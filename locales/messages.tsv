@@ -821,3 +821,23 @@ K가 비어 있어요. 남은 빨강을 먼저 보내거나 파랑을 돌려 초
 그대로 놓는 방향|Place it as it is|そのまま置く向き|按原方向放置|按原方向放置|Colócalo tal como está|Coloque como está|जैसा है वैसा रखें|Letakkan apa adanya
 맡기거나 비우거나|Hold or empty|保留か空にするか|暂存或清空|暫存或清空|Reservar o vaciar|Reservar ou esvaziar|रोकें या खाली करें|Simpan atau kosongkan
 먼저 보낼 잔량|Send the remainder first|残りを先に送る|先交付剩余量|先交付剩餘量|Entrega primero lo restante|Envie primeiro o restante|पहले बचा हुआ भेजें|Kirim sisanya dahulu
+다음 도전|Up next|次の挑戦|下一挑战|下一挑戰|Siguiente desafío|Próximo desafio|अगली चुनौती|Tantangan berikutnya
+별점 없는 연습|Practice without stars|星なしの練習|无星级练习|無星級練習|Práctica sin estrellas|Prática sem estrelas|बिना सितारों का अभ्यास|Latihan tanpa bintang
+클리어|Cleared|クリア|已通关|已通關|Completado|Concluído|पूरा हुआ|Selesai
+스테이지 {0} 이어하기|Continue stage {0}|ステージ{0}を続ける|继续第{0}关|繼續第{0}關|Continuar nivel {0}|Continuar fase {0}|चरण {0} जारी रखें|Lanjutkan tahap {0}
+스테이지 {0} 다시 도전|Replay stage {0}|ステージ{0}に再挑戦|重玩第{0}关|重玩第{0}關|Repetir nivel {0}|Repetir fase {0}|चरण {0} फिर खेलें|Ulangi tahap {0}
+스테이지 {0} 시작|Start stage {0}|ステージ{0}を始める|开始第{0}关|開始第{0}關|Empezar nivel {0}|Iniciar fase {0}|चरण {0} शुरू करें|Mulai tahap {0}
+{0}/{1} 클리어|{0}/{1} cleared|{0}/{1}クリア|已通关 {0}/{1}|已通關 {0}/{1}|{0}/{1} completados|{0}/{1} concluídas|{0}/{1} पूरे|{0}/{1} selesai
+도전 가능|Ready to play|挑戦可能|可挑战|可挑戰|Disponible|Disponível|खेलने के लिए तैयार|Siap dimainkan
+스테이지 {0} 클리어!|Stage {0} cleared!|ステージ{0}クリア！|第{0}关通关！|第{0}關通關！|¡Nivel {0} completado!|Fase {0} concluída!|चरण {0} पूरा!|Tahap {0} selesai!
+클리어를 저장했어요. 이 판은 별점 없이 플레이해요.|Clear saved. This stage has no star rating.|クリアを保存しました。このステージには星評価がありません。|通关已保存。此关卡不计星级。|通關已儲存。此關卡不計星級。|Progreso guardado. Este nivel no tiene estrellas.|Conclusão salva. Esta fase não tem estrelas.|पूरा होना सेव हुआ। इस चरण में सितारे नहीं हैं।|Penyelesaian tersimpan. Tahap ini tanpa penilaian bintang.
+스테이지 보기|View stages|ステージを見る|查看关卡|查看關卡|Ver niveles|Ver fases|चरण देखें|Lihat tahap
+스테이지 {0} 도전|Play stage {0}|ステージ{0}に挑戦|挑战第{0}关|挑戰第{0}關|Jugar nivel {0}|Jogar fase {0}|चरण {0} खेलें|Mainkan tahap {0}
+모든 스테이지 클리어!|All stages cleared!|全ステージクリア！|全部关卡通关！|全部關卡通關！|¡Todos los niveles completados!|Todas as fases concluídas!|सभी चरण पूरे!|Semua tahap selesai!
+납품 스테이지|Delivery stages|納品ステージ|交付关卡|交付關卡|Niveles de entrega|Fases de entrega|डिलीवरी चरण|Tahap pengiriman
+한 판씩 주문을 완성해요.|Complete orders, one stage at a time.|一つずつ注文を完成させよう。|逐关完成订单。|逐關完成訂單。|Completa pedidos, nivel a nivel.|Complete pedidos, fase a fase.|एक-एक चरण में ऑर्डर पूरे करें।|Selesaikan pesanan, tahap demi tahap.
+다른 판을 시작하면 진행 중인 한 판이 교체돼요. 클리어와 최고 기록은 유지돼요.|Starting another stage replaces the current run. Clears and best records stay saved.|別のステージを始めると進行中のプレイが置き換わります。クリアとベスト記録は残ります。|开始其他关卡会替换当前进度。通关和最佳纪录会保留。|開始其他關卡會取代目前進度。通關和最佳紀錄會保留。|Empezar otro nivel reemplaza la partida actual. Se conservan los niveles completados y los récords.|Iniciar outra fase substitui a partida atual. Conclusões e recordes são mantidos.|दूसरा चरण शुरू करने पर वर्तमान खेल बदल जाएगा। पूरे चरण और सर्वश्रेष्ठ रिकॉर्ड सुरक्षित रहेंगे।|Memulai tahap lain mengganti permainan saat ini. Penyelesaian dan rekor terbaik tetap tersimpan.
+진행 중인 판 이어하기|Continue current run|進行中のプレイを続ける|继续当前关卡|繼續目前關卡|Continuar partida actual|Continuar partida atual|वर्तमान खेल जारी रखें|Lanjutkan permainan saat ini
+번호를 골라 주문을 확인하세요. ✓는 클리어한 판이에요.|Select a number to see its order. ✓ marks a cleared stage.|番号を選んで注文を確認。✓はクリア済みです。|选择编号查看订单。✓表示已通关。|選擇編號查看訂單。✓表示已通關。|Elige un número para ver el pedido. ✓ indica un nivel completado.|Escolha um número para ver o pedido. ✓ indica uma fase concluída.|ऑर्डर देखने के लिए नंबर चुनें। ✓ का अर्थ पूरा चरण है।|Pilih nomor untuk melihat pesanan. ✓ menandai tahap yang selesai.
+저장·별점 안내|Saving and stars|保存と星について|保存与星级说明|儲存與星級說明|Guardado y estrellas|Salvamento e estrelas|सेव और सितारों की जानकारी|Penyimpanan dan bintang
+4~12판은 별점 없이 플레이해요. 클리어와 진행 중인 한 판은 저장돼요.|Stages 4–12 have no star rating. Clears and the current run are saved.|4～12は星評価なしです。クリアと進行中の1プレイを保存します。|第4至12关不计星级。通关记录和当前一局会保存。|第4至12關不計星級。通關紀錄和目前一局會儲存。|Los niveles 4–12 no tienen estrellas. Se guardan los niveles completados y la partida actual.|As fases 4–12 não têm estrelas. Conclusões e a partida atual são salvas.|चरण 4–12 में सितारे नहीं हैं। पूरे चरण और वर्तमान खेल सेव होते हैं।|Tahap 4–12 tanpa penilaian bintang. Penyelesaian dan permainan saat ini disimpan.
