@@ -17,6 +17,7 @@ for (const [index, row] of rows.entries()) {
   catalog[cells[0]] = cells.slice(1);
 }
 require('./check-route-locales')(base,catalog);
+require('./check-delivery-locales')(base,catalog);
 const runtime = fs.readFileSync(path.join(base, 'locales/runtime.js'), 'utf8')
   .replace('__CATALOG__', JSON.stringify(catalog).replace(/</g, '\\u003c'));
 const file = path.join(base, 'water-sort-survival.html');

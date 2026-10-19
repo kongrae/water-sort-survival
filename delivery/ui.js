@@ -1,0 +1,322 @@
+  // Public opt-in trial; dedicated progress never enters ordinary/cloud reward keys.
+  const deliveryEnabled = true;
+  const deliveryStages = JSON.parse($('deliveryPack').textContent);
+  let deliveryReturn = null, deliveryIndex = 0, deliveryClock = null, deliveryResultTimer = 0;
+  let deliveryAttempt = 0, deliverySaveAt = 0, deliverySaveRunning = false;
+  const deliveryProgress = createDeliveryProgress({newDelivery,applyPlace,applyPour,applyExtract,applyHold,applyFlip,deliveryStars},deliveryStages,JSON.parse($('deliveryManifest').textContent),{
+    read:key=>localStorage.getItem(key),write:(key,value)=>localStorage.setItem(key,value),
+    writable:()=>writerState==='owner'&&!settlementBlocked,
+    attempt:()=> 'delivery-'+Date.now()+'-'+(++deliveryAttempt)+'-'+Math.random().toString(36).slice(2,8),now:()=>Date.now()
+  });
+  let deliveryExtractLearned = false;
+  // Separate learning from scored attempts; neither flag belongs in undo snapshots.
+  let deliveryLessonOffered = false, deliveryPractice = false;
+  function captureDeliveryAction(action) {
+    deliveryProgress.capture(action,S,deliveryClock.sample());
+  }
+  function saveDeliveryTime(running,force=false) {
+    if(!isDelivery(S)||!deliveryClock||deliveryProgress.status().issue)return;
+    const at=now();
+    if(!force&&running===deliverySaveRunning&&(!running||at-deliverySaveAt<1000))return;
+    deliveryProgress.checkpoint(deliveryClock.sample(),running);
+    deliverySaveAt=at;deliverySaveRunning=running;
+  }
+  function showDeliveryStorage() {
+    const problem=deliveryProgress.status().issue;if(!problem)return;
+    deliveryClock?.setRunning(false);
+    const messages={
+      'write-failed':tr('방금 진행을 저장하지 못했어요. 화면에는 남아 있어요. 저장을 다시 확인해 주세요.'),
+      'conflict':tr('다른 저장 변경을 확인했어요. 최신 저장을 열어 이어가세요.'),
+      'read-failed':tr('납품 저장을 읽지 못했어요. 기존 기록을 바꾸지 않았어요.'),
+      'no-writer':tr('현재 탭에서 안전하게 저장할 수 없어요. 다른 게임 탭을 닫은 뒤 다시 확인해 주세요.'),
+      'clock-backwards':tr('기기 시간이 이전 시각으로 바뀌어 경과 시간을 확인할 수 없어요. 시간을 바로잡은 뒤 다시 확인해 주세요.'),
+      'backup-exists':tr('이전에 보관한 원본이 있어 덮어쓰지 않았어요.'),
+      'recovery-failed':tr('원본을 보관하지 못했어요. 기존 납품 저장은 유지했어요.')
+    };
+    $('deliveryStorageText').textContent=messages[problem]||tr('납품 저장의 버전이나 내용을 확인할 수 없어요. 원본을 유지했어요.');
+    $('deliveryStorageRetry').textContent=tr(problem==='conflict'?'최신 저장 열기':'저장 다시 확인');
+    $('deliveryStorageRecover').hidden=['read-failed','write-failed','conflict','no-writer','clock-backwards'].includes(problem);
+    if(!$('ovDeliveryResult').hidden)$('ovDeliveryResult').hidden=true;
+    if($('ovDeliveryStorage').hidden)$('ovDeliveryStorage').hidden=false;
+  }
+  function deliveryCoachSource() {
+    if (!isDelivery(S) || deliveryIndex !== 0 || deliveryExtractLearned || !prefs.staged || S.over) return -1;
+    return S.bottles.findIndex((b,i)=>b.length && previewExtract(S,i,b[0]).ok);
+  }
+  function deliveryCoachText(source) {
+    const name=colorName(S.bottles[source][0]);
+    if (sel === source) return tr('② {0} 탱크를 누르세요. 주문이 차고 병이 비어요.',name);
+    return ctl() === 'tapPlace' ? tr('① 길게 누르기 → ② 탱크 누르기')+'\n'+tr('짧게 누르면 조각을 넣어요.') :
+      tr('① {0} 병 누르기 → ② 탱크 누르기',name);
+  }
+  function deliveryTank(color) { return $('deliveryOrders').querySelector('[data-delivery="'+color+'"]'); }
+  function deliveryTargetAt(x,y) {
+    if (!isDelivery(S)) return null;
+    const el = document.elementFromPoint(x,y)?.closest('[data-delivery]');
+    return el && $('deliveryOrders').contains(el) ? 'order:'+el.dataset.delivery : null;
+  }
+  const isDeliveryTarget = target => typeof target === 'string' && target.startsWith('order:');
+  function deliveryDestinationAt(x,y) { return deliveryTargetAt(x,y) ?? slotAt(x,y); }
+  function deliveryReason(p) {
+    return tr(({mixed:'한 가지 색으로 모으면 보낼 수 있어요.',color:'병과 같은 색의 주문 탱크를 골라 주세요.',
+      empty:'보낼 물이 있는 병을 먼저 고르세요.',complete:'이 색 주문은 끝났어요.',ended:'게임이 끝났어요.'})[p.reason] || '같은 색 4칸은 자동으로 납품돼요.');
+  }
+  function deliveryPreviewText(p) {
+    return tr('{0} {1}칸 제출 · 주문 +{2} · 빈칸 +{1}',colorName(p.color),p.removed,p.accepted) +
+      (p.removed > p.accepted ? tr(' · 초과 {0}칸은 사라져요',p.removed-p.accepted) : '');
+  }
+  const deliveryFlightUI = {
+    tube:i=>isDeliveryTarget(i)?deliveryTank(+i.slice(6))?.querySelector('.delivery-liquid'):tubeEl(i),
+    capacity:()=>4,
+    slots:()=>Object.assign({},S.bottles,Object.fromEntries(Object.keys(S.delivery.content.goal).map(c=>['order:'+c,Array(4).fill(+c)])))
+  };
+  function extractTo(source,target,how,fromRects) {
+    const color = +target.slice(6), p = previewExtract(S,source,color);
+    if (!p.ok) { flash = deliveryReason(p); sharedBottleUI.reject(deliveryTank(color)); sel = how === 'drag' ? null : source; render(); return; }
+    settleFlights([source]);
+    const flight = sharedBottleUI.prepare(deliveryFlightUI,source,target,p,how,fromRects);
+    snapshot(); sel = null;
+    const first = deliveryCoachSource() >= 0;
+    applyExtract(S,source,color,hooks); deliveryExtractLearned = true;
+    flash = first ? tr('주문 +{0} · 병이 비었어요! 이제 조각을 넣어 보세요.',p.accepted) : deliveryPreviewText(p);
+    const goalHint = deliveryGoalHint();
+    if (goalHint) flash = tr('주문 +{0}',p.accepted)+'\n'+goalHint;
+    lastMove = {kind:'extract',at:now()};
+    commit(['extract',source,color]);
+    sharedBottleUI.play(flight);
+  }
+  function deliveryStatus() {
+    if (S.over) return [tr(S.delivery.phase === 'won' ? '주문 완료' : '더 움직일 수 있는 병이 없어요.'),false];
+    if (armed) return [tr('현재 시도를 처음부터 시작해요. 한 번 더 누르세요.'),true];
+    if (sel === 'cup') return [deliveryGoalHint() || tr('조각은 병에 넣고, 한 가지 색으로 모아 주문 탱크에 보내세요.'),false];
+    const coachSource=deliveryCoachSource();
+    if (coachSource >= 0 && (sel === null || sel === coachSource)) return [deliveryCoachText(coachSource),false];
+    if (typeof sel === 'number') {
+      const b = S.bottles[sel], p = previewExtract(S,sel,b?.[0]);
+      return [p.ok ? deliveryPreviewText(p) : b?.length && !isPure(b) ? deliveryReason(p) : tr('부을 병 또는 같은 색 주문 탱크를 고르세요.'),false];
+    }
+    const goalHint = deliveryGoalHint();
+    if (goalHint) return [goalHint,false];
+    return [S.stuck ? tr('병끼리 붓거나 순수한 병을 제출해 조각이 들어갈 자리를 만드세요.') :
+      ctl() === 'tapPlace' ? tr('병을 눌러 조각 넣기 · 병에서 탱크로 끌어 제출') : tr('한 색 병을 고른 뒤 같은 색 탱크를 누르세요. 4칸은 자동 납품돼요.'),false];
+  }
+  function deliveryGoalHint() {
+    if (deliveryIndex !== 2 || S.over || S.stuck || !roomFor(S.bottles,S.piece.length,S.rules.cap)) return '';
+    // Use only the same current/next pieces visible to the player, never the hidden stream.
+    if (S.bottles.some((b,i)=>b.length && previewExtract(S,i,b[0]).ok)) return '';
+    const remaining = Object.entries(S.delivery.content.goal).filter(([c,n])=>S.delivery.delivered[c] < n);
+    if (remaining.length !== 1) return '';
+    const [color,total] = remaining[0], left = total-S.delivery.delivered[color];
+    if (!S.delivery.delivered[color]) return '';
+    const visible = [S.piece,...previewPieces(S).map(q=>q.piece)];
+    if (visible.flat().filter(c=>c===+color).length < left) return '';
+    if (S.piece.includes(+color)) return tr('{0} {1}칸 남음 · 지금 조각에서 모으세요.',colorName(+color),left);
+    if (visible.slice(1).some(p=>p.includes(+color))) return tr('{0} {1}칸 남음 · 지금 조각을 넣어 다음 색을 받으세요.',colorName(+color),left);
+    return '';
+  }
+  function deliveryTimeText(ms) {
+    const seconds = Math.floor(ms/1000);
+    return String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
+  }
+  function syncDeliveryClock() {
+    const active = isDelivery(S), overlay = !!document.querySelector('.overlay:not([hidden])');
+    const blocked = active && (overlay || document.hidden || !canStore() || !!deliveryProgress.status().issue);
+    document.querySelector('.app').classList.toggle('delivery-obscured',blocked);
+    rack.inert = blocked; incoming.inert = blocked;
+    if (!active || !deliveryClock) return;
+    deliveryClock.setRunning(!blocked && !S.over && !deliveryPractice);
+    saveDeliveryTime(!blocked && !S.over && !deliveryPractice);
+    if(deliveryProgress.status().issue)showDeliveryStorage();
+    const elapsed = deliveryClock.sample(), thresholds = S.delivery.content.starMs;
+    if (deliveryPractice) {
+      $('deliveryTime').textContent=tr('첫 연습 · 시간·별점 기록 없음');
+      return;
+    }
+    const stars = deliveryStars(elapsed,thresholds);
+    $('deliveryTime').textContent = tr('경과 {0}',deliveryTimeText(elapsed))+' · '+
+      (stars === 1 ? tr('완료하면 1별') : tr('{0}별 기준 {1}',stars,deliveryTimeText(thresholds[stars===3?0:1])));
+  }
+  const deliveryOverlayWatch = new MutationObserver(syncDeliveryClock);
+  document.querySelectorAll('.overlay').forEach(o=>deliveryOverlayWatch.observe(o,{attributes:true,attributeFilter:['hidden']}));
+  document.addEventListener('visibilitychange',()=>{
+    if (isDelivery(S) && document.hidden && !S.over) pauseDelivery();
+    syncDeliveryClock();
+  });
+  // Registered before the shared writer-release listener; flush before relinquishing ownership.
+  window.addEventListener('pagehide',()=>{
+    if(isDelivery(S)){deliveryClock.setRunning(false);saveDeliveryTime(false,true);}
+  });
+  for (const type of ['pointerdown','pointerup','click','keydown']) document.addEventListener(type,e=>{
+    syncDeliveryClock();
+    if (isDelivery(S) && document.querySelector('.overlay:not([hidden])') && !e.target.closest?.('.overlay')) {
+      e.preventDefault(); e.stopImmediatePropagation();
+    }
+  },true);
+  setInterval(()=>{if(isDelivery(S))syncDeliveryClock();},100);
+  function openDeliveryMenu() {
+    if (!deliveryEnabled || !canStore() || isCampaign(S) || routeOpen) return;
+    if(isDelivery(S)){deliveryClock.setRunning(false);saveDeliveryTime(false,true);}
+    else if(!deliveryProgress.status().dirty)deliveryProgress.load();
+    const saved=deliveryProgress.snapshot();
+    cancelGesture(); clearFx(); sel = null;
+    clearTimeout(deliveryResultTimer); deliveryResultTimer = 0;
+    closeAll();
+    $('deliveryStageList').textContent = '';
+    deliveryStages.forEach((c,i)=>{
+      const button=document.createElement('button');button.className='btn';button.type='button';button.dataset.stage=i;
+      const active=saved.envelope.active?.stageId===c.id&&!saved.state?.over,record=saved.envelope.records[c.id];
+      button.textContent=String.fromCharCode(65+i)+' · '+tr(c.title)+' — '+Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / ')+
+        (record?' · '+'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):'')+
+        (active?' · '+tr(saved.envelope.active.practice?'연습 이어하기':'이어하기'):i===0&&saved.envelope.learning.completed&&!record?' · '+tr('연습 완료'):'');
+      button.disabled=!!saved.issue;
+      button.addEventListener('click',()=>startDelivery(i,!active));$('deliveryStageList').append(button);
+    });
+    $('deliveryMenuResume').hidden = !isDelivery(S);
+    $('ovDeliveryMenu').hidden = false; syncDeliveryClock();showDeliveryStorage();
+  }
+  function startDelivery(i,fresh=true) {
+    if (!deliveryEnabled || !canStore() || !deliveryStages[i]) return;
+    if(!isDelivery(S)&&!persistRun()){storageIssue(()=>persistRun());return;}
+    if(!deliveryProgress.status().loaded)deliveryProgress.load();
+    if(isDelivery(S)){deliveryClock.setRunning(false);saveDeliveryTime(false,true);}
+    const progress=deliveryProgress.select(i,fresh,prefs.staged);
+    if(!progress.ok){showDeliveryStorage();return;}
+    if (!isDelivery(S)) {
+      deliveryReturn={state:S,history:history.slice(),overClosed,paceDisp,lastMove,lastTap};
+    }
+    cancelGesture();clearFx();stopCoach();disarm(false);closeAll();clearTimeout(deliveryResultTimer);deliveryResultTimer=0;
+    const saved=deliveryProgress.snapshot();
+    deliveryIndex=i;S=progress.state;deliveryClock=createDeliveryClock(now,saved.envelope.active.elapsedMs);
+    deliveryPractice=saved.envelope.active.practice;deliveryLessonOffered=saved.envelope.learning.offered;deliveryExtractLearned=saved.envelope.learning.extracted;
+    deliverySaveAt=now();deliverySaveRunning=false;
+    history=[];sel=null;fxq=[];flash='';overClosed=false;paceDisp=null;hadSpare=false;lastMove=null;lastTap=null;
+    setHeat(0);rack.classList.remove('dead');stageDirty=true;rackFitKey='';
+    $('deliveryPauseTitle').dataset.stage='1';$('deliveryResume').dataset.fresh=fresh?'1':'0';
+    updateDeliveryControlHint();
+    $('deliveryResume').textContent=tr(fresh?'시작하기':'계속하기');$('ovDeliveryPause').hidden=false;
+    render();syncDeliveryClock();
+    if(saved.issue)showDeliveryStorage();else if(S.over){$('ovDeliveryPause').hidden=true;showDeliveryResult();}
+  }
+  function pauseDelivery() {
+    if (!isDelivery(S) || S.over) return;
+    cancelGesture();clearFx();sel=null;
+    $('deliveryPauseTitle').dataset.stage='0';$('deliveryResume').dataset.fresh='0';
+    updateDeliveryControlHint();
+    $('ovDeliveryPause').hidden=false;syncDeliveryClock();
+  }
+  function exitDelivery() {
+    if (!deliveryReturn) { $('ovDeliveryMenu').hidden=true;return; }
+    deliveryClock.setRunning(false);saveDeliveryTime(false,true);
+    if(deliveryProgress.status().issue){showDeliveryStorage();return;}
+    restoreDeliveryReturn();
+  }
+  function restoreDeliveryReturn() {
+    if(!deliveryReturn){closeAll();return;}
+    cancelGesture();clearFx();closeAll();clearTimeout(deliveryResultTimer);deliveryResultTimer=0;
+    const previous=deliveryReturn;deliveryReturn=null;deliveryClock=null;deliveryPractice=false;
+    S=previous.state;history=previous.history;overClosed=previous.overClosed;paceDisp=previous.paceDisp;
+    lastMove=previous.lastMove;lastTap=previous.lastTap;sel=null;fxq=[];flash='';hadSpare=!!S.spare;
+    disarm(false);setHeat(0);stageDirty=true;rackFitKey='';commit();syncDeliveryClock();$('btnDelivery').focus({preventScroll:true});
+  }
+  function showDeliveryResult() {
+    if (!isDelivery(S) || !S.over) return;
+    if(deliveryProgress.status().issue){showDeliveryStorage();return;}
+    const won=S.delivery.phase==='won', elapsed=deliveryClock.finish(), c=S.delivery.content;
+    const record=deliveryProgress.snapshot().envelope.records[c.id];
+    $('deliveryResultTitle').textContent=tr(won?(deliveryPractice?'연습 완료':'주문 완료'):'다시 준비해 보세요');
+    $('deliveryResultStars').textContent=won && !deliveryPractice?'★'.repeat(deliveryStars(elapsed,c.starMs)):'—';
+    $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,c.starMs)):tr(deliveryPractice?'연습 완료':'다시 준비해 보세요'));
+    $('deliveryResultText').textContent=deliveryPractice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
+      won?tr('이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs)):tr('더 움직일 수 있는 병이 없어요.');
+    $('deliveryResultGoal').textContent=Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+S.delivery.delivered[color]+'/'+n).join(' · ');
+    $('deliveryResultTarget').textContent=tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
+    $('deliveryResultTarget').hidden=deliveryPractice;
+    $('deliveryRetry').textContent=tr(deliveryPractice?'별점 도전':'다시 도전');
+    $('deliveryNext').hidden=!won||deliveryIndex>=deliveryStages.length-1;
+    $('ovDeliveryResult').hidden=false;syncDeliveryClock();
+  }
+  function renderDeliveryUi() {
+    const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);
+    app.classList.toggle('delivery-six',active && S.bottles.length === 6);
+    $('deliveryHud').hidden=!active;$('deliveryPause').hidden=!active;
+    $('btnDelivery').hidden=!deliveryEnabled||isCampaign(S)||active;
+    if(!active){app.classList.remove('delivery-coaching');return;}
+    app.classList.add('campaign');$('campaignEntry').hidden=true;$('campaignMenu').hidden=true;$('legacyRoute').hidden=true;
+    $('modeChip').textContent=tr('납품')+' '+String.fromCharCode(65+deliveryIndex);$('modeChip').setAttribute('aria-label',$('modeChip').textContent);$('modeChip').title=$('modeChip').textContent;
+    $('btnMode').textContent=tr('원래 모드로');$('btnMode').setAttribute('aria-label',$('btnMode').textContent);
+    if(!armed)$('btnNew').textContent=tr('다시 도전');
+    $('extraRow').hidden=true;$('zoneBar').hidden=true;
+    $('holdSlot').hidden=S.bottles.length<7;document.querySelector('.tray').classList.toggle('has-hold',S.bottles.length>=7);
+    const container=$('deliveryOrders'),c=S.delivery.content,coachSource=deliveryCoachSource();
+    app.classList.toggle('delivery-coaching',coachSource >= 0);
+    if(coachSource >= 0){const source=tubeEl(coachSource);source.classList.add('delivery-coach-source');source.setAttribute('aria-describedby','status');}
+    if(container.dataset.stage!==c.id){
+      container.textContent='';container.dataset.stage=c.id;
+      for(const color of Object.keys(c.goal)){
+        const button=document.createElement('button');button.type='button';button.className='delivery-order';button.dataset.delivery=color;
+        const liquid=document.createElement('span');liquid.className='tube delivery-liquid';liquid.setAttribute('aria-hidden','true');
+        const text=document.createElement('strong'),note=document.createElement('small');button.append(liquid,text,note);container.append(button);
+      }
+    }
+    for(const [color,n] of Object.entries(c.goal)){
+      const button=deliveryTank(+color),done=S.delivery.delivered[color],p=typeof sel==='number'?previewExtract(S,sel,+color):{ok:false};
+      paintTube(button.querySelector('.delivery-liquid'),Array(Math.ceil(done/n*4)).fill(+color),4);
+      button.querySelector('strong').textContent=colorName(+color)+' '+done+'/'+n;
+      button.querySelector('small').textContent=done>=n?tr('완료'):p.ok?tr('제출 +{0}',p.accepted):tr('같은 색 병 → 여기');
+      button.classList.toggle('delivery-coach-target',coachSource >= 0 && S.bottles[coachSource][0] === +color);
+      button.classList.toggle('can',p.ok);button.classList.toggle('done',done>=n);button.disabled=S.over;
+      button.setAttribute('aria-label',tr('{0}: 목표 {2}칸 중 {1}칸 납품',colorName(+color),done,n)+' · '+(p.ok?deliveryPreviewText(p):tr('주문 탱크')));
+    }
+    syncDeliveryClock();
+  }
+  function updateDeliveryControlHint() {
+    $('deliveryPauseTitle').textContent=tr($('deliveryPauseTitle').dataset.stage==='1'?deliveryStages[deliveryIndex].title:'잠시 쉬기');
+    $('deliveryResume').textContent=tr($('deliveryResume').dataset.fresh==='1'?'시작하기':'계속하기');
+    $('deliveryControlHint').textContent=ctl()==='tapPlace' ?
+      tr('탱크로 끌어 제출 · 길게 누르거나 Shift+Enter로 병 선택') :
+      tr('병 → 같은 색 탱크 · 드래그로도 보낼 수 있어요.');
+    $('deliveryTimingHint').textContent=deliveryPractice ? tr('첫 연습은 시간·별점 없이 익혀요. 다음 도전부터 기록해요.') :
+      tr('시작하면 생각하는 시간도 흘러요. 늦어도 완료하면 1별이에요.');
+  }
+  // A fresh tap on a tank must work even during the source bottle's click cooldown.
+  // A drag release has no tank pointerdown, so its compatibility click cannot submit twice.
+  let deliveryTankPress = null;
+  $('deliveryOrders').addEventListener('pointerdown',e=>{
+    deliveryTankPress = !gest && e.button <= 0 ? e.target.closest('[data-delivery]')?.dataset.delivery : null;
+  });
+  $('deliveryOrders').addEventListener('pointercancel',()=>{deliveryTankPress=null;});
+  $('deliveryOrders').addEventListener('click',e=>{
+    if(!isDelivery(S)||S.over)return;
+    const target=e.target.closest('[data-delivery]');if(!target)return;
+    const pressed=deliveryTankPress;deliveryTankPress=null;
+    if(e.detail!==0 && pressed!==target.dataset.delivery)return;
+    if(typeof sel!=='number'){flash=tr('보낼 물이 있는 병을 먼저 고르세요.');render();return;}
+    extractTo(sel,'order:'+target.dataset.delivery,e.detail===0?'key':'tap');
+  });
+  $('btnDelivery').addEventListener('click',openDeliveryMenu);
+  $('deliveryMenuClose').addEventListener('click',()=>{if(isDelivery(S)){ $('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery(); }else $('ovDeliveryMenu').hidden=true;});
+  $('deliveryMenuResume').addEventListener('click',()=>{$('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery();});
+  $('deliveryResume').addEventListener('click',()=>{$('ovDeliveryPause').hidden=true;syncDeliveryClock();render();});
+  $('deliveryPause').addEventListener('click',pauseDelivery);
+  $('deliveryList').addEventListener('click',openDeliveryMenu);
+  $('deliveryResultList').addEventListener('click',openDeliveryMenu);
+  $('deliveryNext').addEventListener('click',()=>startDelivery(deliveryIndex+1));
+  $('deliveryRetry').addEventListener('click',()=>startDelivery(deliveryIndex));
+  $('deliveryExit').addEventListener('click',exitDelivery);
+  $('deliveryPauseExit').addEventListener('click',exitDelivery);
+  $('deliveryStorageRetry').addEventListener('click',()=>{
+    const before=deliveryProgress.status().issue,result=deliveryProgress.retry();if(!result.ok){showDeliveryStorage();return;}
+    $('ovDeliveryStorage').hidden=true;
+    if(before==='write-failed'&&isDelivery(S)&&deliveryProgress.snapshot().state){pauseDelivery();if(S.over)showDeliveryResult();}
+    else {restoreDeliveryReturn();openDeliveryMenu();}
+  });
+  $('deliveryStorageRecover').addEventListener('click',()=>{
+    const result=deliveryProgress.restartProtected();if(!result.ok){showDeliveryStorage();return;}restoreDeliveryReturn();openDeliveryMenu();
+  });
+  $('deliveryStorageExit').addEventListener('click',()=>restoreDeliveryReturn());
+  window.addEventListener('wss:localechange',()=>{
+    updateDeliveryControlHint();
+    if(!$('ovDeliveryMenu').hidden)openDeliveryMenu();
+    if(!$('ovDeliveryResult').hidden)showDeliveryResult();
+    if(!$('ovDeliveryStorage').hidden)showDeliveryStorage();
+  });
