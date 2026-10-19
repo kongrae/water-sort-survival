@@ -11,7 +11,8 @@
   let deliveryExtractLearned = false;
   // Separate learning from scored attempts; neither flag belongs in undo snapshots.
   let deliveryLessonOffered = false, deliveryPractice = false;
-  let deliveryMenuIndex = 0, deliveryNextIndex = -1;
+  let deliveryMenuIndex = 0, deliveryNextIndex = -1, deliveryMenuPage = -1;
+  const deliveryPageSize = 10;
   function deliveryGoals(container,c,delivered) {
     container.textContent='';
     for(const [color,total]of Object.entries(c.goal)){
@@ -20,7 +21,10 @@
     }
   }
   function selectDeliveryPreview(index) {
+    if(!Number.isInteger(index)||!deliveryStages[index])return;
     deliveryMenuIndex=index;
+    const page=Math.floor(index/deliveryPageSize);
+    if(deliveryMenuPage!==page||!$('deliveryStageList').children.length)renderDeliveryStagePage(page);
     const saved=deliveryProgress.snapshot(),journey=deliveryProgress.journey(),c=deliveryStages[index],record=saved.envelope.records[c.id];
     const active=journey.activeIndex===index,cleared=!!saved.envelope.cleared[c.id];
     $('deliveryPreviewLabel').textContent=tr(active?'진행 중':cleared?'다시 도전':'다음 도전');
@@ -29,12 +33,35 @@
     $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1)+' · '+tr(c.title);
     deliveryGoals($('deliveryPreviewGoals'),c,active?saved.state.delivery.delivered:null);
     $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):tr('주문 색을 모아 탱크를 채우세요.');
+    $('deliveryPreviewDetails').textContent=tr('주문 {0}색 · 병 {1}개',Object.keys(c.goal).length,c.bottles.length);
+    $('deliveryPreviewTiming').textContent=practice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
+      tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
+    if(c.practiceOnly)$('deliveryPreviewTiming').textContent=tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.');
     $('deliveryStageStart').textContent=tr(active?'스테이지 {0} 이어하기':cleared?'스테이지 {0} 다시 도전':'스테이지 {0} 시작',index+1);
     $('deliveryStageStart').disabled=!!saved.issue;
     $('deliveryReplaceNote').hidden=journey.activeIndex<0||active;
     $('deliverySavedResume').hidden=journey.activeIndex<0||active;
     $('deliverySavedResume').disabled=!!saved.issue;
     for(const button of $('deliveryStageList').children)button.setAttribute('aria-pressed',String(+button.dataset.stage===index));
+  }
+  function renderDeliveryStagePage(page) {
+    const saved=deliveryProgress.snapshot(),journey=deliveryProgress.journey();
+    deliveryMenuPage=Math.max(0,Math.min(Math.ceil(deliveryStages.length/deliveryPageSize)-1,page));
+    const start=deliveryMenuPage*deliveryPageSize,end=Math.min(start+deliveryPageSize,deliveryStages.length);
+    $('deliveryStageList').textContent='';
+    $('deliveryPageRange').textContent=(start+1)+'–'+end+' / '+deliveryStages.length;
+    $('deliveryStageList').setAttribute('aria-label',tr('스테이지 {0}~{1}',start+1,end));
+    $('deliveryPagePrev').disabled=start===0;$('deliveryPageNext').disabled=end===deliveryStages.length;
+    for(let i=start;i<end;i++) {
+      const c=deliveryStages[i],button=document.createElement('button');button.className='delivery-stage-node';button.type='button';button.dataset.stage=i;
+      const active=journey.activeIndex===i,record=saved.envelope.records[c.id],cleared=!!saved.envelope.cleared[c.id];
+      const number=document.createElement('strong'),status=document.createElement('span');number.textContent=i+1;
+      status.textContent=active?tr('진행 중'):record?'★'.repeat(record.stars):cleared?'✓':i===journey.nextIndex?tr('다음 도전'):'·';
+      button.append(number,status);button.classList.toggle('cleared',cleared);
+      button.setAttribute('aria-label',tr('스테이지 {0}',i+1)+' · '+tr(c.title)+' · '+tr(active?'진행 중':cleared?'클리어':'도전 가능')+(record?' · '+tr('별점 {0}개',record.stars):''));
+      button.disabled=!!saved.issue;
+      button.addEventListener('click',()=>selectDeliveryPreview(i));$('deliveryStageList').append(button);
+    }
   }
   function captureDeliveryAction(action) {
     deliveryProgress.capture(action,S,deliveryClock.sample());
@@ -192,20 +219,11 @@
     clearTimeout(deliveryResultTimer); deliveryResultTimer = 0;
     closeAll();
     $('deliveryStageList').textContent = '';
+    deliveryMenuPage=-1;
     const journey=deliveryProgress.journey();
     $('deliveryJourneyCount').textContent=tr('{0}/{1} 클리어',journey.count,journey.total);
     $('deliveryJourneyBar').max=journey.total;$('deliveryJourneyBar').value=journey.count;
     $('deliveryJourneyBar').setAttribute('aria-label',$('deliveryJourneyCount').textContent);
-    deliveryStages.forEach((c,i)=>{
-      const button=document.createElement('button');button.className='delivery-stage-node';button.type='button';button.dataset.stage=i;
-      const active=journey.activeIndex===i,record=saved.envelope.records[c.id],cleared=!!saved.envelope.cleared[c.id];
-      const number=document.createElement('strong'),status=document.createElement('span');number.textContent=i+1;
-      status.textContent=active?tr('진행 중'):record?'★'.repeat(record.stars):cleared?'✓':i===journey.nextIndex?tr('다음 도전'):'·';
-      button.append(number,status);button.classList.toggle('cleared',cleared);
-      button.setAttribute('aria-label',tr('스테이지 {0}',i+1)+' · '+tr(c.title)+' · '+tr(active?'진행 중':cleared?'클리어':'도전 가능')+(record?' · '+tr('별점 {0}개',record.stars):''));
-      button.disabled=!!saved.issue;
-      button.addEventListener('click',()=>selectDeliveryPreview(i));$('deliveryStageList').append(button);
-    });
     selectDeliveryPreview(journey.recommendedIndex);
     $('deliveryMenuResume').hidden = !isDelivery(S);
     $('ovDeliveryMenu').hidden = false; syncDeliveryClock();showDeliveryStorage();
@@ -347,6 +365,8 @@
     extractTo(sel,'order:'+target.dataset.delivery,e.detail===0?'key':'tap');
   });
   $('btnDelivery').addEventListener('click',openDeliveryMenu);
+  $('deliveryPagePrev').addEventListener('click',()=>selectDeliveryPreview((deliveryMenuPage-1)*deliveryPageSize));
+  $('deliveryPageNext').addEventListener('click',()=>selectDeliveryPreview((deliveryMenuPage+1)*deliveryPageSize));
   $('deliveryStageStart').addEventListener('click',()=>startDelivery(deliveryMenuIndex,deliveryProgress.journey().activeIndex!==deliveryMenuIndex,true));
   $('deliverySavedResume').addEventListener('click',()=>{const i=deliveryProgress.journey().activeIndex;if(i>=0)startDelivery(i,false,true);});
   $('deliveryMenuClose').addEventListener('click',()=>{if(isDelivery(S)){ $('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery(); }else $('ovDeliveryMenu').hidden=true;});

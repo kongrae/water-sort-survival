@@ -841,3 +841,57 @@ K가 비어 있어요. 남은 빨강을 먼저 보내거나 파랑을 돌려 초
 번호를 골라 주문을 확인하세요. ✓는 클리어한 판이에요.|Select a number to see its order. ✓ marks a cleared stage.|番号を選んで注文を確認。✓はクリア済みです。|选择编号查看订单。✓表示已通关。|選擇編號查看訂單。✓表示已通關。|Elige un número para ver el pedido. ✓ indica un nivel completado.|Escolha um número para ver o pedido. ✓ indica uma fase concluída.|ऑर्डर देखने के लिए नंबर चुनें। ✓ का अर्थ पूरा चरण है।|Pilih nomor untuk melihat pesanan. ✓ menandai tahap yang selesai.
 저장·별점 안내|Saving and stars|保存と星について|保存与星级说明|儲存與星級說明|Guardado y estrellas|Salvamento e estrelas|सेव और सितारों की जानकारी|Penyimpanan dan bintang
 4~12판은 별점 없이 플레이해요. 클리어와 진행 중인 한 판은 저장돼요.|Stages 4–12 have no star rating. Clears and the current run are saved.|4～12は星評価なしです。クリアと進行中の1プレイを保存します。|第4至12关不计星级。通关记录和当前一局会保存。|第4至12關不計星級。通關紀錄和目前一局會儲存。|Los niveles 4–12 no tienen estrellas. Se guardan los niveles completados y la partida actual.|As fases 4–12 não têm estrelas. Conclusões e a partida atual são salvas.|चरण 4–12 में सितारे नहीं हैं। पूरे चरण और वर्तमान खेल सेव होते हैं।|Tahap 4–12 tanpa penilaian bintang. Penyelesaian dan permainan saat ini disimpan.
+이전 10판|Previous 10|前の10ステージ|前10关|前10關|10 anteriores|10 anteriores|पिछले 10|10 sebelumnya
+다음 10판|Next 10|次の10ステージ|后10关|後10關|10 siguientes|Próximas 10|अगले 10|10 berikutnya
+스테이지 {0}~{1}|Stages {0}–{1}|ステージ{0}～{1}|第{0}至{1}关|第{0}至{1}關|Niveles {0}–{1}|Fases {0}–{1}|चरण {0}–{1}|Tahap {0}–{1}
+주문 {0}색 · 병 {1}개|{0} order colors · {1} bottles|注文{0}色・ボトル{1}本|订单{0}色 · {1}个瓶子|訂單{0}色 · {1}個瓶子|{0} colores pedidos · {1} botellas|{0} cores pedidas · {1} garrafas|ऑर्डर में {0} रंग · {1} बोतलें|{0} warna pesanan · {1} botol
+3별 {0} · 2별 {1} · 완료하면 1별|3 stars {0} · 2 stars {1} · 1 star on completion|星3つ {0}・星2つ {1}・クリアで星1つ|3星 {0} · 2星 {1} · 完成即得1星|3星 {0} · 2星 {1} · 完成即得1星|3 estrellas {0} · 2 estrellas {1} · 1 al completar|3 estrelas {0} · 2 estrelas {1} · 1 ao concluir|3 सितारे {0} · 2 सितारे {1} · पूरा करने पर 1 सितारा|3 bintang {0} · 2 bintang {1} · Selesai mendapat 1 bintang
+별점 없는 연습은 클리어와 진행 중인 한 판을 저장해요.|Practice saves completed stages and one ongoing attempt, without stars.|星なし練習ではクリアと進行中の1回を保存します。|无星级练习会保存已完成关卡和一局进行中的游戏。|無星級練習會儲存已完成關卡和一局進行中的遊戲。|La práctica guarda los niveles completados y un intento en curso, sin estrellas.|A prática salva as fases concluídas e uma tentativa em andamento, sem estrelas.|अभ्यास में पूरे हुए चरण और एक जारी खेल सेव होते हैं, सितारे नहीं।|Latihan menyimpan tahap yang selesai dan satu permainan berjalan, tanpa bintang.
+받을 자리 하나|One receiving space|受け取る場所ひとつ|一个接收空间|一個接收空間|Un espacio para recibir|Um espaço para receber|लेने के लिए एक जगह|Satu ruang penerima
+비우는 순서|The emptying order|空ける順番|清空的顺序|清空的順序|El orden para vaciar|A ordem de esvaziar|खाली करने का क्रम|Urutan mengosongkan
+먼저 옮겨도 되는가|Move it first?|先に移してもいい？|先移动可以吗|先移動可以嗎|¿Moverlo primero?|Mover primeiro?|पहले हटाएँ?|Pindahkan dahulu?
+다시 여는 공간|Make room again|もう一度場所を空ける|再次腾出空间|再次騰出空間|Haz espacio otra vez|Abra espaço de novo|फिर जगह बनाएँ|Buka ruang lagi
+작은 주문의 시작|Start with the small order|小さな注文から始める|从小订单开始|從小訂單開始|Empieza por el pedido pequeño|Comece pelo pedido menor|छोटे ऑर्डर से शुरुआत|Mulai dari pesanan kecil
+작업 병 나누기|Share the working bottle|作業用ボトルを分ける|共用工作瓶|共用工作瓶|Comparte la botella de trabajo|Divida a garrafa de trabalho|काम की बोतल बाँटें|Berbagi botol kerja
+주문 사이의 한 칸|One cell between orders|注文の間の1マス|订单之间的一格|訂單之間的一格|Una casilla entre pedidos|Um espaço entre pedidos|ऑर्डरों के बीच एक खाना|Satu sel di antara pesanan
+두 색의 납품 순서|Deliver two colors in order|2色を納品する順番|两种颜色的交付顺序|兩種顏色的交付順序|Orden de entrega de dos colores|Ordem de entrega de duas cores|दो रंग देने का क्रम|Urutan mengirim dua warna
+덮개 아래의 목표|The goal beneath the cover|上の色の下にある目標|覆盖层下的目标|覆蓋層下的目標|El objetivo bajo la cubierta|O alvo sob a cobertura|ऊपरी परत के नीचे लक्ष्य|Target di bawah penutup
+꺼낸 뒤 받을 색|The color to receive next|取り出した後に受ける色|提取后接收的颜色|提取後接收的顏色|El color que recibes después|A cor que vem depois|निकालने के बाद आने वाला रंग|Warna yang diterima berikutnya
+두 병의 초록|Green in two bottles|2本の緑|两个瓶子的绿色|兩個瓶子的綠色|Verde en dos botellas|Verde em duas garrafas|दो बोतलों का हरा|Hijau dalam dua botol
+마지막 초록을 채우기|Fill the last green|最後の緑を満たす|填满最后的绿色|填滿最後的綠色|Completa el último verde|Complete o último verde|आखिरी हरा भरें|Lengkapi hijau terakhir
+채운 뒤 남은 양|What remains after filling|満たした後の残り|填满后的剩余量|填滿後的剩餘量|Lo que queda tras llenar|O que sobra depois de encher|भरने के बाद बची मात्रा|Sisa setelah diisi
+남김없이 보내기|Send it all|残さず送る|全部交付|全部交付|Entrega sin dejar nada|Envie sem deixar nada|पूरा भेजें|Kirim tanpa sisa
+자동 납품 다음에|After automatic delivery|自動納品の後で|自动交付之后|自動交付之後|Después de la entrega automática|Após a entrega automática|अपने आप डिलीवरी के बाद|Setelah pengiriman otomatis
+끝낼 만큼만 꺼내기|Extract just enough|終わる分だけ取り出す|只提取足够完成的量|只提取足夠完成的量|Extrae solo lo necesario|Extraia só o necessário|पूरा करने जितना ही निकालें|Ambil secukupnya untuk selesai
+방향과 빈자리|Orientation and space|向きと空き場所|方向与空位|方向與空位|Orientación y espacio|Orientação e espaço|दिशा और खाली जगह|Arah dan ruang kosong
+놓고 나서 옮기기|Place, then move|置いてから移す|放置后再移动|放置後再移動|Coloca y luego mueve|Coloque e depois mova|रखें, फिर हटाएँ|Letakkan lalu pindahkan
+뒤집기와 먼저 꺼내기|Flip or extract first|反転か先に取り出すか|翻转还是先提取|翻轉還是先提取|Girar o extraer primero|Virar ou extrair primeiro|पलटें या पहले निकालें|Balik atau ambil dahulu
+세 병의 납품|Delivery from three bottles|3本から納品|三个瓶子的交付|三個瓶子的交付|Entrega desde tres botellas|Entrega de três garrafas|तीन बोतलों से डिलीवरी|Pengiriman dari tiga botol
+다음 조각의 자리|Room for the next piece|次のピースの場所|下一块的空间|下一塊的空間|Espacio para la siguiente pieza|Espaço para a próxima peça|अगले टुकड़े की जगह|Ruang untuk keping berikutnya
+지금 쓸 병과 남길 병|Use one bottle, save another|今使うボトルと残すボトル|现在使用和保留的瓶子|現在使用和保留的瓶子|Una botella para usar y otra para guardar|Uma garrafa para usar e outra para guardar|एक बोतल उपयोग करें, दूसरी बचाएँ|Gunakan satu botol, sisakan lainnya
+한 칸 뒤의 두 칸|Two cells after one|1マスの次は2マス|一格之后的两格|一格之後的兩格|Dos casillas después de una|Dois espaços depois de um|एक खाने के बाद दो|Dua sel setelah satu
+두 조각을 받을 순서|Receive two pieces in order|2つのピースを受ける順番|接收两块的顺序|接收兩塊的順序|Orden para recibir dos piezas|Ordem para receber duas peças|दो टुकड़े लेने का क्रम|Urutan menerima dua keping
+노랑으로 여는 자리|Make room with yellow|黄色で場所を空ける|用黄色腾出空间|用黃色騰出空間|Haz espacio con amarillo|Abra espaço com amarelo|पीले से जगह बनाएँ|Buka ruang dengan kuning
+빨강을 남겨 두기|Keep the red|赤を残しておく|保留红色|保留紅色|Conserva el rojo|Guarde o vermelho|लाल बचाकर रखें|Sisakan merah
+목표 밖의 완성|Complete a non-goal color|目標以外の色を完成|完成目标以外的颜色|完成目標以外的顏色|Completa un color fuera del pedido|Complete uma cor fora do pedido|लक्ष्य से अलग रंग पूरा करें|Lengkapi warna di luar target
+다시 쓸 작업 병|Reuse the working bottle|作業用ボトルを再利用|再次使用工作瓶|再次使用工作瓶|Reutiliza la botella de trabajo|Reutilize a garrafa de trabalho|काम की बोतल फिर उपयोग करें|Gunakan ulang botol kerja
+큰 주문에 먼저|Start with the big order|大きな注文から始める|先处理大订单|先處理大訂單|Empieza por el pedido grande|Comece pelo pedido maior|बड़े ऑर्डर से शुरू करें|Mulai dari pesanan besar
+파랑은 잠깐 남기기|Save blue for later|青を少し残しておく|暂时保留蓝色|暫時保留藍色|Reserva el azul por ahora|Guarde o azul por enquanto|नीला अभी बचाएँ|Sisakan biru sebentar
+남은 빨강을 잇기|Connect the remaining red|残った赤をつなぐ|连接剩余的红色|連接剩餘的紅色|Une el rojo restante|Junte o vermelho restante|बचा लाल जोड़ें|Sambungkan sisa merah
+한 주문씩 나누기|One order at a time|注文を一つずつ|逐个完成订单|逐個完成訂單|Un pedido a la vez|Um pedido de cada vez|एक बार में एक ऑर्डर|Satu pesanan setiap kali
+덮개를 모을 곳|Where to gather the cover|上の色を集める場所|归拢覆盖层的位置|歸攏覆蓋層的位置|Dónde reunir la cubierta|Onde juntar a cobertura|ऊपरी परत जमा करने की जगह|Tempat mengumpulkan penutup
+한 병을 열고 다음 병|Open one bottle, then another|1本空けて次のボトルへ|打开一个瓶子再到下一个|打開一個瓶子再到下一個|Abre una botella y luego otra|Abra uma garrafa e depois outra|एक बोतल खोलें, फिर अगली|Buka satu botol lalu berikutnya
+가까운 덮개부터|The nearest cover first|近い上の色から|从最近的覆盖层开始|從最近的覆蓋層開始|La cubierta más cercana primero|A cobertura mais próxima primeiro|पास की ऊपरी परत पहले|Penutup terdekat dahulu
+완성으로 이어진 길|A path through completion|完成でつながる道|通过完成连接的路径|透過完成連接的路徑|Un camino al completar|Um caminho pela conclusão|पूरा करने से खुला रास्ता|Jalan melalui penyelesaian
+현재 방향 살피기|Check the current orientation|今の向きを確認|查看当前方向|查看目前方向|Revisa la orientación actual|Confira a orientação atual|अभी की दिशा देखें|Periksa arah saat ini
+위에 놓일 색|The color on top|上にくる色|位于上面的颜色|位於上面的顏色|El color que queda arriba|A cor que fica em cima|ऊपर आने वाला रंग|Warna di atas
+돌리지 않는 배치|Place without flipping|反転せずに置く|不翻转的放置|不翻轉的放置|Coloca sin girar|Coloque sem virar|बिना पलटे रखें|Letakkan tanpa membalik
+파랑을 합칠 순서|Combine blue in order|青をまとめる順番|合并蓝色的顺序|合併藍色的順序|Orden para juntar el azul|Ordem para juntar o azul|नीला जोड़ने का क्रम|Urutan menggabungkan biru
+맡기거나 먼저 비우기|Hold or make room first|保留か先に空けるか|暂存还是先清空|暫存還是先清空|Reserva o haz espacio primero|Reserve ou abra espaço primeiro|रोकें या पहले खाली करें|Simpan atau kosongkan dahulu
+돌아올 조각의 자리|Room for the returning piece|戻ってくるピースの場所|返回块的空间|返回塊的空間|Espacio para la pieza que vuelve|Espaço para a peça que volta|लौटने वाले टुकड़े की जगह|Ruang untuk keping yang kembali
+보관과 정리의 순서|Hold and sort in order|保留と整理の順番|暂存与整理的顺序|暫存與整理的順序|Orden para reservar y ordenar|Ordem para reservar e organizar|रोकने और जमाने का क्रम|Urutan menyimpan dan menyusun
+파랑을 남겨 받기|Keep blue to receive more|青を残して受け取る|保留蓝色以接收更多|保留藍色以接收更多|Conserva azul para recibir más|Guarde azul para receber mais|और लेने के लिए नीला बचाएँ|Sisakan biru untuk menerima lagi
+먼저 끝낼 잔량|The remainder to finish first|先に終える残り|先完成的剩余量|先完成的剩餘量|Lo restante para terminar primero|O restante para terminar primeiro|पहले पूरा करने वाली बची मात्रा|Sisa yang diselesaikan dahulu
+파랑을 남기는 이유|Why keep blue?|青を残す理由|保留蓝色的理由|保留藍色的理由|¿Por qué conservar azul?|Por que guardar azul?|नीला क्यों बचाएँ?|Mengapa menyisakan biru?
+빈 병을 다시 쓰기|Reuse an empty bottle|空のボトルを再利用|再次使用空瓶|再次使用空瓶|Reutiliza una botella vacía|Reutilize uma garrafa vazia|खाली बोतल फिर उपयोग करें|Gunakan ulang botol kosong
+두 주문의 마지막|The last of two orders|2つの注文の最後|两个订单的最后部分|兩個訂單的最後部分|El final de dos pedidos|O final de dois pedidos|दो ऑर्डरों का आखिरी हिस्सा|Akhir dari dua pesanan
