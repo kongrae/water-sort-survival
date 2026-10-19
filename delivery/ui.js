@@ -260,9 +260,14 @@
     }
     for(const [color,n] of Object.entries(c.goal)){
       const button=deliveryTank(+color),done=S.delivery.delivered[color],p=typeof sel==='number'?previewExtract(S,sel,+color):{ok:false};
-      paintTube(button.querySelector('.delivery-liquid'),Array(Math.ceil(done/n*4)).fill(+color),4);
+      // Each visible cell is one delivered unit, including goals larger than a bottle.
+      const glass=paintTube(button.querySelector('.delivery-liquid'),Array(done).fill(+color),n);
+      for(let i=done;i<n;i++){
+        const empty=document.createElement('span');empty.className='delivery-empty';glass.append(empty);
+      }
       button.querySelector('strong').textContent=colorName(+color)+' '+done+'/'+n;
-      button.querySelector('small').textContent=done>=n?tr('완료'):p.ok?tr('제출 +{0}',p.accepted):tr('같은 색 병 → 여기');
+      button.querySelector('small').textContent=done>=n?tr('완료'):
+        (p.ok?tr('제출 +{0}',p.accepted)+' · ':'')+tr('{0}칸 남음',n-done);
       button.classList.toggle('delivery-coach-target',coachSource >= 0 && S.bottles[coachSource][0] === +color);
       button.classList.toggle('can',p.ok);button.classList.toggle('done',done>=n);button.disabled=S.over;
       button.setAttribute('aria-label',tr('{0}: 목표 {2}칸 중 {1}칸 납품',colorName(+color),done,n)+' · '+(p.ok?deliveryPreviewText(p):tr('주문 탱크')));
