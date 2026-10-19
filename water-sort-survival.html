@@ -812,7 +812,13 @@ body:has(.app.delivery) #stHud{display:none}
     if(!stages.length||!/^[a-f0-9]{64}$/.test(manifest?.packHash)||!['read','write','writable','attempt','now'].every(k=>typeof storage?.[k]==='function'))throw Error('Invalid delivery storage contract');
     const empty=()=>({schema:1,revision:0,packHash:manifest.packHash,learning:{offered:false,extracted:false,completed:false},active:null,records:{}});
     const owned=Object.keys(E.newDelivery(stages[0])),projection=s=>Object.fromEntries(owned.map(k=>[k,s[k]]));
-    let envelope=empty(),runtime=null,baseText=null,issue=null,dirty=false,loaded=false;
+    const compatible=new Map();
+    if(manifest.compatiblePacks!==undefined&&!Array.isArray(manifest.compatiblePacks))throw Error('Invalid delivery compatibility manifest');
+    for(const pack of manifest.compatiblePacks||[]){
+      if(!object(pack)||!/^[a-f0-9]{64}$/.test(pack.packHash)||pack.packHash===manifest.packHash||compatible.has(pack.packHash)||!integer(pack.stageCount)||pack.stageCount<1||pack.stageCount>=stages.length)throw Error('Invalid delivery compatibility manifest');
+      compatible.set(pack.packHash,pack.stageCount);
+    }
+    let envelope=empty(),runtime=null,baseText=null,issue=null,dirty=false,loaded=false,upgradeFrom=null;
     function step(r,a){
       if(!Array.isArray(a))return false;
       const [name,...args]=a,s=r.state;
@@ -835,9 +841,12 @@ body:has(.app.delivery) #stHud{display:none}
     }
     function validate(raw){
       if(!object(raw)||!only(raw,['schema','revision','packHash','learning','active','records'])||raw.schema!==1)throw Error('unsupported-schema');
-      if(raw.packHash!==manifest.packHash)throw Error('content-mismatch');
+      const stageCount=raw.packHash===manifest.packHash?stages.length:compatible.get(raw.packHash);
+      if(!stageCount)throw Error('content-mismatch');
+      const allowedIds=new Set(stages.slice(0,stageCount).map(c=>c.id));
       if(!integer(raw.revision)||!object(raw.learning)||!only(raw.learning,['offered','extracted','completed'])||!['offered','extracted','completed'].every(k=>typeof raw.learning[k]==='boolean')||raw.learning.completed&&!raw.learning.offered||!object(raw.records))throw Error('invalid-envelope');
-      for(const [key,v]of Object.entries(raw.records)){const c=stages.find(s=>s.id===key);if(!c||!object(v)||!only(v,['bestMs','stars','attemptId'])||!duration(v.bestMs)||!id(v.attemptId)||v.stars!==E.deliveryStars(v.bestMs,c.starMs))throw Error('invalid-record');}
+      for(const [key,v]of Object.entries(raw.records)){const c=stages.find(s=>s.id===key);if(!allowedIds.has(key)||!c||!object(v)||!only(v,['bestMs','stars','attemptId'])||!duration(v.bestMs)||!id(v.attemptId)||v.stars!==E.deliveryStars(v.bestMs,c.starMs))throw Error('invalid-record');}
+      if(raw.active&&!allowedIds.has(raw.active.stageId))throw Error('invalid-active');
       const r=raw.active===null?null:restore(raw.active);
       if(r){const a=raw.active;if(a.stageId===stages[0].id&&!raw.learning.offered)throw Error('invalid-learning');
         if(a.events.some(e=>e[0]==='extract')&&!raw.learning.extracted)throw Error('invalid-learning');
@@ -845,16 +854,17 @@ body:has(.app.delivery) #stHud{display:none}
           if(a.practice){if(!raw.learning.completed)throw Error('incomplete-result');}
           else {const record=raw.records[a.stageId];if(!record||record.attemptId!==a.attemptId||record.bestMs>a.elapsedMs)throw Error('incomplete-result');}
         }
-      }return {envelope:clone(raw),runtime:r};
+      }return {envelope:{...clone(raw),packHash:manifest.packHash},runtime:r};
     }
     function status(){return {issue,dirty,loaded};}
     function snapshot(){return {...status(),envelope:clone(envelope),state:runtime?clone(runtime.state):null};}
     function load(){
       loaded=true;let text;try{text=storage.read(KEY);}catch(_){issue='read-failed';return snapshot();}
-      baseText=text;dirty=false;
+      baseText=text;dirty=false;upgradeFrom=null;
       if(text===null){envelope=empty();runtime=null;issue=null;return snapshot();}
       if(typeof text!=='string'||text.length>MAX_TEXT){issue='invalid-envelope';return snapshot();}
-      try{const checked=validate(JSON.parse(text));envelope=checked.envelope;runtime=checked.runtime;issue=null;}
+      try{const raw=JSON.parse(text),checked=validate(raw);envelope=checked.envelope;runtime=checked.runtime;issue=null;
+        if(raw.packHash!==manifest.packHash)upgradeFrom={key:'wsurv.delivery.upgrade.'+raw.packHash+'.v1',raw:text};}
       catch(e){issue=e instanceof SyntaxError?'invalid-json':e.message;}return snapshot();
     }
     function flush(){
@@ -864,7 +874,13 @@ body:has(.app.delivery) #stHud{display:none}
       if(issue&&issue!=='write-failed')return {ok:false,reason:issue};
       try{if(storage.read(KEY)!==baseText){issue='conflict';return {ok:false,reason:issue};}
         const text=JSON.stringify(envelope);if(text.length>MAX_TEXT){issue='save-limit';return {ok:false,reason:issue};}
-        storage.write(KEY,text);baseText=text;dirty=false;issue=null;return {ok:true,saved:true};
+        if(upgradeFrom){
+          const backup=storage.read(upgradeFrom.key);
+          if(backup!==null&&backup!==upgradeFrom.raw){issue='backup-exists';return {ok:false,reason:issue};}
+          if(backup===null)storage.write(upgradeFrom.key,upgradeFrom.raw);
+          if(storage.read(KEY)!==baseText){issue='conflict';return {ok:false,reason:issue};}
+        }
+        storage.write(KEY,text);baseText=text;upgradeFrom=null;dirty=false;issue=null;return {ok:true,saved:true};
       }catch(_){issue='write-failed';return {ok:false,reason:issue};}
     }
     function publish(next,r=runtime){
@@ -913,7 +929,7 @@ body:has(.app.delivery) #stHud{display:none}
       try{if(storage.read(KEY)!==baseText){issue='conflict';return {ok:false,reason:issue};}
         const backup=storage.read(RECOVERY_KEY);if(backup!==null&&JSON.parse(backup).raw!==baseText){issue='backup-exists';return {ok:false,reason:issue};}
         if(baseText!==null&&backup===null)storage.write(RECOVERY_KEY,JSON.stringify({schema:1,raw:baseText}));
-        envelope=empty();runtime=null;dirty=true;issue=null;return flush();
+        envelope=empty();runtime=null;dirty=true;issue=null;upgradeFrom=null;return flush();
       }catch(_){issue='recovery-failed';return {ok:false,reason:issue};}
     }
     return Object.freeze({KEY,RECOVERY_KEY,load,status,snapshot,validate,select,capture,checkpoint,resume,retry,restartProtected});

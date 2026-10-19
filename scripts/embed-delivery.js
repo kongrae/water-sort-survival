@@ -1,4 +1,4 @@
-const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),file=path.join(root,'water-sort-survival.html');
 let source=fs.readFileSync(file,'utf8');
 const read=name=>fs.readFileSync(path.join(root,'delivery',name),'utf8');
@@ -9,7 +9,7 @@ for(const [label,name] of [['ENGINE','engine.js'],['UI','ui.js'],['CSS','ui.css'
 }
 source=source.replace(/<!-- DELIVERY_DIALOGS_START -->[\s\S]*?<!-- DELIVERY_DIALOGS_END -->/,()=>`<!-- DELIVERY_DIALOGS_START -->\n${read('ui.html')}\n<!-- DELIVERY_DIALOGS_END -->`);
 source=source.replace(/<script id="deliveryPack" type="application\/json">[\s\S]*?<\/script>/,()=>'<script id="deliveryPack" type="application/json">'+JSON.stringify(JSON.parse(read('representative-three.json'))).replace(/</g,'\\u003c')+'</script>');
-const pack=JSON.parse(read('representative-three.json')),manifest={packHash:crypto.createHash('sha256').update(JSON.stringify(pack)).digest('hex')};
+const pack=JSON.parse(read('representative-three.json')),manifest=require('./delivery-manifest')(pack,JSON.parse(read('released-packs.json')));
 const persistence='<!-- DELIVERY_PROGRESS_START -->\n<script id="deliveryManifest" type="application/json">'+JSON.stringify(manifest)+'</script>\n<script id="deliveryProgress">\n'+read('progress.js')+'\n</script>\n<!-- DELIVERY_PROGRESS_END -->';
 if(source.includes('<!-- DELIVERY_PROGRESS_START -->'))source=source.replace(/<!-- DELIVERY_PROGRESS_START -->[\s\S]*?<!-- DELIVERY_PROGRESS_END -->/,()=>persistence);
 else source=source.replace(/<script id="deliveryPack" type="application\/json">[\s\S]*?<\/script>/,m=>m+'\n'+persistence);
