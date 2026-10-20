@@ -175,7 +175,16 @@
       tr('{0} 자동 납품 +{1} · 남음 {2}칸',colorName(+c),S.delivery.delivered[c]-before.delivery.delivered[c],Math.max(0,S.delivery.content.goal[c]-S.delivery.delivered[c])):
       tr('{0} 자동 비움 · 주문 없음',colorName(+c))).join(' / ');
     const move=action[0]==='pour'?tr('{0}번→{1}번 붓기 · 주문 +0',action[1]+1,action[2]+1):tr('{0}번 배치 · 주문 +0',action[1]+1);
-    deliveryLastChange=(orders||move)+'\n'+tr('빈칸 {0}',changed.map(x=>tr('{0}번 {1}→{2}',x.index+1,x.before,x.after)).join(' · '));
+    // Describe only current engine-confirmed opportunities, never a preferred move.
+    const ready=changed.map(({index:i})=>{
+      const oldBottle=before.bottles[i],bottle=S.bottles[i];
+      const was=previewExtract(before,i,oldBottle[0]),is=previewExtract(S,i,bottle[0]);
+      if(is.ok && (!was.ok || oldBottle[0]!==bottle[0] || was.accepted!==is.accepted))
+        return tr('{0}번 {1} {2}칸 제출 가능',i+1,colorName(bottle[0]),is.removed);
+      if(was.ok && !is.ok && is.reason==='mixed')return tr('{0}번: 제출 가능 → 불가(혼합)',i+1);
+      return '';
+    }).filter(Boolean).join(' · ');
+    deliveryLastChange=[orders||(!ready?move:''),ready,tr('빈칸 {0}',changed.map(x=>tr('{0}번 {1}→{2}',x.index+1,x.before,x.after)).join(' · '))].filter(Boolean).join('\n');
     deliveryChangeState=S;flash='';
   }
   function deliveryConsequenceText() { return deliveryChangeState===S?deliveryLastChange:''; }
@@ -239,7 +248,7 @@
     if(deliveryProgress.status().issue)showDeliveryStorage();
     const elapsed = deliveryClock.sample(), thresholds = S.delivery.content.starMs;
     if (deliveryPractice) {
-      $('deliveryTime').textContent=tr(S.delivery.content.practiceOnly?'별점 없는 연습':'첫 연습 · 시간·별점 기록 없음');
+      $('deliveryTime').textContent=tr(deliveryChoiceKind()?'누적 납품 · 별점 없는 연습':S.delivery.content.practiceOnly?'별점 없는 연습':'첫 연습 · 시간·별점 기록 없음');
       return;
     }
     const stars = deliveryStars(elapsed,thresholds);
@@ -371,6 +380,7 @@
     $('holdSlot').hidden=S.bottles.length<7;document.querySelector('.tray').classList.toggle('has-hold',S.bottles.length>=7);
     const container=$('deliveryOrders'),c=S.delivery.content,coachSource=deliveryCoachSource();
     container.classList.toggle('delivery-orders-multiple',Object.keys(c.goal).length>=3);
+    container.classList.toggle('delivery-orders-cumulative',!!deliveryChoiceKind());
     app.classList.toggle('delivery-coaching',coachSource >= 0);
     if(coachSource >= 0){const source=tubeEl(coachSource);source.classList.add('delivery-coach-source');source.setAttribute('aria-describedby','status');}
     if(container.dataset.stage!==c.id){
@@ -385,7 +395,8 @@
     }
     for(const [color,n] of Object.entries(c.goal)){
       const button=deliveryTank(+color),done=S.delivery.delivered[color],p=typeof sel==='number'?previewExtract(S,sel,+color):{ok:false};
-      // Each visible cell is one delivered unit, including goals larger than a bottle.
+      // Keep shared liquid rendering; late practice orders merge cells into a cumulative meter.
+      button.style.setProperty('--order-color','var(--liq'+color+')');
       const glass=paintTube(button.querySelector('.delivery-liquid'),Array(done).fill(+color),n);
       for(let i=done;i<n;i++){
         const empty=document.createElement('span');empty.className='delivery-empty';glass.append(empty);
@@ -403,7 +414,7 @@
   function updateDeliveryControlHint() {
     $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
     $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
-    $('deliveryAllGoals').hidden=deliveryChoiceKind()!=='F';
+    $('deliveryAllGoals').hidden=!deliveryChoiceKind();
     $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+' · '+tr(deliveryStages[deliveryIndex].title):tr('잠시 쉬기');
     deliveryGoals($('deliveryPauseGoals'),deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
     $('deliveryPauseNotice').textContent=deliveryStageNote(deliveryStages[deliveryIndex]);
