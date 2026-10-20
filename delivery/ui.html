@@ -28,7 +28,9 @@
 </div></div>
 <div class="overlay" id="ovDeliveryPause" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryPauseTitle">
   <h2 id="deliveryPauseTitle">시작하기</h2>
+  <p id="deliveryAllGoals" hidden>전체 목표 · 네 색을 모두 납품하세요.</p>
   <div id="deliveryPauseGoals" class="delivery-goals"></div>
+  <p id="deliveryOpeningFacts" class="note" hidden></p>
   <p id="deliveryPauseNotice" hidden></p>
   <div id="deliveryRuleReminder">
     <p><b>주문 색을 모아 탱크를 채우세요.</b></p>
@@ -41,6 +43,7 @@
 <div class="overlay" id="ovDeliveryResult" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryResultTitle">
   <div id="deliveryResultMark" aria-hidden="true">✓</div>
   <h2 id="deliveryResultTitle"></h2><p id="deliveryResultStars" role="img"></p><p id="deliveryResultGoal"></p><p id="deliveryResultText"></p><p id="deliveryResultTarget"></p>
+  <p id="deliveryResultChange" class="note" hidden></p>
   <p id="deliveryResultProgress"></p><p id="deliveryResultNext" class="note"></p>
   <div class="campaign-result-actions"><button class="btn primary" id="deliveryNext" type="button">다음 판</button><button class="btn" id="deliveryRetry" type="button">다시 도전</button><button class="btn" id="deliveryResultList" type="button">판 선택</button><button class="btn" id="deliveryExit" type="button">원래 모드로</button></div>
 </div></div>

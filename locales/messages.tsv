@@ -904,3 +904,21 @@ K가 비어 있어요. 남은 빨강을 먼저 보내거나 파랑을 돌려 초
 파랑을 남기는 이유|Why keep blue?|青を残す理由|保留蓝色的理由|保留藍色的理由|¿Por qué conservar azul?|Por que guardar azul?|नीला क्यों बचाएँ?|Mengapa menyisakan biru?
 빈 병을 다시 쓰기|Reuse an empty bottle|空のボトルを再利用|再次使用空瓶|再次使用空瓶|Reutiliza una botella vacía|Reutilize uma garrafa vazia|खाली बोतल फिर उपयोग करें|Gunakan ulang botol kosong
 두 주문의 마지막|The last of two orders|2つの注文の最後|两个订单的最后部分|兩個訂單的最後部分|El final de dos pedidos|O final de dois pedidos|दो ऑर्डरों का आखिरी हिस्सा|Akhir dari dua pesanan
+64~65판은 도구와 공간 선택을 바꾸는 별점 없는 도전이에요.|Stages 64–65 explore tools and space, without stars.|64〜65は道具と空きの使い方を変える、星なしの挑戦です。|64～65关是不计星级的工具与空间选择挑战。|64～65關是不計星級的工具與空間選擇挑戰。|Las etapas 64–65 exploran herramientas y espacio, sin estrellas.|As fases 64–65 exploram ferramentas e espaço, sem estrelas.|चरण 64–65 में बिना सितारों के औज़ार और खाली जगह के विकल्प आज़माएँ।|Tahap 64–65 menguji pilihan alat dan ruang, tanpa bintang.
+지금·다음 조각과 비울 자리를 살펴보세요.|Check the current and next pieces, and space to clear.|今と次のピース、空ける場所を確認しましょう。|看看当前、下一块和可腾出的空间。|看看目前、下一塊和可騰出的空間。|Mira las piezas actual y siguiente, y el espacio que puedes liberar.|Observe as peças atual e seguinte e o espaço a liberar.|अभी और अगली गोटी देखें, और जगह खाली करने पर विचार करें।|Perhatikan keping sekarang, berikutnya, dan ruang yang bisa dikosongkan.
+{0} 자동 납품 +{1} · 남음 {2}칸|{0} auto-delivery +{1} · {2} left|{0} 自動納品 +{1} · 残り{2}マス|{0} 自动交付 +{1} · 还差{2}格|{0} 自動交付 +{1} · 還差{2}格|{0}: entrega automática +{1} · faltan {2}|{0}: entrega automática +{1} · faltam {2}|{0} अपने आप जमा +{1} · {2} बाकी|{0} terkirim otomatis +{1} · sisa {2}
+{0} 자동 비움 · 주문 없음|{0} auto-cleared · no order|{0} 自動で空に · 注文なし|{0} 自动清空 · 无订单|{0} 自動清空 · 無訂單|{0}: vaciado automático · sin pedido|{0}: esvaziado automaticamente · sem pedido|{0} अपने आप खाली · कोई ऑर्डर नहीं|{0} otomatis dikosongkan · tanpa pesanan
+{0}번→{1}번 붓기 · 주문 +0|Pour {0}→{1} · order +0|{0}番→{1}番 注ぐ · 注文 +0|{0}号→{1}号倒入 · 订单 +0|{0}號→{1}號倒入 · 訂單 +0|Verter {0}→{1} · pedido +0|Despejar {0}→{1} · pedido +0|{0}→{1} उँडेला · ऑर्डर +0|Tuang {0}→{1} · pesanan +0
+{0}번 배치 · 주문 +0|Place in {0} · order +0|{0}番に配置 · 注文 +0|放入{0}号 · 订单 +0|放入{0}號 · 訂單 +0|Colocar en {0} · pedido +0|Colocar em {0} · pedido +0|{0} में रखा · ऑर्डर +0|Taruh di {0} · pesanan +0
+빈칸 {0}|Space {0}|空き {0}|空位 {0}|空位 {0}|Espacio {0}|Espaço {0}|खाली जगह {0}|Ruang {0}
+{0}번 {1}→{2}|#{0} {1}→{2}|{0}番 {1}→{2}|{0}号 {1}→{2}|{0}號 {1}→{2}|n.º {0} {1}→{2}|nº {0} {1}→{2}|#{0} {1}→{2}|#{0} {1}→{2}
+지금 아래 {0} → 위 {1}|Now: bottom {0} → top {1}|今：下{0} → 上{1}|当前：下{0} → 上{1}|目前：下{0} → 上{1}|Ahora: abajo {0} → arriba {1}|Agora: embaixo {0} → em cima {1}|अभी: नीचे {0} → ऊपर {1}|Sekarang: bawah {0} → atas {1}
+{0}번 빈칸 {1}칸|#{0}: {1} free|{0}番 空き{1}マス|{0}号空位{1}格|{0}號空位{1}格|n.º {0}: {1} libres|nº {0}: {1} livres|#{0}: {1} खाली|#{0}: {1} kosong
+지금 {0}칸 · 다음 {1} {2}칸|Now {0} cells · next {1} {2} cells|今{0}マス · 次{1} {2}マス|当前{0}格 · 下一块{1} {2}格|目前{0}格 · 下一塊{1} {2}格|Ahora {0} casillas · siguiente {1} {2} casillas|Agora {0} espaços · próxima {1} {2} espaços|अभी {0} खाने · अगली {1} {2} खाने|Sekarang {0} petak · berikutnya {1} {2} petak
+최대 빈칸 {0}칸 · {1}|Largest space: {0} cells · {1}|最大の空き{0}マス · {1}|最大空位{0}格 · {1}|最大空位{0}格 · {1}|Mayor hueco: {0} casillas · {1}|Maior espaço: {0} casas · {1}|सबसे बड़ी खाली जगह {0} खाने · {1}|Ruang terbesar {0} petak · {1}
+홀드 가능|Hold available|ホールド可能|可暂存|可暫存|Reserva disponible|Reserva disponível|होल्ड उपलब्ध|Hold tersedia
+홀드 사용 중|Hold in use|ホールド使用中|暂存使用中|暫存使用中|Reserva en uso|Reserva em uso|होल्ड इस्तेमाल में|Hold digunakan
+{0}번·{1}칸|#{0}·{1} free|{0}番·空き{1}|{0}号·空{1}|{0}號·空{1}|{0}·{1} libres|{0}·{1} livres|#{0}·{1} खाली|#{0}·{1} kosong
+전체 목표 · 네 색을 모두 납품하세요.|Full goal: deliver all four colors.|全体の目標 · 4色すべて納品しましょう。|总目标：交付全部四种颜色。|總目標：交付全部四種顏色。|Objetivo completo: entrega los cuatro colores.|Meta completa: entregue as quatro cores.|पूरा लक्ष्य: चारों रंग जमा करें।|Target lengkap: kirim keempat warna.
+방향을 살피는 네 색 주문|Four colors, mind the direction|向きを見極める4色の注文|留意方向的四色订单|留意方向的四色訂單|Cuatro colores: observa la dirección|Quatro cores: observe a direção|चार रंग, दिशा पर ध्यान दें|Empat warna, perhatikan arah
+한 칸을 먼저 받아내기|Make room for one cell first|まず1マスを受け入れる|先接住一格|先接住一格|Haz sitio para una casilla primero|Abra espaço para uma casa primeiro|पहले एक खाने की जगह बनाएँ|Beri ruang untuk satu petak dulu

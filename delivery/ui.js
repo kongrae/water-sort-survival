@@ -13,7 +13,12 @@
   let deliveryLessonOffered = false, deliveryPractice = false;
   let deliveryMenuIndex = 0, deliveryNextIndex = -1, deliveryMenuPage = -1;
   const deliveryPageSize = 10;
+  function deliveryChoiceKind() {
+    return !isDelivery(S)?null:S.delivery.content.id==='delivery-late-064'?'F':S.delivery.content.id==='delivery-late-065'?'H':null;
+  }
   const deliveryLateNotes = {
+    'delivery-late-064': '64~65판은 도구와 공간 선택을 바꾸는 별점 없는 도전이에요.',
+    'delivery-late-065': '지금·다음 조각과 비울 자리를 살펴보세요.',
     'delivery-late-061': '세 주문을 확인하고, 비울 병과 이어 모을 병을 함께 살펴보세요.',
     'delivery-late-062': '섞인 조각을 나눌 병과 같은 색을 받을 병을 구분하세요.',
     'delivery-late-063': '앞 두 판보다 긴 판이에요. 주문을 끝낸 색도 공간을 차지해요. 다음 빨강·노랑을 받을 재료를 살펴보세요.'
@@ -155,6 +160,38 @@
     commit(['extract',source,color]);
     sharedBottleUI.play(flight);
   }
+  // Presentation only: use the existing pre-move snapshot and completed state.
+  // Keep this outside saved state and undo history; a restored state invalidates it.
+  let deliveryLastChange = '', deliveryChangeState = null;
+  function recordDeliveryConsequence(action) {
+    deliveryLastChange='';deliveryChangeState=null;
+    if(!deliveryChoiceKind() || !['pour','place'].includes(action?.[0]) || !history.length)return;
+    const before=JSON.parse(history[history.length-1]),cap=S.rules.cap;
+    const changed=S.bottles.map((b,i)=>({index:i,before:cap-before.bottles[i].length,after:cap-b.length})).filter(x=>x.before!==x.after);
+    const count=state=>state.bottles.flat().reduce((n,c)=>(n[c]=(n[c]||0)+1,n),{}),old=count(before),current=count(S);
+    if(action[0]==='place')for(const c of before.piece)old[c]=(old[c]||0)+1;
+    const cleared=Object.keys(old).filter(c=>old[c]>(current[c]||0));
+    const orders=cleared.map(c=>Object.hasOwn(S.delivery.content.goal,c)?
+      tr('{0} 자동 납품 +{1} · 남음 {2}칸',colorName(+c),S.delivery.delivered[c]-before.delivery.delivered[c],Math.max(0,S.delivery.content.goal[c]-S.delivery.delivered[c])):
+      tr('{0} 자동 비움 · 주문 없음',colorName(+c))).join(' / ');
+    const move=action[0]==='pour'?tr('{0}번→{1}번 붓기 · 주문 +0',action[1]+1,action[2]+1):tr('{0}번 배치 · 주문 +0',action[1]+1);
+    deliveryLastChange=(orders||move)+'\n'+tr('빈칸 {0}',changed.map(x=>tr('{0}번 {1}→{2}',x.index+1,x.before,x.after)).join(' · '));
+    deliveryChangeState=S;flash='';
+  }
+  function deliveryConsequenceText() { return deliveryChangeState===S?deliveryLastChange:''; }
+  function deliveryOpeningFacts() {
+    if(!deliveryChoiceKind() || S.over || S.hold!==null || S.flipped || S.delivery.cursor!==1 ||
+       S.delivery.delivered.some(n=>n) || JSON.stringify(S.bottles)!==JSON.stringify(S.delivery.content.bottles))return '';
+    // Only the current piece, visible next piece, space and hold availability.
+    const next=previewPieces(S)[0]?.piece || [],free=S.bottles.map(b=>S.rules.cap-b.length);
+    return deliveryChoiceKind()==='F'?
+      tr('지금 아래 {0} → 위 {1}',colorName(S.piece[0]),colorName(S.piece[1]))+'\n'+free.map((n,i)=>n?tr('{0}번 빈칸 {1}칸',i+1,n):'').filter(Boolean).join(' · '):
+      tr('지금 {0}칸 · 다음 {1} {2}칸',S.piece.length,next.map(colorName).join('·'),next.length)+'\n'+
+      tr('최대 빈칸 {0}칸 · {1}',Math.max(...free),tr(canHold(S)?'홀드 가능':'홀드 사용 중'));
+  }
+  function deliveryBottleCaption(index,free) {
+    return deliveryChoiceKind()?tr('{0}번·{1}칸',index+1,free):tr('{0}칸',free);
+  }
   function deliveryStatus() {
     if (S.over) return [tr(S.delivery.phase === 'won' ? '주문 완료' : '더 움직일 수 있는 병이 없어요.'),false];
     if (armed) return [tr('현재 시도를 처음부터 시작해요. 한 번 더 누르세요.'),true];
@@ -165,6 +202,9 @@
       const b = S.bottles[sel], p = previewExtract(S,sel,b?.[0]);
       return [p.ok ? deliveryPreviewText(p) : b?.length && !isPure(b) ? deliveryReason(p) : tr('부을 병 또는 같은 색 주문 탱크를 고르세요.'),false];
     }
+    const consequence=deliveryConsequenceText(),opening=deliveryOpeningFacts();
+    if(consequence)return [consequence,false];
+    if(opening)return [opening,false];
     const goalHint = deliveryGoalHint();
     if (goalHint) return [goalHint,false];
     return [S.stuck ? tr('병끼리 붓거나 순수한 병을 제출해 조각이 들어갈 자리를 만드세요.') :
@@ -290,6 +330,8 @@
   function showDeliveryResult() {
     if (!isDelivery(S) || !S.over) return;
     if(deliveryProgress.status().issue){showDeliveryStorage();return;}
+    $('deliveryResultChange').textContent=deliveryConsequenceText();
+    $('deliveryResultChange').hidden=!$('deliveryResultChange').textContent;
     const won=S.delivery.phase==='won', elapsed=deliveryClock.finish(), c=S.delivery.content;
     const record=deliveryProgress.snapshot().envelope.records[c.id];
     const journey=deliveryProgress.journey(deliveryIndex);deliveryNextIndex=journey.nextIndex;
@@ -316,6 +358,8 @@
   function renderDeliveryUi() {
     const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);
     app.classList.toggle('delivery-six',active && S.bottles.length === 6);
+    app.classList.toggle('delivery-choice',!!deliveryChoiceKind());
+    app.classList.toggle('delivery-choice-h',deliveryChoiceKind()==='H');
     $('deliveryHud').hidden=!active;$('deliveryPause').hidden=!active;
     $('btnDelivery').hidden=!deliveryEnabled||isCampaign(S)||active;
     if(!active){app.classList.remove('delivery-coaching');return;}
@@ -357,6 +401,9 @@
     syncDeliveryClock();
   }
   function updateDeliveryControlHint() {
+    $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
+    $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
+    $('deliveryAllGoals').hidden=deliveryChoiceKind()!=='F';
     $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+' · '+tr(deliveryStages[deliveryIndex].title):tr('잠시 쉬기');
     deliveryGoals($('deliveryPauseGoals'),deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
     $('deliveryPauseNotice').textContent=deliveryStageNote(deliveryStages[deliveryIndex]);
