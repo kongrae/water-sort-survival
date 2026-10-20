@@ -8280,7 +8280,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
   function deliveryStatus() {
     if (S.over) return [tr(S.delivery.phase === 'won' ? '주문 완료' : '더 움직일 수 있는 병이 없어요.'),false];
     if (armed) return [tr('현재 시도를 처음부터 시작해요. 한 번 더 누르세요.'),true];
-    if (sel === 'cup') return [deliveryGoalHint() || tr('조각은 병에 넣고, 한 가지 색으로 모아 주문 탱크에 보내세요.'),false];
+    if (sel === 'cup') return [deliveryOpeningFacts() || deliveryGoalHint() || tr('조각은 병에 넣고, 한 가지 색으로 모아 주문 탱크에 보내세요.'),false];
     const coachSource=deliveryCoachSource();
     if (coachSource >= 0 && (sel === null || sel === coachSource)) return [deliveryCoachText(coachSource),false];
     if (typeof sel === 'number') {
