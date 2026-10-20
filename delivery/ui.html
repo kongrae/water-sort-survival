@@ -7,6 +7,7 @@
     <h3 id="deliveryPreviewTitle"></h3><div id="deliveryPreviewGoals" class="delivery-goals"></div>
     <p id="deliveryPreviewRecord" class="note"></p>
     <p id="deliveryPreviewDetails" class="note"></p>
+    <p id="deliveryPreviewNotice" class="note" hidden></p>
     <p id="deliveryPreviewTiming" class="note"></p>
     <button class="btn primary" id="deliveryStageStart" type="button"></button>
     <p id="deliveryReplaceNote" class="note" hidden>다른 판을 시작하면 진행 중인 한 판이 교체돼요. 클리어와 최고 기록은 유지돼요.</p>
@@ -28,8 +29,11 @@
 <div class="overlay" id="ovDeliveryPause" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryPauseTitle">
   <h2 id="deliveryPauseTitle">시작하기</h2>
   <div id="deliveryPauseGoals" class="delivery-goals"></div>
-  <p><b>주문 색을 모아 탱크를 채우세요.</b></p>
-  <p>한 색 1~3칸은 탱크에 보내고, 같은 색 4칸은 자동 납품해요. 다른 색 4칸도 비워져요.</p>
+  <p id="deliveryPauseNotice" hidden></p>
+  <div id="deliveryRuleReminder">
+    <p><b>주문 색을 모아 탱크를 채우세요.</b></p>
+    <p>한 색 1~3칸은 탱크에 보내고, 같은 색 4칸은 자동 납품해요. 다른 색 4칸도 비워져요.</p>
+  </div>
   <p class="note" id="deliveryControlHint"></p>
   <p class="note" id="deliveryTimingHint"></p>
   <div class="campaign-result-actions"><button class="btn primary" id="deliveryResume" type="button">시작하기</button><button class="btn" id="deliveryList" type="button">판 선택</button><button class="btn" id="deliveryPauseExit" type="button">원래 모드로</button></div>
