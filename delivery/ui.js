@@ -415,6 +415,10 @@
     const choice=!!deliveryChoiceKind();
     $('ovDeliveryPause').querySelector('.sheet').classList.toggle('delivery-choice-pause',choice);
     $('deliveryPauseHelp').open=!choice;
+    $('deliveryPauseHelpToggle').hidden=!choice;
+    $('ovDeliveryPause').querySelector('.delivery-pause-body').tabIndex=choice?0:-1;
+    $('deliveryPauseHelpToggle').setAttribute('aria-expanded','false');
+    $('deliveryPauseCore').hidden=!choice || $('deliveryResume').dataset.fresh!=='1' || deliveryProgress.journey().count>0;
     $('deliveryPauseBrief').hidden=!choice;
     $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
     $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
@@ -455,6 +459,13 @@
   $('deliverySavedResume').addEventListener('click',()=>{const i=deliveryProgress.journey().activeIndex;if(i>=0)startDelivery(i,false,true);});
   $('deliveryMenuClose').addEventListener('click',()=>{if(isDelivery(S)){ $('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery(); }else $('ovDeliveryMenu').hidden=true;});
   $('deliveryMenuResume').addEventListener('click',()=>{$('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery();});
+  $('deliveryPauseHelpToggle').addEventListener('click',()=>{
+    const help=$('deliveryPauseHelp'),open=!help.open;
+    help.open=open;
+    $('deliveryPauseHelpToggle').setAttribute('aria-expanded',String(open));
+    if(open)help.scrollIntoView({block:'nearest'});
+    else $('ovDeliveryPause').querySelector('.delivery-pause-body').scrollTop=0;
+  });
   $('deliveryResume').addEventListener('click',()=>{$('ovDeliveryPause').hidden=true;syncDeliveryClock();render();});
   $('deliveryPause').addEventListener('click',pauseDelivery);
   $('deliveryList').addEventListener('click',openDeliveryMenu);

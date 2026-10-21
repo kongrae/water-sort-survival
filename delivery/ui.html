@@ -31,6 +31,7 @@
   <h2 id="deliveryPauseTitle">시작하기</h2>
   <p id="deliveryAllGoals" hidden>모든 주문량을 채우면 완료해요.</p>
   <div id="deliveryPauseGoals" class="delivery-goals"></div>
+  <p id="deliveryPauseCore" class="delivery-pause-core" hidden>병 전체가 한 색이면 1~3칸도 같은 색 탱크로 보내세요. 같은 색 4칸은 자동 납품돼요.</p>
   <p id="deliveryOpeningFacts" class="note" hidden></p>
   <p id="deliveryPauseBrief" class="note" hidden>진행 저장 · 별점·시간 기록 없음</p>
   <details id="deliveryPauseHelp" class="delivery-pause-help" open>
@@ -44,6 +45,7 @@
   <p class="note" id="deliveryTimingHint"></p>
   </details>
   </div>
+  <button id="deliveryPauseHelpToggle" class="delivery-pause-toggle" type="button" aria-expanded="false" aria-controls="deliveryPauseHelp" hidden>조작·저장 안내</button>
   <div class="campaign-result-actions"><button class="btn primary" id="deliveryResume" type="button">시작하기</button><button class="btn" id="deliveryList" type="button">판 선택</button><button class="btn" id="deliveryPauseExit" type="button">원래 모드로</button></div>
 </div></div>
 <div class="overlay" id="ovDeliveryResult" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryResultTitle">
