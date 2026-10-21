@@ -314,6 +314,11 @@
     $('ovDeliveryPause').hidden=ready&&(!fresh||deliveryProgress.journey().count>0&&!deliveryLateNotes[deliveryStages[i].id]);
     render();syncDeliveryClock();
     if(saved.issue)showDeliveryStorage();else if(S.over){$('ovDeliveryPause').hidden=true;showDeliveryResult();}
+    else if($('ovDeliveryPause').hidden)focusDeliveryControls();
+  }
+  function focusDeliveryControls() {
+    // Let the shared sheet observer release the board's inert state first.
+    queueMicrotask(()=>{if(isDelivery(S)&&!S.over&&!document.querySelector('.overlay:not([hidden])'))$('deliveryPause').focus({preventScroll:true});});
   }
   function pauseDelivery() {
     if (!isDelivery(S) || S.over) return;
@@ -466,7 +471,10 @@
     if(open)help.scrollIntoView({block:'nearest'});
     else $('ovDeliveryPause').querySelector('.delivery-pause-body').scrollTop=0;
   });
-  $('deliveryResume').addEventListener('click',()=>{$('ovDeliveryPause').hidden=true;syncDeliveryClock();render();});
+  $('deliveryResume').addEventListener('click',()=>{
+    $('ovDeliveryPause').hidden=true;syncDeliveryClock();render();
+    focusDeliveryControls();
+  });
   $('deliveryPause').addEventListener('click',pauseDelivery);
   $('deliveryList').addEventListener('click',openDeliveryMenu);
   $('deliveryResultList').addEventListener('click',openDeliveryMenu);

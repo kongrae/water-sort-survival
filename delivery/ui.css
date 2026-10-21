@@ -111,6 +111,7 @@ body:has(.app.delivery) #stHud{display:none}
 .delivery-choice-pause #deliveryPauseBrief{line-height:1.4}
 .delivery-choice-pause>.campaign-result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;flex:none;padding-top:8px;border-top:1px solid var(--line)}
 .delivery-choice-pause #deliveryResume{grid-column:1/-1}
+.delivery-choice-pause #deliveryPauseHelpToggle{grid-column:1/-1;border-top:0}
 @media(max-height:500px) and (orientation:landscape){
  #ovDeliveryPause .sheet.delivery-choice-pause{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;grid-template-rows:minmax(0,1fr) auto;width:min(720px,calc(100vw - 32px));max-width:720px;max-height:calc(100vh - 16px);gap:8px}
  .delivery-choice-pause .delivery-pause-body{grid-column:1/-1;grid-row:1}
