@@ -96,6 +96,16 @@ body:has(.app.delivery) #stHud{display:none}
 #deliveryResultStars{font-size:32px;color:var(--accent)}
 #ovDeliveryPause .sheet{gap:8px}#ovDeliveryPause p,#ovDeliveryPause h2{margin:0}
 #deliveryRuleReminder{display:grid;gap:8px}
+.delivery-pause-body,.delivery-pause-help{display:contents}
+.delivery-pause-help>summary{display:none}
+#ovDeliveryPause .sheet.delivery-choice-pause{overflow:hidden;padding:16px;gap:10px}
+.delivery-choice-pause .delivery-pause-body{display:flex;flex-direction:column;gap:8px;min-height:0;overflow:auto;overscroll-behavior:contain}
+.delivery-choice-pause .delivery-pause-help{display:block;border-top:1px solid var(--line)}
+.delivery-choice-pause .delivery-pause-help>summary{display:flex;align-items:center;min-height:44px;cursor:pointer;color:var(--muted);font-size:13px}
+.delivery-choice-pause .delivery-pause-help[open]{display:grid;gap:8px}
+.delivery-choice-pause #deliveryPauseBrief{line-height:1.4}
+.delivery-choice-pause>.campaign-result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;flex:none;padding-top:8px;border-top:1px solid var(--line)}
+.delivery-choice-pause #deliveryResume{grid-column:1/-1}
 @media(max-height:500px) and (orientation:landscape){
  .app.delivery.campaign{grid-template-rows:44px auto minmax(0,1fr) auto;grid-template-areas:"top top" "status info" "board incoming" "board actions"}
  .app.delivery>.status,.app.delivery:not(.tray-bottom)>.incoming{margin-top:0}
@@ -132,3 +142,6 @@ body:has(.app.delivery) #stHud{display:none}
 .app.delivery.delivery-choice-h #rack.expanding>.tube[data-i="4"]{grid-column:2/span 2!important;grid-row:2!important}
 .app.delivery.delivery-choice-h #rack.expanding>.tube[data-i="5"]{grid-column:4/span 2!important;grid-row:2!important}
 .app.delivery.delivery-choice-h #rack.expanding>.tube[data-i="6"]{grid-column:6/span 2!important;grid-row:2!important}
+@media(min-width:568px) and (max-height:500px) and (orientation:landscape){
+ .app.delivery.delivery-choice-h #rack.expanding{align-self:stretch;align-content:stretch;min-height:0;padding-top:0;grid-template-rows:repeat(2,minmax(0,1fr))}
+}

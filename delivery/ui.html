@@ -27,10 +27,14 @@
   <button class="btn" id="deliveryMenuResume" type="button" hidden>현재 판으로</button>
 </div></div>
 <div class="overlay" id="ovDeliveryPause" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryPauseTitle">
+  <div class="delivery-pause-body">
   <h2 id="deliveryPauseTitle">시작하기</h2>
-  <p id="deliveryAllGoals" hidden>전체 목표 · 누적 납품으로 모든 주문량을 채우세요.</p>
+  <p id="deliveryAllGoals" hidden>모든 주문량을 채우면 완료해요.</p>
   <div id="deliveryPauseGoals" class="delivery-goals"></div>
   <p id="deliveryOpeningFacts" class="note" hidden></p>
+  <p id="deliveryPauseBrief" class="note" hidden>진행 저장 · 별점·시간 기록 없음</p>
+  <details id="deliveryPauseHelp" class="delivery-pause-help" open>
+  <summary>조작·저장 안내</summary>
   <p id="deliveryPauseNotice" hidden></p>
   <div id="deliveryRuleReminder">
     <p><b>주문 색을 모아 탱크를 채우세요.</b></p>
@@ -38,6 +42,8 @@
   </div>
   <p class="note" id="deliveryControlHint"></p>
   <p class="note" id="deliveryTimingHint"></p>
+  </details>
+  </div>
   <div class="campaign-result-actions"><button class="btn primary" id="deliveryResume" type="button">시작하기</button><button class="btn" id="deliveryList" type="button">판 선택</button><button class="btn" id="deliveryPauseExit" type="button">원래 모드로</button></div>
 </div></div>
 <div class="overlay" id="ovDeliveryResult" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryResultTitle">

@@ -181,7 +181,7 @@
       const was=previewExtract(before,i,oldBottle[0]),is=previewExtract(S,i,bottle[0]);
       if(is.ok && (!was.ok || oldBottle[0]!==bottle[0] || was.accepted!==is.accepted))
         return tr('{0}번 {1} {2}칸 제출 가능',i+1,colorName(bottle[0]),is.removed);
-      if(was.ok && !is.ok && is.reason==='mixed')return tr('{0}번: 제출 가능 → 불가(혼합)',i+1);
+      if(was.ok && !is.ok && is.reason==='mixed')return tr('{0}번 혼합 상태 · 지금은 직접 제출 불가',i+1);
       return '';
     }).filter(Boolean).join(' · ');
     deliveryLastChange=[orders||(!ready?move:''),ready,tr('빈칸 {0}',changed.map(x=>tr('{0}번 {1}→{2}',x.index+1,x.before,x.after)).join(' · '))].filter(Boolean).join('\n');
@@ -412,10 +412,14 @@
     syncDeliveryClock();
   }
   function updateDeliveryControlHint() {
+    const choice=!!deliveryChoiceKind();
+    $('ovDeliveryPause').querySelector('.sheet').classList.toggle('delivery-choice-pause',choice);
+    $('deliveryPauseHelp').open=!choice;
+    $('deliveryPauseBrief').hidden=!choice;
     $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
     $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
     $('deliveryAllGoals').hidden=!deliveryChoiceKind();
-    $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+' · '+tr(deliveryStages[deliveryIndex].title):tr('잠시 쉬기');
+    $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+(choice?'':' · '+tr(deliveryStages[deliveryIndex].title)):tr('잠시 쉬기');
     deliveryGoals($('deliveryPauseGoals'),deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
     $('deliveryPauseNotice').textContent=deliveryStageNote(deliveryStages[deliveryIndex]);
     $('deliveryPauseNotice').hidden=!deliveryLateNotes[deliveryStages[deliveryIndex].id];
