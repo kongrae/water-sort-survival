@@ -7380,6 +7380,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     // the bottles are rebuilt below: remember which one had keyboard focus
     const fa = document.activeElement;
     const focusSlot = fa && fa.matches && fa.matches('#rack .tube, #spareSlot .tube') ? Number(fa.dataset.i) : null;
+    const focusControl = isDelivery(S) && fa?.matches('#btnHold, #btnUndo') && fa.matches(':focus-visible') ? fa : null;
     const daily = S.mode === 'daily';
     const chip = $('modeChip'), modeText = daily ? tr("오늘의 도전 ") + S.seed.slice(11) : tr("무한 모드");
     chip.textContent = daily ? tr("오늘의 도전 ").trim() : modeText;
@@ -7635,6 +7636,10 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
 
     renderCampaignUi();
     renderDeliveryUi();
+    // A used hold/undo can disable itself. Keep keyboard play on an enabled control.
+    if (focusControl?.disabled && !S.over && !document.querySelector('.overlay:not([hidden])')) {
+      (ctl() === 'tapPlace' ? tubeEl(0) : cup).focus();
+    }
     // juicy: layers still in flight stay hidden in the rebuilt bottles; the stage follows the run
     reapplyFlights();
     scheduleRackFit();
@@ -8492,6 +8497,11 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     $('deliveryResultNext').textContent=won&&next?tr('다음 도전')+' · '+tr(next.title)+'\n'+Object.entries(next.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / '):'';
     if(won&&next&&deliveryLateNotes[next.id])$('deliveryResultNext').textContent+='\n'+tr('별점 없는 연습')+' · '+deliveryStageNote(next)+'\n'+tr(deliveryLatePractice);
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
+    // The shared sheet observer focuses without scrolling; reveal that button in short viewports.
+    queueMicrotask(()=>{
+      const target=won?$('deliveryNext'):$('deliveryRetry');
+      if(!$('ovDeliveryResult').hidden&&document.activeElement===target)target.scrollIntoView({block:'nearest',inline:'nearest'});
+    });
   }
   function renderDeliveryUi() {
     const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);

@@ -368,6 +368,11 @@
     $('deliveryResultNext').textContent=won&&next?tr('다음 도전')+' · '+tr(next.title)+'\n'+Object.entries(next.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / '):'';
     if(won&&next&&deliveryLateNotes[next.id])$('deliveryResultNext').textContent+='\n'+tr('별점 없는 연습')+' · '+deliveryStageNote(next)+'\n'+tr(deliveryLatePractice);
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
+    // The shared sheet observer focuses without scrolling; reveal that button in short viewports.
+    queueMicrotask(()=>{
+      const target=won?$('deliveryNext'):$('deliveryRetry');
+      if(!$('ovDeliveryResult').hidden&&document.activeElement===target)target.scrollIntoView({block:'nearest',inline:'nearest'});
+    });
   }
   function renderDeliveryUi() {
     const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);
