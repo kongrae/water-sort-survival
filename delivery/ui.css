@@ -102,6 +102,8 @@ body:has(.app.delivery) #stHud{display:none}
 .delivery-choice-pause .delivery-pause-body{display:flex;flex-direction:column;gap:8px;min-height:0;overflow:auto;overscroll-behavior:contain}
 .delivery-choice-pause .delivery-pause-help{display:block;border-top:1px solid var(--line)}
 .delivery-choice-pause .delivery-pause-help>summary{display:flex;align-items:center;min-height:44px;cursor:pointer;color:var(--muted);font-size:13px}
+.delivery-choice-pause .delivery-pause-help>summary::before{content:'＋';margin-right:8px}
+.delivery-choice-pause .delivery-pause-help[open]>summary::before{content:'−'}
 .delivery-choice-pause .delivery-pause-help[open]{display:grid;gap:8px}
 .delivery-choice-pause #deliveryPauseBrief{line-height:1.4}
 .delivery-choice-pause>.campaign-result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;flex:none;padding-top:8px;border-top:1px solid var(--line)}
