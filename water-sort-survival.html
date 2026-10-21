@@ -8470,6 +8470,26 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     lastMove=previous.lastMove;lastTap=previous.lastTap;sel=null;fxq=[];flash='';hadSpare=!!S.spare;
     disarm(false);setHeat(0);stageDirty=true;rackFitKey='';commit();syncDeliveryClock();$('btnDelivery').focus({preventScroll:true});
   }
+  function revealDeliveryResultFocus() {
+    const overlay=$('ovDeliveryResult'),target=document.activeElement;
+    if(overlay.hidden||!target?.matches('#ovDeliveryResult .campaign-result-actions button')||target.disabled||target.closest('[hidden],[inert]'))return;
+    const rect=target.getBoundingClientRect(),sheet=overlay.querySelector('.sheet'),bounds=sheet.getBoundingClientRect();
+    // Leave room for the focus outline and scroll only the result sheet.
+    const top=Math.max(0,bounds.top)+6,bottom=Math.min(document.documentElement.clientHeight,bounds.bottom)-6;
+    const left=Math.max(0,bounds.left)+6,right=Math.min(document.documentElement.clientWidth,bounds.right)-6;
+    if(rect.top<top)sheet.scrollTop+=rect.top-top;else if(rect.bottom>bottom)sheet.scrollTop+=rect.bottom-bottom;
+    if(rect.left<left)sheet.scrollLeft+=rect.left-left;else if(rect.right>right)sheet.scrollLeft+=rect.right-right;
+  }
+  let deliveryResultFocusQueued=false;
+  function scheduleDeliveryResultFocus() {
+    if($('ovDeliveryResult').hidden||deliveryResultFocusQueued)return;
+    deliveryResultFocusQueued=true;
+    queueMicrotask(()=>{deliveryResultFocusQueued=false;revealDeliveryResultFocus();});
+  }
+  window.addEventListener('resize',scheduleDeliveryResultFocus);
+  window.visualViewport?.addEventListener('resize',scheduleDeliveryResultFocus);
+  const deliveryResultResizeObserver=new ResizeObserver(revealDeliveryResultFocus);
+  deliveryResultResizeObserver.observe($('ovDeliveryResult').querySelector('.sheet'));
   function showDeliveryResult() {
     if (!isDelivery(S) || !S.over) return;
     if(deliveryProgress.status().issue){showDeliveryStorage();return;}
@@ -8498,10 +8518,7 @@ if(typeof module==='object'&&module.exports)module.exports=createRouteView;else 
     if(won&&next&&deliveryLateNotes[next.id])$('deliveryResultNext').textContent+='\n'+tr('별점 없는 연습')+' · '+deliveryStageNote(next)+'\n'+tr(deliveryLatePractice);
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
     // The shared sheet observer focuses without scrolling; reveal that button in short viewports.
-    queueMicrotask(()=>{
-      const target=won?$('deliveryNext'):$('deliveryRetry');
-      if(!$('ovDeliveryResult').hidden&&document.activeElement===target)target.scrollIntoView({block:'nearest',inline:'nearest'});
-    });
+    queueMicrotask(revealDeliveryResultFocus);
   }
   function renderDeliveryUi() {
     const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);
