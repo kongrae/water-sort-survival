@@ -161,3 +161,11 @@ body:has(.app.delivery) #stHud{display:none}
  .app.delivery.delivery-choice:not(.delivery-choice-h) #rack.expanding{align-self:stretch;align-content:stretch;min-height:0;padding-top:0;grid-template-rows:minmax(0,1fr)}
  .app.delivery.delivery-choice-h #rack.expanding{align-self:stretch;align-content:stretch;min-height:0;padding-top:0;grid-template-rows:repeat(2,minmax(0,1fr))}
 }
+
+/* Seven bottles retain the shared 4+3 layout. Give translated order text
+   enough width in short landscape viewports to keep both bottle rows visible. */
+@media (min-width:568px) and (max-height:500px) and (orientation:landscape){
+ .app.delivery.delivery-chain.delivery-choice-h.campaign{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+}
+
+#deliveryNextOrder{font-size:12px;line-height:1.35;color:var(--ink);overflow-wrap:anywhere}.delivery-order-inactive{opacity:.58}.delivery-orders-multiple .delivery-order-inactive .glass{opacity:.35}

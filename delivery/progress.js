@@ -10,6 +10,8 @@
   const stable=x=>JSON.stringify(x,(_,v)=>object(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
   function createDeliveryProgress(E,stages,manifest,storage){
     if(!stages.length||!/^[a-f0-9]{64}$/.test(manifest?.packHash)||!['read','write','writable','attempt','now'].every(k=>typeof storage?.[k]==='function'))throw Error('Invalid delivery storage contract');
+    const timedPracticeIds=new Set(stages.filter(c=>c.practiceOnly&&Array.isArray(c.orders)&&c.orders.length>1).map(c=>c.id));
+    const keepsTime=a=>!a.practice||timedPracticeIds.has(a.stageId);
     const empty=()=>({schema:2,revision:0,packHash:manifest.packHash,learning:{offered:false,extracted:false,completed:false},active:null,records:{},cleared:{}});
     const owned=Object.keys(E.newDelivery(stages[0])),projection=s=>Object.fromEntries(owned.map(k=>[k,s[k]]));
     const compatible=new Map();
@@ -37,7 +39,7 @@
       if(!object(a)||!only(a,['stageId','attemptId','practice','events','elapsedMs','runningAt'])||!id(a.attemptId)||typeof a.practice!=='boolean'||!duration(a.elapsedMs)||!(a.runningAt===null||integer(a.runningAt))||!Array.isArray(a.events)||a.events.length>MAX_EVENTS)throw Error('invalid-active');
       const c=stages.find(c=>c.id===a.stageId);
       if(!c||(c.practiceOnly&&!a.practice))throw Error('invalid-active');
-      if(a.practice&&((!c.practiceOnly&&c!==stages[0])||a.elapsedMs!==0||a.runningAt!==null))throw Error('invalid-active');
+      if(a.practice&&((!c.practiceOnly&&c!==stages[0])||!keepsTime(a)&&(a.elapsedMs!==0||a.runningAt!==null)))throw Error('invalid-active');
       const r={state:E.newDelivery(c),history:[]};for(const event of a.events)if(!step(r,event))throw Error('invalid-action-log');
       if(r.state.over&&a.runningAt!==null)throw Error('invalid-clock');return r;
     }
@@ -114,7 +116,7 @@
       if(!action){if(stable(projection(state))!==stable(projection(runtime.state))){issue='invalid-runtime';return {ok:false,reason:issue};}return flush();}
       if(envelope.active.events.length>=MAX_EVENTS){issue='save-limit';return {ok:false,reason:issue};}
       const r=clone(runtime);if(!step(r,action)||stable(projection(state))!==stable(projection(r.state))){issue='invalid-runtime';return {ok:false,reason:issue};}
-      const a={...envelope.active,events:envelope.active.events.concat([clone(action)]),elapsedMs:envelope.active.practice?0:elapsedMs,runningAt:r.state.over?null:envelope.active.runningAt===null?null:storage.now()};
+      const a={...envelope.active,events:envelope.active.events.concat([clone(action)]),elapsedMs:keepsTime(envelope.active)?elapsedMs:0,runningAt:r.state.over?null:envelope.active.runningAt===null?null:storage.now()};
       const learning={...envelope.learning,extracted:envelope.learning.extracted||action[0]==='extract'},records={...envelope.records},cleared={...envelope.cleared};
       if(r.state.delivery.phase==='won'){
         cleared[a.stageId]=true;
@@ -125,13 +127,13 @@
     function checkpoint(elapsedMs,running){
       if(issue||!envelope.active||!runtime)return {ok:false,reason:issue||'no-active'};
       if(!duration(elapsedMs)||elapsedMs<envelope.active.elapsedMs){issue='invalid-clock';return {ok:false,reason:issue};}
-      const a=envelope.active;return publish({...envelope,active:{...a,elapsedMs:a.practice?0:elapsedMs,runningAt:running&&!a.practice&&!runtime.state.over?storage.now():null}});
+      const a=envelope.active;return publish({...envelope,active:{...a,elapsedMs:keepsTime(a)?elapsedMs:0,runningAt:running&&keepsTime(a)&&!runtime.state.over?storage.now():null}});
     }
     function resume(){
       if(issue||!envelope.active||!runtime)return {ok:false,reason:issue||'no-active'};
       const a=envelope.active;if(a.events.length>=MAX_EVENTS){issue='save-limit';return {ok:false,reason:issue};}
-      const wall=storage.now();if(a.runningAt!==null&&wall<a.runningAt){issue='clock-backwards';return {ok:false,reason:issue};}
-      const elapsedMs=a.elapsedMs+(a.runningAt===null?0:wall-a.runningAt);if(!duration(elapsedMs)){issue='invalid-clock';return {ok:false,reason:issue};}
+      const chain=timedPracticeIds.has(a.stageId),wall=storage.now();if(!chain&&a.runningAt!==null&&wall<a.runningAt){issue='clock-backwards';return {ok:false,reason:issue};}
+      const elapsedMs=a.elapsedMs+(chain||a.runningAt===null?0:wall-a.runningAt);if(!duration(elapsedMs)){issue='invalid-clock';return {ok:false,reason:issue};}
       const r=clone(runtime);step(r,['resume']);return publish({...envelope,active:{...a,elapsedMs,runningAt:null,events:a.events.concat([['resume']])}},r);
     }
     function retry(){if(issue==='write-failed'&&dirty)return flush();load();return {ok:!issue,reason:issue};}

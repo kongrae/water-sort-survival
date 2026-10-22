@@ -16,7 +16,11 @@
   function deliveryChoiceKind() {
     return !isDelivery(S)?null:S.delivery.content.id==='delivery-late-064'?'F':S.delivery.content.id==='delivery-late-065'?'H':null;
   }
+  const deliveryChainPractice = '누적 시간·클리어·진행 중인 한 판을 저장해요. 별점·최고 시간은 기록하지 않아요.';
   const deliveryLateNotes = {
+    'delivery-chain-066':'받는 병을 고를 때 다음 주문의 파랑도 살펴보세요.',
+    'delivery-chain-067':'현재 주문과 다음 조각을 함께 살펴보세요.',
+    'delivery-chain-068':'4칸 완성은 지금 주문에만 반영돼요. 다음 주문도 확인하세요.',
     'delivery-late-064': '64~65판은 도구와 공간 선택을 바꾸는 별점 없는 도전이에요.',
     'delivery-late-065': '지금·다음 조각과 비울 자리를 살펴보세요.',
     'delivery-late-061': '세 주문을 확인하고, 비울 병과 이어 모을 병을 함께 살펴보세요.',
@@ -46,7 +50,7 @@
     const practice=c.practiceOnly||(active?saved.envelope.active.practice:index===0&&prefs.staged&&!saved.envelope.learning.offered);
     $('deliveryPreviewMode').textContent=tr(practice?'별점 없는 연습':'별점 도전');
     $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1)+' · '+tr(c.title);
-    deliveryGoals($('deliveryPreviewGoals'),c,active?saved.state.delivery.delivered:null);
+    deliveryGoals($('deliveryPreviewGoals'),active?saved.state.delivery.content:c,active?saved.state.delivery.delivered:null);
     $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):tr('주문 색을 모아 탱크를 채우세요.');
     $('deliveryPreviewDetails').textContent=tr('주문 {0}색 · 병 {1}개',Object.keys(c.goal).length,c.bottles.length);
     $('deliveryPreviewNotice').textContent=deliveryStageNote(c);
@@ -54,7 +58,7 @@
     $('deliveryPreviewTiming').textContent=practice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
       tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
     if(c.practiceOnly)$('deliveryPreviewTiming').textContent=tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.');
-    if(deliveryLateNotes[c.id])$('deliveryPreviewTiming').textContent=tr(deliveryLatePractice);
+    if(deliveryLateNotes[c.id])$('deliveryPreviewTiming').textContent=tr(c.orders?deliveryChainPractice:deliveryLatePractice);
     $('deliveryStageStart').textContent=tr(active?'스테이지 {0} 이어하기':cleared?'스테이지 {0} 다시 도전':'스테이지 {0} 시작',index+1);
     $('deliveryStageStart').disabled=!!saved.issue;
     $('deliveryReplaceNote').hidden=journey.activeIndex<0||active;
@@ -143,7 +147,7 @@
   const deliveryFlightUI = {
     tube:i=>isDeliveryTarget(i)?deliveryTank(+i.slice(6))?.querySelector('.delivery-liquid'):tubeEl(i),
     capacity:()=>4,
-    slots:()=>Object.assign({},S.bottles,Object.fromEntries(Object.keys(S.delivery.content.goal).map(c=>['order:'+c,Array(4).fill(+c)])))
+    slots:()=>Object.assign({},S.bottles,Object.fromEntries((isChainDelivery(S)?Array.from({length:S.delivery.content.colors},(_,i)=>String(i)):Object.keys(S.delivery.content.goal)).map(c=>['order:'+c,Array(4).fill(+c)])))
   };
   function extractTo(source,target,how,fromRects) {
     const color = +target.slice(6), p = previewExtract(S,source,color);
@@ -165,6 +169,7 @@
   let deliveryLastChange = '', deliveryChangeState = null;
   function recordDeliveryConsequence(action) {
     deliveryLastChange='';deliveryChangeState=null;
+    if(isChainDelivery(S)){recordDeliveryChainConsequence(action);return;}
     if(!deliveryChoiceKind() || !['pour','place'].includes(action?.[0]) || !history.length)return;
     const before=JSON.parse(history[history.length-1]),cap=S.rules.cap;
     const changed=S.bottles.map((b,i)=>({index:i,before:cap-before.bottles[i].length,after:cap-b.length})).filter(x=>x.before!==x.after);
@@ -243,10 +248,12 @@
     document.querySelector('.app').classList.toggle('delivery-obscured',blocked);
     rack.inert = blocked; incoming.inert = blocked;
     if (!active || !deliveryClock) return;
-    deliveryClock.setRunning(!blocked && !S.over && !deliveryPractice);
-    saveDeliveryTime(!blocked && !S.over && !deliveryPractice);
+    const timed=!deliveryPractice||isChainDelivery(S);
+    deliveryClock.setRunning(!blocked && !S.over && timed);
+    saveDeliveryTime(!blocked && !S.over && timed);
     if(deliveryProgress.status().issue)showDeliveryStorage();
     const elapsed = deliveryClock.sample(), thresholds = S.delivery.content.starMs;
+    if(isChainDelivery(S)){renderDeliveryChainSummary();return;}
     if (deliveryPractice) {
       $('deliveryTime').textContent=tr(deliveryChoiceKind()?'누적 납품 · 별점 없는 연습':S.delivery.content.practiceOnly?'별점 없는 연습':'첫 연습 · 시간·별점 기록 없음');
       return;
@@ -311,7 +318,7 @@
     updateDeliveryControlHint();
     $('deliveryResume').textContent=tr(fresh?'시작하기':'계속하기');
     // Keep the appendix notice visible on fresh starts, including direct next-stage entry.
-    $('ovDeliveryPause').hidden=ready&&(!fresh||deliveryProgress.journey().count>0&&!deliveryLateNotes[deliveryStages[i].id]);
+    $('ovDeliveryPause').hidden=!isChainDelivery(S)&&ready&&(!fresh||deliveryProgress.journey().count>0&&!deliveryLateNotes[deliveryStages[i].id]);
     render();syncDeliveryClock();
     if(saved.issue)showDeliveryStorage();else if(S.over){$('ovDeliveryPause').hidden=true;showDeliveryResult();}
     else if($('ovDeliveryPause').hidden)focusDeliveryControls();
@@ -386,16 +393,20 @@
     $('deliveryResultProgress').textContent=journey.count===journey.total?tr('모든 스테이지 클리어!'):tr('{0}/{1} 클리어',journey.count,journey.total);
     const next=deliveryStages[deliveryNextIndex];
     $('deliveryResultNext').textContent=won&&next?tr('다음 도전')+' · '+tr(next.title)+'\n'+Object.entries(next.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / '):'';
-    if(won&&next&&deliveryLateNotes[next.id])$('deliveryResultNext').textContent+='\n'+tr('별점 없는 연습')+' · '+deliveryStageNote(next)+'\n'+tr(deliveryLatePractice);
+    if(won&&next&&deliveryLateNotes[next.id])$('deliveryResultNext').textContent+='\n'+tr('별점 없는 연습')+' · '+deliveryStageNote(next)+'\n'+tr(next.orders?deliveryChainPractice:deliveryLatePractice);
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
     // The shared sheet observer focuses without scrolling; reveal that button in short viewports.
     queueMicrotask(revealDeliveryResultFocus);
   }
   function renderDeliveryUi() {
     const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);
+    const chain=isChainDelivery(S);app.classList.toggle('delivery-chain',chain);
+    $('deliveryNextOrder').hidden=!chain;
+    $('cloudStatus').hidden=chain;$('routeCloudScope').hidden=chain;
+    $('deliveryCloudScope').textContent=chain?tr(deliveryChainPractice)+' '+tr('이 주소의 이 브라우저에만 저장해요. 다른 기기·주소와 동기화하지 않아요.'):tr('납품 진행·별점·최고 시간은 이 브라우저에만 저장하며 구글 계정과 동기화하지 않아요.');
     app.classList.toggle('delivery-six',active && S.bottles.length === 6);
     app.classList.toggle('delivery-choice',!!deliveryChoiceKind());
-    app.classList.toggle('delivery-choice-h',deliveryChoiceKind()==='H');
+    app.classList.toggle('delivery-choice-h',deliveryChoiceKind()==='H'||chain&&S.bottles.length===7);
     $('deliveryHud').hidden=!active;$('deliveryPause').hidden=!active;
     $('btnDelivery').hidden=!deliveryEnabled||isCampaign(S)||active;
     if(!active){app.classList.remove('delivery-coaching');return;}
@@ -406,13 +417,13 @@
     $('extraRow').hidden=true;$('zoneBar').hidden=true;
     $('holdSlot').hidden=S.bottles.length<7;document.querySelector('.tray').classList.toggle('has-hold',S.bottles.length>=7);
     const container=$('deliveryOrders'),c=S.delivery.content,coachSource=deliveryCoachSource();
-    container.classList.toggle('delivery-orders-multiple',Object.keys(c.goal).length>=3);
-    container.classList.toggle('delivery-orders-cumulative',!!deliveryChoiceKind());
+    container.classList.toggle('delivery-orders-multiple',(chain?c.colors:Object.keys(c.goal).length)>=3);
+    container.classList.toggle('delivery-orders-cumulative',!!deliveryChoiceKind()||chain);
     app.classList.toggle('delivery-coaching',coachSource >= 0);
     if(coachSource >= 0){const source=tubeEl(coachSource);source.classList.add('delivery-coach-source');source.setAttribute('aria-describedby','status');}
     if(container.dataset.stage!==c.id){
       container.textContent='';container.dataset.stage=c.id;
-      for(const color of Object.keys(c.goal)){
+      for(const color of chain?Array.from({length:c.colors},(_,i)=>String(i)):Object.keys(c.goal)){
         const button=document.createElement('button');button.type='button';button.className='delivery-order';button.dataset.delivery=color;
         const liquid=document.createElement('span');liquid.className='tube delivery-liquid';liquid.setAttribute('aria-hidden','true');
         const text=document.createElement('strong'),name=document.createElement('span'),amount=document.createElement('span'),note=document.createElement('small');
@@ -420,26 +431,28 @@
         button.append(liquid,text,note);container.append(button);
       }
     }
-    for(const [color,n] of Object.entries(c.goal)){
+    const focusedTank=chain&&container.contains(document.activeElement)&&document.activeElement.matches(':focus-visible')?document.activeElement:null;
+    for(const [color,n] of chain?Array.from({length:c.colors},(_,i)=>[String(i),c.goal[i]||0]):Object.entries(c.goal)){
       const button=deliveryTank(+color),done=S.delivery.delivered[color],p=typeof sel==='number'?previewExtract(S,sel,+color):{ok:false};
       // Keep shared liquid rendering; late practice orders merge cells into a cumulative meter.
       button.style.setProperty('--order-color','var(--liq'+color+')');
-      const glass=paintTube(button.querySelector('.delivery-liquid'),Array(done).fill(+color),n);
+      const glass=paintTube(button.querySelector('.delivery-liquid'),Array(done).fill(+color),n||4);
       for(let i=done;i<n;i++){
         const empty=document.createElement('span');empty.className='delivery-empty';glass.append(empty);
       }
       button.querySelector('.delivery-order-name').textContent=colorName(+color);
-      button.querySelector('.delivery-order-amount').textContent=done+'/'+n;
-      button.querySelector('small').textContent=done>=n?tr('완료'):
+      button.querySelector('.delivery-order-amount').textContent=n?done+'/'+n:'—';
+      button.querySelector('small').textContent=!n?tr('이번 주문 없음'):done>=n?tr('완료'):
         (p.ok?tr('제출 +{0}',p.accepted)+' · ':'')+tr('{0}칸 남음',n-done);
       button.classList.toggle('delivery-coach-target',coachSource >= 0 && S.bottles[coachSource][0] === +color);
-      button.classList.toggle('can',p.ok);button.classList.toggle('done',done>=n);button.disabled=S.over;
-      button.setAttribute('aria-label',tr('{0}: 목표 {2}칸 중 {1}칸 납품',colorName(+color),done,n)+' · '+(p.ok?deliveryPreviewText(p):tr('주문 탱크')));
+      button.classList.toggle('can',p.ok);button.classList.toggle('done',done>=n);button.disabled=S.over||!n;button.classList.toggle('delivery-order-inactive',!n);
+      button.setAttribute('aria-label',(!n?colorName(+color)+' · '+tr('이번 주문 없음'):tr('{0}: 목표 {2}칸 중 {1}칸 납품',colorName(+color),done,n))+' · '+(p.ok?deliveryPreviewText(p):tr('주문 탱크')));
     }
+    if(focusedTank?.disabled&&!S.over)focusDeliveryControls();
     syncDeliveryClock();
   }
   function updateDeliveryControlHint() {
-    const choice=!!deliveryChoiceKind();
+    const choice=!!deliveryChoiceKind()||isChainDelivery(S);
     $('ovDeliveryPause').querySelector('.sheet').classList.toggle('delivery-choice-pause',choice);
     $('deliveryPauseHelp').open=!choice;
     $('deliveryPauseHelpToggle').hidden=!choice;
@@ -447,11 +460,12 @@
     $('deliveryPauseHelpToggle').setAttribute('aria-expanded','false');
     $('deliveryPauseCore').hidden=!choice || $('deliveryResume').dataset.fresh!=='1' || deliveryProgress.journey().count>0;
     $('deliveryPauseBrief').hidden=!choice;
+    $('deliveryPauseBrief').textContent=tr(isChainDelivery(S)?'누적 시간·진행 저장 · 별점 없음':'진행 저장 · 별점·시간 기록 없음');
     $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
     $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
     $('deliveryAllGoals').hidden=!deliveryChoiceKind();
     $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+(choice?'':' · '+tr(deliveryStages[deliveryIndex].title)):tr('잠시 쉬기');
-    deliveryGoals($('deliveryPauseGoals'),deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
+    deliveryGoals($('deliveryPauseGoals'),isDelivery(S)?S.delivery.content:deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
     $('deliveryPauseNotice').textContent=deliveryStageNote(deliveryStages[deliveryIndex]);
     $('deliveryPauseNotice').hidden=!deliveryLateNotes[deliveryStages[deliveryIndex].id];
     $('deliveryRuleReminder').hidden=!!deliveryLateNotes[deliveryStages[deliveryIndex].id]&&deliveryProgress.journey().count>0;
@@ -462,6 +476,7 @@
     $('deliveryTimingHint').textContent=deliveryStages[deliveryIndex].practiceOnly ? tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.') : deliveryPractice ? tr('첫 연습은 시간·별점 없이 익혀요. 다음 도전부터 기록해요.') :
       tr('시작하면 생각하는 시간도 흘러요. 늦어도 완료하면 1별이에요.');
     if(deliveryLateNotes[deliveryStages[deliveryIndex].id])$('deliveryTimingHint').textContent=tr('별점 없는 연습')+' · '+tr(deliveryLatePractice);
+    if(isChainDelivery(S))$('deliveryTimingHint').textContent=tr('생각하는 시간도 포함해요. 안내·일시정지·앱 이탈 중에는 멈추고, 계속하기를 누르면 다시 흘러요.')+' '+tr(deliveryChainPractice);
   }
   // A fresh tap on a tank must work even during the source bottle's click cooldown.
   // A drag release has no tank pointerdown, so its compatibility click cannot submit twice.
@@ -520,3 +535,27 @@
     if(!$('ovDeliveryResult').hidden)showDeliveryResult();
     if(!$('ovDeliveryStorage').hidden)showDeliveryStorage();
   });
+
+  // Continuous-order presentation only. The existing action pipeline records moves.
+  function renderDeliveryChainSummary(){
+    const c=S.delivery.content,i=S.delivery.orderIndex,next=c.orders[i+1],elapsed=deliveryTimeText(deliveryClock.sample());
+    $('deliveryNextOrder').textContent=next?tr('다음 주문 · {0}',Object.entries(next).map(([color,n])=>colorName(+color)+' '+n).join(' · ')):tr('마지막 주문 · 모두 채우면 클리어');
+    $('deliveryNextOrder').hidden=false;
+    $('deliveryTime').textContent=tr('주문 {0}/{1} · 누적 플레이 {2} · 별점 없음',i+1,c.orders.length,elapsed);
+    if(S.over&&!$('ovDeliveryResult').hidden)$('deliveryResultText').textContent=tr(S.delivery.phase==='won'?'누적 플레이 {0} · 클리어 저장 · 별점 없음':'누적 플레이 {0} · 별점 없음',elapsed);
+  }
+  function recordDeliveryChainConsequence(action){
+    if(!action||!history.length)return;
+    const previous=JSON.parse(history[history.length-1]);
+    const transition=previous.delivery.orderIndex!==S.delivery.orderIndex;
+    if(transition)flash=tr('주문 {0}/{1} 시작 · 병과 조각은 이어져요.',S.delivery.orderIndex+1,S.delivery.content.orders.length);
+    if(!['place','pour'].includes(action[0]))return;
+    const clears=fxq.filter(f=>f.k==='clear');if(!clears.length)return;
+    const cap=previous.rules.cap,goal=previous.delivery.content.goal;
+    deliveryLastChange=clears.map(f=>{const accepted=Math.min(cap,Math.max(0,(goal[f.c]||0)-previous.delivery.delivered[f.c]));
+      return accepted?tr('{0} 자동 납품 +{1}',colorName(f.c),accepted):tr('{0} {1}칸 비움 · {2}',colorName(f.c),cap,tr(goal[f.c]?'이번 주문 완료':'이번 주문 없음'));
+    }).join(' / ')+(transition?tr(' · 주문 {0}/{1}',S.delivery.orderIndex+1,S.delivery.content.orders.length):'');
+    deliveryChangeState=S;flash='';
+  }
+  // Previewing the new pack never replaces an existing active attempt.
+  $('deliveryChainEntry').addEventListener('click',()=>selectDeliveryPreview(65));
