@@ -186,3 +186,4 @@ summarize('6 bottles', { ...D, bottles: 6 }, 40, 400);
 summarize('start4 max7', { ...D, startColors: 4, maxColors: 7 }, 40, 400);
 summarize('piece 2-3', { ...D, pieceMin: 2, pieceMax: 3 }, 40, 400);
 console.log('total failures:', failures);
+process.exitCode = failures ? 1 : 0;

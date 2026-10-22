@@ -43,8 +43,18 @@ function assert(cond, msg) { if (!cond) { failures++; if (failures < 20) console
   assert(S.clears === 1 && S.score === 100 && S.streak === 1, 'first clear scores 100: ' + JSON.stringify([S.clears, S.score, S.streak]));
   E.applyPlace(S, 0); E.applyPlace(S, 0);
   assert(S.clears === 2, 'second clear');
-  // turn 3 had no clear -> streak reset at placement 4, then clear on turn 4 => streak 1
-  assert(S.score === 200, 'streak reset after a turn without clear: score ' + S.score);
+  // Default comboPlace keeps the combo when placement 4 itself completes a bottle.
+  assert(S.score === 300 && S.streak === 2, 'placement completion keeps combo: ' + JSON.stringify([S.score, S.streak]));
+  const breaks = [];
+  const hooks = { comboBreak: (streak, points) => breaks.push([streak, points]) };
+  E.applyPlace(S, 0, hooks); // no clear; the preceding turn completed a bottle
+  assert(S.streak === 2 && breaks.length === 0, 'combo waits for the next placement or pour');
+  E.applyPlace(S, 1, hooks); // neither the preceding turn nor this placement completes
+  assert(S.streak === 0 && S.comboPts === 0 && JSON.stringify(breaks) === '[[2,300]]',
+    'no-clear gap breaks combo once with its earned points: ' + JSON.stringify([S.streak, S.comboPts, breaks]));
+  E.applyPlace(S, 0, hooks); // complete again after the break: +100, not +300
+  assert(S.clears === 3 && S.score === 400 && S.streak === 1 && S.comboPts === 100 && breaks.length === 1,
+    'completion after a break starts a new combo: ' + JSON.stringify([S.clears, S.score, S.streak, S.comboPts, breaks]));
 }
 
 // ---------- 2. random-play fuzz for invariants ----------
@@ -186,3 +196,4 @@ summarize('6 bottles', { ...D, bottles: 6 }, 40, 400);
 summarize('start4 max7', { ...D, startColors: 4, maxColors: 7 }, 40, 400);
 summarize('piece 2-3', { ...D, pieceMin: 2, pieceMax: 3 }, 40, 400);
 console.log('total failures:', failures);
+process.exitCode = failures ? 1 : 0;
