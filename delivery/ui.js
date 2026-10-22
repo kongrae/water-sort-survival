@@ -394,6 +394,7 @@
     const next=deliveryStages[deliveryNextIndex];
     $('deliveryResultNext').textContent=won&&next?tr('다음 도전')+' · '+tr(next.title)+'\n'+Object.entries(next.goal).map(([color,n])=>colorName(+color)+' '+n).join(' / '):'';
     if(won&&next&&deliveryLateNotes[next.id])$('deliveryResultNext').textContent+='\n'+tr('별점 없는 연습')+' · '+deliveryStageNote(next)+'\n'+tr(next.orders?deliveryChainPractice:deliveryLatePractice);
+    $('ovDeliveryResult').querySelector('.delivery-result-body').scrollTop=0;
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
     // The shared sheet observer focuses without scrolling; reveal that button in short viewports.
     queueMicrotask(revealDeliveryResultFocus);
