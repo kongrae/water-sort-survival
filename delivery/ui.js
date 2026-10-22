@@ -33,7 +33,7 @@
     for(const [mode,id] of [['endless','homeEndlessState'],['daily','homeDailyState']]){
       const current=S?.mode===mode?S:LS.get('wsurv.game.'+mode,null);
       const resumable=current&&!current.over&&(mode!=='daily'||current.seed==='daily:'+todayKey());
-      $(id).textContent=tr(resumable&&current.turn>0?'이어하기':'시작하기');
+      $(id).textContent=tr(current?.over?'결과 보기':resumable&&current.turn>0?'이어하기':'시작하기');
     }
   }
   function openHome() {
