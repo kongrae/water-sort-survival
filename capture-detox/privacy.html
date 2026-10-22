@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개인정보처리방침 · 캡처 디톡스</title>
+<style>
+/* Plain reading page in the app's light palette. Published at https://kongrae.github.io/water-sort-survival/capture-detox/privacy.html (gh-pages of the Botris repo, docs/ANDROID.md). */
+:root { --bg: #F2F4F7; --panel: #FFFFFF; --text: #191F28; --muted: #6B7684; --accent: #2272EB; --line: #E5E8EB; color-scheme: light; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; word-break: keep-all; }
+main { max-width: 42rem; margin: 0 auto; padding-inline: 16px; padding-block: 32px 48px; }
+h1 { font-size: 1.6rem; line-height: 1.3; margin: 0 0 4px; }
+h2 { font-size: 1.1rem; margin: 2rem 0 .5rem; color: var(--accent); }
+p, li { margin: .4rem 0; }
+a { color: var(--accent); }
+.meta { color: var(--muted); font-size: .9rem; margin: 0; }
+.box { background: var(--panel); border-radius: 12px; padding: 12px 16px; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 500; }
+</style>
+</head>
+<body>
+<main>
+  <h1>개인정보처리방침</h1>
+  <p class="meta">캡처 디톡스 (Android 앱) · 시행일 2026년 10월 22일</p>
+
+  <h2>요약</h2>
+  <div class="box">
+    <p>캡처 디톡스는 회원가입, 광고, 분석 도구가 없습니다. 캡처 이미지와 캡처에서 읽은 글자는 <b>기기 안에서만 처리</b>되며 개발자를 포함한 누구에게도 전송되지 않습니다. 다만 글자 인식에 쓰는 Google ML Kit가 기능 진단을 위해 기기·앱 정보와 성능 지표를 Google에 보냅니다(4항).</p>
+  </div>
+
+  <h2>1. 앱이 사용하는 권한</h2>
+  <table>
+    <tr><th>권한</th><th>목적</th></tr>
+    <tr><td>사진 및 동영상(모두 허용 또는 선택한 사진)</td><td>스크린샷 폴더의 캡처를 찾아 썸네일을 만들고 글자를 읽어, 지울 캡처와 살릴 캡처(기프티콘, 예약, 고지서 등)를 나눕니다.</td></tr>
+    <tr><td>미디어 관리(선택)</td><td>켜면 캡처를 휴지통으로 옮길 때 안드로이드 확인 창을 띄우지 않습니다.</td></tr>
+    <tr><td>알림(선택)</td><td>살린 캡처의 만료일·일정 알림과 새 캡처 알림을 보냅니다.</td></tr>
+    <tr><td>부팅 완료 수신</td><td>기기를 다시 켰을 때 예약한 알림을 다시 겁니다.</td></tr>
+  </table>
+
+  <h2>2. 기기 안에 저장되는 정보</h2>
+  <table>
+    <tr><th>항목</th><th>목적</th><th>보관</th></tr>
+    <tr><td>캡처별 읽은 글자와 분류 결과, 작은 썸네일</td><td>다시 읽지 않고 바로 보여 주기</td><td rowspan="3">앱 삭제 또는 앱 데이터 삭제 시 함께 삭제</td></tr>
+    <tr><td>살린 캡처의 내용(상품명, 날짜, 금액, 계좌 등 캡처에서 읽은 것)과 알림 예약</td><td>알림 보내기, 살린 것 목록</td></tr>
+    <tr><td>정리 기록, 오늘 무료 삭제 수, 알림 시각 등 설정</td><td>기록 보기, 설정 유지</td></tr>
+  </table>
+  <p>이 정보는 앱의 로컬 저장소에만 있으며 서버로 보내지 않습니다.</p>
+
+  <h2>3. 캡처 지우기</h2>
+  <p>앱은 이용자가 지우기를 누른 캡처만, 안드로이드 확인 창(또는 이용자가 켠 미디어 관리 권한)을 거쳐 기기의 휴지통으로 옮깁니다. 휴지통의 캡처는 30일 동안 되살릴 수 있고, 그 뒤 안드로이드가 영구 삭제합니다.</p>
+
+  <h2>4. Google ML Kit(글자 인식)</h2>
+  <p>글자 인식은 Google Play 서비스로 내려받는 한국어 모델로 기기 안에서 이루어지며, 캡처 이미지와 읽은 글자는 전송되지 않습니다. ML Kit는 진단과 사용 분석을 위해 다음 정보를 HTTPS로 Google에 보냅니다.</p>
+  <ul>
+    <li>기기 정보(제조사, 모델, OS 버전·빌드, 사용 가능한 하드웨어 가속기)</li>
+    <li>앱 정보(패키지 이름, 앱 버전)</li>
+    <li>설치별 식별자(이용자나 기기를 식별하려는 것이 아닌 값)</li>
+    <li>성능 지표(처리 시간 등), API 설정, 입력·결과 크기, 기능 버전, 이벤트 종류, 오류 코드</li>
+  </ul>
+  <p>자세한 내용은 <a href="https://developers.google.com/ml-kit/android-data-disclosure">ML Kit 데이터 공개 안내</a>를 따릅니다.</p>
+
+  <h2>5. 제3자 제공</h2>
+  <p>개인정보를 제3자에게 판매하거나 제공하지 않습니다.</p>
+
+  <h2>6. 아동의 개인정보</h2>
+  <p>이 앱은 만 13세 미만 아동을 대상으로 하지 않습니다. 앱은 이름, 이메일, 전화번호, 위치, 광고 ID 같은 개인정보를 받지 않습니다.</p>
+
+  <h2>7. 방침 변경</h2>
+  <p>광고나 분석 기능을 추가하는 등 처리 내용이 바뀌면 이 페이지를 수정하고 시행일을 갱신합니다.</p>
+
+  <h2>8. 문의</h2>
+  <p>개발자: MOONGRAE<br>이메일: <a href="mailto:sky7700sky@naver.com">sky7700sky@naver.com</a></p>
+</main>
+</body>
+</html>
