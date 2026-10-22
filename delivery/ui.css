@@ -1,4 +1,46 @@
 .app.delivery .scorebar,.app.delivery .meta,.app.delivery .info{display:none}
+/* Main and stage selection are full screens, not dialogs over a paused game. */
+.app-screen{background:var(--bg)!important;display:block;overflow:auto;overscroll-behavior:contain;padding:max(18px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.screen-content{width:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:18px;min-height:0}
+.screen-content p,.screen-content h1,.screen-content h2{margin:0}
+.screen-content button{touch-action:manipulation}
+.screen-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;flex:none}
+.screen-heading h1{font-size:28px;letter-spacing:-1px;font-weight:750}
+.screen-heading h2{font-size:18px;line-height:1.3;overflow-wrap:anywhere}
+.screen-heading .sbtn{height:auto;min-height:44px;flex:none;padding:8px 10px;font-size:13px;white-space:normal}
+.home-content{padding-block:8px}
+.home-stage{display:grid;gap:12px;padding:22px 20px;border:1px solid var(--line);border-top:3px solid var(--accent);background:var(--panel);border-radius:6px}
+.home-stage h2{font-size:26px;line-height:1.2}
+.home-stage p{line-height:1.55;font-size:14px;color:var(--muted)}
+.home-eyebrow{font-size:12px;color:var(--accent);font-weight:600}
+.home-stage>.btn{min-height:48px;height:auto;white-space:normal;padding:12px}
+.home-other-modes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.home-mode{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:16px 14px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:inherit;min-width:0}
+.home-mode strong{font-size:17px}.home-mode span{color:var(--muted);font-size:13px;line-height:1.5}.home-mode small{margin-top:auto;color:var(--accent);padding-top:6px;font-size:13px}
+.home-more summary{min-height:44px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.home-more summary::before{content:'+'}.home-more[open] summary::before{content:'−'}
+.home-more>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.home-more .btn{height:auto;min-height:44px;white-space:normal;font-size:13px}
+.home-save{font-size:12px;line-height:1.5;border-top:1px solid var(--line);padding-top:14px}
+.stage-screen-layout,.stage-map{display:grid;gap:12px;align-content:start}
+.stage-screen-content{gap:14px}
+#ovDeliveryMenu .delivery-stage-preview{border-radius:6px;padding:16px;gap:10px}
+#ovDeliveryMenu .delivery-stage-preview .note{font-size:12px}
+#ovDeliveryMenu .delivery-entry-rule{line-height:1.5}
+#deliveryReplaceNote{color:var(--danger)}
+#ovDeliveryMenu .delivery-stage-preview .delivery-help{margin-top:2px}
+#deliveryChainEntry{font-size:13px;min-height:44px;height:auto;white-space:normal}
+#campaignEntry{display:none!important}
+#btnHome{width:auto;min-width:44px;padding-inline:9px;font-size:12px}
+#ovDeliveryMenu .screen-heading{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px}
+#ovDeliveryMenu .screen-heading h2{min-width:0;text-align:center}
+#ovDeliveryMenu .screen-heading .sbtn{max-width:110px;overflow-wrap:anywhere}
+@media(min-width:720px){
+ .home-content{max-width:760px;display:grid;grid-template-columns:1.15fr 1fr;align-items:start;gap:20px}
+ .home-content>.screen-heading,.home-save{grid-column:1/-1}.home-stage{grid-row:2/4}.home-other-modes{grid-template-columns:1fr}.home-mode{gap:5px;padding:14px}.home-more{grid-column:2}
+ .stage-screen-content{max-width:840px}.stage-screen-layout{grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+}
+@media(max-width:360px){.app-screen{padding-inline:14px}.home-stage{padding:16px}.screen-content{gap:14px}.home-other-modes{gap:8px}.home-mode{padding:12px}.home-mode strong{font-size:15px}}
 /* Keep the shared bottles/gestures; only the delivery layout groups orders with the board. */
 .app.delivery>.status{min-height:40px;display:flex;align-items:center;justify-content:center}
 .app.delivery-six>.rack::before{background:var(--shelf)}

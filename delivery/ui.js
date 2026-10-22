@@ -13,6 +13,72 @@
   let deliveryLessonOffered = false, deliveryPractice = false;
   let deliveryMenuIndex = 0, deliveryNextIndex = -1, deliveryMenuPage = -1;
   const deliveryPageSize = 10;
+  // Navigation never changes the active puzzle. Mode changes use the existing save paths.
+  function prepareNavigation() {
+    if(!S || !canStore() || settlementBlocked || finishIntent)return false;
+    cancelGesture();clearFx();stopCoach();disarm(false);sel=null;
+    clearTimeout(deliveryResultTimer);deliveryResultTimer=0;
+    clearTimeout(campaignResultTimer);campaignResultTimer=0;
+    if(isDelivery(S)){
+      deliveryClock.setRunning(false);saveDeliveryTime(false,true);
+      if(deliveryProgress.status().issue){showDeliveryStorage();return false;}
+    }else if(!persistRun()){storageIssue(()=>persistRun());return false;}
+    return true;
+  }
+  function refreshHome() {
+    const journey=deliveryProgress.journey();
+    $('homeStageProgress').textContent=tr('{0}/{1} 클리어',journey.count,journey.total);
+    const i=journey.activeIndex>=0?journey.activeIndex:journey.recommendedIndex;
+    $('homeStagePlay').textContent=tr(journey.activeIndex>=0?'스테이지 {0} 이어하기':'스테이지 {0} 시작',i+1);
+    for(const [mode,id] of [['endless','homeEndlessState'],['daily','homeDailyState']]){
+      const current=S?.mode===mode?S:LS.get('wsurv.game.'+mode,null);
+      const resumable=current&&!current.over&&(mode!=='daily'||current.seed==='daily:'+todayKey());
+      $(id).textContent=tr(resumable&&current.turn>0?'이어하기':'시작하기');
+    }
+  }
+  function openHome() {
+    if(!prepareNavigation())return;
+    if(!deliveryProgress.status().loaded || !isDelivery(S)&&!deliveryProgress.status().dirty)deliveryProgress.load();
+    closeAll();coachPending=false;dailyGuidePending=false;
+    refreshHome();$('ovHome').hidden=false;syncDeliveryClock();
+    queueMicrotask(()=>{if(!$('ovHome').hidden&&!$('ovHome').inert)$('homeStagePlay').focus({preventScroll:true});});
+  }
+  function leavePuzzleMode() {
+    if(!prepareNavigation())return false;
+    if(isDelivery(S))restoreDeliveryReturn();
+    if(isCampaign(S)){exitCampaign();if(isCampaign(S))return false;}
+    return true;
+  }
+  function enterMainMode(mode) {
+    if(!leavePuzzleMode())return;
+    closeAll();dailyGuidePending=false;
+    if(S.mode===mode&&(mode!=='daily'||S.seed==='daily:'+todayKey())){
+      render();if(S.over)showOver();
+    }else startGame(mode,false);
+    if(!document.querySelector('.overlay:not([hidden])'))queueMicrotask(()=>cup.focus({preventScroll:true}));
+  }
+  function renderNavigation() {
+    $('campaignEntry').hidden=true;
+    $('btnHome').hidden=!isDelivery(S);
+    $('btnHelp').hidden=isDelivery(S);
+    $('btnMode').textContent=tr(isDelivery(S)?'스테이지 선택':'메인으로');
+    $('btnMode').setAttribute('aria-label',$('btnMode').textContent);
+    $('btnMode').classList.remove('armed');
+    if(!$('ovHome').hidden)refreshHome();
+  }
+  $('homeStageSelect').addEventListener('click',()=>{if(isCampaign(S)&&!leavePuzzleMode())return;openDeliveryMenu();});
+  $('homeStagePlay').addEventListener('click',()=>{
+    if(isCampaign(S)&&!leavePuzzleMode())return;
+    if(deliveryProgress.status().issue){showDeliveryStorage();return;}
+    const journey=deliveryProgress.journey();
+    startDelivery(journey.activeIndex>=0?journey.activeIndex:journey.recommendedIndex,journey.activeIndex<0,true);
+  });
+  $('homeEndless').addEventListener('click',()=>enterMainMode('endless'));
+  $('homeDaily').addEventListener('click',()=>enterMainMode('daily'));
+  $('homeSettings').addEventListener('click',()=>{if(EXPERIMENTS){buildForm(endlessRules());ptShow();}fillPrefs();$('ovSettings').hidden=false;});
+  $('homeCampaign').addEventListener('click',()=>{if(leavePuzzleMode()){closeAll();openCampaignMenu();}});
+  $('homeRoute').addEventListener('click',()=>{if(leavePuzzleMode())enterRoute();});
+  $('btnHome').addEventListener('click',openHome);
   function deliveryChoiceKind() {
     return !isDelivery(S)?null:S.delivery.content.id==='delivery-late-064'?'F':S.delivery.content.id==='delivery-late-065'?'H':null;
   }
@@ -48,7 +114,7 @@
     const active=journey.activeIndex===index,cleared=!!saved.envelope.cleared[c.id];
     $('deliveryPreviewLabel').textContent=tr(active?'진행 중':cleared?'다시 도전':'다음 도전');
     const practice=c.practiceOnly||(active?saved.envelope.active.practice:index===0&&prefs.staged&&!saved.envelope.learning.offered);
-    $('deliveryPreviewMode').textContent=tr(practice?'별점 없는 연습':'별점 도전');
+    $('deliveryPreviewMode').textContent=tr(c.practiceOnly?'별점 없음':practice?'첫 연습':'별점 도전');
     $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1)+' · '+tr(c.title);
     deliveryGoals($('deliveryPreviewGoals'),active?saved.state.delivery.content:c,active?saved.state.delivery.delivered:null);
     $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):tr('주문 색을 모아 탱크를 채우세요.');
@@ -57,7 +123,7 @@
     $('deliveryPreviewNotice').hidden=!deliveryLateNotes[c.id];
     $('deliveryPreviewTiming').textContent=practice?tr('연습은 시간·별점을 기록하지 않아요. 다시 도전하면 별점을 받아요.'):
       tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
-    if(c.practiceOnly)$('deliveryPreviewTiming').textContent=tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.');
+    if(c.practiceOnly)$('deliveryPreviewTiming').textContent=tr('이 스테이지는 클리어와 진행을 저장하며 별점은 기록하지 않아요.');
     if(deliveryLateNotes[c.id])$('deliveryPreviewTiming').textContent=tr(c.orders?deliveryChainPractice:deliveryLatePractice);
     $('deliveryStageStart').textContent=tr(active?'스테이지 {0} 이어하기':cleared?'스테이지 {0} 다시 도전':'스테이지 {0} 시작',index+1);
     $('deliveryStageStart').disabled=!!saved.issue;
@@ -265,7 +331,7 @@
   const deliveryOverlayWatch = new MutationObserver(syncDeliveryClock);
   document.querySelectorAll('.overlay').forEach(o=>deliveryOverlayWatch.observe(o,{attributes:true,attributeFilter:['hidden']}));
   document.addEventListener('visibilitychange',()=>{
-    if (isDelivery(S) && document.hidden && !S.over) pauseDelivery();
+    if (isDelivery(S) && document.hidden && !S.over && !document.querySelector('.overlay:not([hidden])')) pauseDelivery();
     syncDeliveryClock();
   });
   // Registered before the shared writer-release listener; flush before relinquishing ownership.
@@ -281,6 +347,7 @@
   setInterval(()=>{if(isDelivery(S))syncDeliveryClock();},100);
   function openDeliveryMenu() {
     if (!deliveryEnabled || !canStore() || isCampaign(S) || routeOpen) return;
+    if(!prepareNavigation())return;
     if(isDelivery(S)){deliveryClock.setRunning(false);saveDeliveryTime(false,true);}
     else if(!deliveryProgress.status().dirty)deliveryProgress.load();
     const saved=deliveryProgress.snapshot();
@@ -294,11 +361,15 @@
     $('deliveryJourneyBar').max=journey.total;$('deliveryJourneyBar').value=journey.count;
     $('deliveryJourneyBar').setAttribute('aria-label',$('deliveryJourneyCount').textContent);
     selectDeliveryPreview(journey.recommendedIndex);
-    $('deliveryMenuResume').hidden = !isDelivery(S);
+    $('deliveryMenuResume').hidden = !isDelivery(S)||S.over;
     $('ovDeliveryMenu').hidden = false; syncDeliveryClock();showDeliveryStorage();
   }
-  function startDelivery(i,fresh=true,ready=false) {
+  function startDelivery(i,fresh=true,ready=true) {
     if (!deliveryEnabled || !canStore() || !deliveryStages[i]) return;
+    // Returning from navigation retains the session's undo stack.
+    if(!fresh&&isDelivery(S)&&deliveryIndex===i&&!S.over){
+      closeAll();render();syncDeliveryClock();focusDeliveryControls();return;
+    }
     if(!isDelivery(S)&&!persistRun()){storageIssue(()=>persistRun());return;}
     if(!deliveryProgress.status().loaded)deliveryProgress.load();
     if(isDelivery(S)){deliveryClock.setRunning(false);saveDeliveryTime(false,true);}
@@ -317,15 +388,15 @@
     $('deliveryPauseTitle').dataset.stage='1';$('deliveryResume').dataset.fresh=fresh?'1':'0';
     updateDeliveryControlHint();
     $('deliveryResume').textContent=tr(fresh?'시작하기':'계속하기');
-    // Keep the appendix notice visible on fresh starts, including direct next-stage entry.
-    $('ovDeliveryPause').hidden=!isChainDelivery(S)&&ready&&(!fresh||deliveryProgress.journey().count>0&&!deliveryLateNotes[deliveryStages[i].id]);
+    // Goals and instructions live on the selection screen. Start enters the board directly.
+    $('ovDeliveryPause').hidden=ready;
     render();syncDeliveryClock();
     if(saved.issue)showDeliveryStorage();else if(S.over){$('ovDeliveryPause').hidden=true;showDeliveryResult();}
     else if($('ovDeliveryPause').hidden)focusDeliveryControls();
   }
   function focusDeliveryControls() {
     // Let the shared sheet observer release the board's inert state first.
-    queueMicrotask(()=>{if(isDelivery(S)&&!S.over&&!document.querySelector('.overlay:not([hidden])'))$('deliveryPause').focus({preventScroll:true});});
+    queueMicrotask(()=>{if(isDelivery(S)&&!S.over&&!document.querySelector('.overlay:not([hidden])'))(ctl()==='tapPlace'?tubeEl(0):cup).focus({preventScroll:true});});
   }
   function pauseDelivery() {
     if (!isDelivery(S) || S.over) return;
@@ -333,12 +404,6 @@
     $('deliveryPauseTitle').dataset.stage='0';$('deliveryResume').dataset.fresh='0';
     updateDeliveryControlHint();
     $('ovDeliveryPause').hidden=false;syncDeliveryClock();
-  }
-  function exitDelivery() {
-    if (!deliveryReturn) { $('ovDeliveryMenu').hidden=true;return; }
-    deliveryClock.setRunning(false);saveDeliveryTime(false,true);
-    if(deliveryProgress.status().issue){showDeliveryStorage();return;}
-    restoreDeliveryReturn();
   }
   function restoreDeliveryReturn() {
     if(!deliveryReturn){closeAll();return;}
@@ -412,8 +477,7 @@
     $('btnDelivery').hidden=!deliveryEnabled||isCampaign(S)||active;
     if(!active){app.classList.remove('delivery-coaching');return;}
     app.classList.add('campaign');$('campaignEntry').hidden=true;$('campaignMenu').hidden=true;$('legacyRoute').hidden=true;
-    $('modeChip').textContent=tr('납품')+' '+(deliveryIndex+1);$('modeChip').setAttribute('aria-label',$('modeChip').textContent);$('modeChip').title=$('modeChip').textContent;
-    $('btnMode').textContent=tr('원래 모드로');$('btnMode').setAttribute('aria-label',$('btnMode').textContent);
+    $('modeChip').textContent=tr('스테이지 {0}',deliveryIndex+1);$('modeChip').setAttribute('aria-label',$('modeChip').textContent);$('modeChip').title=$('modeChip').textContent;
     if(!armed)$('btnNew').textContent=tr('다시 도전');
     $('extraRow').hidden=true;$('zoneBar').hidden=true;
     $('holdSlot').hidden=S.bottles.length<7;document.querySelector('.tray').classList.toggle('has-hold',S.bottles.length>=7);
@@ -454,10 +518,10 @@
   }
   function updateDeliveryControlHint() {
     const choice=!!deliveryChoiceKind()||isChainDelivery(S);
-    $('ovDeliveryPause').querySelector('.sheet').classList.toggle('delivery-choice-pause',choice);
-    $('deliveryPauseHelp').open=!choice;
-    $('deliveryPauseHelpToggle').hidden=!choice;
-    $('ovDeliveryPause').querySelector('.delivery-pause-body').tabIndex=choice?0:-1;
+    $('ovDeliveryPause').querySelector('.sheet').classList.add('delivery-choice-pause');
+    $('deliveryPauseHelp').open=false;
+    $('deliveryPauseHelpToggle').hidden=false;
+    $('ovDeliveryPause').querySelector('.delivery-pause-body').tabIndex=0;
     $('deliveryPauseHelpToggle').setAttribute('aria-expanded','false');
     $('deliveryPauseCore').hidden=!choice || $('deliveryResume').dataset.fresh!=='1' || deliveryProgress.journey().count>0;
     $('deliveryPauseBrief').hidden=!choice;
@@ -465,7 +529,7 @@
     $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
     $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
     $('deliveryAllGoals').hidden=!deliveryChoiceKind();
-    $('deliveryPauseTitle').textContent=$('deliveryPauseTitle').dataset.stage==='1'?tr('스테이지 {0}',deliveryIndex+1)+(choice?'':' · '+tr(deliveryStages[deliveryIndex].title)):tr('잠시 쉬기');
+    $('deliveryPauseTitle').textContent=tr('일시정지');
     deliveryGoals($('deliveryPauseGoals'),isDelivery(S)?S.delivery.content:deliveryStages[deliveryIndex],isDelivery(S)?S.delivery.delivered:null);
     $('deliveryPauseNotice').textContent=deliveryStageNote(deliveryStages[deliveryIndex]);
     $('deliveryPauseNotice').hidden=!deliveryLateNotes[deliveryStages[deliveryIndex].id];
@@ -474,7 +538,7 @@
     $('deliveryControlHint').textContent=ctl()==='tapPlace' ?
       tr('탱크로 끌어 제출 · 길게 누르거나 Shift+Enter로 병 선택') :
       tr('병 → 같은 색 탱크 · 드래그로도 보낼 수 있어요.');
-    $('deliveryTimingHint').textContent=deliveryStages[deliveryIndex].practiceOnly ? tr('테스트 판은 시간·별점을 기록하지 않아요. 다시 도전하거나 다음 판을 골라 보세요.') : deliveryPractice ? tr('첫 연습은 시간·별점 없이 익혀요. 다음 도전부터 기록해요.') :
+    $('deliveryTimingHint').textContent=deliveryStages[deliveryIndex].practiceOnly ? tr('이 스테이지는 클리어와 진행을 저장하며 별점은 기록하지 않아요.') : deliveryPractice ? tr('첫 연습은 시간·별점 없이 익혀요. 다음 도전부터 기록해요.') :
       tr('시작하면 생각하는 시간도 흘러요. 늦어도 완료하면 1별이에요.');
     if(deliveryLateNotes[deliveryStages[deliveryIndex].id])$('deliveryTimingHint').textContent=tr('별점 없는 연습')+' · '+tr(deliveryLatePractice);
     if(isChainDelivery(S))$('deliveryTimingHint').textContent=tr('생각하는 시간도 포함해요. 안내·일시정지·앱 이탈 중에는 멈추고, 계속하기를 누르면 다시 흘러요.')+' '+tr(deliveryChainPractice);
@@ -500,8 +564,8 @@
   $('deliveryPageNext').addEventListener('click',()=>selectDeliveryPreview((deliveryMenuPage+1)*deliveryPageSize));
   $('deliveryStageStart').addEventListener('click',()=>startDelivery(deliveryMenuIndex,deliveryProgress.journey().activeIndex!==deliveryMenuIndex,true));
   $('deliverySavedResume').addEventListener('click',()=>{const i=deliveryProgress.journey().activeIndex;if(i>=0)startDelivery(i,false,true);});
-  $('deliveryMenuClose').addEventListener('click',()=>{if(isDelivery(S)){ $('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery(); }else $('ovDeliveryMenu').hidden=true;});
-  $('deliveryMenuResume').addEventListener('click',()=>{$('ovDeliveryMenu').hidden=true;if(S.over)showDeliveryResult();else pauseDelivery();});
+  $('deliveryMenuClose').addEventListener('click',openHome);
+  $('deliveryMenuResume').addEventListener('click',()=>startDelivery(deliveryIndex,false,true));
   $('deliveryPauseHelpToggle').addEventListener('click',()=>{
     const help=$('deliveryPauseHelp'),open=!help.open;
     help.open=open;
@@ -518,8 +582,8 @@
   $('deliveryResultList').addEventListener('click',openDeliveryMenu);
   $('deliveryNext').addEventListener('click',()=>{if(deliveryNextIndex<0)openDeliveryMenu();else startDelivery(deliveryNextIndex,true,true);});
   $('deliveryRetry').addEventListener('click',()=>startDelivery(deliveryIndex));
-  $('deliveryExit').addEventListener('click',exitDelivery);
-  $('deliveryPauseExit').addEventListener('click',exitDelivery);
+  $('deliveryExit').addEventListener('click',openHome);
+  $('deliveryPauseExit').addEventListener('click',openHome);
   $('deliveryStorageRetry').addEventListener('click',()=>{
     const before=deliveryProgress.status().issue,result=deliveryProgress.retry();if(!result.ok){showDeliveryStorage();return;}
     $('ovDeliveryStorage').hidden=true;
@@ -529,8 +593,9 @@
   $('deliveryStorageRecover').addEventListener('click',()=>{
     const result=deliveryProgress.restartProtected();if(!result.ok){showDeliveryStorage();return;}restoreDeliveryReturn();openDeliveryMenu();
   });
-  $('deliveryStorageExit').addEventListener('click',()=>restoreDeliveryReturn());
+  $('deliveryStorageExit').addEventListener('click',()=>{restoreDeliveryReturn();openHome();});
   window.addEventListener('wss:localechange',()=>{
+    refreshHome();
     updateDeliveryControlHint();
     if(!$('ovDeliveryMenu').hidden)openDeliveryMenu();
     if(!$('ovDeliveryResult').hidden)showDeliveryResult();
