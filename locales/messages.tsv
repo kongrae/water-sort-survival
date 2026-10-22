@@ -975,3 +975,15 @@ K가 비어 있어요. 남은 빨강을 먼저 보내거나 파랑을 돌려 초
 별점 없음|No stars|星評価なし|无星级|無星級|Sin estrellas|Sem estrelas|सितारे नहीं|Tanpa bintang
 첫 연습|First practice|初回練習|首次练习|首次練習|Primera práctica|Primeira prática|पहला अभ्यास|Latihan pertama
 이 스테이지는 클리어와 진행을 저장하며 별점은 기록하지 않아요.|This stage saves completion and progress without stars.|このステージはクリアと進行を保存します。星評価は記録しません。|此关保存通关和进度，不记录星级。|此關儲存通關和進度，不記錄星級。|Este nivel guarda el progreso y la finalización, sin estrellas.|Esta fase salva a conclusão e o progresso, sem estrelas.|इस स्तर में प्रगति और पूर्णता सेव होती है, सितारे नहीं।|Tahap ini menyimpan penyelesaian dan progres, tanpa bintang.
+
+스테이지 다시 고르기|Choose a stage again|ステージを選び直す|重新选择关卡|重新選擇關卡|Elegir otra fase|Escolher outra fase|फिर स्टेज चुनें|Pilih stage lagi
+조작 익히기|Learn the controls|操作を覚える|熟悉操作|熟悉操作|Aprender los controles|Aprender os controles|नियंत्रण सीखें|Pelajari kontrol
+별점 없음 · 클리어 저장|No stars · Completion saved|星評価なし · クリアを保存|无星级 · 保存通关|無星級 · 儲存通關|Sin estrellas · Se guarda al completar|Sem estrelas · Conclusão salva|बिना सितारों के · पूरा करना सहेजा जाता है|Tanpa bintang · Penyelesaian disimpan
+조작 익히기 · 시간·별점 기록 없음|Learn the controls · No time or stars recorded|操作練習 · タイム・星評価の記録なし|熟悉操作 · 不记录时间或星级|熟悉操作 · 不記錄時間或星級|Aprende a jugar · Sin tiempo ni estrellas|Aprenda a jogar · Sem tempo nem estrelas|नियंत्रण सीखें · समय या सितारे दर्ज नहीं होते|Pelajari kontrol · Waktu dan bintang tidak dicatat
+클리어 저장 완료 · 별점 없음|Completion saved · No stars|クリアを保存しました · 星評価なし|通关已保存 · 无星级|通關已儲存 · 無星級|Fase completada y guardada · Sin estrellas|Conclusão salva · Sem estrelas|पूरा करना सहेजा गया · बिना सितारों के|Penyelesaian tersimpan · Tanpa bintang
+조작 익히기 완료 · 클리어 저장 완료|Controls learned · Completion saved|操作練習完了 · クリアを保存しました|操作练习完成 · 通关已保存|操作練習完成 · 通關已儲存|Práctica completada · Progreso guardado|Prática concluída · Progresso salvo|नियंत्रण अभ्यास पूरा · प्रगति सहेजी गई|Latihan kontrol selesai · Penyelesaian tersimpan
+아직 클리어하지 않은 스테이지예요.|This stage has not been completed yet.|まだクリアしていないステージです。|这是尚未通关的关卡。|這是尚未通關的關卡。|Esta fase aún no está completada.|Esta fase ainda não foi concluída.|यह स्टेज अभी पूरा नहीं हुआ है।|Stage ini belum diselesaikan.
+처음부터|Restart|最初から|重新开始|重新開始|Reiniciar|Reiniciar|फिर से शुरू|Mulai ulang
+재시작 확인|Confirm restart|やり直しを確認|确认重开|確認重開|Confirmar reinicio|Confirmar reinício|फिर शुरू की पुष्टि|Konfirmasi ulang
+게임 화면 보기|View board|ゲーム画面を見る|查看游戏画面|查看遊戲畫面|Ver tablero|Ver tabuleiro|खेल का बोर्ड देखें|Lihat papan
+처음에는 시간·별점 없이 조작을 익혀요. 다음 도전부터 기록해요.|Learn the controls without a timer or stars first. Records start on your next attempt.|最初はタイム・星評価なしで操作を覚えます。次の挑戦から記録します。|首次先熟悉操作，不计时或星级。下次挑战开始记录。|首次先熟悉操作，不計時或星級。下次挑戰開始記錄。|Primero aprende sin tiempo ni estrellas. Se registran a partir del siguiente intento.|Primeiro aprenda sem tempo nem estrelas. Os registros começam na próxima tentativa.|पहले बिना समय या सितारों के नियंत्रण सीखें। अगली कोशिश से रिकॉर्ड दर्ज होंगे।|Pelajari kontrol tanpa waktu atau bintang terlebih dahulu. Catatan dimulai pada percobaan berikutnya.

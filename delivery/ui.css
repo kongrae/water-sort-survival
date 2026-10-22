@@ -24,12 +24,18 @@
 .home-save{font-size:12px;line-height:1.5;border-top:1px solid var(--line);padding-top:14px}
 .stage-screen-layout,.stage-map{display:grid;gap:12px;align-content:start}
 .stage-screen-content{gap:14px}
+#ovDeliveryMenu{overflow:hidden}
+#ovDeliveryMenu>.stage-screen-content{height:100%;gap:12px}
+.delivery-selection-body{min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;display:grid;align-content:start;gap:14px;padding:2px}
+.delivery-start-actions{flex:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding-top:10px;border-top:1px solid var(--line)}
+.delivery-start-actions>#deliveryStageStart,.delivery-start-actions>.note{grid-column:1/-1}
+.delivery-start-actions:has(#deliverySavedResume:not([hidden]))>#deliveryStageStart{grid-column:auto}
+.delivery-start-actions>.note{font-size:12px;line-height:1.4}
 #ovDeliveryMenu .delivery-stage-preview{border-radius:6px;padding:16px;gap:10px}
 #ovDeliveryMenu .delivery-stage-preview .note{font-size:12px}
 #ovDeliveryMenu .delivery-entry-rule{line-height:1.5}
 #deliveryReplaceNote{color:var(--danger)}
 #ovDeliveryMenu .delivery-stage-preview .delivery-help{margin-top:2px}
-#deliveryChainEntry{font-size:13px;min-height:44px;height:auto;white-space:normal}
 #campaignEntry{display:none!important}
 #btnHome{width:auto;min-width:44px;padding-inline:9px;font-size:12px}
 #ovDeliveryMenu .screen-heading{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px}

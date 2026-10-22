@@ -19,7 +19,8 @@
   </div>
 </section>
 <section class="overlay app-screen" id="ovDeliveryMenu" aria-labelledby="deliveryMenuTitle" hidden><div class="screen-content stage-screen-content">
-  <header class="screen-heading"><button class="sbtn" id="deliveryMenuClose" type="button">메인으로</button><h2 id="deliveryMenuTitle">스테이지 선택</h2><button class="sbtn" id="deliveryMenuResume" type="button" hidden>계속하기</button></header>
+  <header class="screen-heading"><button class="sbtn" id="deliveryMenuClose" type="button">메인으로</button><h2 id="deliveryMenuTitle">스테이지 선택</h2></header>
+  <div class="delivery-selection-body">
   <div class="delivery-journey-summary"><strong id="deliveryJourneyCount"></strong><span class="note">한 판씩 주문을 완성해요.</span><progress id="deliveryJourneyBar" value="0" max="12"></progress></div>
   <div class="stage-screen-layout"><div class="stage-map">
     <nav class="delivery-page-nav" aria-label="스테이지 선택">
@@ -29,24 +30,24 @@
     </nav>
     <div id="deliveryStageList" role="group" aria-label="스테이지 선택"></div>
     <p class="note delivery-map-legend">번호를 골라 주문을 확인하세요. ✓는 클리어한 판이에요.</p>
-    <button class="btn" id="deliveryChainEntry" type="button">연속 주문 · 66–68</button>
   </div>
   <section class="delivery-stage-preview" aria-labelledby="deliveryPreviewTitle">
     <div class="delivery-preview-top"><span id="deliveryPreviewLabel"></span><span id="deliveryPreviewMode" class="note"></span></div>
     <h3 id="deliveryPreviewTitle"></h3><div id="deliveryPreviewGoals" class="delivery-goals"></div>
     <p id="deliveryPreviewRecord" class="note"></p>
-    <p id="deliveryReplaceNote" class="note" hidden>다른 스테이지를 시작하면 진행 중인 스테이지가 교체돼요. 클리어 기록은 유지돼요.</p>
-    <button class="btn primary" id="deliveryStageStart" type="button"></button>
-    <button class="btn" id="deliverySavedResume" type="button" hidden>진행 중인 스테이지 이어하기</button>
     <p class="note delivery-entry-rule">한 색으로 모인 병은 탱크로 보내세요. 같은 색 4칸은 자동으로 납품돼요.</p>
     <details class="delivery-help"><summary>목표·조작·저장 안내</summary>
     <p id="deliveryPreviewDetails" class="note"></p>
     <p id="deliveryPreviewNotice" class="note" hidden></p>
     <p id="deliveryPreviewTiming" class="note"></p>
-    <p class="note">별점 없는 연습은 클리어와 진행 중인 한 판을 저장해요.</p>
     <p class="note" id="deliverySaveNote">납품 진행·별점·최고 시간은 이 브라우저에만 저장하며 구글 계정과 동기화하지 않아요.</p>
     </details>
-  </section></div>
+  </section></div></div>
+  <div class="delivery-start-actions">
+    <p id="deliveryReplaceNote" class="note" hidden>다른 스테이지를 시작하면 진행 중인 스테이지가 교체돼요. 클리어 기록은 유지돼요.</p>
+    <button class="btn primary" id="deliveryStageStart" type="button"></button>
+    <button class="btn" id="deliverySavedResume" type="button" hidden>진행 중인 스테이지 이어하기</button>
+  </div>
 </div></section>
 <div class="overlay" id="ovDeliveryPause" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryPauseTitle">
   <div class="delivery-pause-body">
