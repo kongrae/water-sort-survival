@@ -10,9 +10,14 @@
   const stable=x=>JSON.stringify(x,(_,v)=>object(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
   function createDeliveryProgress(E,stages,manifest,storage){
     if(!stages.length||!/^[a-f0-9]{64}$/.test(manifest?.packHash)||!['read','write','writable','attempt','now'].every(k=>typeof storage?.[k]==='function'))throw Error('Invalid delivery storage contract');
+    const policy=manifest.starPolicy;
+    if(policy?.version!==1||stages.some(c=>!Array.isArray(policy.thresholds?.[c.id])||policy.thresholds[c.id].length!==2||
+      !policy.thresholds[c.id].every(n=>Number.isSafeInteger(n)&&n>0)||policy.thresholds[c.id][0]>=policy.thresholds[c.id][1]||
+      c.starMs&&JSON.stringify(c.starMs)!==JSON.stringify(policy.thresholds[c.id])))throw Error('Invalid delivery star policy');
+    const thresholds=stageId=>policy.thresholds[stageId]?.slice();
     const timedPracticeIds=new Set(stages.filter(c=>c.practiceOnly&&Array.isArray(c.orders)&&c.orders.length>1).map(c=>c.id));
-    const keepsTime=a=>!a.practice||timedPracticeIds.has(a.stageId);
-    const empty=()=>({schema:2,revision:0,packHash:manifest.packHash,learning:{offered:false,extracted:false,completed:false},active:null,records:{},cleared:{}});
+    const keepsTime=a=>a.clockMode?a.clockMode!=='untimed':!a.practice||timedPracticeIds.has(a.stageId);
+    const empty=()=>({schema:3,ratingVersion:policy.version,revision:0,packHash:manifest.packHash,learning:{offered:false,extracted:false,completed:false},active:null,records:{},cleared:{}});
     const owned=Object.keys(E.newDelivery(stages[0])),projection=s=>Object.fromEntries(owned.map(k=>[k,s[k]]));
     const compatible=new Map();
     if(manifest.compatiblePacks!==undefined&&!Array.isArray(manifest.compatiblePacks))throw Error('Invalid delivery compatibility manifest');
@@ -35,23 +40,31 @@
       if(!E[fn](s,...args))return false;
       if(name!=='flip'){r.history.push(before);if(r.history.length>40)r.history.shift();}return true;
     }
-    function restore(a){
-      if(!object(a)||!only(a,['stageId','attemptId','practice','events','elapsedMs','runningAt'])||!id(a.attemptId)||typeof a.practice!=='boolean'||!duration(a.elapsedMs)||!(a.runningAt===null||integer(a.runningAt))||!Array.isArray(a.events)||a.events.length>MAX_EVENTS)throw Error('invalid-active');
+    function restore(a,legacy=false){
+      if(!object(a)||!only(a,['stageId','attemptId','practice','events','elapsedMs','runningAt',...(!legacy?['clockMode']:[])])||!id(a.attemptId)||typeof a.practice!=='boolean'||!duration(a.elapsedMs)||!(a.runningAt===null||integer(a.runningAt))||!Array.isArray(a.events)||a.events.length>MAX_EVENTS)throw Error('invalid-active');
       const c=stages.find(c=>c.id===a.stageId);
-      if(!c||(c.practiceOnly&&!a.practice))throw Error('invalid-active');
-      if(a.practice&&((!c.practiceOnly&&c!==stages[0])||!keepsTime(a)&&(a.elapsedMs!==0||a.runningAt!==null)))throw Error('invalid-active');
+      if(!c||legacy&&c.practiceOnly&&!a.practice)throw Error('invalid-active');
+      if(a.practice&&(!c.practiceOnly&&c!==stages[0]))throw Error('invalid-active');
+      if(!legacy&&(!['play','legacy-wall','untimed'].includes(a.clockMode)||
+        a.clockMode==='untimed'&&(!a.practice||timedPracticeIds.has(a.stageId))||
+        a.clockMode==='legacy-wall'&&(a.practice||c.practiceOnly)||
+        a.practice&&a.clockMode!=='untimed'&&!timedPracticeIds.has(a.stageId)))throw Error('invalid-active');
+      if(!keepsTime(a)&&(a.elapsedMs!==0||a.runningAt!==null))throw Error('invalid-active');
       const r={state:E.newDelivery(c),history:[]};for(const event of a.events)if(!step(r,event))throw Error('invalid-action-log');
+      if(!legacy&&a.practice&&timedPracticeIds.has(a.stageId)&&!r.state.over)throw Error('invalid-active');
       if(r.state.over&&a.runningAt!==null)throw Error('invalid-clock');return r;
     }
     function validate(raw){
-      if(!object(raw)||![1,2].includes(raw.schema)||!only(raw,['schema','revision','packHash','learning','active','records',...(raw.schema===2?['cleared']:[])]))throw Error('unsupported-schema');
+      if(!object(raw)||![1,2,3].includes(raw.schema)||!only(raw,['schema','revision','packHash','learning','active','records',...(raw.schema>=2?['cleared']:[]),...(raw.schema===3?['ratingVersion']:[])]))throw Error('unsupported-schema');
+      const legacy=raw.schema<3;
+      if(!legacy&&raw.ratingVersion!==policy.version)throw Error('unsupported-schema');
       const stageCount=raw.packHash===manifest.packHash?stages.length:compatible.get(raw.packHash);
       if(!stageCount)throw Error('content-mismatch');
       const allowedIds=new Set(stages.slice(0,stageCount).map(c=>c.id));
       if(!integer(raw.revision)||!object(raw.learning)||!only(raw.learning,['offered','extracted','completed'])||!['offered','extracted','completed'].every(k=>typeof raw.learning[k]==='boolean')||raw.learning.completed&&!raw.learning.offered||!object(raw.records))throw Error('invalid-envelope');
-      for(const [key,v]of Object.entries(raw.records)){const c=stages.find(s=>s.id===key);if(!allowedIds.has(key)||!c||c.practiceOnly||!object(v)||!only(v,['bestMs','stars','attemptId'])||!duration(v.bestMs)||!id(v.attemptId)||v.stars!==E.deliveryStars(v.bestMs,c.starMs))throw Error('invalid-record');}
+      for(const [key,v]of Object.entries(raw.records)){const c=stages.find(s=>s.id===key);if(!allowedIds.has(key)||!c||legacy&&c.practiceOnly||!object(v)||!only(v,['bestMs','stars','attemptId'])||!duration(v.bestMs)||!id(v.attemptId)||v.stars!==E.deliveryStars(v.bestMs,legacy?c.starMs:thresholds(key)))throw Error('invalid-record');}
       if(raw.active&&!allowedIds.has(raw.active.stageId))throw Error('invalid-active');
-      const r=raw.active===null?null:restore(raw.active);
+      const r=raw.active===null?null:restore(raw.active,legacy);
       if(r){const a=raw.active;if(a.stageId===stages[0].id&&!raw.learning.offered)throw Error('invalid-learning');
         if(a.events.some(e=>e[0]==='extract')&&!raw.learning.extracted)throw Error('invalid-learning');
         if(r.state.delivery.phase==='won'){
@@ -66,7 +79,14 @@
       if(r?.state.delivery.phase==='won')proven[raw.active.stageId]=true;
       const cleared=raw.schema===1?proven:raw.cleared;
       if(!object(cleared)||Object.entries(cleared).some(([key,value])=>!allowedIds.has(key)||value!==true)||Object.keys(proven).some(key=>!cleared[key]))throw Error('invalid-cleared');
-      return {envelope:{...clone(raw),schema:2,packHash:manifest.packHash,cleared:clone(cleared)},runtime:r};
+      const active=clone(raw.active);
+      if(legacy&&active){
+        // Never invent elapsed time for old untimed runs. Timed chains can be
+        // scored on completion; already completed results remain untouched.
+        active.clockMode=active.practice?(timedPracticeIds.has(active.stageId)?'play':'untimed'):'legacy-wall';
+        if(active.practice&&timedPracticeIds.has(active.stageId)&&!r.state.over)active.practice=false;
+      }
+      return {envelope:{...clone(raw),schema:3,ratingVersion:policy.version,packHash:manifest.packHash,active,cleared:clone(cleared)},runtime:r};
     }
     function status(){return {issue,dirty,loaded};}
     function snapshot(){return {...status(),envelope:clone(envelope),state:runtime?clone(runtime.state):null};}
@@ -76,7 +96,7 @@
       if(text===null){envelope=empty();runtime=null;issue=null;return snapshot();}
       if(typeof text!=='string'||text.length>MAX_TEXT){issue='invalid-envelope';return snapshot();}
       try{const raw=JSON.parse(text),checked=validate(raw);envelope=checked.envelope;runtime=checked.runtime;issue=null;
-        if(raw.packHash!==manifest.packHash||raw.schema===1)upgradeFrom={key:'wsurv.delivery.upgrade.'+(raw.packHash===manifest.packHash?'schema1.':'')+raw.packHash+'.v1',raw:text};}
+        if(raw.packHash!==manifest.packHash||raw.schema<3)upgradeFrom={key:'wsurv.delivery.upgrade.'+(raw.packHash===manifest.packHash?'schema'+raw.schema+'.':'')+raw.packHash+'.v1',raw:text};}
       catch(e){issue=e instanceof SyntaxError?'invalid-json':e.message;}return snapshot();
     }
     function flush(){
@@ -106,8 +126,7 @@
       if(!integer(index)||!stages[index])return {ok:false,reason:'invalid-stage'};
       if(!fresh&&envelope.active?.stageId===stages[index].id)return resume();
       const attemptId=storage.attempt();if(!id(attemptId))return {ok:false,reason:'invalid-attempt'};
-      const practice=stages[index].practiceOnly===true||index===0&&!!guide&&!envelope.learning.offered;
-      const active={stageId:stages[index].id,attemptId,practice,events:[],elapsedMs:0,runningAt:null};
+      const active={stageId:stages[index].id,attemptId,practice:false,clockMode:'play',events:[],elapsedMs:0,runningAt:null};
       return publish({...envelope,active,learning:{...envelope.learning,offered:envelope.learning.offered||index===0}},restore(active));
     }
     function capture(action,state,elapsedMs){
@@ -121,7 +140,7 @@
       if(r.state.delivery.phase==='won'){
         cleared[a.stageId]=true;
         if(a.practice){if(a.stageId===stages[0].id)learning.completed=true;}
-        else {const c=stages.find(c=>c.id===a.stageId),bestMs=Math.min(records[c.id]?.bestMs??Infinity,a.elapsedMs);records[c.id]={bestMs,stars:E.deliveryStars(bestMs,c.starMs),attemptId:a.attemptId};}
+        else {const bestMs=Math.min(records[a.stageId]?.bestMs??Infinity,a.elapsedMs);records[a.stageId]={bestMs,stars:E.deliveryStars(bestMs,thresholds(a.stageId)),attemptId:a.attemptId};}
       }return publish({...envelope,active:a,learning,records,cleared},r);
     }
     function checkpoint(elapsedMs,running){
@@ -132,8 +151,8 @@
     function resume(){
       if(issue||!envelope.active||!runtime)return {ok:false,reason:issue||'no-active'};
       const a=envelope.active;if(a.events.length>=MAX_EVENTS){issue='save-limit';return {ok:false,reason:issue};}
-      const chain=timedPracticeIds.has(a.stageId),wall=storage.now();if(!chain&&a.runningAt!==null&&wall<a.runningAt){issue='clock-backwards';return {ok:false,reason:issue};}
-      const elapsedMs=a.elapsedMs+(chain||a.runningAt===null?0:wall-a.runningAt);if(!duration(elapsedMs)){issue='invalid-clock';return {ok:false,reason:issue};}
+      const wall=storage.now(),legacyWall=a.clockMode==='legacy-wall';if(legacyWall&&a.runningAt!==null&&wall<a.runningAt){issue='clock-backwards';return {ok:false,reason:issue};}
+      const elapsedMs=a.elapsedMs+(!legacyWall||a.runningAt===null?0:wall-a.runningAt);if(!duration(elapsedMs)){issue='invalid-clock';return {ok:false,reason:issue};}
       const r=clone(runtime);step(r,['resume']);return publish({...envelope,active:{...a,elapsedMs,runningAt:null,events:a.events.concat([['resume']])}},r);
     }
     function retry(){if(issue==='write-failed'&&dirty)return flush();load();return {ok:!issue,reason:issue};}
@@ -150,7 +169,7 @@
       const order=stages.map((_,i)=>i),nextIndex=order.slice(after+1).concat(order.slice(0,after+1)).find(i=>!envelope.cleared[stages[i].id])??-1;
       return {count:Object.keys(envelope.cleared).length,total:stages.length,activeIndex,nextIndex,recommendedIndex:activeIndex>=0?activeIndex:nextIndex>=0?nextIndex:0};
     }
-    return Object.freeze({KEY,RECOVERY_KEY,load,status,snapshot,validate,select,capture,checkpoint,resume,retry,restartProtected,journey});
+    return Object.freeze({KEY,RECOVERY_KEY,load,status,snapshot,validate,select,capture,checkpoint,resume,retry,restartProtected,journey,thresholds});
   }
   if(typeof module==='object'&&module.exports)module.exports=createDeliveryProgress;else root.createDeliveryProgress=createDeliveryProgress;
 })(typeof globalThis!=='undefined'?globalThis:this);

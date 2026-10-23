@@ -1,0 +1,5814 @@
+{
+  "sourceCommit": "fede216ccedc196d3715f35953a2add7a3c89234",
+  "cases": [
+    {
+      "name": "active-1",
+      "stage": 1,
+      "raw": "{\"schema\":2,\"revision\":5,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":true,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-01-a\",\"attemptId\":\"legacy-1\",\"practice\":true,\"events\":[[\"extract\",0,0],[\"place\",0],[\"pour\",2,0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-01-a",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            1,
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0
+          ],
+          [
+            2,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          0,
+          0
+        ],
+        "score": 0,
+        "streak": 0,
+        "maxStreak": 0,
+        "turnClears": 0,
+        "clears": 0,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                2,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-01-a",
+            "colors": 3,
+            "goal": {
+              "0": 8
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                2,
+                1,
+                1,
+                2
+              ],
+              [
+                1,
+                2,
+                2,
+                1
+              ],
+              [
+                1,
+                1,
+                2,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "sourceCandidate": "delivery-a-d0",
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t41-1",
+            "title": "빠르게 꺼내기",
+            "starMs": [
+              45000,
+              75000
+            ]
+          },
+          "cursor": 2,
+          "delivered": [
+            3,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "extract",
+          2,
+          0
+        ],
+        [
+          "pour",
+          1,
+          2
+        ],
+        [
+          "place",
+          1
+        ],
+        [
+          "place",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "active-2",
+      "stage": 2,
+      "raw": "{\"schema\":2,\"revision\":6,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-01-b\",\"attemptId\":\"legacy-2\",\"practice\":false,\"events\":[[\"extract\",0,1],[\"place\",0],[\"pour\",0,1],[\"extract\",0,1]],\"elapsedMs\":12345.625,\"runningAt\":10000},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-01-b",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            3,
+            3,
+            3
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            3,
+            2,
+            0
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          0,
+          2
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                2,
+                2
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                3,
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-01-b",
+            "colors": 4,
+            "goal": {
+              "1": 4,
+              "2": 8
+            },
+            "bottles": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                3,
+                3,
+                3
+              ],
+              [
+                2,
+                1,
+                3
+              ],
+              [
+                3,
+                2,
+                0
+              ]
+            ],
+            "stream": [
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "sourceCandidate": "b-next-redyellow",
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t43-2",
+            "title": "두 주문 나누기",
+            "starMs": [
+              70000,
+              110000
+            ]
+          },
+          "cursor": 2,
+          "delivered": [
+            0,
+            4,
+            4,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "place",
+          0
+        ],
+        [
+          "place",
+          0
+        ],
+        [
+          "pour",
+          3,
+          1
+        ],
+        [
+          "pour",
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "active-4",
+      "stage": 4,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-02-d\",\"attemptId\":\"legacy-4\",\"practice\":true,\"events\":[[\"place\",0],[\"place\",0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-02-d",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            0,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ]
+        ],
+        "turn": 2,
+        "piece": [
+          2,
+          1
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 0,
+        "clears": 1,
+        "turnLog": [
+          1
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-02-d",
+            "title": "채우고 꺼내기",
+            "colors": 3,
+            "goal": {
+              "0": 6,
+              "1": 4
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                0,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "contentVersion": "design-d2",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 3,
+          "delivered": [
+            4,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          2,
+          1
+        ],
+        [
+          "pour",
+          0,
+          2
+        ],
+        [
+          "extract",
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "active-5",
+      "stage": 5,
+      "raw": "{\"schema\":2,\"revision\":5,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-02-e\",\"attemptId\":\"legacy-5\",\"practice\":true,\"events\":[[\"flip\"],[\"place\",0],[\"pour\",0,1]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-02-e",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            1,
+            1,
+            1
+          ],
+          [],
+          [
+            2,
+            1,
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            3,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            3
+          ],
+          [
+            3,
+            2,
+            3,
+            2
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          1
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 1,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-02-e",
+            "title": "두 가지 길",
+            "colors": 4,
+            "goal": {
+              "0": 5,
+              "1": 4
+            },
+            "bottles": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                1,
+                3
+              ],
+              [
+                2,
+                3,
+                3,
+                2
+              ],
+              [
+                2,
+                0,
+                2,
+                3
+              ],
+              [
+                3,
+                2,
+                3,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                0,
+                1
+              ],
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "contentVersion": "design-e3",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 2,
+          "delivered": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "place",
+          0
+        ],
+        [
+          "place",
+          0
+        ],
+        [
+          "extract",
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "active-6",
+      "stage": 6,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-006\",\"attemptId\":\"legacy-6\",\"practice\":true,\"events\":[[\"place\",1],[\"place\",0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-006",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            2,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ]
+        ],
+        "turn": 2,
+        "piece": [
+          1
+        ],
+        "score": 0,
+        "streak": 0,
+        "maxStreak": 0,
+        "turnClears": 0,
+        "clears": 0,
+        "turnLog": [
+          0
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                1,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-006",
+            "colors": 3,
+            "goal": {
+              "0": 4,
+              "1": 4
+            },
+            "bottles": [
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ]
+            ],
+            "stream": [
+              [
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "title": "두 칸의 자리",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 3,
+          "delivered": [
+            0,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          0,
+          1
+        ],
+        [
+          "pour",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "active-7",
+      "stage": 7,
+      "raw": "{\"schema\":2,\"revision\":5,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-007\",\"attemptId\":\"legacy-7\",\"practice\":true,\"events\":[[\"place\",1],[\"place\",1],[\"place\",0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-007",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ]
+        ],
+        "turn": 3,
+        "piece": [
+          0,
+          0
+        ],
+        "score": 100,
+        "streak": 0,
+        "maxStreak": 1,
+        "turnClears": 0,
+        "clears": 1,
+        "turnLog": [
+          1,
+          0
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                1,
+                2
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-007",
+            "colors": 3,
+            "goal": {
+              "0": 6
+            },
+            "bottles": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ]
+            ],
+            "stream": [
+              [
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0
+              ]
+            ],
+            "title": "완성해서 여는 공간",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 4,
+          "delivered": [
+            0,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          1,
+          0
+        ],
+        [
+          "pour",
+          2,
+          1
+        ],
+        [
+          "extract",
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "active-8",
+      "stage": 8,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-008\",\"attemptId\":\"legacy-8\",\"practice\":true,\"events\":[[\"extract\",0,0],[\"pour\",2,1]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-008",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            2
+          ]
+        ],
+        "turn": 0,
+        "piece": [
+          0,
+          1
+        ],
+        "score": 0,
+        "streak": 0,
+        "maxStreak": 0,
+        "turnClears": 0,
+        "clears": 0,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                1,
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-008",
+            "colors": 3,
+            "goal": {
+              "0": 7,
+              "1": 2
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                2,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                0,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            "title": "큰 주문을 먼저",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 1,
+          "delivered": [
+            3,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          1
+        ],
+        [
+          "place",
+          2
+        ]
+      ]
+    },
+    {
+      "name": "active-9",
+      "stage": 9,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-009\",\"attemptId\":\"legacy-9\",\"practice\":true,\"events\":[[\"pour\",1,2],[\"pour\",0,2]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-009",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ]
+        ],
+        "turn": 0,
+        "piece": [
+          0
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 2,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                1,
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-009",
+            "colors": 3,
+            "goal": {
+              "0": 5
+            },
+            "bottles": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                2
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            "title": "덮개를 모으는 길",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 1,
+          "delivered": [
+            0,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "extract",
+          0,
+          0
+        ],
+        [
+          "place",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "active-10",
+      "stage": 10,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-010\",\"attemptId\":\"legacy-10\",\"practice\":true,\"events\":[[\"place\",0],[\"pour\",0,1]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-010",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            1,
+            1
+          ],
+          [],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            1
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          0
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                1
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-010",
+            "colors": 3,
+            "goal": {
+              "0": 6,
+              "1": 4
+            },
+            "bottles": [
+              [
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                2,
+                1
+              ]
+            ],
+            "stream": [
+              [
+                1,
+                0
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            "title": "그대로 놓는 방향",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 2,
+          "delivered": [
+            4,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          2,
+          0
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "extract",
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "active-11",
+      "stage": 11,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-011\",\"attemptId\":\"legacy-11\",\"practice\":true,\"events\":[[\"hold\"],[\"place\",0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-011",
+        "rules": {
+          "bottles": 7,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 7
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          1
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": {
+          "piece": [
+            2,
+            1
+          ],
+          "intro": -1,
+          "flipped": false
+        },
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-011",
+            "colors": 3,
+            "goal": {
+              "0": 6,
+              "1": 4
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            "title": "맡기거나 비우거나",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 3,
+          "delivered": [
+            4,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "place",
+          1
+        ],
+        [
+          "pour",
+          3,
+          2
+        ],
+        [
+          "extract",
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "active-12",
+      "stage": 12,
+      "raw": "{\"schema\":2,\"revision\":4,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-60-012\",\"attemptId\":\"legacy-12\",\"practice\":true,\"events\":[[\"extract\",0,0],[\"place\",0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-60-012",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            2
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          1
+        ],
+        "score": 0,
+        "streak": 0,
+        "maxStreak": 0,
+        "turnClears": 0,
+        "clears": 0,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                1,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "id": "delivery-60-012",
+            "colors": 3,
+            "goal": {
+              "0": 2,
+              "1": 5
+            },
+            "bottles": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                2,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                1,
+                0
+              ],
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            "title": "먼저 보낼 잔량",
+            "contentVersion": "t50-1",
+            "rulesVersion": "delivery-v1-research",
+            "practiceOnly": true
+          },
+          "cursor": 2,
+          "delivered": [
+            2,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          2,
+          1
+        ],
+        [
+          "pour",
+          0,
+          1
+        ],
+        [
+          "extract",
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "active-61",
+      "stage": 61,
+      "raw": "{\"schema\":2,\"revision\":5,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-late-061\",\"attemptId\":\"legacy-61\",\"practice\":true,\"events\":[[\"extract\",0,0],[\"extract\",1,1],[\"extract\",2,2]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-late-061",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [],
+          [],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            0
+          ]
+        ],
+        "turn": 0,
+        "piece": [
+          2,
+          1
+        ],
+        "score": 0,
+        "streak": 0,
+        "maxStreak": 0,
+        "turnClears": 0,
+        "clears": 0,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t61-selection-2",
+            "practiceOnly": true,
+            "id": "delivery-late-061",
+            "title": "먼저 비우고 네 칸씩",
+            "colors": 3,
+            "goal": {
+              "0": 7,
+              "1": 7,
+              "2": 7
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                2,
+                2
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ]
+            ],
+            "stream": [
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          },
+          "cursor": 1,
+          "delivered": [
+            3,
+            3,
+            3
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          3,
+          0
+        ],
+        [
+          "pour",
+          5,
+          3
+        ],
+        [
+          "pour",
+          4,
+          5
+        ],
+        [
+          "pour",
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "active-62",
+      "stage": 62,
+      "raw": "{\"schema\":2,\"revision\":5,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-late-062\",\"attemptId\":\"legacy-62\",\"practice\":true,\"events\":[[\"extract\",0,0],[\"place\",0],[\"pour\",0,1]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-late-062",
+        "rules": {
+          "bottles": 7,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 7
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            2
+          ],
+          [],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            3,
+            3
+          ],
+          [
+            3,
+            3,
+            1
+          ],
+          [
+            3,
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            2,
+            3
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          0,
+          0
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                3
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t61-selection-2",
+            "practiceOnly": true,
+            "id": "delivery-late-062",
+            "title": "두 색을 받을 작업 병",
+            "colors": 4,
+            "goal": {
+              "0": 7,
+              "1": 4,
+              "2": 4,
+              "3": 4
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                0,
+                0,
+                3,
+                3
+              ],
+              [
+                3,
+                3,
+                1
+              ],
+              [
+                3,
+                1,
+                2,
+                3
+              ],
+              [
+                1,
+                3,
+                2,
+                3
+              ]
+            ],
+            "stream": [
+              [
+                2,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                3
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ],
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          },
+          "cursor": 2,
+          "delivered": [
+            3,
+            4,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          0,
+          2
+        ],
+        [
+          "pour",
+          4,
+          0
+        ],
+        [
+          "pour",
+          3,
+          4
+        ],
+        [
+          "place",
+          3
+        ]
+      ]
+    },
+    {
+      "name": "active-63",
+      "stage": 63,
+      "raw": "{\"schema\":2,\"revision\":8,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-late-063\",\"attemptId\":\"legacy-63\",\"practice\":true,\"events\":[[\"pour\",2,0],[\"pour\",4,0],[\"pour\",4,2],[\"pour\",3,0],[\"pour\",4,3],[\"place\",0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-late-063",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [
+            0,
+            1,
+            1
+          ],
+          [],
+          [],
+          [
+            2
+          ],
+          [
+            0,
+            2,
+            2,
+            1
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          2
+        ],
+        "score": 500,
+        "streak": 2,
+        "maxStreak": 2,
+        "turnClears": 1,
+        "clears": 4,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 0,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 500,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                2
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t61-selection-2",
+            "practiceOnly": true,
+            "id": "delivery-late-063",
+            "title": "끝난 색과 남은 주문",
+            "colors": 3,
+            "goal": {
+              "0": 8,
+              "1": 4,
+              "2": 8
+            },
+            "bottles": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                2,
+                2,
+                1
+              ]
+            ],
+            "stream": [
+              [
+                1,
+                1
+              ],
+              [
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          "cursor": 2,
+          "delivered": [
+            4,
+            4,
+            4
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          5,
+          0
+        ],
+        [
+          "pour",
+          5,
+          4
+        ],
+        [
+          "place",
+          4
+        ],
+        [
+          "place",
+          5
+        ],
+        [
+          "pour",
+          1,
+          0
+        ],
+        [
+          "pour",
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "name": "active-64",
+      "stage": 64,
+      "raw": "{\"schema\":2,\"revision\":7,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-late-064\",\"attemptId\":\"legacy-64\",\"practice\":true,\"events\":[[\"flip\"],[\"place\",0],[\"pour\",0,1],[\"extract\",0,1],[\"pour\",2,0]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-late-064",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            3
+          ],
+          [],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            3,
+            3,
+            3,
+            2
+          ],
+          [
+            2,
+            3,
+            3,
+            3
+          ],
+          [
+            3,
+            3,
+            3,
+            2
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          2
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 2,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 1,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                3
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t71-choice-1",
+            "practiceOnly": true,
+            "id": "delivery-late-064",
+            "title": "방향을 살피는 네 색 주문",
+            "colors": 4,
+            "goal": {
+              "0": 4,
+              "1": 3,
+              "2": 6,
+              "3": 10
+            },
+            "bottles": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                2,
+                2,
+                3
+              ],
+              [
+                3,
+                3,
+                3,
+                2
+              ],
+              [
+                2,
+                3,
+                3,
+                3
+              ],
+              [
+                3,
+                3,
+                3,
+                2
+              ]
+            ],
+            "stream": [
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          "cursor": 2,
+          "delivered": [
+            4,
+            3,
+            0,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          3,
+          2
+        ],
+        [
+          "extract",
+          3,
+          3
+        ],
+        [
+          "pour",
+          4,
+          0
+        ],
+        [
+          "pour",
+          5,
+          4
+        ],
+        [
+          "extract",
+          4,
+          2
+        ],
+        [
+          "extract",
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "active-65",
+      "stage": 65,
+      "raw": "{\"schema\":2,\"revision\":6,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-late-065\",\"attemptId\":\"legacy-65\",\"practice\":true,\"events\":[[\"hold\"],[\"place\",0],[\"pour\",2,0],[\"extract\",0,1]],\"elapsedMs\":0,\"runningAt\":null},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-late-065",
+        "rules": {
+          "bottles": 7,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 7
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          2,
+          1
+        ],
+        "score": 100,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 1,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": "",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                1
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                2
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": {
+          "piece": [
+            1,
+            2
+          ],
+          "intro": -1,
+          "flipped": false
+        },
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "rulesVersion": "delivery-v1-research",
+            "contentVersion": "t71-choice-1",
+            "practiceOnly": true,
+            "id": "delivery-late-065",
+            "title": "한 칸을 먼저 받아내기",
+            "colors": 3,
+            "goal": {
+              "0": 4,
+              "1": 10,
+              "2": 8
+            },
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                1,
+                2
+              ],
+              [
+                1,
+                2,
+                1,
+                1
+              ]
+            ],
+            "stream": [
+              [
+                1,
+                2
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          },
+          "cursor": 3,
+          "delivered": [
+            4,
+            2,
+            0
+          ],
+          "phase": "playing"
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          1,
+          2
+        ],
+        [
+          "pour",
+          4,
+          1
+        ],
+        [
+          "pour",
+          3,
+          4
+        ],
+        [
+          "pour",
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "active-66",
+      "stage": 66,
+      "raw": "{\"schema\":2,\"revision\":16,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-chain-066\",\"attemptId\":\"legacy-66\",\"practice\":true,\"events\":[[\"pour\",3,0],[\"pour\",3,0],[\"pour\",4,0],[\"pour\",2,3],[\"place\",2],[\"pour\",2,0],[\"extract\",0,2],[\"pour\",2,0],[\"extract\",0,0],[\"pour\",5,1],[\"place\",2],[\"pour\",2,0],[\"place\",4],[\"pour\",4,0]],\"elapsedMs\":12345.625,\"runningAt\":10000},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-066",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            0,
+            0
+          ],
+          [],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ],
+        "turn": 3,
+        "piece": [
+          2,
+          1
+        ],
+        "score": 400,
+        "streak": 0,
+        "maxStreak": 2,
+        "turnClears": 0,
+        "clears": 3,
+        "turnLog": [
+          1,
+          0
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": null,
+        "stuck": null,
+        "comboPts": 0,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                1,
+                2
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                2,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-066",
+            "title": "받는 병에 다음 파랑 남기기",
+            "colors": 3,
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                2,
+                0
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                0,
+                1
+              ]
+            ],
+            "orders": [
+              {
+                "0": 6,
+                "2": 5
+              },
+              {
+                "0": 3,
+                "1": 4
+              },
+              {
+                "1": 6,
+                "2": 6
+              }
+            ],
+            "stream": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "goal": {
+              "0": 3,
+              "1": 4
+            }
+          },
+          "cursor": 4,
+          "delivered": [
+            0,
+            4,
+            0
+          ],
+          "phase": "playing",
+          "orderIndex": 1
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          5,
+          0
+        ],
+        [
+          "extract",
+          0,
+          0
+        ],
+        [
+          "place",
+          0
+        ],
+        [
+          "pour",
+          0,
+          3
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          0
+        ],
+        [
+          "place",
+          0
+        ],
+        [
+          "pour",
+          0,
+          2
+        ],
+        [
+          "place",
+          1
+        ],
+        [
+          "place",
+          4
+        ],
+        [
+          "pour",
+          4,
+          0
+        ],
+        [
+          "pour",
+          1,
+          4
+        ],
+        [
+          "pour",
+          5,
+          1
+        ],
+        [
+          "extract",
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "finished-66",
+      "stage": 66,
+      "raw": "{\"schema\":2,\"revision\":30,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-chain-066\",\"attemptId\":\"legacy-66\",\"practice\":true,\"events\":[[\"pour\",3,0],[\"pour\",3,0],[\"pour\",4,0],[\"pour\",2,3],[\"place\",2],[\"pour\",2,0],[\"extract\",0,2],[\"pour\",2,0],[\"extract\",0,0],[\"pour\",5,1],[\"place\",2],[\"pour\",2,0],[\"place\",4],[\"pour\",4,0],[\"pour\",5,0],[\"extract\",0,0],[\"place\",0],[\"pour\",0,3],[\"place\",2],[\"pour\",2,0],[\"place\",0],[\"pour\",0,2],[\"place\",1],[\"place\",4],[\"pour\",4,0],[\"pour\",1,4],[\"pour\",5,1],[\"extract\",1,2]],\"elapsedMs\":16345.625,\"runningAt\":null},\"records\":{},\"cleared\":{\"delivery-chain-066\":true}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-066",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 3,
+          "maxColors": 3,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 3,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [],
+          [],
+          [],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "turn": 8,
+        "piece": [
+          1,
+          0
+        ],
+        "score": 700,
+        "streak": 1,
+        "maxStreak": 2,
+        "turnClears": 1,
+        "clears": 6,
+        "turnLog": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 3,
+        "over": true,
+        "overReason": "delivery-win",
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 3,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                2,
+                1
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-066",
+            "title": "받는 병에 다음 파랑 남기기",
+            "colors": 3,
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                2,
+                0
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                2,
+                0,
+                1
+              ]
+            ],
+            "orders": [
+              {
+                "0": 6,
+                "2": 5
+              },
+              {
+                "0": 3,
+                "1": 4
+              },
+              {
+                "1": 6,
+                "2": 6
+              }
+            ],
+            "stream": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "goal": {
+              "1": 6,
+              "2": 6
+            }
+          },
+          "cursor": 9,
+          "delivered": [
+            0,
+            6,
+            6
+          ],
+          "phase": "won",
+          "orderIndex": 2
+        }
+      },
+      "remaining": []
+    },
+    {
+      "name": "active-67",
+      "stage": 67,
+      "raw": "{\"schema\":2,\"revision\":15,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-chain-067\",\"attemptId\":\"legacy-67\",\"practice\":true,\"events\":[[\"extract\",1,0],[\"place\",1],[\"pour\",1,0],[\"extract\",1,0],[\"pour\",0,1],[\"extract\",1,1],[\"pour\",3,0],[\"pour\",2,1],[\"pour\",5,2],[\"pour\",4,3],[\"place\",0],[\"place\",2],[\"pour\",2,0]],\"elapsedMs\":12345.625,\"runningAt\":10000},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-067",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [
+            3
+          ],
+          [
+            1
+          ],
+          [],
+          [
+            2,
+            3,
+            3
+          ],
+          [
+            3,
+            3,
+            3
+          ]
+        ],
+        "turn": 3,
+        "piece": [
+          3,
+          0
+        ],
+        "score": 300,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 1,
+        "clears": 3,
+        "turnLog": [
+          2,
+          0
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": false,
+        "overReason": null,
+        "stuck": null,
+        "comboPts": 100,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                2,
+                0
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                3,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-067",
+            "title": "작업 병과 다음 빨강",
+            "colors": 4,
+            "bottles": [
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                2,
+                2,
+                3
+              ],
+              [
+                3,
+                3,
+                3,
+                2
+              ],
+              [
+                2,
+                3,
+                3,
+                3
+              ],
+              [
+                3,
+                3,
+                3,
+                2
+              ]
+            ],
+            "orders": [
+              {
+                "0": 4,
+                "1": 3
+              },
+              {
+                "2": 8,
+                "3": 5
+              },
+              {
+                "0": 4,
+                "1": 4,
+                "3": 4
+              }
+            ],
+            "stream": [
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "goal": {
+              "2": 8,
+              "3": 5
+            }
+          },
+          "cursor": 4,
+          "delivered": [
+            0,
+            0,
+            8,
+            4
+          ],
+          "phase": "playing",
+          "orderIndex": 1
+        }
+      },
+      "remaining": [
+        [
+          "place",
+          1
+        ],
+        [
+          "extract",
+          5,
+          3
+        ],
+        [
+          "pour",
+          1,
+          0
+        ],
+        [
+          "pour",
+          4,
+          1
+        ],
+        [
+          "place",
+          4
+        ],
+        [
+          "pour",
+          4,
+          0
+        ],
+        [
+          "place",
+          4
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          0
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          1
+        ],
+        [
+          "pour",
+          4,
+          2
+        ],
+        [
+          "place",
+          1
+        ],
+        [
+          "pour",
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "finished-67",
+      "stage": 67,
+      "raw": "{\"schema\":2,\"revision\":29,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-chain-067\",\"attemptId\":\"legacy-67\",\"practice\":true,\"events\":[[\"extract\",1,0],[\"place\",1],[\"pour\",1,0],[\"extract\",1,0],[\"pour\",0,1],[\"extract\",1,1],[\"pour\",3,0],[\"pour\",2,1],[\"pour\",5,2],[\"pour\",4,3],[\"place\",0],[\"place\",2],[\"pour\",2,0],[\"place\",1],[\"extract\",5,3],[\"pour\",1,0],[\"pour\",4,1],[\"place\",4],[\"pour\",4,0],[\"place\",4],[\"place\",2],[\"pour\",2,0],[\"place\",2],[\"pour\",2,1],[\"pour\",4,2],[\"place\",1],[\"pour\",1,0]],\"elapsedMs\":16345.625,\"runningAt\":null},\"records\":{},\"cleared\":{\"delivery-chain-067\":true}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-067",
+        "rules": {
+          "bottles": 6,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 6
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [],
+          [
+            3,
+            2
+          ],
+          [],
+          [],
+          [
+            2,
+            2,
+            3
+          ],
+          []
+        ],
+        "turn": 9,
+        "piece": [
+          0,
+          3
+        ],
+        "score": 800,
+        "streak": 2,
+        "maxStreak": 2,
+        "turnClears": 1,
+        "clears": 6,
+        "turnLog": [
+          2,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": true,
+        "overReason": "delivery-win",
+        "stuck": null,
+        "comboPts": 300,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                2,
+                1
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                2,
+                0
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": null,
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-067",
+            "title": "작업 병과 다음 빨강",
+            "colors": 4,
+            "bottles": [
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                2,
+                2,
+                3
+              ],
+              [
+                3,
+                3,
+                3,
+                2
+              ],
+              [
+                2,
+                3,
+                3,
+                3
+              ],
+              [
+                3,
+                3,
+                3,
+                2
+              ]
+            ],
+            "orders": [
+              {
+                "0": 4,
+                "1": 3
+              },
+              {
+                "2": 8,
+                "3": 5
+              },
+              {
+                "0": 4,
+                "1": 4,
+                "3": 4
+              }
+            ],
+            "stream": [
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "goal": {
+              "0": 4,
+              "1": 4,
+              "3": 4
+            }
+          },
+          "cursor": 10,
+          "delivered": [
+            4,
+            4,
+            0,
+            4
+          ],
+          "phase": "won",
+          "orderIndex": 2
+        }
+      },
+      "remaining": []
+    },
+    {
+      "name": "active-68",
+      "stage": 68,
+      "raw": "{\"schema\":2,\"revision\":18,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":false,\"completed\":false},\"active\":{\"stageId\":\"delivery-chain-068\",\"attemptId\":\"legacy-68\",\"practice\":true,\"events\":[[\"hold\"],[\"place\",0],[\"pour\",1,0],[\"pour\",2,1],[\"pour\",3,0],[\"pour\",4,3],[\"pour\",2,4],[\"hold\"],[\"pour\",6,0],[\"pour\",6,1],[\"pour\",5,6],[\"pour\",5,0],[\"pour\",5,1],[\"pour\",0,5],[\"flip\"],[\"pour\",6,0]],\"elapsedMs\":12345.625,\"runningAt\":10000},\"records\":{},\"cleared\":{}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-068",
+        "rules": {
+          "bottles": 7,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 7
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [],
+          [],
+          [],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3
+          ]
+        ],
+        "turn": 1,
+        "piece": [
+          2,
+          3
+        ],
+        "score": 500,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 5,
+        "clears": 5,
+        "turnLog": [],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 12,
+        "over": false,
+        "overReason": null,
+        "stuck": null,
+        "comboPts": 500,
+        "undoUsed": 0,
+        "flipsPlaced": 0,
+        "flipped": true,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                1,
+                2
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                3
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": {
+          "piece": [
+            2,
+            1
+          ],
+          "intro": -1,
+          "flipped": false
+        },
+        "holdUsed": true,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-068",
+            "title": "주문을 넘길 때와 비울 때",
+            "colors": 4,
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                3,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                3,
+                3
+              ],
+              [
+                1,
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                2,
+                3,
+                1
+              ]
+            ],
+            "orders": [
+              {
+                "0": 4,
+                "1": 4
+              },
+              {
+                "0": 2,
+                "2": 6,
+                "3": 4
+              },
+              {
+                "0": 2,
+                "1": 4,
+                "3": 4
+              }
+            ],
+            "stream": [
+              [
+                3,
+                2
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "goal": {
+              "0": 2,
+              "2": 6,
+              "3": 4
+            }
+          },
+          "cursor": 3,
+          "delivered": [
+            0,
+            0,
+            6,
+            4
+          ],
+          "phase": "playing",
+          "orderIndex": 1
+        }
+      },
+      "remaining": [
+        [
+          "pour",
+          1,
+          6
+        ],
+        [
+          "place",
+          0
+        ],
+        [
+          "place",
+          1
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          3
+        ],
+        [
+          "extract",
+          2,
+          0
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "place",
+          1
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          4
+        ],
+        [
+          "extract",
+          4,
+          0
+        ],
+        [
+          "pour",
+          2,
+          5
+        ],
+        [
+          "pour",
+          3,
+          6
+        ],
+        [
+          "pour",
+          1,
+          3
+        ],
+        [
+          "place",
+          2
+        ],
+        [
+          "pour",
+          2,
+          3
+        ],
+        [
+          "extract",
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "finished-68",
+      "stage": 68,
+      "raw": "{\"schema\":2,\"revision\":35,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":false,\"extracted\":true,\"completed\":false},\"active\":{\"stageId\":\"delivery-chain-068\",\"attemptId\":\"legacy-68\",\"practice\":true,\"events\":[[\"hold\"],[\"place\",0],[\"pour\",1,0],[\"pour\",2,1],[\"pour\",3,0],[\"pour\",4,3],[\"pour\",2,4],[\"hold\"],[\"pour\",6,0],[\"pour\",6,1],[\"pour\",5,6],[\"pour\",5,0],[\"pour\",5,1],[\"pour\",0,5],[\"flip\"],[\"pour\",6,0],[\"pour\",1,6],[\"place\",0],[\"place\",1],[\"place\",2],[\"pour\",2,3],[\"extract\",2,0],[\"place\",2],[\"place\",1],[\"place\",2],[\"pour\",2,4],[\"extract\",4,0],[\"pour\",2,5],[\"pour\",3,6],[\"pour\",1,3],[\"place\",2],[\"pour\",2,3],[\"extract\",3,0]],\"elapsedMs\":16345.625,\"runningAt\":null},\"records\":{},\"cleared\":{\"delivery-chain-068\":true}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-068",
+        "rules": {
+          "bottles": 7,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 7
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            2,
+            2,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [],
+          [],
+          [],
+          []
+        ],
+        "turn": 8,
+        "piece": [
+          2,
+          1
+        ],
+        "score": 700,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 0,
+        "clears": 7,
+        "turnLog": [
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": true,
+        "overReason": "delivery-win",
+        "stuck": null,
+        "comboPts": 200,
+        "undoUsed": 0,
+        "flipsPlaced": 1,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                3,
+                2
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": {
+          "piece": [
+            2,
+            1
+          ],
+          "intro": -1,
+          "flipped": false
+        },
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-068",
+            "title": "주문을 넘길 때와 비울 때",
+            "colors": 4,
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                3,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                3,
+                3
+              ],
+              [
+                1,
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                2,
+                3,
+                1
+              ]
+            ],
+            "orders": [
+              {
+                "0": 4,
+                "1": 4
+              },
+              {
+                "0": 2,
+                "2": 6,
+                "3": 4
+              },
+              {
+                "0": 2,
+                "1": 4,
+                "3": 4
+              }
+            ],
+            "stream": [
+              [
+                3,
+                2
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "goal": {
+              "0": 2,
+              "1": 4,
+              "3": 4
+            }
+          },
+          "cursor": 10,
+          "delivered": [
+            2,
+            4,
+            0,
+            4
+          ],
+          "phase": "won",
+          "orderIndex": 2
+        }
+      },
+      "remaining": []
+    },
+    {
+      "name": "all-68-cleared",
+      "stage": 68,
+      "raw": "{\"schema\":2,\"revision\":541,\"packHash\":\"973e676d8c43122ef0cef03f144e20edfea2f2a2adb44ebe6f0fff0de7f1250d\",\"learning\":{\"offered\":true,\"extracted\":true,\"completed\":true},\"active\":{\"stageId\":\"delivery-chain-068\",\"attemptId\":\"legacy-all\",\"practice\":true,\"events\":[[\"hold\"],[\"place\",0],[\"pour\",1,0],[\"pour\",2,1],[\"pour\",3,0],[\"pour\",4,3],[\"pour\",2,4],[\"hold\"],[\"pour\",6,0],[\"pour\",6,1],[\"pour\",5,6],[\"pour\",5,0],[\"pour\",5,1],[\"pour\",0,5],[\"flip\"],[\"pour\",6,0],[\"pour\",1,6],[\"place\",0],[\"place\",1],[\"place\",2],[\"pour\",2,3],[\"extract\",2,0],[\"place\",2],[\"place\",1],[\"place\",2],[\"pour\",2,4],[\"extract\",4,0],[\"pour\",2,5],[\"pour\",3,6],[\"pour\",1,3],[\"place\",2],[\"pour\",2,3],[\"extract\",3,0]],\"elapsedMs\":12345.625,\"runningAt\":null},\"records\":{\"delivery-01-a\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-2\"},\"delivery-01-b\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-3\"},\"delivery-01-c\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-4\"},\"delivery-60-013\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-14\"},\"delivery-60-014\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-15\"},\"delivery-60-015\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-16\"},\"delivery-60-016\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-17\"},\"delivery-60-017\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-18\"},\"delivery-60-018\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-19\"},\"delivery-60-019\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-20\"},\"delivery-60-020\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-21\"},\"delivery-60-021\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-22\"},\"delivery-60-022\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-23\"},\"delivery-60-023\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-24\"},\"delivery-60-024\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-25\"},\"delivery-60-025\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-26\"},\"delivery-60-026\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-27\"},\"delivery-60-027\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-28\"},\"delivery-60-028\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-29\"},\"delivery-60-029\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-30\"},\"delivery-60-030\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-31\"},\"delivery-60-031\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-32\"},\"delivery-60-032\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-33\"},\"delivery-60-033\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-34\"},\"delivery-60-034\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-35\"},\"delivery-60-035\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-36\"},\"delivery-60-036\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-37\"},\"delivery-60-037\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-38\"},\"delivery-60-038\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-39\"},\"delivery-60-039\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-40\"},\"delivery-60-040\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-41\"},\"delivery-60-041\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-42\"},\"delivery-60-042\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-43\"},\"delivery-60-043\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-44\"},\"delivery-60-044\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-45\"},\"delivery-60-045\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-46\"},\"delivery-60-046\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-47\"},\"delivery-60-047\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-48\"},\"delivery-60-048\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-49\"},\"delivery-60-049\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-50\"},\"delivery-60-050\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-51\"},\"delivery-60-051\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-52\"},\"delivery-60-052\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-53\"},\"delivery-60-053\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-54\"},\"delivery-60-054\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-55\"},\"delivery-60-055\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-56\"},\"delivery-60-056\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-57\"},\"delivery-60-057\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-58\"},\"delivery-60-058\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-59\"},\"delivery-60-059\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-60\"},\"delivery-60-060\":{\"bestMs\":1000,\"stars\":3,\"attemptId\":\"t93-attempt-61\"}},\"cleared\":{\"delivery-01-a\":true,\"delivery-01-b\":true,\"delivery-01-c\":true,\"delivery-02-d\":true,\"delivery-02-e\":true,\"delivery-60-006\":true,\"delivery-60-007\":true,\"delivery-60-008\":true,\"delivery-60-009\":true,\"delivery-60-010\":true,\"delivery-60-011\":true,\"delivery-60-012\":true,\"delivery-60-013\":true,\"delivery-60-014\":true,\"delivery-60-015\":true,\"delivery-60-016\":true,\"delivery-60-017\":true,\"delivery-60-018\":true,\"delivery-60-019\":true,\"delivery-60-020\":true,\"delivery-60-021\":true,\"delivery-60-022\":true,\"delivery-60-023\":true,\"delivery-60-024\":true,\"delivery-60-025\":true,\"delivery-60-026\":true,\"delivery-60-027\":true,\"delivery-60-028\":true,\"delivery-60-029\":true,\"delivery-60-030\":true,\"delivery-60-031\":true,\"delivery-60-032\":true,\"delivery-60-033\":true,\"delivery-60-034\":true,\"delivery-60-035\":true,\"delivery-60-036\":true,\"delivery-60-037\":true,\"delivery-60-038\":true,\"delivery-60-039\":true,\"delivery-60-040\":true,\"delivery-60-041\":true,\"delivery-60-042\":true,\"delivery-60-043\":true,\"delivery-60-044\":true,\"delivery-60-045\":true,\"delivery-60-046\":true,\"delivery-60-047\":true,\"delivery-60-048\":true,\"delivery-60-049\":true,\"delivery-60-050\":true,\"delivery-60-051\":true,\"delivery-60-052\":true,\"delivery-60-053\":true,\"delivery-60-054\":true,\"delivery-60-055\":true,\"delivery-60-056\":true,\"delivery-60-057\":true,\"delivery-60-058\":true,\"delivery-60-059\":true,\"delivery-60-060\":true,\"delivery-late-061\":true,\"delivery-late-062\":true,\"delivery-late-063\":true,\"delivery-late-064\":true,\"delivery-late-065\":true,\"delivery-chain-066\":true,\"delivery-chain-067\":true,\"delivery-chain-068\":true}}",
+      "state": {
+        "v": 1,
+        "mode": "delivery",
+        "seed": "delivery-chain-068",
+        "rules": {
+          "bottles": 7,
+          "cap": 4,
+          "startColors": 4,
+          "maxColors": 4,
+          "colorEvery": 0,
+          "pieceMin": 1,
+          "pieceMax": 2,
+          "preview": 2,
+          "pourLimit": 0,
+          "autoMerge": false,
+          "comboPlace": true,
+          "flip": true,
+          "flipLimit": 2,
+          "zones": false,
+          "zoneBonus": 20,
+          "zoneMulMax": 5,
+          "zoneTwin": false,
+          "zoneTwinSize": 1,
+          "spare": false,
+          "spareCap": 1,
+          "spareTurns": 20,
+          "spareFrom": 15,
+          "spareMaxEmpty": 0,
+          "spareMaxFree": 7,
+          "spareSticky": true,
+          "expansion": 1,
+          "growthTable": [
+            {
+              "score": 0,
+              "colors": 4,
+              "bottles": 7
+            }
+          ],
+          "tailDoublePct": 90,
+          "holdVersion": 1,
+          "holdBottles": 7
+        },
+        "bottles": [
+          [
+            2,
+            2,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [],
+          [],
+          [],
+          []
+        ],
+        "turn": 8,
+        "piece": [
+          2,
+          1
+        ],
+        "score": 700,
+        "streak": 1,
+        "maxStreak": 1,
+        "turnClears": 0,
+        "clears": 7,
+        "turnLog": [
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "undoLeft": 3,
+        "reviveUsed": false,
+        "pours": 1,
+        "over": true,
+        "overReason": "delivery-win",
+        "stuck": null,
+        "comboPts": 200,
+        "undoUsed": 0,
+        "flipsPlaced": 1,
+        "flipped": false,
+        "zoneBonusTotal": 0,
+        "zoneLog": [],
+        "spare": null,
+        "spareUsed": false,
+        "spareOffer": false,
+        "spareArmTurn": -1,
+        "spareTurn": -1,
+        "spareIn": 0,
+        "growth": {
+          "activeColors": 4,
+          "generation": 0,
+          "queue": [
+            {
+              "piece": [
+                3,
+                2
+              ],
+              "intro": -1
+            },
+            {
+              "piece": [
+                0,
+                1
+              ],
+              "intro": -1
+            }
+          ],
+          "pendingIntro": [],
+          "pieceIntro": -1,
+          "log": []
+        },
+        "hold": {
+          "piece": [
+            2,
+            1
+          ],
+          "intro": -1,
+          "flipped": false
+        },
+        "holdUsed": false,
+        "delivery": {
+          "content": {
+            "contentVersion": "continuous-orders-1",
+            "rulesVersion": "delivery-v1",
+            "practiceOnly": true,
+            "id": "delivery-chain-068",
+            "title": "주문을 넘길 때와 비울 때",
+            "colors": 4,
+            "bottles": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                3,
+                2,
+                2
+              ],
+              [
+                2,
+                2,
+                3,
+                3
+              ],
+              [
+                1,
+                3,
+                1,
+                2
+              ],
+              [
+                3,
+                2,
+                3,
+                1
+              ]
+            ],
+            "orders": [
+              {
+                "0": 4,
+                "1": 4
+              },
+              {
+                "0": 2,
+                "2": 6,
+                "3": 4
+              },
+              {
+                "0": 2,
+                "1": 4,
+                "3": 4
+              }
+            ],
+            "stream": [
+              [
+                3,
+                2
+              ],
+              [
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "goal": {
+              "0": 2,
+              "1": 4,
+              "3": 4
+            }
+          },
+          "cursor": 10,
+          "delivered": [
+            2,
+            4,
+            0,
+            4
+          ],
+          "phase": "won",
+          "orderIndex": 2
+        }
+      },
+      "remaining": []
+    }
+  ]
+}

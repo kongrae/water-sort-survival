@@ -84,18 +84,18 @@
   function deliveryChoiceKind() {
     return !isDelivery(S)?null:S.delivery.content.id==='delivery-late-064'?'F':S.delivery.content.id==='delivery-late-065'?'H':null;
   }
-  const deliveryChainPractice = '누적 시간·클리어·진행 중인 한 판을 저장해요. 별점·최고 시간은 기록하지 않아요.';
+  const deliveryTimePolicy = '플레이 시간으로 별점을 기록해요. 안내·일시정지·앱 이탈 중에는 시간이 멈춰요.';
+  const deliveryLegacyTiming = '이전 진행에는 전체 시간 기록이 없어 클리어만 저장해요. 다음 도전부터 별점·최고 시간을 기록해요.';
   const deliveryLateNotes = {
     'delivery-chain-066':'받는 병을 고를 때 다음 주문의 파랑도 살펴보세요.',
     'delivery-chain-067':'현재 주문과 다음 조각을 함께 살펴보세요.',
     'delivery-chain-068':'4칸 완성은 지금 주문에만 반영돼요. 다음 주문도 확인하세요.',
-    'delivery-late-064': '64~65판은 도구와 공간 선택을 바꾸는 별점 없는 도전이에요.',
+    'delivery-late-064': '뒤집기와 빈 공간을 함께 살펴보세요.',
     'delivery-late-065': '지금·다음 조각과 비울 자리를 살펴보세요.',
     'delivery-late-061': '세 주문을 확인하고, 비울 병과 이어 모을 병을 함께 살펴보세요.',
     'delivery-late-062': '섞인 조각을 나눌 병과 같은 색을 받을 병을 구분하세요.',
     'delivery-late-063': '앞 두 판보다 긴 판이에요. 주문을 끝낸 색도 공간을 차지해요. 다음 빨강·노랑을 받을 재료를 살펴보세요.'
   };
-  const deliveryLatePractice = '클리어와 이어하기는 저장해요. 재도전해도 별점·최고 시간은 기록하지 않아요.';
   function deliveryStageNote(c) {
     return deliveryLateNotes[c.id] ? tr(deliveryLateNotes[c.id]) : '';
   }
@@ -114,18 +114,16 @@
     const saved=deliveryProgress.snapshot(),journey=deliveryProgress.journey(),c=deliveryStages[index],record=saved.envelope.records[c.id];
     const active=journey.activeIndex===index,cleared=!!saved.envelope.cleared[c.id];
     $('deliveryPreviewLabel').textContent=tr(active?'진행 중':cleared?'클리어':'도전 가능');
-    const practice=c.practiceOnly||(active?saved.envelope.active.practice:index===0&&prefs.staged&&!saved.envelope.learning.offered);
-    $('deliveryPreviewMode').textContent=tr(c.practiceOnly?'별점 없음':practice?'조작 익히기':'별점 도전');
+    const practice=active&&saved.envelope.active.practice,thresholds=deliveryProgress.thresholds(c.id);
+    $('deliveryPreviewMode').textContent=tr(practice?'이전 진행 이어하기':'별점 도전');
     $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1)+' · '+tr(c.title);
     deliveryGoals($('deliveryPreviewGoals'),active?saved.state.delivery.content:c,active?saved.state.delivery.delivered:null);
     $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):tr('주문 색을 모아 탱크를 채우세요.');
     $('deliveryPreviewDetails').textContent=tr('주문 {0}색 · 병 {1}개',Object.keys(c.goal).length,c.bottles.length);
     $('deliveryPreviewNotice').textContent=deliveryStageNote(c);
     $('deliveryPreviewNotice').hidden=!deliveryLateNotes[c.id];
-    $('deliveryPreviewTiming').textContent=practice?tr('처음에는 시간·별점 없이 조작을 익혀요. 다음 도전부터 기록해요.'):
-      tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
-    if(c.practiceOnly)$('deliveryPreviewTiming').textContent=tr('이 스테이지는 클리어와 진행을 저장하며 별점은 기록하지 않아요.');
-    if(deliveryLateNotes[c.id])$('deliveryPreviewTiming').textContent=tr(c.orders?deliveryChainPractice:deliveryLatePractice);
+    $('deliveryPreviewTiming').textContent=practice?tr(deliveryLegacyTiming):(c.orders?tr('누적 시간 기준')+' · ':'')+
+      tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(thresholds[0]),deliveryTimeText(thresholds[1]));
     $('deliveryStageStart').textContent=tr(active?'스테이지 {0} 이어하기':cleared?'스테이지 {0} 다시 도전':'스테이지 {0} 시작',index+1);
     $('deliveryStageStart').disabled=!!saved.issue;
     $('deliveryReplaceNote').hidden=journey.activeIndex<0||active;
@@ -320,10 +318,10 @@
     deliveryClock.setRunning(!blocked && !S.over && timed);
     saveDeliveryTime(!blocked && !S.over && timed);
     if(deliveryProgress.status().issue)showDeliveryStorage();
-    const elapsed = deliveryClock.sample(), thresholds = S.delivery.content.starMs;
+    const elapsed = deliveryClock.sample(), thresholds = deliveryProgress.thresholds(S.delivery.content.id);
     if(isChainDelivery(S)){renderDeliveryChainSummary();return;}
     if (deliveryPractice) {
-      $('deliveryTime').textContent=tr(S.delivery.content.practiceOnly?'별점 없음 · 클리어 저장':'조작 익히기 · 시간·별점 기록 없음');
+      $('deliveryTime').textContent=tr('이전 진행 · 다음 도전부터 별점 기록');
       return;
     }
     const stars = deliveryStars(elapsed,thresholds);
@@ -440,20 +438,20 @@
     if(deliveryProgress.status().issue){showDeliveryStorage();return;}
     $('deliveryResultChange').textContent=deliveryConsequenceText();
     $('deliveryResultChange').hidden=!$('deliveryResultChange').textContent;
-    const won=S.delivery.phase==='won', elapsed=deliveryClock.finish(), c=S.delivery.content;
+    const won=S.delivery.phase==='won', elapsed=deliveryClock.finish(), c=S.delivery.content,thresholds=deliveryProgress.thresholds(c.id);
     const record=deliveryProgress.snapshot().envelope.records[c.id];
     const journey=deliveryProgress.journey(deliveryIndex);deliveryNextIndex=journey.nextIndex;
     $('deliveryResultMark').hidden=!won;
     $('deliveryResultTitle').textContent=won?tr('스테이지 {0} 클리어!',deliveryIndex+1):tr('다시 준비해 보세요');
     $('deliveryResultStars').hidden=!won||deliveryPractice;
-    $('deliveryResultStars').textContent=won&&!deliveryPractice?'★'.repeat(deliveryStars(elapsed,c.starMs)):'';
-    $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,c.starMs)):tr('클리어'));
-    $('deliveryResultText').textContent=!won?tr('더 움직일 수 있는 병이 없어요.'):c.practiceOnly?tr('클리어 저장 완료 · 별점 없음'):deliveryPractice?tr('조작 익히기 완료 · 클리어 저장 완료'):
-      tr('이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs));
+    $('deliveryResultStars').textContent=won&&!deliveryPractice?'★'.repeat(deliveryStars(elapsed,thresholds)):'';
+    $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,thresholds)):tr('클리어'));
+    $('deliveryResultText').textContent=!won?tr('더 움직일 수 있는 병이 없어요.'):deliveryPractice?tr('클리어 저장 완료 · 다음 도전부터 별점 기록'):
+      tr(isChainDelivery(S)?'누적 플레이 {0} · 최고 {1}':'이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs));
     $('deliveryResultGoal').textContent=Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+S.delivery.delivered[color]+'/'+n).join(' · ');
-    $('deliveryResultTarget').textContent=deliveryPractice?'':tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(c.starMs[0]),deliveryTimeText(c.starMs[1]));
+    $('deliveryResultTarget').textContent=deliveryPractice?'':tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(thresholds[0]),deliveryTimeText(thresholds[1]));
     $('deliveryResultTarget').hidden=deliveryPractice;
-    $('deliveryRetry').textContent=tr(deliveryPractice&&!c.practiceOnly?'별점 도전':'다시 도전');
+    $('deliveryRetry').textContent=tr(deliveryPractice?'별점 도전':'다시 도전');
     $('deliveryRetry').classList.toggle('primary',!won);
     $('deliveryNext').hidden=!won;
     $('deliveryResultList').hidden=won&&deliveryNextIndex<0;
@@ -472,7 +470,7 @@
     const chain=isChainDelivery(S);app.classList.toggle('delivery-chain',chain);
     $('deliveryNextOrder').hidden=!chain;
     $('cloudStatus').hidden=chain;$('routeCloudScope').hidden=chain;
-    $('deliveryCloudScope').textContent=chain?tr(deliveryChainPractice)+' '+tr('이 주소의 이 브라우저에만 저장해요. 다른 기기·주소와 동기화하지 않아요.'):tr('납품 진행·별점·최고 시간은 이 브라우저에만 저장하며 구글 계정과 동기화하지 않아요.');
+    $('deliveryCloudScope').textContent=tr('납품 진행·별점·최고 시간은 이 브라우저에만 저장하며 구글 계정과 동기화하지 않아요.');
     app.classList.toggle('delivery-six',active && S.bottles.length === 6);
     app.classList.toggle('delivery-choice',!!deliveryChoiceKind());
     app.classList.toggle('delivery-choice-h',deliveryChoiceKind()==='H'||chain&&S.bottles.length===7);
@@ -528,7 +526,7 @@
     $('deliveryPauseHelpToggle').setAttribute('aria-expanded','false');
     $('deliveryPauseCore').hidden=!choice || $('deliveryResume').dataset.fresh!=='1' || deliveryProgress.journey().count>0;
     $('deliveryPauseBrief').hidden=!choice;
-    $('deliveryPauseBrief').textContent=tr(isChainDelivery(S)?'누적 시간·진행 저장 · 별점 없음':'진행 저장 · 별점·시간 기록 없음');
+    $('deliveryPauseBrief').textContent=tr(deliveryPractice?'이전 진행 · 다음 도전부터 별점 기록':'진행·별점·최고 시간 저장');
     $('deliveryOpeningFacts').textContent=deliveryOpeningFacts();
     $('deliveryOpeningFacts').hidden=!$('deliveryOpeningFacts').textContent;
     $('deliveryAllGoals').hidden=!deliveryChoiceKind();
@@ -541,10 +539,8 @@
     $('deliveryControlHint').textContent=ctl()==='tapPlace' ?
       tr('탱크로 끌어 제출 · 길게 누르거나 Shift+Enter로 병 선택') :
       tr('병 → 같은 색 탱크 · 드래그로도 보낼 수 있어요.');
-    $('deliveryTimingHint').textContent=deliveryStages[deliveryIndex].practiceOnly ? tr('이 스테이지는 클리어와 진행을 저장하며 별점은 기록하지 않아요.') : deliveryPractice ? tr('처음에는 시간·별점 없이 조작을 익혀요. 다음 도전부터 기록해요.') :
-      tr('시작하면 생각하는 시간도 흘러요. 늦어도 완료하면 1별이에요.');
-    if(deliveryLateNotes[deliveryStages[deliveryIndex].id])$('deliveryTimingHint').textContent=tr(deliveryLatePractice);
-    if(isChainDelivery(S))$('deliveryTimingHint').textContent=tr('생각하는 시간도 포함해요. 안내·일시정지·앱 이탈 중에는 멈추고, 계속하기를 누르면 다시 흘러요.')+' '+tr(deliveryChainPractice);
+    $('deliveryTimingHint').textContent=tr(deliveryPractice?deliveryLegacyTiming:deliveryTimePolicy);
+    if(isChainDelivery(S)&&!deliveryPractice)$('deliveryTimingHint').textContent+=' '+tr('모든 주문의 플레이 시간을 합산해 별점을 기록해요.');
   }
   // A fresh tap on a tank must work even during the source bottle's click cooldown.
   // A drag release has no tank pointerdown, so its compatibility click cannot submit twice.
@@ -609,8 +605,9 @@
     const c=S.delivery.content,i=S.delivery.orderIndex,next=c.orders[i+1],elapsed=deliveryTimeText(deliveryClock.sample());
     $('deliveryNextOrder').textContent=next?tr('다음 주문 · {0}',Object.entries(next).map(([color,n])=>colorName(+color)+' '+n).join(' · ')):tr('마지막 주문 · 모두 채우면 클리어');
     $('deliveryNextOrder').hidden=false;
-    $('deliveryTime').textContent=tr('주문 {0}/{1} · 누적 플레이 {2} · 별점 없음',i+1,c.orders.length,elapsed);
-    if(S.over&&!$('ovDeliveryResult').hidden)$('deliveryResultText').textContent=tr(S.delivery.phase==='won'?'누적 플레이 {0} · 클리어 저장 · 별점 없음':'누적 플레이 {0} · 별점 없음',elapsed);
+    const thresholds=deliveryProgress.thresholds(c.id),stars=deliveryStars(deliveryClock.sample(),thresholds);
+    $('deliveryTime').textContent=tr('주문 {0}/{1} · 누적 {2}',i+1,c.orders.length,elapsed)+' · '+
+      (deliveryPractice?tr('이전 진행 · 다음 도전부터 별점 기록'):stars===1?tr('완료하면 1별'):tr('{0}별 기준 {1}',stars,deliveryTimeText(thresholds[stars===3?0:1])));
   }
   function recordDeliveryChainConsequence(action){
     if(!action||!history.length)return;
