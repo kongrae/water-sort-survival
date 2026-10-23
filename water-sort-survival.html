@@ -193,8 +193,7 @@ body {
 .layer.join-below::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background-color: var(--lc); background-image: var(--water-depth); pointer-events: none; }
 .layer:last-child::before { content: ""; height: 5px; box-shadow: 0 -1px 0 rgba(255,255,255,.22); }
 .layer:first-child { border-radius: 5px 5px calc(15px * var(--tube-k)) calc(15px * var(--tube-k)); }
-.layer.ghostL { opacity: .4; }
-.layer.leaving { opacity: .5; }
+.layer.leaving { opacity: 1; }
 .free { margin-top: 5px; text-align: center; font-size: 12px; color: var(--free-ink); font-variant-numeric: tabular-nums; }
 /* Selection stays in place: only the glass edge and light change. */
 :root { --receive-ink: #087568; --receive-soft: #08756824; --receive-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2v11m-4-4 4 4 4-4' fill='none' stroke='%23087568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
@@ -1166,7 +1165,6 @@ body{padding:max(10px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset
 :root[data-skin="lab"] .tube .layer.join-below::after{display:none}
 :root[data-skin="lab"] .tube .layer:last-child{border-radius:50% 50% 0 0 / 5px 5px 0 0}
 :root[data-skin="lab"] .tube .layer:first-child{border-bottom-left-radius:12%;border-bottom-right-radius:12%}
-:root[data-skin="lab"] .tube .ghostL{opacity:.4}
 :root[data-skin="lab"] .tube.sel>.rim{filter:drop-shadow(0 0 1px #087bf0) drop-shadow(0 0 5px #087bf070)}
 :root[data-skin="lab"] .tube.sel>.glass{outline:2px solid #087bf0;outline-offset:-2px;--glass-ring:0 0 0 2px #087bf055}
 :root[data-skin="lab"] .tube.can>.glass{outline:2px dashed var(--receive-ink);outline-offset:-2px;--glass-ring:0 0 0 2px var(--receive-soft)}
@@ -1197,7 +1195,7 @@ body{padding:max(10px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset
 :root[data-skin="lab"] #rack>.tube{filter:none}
 :root[data-skin="lab"] #rack>.tube::after{content:'';position:absolute;top:calc(var(--bottle-height) * .92);left:-18%;width:112%;height:clamp(14px,calc(var(--bottle-height) * .14),26px);border-radius:50%;background:radial-gradient(ellipse 30% 16% at 63% 16%,#15364f85,transparent 100%),radial-gradient(ellipse 38% 42% at 48% 42%,color-mix(in srgb,var(--floor-color) 34%,transparent),transparent 100%),radial-gradient(ellipse 48% 42% at 44% 48%,#59758b2b,transparent 100%);transform:rotate(-12deg) skewX(-24deg);transform-origin:70% 0;filter:blur(1.5px);pointer-events:none;z-index:-1}
 :root[data-skin="lab"] #rack>.tube{isolation:isolate}
-:root[data-skin="lab"] #rack>.tube:has(>.glass:empty)::after{opacity:.65}
+:root[data-skin="lab"] #rack>.tube:not(:has(>.glass>.layer:not(.ghostL)))::after{opacity:.65}
 :root[data-skin="lab"] .tube.mini>.glass::after,:root[data-skin="lab"] .tube.micro>.glass::after{display:block}
 :root[data-skin="lab"] #deliveryOrders .delivery-liquid>.glass{overflow:hidden;clip-path:none}
 /* Keep tank fill based on delivered/required, with a continuous measured fill. */
@@ -1205,19 +1203,25 @@ body{padding:max(10px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset
 :root[data-skin="lab"] #deliveryOrders .delivery-liquid .layer{box-shadow:none}
 /* CRYSTAL_REFINEMENT_END */
 
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="0"]:first-child){--floor-color:var(--liq0)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="1"]:first-child){--floor-color:var(--liq1)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="2"]:first-child){--floor-color:var(--liq2)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="3"]:first-child){--floor-color:var(--liq3)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="4"]:first-child){--floor-color:var(--liq4)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="5"]:first-child){--floor-color:var(--liq5)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="6"]:first-child){--floor-color:var(--liq6)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="7"]:first-child){--floor-color:var(--liq7)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="8"]:first-child){--floor-color:var(--liq8)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="9"]:first-child){--floor-color:var(--liq9)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="10"]:first-child){--floor-color:var(--liq10)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="11"]:first-child){--floor-color:var(--liq11)}
-:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="12"]:first-child){--floor-color:var(--liq12)}
+/* Incoming cells are a flat forecast, never another translucent liquid surface. */
+.tube .glass>.layer.ghostL,:root[data-skin="lab"] .tube .glass>.layer.ghostL{--preview-ink:color-mix(in srgb,var(--lc) 76%,#18394d);opacity:1;background:repeating-linear-gradient(135deg,transparent 0 5px,color-mix(in srgb,var(--preview-ink) 68%,transparent) 5px 7px,transparent 7px 10px);border-radius:0;box-shadow:none;color:var(--ink);text-shadow:none}
+:root[data-skin="deep"] .tube .glass>.layer.ghostL{--preview-ink:color-mix(in srgb,var(--lc) 60%,#e9ffff)}
+.tube .glass>.layer.ghostL::before,:root[data-skin="lab"] .tube .glass>.layer.ghostL::before{display:block;content:'';left:0;right:0;top:0;height:0;border:0;border-top:1px dashed var(--preview-ink);border-radius:0;background:none;box-shadow:none}
+.tube .glass>.layer.ghostL::after,:root[data-skin="lab"] .tube .glass>.layer.ghostL::after{display:none}
+
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="0"]:not(.ghostL):first-child){--floor-color:var(--liq0)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="1"]:not(.ghostL):first-child){--floor-color:var(--liq1)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="2"]:not(.ghostL):first-child){--floor-color:var(--liq2)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="3"]:not(.ghostL):first-child){--floor-color:var(--liq3)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="4"]:not(.ghostL):first-child){--floor-color:var(--liq4)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="5"]:not(.ghostL):first-child){--floor-color:var(--liq5)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="6"]:not(.ghostL):first-child){--floor-color:var(--liq6)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="7"]:not(.ghostL):first-child){--floor-color:var(--liq7)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="8"]:not(.ghostL):first-child){--floor-color:var(--liq8)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="9"]:not(.ghostL):first-child){--floor-color:var(--liq9)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="10"]:not(.ghostL):first-child){--floor-color:var(--liq10)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="11"]:not(.ghostL):first-child){--floor-color:var(--liq11)}
+:root[data-skin="lab"] #rack>.tube:has(>.glass>.layer[data-color="12"]:not(.ghostL):first-child){--floor-color:var(--liq12)}
 /* CRYSTAL_MATERIAL_END */
 
 </style>
