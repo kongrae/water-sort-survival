@@ -271,9 +271,10 @@ body,.app-screen{background:#eaf3f8 var(--studio) center center / cover no-repea
 .delivery-next-color:has(.color-symbol)::before{display:none}.delivery-next-color .color-symbol{width:14px;height:14px;font-size:10px}
 .app.delivery #rack{background:transparent;border:0;border-radius:0;box-shadow:none;padding:4px 0;column-gap:10px;row-gap:10px}
 .app.delivery.delivery-six #rack[data-bottles="6"]{--board-rows:2;grid-template-columns:repeat(3,minmax(44px,118px))}
-.app.delivery>.status{min-height:20px!important;font-size:11px!important;color:var(--muted);overflow-wrap:anywhere}
-.app.delivery>.status:empty{min-height:0!important;height:0}
-.app.delivery.delivery-coaching>.status{min-height:32px!important;color:var(--ink)}
+/* Reserve the same three-line space for idle, selection and drop feedback.
+   Changing this row's height refits every bottle while the pointer is dragging. */
+.app.delivery>#status{height:48px;min-height:48px!important;max-height:48px;display:block;align-content:safe center;overflow:auto;overscroll-behavior:contain;font-size:11px!important;color:var(--muted);overflow-wrap:anywhere}
+.app.delivery.delivery-coaching>#status{color:var(--ink)}
 .app.delivery>.incoming{background:linear-gradient(90deg,#fff8,#ffffff38);border:0;border-top:1px solid #adbfcdb3;border-bottom:1px solid #adbfcdb3;border-radius:0;padding:10px 8px;box-shadow:0 1px 0 #fff}
 .app.delivery .current-piece{flex:1}.app.delivery .next-pieces{border-left:1px solid #b9ccd8;padding-left:16px}
 .app.delivery .tray-caption,.app.delivery .current-piece .slot>span{font-size:12px;color:var(--ink);font-weight:650}
@@ -433,7 +434,7 @@ body,.app-screen{background:#eaf3f8 var(--studio) center center / cover no-repea
  #deliveryOrders .delivery-order{grid-template-columns:1fr;grid-template-rows:auto;min-height:48px;padding:4px;text-align:center;border-radius:12px}
  #deliveryOrders .delivery-order strong{grid-column:1;align-items:center;gap:0}#deliveryOrders .delivery-liquid{display:none}
  #deliveryOrders .delivery-order-amount{font-size:19px}#deliveryOrders .delivery-order-name{font-size:10px}
- #deliveryHud{gap:5px}#deliveryTime{font-size:11px}#deliveryNextOrder{font-size:10px}.app.delivery>.status{min-height:22px!important;font-size:11px!important}
+ #deliveryHud{gap:5px}#deliveryTime{font-size:11px}#deliveryNextOrder{font-size:10px}
  .app.delivery .actions>.btn{min-height:44px;font-size:11px}.app.delivery .next-pieces{padding-left:7px}
  #ovDeliveryResult .sheet{width:min(720px,100%);padding:12px}#deliveryResultMark{display:none}
  #ovDeliveryResult .delivery-result-body{gap:4px}#deliveryResultTitle{font-size:19px;margin:0}#deliveryResultStars{font-size:34px;margin:0!important;line-height:1.2}
