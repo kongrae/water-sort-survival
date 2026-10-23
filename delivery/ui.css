@@ -358,6 +358,50 @@ body,.app-screen{background:#eaf3f8 var(--studio) center center / cover no-repea
  #deliveryResultMark{height:80px;width:64px}#deliveryResultMark .result-tube{--lh:13px;width:50px}.result-seal{width:24px;height:24px}.result-seal svg{width:18px}
  #ovDeliveryResult .sheet{padding:16px}#deliveryResultStars{font-size:42px}
 }
+
+/* Crystal Studio refinement: readable actions, contextual secondary labels. */
+.app.delivery .actions #btnUndo,.app.delivery .actions #btnNew,.app.delivery .actions #btnMode{
+ display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;justify-content:center;gap:5px;padding:8px 9px;
+ min-height:56px;font-size:14px;line-height:1.2;font-weight:700;color:#123858;
+ background:linear-gradient(#fff,#eff6fa);border:1px solid #fff;box-shadow:0 4px 9px #26496324,inset 0 1px 0 #fff;border-radius:18px;
+ overflow-wrap:anywhere;
+}
+.app.delivery .actions .btn::before{content:'';width:22px;height:22px;background:currentColor;mask:var(--action-icon) center/contain no-repeat;pointer-events:none}
+.app.delivery #btnUndo{--action-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9 4-6 6 6 6M4 10h10a6 6 0 0 1 0 12' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.app.delivery #btnNew{--action-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 8a8 8 0 1 0 1 8M19 2v6h-6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.app.delivery #btnMode{--action-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")}
+.app.delivery .actions #btnUndo:disabled{opacity:.42;box-shadow:none}
+.app.delivery .actions .btn:focus-visible{outline:3px solid #087bf0;outline-offset:2px}
+.app.delivery:not(.delivery-choice) #rack .free{visibility:hidden}
+.app.delivery:not(.delivery-choice) #rack:has(.sel,.can) .free,.app.delivery:not(.delivery-choice) #rack .tube:focus-visible .free,.app.delivery.delivery-coaching #rack .free{visibility:visible}
+.app.delivery #rack .free{font-size:11px;color:#31536c;opacity:1}
+.app.delivery #deliveryTime{font-size:14px;gap:7px;color:#294e6d}
+.app.delivery .delivery-order-step{font-size:13px}
+.app.delivery .delivery-star-limit{font-size:12px}
+.app.delivery #deliveryNextOrder{font-size:13px;color:#31536c}
+.app.delivery .delivery-next-color{font-size:14px}
+.app.delivery .tray-caption,.app.delivery .current-piece .slot>span{font-size:14px;color:#123858;font-weight:700}
+.app.delivery #deliveryOrders .delivery-order-name{font-size:11px;color:#31536c}
+.app.delivery .next-pieces{border-color:#9bb5c8}
+@media(min-height:701px) and (orientation:portrait){
+ .app.delivery .tube.mini{width:66px;--lh:25px}.app.delivery .tube.micro{width:44px;--lh:18px;opacity:1}
+ .app.delivery>.incoming{padding:10px 8px}
+}
+@media(max-width:360px){
+ .app.delivery .actions #btnUndo,.app.delivery .actions #btnNew,.app.delivery .actions #btnMode{grid-template-columns:18px minmax(0,1fr);font-size:12px;padding:7px 5px;gap:3px;min-height:52px}
+ .app.delivery .actions .btn::before{width:18px;height:18px}
+ .app.delivery #deliveryTime{font-size:12px;gap:4px}.app.delivery .delivery-order-step{font-size:12px}
+ .app.delivery #deliveryOrders.delivery-orders-multiple .delivery-order{grid-template-columns:16px minmax(0,1fr);column-gap:3px;padding-inline:3px}
+ .app.delivery #deliveryOrders.delivery-orders-multiple .delivery-liquid{width:16px}
+ .app.delivery #deliveryOrders.delivery-orders-multiple .delivery-order-amount{font-size:20px}
+ .app.delivery #deliveryOrders.delivery-orders-multiple .delivery-order-name{font-size:10px}
+}
+@media(orientation:landscape) and (max-height:500px){
+ .app.delivery .actions #btnUndo,.app.delivery .actions #btnNew,.app.delivery .actions #btnMode{min-height:44px;font-size:12px;padding:5px;grid-template-columns:18px minmax(0,1fr);gap:3px}
+ .app.delivery .actions .btn::before{width:18px;height:18px}
+ .app.delivery #deliveryTime,.app.delivery .delivery-order-step,.app.delivery #deliveryNextOrder{font-size:11px}
+ .app.delivery .tray-caption,.app.delivery .current-piece .slot>span{font-size:12px}
+}
 @media(max-width:360px){
  #ovDeliveryMenu .delivery-stage-preview{padding:12px;gap:7px}#deliveryStageList{gap:8px 6px}#deliveryStageList .delivery-stage-node{min-height:55px;border-radius:16px}
  #deliveryOrders,#deliveryOrders.delivery-orders-multiple{gap:4px}#deliveryTime{gap:4px}.delivery-live-stars{font-size:15px}
