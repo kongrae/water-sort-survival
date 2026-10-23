@@ -116,14 +116,17 @@
     $('deliveryPreviewLabel').textContent=tr(active?'진행 중':cleared?'클리어':'도전 가능');
     const practice=active&&saved.envelope.active.practice,thresholds=deliveryProgress.thresholds(c.id);
     $('deliveryPreviewMode').textContent=tr(practice?'이전 진행 이어하기':'별점 도전');
-    $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1)+' · '+tr(c.title);
+    $('deliveryPreviewTitle').textContent=tr('스테이지 {0}',index+1);
     deliveryGoals($('deliveryPreviewGoals'),active?saved.state.delivery.content:c,active?saved.state.delivery.delivered:null);
-    $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):tr('주문 색을 모아 탱크를 채우세요.');
-    $('deliveryPreviewDetails').textContent=tr('주문 {0}색 · 병 {1}개',Object.keys(c.goal).length,c.bottles.length);
+    $('deliveryPreviewRecord').textContent=record?'★'.repeat(record.stars)+' · '+tr('최고 {0}',deliveryTimeText(record.bestMs)):cleared?'✓ '+tr('클리어'):'';
+    $('deliveryPreviewRecord').hidden=!$('deliveryPreviewRecord').textContent;
+    $('deliveryPreviewMode').hidden=!practice;
+    $('deliveryPreviewDetails').textContent=tr(c.title)+' · '+tr('주문 {0}색 · 병 {1}개',Object.keys(c.goal).length,c.bottles.length);
     $('deliveryPreviewNotice').textContent=deliveryStageNote(c);
     $('deliveryPreviewNotice').hidden=!deliveryLateNotes[c.id];
-    $('deliveryPreviewTiming').textContent=practice?tr(deliveryLegacyTiming):(c.orders?tr('누적 시간 기준')+' · ':'')+
-      tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(thresholds[0]),deliveryTimeText(thresholds[1]));
+    $('deliveryPreviewTiming').textContent=practice?tr(deliveryLegacyTiming):'★★★ '+deliveryTimeText(thresholds[0])+'   ·   ★★ '+deliveryTimeText(thresholds[1]);
+    $('deliveryPreviewTiming').setAttribute('aria-label',practice?tr(deliveryLegacyTiming):(c.orders?tr('누적 시간 기준')+' · ':'')+tr('3별 {0} · 2별 {1} · 완료하면 1별',deliveryTimeText(thresholds[0]),deliveryTimeText(thresholds[1])));
+    $('deliveryPreviewCriteria').textContent=$('deliveryPreviewTiming').getAttribute('aria-label');
     $('deliveryStageStart').textContent=tr(active?'스테이지 {0} 이어하기':cleared?'스테이지 {0} 다시 도전':'스테이지 {0} 시작',index+1);
     $('deliveryStageStart').disabled=!!saved.issue;
     $('deliveryReplaceNote').hidden=journey.activeIndex<0||active;
@@ -144,8 +147,9 @@
       const c=deliveryStages[i],button=document.createElement('button');button.className='delivery-stage-node';button.type='button';button.dataset.stage=i;
       const active=journey.activeIndex===i,record=saved.envelope.records[c.id],cleared=!!saved.envelope.cleared[c.id];
       const number=document.createElement('strong'),status=document.createElement('span');number.textContent=i+1;
-      status.textContent=active?tr('진행 중'):record?'★'.repeat(record.stars):cleared?'✓':i===journey.nextIndex?tr('다음 도전'):'·';
+      status.textContent=active?'▶':record?'★'.repeat(record.stars):cleared?'✓':i===journey.nextIndex?'→':'·';
       button.append(number,status);button.classList.toggle('cleared',cleared);
+      button.classList.toggle('in-progress',active);button.classList.toggle('recommended',i===journey.nextIndex);
       button.setAttribute('aria-label',tr('스테이지 {0}',i+1)+' · '+tr(c.title)+' · '+tr(active?'진행 중':cleared?'클리어':'도전 가능')+(record?' · '+tr('별점 {0}개',record.stars):''));
       button.disabled=!!saved.issue;
       button.addEventListener('click',()=>selectDeliveryPreview(i));$('deliveryStageList').append(button);
@@ -223,7 +227,7 @@
     snapshot(); sel = null;
     const first = deliveryCoachSource() >= 0;
     applyExtract(S,source,color,hooks); deliveryExtractLearned = true;
-    flash = first ? tr('주문 +{0} · 병이 비었어요! 이제 조각을 넣어 보세요.',p.accepted) : deliveryPreviewText(p);
+    flash = first ? tr('주문 +{0} · 병이 비었어요! 이제 조각을 넣어 보세요.',p.accepted) : tr('주문 +{0}',p.accepted)+(p.removed>p.accepted?tr(' · 초과 {0}칸은 사라져요',p.removed-p.accepted):'');
     const goalHint = deliveryGoalHint();
     if (goalHint) flash = tr('주문 +{0}',p.accepted)+'\n'+goalHint;
     lastMove = {kind:'extract',at:now()};
@@ -275,20 +279,14 @@
   function deliveryStatus() {
     if (S.over) return [tr(S.delivery.phase === 'won' ? '주문 완료' : '더 움직일 수 있는 병이 없어요.'),false];
     if (armed) return [tr('현재 시도를 처음부터 시작해요. 한 번 더 누르세요.'),true];
-    if (sel === 'cup') return [deliveryOpeningFacts() || deliveryGoalHint() || tr('조각은 병에 넣고, 한 가지 색으로 모아 주문 탱크에 보내세요.'),false];
+    if (sel === 'cup') return [tr('조각을 넣을 병을 고르세요.'),false];
     const coachSource=deliveryCoachSource();
     if (coachSource >= 0 && (sel === null || sel === coachSource)) return [deliveryCoachText(coachSource),false];
     if (typeof sel === 'number') {
       const b = S.bottles[sel], p = previewExtract(S,sel,b?.[0]);
-      return [p.ok ? deliveryPreviewText(p) : b?.length && !isPure(b) ? deliveryReason(p) : tr('부을 병 또는 같은 색 주문 탱크를 고르세요.'),false];
+      return [p.ok ? tr('탱크에 제출 +{0}',p.accepted)+(p.removed>p.accepted?tr(' · 초과 {0}칸은 사라져요',p.removed-p.accepted):'') : b?.length && !isPure(b) ? deliveryReason(p) : tr('부을 병 또는 같은 색 주문 탱크를 고르세요.'),false];
     }
-    const consequence=deliveryConsequenceText(),opening=deliveryOpeningFacts();
-    if(consequence)return [consequence,false];
-    if(opening)return [opening,false];
-    const goalHint = deliveryGoalHint();
-    if (goalHint) return [goalHint,false];
-    return [S.stuck ? tr('병끼리 붓거나 순수한 병을 제출해 조각이 들어갈 자리를 만드세요.') :
-      ctl() === 'tapPlace' ? tr('병을 눌러 조각 넣기 · 병에서 탱크로 끌어 제출') : tr('한 색 병을 고른 뒤 같은 색 탱크를 누르세요. 4칸은 자동 납품돼요.'),false];
+    return [S.stuck ? tr('병을 비워 조각이 들어갈 자리를 만드세요.') : '',false];
   }
   function deliveryGoalHint() {
     if (deliveryIndex !== 2 || S.over || S.stuck || !roomFor(S.bottles,S.piece.length,S.rules.cap)) return '';
@@ -308,6 +306,21 @@
     const seconds = Math.floor(ms/1000);
     return String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
   }
+  function renderDeliveryTime(elapsed,thresholds,order) {
+    const el=$('deliveryTime'),stars=deliveryStars(elapsed,thresholds),time=deliveryTimeText(elapsed);
+    const key=[time,stars,order,deliveryPractice,thresholds.join('/'),window.WSSLocale.current()].join('|');
+    if(el.dataset.value===key)return;el.dataset.value=key;el.textContent='';
+    if(order){const step=document.createElement('span');step.className='delivery-order-step';step.textContent=tr('주문 {0}/{1}',order[0],order[1]);el.append(step);}
+    const clock=document.createElement('span');clock.className='delivery-clock';clock.textContent=(order?tr('누적')+' ':'')+time;
+    clock.setAttribute('aria-label',tr(order?'누적 시간 {0}':'경과 {0}',time));el.append(clock);
+    if(deliveryPractice){const legacy=document.createElement('span');legacy.textContent=tr('이전 진행 이어하기');el.append(legacy);return;}
+    const rating=document.createElement('span');rating.className='delivery-live-stars';
+    rating.setAttribute('role','img');rating.setAttribute('aria-label',tr('별점 {0}개',stars));
+    for(let i=0;i<3;i++){const star=document.createElement('i');star.textContent='★';star.className=i<stars?'earned':'unearned';star.setAttribute('aria-hidden','true');rating.append(star);}
+    const limit=document.createElement('span');limit.className='delivery-star-limit';limit.textContent=stars===1?'':'≤'+deliveryTimeText(thresholds[stars===3?0:1]);
+    limit.setAttribute('aria-label',stars===1?tr('완료하면 1별'):tr('{0}별 기준 {1}',stars,deliveryTimeText(thresholds[stars===3?0:1])));
+    el.append(rating,limit);
+  }
   function syncDeliveryClock() {
     const active = isDelivery(S), overlay = !!document.querySelector('.overlay:not([hidden])');
     const blocked = active && (overlay || document.hidden || !canStore() || !!deliveryProgress.status().issue);
@@ -321,12 +334,11 @@
     const elapsed = deliveryClock.sample(), thresholds = deliveryProgress.thresholds(S.delivery.content.id);
     if(isChainDelivery(S)){renderDeliveryChainSummary();return;}
     if (deliveryPractice) {
+      $('deliveryTime').dataset.value='';
       $('deliveryTime').textContent=tr('이전 진행 · 다음 도전부터 별점 기록');
       return;
     }
-    const stars = deliveryStars(elapsed,thresholds);
-    $('deliveryTime').textContent = tr('경과 {0}',deliveryTimeText(elapsed))+' · '+
-      (stars === 1 ? tr('완료하면 1별') : tr('{0}별 기준 {1}',stars,deliveryTimeText(thresholds[stars===3?0:1])));
+    renderDeliveryTime(elapsed,thresholds);
   }
   const deliveryOverlayWatch = new MutationObserver(syncDeliveryClock);
   document.querySelectorAll('.overlay').forEach(o=>deliveryOverlayWatch.observe(o,{attributes:true,attributeFilter:['hidden']}));
@@ -436,6 +448,7 @@
   function showDeliveryResult() {
     if (!isDelivery(S) || !S.over) return;
     if(deliveryProgress.status().issue){showDeliveryStorage();return;}
+    const wasOpen=!$('ovDeliveryResult').hidden;
     $('deliveryResultChange').textContent=deliveryConsequenceText();
     $('deliveryResultChange').hidden=!$('deliveryResultChange').textContent;
     const won=S.delivery.phase==='won', elapsed=deliveryClock.finish(), c=S.delivery.content,thresholds=deliveryProgress.thresholds(c.id);
@@ -448,6 +461,13 @@
     $('deliveryResultStars').setAttribute('aria-label',won&&!deliveryPractice?tr('별점 {0}개',deliveryStars(elapsed,thresholds)):tr('클리어'));
     $('deliveryResultText').textContent=!won?tr('더 움직일 수 있는 병이 없어요.'):deliveryPractice?tr('클리어 저장 완료 · 다음 도전부터 별점 기록'):
       tr(isChainDelivery(S)?'누적 플레이 {0} · 최고 {1}':'이번 {0} · 최고 {1}',deliveryTimeText(elapsed),deliveryTimeText(record.bestMs));
+    if(won&&!deliveryPractice){
+      $('deliveryResultText').textContent='';
+      for(const [label,value]of [[isChainDelivery(S)?'누적 시간':'이번 시간',elapsed],['최고 시간',record.bestMs]]){
+        const stat=document.createElement('div'),name=document.createElement('span'),amount=document.createElement('strong');
+        name.textContent=tr(label);amount.textContent=deliveryTimeText(value);stat.append(name,amount);$('deliveryResultText').append(stat);
+      }
+    }
     $('deliveryResultGoal').textContent=Object.entries(c.goal).map(([color,n])=>colorName(+color)+' '+S.delivery.delivered[color]+'/'+n).join(' · ');
     $('deliveryResultTarget').textContent=deliveryPractice?'':tr('3별 {0} / 2별 {1} · 늦어도 완료하면 1별',deliveryTimeText(thresholds[0]),deliveryTimeText(thresholds[1]));
     $('deliveryResultTarget').hidden=deliveryPractice;
@@ -461,9 +481,10 @@
     $('deliveryResultNext').textContent=won&&next&&deliveryNextIndex!==deliveryIndex+1?tr('아직 클리어하지 않은 스테이지예요.'):'';
     $('deliveryResultNext').hidden=!$('deliveryResultNext').textContent;
     $('ovDeliveryResult').querySelector('.delivery-result-body').scrollTop=0;
+    $('ovDeliveryResult').querySelector('.result-details').open=false;
     $('ovDeliveryResult').hidden=false;syncDeliveryClock();
     // The shared sheet observer focuses without scrolling; reveal that button in short viewports.
-    queueMicrotask(revealDeliveryResultFocus);
+    queueMicrotask(()=>{if(!wasOpen)(won?$('deliveryNext'):$('deliveryRetry')).focus({preventScroll:true});revealDeliveryResultFocus();});
   }
   function renderDeliveryUi() {
     const active=isDelivery(S),app=document.querySelector('.app');app.classList.toggle('delivery',active);
@@ -508,8 +529,7 @@
       }
       button.querySelector('.delivery-order-name').textContent=colorName(+color);
       button.querySelector('.delivery-order-amount').textContent=n?done+'/'+n:'—';
-      button.querySelector('small').textContent=!n?tr('이번 주문 없음'):done>=n?tr('완료'):
-        (p.ok?tr('제출 +{0}',p.accepted)+' · ':'')+tr('{0}칸 남음',n-done);
+      button.querySelector('small').textContent=!n?'':done>=n?'✓':p.ok?'+'+p.accepted:'';
       button.classList.toggle('delivery-coach-target',coachSource >= 0 && S.bottles[coachSource][0] === +color);
       button.classList.toggle('can',p.ok);button.classList.toggle('done',done>=n);button.disabled=S.over||!n;button.classList.toggle('delivery-order-inactive',!n);
       button.setAttribute('aria-label',(!n?colorName(+color)+' · '+tr('이번 주문 없음'):tr('{0}: 목표 {2}칸 중 {1}칸 납품',colorName(+color),done,n))+' · '+(p.ok?deliveryPreviewText(p):tr('주문 탱크')));
@@ -602,12 +622,19 @@
 
   // Continuous-order presentation only. The existing action pipeline records moves.
   function renderDeliveryChainSummary(){
-    const c=S.delivery.content,i=S.delivery.orderIndex,next=c.orders[i+1],elapsed=deliveryTimeText(deliveryClock.sample());
-    $('deliveryNextOrder').textContent=next?tr('다음 주문 · {0}',Object.entries(next).map(([color,n])=>colorName(+color)+' '+n).join(' · ')):tr('마지막 주문 · 모두 채우면 클리어');
+    const c=S.delivery.content,i=S.delivery.orderIndex,next=c.orders[i+1];
+    const nextKey=c.id+'/'+i+'/'+window.WSSLocale.current()+'/'+prefs.symbols;
+    if($('deliveryNextOrder').dataset.value!==nextKey){
+      const el=$('deliveryNextOrder');el.dataset.value=nextKey;el.textContent='';
+      const label=document.createElement('span');label.textContent=tr(next?'다음 주문':'마지막 주문');el.append(label);
+      for(const [color,n]of Object.entries(next||{})){
+        const chip=document.createElement('span');chip.className='delivery-next-color';chip.style.setProperty('--order-color','var(--liq'+color+')');
+        chip.textContent=n;chip.setAttribute('role','img');chip.setAttribute('aria-label',colorName(+color)+' '+n);
+        if(prefs.symbols)chip.prepend(colorSymbol(+color));el.append(chip);
+      }
+    }
     $('deliveryNextOrder').hidden=false;
-    const thresholds=deliveryProgress.thresholds(c.id),stars=deliveryStars(deliveryClock.sample(),thresholds);
-    $('deliveryTime').textContent=tr('주문 {0}/{1} · 누적 {2}',i+1,c.orders.length,elapsed)+' · '+
-      (deliveryPractice?tr('이전 진행 · 다음 도전부터 별점 기록'):stars===1?tr('완료하면 1별'):tr('{0}별 기준 {1}',stars,deliveryTimeText(thresholds[stars===3?0:1])));
+    renderDeliveryTime(deliveryClock.sample(),deliveryProgress.thresholds(c.id),[i+1,c.orders.length]);
   }
   function recordDeliveryChainConsequence(action){
     if(!action||!history.length)return;

@@ -12,14 +12,14 @@ const page = fs.readFileSync(path.join(__dirname, 'water-sort-survival.html'), '
 const title = (page.match(/<title>[^<]*<\/title>/) || [''])[0];
 const description = (page.match(/<meta name="description"[^>]*>/) || [''])[0];
 const skeleton = `<!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f171c">
+<meta name="theme-color" content="#fff9ed">
 ${title}
 ${description}
-<style>:root{color-scheme:dark;box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light;box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 `;

@@ -228,3 +228,165 @@ body:has(.app.delivery) #stHud{display:none}
  .delivery-order .delivery-liquid,.delivery-orders-multiple .delivery-order .delivery-liquid{display:none}
  .delivery-order-amount{font-size:18px}.delivery-order-name,.delivery-orders-multiple .delivery-order-name{font-size:11px}
 }
+
+/* Bright puzzle presentation. State, hit testing and bottle animations stay shared. */
+.icon-button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+#ovHome{background:var(--bg)!important}
+#ovHome .home-content{max-width:440px;display:flex;gap:18px;padding:4px 0 16px}
+#ovHome .screen-heading h1{font-size:30px;font-weight:800;letter-spacing:-1.2px;color:var(--ink)}
+#ovHome .screen-heading p{font-size:12px;letter-spacing:.04em;color:var(--muted);margin-top:4px}
+#homeSettings{width:44px;padding:0;background:var(--panel);border:1px solid var(--line);border-radius:50%}
+#ovHome .home-stage{border:0;background:transparent;padding:0;gap:12px;text-align:center}
+#homeStageTitle{font-size:17px!important;color:var(--muted);font-weight:650}
+#homeStageProgress{font-size:13px;color:var(--muted)}
+#ovHome .home-stage>.btn{min-height:54px;font-size:17px;border-radius:18px}
+#homeStagePlay{box-shadow:0 5px 0 #075e64}
+#homeStageSelect{background:#e7f5ee;border-color:#b7dbcc;color:var(--ink);box-shadow:0 3px 0 #c6e2d5}
+.home-bottles{display:flex;align-items:flex-end;justify-content:center;gap:17px;height:188px;margin:12px 0 10px;position:relative}
+.home-bottles::before{content:'';position:absolute;width:270px;height:150px;border-radius:50%;background:#ddf1e7;bottom:-6px}
+.home-bottles i{display:flex;flex-direction:column-reverse;gap:2px;position:relative;box-sizing:border-box;width:64px;height:146px;background:#fffdf7;border:3px solid #7ba9a1;border-top-width:7px;border-radius:10px 10px 24px 24px;padding:5px;overflow:hidden;box-shadow:0 6px 0 #abcfc4;transform:rotate(-10deg)}
+.home-bottles i:nth-child(2){height:170px;transform:translateY(-8px)}
+.home-bottles i:nth-child(3){transform:rotate(10deg)}
+.home-bottles b{display:block;height:30px;flex:none;background:var(--liq1);border-radius:3px}
+.home-bottles i:first-child b:nth-child(2),.home-bottles i:nth-child(2) b{background:var(--liq0)}
+.home-bottles i:nth-child(2) b:nth-child(n+3),.home-bottles i:last-child b{background:var(--liq2)}
+.home-bottles i:last-child b:last-child{background:var(--liq1)}
+#ovHome .home-other-modes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#ovHome .home-mode{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:8px;row-gap:4px;border:1px solid #c8dcea;border-radius:18px;background:#e6f2ff;padding:16px 12px;color:#235c83;box-shadow:0 3px 0 #d0e2ee}
+#ovHome #homeDaily{background:#fff0d2;border-color:#e8d1a1;color:#805e20;box-shadow:0 3px 0 #efddb6}
+#ovHome .home-mode svg{grid-column:1;grid-row:1/3;width:28px;height:28px;align-self:center;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ovHome .home-mode strong{grid-column:2;font-size:15px;line-height:1.3}
+#ovHome .home-mode small{grid-column:2;color:inherit;padding:0;font-size:12px;font-weight:400}
+#ovHome .home-more{margin-top:2px}
+#ovHome .home-more summary{justify-content:center}
+#ovHome .home-save{border:0;padding:0;text-align:center;font-size:11px;color:var(--muted);margin-top:-8px}
+#ovDeliveryMenu .stage-screen-content{max-width:780px}
+#ovDeliveryMenu .delivery-selection-body{flex:0 1 auto}
+#ovDeliveryMenu .screen-heading h2{font-size:18px}
+#ovDeliveryMenu .delivery-journey-summary{display:flex;flex-wrap:wrap;gap:8px}
+#deliveryJourneyBar{height:7px;flex-basis:100%}
+#deliveryJourneyCount{font-size:14px}
+#ovDeliveryMenu .delivery-page-nav{grid-template-columns:44px 1fr 44px}
+#ovDeliveryMenu .delivery-page-nav .sbtn{border:0;background:transparent;box-shadow:none;padding:0}
+#deliveryPageRange{font-size:14px;color:var(--muted)}
+#deliveryStageList{gap:9px}
+#deliveryStageList .delivery-stage-node{min-height:62px;border:1px solid #bed9d4;border-radius:17px;background:#fffefb;box-shadow:0 4px 0 #d8e8df;gap:6px}
+#deliveryStageList .delivery-stage-node strong{font-size:21px;font-weight:750}
+#deliveryStageList .delivery-stage-node span{font-size:11px;color:#8c650d;letter-spacing:1px}
+#deliveryStageList .delivery-stage-node.cleared{background:#e7f4eb;border-color:#9fcbbc}
+#deliveryStageList .delivery-stage-node.recommended{border:2px dashed var(--accent)}
+#deliveryStageList .delivery-stage-node[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:white;box-shadow:0 4px 0 #075e64}
+#deliveryStageList .delivery-stage-node[aria-pressed="true"] span{color:#fff1bc}
+#ovDeliveryMenu .delivery-stage-preview{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:16px;gap:10px}
+#deliveryPreviewTitle{font-size:22px;font-weight:750}
+#ovDeliveryMenu .delivery-preview-top{font-size:12px;color:var(--muted)}
+#ovDeliveryMenu .delivery-goals{gap:8px}
+#ovDeliveryMenu .delivery-goal{font-size:16px;background:#f1f7f1;padding:8px 10px;border:0;border-radius:11px;font-weight:650}
+.delivery-goal::before{width:12px;height:12px;box-shadow:inset 0 0 0 1px #0002}
+#deliveryPreviewTiming{color:#805e20;font-size:13px!important;word-spacing:1px}
+#ovDeliveryMenu .delivery-start-actions{border:0;padding-top:4px}
+#deliveryStageStart{min-height:52px;font-size:16px}
+#ovDeliveryMenu .delivery-help summary{min-height:44px;font-size:12px}
+.delivery-help summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+.app.delivery>.top{display:grid;grid-template-columns:44px minmax(0,1fr) 44px 44px;gap:4px;min-height:44px}
+.app.delivery>.top .top-btns{display:contents}
+.app.delivery>.top .brand{grid-column:2;grid-row:1;align-items:center;min-width:0}
+.app.delivery>.top .brand h1{display:none}
+.app.delivery #modeChip{font-size:17px;line-height:1.3;color:var(--ink);font-weight:750}
+.app.delivery #btnHome{grid-column:1;grid-row:1;width:44px;padding:0;box-shadow:none}
+.app.delivery #deliveryPause{grid-column:3;grid-row:1;background:#e2f1e9;border:1px solid #bed9ce;border-radius:14px;box-shadow:none}
+.app.delivery #btnSettings{grid-column:4;grid-row:1;box-shadow:none}
+.app.delivery>.run-info{padding:8px 0 0;border:0}
+#deliveryHud{display:flex;flex-wrap:wrap;gap:7px 8px;align-items:center}
+#deliveryOrders{flex-basis:100%}
+#deliveryOrders .delivery-order{background:var(--panel);border:1px solid color-mix(in srgb,var(--order-color) 38%,#dce3d7);border-bottom:3px solid color-mix(in srgb,var(--order-color) 50%,#dce3d7);border-radius:16px;grid-template-columns:27px minmax(0,1fr);grid-template-rows:auto auto;min-height:72px;padding:8px;gap:0 8px}
+#deliveryOrders .delivery-order strong{grid-column:2;grid-row:1/3;gap:2px;align-items:flex-start}
+#deliveryOrders .delivery-order-name{font-size:11px;color:var(--muted);font-weight:500}
+#deliveryOrders .delivery-order-amount{font-size:24px;font-weight:750;color:var(--ink);letter-spacing:-1px}
+#deliveryOrders .delivery-liquid{display:block;grid-column:1;grid-row:1/3;width:27px;align-self:center}
+#deliveryOrders .delivery-liquid .glass{height:42px;border:1.5px solid #87aaa6;border-radius:4px 4px 9px 9px;background:#eef5f2;box-shadow:none;padding:2px}
+#deliveryOrders .delivery-liquid .rim{display:none}
+#deliveryOrders .delivery-empty{background:transparent;box-shadow:none}
+#deliveryOrders .delivery-order small{position:absolute;right:4px;top:-9px;background:#e0f5e8;border:1px solid #73bca0;color:#17694f;border-radius:10px;padding:1px 5px;font-size:12px;font-weight:750;display:block}
+#deliveryOrders .delivery-order small:empty{display:none}
+#deliveryOrders .delivery-order.can{background:#e9f7ed;outline:3px solid #16866d;outline-offset:2px}
+#deliveryOrders .delivery-order-inactive{opacity:.55;background:transparent;border-style:dashed;box-shadow:none}
+#deliveryTime{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);flex:1 0 100%;min-width:0;white-space:nowrap}
+.delivery-clock{display:inline-flex;align-items:center;gap:5px;font-weight:650;color:var(--ink)}
+.delivery-clock::before{content:'';width:10px;height:10px;border:1.5px solid currentColor;border-radius:50%;background:linear-gradient(currentColor,currentColor) 5px 2px/1px 4px no-repeat;flex:none}
+.delivery-order-step{margin-right:auto;font-size:11px}
+.delivery-live-stars{display:flex;color:#b47700;letter-spacing:-1px;font-size:16px;line-height:1}
+.delivery-live-stars i{font-style:normal}.delivery-live-stars .unearned{color:#d6dbd1}
+.delivery-star-limit{font-size:11px}
+#deliveryNextOrder{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);white-space:nowrap;flex:1 0 100%}
+.delivery-next-color{display:inline-flex;align-items:center;gap:3px;font-size:12px;color:var(--ink)}
+.delivery-next-color::before{content:'';width:9px;height:9px;background:var(--order-color);border-radius:50%;box-shadow:inset 0 0 0 1px #0002}
+.delivery-next-color:has(.color-symbol)::before{display:none}
+.delivery-next-color .color-symbol{width:14px;height:14px;font-size:10px}
+.app.delivery #rack{background:#eaf5ee;border:1px solid #d1e7da;border-radius:24px;padding:12px 8px;column-gap:12px;row-gap:18px}
+.app.delivery.delivery-six #rack[data-bottles="6"]{--board-rows:2;grid-template-columns:repeat(3,minmax(44px,104px))}
+.app.delivery #rack .glass{--glass-depth:inset 2px 0 2px #fff9,inset -2px 0 3px #49756422,0 3px 0 #bfd6ca}
+.app.delivery>.status{min-height:28px!important;font-size:12px!important;color:var(--muted);overflow-wrap:anywhere}
+.app.delivery>.status:empty{min-height:0!important;height:0}
+.app.delivery.delivery-coaching>.status{min-height:32px!important;color:var(--ink)}
+.app.delivery>.incoming{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:10px 12px;box-shadow:0 3px 0 #dfebe0}
+.app.delivery .actions{gap:6px}
+.app.delivery .actions>.btn{border-radius:13px}
+.app.delivery #btnUndo{background:#e2f1e9;border:1px solid #a8cebd;color:var(--ink)}
+.app.delivery .hold-button,.app.delivery .flipbtn{background:#edf6ef;border:1px solid #b4d4c8;color:var(--ink);border-radius:12px}
+.app.delivery .hold-button:not(:disabled){border-color:var(--accent)}
+#deliveryOpeningFacts,.delivery-pause-core{background:#edf6ef!important;color:var(--ink)!important;border-radius:12px!important}
+#ovDeliveryResult .sheet{border:1px solid var(--line);border-radius:28px;padding:26px 22px;background:var(--panel);box-shadow:var(--shadow);width:min(420px,100%)}
+#deliveryResultMark{display:none}
+#deliveryResultTitle{font-size:23px;line-height:1.3;margin-top:8px}
+#deliveryResultStars{font-size:62px;letter-spacing:5px;color:#efb82e;text-shadow:0 3px 0 #b87512;line-height:1.5;margin:6px 0!important}
+#deliveryResultText{display:flex;justify-content:center;gap:0;margin:8px 0;font-size:14px;color:var(--muted)}
+#deliveryResultText>div{flex:1;display:flex;flex-direction:column;gap:5px}
+#deliveryResultText>div+div{border-left:1px solid var(--line)}
+#deliveryResultText span{font-size:12px;color:var(--muted)}
+#deliveryResultText strong{font-size:28px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:750}
+#ovDeliveryResult .result-details{text-align:left;font-size:12px}
+#ovDeliveryResult .result-details summary{justify-content:center;color:var(--muted);font-size:12px}
+#ovDeliveryResult .result-details p{font-size:12px;line-height:1.5;margin-bottom:6px}
+#ovDeliveryResult .campaign-result-actions{border:0;padding-top:4px}
+#ovDeliveryResult .campaign-result-actions>.btn{border-radius:14px;min-height:46px}
+#deliveryExit{grid-column:1/-1;box-shadow:none;border:0;background:transparent;color:var(--muted);font-size:12px!important}
+@media(max-height:700px) and (orientation:portrait){
+ #ovHome .home-content{gap:12px}.home-bottles{height:118px;margin:0 0 4px;gap:14px}.home-bottles::before{height:95px;width:215px}.home-bottles i{height:102px;width:48px;border-radius:8px 8px 16px 16px}.home-bottles i:nth-child(2){height:115px;transform:none}.home-bottles b{height:20px}
+ #ovHome .home-stage{gap:8px}#ovHome .home-stage>.btn{min-height:46px}#ovHome .home-mode{padding:12px 10px}
+ .app.delivery #rack{padding:8px 6px;column-gap:7px;row-gap:8px;border-radius:18px}
+ .app.delivery>.incoming{padding:6px 8px;border-radius:16px}
+ #deliveryOrders .delivery-order{min-height:60px;padding:5px;column-gap:5px;grid-template-columns:20px minmax(0,1fr)}
+ #deliveryOrders .delivery-liquid{width:20px}#deliveryOrders .delivery-liquid .glass{height:36px}
+ #deliveryOrders .delivery-order-amount{font-size:21px}
+}
+@media(max-width:360px){
+ #ovDeliveryMenu .delivery-stage-preview{padding:12px;gap:7px}#deliveryStageList{gap:6px}#deliveryStageList .delivery-stage-node{min-height:55px;border-radius:14px}
+ #deliveryOrders,#deliveryOrders.delivery-orders-multiple{gap:5px}
+ #deliveryTime{gap:4px}.delivery-live-stars{font-size:14px}
+ .delivery-order-step{font-size:10px}#deliveryNextOrder{gap:4px}
+ #ovHome .home-content{gap:12px}#ovHome .home-mode strong{font-size:13px}
+}
+@media(min-width:720px) and (min-height:501px){
+ #ovDeliveryMenu .stage-screen-layout{grid-template-columns:1fr 1fr;gap:20px}
+ #ovDeliveryMenu .delivery-start-actions{margin-left:auto;width:calc(50% - 10px)}
+}
+@media(orientation:landscape) and (max-height:500px){
+ #ovHome .home-content{max-width:740px;display:grid;grid-template-columns:1.15fr 1fr;gap:10px 24px}
+ #ovHome .screen-heading{grid-column:1/-1}#ovHome .home-stage{grid-column:1;grid-row:2/5;gap:6px}#ovHome .home-bottles{display:none}
+ #ovHome .home-other-modes{grid-template-columns:1fr;gap:8px}#ovHome .home-mode{padding:10px}#ovHome .home-more{margin:0}#ovHome .home-save{grid-column:2;margin:0}
+ #ovDeliveryMenu .stage-screen-layout{grid-template-columns:1fr 1fr;gap:12px}#ovDeliveryMenu .delivery-stage-preview{padding:10px;gap:6px}
+ .app.delivery>.top{grid-template-columns:44px minmax(0,1fr) 44px 44px;min-height:40px}
+ .app.delivery #rack{padding:5px;border-radius:18px;column-gap:6px;row-gap:6px}
+ .app.delivery>.incoming{padding:6px;border-radius:15px;box-shadow:none}
+ #deliveryOrders .delivery-order{grid-template-columns:1fr;grid-template-rows:auto;min-height:48px;padding:4px;text-align:center;border-radius:10px}
+ #deliveryOrders .delivery-order strong{grid-column:1;align-items:center;gap:0}
+ #deliveryOrders .delivery-liquid{display:none}#deliveryOrders .delivery-order-amount{font-size:19px}#deliveryOrders .delivery-order-name{font-size:10px}
+ #deliveryHud{gap:5px}#deliveryTime{font-size:11px}#deliveryNextOrder{font-size:10px}
+ .app.delivery>.status{min-height:22px!important;font-size:11px!important}
+ #ovDeliveryResult .sheet{width:min(720px,100%);padding:12px}
+ #ovDeliveryResult .delivery-result-body{gap:4px}#deliveryResultTitle{font-size:19px;margin:0}
+ #deliveryResultStars{font-size:34px;margin:0!important;line-height:1.2}#deliveryResultText{margin:4px 0}#deliveryResultText strong{font-size:21px}
+ #ovDeliveryResult .campaign-result-actions{grid-template-columns:1.25fr 1fr 1fr 1fr}
+ #ovDeliveryResult #deliveryExit{grid-column:auto;border:1px solid var(--line)}
+}

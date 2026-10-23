@@ -1,43 +1,42 @@
 <!-- Navigation screens replace one another; only pause, results and errors are dialogs. -->
 <section class="overlay app-screen" id="ovHome" aria-labelledby="homeTitle" hidden>
   <div class="screen-content home-content">
-    <header class="screen-heading"><div><h1 id="homeTitle">보트리스</h1><p class="note">물병 정렬 퍼즐</p></div><button class="sbtn" id="homeSettings" type="button">설정</button></header>
+    <header class="screen-heading"><div><h1 id="homeTitle">보트리스</h1><p class="note">물병 정렬 퍼즐</p></div><button class="sbtn icon-button" id="homeSettings" type="button" aria-label="설정"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg></button></header>
     <section class="home-stage" aria-labelledby="homeStageTitle">
-      <span class="home-eyebrow">색을 모아 주문을 완성하세요</span>
+      <div class="home-bottles" aria-hidden="true"><i><b></b><b></b><b></b></i><i><b></b><b></b><b></b><b></b></i><i><b></b><b></b><b></b></i></div>
       <h2 id="homeStageTitle">스테이지</h2>
-      <p>주문한 색을 탱크에 채우면 다음 스테이지로 진행해요.</p>
       <p id="homeStageProgress" class="note"></p>
       <button class="btn primary" id="homeStagePlay" type="button">스테이지 1 시작</button>
       <button class="btn" id="homeStageSelect" type="button">스테이지 선택</button>
     </section>
     <div class="home-other-modes">
-      <button class="home-mode" id="homeEndless" type="button"><strong>무한 모드</strong><span>빈자리를 만들며 최고 점수에 도전해요.</span><small id="homeEndlessState"></small></button>
-      <button class="home-mode" id="homeDaily" type="button"><strong>오늘의 도전</strong><span>매일 같은 조각 순서로 기록을 겨뤄요.</span><small id="homeDailyState"></small></button>
+      <button class="home-mode" id="homeEndless" type="button"><svg viewBox="0 0 32 24" aria-hidden="true"><path d="M16 12C10-1 1 3 1 12s9 13 15 0 15-9 15 0-9 13-15 0Z"/></svg><strong>무한 모드</strong><small id="homeEndlessState"></small></button>
+      <button class="home-mode" id="homeDaily" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18m-13 5 3 3 5-5"/></svg><strong>오늘의 도전</strong><small id="homeDailyState"></small></button>
     </div>
     <details class="home-more"><summary>추가 퍼즐</summary><div><button class="btn" id="homeCampaign" type="button">횟수 제한 스테이지</button><button class="btn" id="homeRoute" type="button">물길 퍼즐</button></div></details>
-    <p class="note home-save">스테이지 진행은 이 브라우저에 자동 저장돼요.</p>
+    <p class="note home-save">이 브라우저에 자동 저장</p>
   </div>
 </section>
 <section class="overlay app-screen" id="ovDeliveryMenu" aria-labelledby="deliveryMenuTitle" hidden><div class="screen-content stage-screen-content">
   <header class="screen-heading"><button class="sbtn" id="deliveryMenuClose" type="button">메인으로</button><h2 id="deliveryMenuTitle">스테이지 선택</h2></header>
   <div class="delivery-selection-body">
-  <div class="delivery-journey-summary"><strong id="deliveryJourneyCount"></strong><span class="note">한 판씩 주문을 완성해요.</span><progress id="deliveryJourneyBar" value="0" max="12"></progress></div>
+  <div class="delivery-journey-summary"><strong id="deliveryJourneyCount"></strong><progress id="deliveryJourneyBar" value="0" max="12"></progress></div>
   <div class="stage-screen-layout"><div class="stage-map">
     <nav class="delivery-page-nav" aria-label="스테이지 선택">
-      <button class="sbtn" id="deliveryPagePrev" type="button" aria-label="이전 10판">이전 10판</button>
+      <button class="sbtn icon-button" id="deliveryPagePrev" type="button" aria-label="이전 10판"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
       <strong id="deliveryPageRange" aria-live="polite" aria-atomic="true"></strong>
-      <button class="sbtn" id="deliveryPageNext" type="button" aria-label="다음 10판">다음 10판</button>
+      <button class="sbtn icon-button" id="deliveryPageNext" type="button" aria-label="다음 10판"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
     </nav>
     <div id="deliveryStageList" role="group" aria-label="스테이지 선택"></div>
-    <p class="note delivery-map-legend">번호를 골라 주문을 확인하세요. ✓는 클리어한 판이에요.</p>
   </div>
   <section class="delivery-stage-preview" aria-labelledby="deliveryPreviewTitle">
     <div class="delivery-preview-top"><span id="deliveryPreviewLabel"></span><span id="deliveryPreviewMode" class="note"></span></div>
     <h3 id="deliveryPreviewTitle"></h3><div id="deliveryPreviewGoals" class="delivery-goals"></div>
     <p id="deliveryPreviewRecord" class="note"></p>
     <p id="deliveryPreviewTiming" class="note"></p>
-    <p class="note delivery-entry-rule">한 색으로 모인 병은 탱크로 보내세요. 같은 색 4칸은 자동으로 납품돼요.</p>
     <details class="delivery-help"><summary>목표·조작·저장 안내</summary>
+    <p class="note delivery-entry-rule">한 색으로 모인 병은 탱크로 보내세요. 같은 색 4칸은 자동으로 납품돼요.</p>
+    <p id="deliveryPreviewCriteria" class="note"></p>
     <p id="deliveryPreviewDetails" class="note"></p>
     <p id="deliveryPreviewNotice" class="note" hidden></p>
     <p class="note" id="deliverySaveNote">납품 진행·별점·최고 시간은 이 브라우저에만 저장하며 구글 계정과 동기화하지 않아요.</p>
@@ -73,9 +72,9 @@
 <div class="overlay" id="ovDeliveryResult" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryResultTitle">
   <div class="delivery-result-body">
   <div id="deliveryResultMark" aria-hidden="true">✓</div>
-  <h2 id="deliveryResultTitle"></h2><p id="deliveryResultStars" role="img"></p><p id="deliveryResultGoal"></p><p id="deliveryResultText"></p><p id="deliveryResultTarget"></p>
-  <p id="deliveryResultChange" class="note" hidden></p>
-  <p id="deliveryResultProgress"></p><p id="deliveryResultNext" class="note"></p>
+  <h2 id="deliveryResultTitle"></h2><p id="deliveryResultStars" role="img"></p><div id="deliveryResultText"></div>
+  <p id="deliveryResultProgress"></p>
+  <details class="delivery-help result-details"><summary>기록 자세히</summary><p id="deliveryResultGoal"></p><p id="deliveryResultTarget"></p><p id="deliveryResultChange" class="note" hidden></p><p id="deliveryResultNext" class="note"></p></details>
   </div>
   <div class="campaign-result-actions"><button class="btn primary" id="deliveryNext" type="button">다음 스테이지</button><button class="btn" id="deliveryRetry" type="button">다시 도전</button><button class="btn" id="deliveryResultList" type="button">스테이지 선택</button><button class="btn" id="deliveryExit" type="button">메인으로</button></div>
 </div></div>

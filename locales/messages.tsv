@@ -999,3 +999,15 @@ K가 비어 있어요. 남은 빨강을 먼저 보내거나 파랑을 돌려 초
 진행·별점·최고 시간 저장|Progress, stars and best time saved|進行・星・ベストタイムを保存|保存进度、星级和最佳时间|儲存進度、星級和最佳時間|Se guardan progreso, estrellas y mejor tiempo|Progresso, estrelas e melhor tempo salvos|प्रगति, सितारे और सर्वश्रेष्ठ समय सहेजे जाते हैं|Progres, bintang, dan waktu terbaik disimpan
 모든 주문의 플레이 시간을 합산해 별점을 기록해요.|Stars use the combined play time of all orders.|すべての注文の合計プレイ時間で星を評価します。|将所有订单的游戏时间相加来评定星级。|將所有訂單的遊戲時間相加來評定星級。|Las estrellas usan el tiempo de juego de todos los pedidos juntos.|As estrelas usam a soma do tempo de jogo de todos os pedidos.|सभी ऑर्डर के खेलने का समय जोड़कर सितारे मिलते हैं।|Bintang dihitung dari total waktu bermain semua pesanan.
 주문 {0}/{1} · 누적 {2}|Order {0}/{1} · Total {2}|注文 {0}/{1} · 合計 {2}|订单 {0}/{1} · 累计 {2}|訂單 {0}/{1} · 累計 {2}|Pedido {0}/{1} · Total {2}|Pedido {0}/{1} · Total {2}|ऑर्डर {0}/{1} · कुल {2}|Pesanan {0}/{1} · Total {2}
+이 브라우저에 자동 저장|Saved in this browser|このブラウザーに自動保存|自动保存在此浏览器|自動儲存在此瀏覽器|Guardado en este navegador|Salvo neste navegador|इस ब्राउज़र में अपने आप सेव|Tersimpan di browser ini
+기록 자세히|Record details|記録の詳細|记录详情|紀錄詳情|Detalles del récord|Detalhes do recorde|रिकॉर्ड का विवरण|Detail catatan
+누적|Total|累計|累计|累計|Total|Total|कुल|Total
+이번 시간|This run|今回の時間|本次用时|本次用時|Esta partida|Esta partida|इस बार का समय|Waktu kali ini
+최고 시간|Best time|ベストタイム|最佳时间|最佳時間|Mejor tiempo|Melhor tempo|सबसे अच्छा समय|Waktu terbaik
+누적 시간|Total time|合計時間|累计时间|累計時間|Tiempo total|Tempo total|कुल समय|Waktu total
+누적 시간 {0}|Total time {0}|合計時間 {0}|累计时间 {0}|累計時間 {0}|Tiempo total {0}|Tempo total {0}|कुल समय {0}|Waktu total {0}
+다음 주문|Next order|次の注文|下一订单|下一訂單|Siguiente pedido|Próximo pedido|अगला ऑर्डर|Pesanan berikutnya
+마지막 주문|Last order|最後の注文|最后订单|最後訂單|Último pedido|Último pedido|आखिरी ऑर्डर|Pesanan terakhir
+주문 {0}/{1}|Order {0}/{1}|注文 {0}/{1}|订单 {0}/{1}|訂單 {0}/{1}|Pedido {0}/{1}|Pedido {0}/{1}|ऑर्डर {0}/{1}|Pesanan {0}/{1}
+탱크에 제출 +{0}|Deliver to tank +{0}|タンクへ納品 +{0}|提交到订单罐 +{0}|提交到訂單槽 +{0}|Entregar al tanque +{0}|Entregar ao tanque +{0}|टैंक में जमा करें +{0}|Kirim ke tangki +{0}
+병을 비워 조각이 들어갈 자리를 만드세요.|Empty a bottle to make room for the piece.|瓶を空けてピースを入れる場所を作りましょう。|腾空瓶子，为色块留出空间。|騰空瓶子，為色塊留出空間。|Vacía una botella para hacer espacio.|Esvazie uma garrafa para abrir espaço.|टुकड़े के लिए जगह बनाने को बोतल खाली करें।|Kosongkan botol untuk memberi ruang.
