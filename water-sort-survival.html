@@ -196,13 +196,10 @@ body {
 .layer.ghostL { opacity: .4; }
 .layer.leaving { opacity: .5; }
 .free { margin-top: 5px; text-align: center; font-size: 12px; color: var(--free-ink); font-variant-numeric: tabular-nums; }
-/* Selected: the contents lift 12px but the button stays put, so its old lower edge still takes taps, and the
-   ::before strip takes taps on the lifted top. */
-.tube > * { transition: translate .16s ease; }
-.tube.sel > * { translate: 0 -12px; }
-.tube.sel::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 12px; }
+/* Selection stays in place: only the glass edge and light change. */
+.tube > .rim { transition: filter .16s ease; }
 .tube.charging .glass { animation: charge .45s linear forwards; }
-.tube.sel .glass { border-color: var(--accent); }
+.tube.sel .glass { border-color: var(--accent); --glass-ring: 0 0 0 2px var(--accent), 0 0 10px var(--accent-soft); }
 .tube.sel .rim { background: var(--accent); }
 .tube.can .glass { --glass-ring: 0 0 0 3px var(--accent-soft); }
 .tube.hover .glass { --glass-ring: 0 0 0 3px var(--accent); }
@@ -265,7 +262,6 @@ body {
 .fx-flash { position: absolute; inset: 0; animation: fxFlash .6s ease-out forwards; }
 @keyframes fxFlash { from { background: var(--accent-soft); } to { background: transparent; } }
 /* a press shows at once; what it was (tap, drag, long press) is decided on release */
-.tube.press { scale: .95; }
 .tube.press .glass { filter: brightness(1.08); }
 /* juicy effects (docs/PROMPT_feel.md 6): moved layers fly as blobs while the layers they become wait unseen */
 .fx-blob { left: 0; top: 0; border-radius: 45% 45% 35% 35%; background-color: var(--lc); background-image: linear-gradient(110deg, rgba(255,255,255,.4), transparent 45%), var(--sheen); box-shadow: 0 0 var(--glow) var(--lc); transform-origin: 0 0; will-change: transform; }
@@ -1165,8 +1161,8 @@ body{padding:max(10px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset
 :root[data-skin="lab"] .tube .layer:last-child{border-radius:50% 50% 0 0 / 5px 5px 0 0}
 :root[data-skin="lab"] .tube .layer:first-child{border-bottom-left-radius:12%;border-bottom-right-radius:12%}
 :root[data-skin="lab"] .tube .ghostL{opacity:.4}
-:root[data-skin="lab"] .tube.sel>.rim{filter:drop-shadow(0 0 2px #087bf0)}
-:root[data-skin="lab"] .tube.sel>.glass{--glass-ring:0 0 0 2px #087bf055}
+:root[data-skin="lab"] .tube.sel>.rim{filter:drop-shadow(0 0 1px #087bf0) drop-shadow(0 0 5px #087bf070)}
+:root[data-skin="lab"] .tube.sel>.glass{outline:2px solid #087bf0;outline-offset:-2px;--glass-ring:0 0 0 2px #087bf055}
 :root[data-skin="lab"] .tube.can>.glass{--glass-ring:0 0 0 2px #087bf044}
 :root[data-skin="lab"] .tube.hover>.glass{--glass-ring:0 0 0 3px #087bf0}
 :root[data-skin="lab"] #rack>.tube{filter:drop-shadow(5px 7px 3px #385f792b)}
@@ -1194,7 +1190,6 @@ body{padding:max(10px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset
 :root[data-skin="lab"] #rack>.tube{filter:none}
 :root[data-skin="lab"] #rack>.tube::after{content:'';position:absolute;top:calc(var(--bottle-height) * .92);left:-18%;width:112%;height:clamp(14px,calc(var(--bottle-height) * .14),26px);border-radius:50%;background:radial-gradient(ellipse 30% 16% at 63% 16%,#15364f85,transparent 100%),radial-gradient(ellipse 38% 42% at 48% 42%,color-mix(in srgb,var(--floor-color) 34%,transparent),transparent 100%),radial-gradient(ellipse 48% 42% at 44% 48%,#59758b2b,transparent 100%);transform:rotate(-12deg) skewX(-24deg);transform-origin:70% 0;filter:blur(1.5px);pointer-events:none;z-index:-1}
 :root[data-skin="lab"] #rack>.tube{isolation:isolate}
-:root[data-skin="lab"] #rack>.tube.sel::after{opacity:.35}
 :root[data-skin="lab"] #rack>.tube:has(>.glass:empty)::after{opacity:.65}
 :root[data-skin="lab"] .tube.mini>.glass::after,:root[data-skin="lab"] .tube.micro>.glass::after{display:block}
 :root[data-skin="lab"] #deliveryOrders .delivery-liquid>.glass{overflow:hidden;clip-path:none}
