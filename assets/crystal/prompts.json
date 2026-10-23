@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "research/ui-design-concepts-20261023/01-crystal-studio.png",
+  "assets": [
+    {
+      "key": "crystal-shell",
+      "prompt": "Use case: background-extraction / product game asset. Image 1 is the APPROVED material and shape reference. Create ONE isolated EMPTY clear glass bottle shell matching the six large playing bottles in that reference, for compositing OVER dynamically rendered colorful liquid in a real mobile game. No UI, no letters, no liquid, no background. Truly transparent RGBA PNG. Front view, a very slight view into elliptical open mouth. Broad straight cylindrical body, short narrower neck, rounded shoulders, thick crystal base, delicate blue-gray glass contour and crisp white specular lines. Same realistic glass craftsmanship as reference, not flat vector or cartoon. Portrait canvas about 1:2, bottle occupies 92% of canvas width, from 2% to 98% of canvas height. Symmetric centered single bottle. Neck and rim at top 2-12%, shoulders 12-20%, straight chamber from 20-92%, base92-98%. The center/chamber MUST BE transparent alpha, no white or gray opaque interior, because live red/blue/yellow liquid will be layered behind this shell. Draw only narrow glass walls, translucent edge refraction, rim and bottom, a thin elongated highlight near left edge. Sparse subtle translucent highlights on walls only. No backdrop seen through the bottle, no baked floor or cast shadow, no vegetation, no checkerboard painted into pixels. Empty clear glass reads through outlines and reflections, not through gray body fill. No cap or cork. Preserve reference shape and photoreal quality."
+    },
+    {
+      "key": "crystal-room",
+      "prompt": "Use case: background-extraction, game environment plate. Image 1 is the approved full mobile game screen reference. Create ONLY the clean background environment matching this reference, with ALL UI, all bottles, all liquid, all numbers and all buttons removed. Portrait 390:844 composition, high resolution. Airy pale glacier-blue and ivory sunlit studio with softly blurred architectural window light upper half and a very pale white marble counter filling lower two thirds, nearly white fine marble texture and gentle diagonal daylight shadow. Tiny out-of-focus soft green foliage at FAR LEFT and FAR RIGHT edges only as in reference, leaving the central 90% completely calm and empty for the game. It must be a sophisticated unobtrusive backing for clear glass objects, not a busy interior photo. No objects, no lettering, no bottles, no harsh contrast, no horizon line through the gameplay area, no grids. Photorealistic soft studio lighting matching reference, neutral bright white/cool blue base. Full bleed opaque background."
+    }
+  ]
+}

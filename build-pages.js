@@ -16,7 +16,7 @@ const skeleton = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fff9ed">
+<meta name="theme-color" content="#eaf3f8">
 ${title}
 ${description}
 <style>:root{color-scheme:light;box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -26,3 +26,7 @@ ${description}
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'index.html'), skeleton + page.replace(title, '').replace(description, '') + '\n</body>\n</html>\n');
 console.log('built ' + path.relative(__dirname, path.join(outDir, 'index.html')));
+
+// Shared local artwork for the approved Crystal Studio presentation.
+fs.mkdirSync(path.join(outDir,'assets','crystal'),{recursive:true});
+for(const asset of ['bottle-shell.png','studio.png'])fs.copyFileSync(path.join(__dirname,'assets','crystal',asset),path.join(outDir,'assets','crystal',asset));

@@ -3,7 +3,7 @@
   <div class="screen-content home-content">
     <header class="screen-heading"><div><h1 id="homeTitle">보트리스</h1><p class="note">물병 정렬 퍼즐</p></div><button class="sbtn icon-button" id="homeSettings" type="button" aria-label="설정"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg></button></header>
     <section class="home-stage" aria-labelledby="homeStageTitle">
-      <div class="home-bottles" aria-hidden="true"><i><b></b><b></b><b></b></i><i><b></b><b></b><b></b><b></b></i><i><b></b><b></b><b></b></i></div>
+      <div class="home-bottles" aria-hidden="true"><span class="tube hero-tube" data-art-liquid="0,0,1"></span><span class="tube hero-tube" data-art-liquid="1,1,1,1"></span><span class="tube hero-tube" data-art-liquid="2,2,0"></span></div>
       <h2 id="homeStageTitle">스테이지</h2>
       <p id="homeStageProgress" class="note"></p>
       <button class="btn primary" id="homeStagePlay" type="button">스테이지 1 시작</button>
@@ -71,7 +71,7 @@
 </div></div>
 <div class="overlay" id="ovDeliveryResult" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="deliveryResultTitle">
   <div class="delivery-result-body">
-  <div id="deliveryResultMark" aria-hidden="true">✓</div>
+  <div id="deliveryResultMark" aria-hidden="true"><span class="tube result-tube" data-art-liquid="1,1,1,1"></span><span class="result-seal"><svg viewBox="0 0 24 24"><path d="m6 12 4 4 8-9"/></svg></span></div>
   <h2 id="deliveryResultTitle"></h2><p id="deliveryResultStars" role="img"></p><div id="deliveryResultText"></div>
   <p id="deliveryResultProgress"></p>
   <details class="delivery-help result-details"><summary>기록 자세히</summary><p id="deliveryResultGoal"></p><p id="deliveryResultTarget"></p><p id="deliveryResultChange" class="note" hidden></p><p id="deliveryResultNext" class="note"></p></details>

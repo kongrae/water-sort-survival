@@ -25,7 +25,11 @@
     }else if(!persistRun()){storageIssue(()=>persistRun());return false;}
     return true;
   }
+  function paintBottleArtwork() {
+    $('ovHome').querySelectorAll('[data-art-liquid]').forEach(el=>paintTube(el,el.dataset.artLiquid.split(',').map(Number),4));
+  }
   function refreshHome() {
+    paintBottleArtwork();
     const journey=deliveryProgress.journey();
     $('homeStageProgress').textContent=tr('{0}/{1} 클리어',journey.count,journey.total);
     const i=journey.activeIndex>=0?journey.activeIndex:journey.recommendedIndex;
@@ -455,6 +459,7 @@
     const record=deliveryProgress.snapshot().envelope.records[c.id];
     const journey=deliveryProgress.journey(deliveryIndex);deliveryNextIndex=journey.nextIndex;
     $('deliveryResultMark').hidden=!won;
+    if(won)paintTube($('deliveryResultMark').querySelector('.result-tube'),Array(4).fill(+Object.keys(c.goal)[0]),4);
     $('deliveryResultTitle').textContent=won?tr('스테이지 {0} 클리어!',deliveryIndex+1):tr('다시 준비해 보세요');
     $('deliveryResultStars').hidden=!won||deliveryPractice;
     $('deliveryResultStars').textContent=won&&!deliveryPractice?'★'.repeat(deliveryStars(elapsed,thresholds)):'';
