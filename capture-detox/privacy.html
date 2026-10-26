@@ -45,7 +45,7 @@ th { color: var(--muted); font-weight: 500; }
     <tr><th>항목</th><th>목적</th><th>보관</th></tr>
     <tr><td>캡처별 읽은 글자와 분류 결과, 작은 썸네일</td><td>다시 읽지 않고 바로 보여 주기</td><td rowspan="4">앱 삭제 또는 앱 데이터 삭제 시 함께 삭제</td></tr>
     <tr><td>살린 캡처의 내용(상품명, 날짜, 금액, 계좌 등 캡처에서 읽은 것)과 알림 예약</td><td>알림 보내기, 살린 것 목록</td></tr>
-    <tr><td>정리 기록, 오늘 무료 삭제 수(광고를 보고 받은 추가 삭제 수 포함), 알림 시각 등 설정</td><td>기록 보기, 설정 유지</td></tr>
+    <tr><td>정리 기록(그날 지운 장수 등), 알림 시각 등 설정</td><td>기록 보기, 설정 유지</td></tr>
     <tr><td>광고 동의 선택과 관련 설정값(Google 동의 SDK가 저장)</td><td>광고 동의를 매번 다시 묻지 않기</td></tr>
   </table>
   <p>앞의 세 가지는 앱의 로컬 저장소에만 있으며 서버로 보내지 않습니다. 광고 동의 선택은 광고를 요청할 때 Google에 함께 전달됩니다.</p>
@@ -64,7 +64,7 @@ th { color: var(--muted); font-weight: 500; }
   <p>자세한 내용은 <a href="https://developers.google.com/ml-kit/android-data-disclosure">ML Kit 데이터 공개 안내</a>를 따릅니다.</p>
 
   <h2>5. 광고(Google AdMob)</h2>
-  <p>앱은 하루 무료 삭제 수를 넘겨 더 지울 때 이용자가 골라서 보는 보상형 광고와, 정리 결과 화면에서 나갈 때 가끔 나오는 전면 광고를 Google AdMob으로 보여 줍니다. 이를 위해 AdMob(Google 모바일 광고 SDK)이 다음 정보를 수집해 TLS로 암호화하여 Google에 보냅니다.</p>
+  <p>앱은 정리 결과 화면에서 나갈 때 가끔 나오는 전면 광고를 Google AdMob으로 보여 줍니다. 캡처를 지우거나 되살리는 데에는 광고나 횟수 제한이 없습니다. 광고를 위해 AdMob(Google 모바일 광고 SDK)이 다음 정보를 수집해 TLS로 암호화하여 Google에 보냅니다.</p>
   <ul>
     <li>광고 ID, 앱 세트 ID 등 기기 식별자</li>
     <li>IP 주소(기기의 대략적인 위치를 추정하는 데 쓰일 수 있음)</li>
