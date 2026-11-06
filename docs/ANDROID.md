@@ -21,6 +21,15 @@ node scripts/store-shots.js # 스토어 스크린샷 6장(store/screenshots/, 10
 - 세로 고정, 진동 권한(`navigator.vibrate`), 상태바는 어두운 배경용(SystemBars DARK), Android 12 이상 시스템 스플래시 배경 `#0f171c`.
 - 출시 빌드는 작업 중인 파일이 섞이지 않도록 커밋된 상태의 깨끗한 worktree에서 만든다.
 
+## 맥으로 옮기기 (2026-11-06)
+
+2026-11-06 사용자 결정으로 앞으로 모든 작업을 맥북에서 한다. 그전에는 Windows PC에서만 빌드했다. 웹 게임 쪽은 `main`의 `CLAUDE.md` '작업 장소'를 본다.
+
+- **업로드 키:** `botris-upload.jks`와 비밀번호가 든 `android/keystore.properties`(gitignore)는 Windows PC에만 있다(아래 '앱 정보'). 사용자가 두 파일을 비밀번호 관리자나 USB로 맥에 옮기고, `storeFile`을 맥의 절대 경로로 고친다(Gradle은 `~`를 풀지 않는다). 옮기기 전에는 Windows PC를 초기화하지 않는다. 공개 저장소이므로 두 파일은 커밋하지 않는다.
+- **JDK 21과 SDK:** 맥에 JDK 21과 Android Studio(SDK·에뮬레이터)를 설치한다. `scripts/android.js`는 JDK를 `$JAVA21_HOME` → `~/.jdks/jdk-21*`, SDK를 `$ANDROID_HOME` → Windows의 `%LOCALAPPDATA%\Android\Sdk`에서 찾으므로, 맥에서는 `export JAVA21_HOME="$(/usr/libexec/java_home -v 21)" ANDROID_HOME="$HOME/Library/Android/sdk"`를 붙이거나 기본값에 맥 경로를 더한다.
+- **스토어 그림 도구:** `scripts/store-art.js`·`store-shots.js`는 Chrome을 `$CHROME`, 없으면 Windows 경로에서 찾는다. 맥에서는 `CHROME`에 Chrome 실행 파일 경로를 준다.
+- 이 브랜치는 2026-11-06까지 Windows PC에만 있었고, 이날 GitHub에 올렸다.
+
 ## 앱 정보
 
 - 패키지 이름 **`kr.hongrae.botris`**(2026-10-12 사용자 확정). 첫 업로드 후에는 바꿀 수 없다.
